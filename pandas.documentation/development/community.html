@@ -1,0 +1,691 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Contributor community &#8212; pandas 1.5.3 documentation</title>
+  <script>
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=9b1a4fa89bdd0e95b23b" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=9b1a4fa89bdd0e95b23b" rel="stylesheet">
+
+  
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/6.1.2/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/getting_started.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/pandas.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=9b1a4fa89bdd0e95b23b">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/toggleprompt.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script async="async" src="https://www.google-analytics.com/analytics.js"></script>
+    <script>
+                    window.ga = window.ga || function () {
+                        (ga.q = ga.q || []).push(arguments) };
+                    ga.l = +new Date;
+                    ga('create', 'UA-27880019-2', 'auto');
+                    ga('set', 'anonymizeIp', true);
+                    ga('send', 'pageview');
+                </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'development/community';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        </script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Release notes" href="../whatsnew/index.html" />
+    <link rel="prev" title="Roadmap" href="roadmap.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fas fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../_static/pandas.svg" class="logo__image only-light" alt="Logo image">
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="../getting_started/index.html">
+                        Getting started
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../user_guide/index.html">
+                        User Guide
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../reference/index.html">
+                        API reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item current active">
+                    <a class="nav-link" href="index.html">
+                        Development
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../whatsnew/index.html">
+                        Release notes
+                    </a>
+                </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      <div class="navbar-end-item navbar-end__search-button-container">
+        
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search">
+  <i class="fas fa-search"></i>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        1.5.3  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pandas-dev/pandas" title="GitHub" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/pandas_dev" title="Twitter" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  <div class="search-button-container--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search">
+  <i class="fas fa-search"></i>
+</button>
+  </div>
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fas fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="../getting_started/index.html">
+                        Getting started
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../user_guide/index.html">
+                        User Guide
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../reference/index.html">
+                        API reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item current active">
+                    <a class="nav-link" href="index.html">
+                        Development
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../whatsnew/index.html">
+                        Release notes
+                    </a>
+                </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        1.5.3  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pandas-dev/pandas" title="GitHub" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/pandas_dev" title="Twitter" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item navbar-nav">
+    
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="contributing.html">
+   Contributing to pandas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="contributing_environment.html">
+   Creating a development environment
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="contributing_documentation.html">
+   Contributing to the documentation
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label class="toctree-toggle" for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="contributing_docstring.html">
+     pandas docstring guide
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="contributing_codebase.html">
+   Contributing to the code base
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="maintaining.html">
+   pandas maintenance
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="internals.html">
+   Internals
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="debugging_extensions.html">
+   Debugging C extensions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extending.html">
+   Extending pandas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="developer.html">
+   Developer
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="policies.html">
+   Policies
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="roadmap.html">
+   Roadmap
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Contributor community
+  </a>
+ </li>
+</ul>
+
+    
+  </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+      </div>
+      <main class="bd-main">
+        
+        
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+            </div>
+            
+            
+            <article class="bd-article" role="main">
+              
+  <section id="contributor-community">
+<span id="community"></span><h1>Contributor community<a class="headerlink" href="#contributor-community" title="Permalink to this headline">#</a></h1>
+<p>pandas is a community-driven open source project developed by a large group
+of <a class="reference external" href="https://github.com/pandas-dev/pandas/graphs/contributors">contributors</a>
+and a smaller group of <a class="reference external" href="https://pandas.pydata.org/about/team.html">maintainers</a>.
+The pandas leadership has made a strong commitment to creating an open,
+inclusive, and positive community. Please read the pandas <a class="reference external" href="https://pandas.pydata.org/community/coc.html">Code of Conduct</a> for guidance on how to
+interact with others in a way that makes the community thrive.</p>
+<p>We offer several meetings and communication channels to share knowledge and
+connect with others within the pandas community.</p>
+<section id="community-meeting">
+<h2>Community meeting<a class="headerlink" href="#community-meeting" title="Permalink to this headline">#</a></h2>
+<p>The pandas Community Meeting is a regular sync meeting for the project’s
+maintainers which is open to the community. Everyone is welcome to attend and
+contribute to conversations.</p>
+<p>The meetings take place on the second Wednesday of each month at 18:00 UTC.</p>
+<p>The minutes of past meetings are available in <a class="reference external" href="https://docs.google.com/document/d/1tGbTiYORHiSPgVMXawiweGJlBw5dOkVJLY-licoBmBU/edit?usp=sharing">this Google Document</a>.</p>
+</section>
+<section id="new-contributor-meeting">
+<h2>New contributor meeting<a class="headerlink" href="#new-contributor-meeting" title="Permalink to this headline">#</a></h2>
+<p>On the third Wednesday of the month, we hold meetings to welcome and support
+new contributors in our community.</p>
+<div class="line-block">
+<div class="line">👋 you all are invited</div>
+<div class="line">💬 everyone can present (add yourself to the hackMD agenda)</div>
+<div class="line">👀 anyone can sit in and listen</div>
+</div>
+<p>Attendees are new and experienced contributors, as well as a few maintainers.
+We aim to answer questions about getting started, or help with work in
+progress when possible, as well as get to know each other and share our
+learnings and experiences.</p>
+<p>The agenda for the next meeting and minutes of past meetings are available in
+<a class="reference external" href="https://hackmd.io/&#64;pandas-dev/HJgQt1Tei">this HackMD</a>.</p>
+</section>
+<section id="calendar">
+<h2>Calendar<a class="headerlink" href="#calendar" title="Permalink to this headline">#</a></h2>
+<p>This calendar shows all the community meetings. Our community meetings are
+ideal for anyone wanting to contribute to pandas, or just curious to know how
+current development is going.</p>
+<iframe src="https://calendar.google.com/calendar/embed?src=pgbn14p6poja8a1cf2dv2jhrmg%40group.calendar.google.com" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe><p>You can subscribe to this calendar with the following links:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://calendar.google.com/calendar/ical/pgbn14p6poja8a1cf2dv2jhrmg%40group.calendar.google.com/public/basic.ics">iCal</a></p></li>
+<li><p><a class="reference external" href="https://calendar.google.com/calendar/r?cid=pgbn14p6poja8a1cf2dv2jhrmg&#64;group.calendar.google.com">Google calendar</a></p></li>
+</ul>
+<p>Additionally, we’ll sometimes have one-off meetings on specific topics.
+These will be published on the same calendar.</p>
+</section>
+<section id="id1">
+<h2><a class="reference external" href="https://github.com/pandas-dev/pandas/issues">GitHub issue tracker</a><a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
+<p>The pandas contributor community conducts conversations mainly via this channel.
+Any community member can open issues to:</p>
+<ul>
+<li><p>Report bugs, e.g. “I noticed the behavior of a certain function is
+incorrect”</p></li>
+<li><p>Request features, e.g. “I would like this error message to be more readable”</p></li>
+<li><p>Request documentation improvements, e.g. “I found this section unclear”</p></li>
+<li><p>Ask questions, e.g. “I noticed the behavior of a certain function
+changed between versions. Is this expected?”.</p>
+<blockquote>
+<div><p>Ideally your questions should be related to how pandas work rather
+than how you use pandas. <a class="reference external" href="https://stackoverflow.com/">StackOverflow</a> is
+better suited for answering usage questions, and we ask that all usage
+questions are first asked on StackOverflow. Thank you for respecting are
+time and wishes. 🙇</p>
+</div></blockquote>
+</li>
+</ul>
+<p>Maintainers and frequent contributors might also open issues to discuss the
+ongoing development of the project. For example:</p>
+<ul class="simple">
+<li><p>Report issues with the CI, GitHub Actions, or the performance of pandas</p></li>
+<li><p>Open issues relating to the internals</p></li>
+<li><p>Start roadmap discussion aligning on proposals what to do in future
+releases or changes to the API.</p></li>
+<li><p>Open issues relating to the project’s website, logo, or governance</p></li>
+</ul>
+</section>
+<section id="the-developer-mailing-list">
+<h2>The developer mailing list<a class="headerlink" href="#the-developer-mailing-list" title="Permalink to this headline">#</a></h2>
+<p>The pandas mailing list <a class="reference external" href="mailto://pandas-dev&#37;&#52;&#48;python&#46;org">pandas-dev<span>&#64;</span>python<span>&#46;</span>org</a> is used for long form
+conversations and to engages people in the wider community who might not
+be active on the issue tracker but we would like to include in discussions.</p>
+</section>
+<section id="community-slack">
+<span id="id2"></span><h2>Community slack<a class="headerlink" href="#community-slack" title="Permalink to this headline">#</a></h2>
+<p>We have a chat platform for contributors, maintainers and potential
+contributors. This is not a space for user questions, rather for questions about
+contributing to pandas. The slack is a private space, specifically meant for
+people who are hesitant to bring up their questions or ideas on a large public
+mailing list or GitHub.</p>
+<p>If this sounds like the right place for you, you are welcome to join! Email us
+at <a class="reference external" href="mailto://slack&#37;&#52;&#48;pandas&#46;pydata&#46;org">slack<span>&#64;</span>pandas<span>&#46;</span>pydata<span>&#46;</span>org</a> and let us
+know that you read and agree to our <a class="reference external" href="https://pandas.pydata.org/community/coc.html">Code of Conduct</a>
+😉 to get an invite. And please remember the slack is not meant to replace the
+mailing list or issue tracker - all important announcements and conversations
+should still happen there.</p>
+</section>
+</section>
+
+
+            </article>
+            
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="roadmap.html" title="previous page">
+      <i class="fas fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Roadmap</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="../whatsnew/index.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">Release notes</p>
+  </div>
+  <i class="fas fa-angle-right"></i>
+  </a>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fas fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#community-meeting">
+   Community meeting
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#new-contributor-meeting">
+   New contributor meeting
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#calendar">
+   Calendar
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   GitHub issue tracker
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-developer-mailing-list">
+   The developer mailing list
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#community-slack">
+   Community slack
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+<div class="toc-item">
+  
+</div>
+
+<div class="toc-item">
+  
+<div class="tocsection sourcelink">
+    <a href="../_sources/development/community.rst.txt">
+        <i class="fas fa-file-alt"></i> Show Source
+    </a>
+</div>
+
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+          </div>
+        </footer>
+        
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=9b1a4fa89bdd0e95b23b"></script>
+
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    <p class="copyright">
+    &copy 2023 pandas via <a href="https://numfocus.org">NumFOCUS, Inc.</a> Hosted by <a href="https://www.ovhcloud.com">OVHcloud</a>.
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>

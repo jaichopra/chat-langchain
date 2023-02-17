@@ -1,0 +1,6 @@
+pandas.errors.PossibleDataLossError
+===================================
+
+.. currentmodule:: pandas.errors
+
+.. autoexception:: PossibleDataLossError

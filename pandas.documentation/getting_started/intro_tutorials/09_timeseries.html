@@ -1,0 +1,933 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>How to handle time series data with ease? &#8212; pandas 1.5.3 documentation</title>
+  <script>
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=9b1a4fa89bdd0e95b23b" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=9b1a4fa89bdd0e95b23b" rel="stylesheet">
+
+  
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/getting_started.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/pandas.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=9b1a4fa89bdd0e95b23b">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/toggleprompt.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script async="async" src="https://www.google-analytics.com/analytics.js"></script>
+    <script>
+                    window.ga = window.ga || function () {
+                        (ga.q = ga.q || []).push(arguments) };
+                    ga.l = +new Date;
+                    ga('create', 'UA-27880019-2', 'auto');
+                    ga('set', 'anonymizeIp', true);
+                    ga('send', 'pageview');
+                </script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'getting_started/intro_tutorials/09_timeseries';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        </script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="How to manipulate textual data?" href="10_text_data.html" />
+    <link rel="prev" title="How to combine data from multiple tables?" href="08_combine_dataframes.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fas fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../../_static/pandas.svg" class="logo__image only-light" alt="Logo image">
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item current active">
+                    <a class="nav-link" href="../index.html">
+                        Getting started
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../user_guide/index.html">
+                        User Guide
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../reference/index.html">
+                        API reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../development/index.html">
+                        Development
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../whatsnew/index.html">
+                        Release notes
+                    </a>
+                </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      <div class="navbar-end-item navbar-end__search-button-container">
+        
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search">
+  <i class="fas fa-search"></i>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        1.5.3  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pandas-dev/pandas" title="GitHub" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/pandas_dev" title="Twitter" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  <div class="search-button-container--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search">
+  <i class="fas fa-search"></i>
+</button>
+  </div>
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fas fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item current active">
+                    <a class="nav-link" href="../index.html">
+                        Getting started
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../user_guide/index.html">
+                        User Guide
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../reference/index.html">
+                        API reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../development/index.html">
+                        Development
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../whatsnew/index.html">
+                        Release notes
+                    </a>
+                </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        1.5.3  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pandas-dev/pandas" title="GitHub" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/pandas_dev" title="Twitter" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item navbar-nav">
+    
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../install.html">
+   Installation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../overview.html">
+   Package overview
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   Getting started tutorials
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label class="toctree-toggle" for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="01_table_oriented.html">
+     What kind of data does pandas handle?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="02_read_write.html">
+     How do I read and write tabular data?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="03_subset_data.html">
+     How do I select a subset of a
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       DataFrame
+      </span>
+     </code>
+     ?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04_plotting.html">
+     How do I create plots in pandas?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="05_add_columns.html">
+     How to create new columns derived from existing columns?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="06_calculate_statistics.html">
+     How to calculate summary statistics?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="07_reshape_table_layout.html">
+     How to reshape the layout of tables?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08_combine_dataframes.html">
+     How to combine data from multiple tables?
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     How to handle time series data with ease?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="10_text_data.html">
+     How to manipulate textual data?
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../comparison/index.html">
+   Comparison with other tools
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label class="toctree-toggle" for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../comparison/comparison_with_r.html">
+     Comparison with R / R libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../comparison/comparison_with_sql.html">
+     Comparison with SQL
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../comparison/comparison_with_spreadsheets.html">
+     Comparison with spreadsheets
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../comparison/comparison_with_sas.html">
+     Comparison with SAS
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../comparison/comparison_with_stata.html">
+     Comparison with Stata
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../tutorials.html">
+   Community tutorials
+  </a>
+ </li>
+</ul>
+
+    
+  </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+      </div>
+      <main class="bd-main">
+        
+        
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+            </div>
+            
+            
+            <article class="bd-article" role="main">
+              
+  <div class="highlight-ipython notranslate" id="min-tut-09-timeseries"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="gp">In [2]: </span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+<div class="card gs-data">
+    <div class="card-header">
+        <div class="gs-data-title">
+            Data used for this tutorial:
+        </div>
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+            <div data-toggle="collapse" href="#collapsedata" role="button" aria-expanded="false" aria-controls="collapsedata">
+                <span class="badge badge-dark">Air quality data</span>
+            </div>
+            <div class="collapse" id="collapsedata">
+                <div class="card-body">
+                    <p class="card-text"><p>For this tutorial, air quality data about <span class="math notranslate nohighlight">\(NO_2\)</span> and Particulate
+matter less than 2.5 micrometers is used, made available by
+<a class="reference external" href="https://openaq.org">OpenAQ</a> and downloaded using the
+<a class="reference external" href="http://dhhagan.github.io/py-openaq/index.html">py-openaq</a> package.
+The <code class="docutils literal notranslate"><span class="pre">air_quality_no2_long.csv&quot;</span></code> data set provides <span class="math notranslate nohighlight">\(NO_2\)</span> values
+for the measurement stations <em>FR04014</em>, <em>BETR801</em> and <em>London
+Westminster</em> in respectively Paris, Antwerp and London.</p>
+            </p>
+        <a href="https://github.com/pandas-dev/pandas/tree/main/doc/data/air_quality_no2_long.csv" class="btn btn-dark btn-sm">To raw data</a>
+    </div>
+</div><div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [3]: </span><span class="n">air_quality</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/air_quality_no2_long.csv&quot;</span><span class="p">)</span>
+
+<span class="gp">In [4]: </span><span class="n">air_quality</span> <span class="o">=</span> <span class="n">air_quality</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;date.utc&quot;</span><span class="p">:</span> <span class="s2">&quot;datetime&quot;</span><span class="p">})</span>
+
+<span class="gp">In [5]: </span><span class="n">air_quality</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="gh">Out[5]: </span>
+<span class="go">    city country                   datetime location parameter  value   unit</span>
+<span class="go">0  Paris      FR  2019-06-21 00:00:00+00:00  FR04014       no2   20.0  µg/m³</span>
+<span class="go">1  Paris      FR  2019-06-20 23:00:00+00:00  FR04014       no2   21.8  µg/m³</span>
+<span class="go">2  Paris      FR  2019-06-20 22:00:00+00:00  FR04014       no2   26.5  µg/m³</span>
+<span class="go">3  Paris      FR  2019-06-20 21:00:00+00:00  FR04014       no2   24.9  µg/m³</span>
+<span class="go">4  Paris      FR  2019-06-20 20:00:00+00:00  FR04014       no2   21.4  µg/m³</span>
+</pre></div>
+</div>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [6]: </span><span class="n">air_quality</span><span class="o">.</span><span class="n">city</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+<span class="gh">Out[6]: </span><span class="go">array([&#39;Paris&#39;, &#39;Antwerpen&#39;, &#39;London&#39;], dtype=object)</span>
+</pre></div>
+</div>
+    </li>
+</ul>
+</div><section id="how-to-handle-time-series-data-with-ease">
+<h1>How to handle time series data with ease?<a class="headerlink" href="#how-to-handle-time-series-data-with-ease" title="Permalink to this headline">#</a></h1>
+<section id="using-pandas-datetime-properties">
+<span id="min-tut-09-timeseries-properties"></span><h2>Using pandas datetime properties<a class="headerlink" href="#using-pandas-datetime-properties" title="Permalink to this headline">#</a></h2>
+<ul class="task-bullet">
+    <li><p>I want to work with the dates in the column <code class="docutils literal notranslate"><span class="pre">datetime</span></code> as datetime objects instead of plain text</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [7]: </span><span class="n">air_quality</span><span class="p">[</span><span class="s2">&quot;datetime&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">air_quality</span><span class="p">[</span><span class="s2">&quot;datetime&quot;</span><span class="p">])</span>
+
+<span class="gp">In [8]: </span><span class="n">air_quality</span><span class="p">[</span><span class="s2">&quot;datetime&quot;</span><span class="p">]</span>
+<span class="gh">Out[8]: </span>
+<span class="go">0      2019-06-21 00:00:00+00:00</span>
+<span class="go">1      2019-06-20 23:00:00+00:00</span>
+<span class="go">2      2019-06-20 22:00:00+00:00</span>
+<span class="go">3      2019-06-20 21:00:00+00:00</span>
+<span class="go">4      2019-06-20 20:00:00+00:00</span>
+<span class="go">                  ...           </span>
+<span class="go">2063   2019-05-07 06:00:00+00:00</span>
+<span class="go">2064   2019-05-07 04:00:00+00:00</span>
+<span class="go">2065   2019-05-07 03:00:00+00:00</span>
+<span class="go">2066   2019-05-07 02:00:00+00:00</span>
+<span class="go">2067   2019-05-07 01:00:00+00:00</span>
+<span class="go">Name: datetime, Length: 2068, dtype: datetime64[ns, UTC]</span>
+</pre></div>
+</div>
+<p>Initially, the values in <code class="docutils literal notranslate"><span class="pre">datetime</span></code> are character strings and do not
+provide any datetime operations (e.g. extract the year, day of the
+week,…). By applying the <code class="docutils literal notranslate"><span class="pre">to_datetime</span></code> function, pandas interprets the
+strings and convert these to datetime (i.e. <code class="docutils literal notranslate"><span class="pre">datetime64[ns,</span> <span class="pre">UTC]</span></code>)
+objects. In pandas we call these datetime objects similar to
+<code class="docutils literal notranslate"><span class="pre">datetime.datetime</span></code> from the standard library as <a class="reference internal" href="../../reference/api/pandas.Timestamp.html#pandas.Timestamp" title="pandas.Timestamp"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.Timestamp</span></code></a>.</p>
+    </li>
+</ul><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>As many data sets do contain datetime information in one of
+the columns, pandas input function like <a class="reference internal" href="../../reference/api/pandas.read_csv.html#pandas.read_csv" title="pandas.read_csv"><code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.read_csv()</span></code></a> and <a class="reference internal" href="../../reference/api/pandas.read_json.html#pandas.read_json" title="pandas.read_json"><code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.read_json()</span></code></a>
+can do the transformation to dates when reading the data using the
+<code class="docutils literal notranslate"><span class="pre">parse_dates</span></code> parameter with a list of the columns to read as
+Timestamp:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/air_quality_no2_long.csv&quot;</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;datetime&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<p>Why are these <a class="reference internal" href="../../reference/api/pandas.Timestamp.html#pandas.Timestamp" title="pandas.Timestamp"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.Timestamp</span></code></a> objects useful? Let’s illustrate the added
+value with some example cases.</p>
+<blockquote>
+<div><p>What is the start and end date of the time series data set we are working
+with?</p>
+</div></blockquote>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [9]: </span><span class="n">air_quality</span><span class="p">[</span><span class="s2">&quot;datetime&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">air_quality</span><span class="p">[</span><span class="s2">&quot;datetime&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="gh">Out[9]: </span>
+<span class="go">(Timestamp(&#39;2019-05-07 01:00:00+0000&#39;, tz=&#39;UTC&#39;),</span>
+<span class="go"> Timestamp(&#39;2019-06-21 00:00:00+0000&#39;, tz=&#39;UTC&#39;))</span>
+</pre></div>
+</div>
+<p>Using <a class="reference internal" href="../../reference/api/pandas.Timestamp.html#pandas.Timestamp" title="pandas.Timestamp"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.Timestamp</span></code></a> for datetimes enables us to calculate with date
+information and make them comparable. Hence, we can use this to get the
+length of our time series:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [10]: </span><span class="n">air_quality</span><span class="p">[</span><span class="s2">&quot;datetime&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">-</span> <span class="n">air_quality</span><span class="p">[</span><span class="s2">&quot;datetime&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+<span class="gh">Out[10]: </span><span class="go">Timedelta(&#39;44 days 23:00:00&#39;)</span>
+</pre></div>
+</div>
+<p>The result is a <a class="reference internal" href="../../reference/api/pandas.Timedelta.html#pandas.Timedelta" title="pandas.Timedelta"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.Timedelta</span></code></a> object, similar to <code class="docutils literal notranslate"><span class="pre">datetime.timedelta</span></code>
+from the standard Python library and defining a time duration.</p>
+<div class="d-flex flex-row gs-torefguide">
+    <span class="badge badge-info">To user guide</span><p>The various time concepts supported by pandas are explained in the user guide section on <a class="reference internal" href="../../user_guide/timeseries.html#timeseries-overview"><span class="std std-ref">time related concepts</span></a>.</p>
+</div><ul class="task-bullet">
+    <li><p>I want to add a new column to the <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> containing only the month of the measurement</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [11]: </span><span class="n">air_quality</span><span class="p">[</span><span class="s2">&quot;month&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">air_quality</span><span class="p">[</span><span class="s2">&quot;datetime&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">month</span>
+
+<span class="gp">In [12]: </span><span class="n">air_quality</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="gh">Out[12]: </span>
+<span class="go">    city country                  datetime  ... value   unit  month</span>
+<span class="go">0  Paris      FR 2019-06-21 00:00:00+00:00  ...  20.0  µg/m³      6</span>
+<span class="go">1  Paris      FR 2019-06-20 23:00:00+00:00  ...  21.8  µg/m³      6</span>
+<span class="go">2  Paris      FR 2019-06-20 22:00:00+00:00  ...  26.5  µg/m³      6</span>
+<span class="go">3  Paris      FR 2019-06-20 21:00:00+00:00  ...  24.9  µg/m³      6</span>
+<span class="go">4  Paris      FR 2019-06-20 20:00:00+00:00  ...  21.4  µg/m³      6</span>
+
+<span class="go">[5 rows x 8 columns]</span>
+</pre></div>
+</div>
+<p>By using <code class="docutils literal notranslate"><span class="pre">Timestamp</span></code> objects for dates, a lot of time-related
+properties are provided by pandas. For example the <code class="docutils literal notranslate"><span class="pre">month</span></code>, but also
+<code class="docutils literal notranslate"><span class="pre">year</span></code>, <code class="docutils literal notranslate"><span class="pre">weekofyear</span></code>, <code class="docutils literal notranslate"><span class="pre">quarter</span></code>,… All of these properties are
+accessible by the <code class="docutils literal notranslate"><span class="pre">dt</span></code> accessor.</p>
+    </li>
+</ul><div class="d-flex flex-row gs-torefguide">
+    <span class="badge badge-info">To user guide</span><p>An overview of the existing date properties is given in the
+<a class="reference internal" href="../../user_guide/timeseries.html#timeseries-components"><span class="std std-ref">time and date components overview table</span></a>. More details about the <code class="docutils literal notranslate"><span class="pre">dt</span></code> accessor
+to return datetime like properties are explained in a dedicated section on the  <a class="reference internal" href="../../user_guide/basics.html#basics-dt-accessors"><span class="std std-ref">dt accessor</span></a>.</p>
+</div><ul class="task-bullet">
+    <li><p>What is the average <span class="math notranslate nohighlight">\(NO_2\)</span> concentration for each day of the week for each of the measurement locations?</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [13]: </span><span class="n">air_quality</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span>
+<span class="gp">   ....: </span>    <span class="p">[</span><span class="n">air_quality</span><span class="p">[</span><span class="s2">&quot;datetime&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">weekday</span><span class="p">,</span> <span class="s2">&quot;location&quot;</span><span class="p">])[</span><span class="s2">&quot;value&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="gp">   ....: </span>
+<span class="gh">Out[13]: </span>
+<span class="go">datetime  location          </span>
+<span class="go">0         BETR801               27.875000</span>
+<span class="go">          FR04014               24.856250</span>
+<span class="go">          London Westminster    23.969697</span>
+<span class="go">1         BETR801               22.214286</span>
+<span class="go">          FR04014               30.999359</span>
+<span class="go">                                  ...    </span>
+<span class="go">5         FR04014               25.266154</span>
+<span class="go">          London Westminster    24.977612</span>
+<span class="go">6         BETR801               21.896552</span>
+<span class="go">          FR04014               23.274306</span>
+<span class="go">          London Westminster    24.859155</span>
+<span class="go">Name: value, Length: 21, dtype: float64</span>
+</pre></div>
+</div>
+<p>Remember the split-apply-combine pattern provided by <code class="docutils literal notranslate"><span class="pre">groupby</span></code> from the
+<a class="reference internal" href="06_calculate_statistics.html#min-tut-06-stats"><span class="std std-ref">tutorial on statistics calculation</span></a>?
+Here, we want to calculate a given statistic (e.g. mean <span class="math notranslate nohighlight">\(NO_2\)</span>)
+<strong>for each weekday</strong> and <strong>for each measurement location</strong>. To group on
+weekdays, we use the datetime property <code class="docutils literal notranslate"><span class="pre">weekday</span></code> (with Monday=0 and
+Sunday=6) of pandas <code class="docutils literal notranslate"><span class="pre">Timestamp</span></code>, which is also accessible by the
+<code class="docutils literal notranslate"><span class="pre">dt</span></code> accessor. The grouping on both locations and weekdays can be done
+to split the calculation of the mean on each of these combinations.</p>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>As we are working with a very short time series in these
+examples, the analysis does not provide a long-term representative
+result!</p>
+</div>
+    </li>
+</ul><ul class="task-bullet">
+    <li><p>Plot the typical <span class="math notranslate nohighlight">\(NO_2\)</span> pattern during the day of our time series of all stations together. In other words, what is the average value for each hour of the day?</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [14]: </span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="gp">In [15]: </span><span class="n">air_quality</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">air_quality</span><span class="p">[</span><span class="s2">&quot;datetime&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">hour</span><span class="p">)[</span><span class="s2">&quot;value&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+<span class="gp">   ....: </span>    <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">rot</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span>
+<span class="gp">   ....: </span><span class="p">)</span>
+<span class="gp">   ....: </span>
+<span class="gh">Out[15]: </span><span class="go">&lt;AxesSubplot: xlabel=&#39;datetime&#39;&gt;</span>
+
+<span class="gp">In [16]: </span><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Hour of the day&quot;</span><span class="p">);</span>  <span class="c1"># custom x label using Matplotlib</span>
+
+<span class="gp">In [17]: </span><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$NO_2 (µg/m^3)$&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<img alt="../../_images/09_bar_chart.png" src="../../_images/09_bar_chart.png" />
+<p>Similar to the previous case, we want to calculate a given statistic
+(e.g. mean <span class="math notranslate nohighlight">\(NO_2\)</span>) <strong>for each hour of the day</strong> and we can use the
+split-apply-combine approach again. For this case, we use the datetime property <code class="docutils literal notranslate"><span class="pre">hour</span></code>
+of pandas <code class="docutils literal notranslate"><span class="pre">Timestamp</span></code>, which is also accessible by the <code class="docutils literal notranslate"><span class="pre">dt</span></code> accessor.</p>
+    </li>
+</ul></section>
+<section id="datetime-as-index">
+<h2>Datetime as index<a class="headerlink" href="#datetime-as-index" title="Permalink to this headline">#</a></h2>
+<p>In the <a class="reference internal" href="07_reshape_table_layout.html#min-tut-07-reshape"><span class="std std-ref">tutorial on reshaping</span></a>,
+<a class="reference internal" href="../../reference/api/pandas.pivot.html#pandas.pivot" title="pandas.pivot"><code class="xref py py-meth docutils literal notranslate"><span class="pre">pivot()</span></code></a> was introduced to reshape the data table with each of the
+measurements locations as a separate column:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [18]: </span><span class="n">no_2</span> <span class="o">=</span> <span class="n">air_quality</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s2">&quot;datetime&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s2">&quot;location&quot;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">)</span>
+
+<span class="gp">In [19]: </span><span class="n">no_2</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="gh">Out[19]: </span>
+<span class="go">location                   BETR801  FR04014  London Westminster</span>
+<span class="go">datetime                                                       </span>
+<span class="go">2019-05-07 01:00:00+00:00     50.5     25.0                23.0</span>
+<span class="go">2019-05-07 02:00:00+00:00     45.0     27.7                19.0</span>
+<span class="go">2019-05-07 03:00:00+00:00      NaN     50.4                19.0</span>
+<span class="go">2019-05-07 04:00:00+00:00      NaN     61.9                16.0</span>
+<span class="go">2019-05-07 05:00:00+00:00      NaN     72.4                 NaN</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>By pivoting the data, the datetime information became the
+index of the table. In general, setting a column as an index can be
+achieved by the <code class="docutils literal notranslate"><span class="pre">set_index</span></code> function.</p>
+</div>
+<p>Working with a datetime index (i.e. <code class="docutils literal notranslate"><span class="pre">DatetimeIndex</span></code>) provides powerful
+functionalities. For example, we do not need the <code class="docutils literal notranslate"><span class="pre">dt</span></code> accessor to get
+the time series properties, but have these properties available on the
+index directly:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [20]: </span><span class="n">no_2</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="n">no_2</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">weekday</span>
+<span class="gh">Out[20]: </span>
+<span class="go">(Int64Index([2019, 2019, 2019, 2019, 2019, 2019, 2019, 2019, 2019, 2019,</span>
+<span class="go">             ...</span>
+<span class="go">             2019, 2019, 2019, 2019, 2019, 2019, 2019, 2019, 2019, 2019],</span>
+<span class="go">            dtype=&#39;int64&#39;, name=&#39;datetime&#39;, length=1033),</span>
+<span class="go"> Int64Index([1, 1, 1, 1, 1, 1, 1, 1, 1, 1,</span>
+<span class="go">             ...</span>
+<span class="go">             3, 3, 3, 3, 3, 3, 3, 3, 3, 4],</span>
+<span class="go">            dtype=&#39;int64&#39;, name=&#39;datetime&#39;, length=1033))</span>
+</pre></div>
+</div>
+<p>Some other advantages are the convenient subsetting of time period or
+the adapted time scale on plots. Let’s apply this on our data.</p>
+<ul class="task-bullet">
+    <li><p>Create a plot of the <span class="math notranslate nohighlight">\(NO_2\)</span> values in the different stations from the 20th of May till the end of 21st of May</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [21]: </span><span class="n">no_2</span><span class="p">[</span><span class="s2">&quot;2019-05-20&quot;</span><span class="p">:</span><span class="s2">&quot;2019-05-21&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">();</span>
+</pre></div>
+</div>
+<img alt="../../_images/09_time_section.png" src="../../_images/09_time_section.png" />
+<p>By providing a <strong>string that parses to a datetime</strong>, a specific subset of the data can be selected on a <code class="docutils literal notranslate"><span class="pre">DatetimeIndex</span></code>.</p>
+    </li>
+</ul><div class="d-flex flex-row gs-torefguide">
+    <span class="badge badge-info">To user guide</span><p>More information on the <code class="docutils literal notranslate"><span class="pre">DatetimeIndex</span></code> and the slicing by using strings is provided in the section on <a class="reference internal" href="../../user_guide/timeseries.html#timeseries-datetimeindex"><span class="std std-ref">time series indexing</span></a>.</p>
+</div></section>
+<section id="resample-a-time-series-to-another-frequency">
+<h2>Resample a time series to another frequency<a class="headerlink" href="#resample-a-time-series-to-another-frequency" title="Permalink to this headline">#</a></h2>
+<ul class="task-bullet">
+    <li><p>Aggregate the current hourly time series values to the monthly maximum value in each of the stations.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [22]: </span><span class="n">monthly_max</span> <span class="o">=</span> <span class="n">no_2</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s2">&quot;M&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+
+<span class="gp">In [23]: </span><span class="n">monthly_max</span>
+<span class="gh">Out[23]: </span>
+<span class="go">location                   BETR801  FR04014  London Westminster</span>
+<span class="go">datetime                                                       </span>
+<span class="go">2019-05-31 00:00:00+00:00     74.5     97.0                97.0</span>
+<span class="go">2019-06-30 00:00:00+00:00     52.5     84.7                52.0</span>
+</pre></div>
+</div>
+<p>A very powerful method on time series data with a datetime index, is the
+ability to <a class="reference internal" href="../../reference/api/pandas.Series.resample.html#pandas.Series.resample" title="pandas.Series.resample"><code class="xref py py-meth docutils literal notranslate"><span class="pre">resample()</span></code></a> time series to another frequency (e.g.,
+converting secondly data into 5-minutely data).</p>
+    </li>
+</ul><p>The <a class="reference internal" href="../../reference/api/pandas.Series.resample.html#pandas.Series.resample" title="pandas.Series.resample"><code class="xref py py-meth docutils literal notranslate"><span class="pre">resample()</span></code></a> method is similar to a groupby operation:</p>
+<ul class="simple">
+<li><p>it provides a time-based grouping, by using a string (e.g. <code class="docutils literal notranslate"><span class="pre">M</span></code>,
+<code class="docutils literal notranslate"><span class="pre">5H</span></code>,…) that defines the target frequency</p></li>
+<li><p>it requires an aggregation function such as <code class="docutils literal notranslate"><span class="pre">mean</span></code>, <code class="docutils literal notranslate"><span class="pre">max</span></code>,…</p></li>
+</ul>
+<div class="d-flex flex-row gs-torefguide">
+    <span class="badge badge-info">To user guide</span><p>An overview of the aliases used to define time series frequencies is given in the <a class="reference internal" href="../../user_guide/timeseries.html#timeseries-offset-aliases"><span class="std std-ref">offset aliases overview table</span></a>.</p>
+</div><p>When defined, the frequency of the time series is provided by the
+<code class="docutils literal notranslate"><span class="pre">freq</span></code> attribute:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [24]: </span><span class="n">monthly_max</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">freq</span>
+<span class="gh">Out[24]: </span><span class="go">&lt;MonthEnd&gt;</span>
+</pre></div>
+</div>
+<ul class="task-bullet">
+    <li><p>Make a plot of the daily mean <span class="math notranslate nohighlight">\(NO_2\)</span> value in each of the stations.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [25]: </span><span class="n">no_2</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s2">&quot;D&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">&quot;-o&quot;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">));</span>
+</pre></div>
+</div>
+<img alt="../../_images/09_resample_mean.png" src="../../_images/09_resample_mean.png" />
+    </li>
+</ul><div class="d-flex flex-row gs-torefguide">
+    <span class="badge badge-info">To user guide</span><p>More details on the power of time series <code class="docutils literal notranslate"><span class="pre">resampling</span></code> is provided in the user guide section on <a class="reference internal" href="../../user_guide/timeseries.html#timeseries-resampling"><span class="std std-ref">resampling</span></a>.</p>
+</div><div class="shadow gs-callout gs-callout-remember">
+    <h4>REMEMBER</h4><ul class="simple">
+<li><p>Valid date strings can be converted to datetime objects using
+<code class="docutils literal notranslate"><span class="pre">to_datetime</span></code> function or as part of read functions.</p></li>
+<li><p>Datetime objects in pandas support calculations, logical operations
+and convenient date-related properties using the <code class="docutils literal notranslate"><span class="pre">dt</span></code> accessor.</p></li>
+<li><p>A <code class="docutils literal notranslate"><span class="pre">DatetimeIndex</span></code> contains these date-related properties and
+supports convenient slicing.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Resample</span></code> is a powerful method to change the frequency of a time
+series.</p></li>
+</ul>
+</div><div class="d-flex flex-row gs-torefguide">
+    <span class="badge badge-info">To user guide</span><p>A full overview on time series is given on the pages on <a class="reference internal" href="../../user_guide/timeseries.html#timeseries"><span class="std std-ref">time series and date functionality</span></a>.</p>
+</div></section>
+</section>
+
+
+            </article>
+            
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="08_combine_dataframes.html" title="previous page">
+      <i class="fas fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">How to combine data from multiple tables?</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="10_text_data.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">How to manipulate textual data?</p>
+  </div>
+  <i class="fas fa-angle-right"></i>
+  </a>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fas fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#using-pandas-datetime-properties">
+   Using pandas datetime properties
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#datetime-as-index">
+   Datetime as index
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#resample-a-time-series-to-another-frequency">
+   Resample a time series to another frequency
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+<div class="toc-item">
+  
+</div>
+
+<div class="toc-item">
+  
+<div class="tocsection sourcelink">
+    <a href="../../_sources/getting_started/intro_tutorials/09_timeseries.rst.txt">
+        <i class="fas fa-file-alt"></i> Show Source
+    </a>
+</div>
+
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+          </div>
+        </footer>
+        
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=9b1a4fa89bdd0e95b23b"></script>
+
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    <p class="copyright">
+    &copy 2023 pandas via <a href="https://numfocus.org">NumFOCUS, Inc.</a> Hosted by <a href="https://www.ovhcloud.com">OVHcloud</a>.
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,2969 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>pandas arrays, scalars, and data types &#8212; pandas 1.5.3 documentation</title>
+  <script>
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=9b1a4fa89bdd0e95b23b" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=9b1a4fa89bdd0e95b23b" rel="stylesheet">
+
+  
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/6.1.2/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/getting_started.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/pandas.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=9b1a4fa89bdd0e95b23b">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/toggleprompt.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script async="async" src="https://www.google-analytics.com/analytics.js"></script>
+    <script>
+                    window.ga = window.ga || function () {
+                        (ga.q = ga.q || []).push(arguments) };
+                    ga.l = +new Date;
+                    ga('create', 'UA-27880019-2', 'auto');
+                    ga('set', 'anonymizeIp', true);
+                    ga('send', 'pageview');
+                </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'reference/arrays';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        </script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="pandas.array" href="api/pandas.array.html" />
+    <link rel="prev" title="pandas.DataFrame.__dataframe__" href="api/pandas.DataFrame.__dataframe__.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fas fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../_static/pandas.svg" class="logo__image only-light" alt="Logo image">
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="../getting_started/index.html">
+                        Getting started
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../user_guide/index.html">
+                        User Guide
+                    </a>
+                </li>
+                
+
+                <li class="nav-item current active">
+                    <a class="nav-link" href="index.html">
+                        API reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../development/index.html">
+                        Development
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../whatsnew/index.html">
+                        Release notes
+                    </a>
+                </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      <div class="navbar-end-item navbar-end__search-button-container">
+        
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search">
+  <i class="fas fa-search"></i>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        1.5.3  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pandas-dev/pandas" title="GitHub" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/pandas_dev" title="Twitter" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  <div class="search-button-container--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search">
+  <i class="fas fa-search"></i>
+</button>
+  </div>
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fas fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="../getting_started/index.html">
+                        Getting started
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../user_guide/index.html">
+                        User Guide
+                    </a>
+                </li>
+                
+
+                <li class="nav-item current active">
+                    <a class="nav-link" href="index.html">
+                        API reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../development/index.html">
+                        Development
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../whatsnew/index.html">
+                        Release notes
+                    </a>
+                </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        1.5.3  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pandas-dev/pandas" title="GitHub" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/pandas_dev" title="Twitter" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item navbar-nav">
+    
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="io.html">
+   Input/output
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="general_functions.html">
+   General functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="series.html">
+   Series
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="frame.html">
+   DataFrame
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="current reference internal" href="#">
+   pandas arrays, scalars, and data types
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label class="toctree-toggle" for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.array.html">
+     pandas.array
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.arrays.ArrowExtensionArray.html">
+     pandas.arrays.ArrowExtensionArray
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.ArrowDtype.html">
+     pandas.ArrowDtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.html">
+     pandas.Timestamp
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.asm8.html">
+     pandas.Timestamp.asm8
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.day.html">
+     pandas.Timestamp.day
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.dayofweek.html">
+     pandas.Timestamp.dayofweek
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.day_of_week.html">
+     pandas.Timestamp.day_of_week
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.dayofyear.html">
+     pandas.Timestamp.dayofyear
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.day_of_year.html">
+     pandas.Timestamp.day_of_year
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.days_in_month.html">
+     pandas.Timestamp.days_in_month
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.daysinmonth.html">
+     pandas.Timestamp.daysinmonth
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.fold.html">
+     pandas.Timestamp.fold
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.hour.html">
+     pandas.Timestamp.hour
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.is_leap_year.html">
+     pandas.Timestamp.is_leap_year
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.is_month_end.html">
+     pandas.Timestamp.is_month_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.is_month_start.html">
+     pandas.Timestamp.is_month_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.is_quarter_end.html">
+     pandas.Timestamp.is_quarter_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.is_quarter_start.html">
+     pandas.Timestamp.is_quarter_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.is_year_end.html">
+     pandas.Timestamp.is_year_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.is_year_start.html">
+     pandas.Timestamp.is_year_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.max.html">
+     pandas.Timestamp.max
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.microsecond.html">
+     pandas.Timestamp.microsecond
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.min.html">
+     pandas.Timestamp.min
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.minute.html">
+     pandas.Timestamp.minute
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.month.html">
+     pandas.Timestamp.month
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.nanosecond.html">
+     pandas.Timestamp.nanosecond
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.quarter.html">
+     pandas.Timestamp.quarter
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.resolution.html">
+     pandas.Timestamp.resolution
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.second.html">
+     pandas.Timestamp.second
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.tz.html">
+     pandas.Timestamp.tz
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.tzinfo.html">
+     pandas.Timestamp.tzinfo
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.value.html">
+     pandas.Timestamp.value
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.week.html">
+     pandas.Timestamp.week
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.weekofyear.html">
+     pandas.Timestamp.weekofyear
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.year.html">
+     pandas.Timestamp.year
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.astimezone.html">
+     pandas.Timestamp.astimezone
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.ceil.html">
+     pandas.Timestamp.ceil
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.combine.html">
+     pandas.Timestamp.combine
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.ctime.html">
+     pandas.Timestamp.ctime
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.date.html">
+     pandas.Timestamp.date
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.day_name.html">
+     pandas.Timestamp.day_name
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.dst.html">
+     pandas.Timestamp.dst
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.floor.html">
+     pandas.Timestamp.floor
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.freq.html">
+     pandas.Timestamp.freq
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.freqstr.html">
+     pandas.Timestamp.freqstr
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.fromordinal.html">
+     pandas.Timestamp.fromordinal
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.fromtimestamp.html">
+     pandas.Timestamp.fromtimestamp
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.isocalendar.html">
+     pandas.Timestamp.isocalendar
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.isoformat.html">
+     pandas.Timestamp.isoformat
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.isoweekday.html">
+     pandas.Timestamp.isoweekday
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.month_name.html">
+     pandas.Timestamp.month_name
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.normalize.html">
+     pandas.Timestamp.normalize
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.now.html">
+     pandas.Timestamp.now
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.replace.html">
+     pandas.Timestamp.replace
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.round.html">
+     pandas.Timestamp.round
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.strftime.html">
+     pandas.Timestamp.strftime
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.strptime.html">
+     pandas.Timestamp.strptime
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.time.html">
+     pandas.Timestamp.time
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.timestamp.html">
+     pandas.Timestamp.timestamp
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.timetuple.html">
+     pandas.Timestamp.timetuple
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.timetz.html">
+     pandas.Timestamp.timetz
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.to_datetime64.html">
+     pandas.Timestamp.to_datetime64
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.to_numpy.html">
+     pandas.Timestamp.to_numpy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.to_julian_date.html">
+     pandas.Timestamp.to_julian_date
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.to_period.html">
+     pandas.Timestamp.to_period
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.to_pydatetime.html">
+     pandas.Timestamp.to_pydatetime
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.today.html">
+     pandas.Timestamp.today
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.toordinal.html">
+     pandas.Timestamp.toordinal
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.tz_convert.html">
+     pandas.Timestamp.tz_convert
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.tz_localize.html">
+     pandas.Timestamp.tz_localize
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.tzname.html">
+     pandas.Timestamp.tzname
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.utcfromtimestamp.html">
+     pandas.Timestamp.utcfromtimestamp
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.utcnow.html">
+     pandas.Timestamp.utcnow
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.utcoffset.html">
+     pandas.Timestamp.utcoffset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.utctimetuple.html">
+     pandas.Timestamp.utctimetuple
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timestamp.weekday.html">
+     pandas.Timestamp.weekday
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.arrays.DatetimeArray.html">
+     pandas.arrays.DatetimeArray
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.DatetimeTZDtype.html">
+     pandas.DatetimeTZDtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timedelta.html">
+     pandas.Timedelta
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timedelta.asm8.html">
+     pandas.Timedelta.asm8
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timedelta.components.html">
+     pandas.Timedelta.components
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timedelta.days.html">
+     pandas.Timedelta.days
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timedelta.delta.html">
+     pandas.Timedelta.delta
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timedelta.freq.html">
+     pandas.Timedelta.freq
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timedelta.is_populated.html">
+     pandas.Timedelta.is_populated
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timedelta.max.html">
+     pandas.Timedelta.max
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timedelta.microseconds.html">
+     pandas.Timedelta.microseconds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timedelta.min.html">
+     pandas.Timedelta.min
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timedelta.nanoseconds.html">
+     pandas.Timedelta.nanoseconds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timedelta.resolution.html">
+     pandas.Timedelta.resolution
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timedelta.seconds.html">
+     pandas.Timedelta.seconds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timedelta.value.html">
+     pandas.Timedelta.value
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timedelta.view.html">
+     pandas.Timedelta.view
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timedelta.ceil.html">
+     pandas.Timedelta.ceil
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timedelta.floor.html">
+     pandas.Timedelta.floor
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timedelta.isoformat.html">
+     pandas.Timedelta.isoformat
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timedelta.round.html">
+     pandas.Timedelta.round
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timedelta.to_pytimedelta.html">
+     pandas.Timedelta.to_pytimedelta
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timedelta.to_timedelta64.html">
+     pandas.Timedelta.to_timedelta64
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timedelta.to_numpy.html">
+     pandas.Timedelta.to_numpy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Timedelta.total_seconds.html">
+     pandas.Timedelta.total_seconds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.arrays.TimedeltaArray.html">
+     pandas.arrays.TimedeltaArray
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Period.html">
+     pandas.Period
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Period.day.html">
+     pandas.Period.day
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Period.dayofweek.html">
+     pandas.Period.dayofweek
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Period.day_of_week.html">
+     pandas.Period.day_of_week
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Period.dayofyear.html">
+     pandas.Period.dayofyear
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Period.day_of_year.html">
+     pandas.Period.day_of_year
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Period.days_in_month.html">
+     pandas.Period.days_in_month
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Period.daysinmonth.html">
+     pandas.Period.daysinmonth
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Period.end_time.html">
+     pandas.Period.end_time
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Period.freq.html">
+     pandas.Period.freq
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Period.freqstr.html">
+     pandas.Period.freqstr
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Period.hour.html">
+     pandas.Period.hour
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Period.is_leap_year.html">
+     pandas.Period.is_leap_year
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Period.minute.html">
+     pandas.Period.minute
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Period.month.html">
+     pandas.Period.month
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Period.ordinal.html">
+     pandas.Period.ordinal
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Period.quarter.html">
+     pandas.Period.quarter
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Period.qyear.html">
+     pandas.Period.qyear
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Period.second.html">
+     pandas.Period.second
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Period.start_time.html">
+     pandas.Period.start_time
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Period.week.html">
+     pandas.Period.week
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Period.weekday.html">
+     pandas.Period.weekday
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Period.weekofyear.html">
+     pandas.Period.weekofyear
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Period.year.html">
+     pandas.Period.year
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Period.asfreq.html">
+     pandas.Period.asfreq
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Period.now.html">
+     pandas.Period.now
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Period.strftime.html">
+     pandas.Period.strftime
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Period.to_timestamp.html">
+     pandas.Period.to_timestamp
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.arrays.PeriodArray.html">
+     pandas.arrays.PeriodArray
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.PeriodDtype.html">
+     pandas.PeriodDtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Interval.html">
+     pandas.Interval
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Interval.closed.html">
+     pandas.Interval.closed
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Interval.closed_left.html">
+     pandas.Interval.closed_left
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Interval.closed_right.html">
+     pandas.Interval.closed_right
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Interval.is_empty.html">
+     pandas.Interval.is_empty
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Interval.left.html">
+     pandas.Interval.left
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Interval.length.html">
+     pandas.Interval.length
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Interval.mid.html">
+     pandas.Interval.mid
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Interval.open_left.html">
+     pandas.Interval.open_left
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Interval.open_right.html">
+     pandas.Interval.open_right
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Interval.overlaps.html">
+     pandas.Interval.overlaps
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Interval.right.html">
+     pandas.Interval.right
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.arrays.IntervalArray.html">
+     pandas.arrays.IntervalArray
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.IntervalDtype.html">
+     pandas.IntervalDtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.arrays.IntegerArray.html">
+     pandas.arrays.IntegerArray
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Int8Dtype.html">
+     pandas.Int8Dtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Int16Dtype.html">
+     pandas.Int16Dtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Int32Dtype.html">
+     pandas.Int32Dtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Int64Dtype.html">
+     pandas.Int64Dtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.UInt8Dtype.html">
+     pandas.UInt8Dtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.UInt16Dtype.html">
+     pandas.UInt16Dtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.UInt32Dtype.html">
+     pandas.UInt32Dtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.UInt64Dtype.html">
+     pandas.UInt64Dtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.CategoricalDtype.html">
+     pandas.CategoricalDtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.CategoricalDtype.categories.html">
+     pandas.CategoricalDtype.categories
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.CategoricalDtype.ordered.html">
+     pandas.CategoricalDtype.ordered
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Categorical.html">
+     pandas.Categorical
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Categorical.from_codes.html">
+     pandas.Categorical.from_codes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Categorical.dtype.html">
+     pandas.Categorical.dtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Categorical.categories.html">
+     pandas.Categorical.categories
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Categorical.ordered.html">
+     pandas.Categorical.ordered
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Categorical.codes.html">
+     pandas.Categorical.codes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.Categorical.__array__.html">
+     pandas.Categorical.__array__
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.arrays.SparseArray.html">
+     pandas.arrays.SparseArray
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.SparseDtype.html">
+     pandas.SparseDtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.arrays.StringArray.html">
+     pandas.arrays.StringArray
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.arrays.ArrowStringArray.html">
+     pandas.arrays.ArrowStringArray
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.StringDtype.html">
+     pandas.StringDtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.arrays.BooleanArray.html">
+     pandas.arrays.BooleanArray
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.BooleanDtype.html">
+     pandas.BooleanDtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.api.types.union_categoricals.html">
+     pandas.api.types.union_categoricals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.api.types.infer_dtype.html">
+     pandas.api.types.infer_dtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.api.types.pandas_dtype.html">
+     pandas.api.types.pandas_dtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.api.types.is_bool_dtype.html">
+     pandas.api.types.is_bool_dtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.api.types.is_categorical_dtype.html">
+     pandas.api.types.is_categorical_dtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.api.types.is_complex_dtype.html">
+     pandas.api.types.is_complex_dtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.api.types.is_datetime64_any_dtype.html">
+     pandas.api.types.is_datetime64_any_dtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.api.types.is_datetime64_dtype.html">
+     pandas.api.types.is_datetime64_dtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.api.types.is_datetime64_ns_dtype.html">
+     pandas.api.types.is_datetime64_ns_dtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.api.types.is_datetime64tz_dtype.html">
+     pandas.api.types.is_datetime64tz_dtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.api.types.is_extension_type.html">
+     pandas.api.types.is_extension_type
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.api.types.is_extension_array_dtype.html">
+     pandas.api.types.is_extension_array_dtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.api.types.is_float_dtype.html">
+     pandas.api.types.is_float_dtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.api.types.is_int64_dtype.html">
+     pandas.api.types.is_int64_dtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.api.types.is_integer_dtype.html">
+     pandas.api.types.is_integer_dtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.api.types.is_interval_dtype.html">
+     pandas.api.types.is_interval_dtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.api.types.is_numeric_dtype.html">
+     pandas.api.types.is_numeric_dtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.api.types.is_object_dtype.html">
+     pandas.api.types.is_object_dtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.api.types.is_period_dtype.html">
+     pandas.api.types.is_period_dtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.api.types.is_signed_integer_dtype.html">
+     pandas.api.types.is_signed_integer_dtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.api.types.is_string_dtype.html">
+     pandas.api.types.is_string_dtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.api.types.is_timedelta64_dtype.html">
+     pandas.api.types.is_timedelta64_dtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.api.types.is_timedelta64_ns_dtype.html">
+     pandas.api.types.is_timedelta64_ns_dtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.api.types.is_unsigned_integer_dtype.html">
+     pandas.api.types.is_unsigned_integer_dtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.api.types.is_sparse.html">
+     pandas.api.types.is_sparse
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.api.types.is_dict_like.html">
+     pandas.api.types.is_dict_like
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.api.types.is_file_like.html">
+     pandas.api.types.is_file_like
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.api.types.is_list_like.html">
+     pandas.api.types.is_list_like
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.api.types.is_named_tuple.html">
+     pandas.api.types.is_named_tuple
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.api.types.is_iterator.html">
+     pandas.api.types.is_iterator
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.api.types.is_bool.html">
+     pandas.api.types.is_bool
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.api.types.is_categorical.html">
+     pandas.api.types.is_categorical
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.api.types.is_complex.html">
+     pandas.api.types.is_complex
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.api.types.is_float.html">
+     pandas.api.types.is_float
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.api.types.is_hashable.html">
+     pandas.api.types.is_hashable
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.api.types.is_integer.html">
+     pandas.api.types.is_integer
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.api.types.is_interval.html">
+     pandas.api.types.is_interval
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.api.types.is_number.html">
+     pandas.api.types.is_number
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.api.types.is_re.html">
+     pandas.api.types.is_re
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.api.types.is_re_compilable.html">
+     pandas.api.types.is_re_compilable
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.api.types.is_scalar.html">
+     pandas.api.types.is_scalar
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="indexing.html">
+   Index objects
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="offset_frequency.html">
+   Date offsets
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="window.html">
+   Window
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="groupby.html">
+   GroupBy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="resampling.html">
+   Resampling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="style.html">
+   Style
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="plotting.html">
+   Plotting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="options.html">
+   Options and settings
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extensions.html">
+   Extensions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="testing.html">
+   Testing
+  </a>
+ </li>
+</ul>
+
+    
+  </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+      </div>
+      <main class="bd-main">
+        
+        
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+            </div>
+            
+            
+            <article class="bd-article" role="main">
+              
+  <section id="pandas-arrays-scalars-and-data-types">
+<span id="api-arrays"></span><h1>pandas arrays, scalars, and data types<a class="headerlink" href="#pandas-arrays-scalars-and-data-types" title="Permalink to this headline">#</a></h1>
+<section id="objects">
+<h2>Objects<a class="headerlink" href="#objects" title="Permalink to this headline">#</a></h2>
+<p>For most data types, pandas uses NumPy arrays as the concrete
+objects contained with a <a class="reference internal" href="api/pandas.Index.html#pandas.Index" title="pandas.Index"><code class="xref py py-class docutils literal notranslate"><span class="pre">Index</span></code></a>, <a class="reference internal" href="api/pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a>, or
+<a class="reference internal" href="api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a>.</p>
+<p>For some data types, pandas extends NumPy’s type system. String aliases for these types
+can be found at <a class="reference internal" href="../user_guide/basics.html#basics-dtypes"><span class="std std-ref">dtypes</span></a>.</p>
+<table class="table">
+<colgroup>
+<col style="width: 19%" />
+<col style="width: 25%" />
+<col style="width: 28%" />
+<col style="width: 28%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Kind of Data</p></th>
+<th class="head"><p>pandas Data Type</p></th>
+<th class="head"><p>Scalar</p></th>
+<th class="head"><p>Array</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>TZ-aware datetime</p></td>
+<td><p><a class="reference internal" href="api/pandas.DatetimeTZDtype.html#pandas.DatetimeTZDtype" title="pandas.DatetimeTZDtype"><code class="xref py py-class docutils literal notranslate"><span class="pre">DatetimeTZDtype</span></code></a></p></td>
+<td><p><a class="reference internal" href="api/pandas.Timestamp.html#pandas.Timestamp" title="pandas.Timestamp"><code class="xref py py-class docutils literal notranslate"><span class="pre">Timestamp</span></code></a></p></td>
+<td><p><a class="reference internal" href="#api-arrays-datetime"><span class="std std-ref">Datetimes</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Timedeltas</p></td>
+<td><p>(none)</p></td>
+<td><p><a class="reference internal" href="api/pandas.Timedelta.html#pandas.Timedelta" title="pandas.Timedelta"><code class="xref py py-class docutils literal notranslate"><span class="pre">Timedelta</span></code></a></p></td>
+<td><p><a class="reference internal" href="#api-arrays-timedelta"><span class="std std-ref">Timedeltas</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>Period (time spans)</p></td>
+<td><p><a class="reference internal" href="api/pandas.PeriodDtype.html#pandas.PeriodDtype" title="pandas.PeriodDtype"><code class="xref py py-class docutils literal notranslate"><span class="pre">PeriodDtype</span></code></a></p></td>
+<td><p><a class="reference internal" href="api/pandas.Period.html#pandas.Period" title="pandas.Period"><code class="xref py py-class docutils literal notranslate"><span class="pre">Period</span></code></a></p></td>
+<td><p><a class="reference internal" href="#api-arrays-period"><span class="std std-ref">Periods</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Intervals</p></td>
+<td><p><a class="reference internal" href="api/pandas.IntervalDtype.html#pandas.IntervalDtype" title="pandas.IntervalDtype"><code class="xref py py-class docutils literal notranslate"><span class="pre">IntervalDtype</span></code></a></p></td>
+<td><p><a class="reference internal" href="api/pandas.Interval.html#pandas.Interval" title="pandas.Interval"><code class="xref py py-class docutils literal notranslate"><span class="pre">Interval</span></code></a></p></td>
+<td><p><a class="reference internal" href="#api-arrays-interval"><span class="std std-ref">Intervals</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>Nullable Integer</p></td>
+<td><p><a class="reference internal" href="api/pandas.Int64Dtype.html#pandas.Int64Dtype" title="pandas.Int64Dtype"><code class="xref py py-class docutils literal notranslate"><span class="pre">Int64Dtype</span></code></a>, …</p></td>
+<td><p>(none)</p></td>
+<td><p><a class="reference internal" href="#api-arrays-integer-na"><span class="std std-ref">Nullable integer</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Categorical</p></td>
+<td><p><a class="reference internal" href="api/pandas.CategoricalDtype.html#pandas.CategoricalDtype" title="pandas.CategoricalDtype"><code class="xref py py-class docutils literal notranslate"><span class="pre">CategoricalDtype</span></code></a></p></td>
+<td><p>(none)</p></td>
+<td><p><a class="reference internal" href="#api-arrays-categorical"><span class="std std-ref">Categoricals</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>Sparse</p></td>
+<td><p><a class="reference internal" href="api/pandas.SparseDtype.html#pandas.SparseDtype" title="pandas.SparseDtype"><code class="xref py py-class docutils literal notranslate"><span class="pre">SparseDtype</span></code></a></p></td>
+<td><p>(none)</p></td>
+<td><p><a class="reference internal" href="#api-arrays-sparse"><span class="std std-ref">Sparse</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Strings</p></td>
+<td><p><a class="reference internal" href="api/pandas.StringDtype.html#pandas.StringDtype" title="pandas.StringDtype"><code class="xref py py-class docutils literal notranslate"><span class="pre">StringDtype</span></code></a></p></td>
+<td><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></p></td>
+<td><p><a class="reference internal" href="#api-arrays-string"><span class="std std-ref">Strings</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>Boolean (with NA)</p></td>
+<td><p><a class="reference internal" href="api/pandas.BooleanDtype.html#pandas.BooleanDtype" title="pandas.BooleanDtype"><code class="xref py py-class docutils literal notranslate"><span class="pre">BooleanDtype</span></code></a></p></td>
+<td><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p></td>
+<td><p><a class="reference internal" href="#api-arrays-bool"><span class="std std-ref">Nullable Boolean</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>PyArrow</p></td>
+<td><p><a class="reference internal" href="api/pandas.ArrowDtype.html#pandas.ArrowDtype" title="pandas.ArrowDtype"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArrowDtype</span></code></a></p></td>
+<td><p>Python Scalars or <code class="xref py py-class docutils literal notranslate"><span class="pre">NA</span></code></p></td>
+<td><p><a class="reference internal" href="#api-arrays-arrow"><span class="std std-ref">PyArrow</span></a></p></td>
+</tr>
+</tbody>
+</table>
+<p>pandas and third-party libraries can extend NumPy’s type system (see <a class="reference internal" href="../development/extending.html#extending-extension-types"><span class="std std-ref">Extension types</span></a>).
+The top-level <a class="reference internal" href="api/pandas.array.html#pandas.array" title="pandas.array"><code class="xref py py-meth docutils literal notranslate"><span class="pre">array()</span></code></a> method can be used to create a new array, which may be
+stored in a <a class="reference internal" href="api/pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a>, <a class="reference internal" href="api/pandas.Index.html#pandas.Index" title="pandas.Index"><code class="xref py py-class docutils literal notranslate"><span class="pre">Index</span></code></a>, or as a column in a <a class="reference internal" href="api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a>.</p>
+<table class="autosummary longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.array.html#pandas.array" title="pandas.array"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a>(data[, dtype, copy])</p></td>
+<td><p>Create an array.</p></td>
+</tr>
+</tbody>
+</table>
+<section id="pyarrow">
+<span id="api-arrays-arrow"></span><h3>PyArrow<a class="headerlink" href="#pyarrow" title="Permalink to this headline">#</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This feature is experimental, and the API can change in a future release without warning.</p>
+</div>
+<p>The <a class="reference internal" href="api/pandas.arrays.ArrowExtensionArray.html#pandas.arrays.ArrowExtensionArray" title="pandas.arrays.ArrowExtensionArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">arrays.ArrowExtensionArray</span></code></a> is backed by a <a class="reference external" href="https://arrow.apache.org/docs/python/generated/pyarrow.ChunkedArray.html#pyarrow.ChunkedArray" title="(in Apache Arrow v10.0.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyarrow.ChunkedArray</span></code></a> with a
+<a class="reference external" href="https://arrow.apache.org/docs/python/generated/pyarrow.DataType.html#pyarrow.DataType" title="(in Apache Arrow v10.0.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyarrow.DataType</span></code></a> instead of a NumPy array and data type. The <code class="docutils literal notranslate"><span class="pre">.dtype</span></code> of a <a class="reference internal" href="api/pandas.arrays.ArrowExtensionArray.html#pandas.arrays.ArrowExtensionArray" title="pandas.arrays.ArrowExtensionArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">arrays.ArrowExtensionArray</span></code></a>
+is an <a class="reference internal" href="api/pandas.ArrowDtype.html#pandas.ArrowDtype" title="pandas.ArrowDtype"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArrowDtype</span></code></a>.</p>
+<p><a class="reference external" href="https://arrow.apache.org/docs/python/index.html">Pyarrow</a> provides similar array and <a class="reference external" href="https://arrow.apache.org/docs/python/api/datatypes.html">data type</a>
+support as NumPy including first-class nullability support for all data types, immutability and more.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For string types (<code class="docutils literal notranslate"><span class="pre">pyarrow.string()</span></code>, <code class="docutils literal notranslate"><span class="pre">string[pyarrow]</span></code>), PyArrow support is still facilitated
+by <a class="reference internal" href="api/pandas.arrays.ArrowStringArray.html#pandas.arrays.ArrowStringArray" title="pandas.arrays.ArrowStringArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">arrays.ArrowStringArray</span></code></a> and <code class="docutils literal notranslate"><span class="pre">StringDtype(&quot;pyarrow&quot;)</span></code>. See the <a class="reference internal" href="#api-arrays-string"><span class="std std-ref">string section</span></a>
+below.</p>
+</div>
+<p>While individual values in an <a class="reference internal" href="api/pandas.arrays.ArrowExtensionArray.html#pandas.arrays.ArrowExtensionArray" title="pandas.arrays.ArrowExtensionArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">arrays.ArrowExtensionArray</span></code></a> are stored as a PyArrow objects, scalars are <strong>returned</strong>
+as Python scalars corresponding to the data type, e.g. a PyArrow int64 will be returned as Python int, or <code class="xref py py-class docutils literal notranslate"><span class="pre">NA</span></code> for missing
+values.</p>
+<table class="autosummary longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.arrays.ArrowExtensionArray.html#pandas.arrays.ArrowExtensionArray" title="pandas.arrays.ArrowExtensionArray"><code class="xref py py-obj docutils literal notranslate"><span class="pre">arrays.ArrowExtensionArray</span></code></a>(values)</p></td>
+<td><p>Pandas ExtensionArray backed by a PyArrow ChunkedArray.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="autosummary longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.ArrowDtype.html#pandas.ArrowDtype" title="pandas.ArrowDtype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ArrowDtype</span></code></a>(pyarrow_dtype)</p></td>
+<td><p>An ExtensionDtype for PyArrow data types.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="datetimes">
+<span id="api-arrays-datetime"></span><h3>Datetimes<a class="headerlink" href="#datetimes" title="Permalink to this headline">#</a></h3>
+<p>NumPy cannot natively represent timezone-aware datetimes. pandas supports this
+with the <a class="reference internal" href="api/pandas.arrays.DatetimeArray.html#pandas.arrays.DatetimeArray" title="pandas.arrays.DatetimeArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">arrays.DatetimeArray</span></code></a> extension array, which can hold timezone-naive
+or timezone-aware values.</p>
+<p><a class="reference internal" href="api/pandas.Timestamp.html#pandas.Timestamp" title="pandas.Timestamp"><code class="xref py py-class docutils literal notranslate"><span class="pre">Timestamp</span></code></a>, a subclass of <a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">datetime.datetime</span></code></a>, is pandas’
+scalar type for timezone-naive or timezone-aware datetime data.</p>
+<table class="autosummary longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Timestamp.html#pandas.Timestamp" title="pandas.Timestamp"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp</span></code></a>([ts_input, freq, tz, unit, year, ...])</p></td>
+<td><p>Pandas replacement for python datetime.datetime object.</p></td>
+</tr>
+</tbody>
+</table>
+<section id="properties">
+<h4>Properties<a class="headerlink" href="#properties" title="Permalink to this headline">#</a></h4>
+<table class="autosummary longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Timestamp.asm8.html#pandas.Timestamp.asm8" title="pandas.Timestamp.asm8"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.asm8</span></code></a></p></td>
+<td><p>Return numpy datetime64 format in nanoseconds.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Timestamp.day.html#pandas.Timestamp.day" title="pandas.Timestamp.day"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.day</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Timestamp.dayofweek.html#pandas.Timestamp.dayofweek" title="pandas.Timestamp.dayofweek"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.dayofweek</span></code></a></p></td>
+<td><p>Return day of the week.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Timestamp.day_of_week.html#pandas.Timestamp.day_of_week" title="pandas.Timestamp.day_of_week"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.day_of_week</span></code></a></p></td>
+<td><p>Return day of the week.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Timestamp.dayofyear.html#pandas.Timestamp.dayofyear" title="pandas.Timestamp.dayofyear"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.dayofyear</span></code></a></p></td>
+<td><p>Return the day of the year.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Timestamp.day_of_year.html#pandas.Timestamp.day_of_year" title="pandas.Timestamp.day_of_year"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.day_of_year</span></code></a></p></td>
+<td><p>Return the day of the year.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Timestamp.days_in_month.html#pandas.Timestamp.days_in_month" title="pandas.Timestamp.days_in_month"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.days_in_month</span></code></a></p></td>
+<td><p>Return the number of days in the month.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Timestamp.daysinmonth.html#pandas.Timestamp.daysinmonth" title="pandas.Timestamp.daysinmonth"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.daysinmonth</span></code></a></p></td>
+<td><p>Return the number of days in the month.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Timestamp.fold.html#pandas.Timestamp.fold" title="pandas.Timestamp.fold"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.fold</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Timestamp.hour.html#pandas.Timestamp.hour" title="pandas.Timestamp.hour"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.hour</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Timestamp.is_leap_year.html#pandas.Timestamp.is_leap_year" title="pandas.Timestamp.is_leap_year"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.is_leap_year</span></code></a></p></td>
+<td><p>Return True if year is a leap year.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Timestamp.is_month_end.html#pandas.Timestamp.is_month_end" title="pandas.Timestamp.is_month_end"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.is_month_end</span></code></a></p></td>
+<td><p>Return True if date is last day of month.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Timestamp.is_month_start.html#pandas.Timestamp.is_month_start" title="pandas.Timestamp.is_month_start"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.is_month_start</span></code></a></p></td>
+<td><p>Return True if date is first day of month.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Timestamp.is_quarter_end.html#pandas.Timestamp.is_quarter_end" title="pandas.Timestamp.is_quarter_end"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.is_quarter_end</span></code></a></p></td>
+<td><p>Return True if date is last day of the quarter.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Timestamp.is_quarter_start.html#pandas.Timestamp.is_quarter_start" title="pandas.Timestamp.is_quarter_start"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.is_quarter_start</span></code></a></p></td>
+<td><p>Return True if date is first day of the quarter.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Timestamp.is_year_end.html#pandas.Timestamp.is_year_end" title="pandas.Timestamp.is_year_end"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.is_year_end</span></code></a></p></td>
+<td><p>Return True if date is last day of the year.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Timestamp.is_year_start.html#pandas.Timestamp.is_year_start" title="pandas.Timestamp.is_year_start"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.is_year_start</span></code></a></p></td>
+<td><p>Return True if date is first day of the year.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Timestamp.max.html#pandas.Timestamp.max" title="pandas.Timestamp.max"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.max</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Timestamp.microsecond.html#pandas.Timestamp.microsecond" title="pandas.Timestamp.microsecond"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.microsecond</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Timestamp.min.html#pandas.Timestamp.min" title="pandas.Timestamp.min"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.min</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Timestamp.minute.html#pandas.Timestamp.minute" title="pandas.Timestamp.minute"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.minute</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Timestamp.month.html#pandas.Timestamp.month" title="pandas.Timestamp.month"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.month</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Timestamp.nanosecond.html#pandas.Timestamp.nanosecond" title="pandas.Timestamp.nanosecond"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.nanosecond</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Timestamp.quarter.html#pandas.Timestamp.quarter" title="pandas.Timestamp.quarter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.quarter</span></code></a></p></td>
+<td><p>Return the quarter of the year.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Timestamp.resolution.html#pandas.Timestamp.resolution" title="pandas.Timestamp.resolution"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.resolution</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Timestamp.second.html#pandas.Timestamp.second" title="pandas.Timestamp.second"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.second</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Timestamp.tz.html#pandas.Timestamp.tz" title="pandas.Timestamp.tz"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.tz</span></code></a></p></td>
+<td><p>Alias for tzinfo.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Timestamp.tzinfo.html#pandas.Timestamp.tzinfo" title="pandas.Timestamp.tzinfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.tzinfo</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Timestamp.value.html#pandas.Timestamp.value" title="pandas.Timestamp.value"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.value</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Timestamp.week.html#pandas.Timestamp.week" title="pandas.Timestamp.week"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.week</span></code></a></p></td>
+<td><p>Return the week number of the year.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Timestamp.weekofyear.html#pandas.Timestamp.weekofyear" title="pandas.Timestamp.weekofyear"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.weekofyear</span></code></a></p></td>
+<td><p>Return the week number of the year.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Timestamp.year.html#pandas.Timestamp.year" title="pandas.Timestamp.year"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.year</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="methods">
+<h4>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">#</a></h4>
+<table class="autosummary longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Timestamp.astimezone.html#pandas.Timestamp.astimezone" title="pandas.Timestamp.astimezone"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.astimezone</span></code></a>(tz)</p></td>
+<td><p>Convert timezone-aware Timestamp to another time zone.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Timestamp.ceil.html#pandas.Timestamp.ceil" title="pandas.Timestamp.ceil"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.ceil</span></code></a>(freq[, ambiguous, nonexistent])</p></td>
+<td><p>Return a new Timestamp ceiled to this resolution.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Timestamp.combine.html#pandas.Timestamp.combine" title="pandas.Timestamp.combine"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.combine</span></code></a>(date, time)</p></td>
+<td><p>Combine date, time into datetime with same date and time fields.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Timestamp.ctime.html#pandas.Timestamp.ctime" title="pandas.Timestamp.ctime"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.ctime</span></code></a></p></td>
+<td><p>Return ctime() style string.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Timestamp.date.html#pandas.Timestamp.date" title="pandas.Timestamp.date"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.date</span></code></a></p></td>
+<td><p>Return date object with same year, month and day.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Timestamp.day_name.html#pandas.Timestamp.day_name" title="pandas.Timestamp.day_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.day_name</span></code></a></p></td>
+<td><p>Return the day name of the Timestamp with specified locale.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Timestamp.dst.html#pandas.Timestamp.dst" title="pandas.Timestamp.dst"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.dst</span></code></a></p></td>
+<td><p>Return self.tzinfo.dst(self).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Timestamp.floor.html#pandas.Timestamp.floor" title="pandas.Timestamp.floor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.floor</span></code></a>(freq[, ambiguous, nonexistent])</p></td>
+<td><p>Return a new Timestamp floored to this resolution.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Timestamp.freq.html#pandas.Timestamp.freq" title="pandas.Timestamp.freq"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.freq</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Timestamp.freqstr.html#pandas.Timestamp.freqstr" title="pandas.Timestamp.freqstr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.freqstr</span></code></a></p></td>
+<td><p>Return the total number of days in the month.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Timestamp.fromordinal.html#pandas.Timestamp.fromordinal" title="pandas.Timestamp.fromordinal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.fromordinal</span></code></a>(ordinal[, freq, tz])</p></td>
+<td><p>Construct a timestamp from a a proleptic Gregorian ordinal.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Timestamp.fromtimestamp.html#pandas.Timestamp.fromtimestamp" title="pandas.Timestamp.fromtimestamp"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.fromtimestamp</span></code></a>(ts)</p></td>
+<td><p>Transform timestamp[, tz] to tz's local time from POSIX timestamp.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Timestamp.isocalendar.html#pandas.Timestamp.isocalendar" title="pandas.Timestamp.isocalendar"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.isocalendar</span></code></a></p></td>
+<td><p>Return a 3-tuple containing ISO year, week number, and weekday.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Timestamp.isoformat.html#pandas.Timestamp.isoformat" title="pandas.Timestamp.isoformat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.isoformat</span></code></a></p></td>
+<td><p>Return the time formatted according to ISO 8610.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Timestamp.isoweekday.html#pandas.Timestamp.isoweekday" title="pandas.Timestamp.isoweekday"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.isoweekday</span></code></a>()</p></td>
+<td><p>Return the day of the week represented by the date.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Timestamp.month_name.html#pandas.Timestamp.month_name" title="pandas.Timestamp.month_name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.month_name</span></code></a></p></td>
+<td><p>Return the month name of the Timestamp with specified locale.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Timestamp.normalize.html#pandas.Timestamp.normalize" title="pandas.Timestamp.normalize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.normalize</span></code></a></p></td>
+<td><p>Normalize Timestamp to midnight, preserving tz information.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Timestamp.now.html#pandas.Timestamp.now" title="pandas.Timestamp.now"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.now</span></code></a>([tz])</p></td>
+<td><p>Return new Timestamp object representing current time local to tz.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Timestamp.replace.html#pandas.Timestamp.replace" title="pandas.Timestamp.replace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.replace</span></code></a>([year, month, day, hour, ...])</p></td>
+<td><p>Implements datetime.replace, handles nanoseconds.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Timestamp.round.html#pandas.Timestamp.round" title="pandas.Timestamp.round"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.round</span></code></a>(freq[, ambiguous, nonexistent])</p></td>
+<td><p>Round the Timestamp to the specified resolution.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Timestamp.strftime.html#pandas.Timestamp.strftime" title="pandas.Timestamp.strftime"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.strftime</span></code></a>(format)</p></td>
+<td><p>Return a formatted string of the Timestamp.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Timestamp.strptime.html#pandas.Timestamp.strptime" title="pandas.Timestamp.strptime"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.strptime</span></code></a>(string, format)</p></td>
+<td><p>Function is not implemented.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Timestamp.time.html#pandas.Timestamp.time" title="pandas.Timestamp.time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.time</span></code></a></p></td>
+<td><p>Return time object with same time but with tzinfo=None.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Timestamp.timestamp.html#pandas.Timestamp.timestamp" title="pandas.Timestamp.timestamp"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.timestamp</span></code></a></p></td>
+<td><p>Return POSIX timestamp as float.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Timestamp.timetuple.html#pandas.Timestamp.timetuple" title="pandas.Timestamp.timetuple"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.timetuple</span></code></a></p></td>
+<td><p>Return time tuple, compatible with time.localtime().</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Timestamp.timetz.html#pandas.Timestamp.timetz" title="pandas.Timestamp.timetz"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.timetz</span></code></a></p></td>
+<td><p>Return time object with same time and tzinfo.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Timestamp.to_datetime64.html#pandas.Timestamp.to_datetime64" title="pandas.Timestamp.to_datetime64"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.to_datetime64</span></code></a></p></td>
+<td><p>Return a numpy.datetime64 object with 'ns' precision.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Timestamp.to_numpy.html#pandas.Timestamp.to_numpy" title="pandas.Timestamp.to_numpy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.to_numpy</span></code></a></p></td>
+<td><p>Convert the Timestamp to a NumPy datetime64.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Timestamp.to_julian_date.html#pandas.Timestamp.to_julian_date" title="pandas.Timestamp.to_julian_date"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.to_julian_date</span></code></a>()</p></td>
+<td><p>Convert TimeStamp to a Julian Date.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Timestamp.to_period.html#pandas.Timestamp.to_period" title="pandas.Timestamp.to_period"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.to_period</span></code></a></p></td>
+<td><p>Return an period of which this timestamp is an observation.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Timestamp.to_pydatetime.html#pandas.Timestamp.to_pydatetime" title="pandas.Timestamp.to_pydatetime"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.to_pydatetime</span></code></a></p></td>
+<td><p>Convert a Timestamp object to a native Python datetime object.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Timestamp.today.html#pandas.Timestamp.today" title="pandas.Timestamp.today"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.today</span></code></a>([tz])</p></td>
+<td><p>Return the current time in the local timezone.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Timestamp.toordinal.html#pandas.Timestamp.toordinal" title="pandas.Timestamp.toordinal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.toordinal</span></code></a></p></td>
+<td><p>Return proleptic Gregorian ordinal.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Timestamp.tz_convert.html#pandas.Timestamp.tz_convert" title="pandas.Timestamp.tz_convert"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.tz_convert</span></code></a>(tz)</p></td>
+<td><p>Convert timezone-aware Timestamp to another time zone.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Timestamp.tz_localize.html#pandas.Timestamp.tz_localize" title="pandas.Timestamp.tz_localize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.tz_localize</span></code></a>(tz[, ambiguous, ...])</p></td>
+<td><p>Localize the Timestamp to a timezone.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Timestamp.tzname.html#pandas.Timestamp.tzname" title="pandas.Timestamp.tzname"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.tzname</span></code></a></p></td>
+<td><p>Return self.tzinfo.tzname(self).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Timestamp.utcfromtimestamp.html#pandas.Timestamp.utcfromtimestamp" title="pandas.Timestamp.utcfromtimestamp"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.utcfromtimestamp</span></code></a>(ts)</p></td>
+<td><p>Construct a naive UTC datetime from a POSIX timestamp.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Timestamp.utcnow.html#pandas.Timestamp.utcnow" title="pandas.Timestamp.utcnow"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.utcnow</span></code></a>()</p></td>
+<td><p>Return a new Timestamp representing UTC day and time.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Timestamp.utcoffset.html#pandas.Timestamp.utcoffset" title="pandas.Timestamp.utcoffset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.utcoffset</span></code></a></p></td>
+<td><p>Return self.tzinfo.utcoffset(self).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Timestamp.utctimetuple.html#pandas.Timestamp.utctimetuple" title="pandas.Timestamp.utctimetuple"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.utctimetuple</span></code></a></p></td>
+<td><p>Return UTC time tuple, compatible with time.localtime().</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Timestamp.weekday.html#pandas.Timestamp.weekday" title="pandas.Timestamp.weekday"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timestamp.weekday</span></code></a>()</p></td>
+<td><p>Return the day of the week represented by the date.</p></td>
+</tr>
+</tbody>
+</table>
+<p>A collection of timestamps may be stored in a <a class="reference internal" href="api/pandas.arrays.DatetimeArray.html#pandas.arrays.DatetimeArray" title="pandas.arrays.DatetimeArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">arrays.DatetimeArray</span></code></a>.
+For timezone-aware data, the <code class="docutils literal notranslate"><span class="pre">.dtype</span></code> of a <a class="reference internal" href="api/pandas.arrays.DatetimeArray.html#pandas.arrays.DatetimeArray" title="pandas.arrays.DatetimeArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">arrays.DatetimeArray</span></code></a> is a
+<a class="reference internal" href="api/pandas.DatetimeTZDtype.html#pandas.DatetimeTZDtype" title="pandas.DatetimeTZDtype"><code class="xref py py-class docutils literal notranslate"><span class="pre">DatetimeTZDtype</span></code></a>. For timezone-naive data, <code class="docutils literal notranslate"><span class="pre">np.dtype(&quot;datetime64[ns]&quot;)</span></code>
+is used.</p>
+<p>If the data are timezone-aware, then every value in the array must have the same timezone.</p>
+<table class="autosummary longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.arrays.DatetimeArray.html#pandas.arrays.DatetimeArray" title="pandas.arrays.DatetimeArray"><code class="xref py py-obj docutils literal notranslate"><span class="pre">arrays.DatetimeArray</span></code></a>(values[, dtype, freq, copy])</p></td>
+<td><p>Pandas ExtensionArray for tz-naive or tz-aware datetime data.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="autosummary longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.DatetimeTZDtype.html#pandas.DatetimeTZDtype" title="pandas.DatetimeTZDtype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DatetimeTZDtype</span></code></a>([unit, tz])</p></td>
+<td><p>An ExtensionDtype for timezone-aware datetime data.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="timedeltas">
+<span id="api-arrays-timedelta"></span><h3>Timedeltas<a class="headerlink" href="#timedeltas" title="Permalink to this headline">#</a></h3>
+<p>NumPy can natively represent timedeltas. pandas provides <a class="reference internal" href="api/pandas.Timedelta.html#pandas.Timedelta" title="pandas.Timedelta"><code class="xref py py-class docutils literal notranslate"><span class="pre">Timedelta</span></code></a>
+for symmetry with <a class="reference internal" href="api/pandas.Timestamp.html#pandas.Timestamp" title="pandas.Timestamp"><code class="xref py py-class docutils literal notranslate"><span class="pre">Timestamp</span></code></a>.</p>
+<table class="autosummary longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Timedelta.html#pandas.Timedelta" title="pandas.Timedelta"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timedelta</span></code></a>([value, unit])</p></td>
+<td><p>Represents a duration, the difference between two dates or times.</p></td>
+</tr>
+</tbody>
+</table>
+<section id="id1">
+<h4>Properties<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h4>
+<table class="autosummary longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Timedelta.asm8.html#pandas.Timedelta.asm8" title="pandas.Timedelta.asm8"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timedelta.asm8</span></code></a></p></td>
+<td><p>Return a numpy timedelta64 array scalar view.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Timedelta.components.html#pandas.Timedelta.components" title="pandas.Timedelta.components"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timedelta.components</span></code></a></p></td>
+<td><p>Return a components namedtuple-like.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Timedelta.days.html#pandas.Timedelta.days" title="pandas.Timedelta.days"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timedelta.days</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Timedelta.delta.html#pandas.Timedelta.delta" title="pandas.Timedelta.delta"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timedelta.delta</span></code></a></p></td>
+<td><p>(DEPRECATED) Return the timedelta in nanoseconds (ns), for internal compatibility.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Timedelta.freq.html#pandas.Timedelta.freq" title="pandas.Timedelta.freq"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timedelta.freq</span></code></a></p></td>
+<td><p>(DEPRECATED) Freq property.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Timedelta.is_populated.html#pandas.Timedelta.is_populated" title="pandas.Timedelta.is_populated"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timedelta.is_populated</span></code></a></p></td>
+<td><p>(DEPRECATED) Is_populated property.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Timedelta.max.html#pandas.Timedelta.max" title="pandas.Timedelta.max"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timedelta.max</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Timedelta.microseconds.html#pandas.Timedelta.microseconds" title="pandas.Timedelta.microseconds"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timedelta.microseconds</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Timedelta.min.html#pandas.Timedelta.min" title="pandas.Timedelta.min"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timedelta.min</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Timedelta.nanoseconds.html#pandas.Timedelta.nanoseconds" title="pandas.Timedelta.nanoseconds"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timedelta.nanoseconds</span></code></a></p></td>
+<td><p>Return the number of nanoseconds (n), where 0 &lt;= n &lt; 1 microsecond.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Timedelta.resolution.html#pandas.Timedelta.resolution" title="pandas.Timedelta.resolution"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timedelta.resolution</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Timedelta.seconds.html#pandas.Timedelta.seconds" title="pandas.Timedelta.seconds"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timedelta.seconds</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Timedelta.value.html#pandas.Timedelta.value" title="pandas.Timedelta.value"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timedelta.value</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Timedelta.view.html#pandas.Timedelta.view" title="pandas.Timedelta.view"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timedelta.view</span></code></a></p></td>
+<td><p>Array view compatibility.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id2">
+<h4>Methods<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h4>
+<table class="autosummary longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Timedelta.ceil.html#pandas.Timedelta.ceil" title="pandas.Timedelta.ceil"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timedelta.ceil</span></code></a>(freq)</p></td>
+<td><p>Return a new Timedelta ceiled to this resolution.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Timedelta.floor.html#pandas.Timedelta.floor" title="pandas.Timedelta.floor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timedelta.floor</span></code></a>(freq)</p></td>
+<td><p>Return a new Timedelta floored to this resolution.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Timedelta.isoformat.html#pandas.Timedelta.isoformat" title="pandas.Timedelta.isoformat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timedelta.isoformat</span></code></a></p></td>
+<td><p>Format the Timedelta as ISO 8601 Duration.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Timedelta.round.html#pandas.Timedelta.round" title="pandas.Timedelta.round"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timedelta.round</span></code></a>(freq)</p></td>
+<td><p>Round the Timedelta to the specified resolution.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Timedelta.to_pytimedelta.html#pandas.Timedelta.to_pytimedelta" title="pandas.Timedelta.to_pytimedelta"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timedelta.to_pytimedelta</span></code></a></p></td>
+<td><p>Convert a pandas Timedelta object into a python <code class="docutils literal notranslate"><span class="pre">datetime.timedelta</span></code> object.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Timedelta.to_timedelta64.html#pandas.Timedelta.to_timedelta64" title="pandas.Timedelta.to_timedelta64"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timedelta.to_timedelta64</span></code></a></p></td>
+<td><p>Return a numpy.timedelta64 object with 'ns' precision.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Timedelta.to_numpy.html#pandas.Timedelta.to_numpy" title="pandas.Timedelta.to_numpy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timedelta.to_numpy</span></code></a></p></td>
+<td><p>Convert the Timedelta to a NumPy timedelta64.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Timedelta.total_seconds.html#pandas.Timedelta.total_seconds" title="pandas.Timedelta.total_seconds"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Timedelta.total_seconds</span></code></a></p></td>
+<td><p>Total seconds in the duration.</p></td>
+</tr>
+</tbody>
+</table>
+<p>A collection of <a class="reference internal" href="api/pandas.Timedelta.html#pandas.Timedelta" title="pandas.Timedelta"><code class="xref py py-class docutils literal notranslate"><span class="pre">Timedelta</span></code></a> may be stored in a <code class="xref py py-class docutils literal notranslate"><span class="pre">TimedeltaArray</span></code>.</p>
+<table class="autosummary longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.arrays.TimedeltaArray.html#pandas.arrays.TimedeltaArray" title="pandas.arrays.TimedeltaArray"><code class="xref py py-obj docutils literal notranslate"><span class="pre">arrays.TimedeltaArray</span></code></a>(values[, dtype, freq, ...])</p></td>
+<td><p>Pandas ExtensionArray for timedelta data.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="periods">
+<span id="api-arrays-period"></span><h3>Periods<a class="headerlink" href="#periods" title="Permalink to this headline">#</a></h3>
+<p>pandas represents spans of times as <a class="reference internal" href="api/pandas.Period.html#pandas.Period" title="pandas.Period"><code class="xref py py-class docutils literal notranslate"><span class="pre">Period</span></code></a> objects.</p>
+</section>
+<section id="period">
+<h3>Period<a class="headerlink" href="#period" title="Permalink to this headline">#</a></h3>
+<table class="autosummary longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Period.html#pandas.Period" title="pandas.Period"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Period</span></code></a>([value, freq, ordinal, year, month, ...])</p></td>
+<td><p>Represents a period of time.</p></td>
+</tr>
+</tbody>
+</table>
+<section id="id3">
+<h4>Properties<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h4>
+<table class="autosummary longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Period.day.html#pandas.Period.day" title="pandas.Period.day"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Period.day</span></code></a></p></td>
+<td><p>Get day of the month that a Period falls on.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Period.dayofweek.html#pandas.Period.dayofweek" title="pandas.Period.dayofweek"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Period.dayofweek</span></code></a></p></td>
+<td><p>Day of the week the period lies in, with Monday=0 and Sunday=6.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Period.day_of_week.html#pandas.Period.day_of_week" title="pandas.Period.day_of_week"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Period.day_of_week</span></code></a></p></td>
+<td><p>Day of the week the period lies in, with Monday=0 and Sunday=6.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Period.dayofyear.html#pandas.Period.dayofyear" title="pandas.Period.dayofyear"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Period.dayofyear</span></code></a></p></td>
+<td><p>Return the day of the year.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Period.day_of_year.html#pandas.Period.day_of_year" title="pandas.Period.day_of_year"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Period.day_of_year</span></code></a></p></td>
+<td><p>Return the day of the year.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Period.days_in_month.html#pandas.Period.days_in_month" title="pandas.Period.days_in_month"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Period.days_in_month</span></code></a></p></td>
+<td><p>Get the total number of days in the month that this period falls on.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Period.daysinmonth.html#pandas.Period.daysinmonth" title="pandas.Period.daysinmonth"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Period.daysinmonth</span></code></a></p></td>
+<td><p>Get the total number of days of the month that this period falls on.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Period.end_time.html#pandas.Period.end_time" title="pandas.Period.end_time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Period.end_time</span></code></a></p></td>
+<td><p>Get the Timestamp for the end of the period.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Period.freq.html#pandas.Period.freq" title="pandas.Period.freq"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Period.freq</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Period.freqstr.html#pandas.Period.freqstr" title="pandas.Period.freqstr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Period.freqstr</span></code></a></p></td>
+<td><p>Return a string representation of the frequency.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Period.hour.html#pandas.Period.hour" title="pandas.Period.hour"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Period.hour</span></code></a></p></td>
+<td><p>Get the hour of the day component of the Period.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Period.is_leap_year.html#pandas.Period.is_leap_year" title="pandas.Period.is_leap_year"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Period.is_leap_year</span></code></a></p></td>
+<td><p>Return True if the period's year is in a leap year.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Period.minute.html#pandas.Period.minute" title="pandas.Period.minute"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Period.minute</span></code></a></p></td>
+<td><p>Get minute of the hour component of the Period.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Period.month.html#pandas.Period.month" title="pandas.Period.month"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Period.month</span></code></a></p></td>
+<td><p>Return the month this Period falls on.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Period.ordinal.html#pandas.Period.ordinal" title="pandas.Period.ordinal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Period.ordinal</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Period.quarter.html#pandas.Period.quarter" title="pandas.Period.quarter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Period.quarter</span></code></a></p></td>
+<td><p>Return the quarter this Period falls on.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Period.qyear.html#pandas.Period.qyear" title="pandas.Period.qyear"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Period.qyear</span></code></a></p></td>
+<td><p>Fiscal year the Period lies in according to its starting-quarter.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Period.second.html#pandas.Period.second" title="pandas.Period.second"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Period.second</span></code></a></p></td>
+<td><p>Get the second component of the Period.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Period.start_time.html#pandas.Period.start_time" title="pandas.Period.start_time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Period.start_time</span></code></a></p></td>
+<td><p>Get the Timestamp for the start of the period.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Period.week.html#pandas.Period.week" title="pandas.Period.week"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Period.week</span></code></a></p></td>
+<td><p>Get the week of the year on the given Period.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Period.weekday.html#pandas.Period.weekday" title="pandas.Period.weekday"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Period.weekday</span></code></a></p></td>
+<td><p>Day of the week the period lies in, with Monday=0 and Sunday=6.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Period.weekofyear.html#pandas.Period.weekofyear" title="pandas.Period.weekofyear"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Period.weekofyear</span></code></a></p></td>
+<td><p>Get the week of the year on the given Period.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Period.year.html#pandas.Period.year" title="pandas.Period.year"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Period.year</span></code></a></p></td>
+<td><p>Return the year this Period falls on.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id4">
+<h4>Methods<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h4>
+<table class="autosummary longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Period.asfreq.html#pandas.Period.asfreq" title="pandas.Period.asfreq"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Period.asfreq</span></code></a></p></td>
+<td><p>Convert Period to desired frequency, at the start or end of the interval.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Period.now.html#pandas.Period.now" title="pandas.Period.now"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Period.now</span></code></a></p></td>
+<td><p>Return the period of now's date.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Period.strftime.html#pandas.Period.strftime" title="pandas.Period.strftime"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Period.strftime</span></code></a></p></td>
+<td><p>Returns a formatted string representation of the <a class="reference internal" href="api/pandas.Period.html#pandas.Period" title="pandas.Period"><code class="xref py py-class docutils literal notranslate"><span class="pre">Period</span></code></a>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Period.to_timestamp.html#pandas.Period.to_timestamp" title="pandas.Period.to_timestamp"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Period.to_timestamp</span></code></a></p></td>
+<td><p>Return the Timestamp representation of the Period.</p></td>
+</tr>
+</tbody>
+</table>
+<p>A collection of <a class="reference internal" href="api/pandas.Period.html#pandas.Period" title="pandas.Period"><code class="xref py py-class docutils literal notranslate"><span class="pre">Period</span></code></a> may be stored in a <a class="reference internal" href="api/pandas.arrays.PeriodArray.html#pandas.arrays.PeriodArray" title="pandas.arrays.PeriodArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">arrays.PeriodArray</span></code></a>.
+Every period in a <a class="reference internal" href="api/pandas.arrays.PeriodArray.html#pandas.arrays.PeriodArray" title="pandas.arrays.PeriodArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">arrays.PeriodArray</span></code></a> must have the same <code class="docutils literal notranslate"><span class="pre">freq</span></code>.</p>
+<table class="autosummary longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.arrays.PeriodArray.html#pandas.arrays.PeriodArray" title="pandas.arrays.PeriodArray"><code class="xref py py-obj docutils literal notranslate"><span class="pre">arrays.PeriodArray</span></code></a>(values[, dtype, freq, copy])</p></td>
+<td><p>Pandas ExtensionArray for storing Period data.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="autosummary longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.PeriodDtype.html#pandas.PeriodDtype" title="pandas.PeriodDtype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PeriodDtype</span></code></a>([freq])</p></td>
+<td><p>An ExtensionDtype for Period data.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="intervals">
+<span id="api-arrays-interval"></span><h3>Intervals<a class="headerlink" href="#intervals" title="Permalink to this headline">#</a></h3>
+<p>Arbitrary intervals can be represented as <a class="reference internal" href="api/pandas.Interval.html#pandas.Interval" title="pandas.Interval"><code class="xref py py-class docutils literal notranslate"><span class="pre">Interval</span></code></a> objects.</p>
+<table class="autosummary longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Interval.html#pandas.Interval" title="pandas.Interval"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Interval</span></code></a></p></td>
+<td><p>Immutable object implementing an Interval, a bounded slice-like interval.</p></td>
+</tr>
+</tbody>
+</table>
+<section id="id5">
+<h4>Properties<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h4>
+<table class="autosummary longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Interval.closed.html#pandas.Interval.closed" title="pandas.Interval.closed"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Interval.closed</span></code></a></p></td>
+<td><p>String describing the inclusive side the intervals.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Interval.closed_left.html#pandas.Interval.closed_left" title="pandas.Interval.closed_left"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Interval.closed_left</span></code></a></p></td>
+<td><p>Check if the interval is closed on the left side.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Interval.closed_right.html#pandas.Interval.closed_right" title="pandas.Interval.closed_right"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Interval.closed_right</span></code></a></p></td>
+<td><p>Check if the interval is closed on the right side.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Interval.is_empty.html#pandas.Interval.is_empty" title="pandas.Interval.is_empty"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Interval.is_empty</span></code></a></p></td>
+<td><p>Indicates if an interval is empty, meaning it contains no points.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Interval.left.html#pandas.Interval.left" title="pandas.Interval.left"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Interval.left</span></code></a></p></td>
+<td><p>Left bound for the interval.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Interval.length.html#pandas.Interval.length" title="pandas.Interval.length"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Interval.length</span></code></a></p></td>
+<td><p>Return the length of the Interval.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Interval.mid.html#pandas.Interval.mid" title="pandas.Interval.mid"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Interval.mid</span></code></a></p></td>
+<td><p>Return the midpoint of the Interval.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Interval.open_left.html#pandas.Interval.open_left" title="pandas.Interval.open_left"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Interval.open_left</span></code></a></p></td>
+<td><p>Check if the interval is open on the left side.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Interval.open_right.html#pandas.Interval.open_right" title="pandas.Interval.open_right"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Interval.open_right</span></code></a></p></td>
+<td><p>Check if the interval is open on the right side.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Interval.overlaps.html#pandas.Interval.overlaps" title="pandas.Interval.overlaps"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Interval.overlaps</span></code></a></p></td>
+<td><p>Check whether two Interval objects overlap.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Interval.right.html#pandas.Interval.right" title="pandas.Interval.right"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Interval.right</span></code></a></p></td>
+<td><p>Right bound for the interval.</p></td>
+</tr>
+</tbody>
+</table>
+<p>A collection of intervals may be stored in an <a class="reference internal" href="api/pandas.arrays.IntervalArray.html#pandas.arrays.IntervalArray" title="pandas.arrays.IntervalArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">arrays.IntervalArray</span></code></a>.</p>
+<table class="autosummary longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.arrays.IntervalArray.html#pandas.arrays.IntervalArray" title="pandas.arrays.IntervalArray"><code class="xref py py-obj docutils literal notranslate"><span class="pre">arrays.IntervalArray</span></code></a>(data[, closed, dtype, ...])</p></td>
+<td><p>Pandas array for interval data that are closed on the same side.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="autosummary longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.IntervalDtype.html#pandas.IntervalDtype" title="pandas.IntervalDtype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IntervalDtype</span></code></a>([subtype, closed])</p></td>
+<td><p>An ExtensionDtype for Interval data.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="nullable-integer">
+<span id="api-arrays-integer-na"></span><h3>Nullable integer<a class="headerlink" href="#nullable-integer" title="Permalink to this headline">#</a></h3>
+<p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.24)"><code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a> cannot natively represent integer-data with missing values.
+pandas provides this through <a class="reference internal" href="api/pandas.arrays.IntegerArray.html#pandas.arrays.IntegerArray" title="pandas.arrays.IntegerArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">arrays.IntegerArray</span></code></a>.</p>
+<table class="autosummary longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.arrays.IntegerArray.html#pandas.arrays.IntegerArray" title="pandas.arrays.IntegerArray"><code class="xref py py-obj docutils literal notranslate"><span class="pre">arrays.IntegerArray</span></code></a>(values, mask[, copy])</p></td>
+<td><p>Array of integer (optional missing) values.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="autosummary longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Int8Dtype.html#pandas.Int8Dtype" title="pandas.Int8Dtype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Int8Dtype</span></code></a>()</p></td>
+<td><p>An ExtensionDtype for int8 integer data.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Int16Dtype.html#pandas.Int16Dtype" title="pandas.Int16Dtype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Int16Dtype</span></code></a>()</p></td>
+<td><p>An ExtensionDtype for int16 integer data.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Int32Dtype.html#pandas.Int32Dtype" title="pandas.Int32Dtype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Int32Dtype</span></code></a>()</p></td>
+<td><p>An ExtensionDtype for int32 integer data.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Int64Dtype.html#pandas.Int64Dtype" title="pandas.Int64Dtype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Int64Dtype</span></code></a>()</p></td>
+<td><p>An ExtensionDtype for int64 integer data.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.UInt8Dtype.html#pandas.UInt8Dtype" title="pandas.UInt8Dtype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UInt8Dtype</span></code></a>()</p></td>
+<td><p>An ExtensionDtype for uint8 integer data.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.UInt16Dtype.html#pandas.UInt16Dtype" title="pandas.UInt16Dtype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UInt16Dtype</span></code></a>()</p></td>
+<td><p>An ExtensionDtype for uint16 integer data.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.UInt32Dtype.html#pandas.UInt32Dtype" title="pandas.UInt32Dtype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UInt32Dtype</span></code></a>()</p></td>
+<td><p>An ExtensionDtype for uint32 integer data.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.UInt64Dtype.html#pandas.UInt64Dtype" title="pandas.UInt64Dtype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UInt64Dtype</span></code></a>()</p></td>
+<td><p>An ExtensionDtype for uint64 integer data.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="categoricals">
+<span id="api-arrays-categorical"></span><h3>Categoricals<a class="headerlink" href="#categoricals" title="Permalink to this headline">#</a></h3>
+<p>pandas defines a custom data type for representing data that can take only a
+limited, fixed set of values. The dtype of a <a class="reference internal" href="api/pandas.Categorical.html#pandas.Categorical" title="pandas.Categorical"><code class="xref py py-class docutils literal notranslate"><span class="pre">Categorical</span></code></a> can be described by
+a <a class="reference internal" href="api/pandas.CategoricalDtype.html#pandas.CategoricalDtype" title="pandas.CategoricalDtype"><code class="xref py py-class docutils literal notranslate"><span class="pre">CategoricalDtype</span></code></a>.</p>
+<table class="autosummary longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.CategoricalDtype.html#pandas.CategoricalDtype" title="pandas.CategoricalDtype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CategoricalDtype</span></code></a>([categories, ordered])</p></td>
+<td><p>Type for categorical data with the categories and orderedness.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="autosummary longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.CategoricalDtype.categories.html#pandas.CategoricalDtype.categories" title="pandas.CategoricalDtype.categories"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CategoricalDtype.categories</span></code></a></p></td>
+<td><p>An <code class="docutils literal notranslate"><span class="pre">Index</span></code> containing the unique categories allowed.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.CategoricalDtype.ordered.html#pandas.CategoricalDtype.ordered" title="pandas.CategoricalDtype.ordered"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CategoricalDtype.ordered</span></code></a></p></td>
+<td><p>Whether the categories have an ordered relationship.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Categorical data can be stored in a <a class="reference internal" href="api/pandas.Categorical.html#pandas.Categorical" title="pandas.Categorical"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.Categorical</span></code></a></p>
+<table class="autosummary longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Categorical.html#pandas.Categorical" title="pandas.Categorical"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Categorical</span></code></a>(values[, categories, ordered, ...])</p></td>
+<td><p>Represent a categorical variable in classic R / S-plus fashion.</p></td>
+</tr>
+</tbody>
+</table>
+<p>The alternative <a class="reference internal" href="api/pandas.Categorical.from_codes.html#pandas.Categorical.from_codes" title="pandas.Categorical.from_codes"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Categorical.from_codes()</span></code></a> constructor can be used when you
+have the categories and integer codes already:</p>
+<table class="autosummary longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Categorical.from_codes.html#pandas.Categorical.from_codes" title="pandas.Categorical.from_codes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Categorical.from_codes</span></code></a>(codes[, categories, ...])</p></td>
+<td><p>Make a Categorical type from codes and categories or dtype.</p></td>
+</tr>
+</tbody>
+</table>
+<p>The dtype information is available on the <a class="reference internal" href="api/pandas.Categorical.html#pandas.Categorical" title="pandas.Categorical"><code class="xref py py-class docutils literal notranslate"><span class="pre">Categorical</span></code></a></p>
+<table class="autosummary longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Categorical.dtype.html#pandas.Categorical.dtype" title="pandas.Categorical.dtype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Categorical.dtype</span></code></a></p></td>
+<td><p>The <code class="xref py py-class docutils literal notranslate"><span class="pre">CategoricalDtype</span></code> for this instance.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Categorical.categories.html#pandas.Categorical.categories" title="pandas.Categorical.categories"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Categorical.categories</span></code></a></p></td>
+<td><p>The categories of this categorical.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Categorical.ordered.html#pandas.Categorical.ordered" title="pandas.Categorical.ordered"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Categorical.ordered</span></code></a></p></td>
+<td><p>Whether the categories have an ordered relationship.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.Categorical.codes.html#pandas.Categorical.codes" title="pandas.Categorical.codes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Categorical.codes</span></code></a></p></td>
+<td><p>The category codes of this categorical.</p></td>
+</tr>
+</tbody>
+</table>
+<p><code class="docutils literal notranslate"><span class="pre">np.asarray(categorical)</span></code> works by implementing the array interface. Be aware, that this converts
+the <a class="reference internal" href="api/pandas.Categorical.html#pandas.Categorical" title="pandas.Categorical"><code class="xref py py-class docutils literal notranslate"><span class="pre">Categorical</span></code></a> back to a NumPy array, so categories and order information is not preserved!</p>
+<table class="autosummary longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.Categorical.__array__.html#pandas.Categorical.__array__" title="pandas.Categorical.__array__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Categorical.__array__</span></code></a>([dtype])</p></td>
+<td><p>The numpy array interface.</p></td>
+</tr>
+</tbody>
+</table>
+<p>A <a class="reference internal" href="api/pandas.Categorical.html#pandas.Categorical" title="pandas.Categorical"><code class="xref py py-class docutils literal notranslate"><span class="pre">Categorical</span></code></a> can be stored in a <a class="reference internal" href="api/pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a> or <a class="reference internal" href="api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a>.
+To create a Series of dtype <code class="docutils literal notranslate"><span class="pre">category</span></code>, use <code class="docutils literal notranslate"><span class="pre">cat</span> <span class="pre">=</span> <span class="pre">s.astype(dtype)</span></code> or
+<code class="docutils literal notranslate"><span class="pre">Series(...,</span> <span class="pre">dtype=dtype)</span></code> where <code class="docutils literal notranslate"><span class="pre">dtype</span></code> is either</p>
+<ul class="simple">
+<li><p>the string <code class="docutils literal notranslate"><span class="pre">'category'</span></code></p></li>
+<li><p>an instance of <a class="reference internal" href="api/pandas.CategoricalDtype.html#pandas.CategoricalDtype" title="pandas.CategoricalDtype"><code class="xref py py-class docutils literal notranslate"><span class="pre">CategoricalDtype</span></code></a>.</p></li>
+</ul>
+<p>If the <a class="reference internal" href="api/pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a> is of dtype <a class="reference internal" href="api/pandas.CategoricalDtype.html#pandas.CategoricalDtype" title="pandas.CategoricalDtype"><code class="xref py py-class docutils literal notranslate"><span class="pre">CategoricalDtype</span></code></a>, <code class="docutils literal notranslate"><span class="pre">Series.cat</span></code> can be used to change the categorical
+data. See <a class="reference internal" href="series.html#api-series-cat"><span class="std std-ref">Categorical accessor</span></a> for more.</p>
+</section>
+<section id="sparse">
+<span id="api-arrays-sparse"></span><h3>Sparse<a class="headerlink" href="#sparse" title="Permalink to this headline">#</a></h3>
+<p>Data where a single value is repeated many times (e.g. <code class="docutils literal notranslate"><span class="pre">0</span></code> or <code class="docutils literal notranslate"><span class="pre">NaN</span></code>) may
+be stored efficiently as a <a class="reference internal" href="api/pandas.arrays.SparseArray.html#pandas.arrays.SparseArray" title="pandas.arrays.SparseArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">arrays.SparseArray</span></code></a>.</p>
+<table class="autosummary longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.arrays.SparseArray.html#pandas.arrays.SparseArray" title="pandas.arrays.SparseArray"><code class="xref py py-obj docutils literal notranslate"><span class="pre">arrays.SparseArray</span></code></a>(data[, sparse_index, ...])</p></td>
+<td><p>An ExtensionArray for storing sparse data.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="autosummary longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.SparseDtype.html#pandas.SparseDtype" title="pandas.SparseDtype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SparseDtype</span></code></a>([dtype, fill_value])</p></td>
+<td><p>Dtype for data stored in <code class="xref py py-class docutils literal notranslate"><span class="pre">SparseArray</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+<p>The <code class="docutils literal notranslate"><span class="pre">Series.sparse</span></code> accessor may be used to access sparse-specific attributes
+and methods if the <a class="reference internal" href="api/pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a> contains sparse values. See
+<a class="reference internal" href="series.html#api-series-sparse"><span class="std std-ref">Sparse accessor</span></a> and <a class="reference internal" href="../user_guide/sparse.html#sparse"><span class="std std-ref">the user guide</span></a> for more.</p>
+</section>
+<section id="strings">
+<span id="api-arrays-string"></span><h3>Strings<a class="headerlink" href="#strings" title="Permalink to this headline">#</a></h3>
+<p>When working with text data, where each valid element is a string or missing,
+we recommend using <a class="reference internal" href="api/pandas.StringDtype.html#pandas.StringDtype" title="pandas.StringDtype"><code class="xref py py-class docutils literal notranslate"><span class="pre">StringDtype</span></code></a> (with the alias <code class="docutils literal notranslate"><span class="pre">&quot;string&quot;</span></code>).</p>
+<table class="autosummary longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.arrays.StringArray.html#pandas.arrays.StringArray" title="pandas.arrays.StringArray"><code class="xref py py-obj docutils literal notranslate"><span class="pre">arrays.StringArray</span></code></a>(values[, copy])</p></td>
+<td><p>Extension array for string data.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.arrays.ArrowStringArray.html#pandas.arrays.ArrowStringArray" title="pandas.arrays.ArrowStringArray"><code class="xref py py-obj docutils literal notranslate"><span class="pre">arrays.ArrowStringArray</span></code></a>(values)</p></td>
+<td><p>Extension array for string data in a <code class="docutils literal notranslate"><span class="pre">pyarrow.ChunkedArray</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="autosummary longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.StringDtype.html#pandas.StringDtype" title="pandas.StringDtype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StringDtype</span></code></a>([storage])</p></td>
+<td><p>Extension dtype for string data.</p></td>
+</tr>
+</tbody>
+</table>
+<p>The <code class="docutils literal notranslate"><span class="pre">Series.str</span></code> accessor is available for <a class="reference internal" href="api/pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a> backed by a <a class="reference internal" href="api/pandas.arrays.StringArray.html#pandas.arrays.StringArray" title="pandas.arrays.StringArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">arrays.StringArray</span></code></a>.
+See <a class="reference internal" href="series.html#api-series-str"><span class="std std-ref">String handling</span></a> for more.</p>
+</section>
+<section id="nullable-boolean">
+<span id="api-arrays-bool"></span><h3>Nullable Boolean<a class="headerlink" href="#nullable-boolean" title="Permalink to this headline">#</a></h3>
+<p>The boolean dtype (with the alias <code class="docutils literal notranslate"><span class="pre">&quot;boolean&quot;</span></code>) provides support for storing
+boolean data (<code class="docutils literal notranslate"><span class="pre">True</span></code>, <code class="docutils literal notranslate"><span class="pre">False</span></code>) with missing values, which is not possible
+with a bool <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.24)"><code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a>.</p>
+<table class="autosummary longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.arrays.BooleanArray.html#pandas.arrays.BooleanArray" title="pandas.arrays.BooleanArray"><code class="xref py py-obj docutils literal notranslate"><span class="pre">arrays.BooleanArray</span></code></a>(values, mask[, copy])</p></td>
+<td><p>Array of boolean (True/False) data with missing values.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="autosummary longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.BooleanDtype.html#pandas.BooleanDtype" title="pandas.BooleanDtype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BooleanDtype</span></code></a>()</p></td>
+<td><p>Extension dtype for boolean data.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="utilities">
+<h2>Utilities<a class="headerlink" href="#utilities" title="Permalink to this headline">#</a></h2>
+<section id="constructors">
+<h3>Constructors<a class="headerlink" href="#constructors" title="Permalink to this headline">#</a></h3>
+<table class="autosummary longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.api.types.union_categoricals.html#pandas.api.types.union_categoricals" title="pandas.api.types.union_categoricals"><code class="xref py py-obj docutils literal notranslate"><span class="pre">api.types.union_categoricals</span></code></a>(to_union[, ...])</p></td>
+<td><p>Combine list-like of Categorical-like, unioning categories.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.api.types.infer_dtype.html#pandas.api.types.infer_dtype" title="pandas.api.types.infer_dtype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">api.types.infer_dtype</span></code></a></p></td>
+<td><p>Return a string label of the type of a scalar or list-like of values.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.api.types.pandas_dtype.html#pandas.api.types.pandas_dtype" title="pandas.api.types.pandas_dtype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">api.types.pandas_dtype</span></code></a>(dtype)</p></td>
+<td><p>Convert input into a pandas only dtype object or a numpy dtype object.</p></td>
+</tr>
+</tbody>
+</table>
+<section id="data-type-introspection">
+<h4>Data type introspection<a class="headerlink" href="#data-type-introspection" title="Permalink to this headline">#</a></h4>
+<table class="autosummary longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.api.types.is_bool_dtype.html#pandas.api.types.is_bool_dtype" title="pandas.api.types.is_bool_dtype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">api.types.is_bool_dtype</span></code></a>(arr_or_dtype)</p></td>
+<td><p>Check whether the provided array or dtype is of a boolean dtype.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.api.types.is_categorical_dtype.html#pandas.api.types.is_categorical_dtype" title="pandas.api.types.is_categorical_dtype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">api.types.is_categorical_dtype</span></code></a>(arr_or_dtype)</p></td>
+<td><p>Check whether an array-like or dtype is of the Categorical dtype.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.api.types.is_complex_dtype.html#pandas.api.types.is_complex_dtype" title="pandas.api.types.is_complex_dtype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">api.types.is_complex_dtype</span></code></a>(arr_or_dtype)</p></td>
+<td><p>Check whether the provided array or dtype is of a complex dtype.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.api.types.is_datetime64_any_dtype.html#pandas.api.types.is_datetime64_any_dtype" title="pandas.api.types.is_datetime64_any_dtype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">api.types.is_datetime64_any_dtype</span></code></a>(arr_or_dtype)</p></td>
+<td><p>Check whether the provided array or dtype is of the datetime64 dtype.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.api.types.is_datetime64_dtype.html#pandas.api.types.is_datetime64_dtype" title="pandas.api.types.is_datetime64_dtype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">api.types.is_datetime64_dtype</span></code></a>(arr_or_dtype)</p></td>
+<td><p>Check whether an array-like or dtype is of the datetime64 dtype.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.api.types.is_datetime64_ns_dtype.html#pandas.api.types.is_datetime64_ns_dtype" title="pandas.api.types.is_datetime64_ns_dtype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">api.types.is_datetime64_ns_dtype</span></code></a>(arr_or_dtype)</p></td>
+<td><p>Check whether the provided array or dtype is of the datetime64[ns] dtype.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.api.types.is_datetime64tz_dtype.html#pandas.api.types.is_datetime64tz_dtype" title="pandas.api.types.is_datetime64tz_dtype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">api.types.is_datetime64tz_dtype</span></code></a>(arr_or_dtype)</p></td>
+<td><p>Check whether an array-like or dtype is of a DatetimeTZDtype dtype.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.api.types.is_extension_type.html#pandas.api.types.is_extension_type" title="pandas.api.types.is_extension_type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">api.types.is_extension_type</span></code></a>(arr)</p></td>
+<td><p>(DEPRECATED) Check whether an array-like is of a pandas extension class instance.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.api.types.is_extension_array_dtype.html#pandas.api.types.is_extension_array_dtype" title="pandas.api.types.is_extension_array_dtype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">api.types.is_extension_array_dtype</span></code></a>(arr_or_dtype)</p></td>
+<td><p>Check if an object is a pandas extension array type.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.api.types.is_float_dtype.html#pandas.api.types.is_float_dtype" title="pandas.api.types.is_float_dtype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">api.types.is_float_dtype</span></code></a>(arr_or_dtype)</p></td>
+<td><p>Check whether the provided array or dtype is of a float dtype.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.api.types.is_int64_dtype.html#pandas.api.types.is_int64_dtype" title="pandas.api.types.is_int64_dtype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">api.types.is_int64_dtype</span></code></a>(arr_or_dtype)</p></td>
+<td><p>Check whether the provided array or dtype is of the int64 dtype.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.api.types.is_integer_dtype.html#pandas.api.types.is_integer_dtype" title="pandas.api.types.is_integer_dtype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">api.types.is_integer_dtype</span></code></a>(arr_or_dtype)</p></td>
+<td><p>Check whether the provided array or dtype is of an integer dtype.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.api.types.is_interval_dtype.html#pandas.api.types.is_interval_dtype" title="pandas.api.types.is_interval_dtype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">api.types.is_interval_dtype</span></code></a>(arr_or_dtype)</p></td>
+<td><p>Check whether an array-like or dtype is of the Interval dtype.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.api.types.is_numeric_dtype.html#pandas.api.types.is_numeric_dtype" title="pandas.api.types.is_numeric_dtype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">api.types.is_numeric_dtype</span></code></a>(arr_or_dtype)</p></td>
+<td><p>Check whether the provided array or dtype is of a numeric dtype.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.api.types.is_object_dtype.html#pandas.api.types.is_object_dtype" title="pandas.api.types.is_object_dtype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">api.types.is_object_dtype</span></code></a>(arr_or_dtype)</p></td>
+<td><p>Check whether an array-like or dtype is of the object dtype.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.api.types.is_period_dtype.html#pandas.api.types.is_period_dtype" title="pandas.api.types.is_period_dtype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">api.types.is_period_dtype</span></code></a>(arr_or_dtype)</p></td>
+<td><p>Check whether an array-like or dtype is of the Period dtype.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.api.types.is_signed_integer_dtype.html#pandas.api.types.is_signed_integer_dtype" title="pandas.api.types.is_signed_integer_dtype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">api.types.is_signed_integer_dtype</span></code></a>(arr_or_dtype)</p></td>
+<td><p>Check whether the provided array or dtype is of a signed integer dtype.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.api.types.is_string_dtype.html#pandas.api.types.is_string_dtype" title="pandas.api.types.is_string_dtype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">api.types.is_string_dtype</span></code></a>(arr_or_dtype)</p></td>
+<td><p>Check whether the provided array or dtype is of the string dtype.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.api.types.is_timedelta64_dtype.html#pandas.api.types.is_timedelta64_dtype" title="pandas.api.types.is_timedelta64_dtype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">api.types.is_timedelta64_dtype</span></code></a>(arr_or_dtype)</p></td>
+<td><p>Check whether an array-like or dtype is of the timedelta64 dtype.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.api.types.is_timedelta64_ns_dtype.html#pandas.api.types.is_timedelta64_ns_dtype" title="pandas.api.types.is_timedelta64_ns_dtype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">api.types.is_timedelta64_ns_dtype</span></code></a>(arr_or_dtype)</p></td>
+<td><p>Check whether the provided array or dtype is of the timedelta64[ns] dtype.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.api.types.is_unsigned_integer_dtype.html#pandas.api.types.is_unsigned_integer_dtype" title="pandas.api.types.is_unsigned_integer_dtype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">api.types.is_unsigned_integer_dtype</span></code></a>(arr_or_dtype)</p></td>
+<td><p>Check whether the provided array or dtype is of an unsigned integer dtype.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.api.types.is_sparse.html#pandas.api.types.is_sparse" title="pandas.api.types.is_sparse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">api.types.is_sparse</span></code></a>(arr)</p></td>
+<td><p>Check whether an array-like is a 1-D pandas sparse array.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="iterable-introspection">
+<h4>Iterable introspection<a class="headerlink" href="#iterable-introspection" title="Permalink to this headline">#</a></h4>
+<table class="autosummary longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.api.types.is_dict_like.html#pandas.api.types.is_dict_like" title="pandas.api.types.is_dict_like"><code class="xref py py-obj docutils literal notranslate"><span class="pre">api.types.is_dict_like</span></code></a>(obj)</p></td>
+<td><p>Check if the object is dict-like.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.api.types.is_file_like.html#pandas.api.types.is_file_like" title="pandas.api.types.is_file_like"><code class="xref py py-obj docutils literal notranslate"><span class="pre">api.types.is_file_like</span></code></a>(obj)</p></td>
+<td><p>Check if the object is a file-like object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.api.types.is_list_like.html#pandas.api.types.is_list_like" title="pandas.api.types.is_list_like"><code class="xref py py-obj docutils literal notranslate"><span class="pre">api.types.is_list_like</span></code></a></p></td>
+<td><p>Check if the object is list-like.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.api.types.is_named_tuple.html#pandas.api.types.is_named_tuple" title="pandas.api.types.is_named_tuple"><code class="xref py py-obj docutils literal notranslate"><span class="pre">api.types.is_named_tuple</span></code></a>(obj)</p></td>
+<td><p>Check if the object is a named tuple.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.api.types.is_iterator.html#pandas.api.types.is_iterator" title="pandas.api.types.is_iterator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">api.types.is_iterator</span></code></a></p></td>
+<td><p>Check if the object is an iterator.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="scalar-introspection">
+<h4>Scalar introspection<a class="headerlink" href="#scalar-introspection" title="Permalink to this headline">#</a></h4>
+<table class="autosummary longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.api.types.is_bool.html#pandas.api.types.is_bool" title="pandas.api.types.is_bool"><code class="xref py py-obj docutils literal notranslate"><span class="pre">api.types.is_bool</span></code></a></p></td>
+<td><p>Return True if given object is boolean.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.api.types.is_categorical.html#pandas.api.types.is_categorical" title="pandas.api.types.is_categorical"><code class="xref py py-obj docutils literal notranslate"><span class="pre">api.types.is_categorical</span></code></a>(arr)</p></td>
+<td><p>(DEPRECATED) Check whether an array-like is a Categorical instance.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.api.types.is_complex.html#pandas.api.types.is_complex" title="pandas.api.types.is_complex"><code class="xref py py-obj docutils literal notranslate"><span class="pre">api.types.is_complex</span></code></a></p></td>
+<td><p>Return True if given object is complex.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.api.types.is_float.html#pandas.api.types.is_float" title="pandas.api.types.is_float"><code class="xref py py-obj docutils literal notranslate"><span class="pre">api.types.is_float</span></code></a></p></td>
+<td><p>Return True if given object is float.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.api.types.is_hashable.html#pandas.api.types.is_hashable" title="pandas.api.types.is_hashable"><code class="xref py py-obj docutils literal notranslate"><span class="pre">api.types.is_hashable</span></code></a>(obj)</p></td>
+<td><p>Return True if hash(obj) will succeed, False otherwise.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.api.types.is_integer.html#pandas.api.types.is_integer" title="pandas.api.types.is_integer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">api.types.is_integer</span></code></a></p></td>
+<td><p>Return True if given object is integer.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.api.types.is_interval.html#pandas.api.types.is_interval" title="pandas.api.types.is_interval"><code class="xref py py-obj docutils literal notranslate"><span class="pre">api.types.is_interval</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.api.types.is_number.html#pandas.api.types.is_number" title="pandas.api.types.is_number"><code class="xref py py-obj docutils literal notranslate"><span class="pre">api.types.is_number</span></code></a>(obj)</p></td>
+<td><p>Check if the object is a number.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.api.types.is_re.html#pandas.api.types.is_re" title="pandas.api.types.is_re"><code class="xref py py-obj docutils literal notranslate"><span class="pre">api.types.is_re</span></code></a>(obj)</p></td>
+<td><p>Check if the object is a regex pattern instance.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.api.types.is_re_compilable.html#pandas.api.types.is_re_compilable" title="pandas.api.types.is_re_compilable"><code class="xref py py-obj docutils literal notranslate"><span class="pre">api.types.is_re_compilable</span></code></a>(obj)</p></td>
+<td><p>Check if the object can be compiled into a regex pattern instance.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.api.types.is_scalar.html#pandas.api.types.is_scalar" title="pandas.api.types.is_scalar"><code class="xref py py-obj docutils literal notranslate"><span class="pre">api.types.is_scalar</span></code></a></p></td>
+<td><p>Return True if given object is scalar.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+</section>
+
+
+            </article>
+            
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="api/pandas.DataFrame.__dataframe__.html" title="previous page">
+      <i class="fas fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">pandas.DataFrame.__dataframe__</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="api/pandas.array.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">pandas.array</p>
+  </div>
+  <i class="fas fa-angle-right"></i>
+  </a>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fas fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#objects">
+   Objects
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pyarrow">
+     PyArrow
+    </a>
+    <ul class="nav section-nav flex-column">
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#datetimes">
+     Datetimes
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#properties">
+       Properties
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#methods">
+       Methods
+      </a>
+      <ul class="nav section-nav flex-column">
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#timedeltas">
+     Timedeltas
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       Properties
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id2">
+       Methods
+      </a>
+      <ul class="nav section-nav flex-column">
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#periods">
+     Periods
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#period">
+     Period
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id3">
+       Properties
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id4">
+       Methods
+      </a>
+      <ul class="nav section-nav flex-column">
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#intervals">
+     Intervals
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id5">
+       Properties
+      </a>
+      <ul class="nav section-nav flex-column">
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#nullable-integer">
+     Nullable integer
+    </a>
+    <ul class="nav section-nav flex-column">
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#categoricals">
+     Categoricals
+    </a>
+    <ul class="nav section-nav flex-column">
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sparse">
+     Sparse
+    </a>
+    <ul class="nav section-nav flex-column">
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#strings">
+     Strings
+    </a>
+    <ul class="nav section-nav flex-column">
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#nullable-boolean">
+     Nullable Boolean
+    </a>
+    <ul class="nav section-nav flex-column">
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#utilities">
+   Utilities
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#constructors">
+     Constructors
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#data-type-introspection">
+       Data type introspection
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#iterable-introspection">
+       Iterable introspection
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#scalar-introspection">
+       Scalar introspection
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+<div class="toc-item">
+  
+</div>
+
+<div class="toc-item">
+  
+<div class="tocsection sourcelink">
+    <a href="../_sources/reference/arrays.rst.txt">
+        <i class="fas fa-file-alt"></i> Show Source
+    </a>
+</div>
+
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+          </div>
+        </footer>
+        
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=9b1a4fa89bdd0e95b23b"></script>
+
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    <p class="copyright">
+    &copy 2023 pandas via <a href="https://numfocus.org">NumFOCUS, Inc.</a> Hosted by <a href="https://www.ovhcloud.com">OVHcloud</a>.
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>

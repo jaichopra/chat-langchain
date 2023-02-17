@@ -1,0 +1,6 @@
+pandas.tseries.offsets.YearBegin.n
+==================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. autoattribute:: YearBegin.n

@@ -1,0 +1,6 @@
+pandas.Period.day\_of\_year
+===========================
+
+.. currentmodule:: pandas
+
+.. autoattribute:: Period.day_of_year

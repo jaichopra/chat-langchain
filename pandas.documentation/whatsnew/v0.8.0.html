@@ -1,0 +1,1338 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Version 0.8.0 (June 29, 2012) &#8212; pandas 1.5.3 documentation</title>
+  <script>
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=9b1a4fa89bdd0e95b23b" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=9b1a4fa89bdd0e95b23b" rel="stylesheet">
+
+  
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/6.1.2/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/getting_started.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/pandas.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=9b1a4fa89bdd0e95b23b">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/toggleprompt.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script async="async" src="https://www.google-analytics.com/analytics.js"></script>
+    <script>
+                    window.ga = window.ga || function () {
+                        (ga.q = ga.q || []).push(arguments) };
+                    ga.l = +new Date;
+                    ga('create', 'UA-27880019-2', 'auto');
+                    ga('set', 'anonymizeIp', true);
+                    ga('send', 'pageview');
+                </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'whatsnew/v0.8.0';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        </script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Version 0.7.3 (April 12, 2012)" href="v0.7.3.html" />
+    <link rel="prev" title="Version 0.8.1 (July 22, 2012)" href="v0.8.1.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fas fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../_static/pandas.svg" class="logo__image only-light" alt="Logo image">
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="../getting_started/index.html">
+                        Getting started
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../user_guide/index.html">
+                        User Guide
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../reference/index.html">
+                        API reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../development/index.html">
+                        Development
+                    </a>
+                </li>
+                
+
+                <li class="nav-item current active">
+                    <a class="nav-link" href="index.html">
+                        Release notes
+                    </a>
+                </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      <div class="navbar-end-item navbar-end__search-button-container">
+        
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search">
+  <i class="fas fa-search"></i>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        1.5.3  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pandas-dev/pandas" title="GitHub" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/pandas_dev" title="Twitter" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  <div class="search-button-container--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search">
+  <i class="fas fa-search"></i>
+</button>
+  </div>
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fas fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="../getting_started/index.html">
+                        Getting started
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../user_guide/index.html">
+                        User Guide
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../reference/index.html">
+                        API reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../development/index.html">
+                        Development
+                    </a>
+                </li>
+                
+
+                <li class="nav-item current active">
+                    <a class="nav-link" href="index.html">
+                        Release notes
+                    </a>
+                </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        1.5.3  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pandas-dev/pandas" title="GitHub" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/pandas_dev" title="Twitter" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item navbar-nav">
+    
+    <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.5.3.html">
+   What’s new in 1.5.3 (January 18, 2023)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.5.2.html">
+   What’s new in 1.5.2 (November 21, 2022)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.5.1.html">
+   What’s new in 1.5.1 (October 19, 2022)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.5.0.html">
+   What’s new in 1.5.0 (September 19, 2022)
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.4.4.html">
+   What’s new in 1.4.4 (August 31, 2022)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.4.3.html">
+   What’s new in 1.4.3 (June 23, 2022)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.4.2.html">
+   What’s new in 1.4.2 (April 2, 2022)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.4.1.html">
+   What’s new in 1.4.1 (February 12, 2022)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.4.0.html">
+   What’s new in 1.4.0 (January 22, 2022)
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.3.5.html">
+   What’s new in 1.3.5 (December 12, 2021)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.3.4.html">
+   What’s new in 1.3.4 (October 17, 2021)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.3.3.html">
+   What’s new in 1.3.3 (September 12, 2021)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.3.2.html">
+   What’s new in 1.3.2 (August 15, 2021)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.3.1.html">
+   What’s new in 1.3.1 (July 25, 2021)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.3.0.html">
+   What’s new in 1.3.0 (July 2, 2021)
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.2.5.html">
+   What’s new in 1.2.5 (June 22, 2021)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.2.4.html">
+   What’s new in 1.2.4 (April 12, 2021)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.2.3.html">
+   What’s new in 1.2.3 (March 02, 2021)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.2.2.html">
+   What’s new in 1.2.2 (February 09, 2021)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.2.1.html">
+   What’s new in 1.2.1 (January 20, 2021)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.2.0.html">
+   What’s new in 1.2.0 (December 26, 2020)
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.1.5.html">
+   What’s new in 1.1.5 (December 07, 2020)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.1.4.html">
+   What’s new in 1.1.4 (October 30, 2020)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.1.3.html">
+   What’s new in 1.1.3 (October 5, 2020)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.1.2.html">
+   What’s new in 1.1.2 (September 8, 2020)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.1.1.html">
+   What’s new in 1.1.1 (August 20, 2020)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.1.0.html">
+   What’s new in 1.1.0 (July 28, 2020)
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.0.5.html">
+   What’s new in 1.0.5 (June 17, 2020)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.0.4.html">
+   What’s new in 1.0.4 (May 28, 2020)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.0.3.html">
+   What’s new in 1.0.3 (March 17, 2020)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.0.2.html">
+   What’s new in 1.0.2 (March 12, 2020)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.0.1.html">
+   What’s new in 1.0.1 (February 5, 2020)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.0.0.html">
+   What’s new in 1.0.0 (January 29, 2020)
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.25.3.html">
+   What’s new in 0.25.3 (October 31, 2019)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.25.2.html">
+   What’s new in 0.25.2 (October 15, 2019)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.25.1.html">
+   What’s new in 0.25.1 (August 21, 2019)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.25.0.html">
+   What’s new in 0.25.0 (July 18, 2019)
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.24.2.html">
+   What’s new in 0.24.2 (March 12, 2019)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.24.1.html">
+   What’s new in 0.24.1 (February 3, 2019)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.24.0.html">
+   What’s new in 0.24.0 (January 25, 2019)
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.23.4.html">
+   What’s new in 0.23.4 (August 3, 2018)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.23.3.html">
+   What’s new in 0.23.3 (July 7, 2018)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.23.2.html">
+   What’s new in 0.23.2 (July 5, 2018)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.23.1.html">
+   What’s new in 0.23.1 (June 12, 2018)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.23.0.html">
+   What’s new in 0.23.0 (May 15, 2018)
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.22.0.html">
+   Version 0.22.0 (December 29, 2017)
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.21.1.html">
+   Version 0.21.1 (December 12, 2017)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.21.0.html">
+   Version 0.21.0 (October 27, 2017)
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.20.3.html">
+   Version 0.20.3 (July 7, 2017)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.20.2.html">
+   Version 0.20.2 (June 4, 2017)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.20.0.html">
+   Version 0.20.1 (May 5, 2017)
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.19.2.html">
+   Version 0.19.2 (December 24, 2016)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.19.1.html">
+   Version 0.19.1 (November 3, 2016)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.19.0.html">
+   Version 0.19.0 (October 2, 2016)
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.18.1.html">
+   Version 0.18.1 (May 3, 2016)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.18.0.html">
+   Version 0.18.0 (March 13, 2016)
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.17.1.html">
+   Version 0.17.1 (November 21, 2015)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.17.0.html">
+   Version 0.17.0 (October 9, 2015)
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.16.2.html">
+   Version 0.16.2 (June 12, 2015)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.16.1.html">
+   Version 0.16.1 (May 11, 2015)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.16.0.html">
+   Version 0.16.0 (March 22, 2015)
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.15.2.html">
+   Version 0.15.2 (December 12, 2014)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.15.1.html">
+   Version 0.15.1 (November 9, 2014)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.15.0.html">
+   Version 0.15.0 (October 18, 2014)
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.14.1.html">
+   Version 0.14.1 (July 11, 2014)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.14.0.html">
+   Version 0.14.0 (May 31 , 2014)
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.13.1.html">
+   Version 0.13.1 (February 3, 2014)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.13.0.html">
+   Version 0.13.0 (January 3, 2014)
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.12.0.html">
+   Version 0.12.0 (July 24, 2013)
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.11.0.html">
+   Version 0.11.0 (April 22, 2013)
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.10.1.html">
+   Version 0.10.1 (January 22, 2013)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.10.0.html">
+   Version 0.10.0 (December 17, 2012)
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.9.1.html">
+   Version 0.9.1 (November 14, 2012)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.9.0.html">
+   Version 0.9.0 (October 7, 2012)
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.8.1.html">
+   Version 0.8.1 (July 22, 2012)
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Version 0.8.0 (June 29, 2012)
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.7.3.html">
+   Version 0.7.3 (April 12, 2012)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.7.2.html">
+   Version 0.7.2 (March 16, 2012)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.7.1.html">
+   Version 0.7.1 (February 29, 2012)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.7.0.html">
+   Version 0.7.0 (February 9, 2012)
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.6.1.html">
+   Version 0.6.1 (December 13, 2011)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.6.0.html">
+   Version 0.6.0 (November 25, 2011)
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.5.0.html">
+   Version 0.5.0 (October 24, 2011)
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.4.x.html">
+   Versions 0.4.1 through 0.4.3 (September 25 - October 9, 2011)
+  </a>
+ </li>
+</ul>
+
+    
+  </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+      </div>
+      <main class="bd-main">
+        
+        
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+            </div>
+            
+            
+            <article class="bd-article" role="main">
+              
+  <section id="version-0-8-0-june-29-2012">
+<span id="whatsnew-080"></span><h1>Version 0.8.0 (June 29, 2012)<a class="headerlink" href="#version-0-8-0-june-29-2012" title="Permalink to this headline">#</a></h1>
+<p>This is a major release from 0.7.3 and includes extensive work on the time
+series handling and processing infrastructure as well as a great deal of new
+functionality throughout the library. It includes over 700 commits from more
+than 20 distinct authors. Most pandas 0.7.3 and earlier users should not
+experience any issues upgrading, but due to the migration to the NumPy
+datetime64 dtype, there may be a number of bugs and incompatibilities
+lurking. Lingering incompatibilities will be fixed ASAP in a 0.8.1 release if
+necessary. See the <a class="reference internal" href="index.html#release"><span class="std std-ref">full release notes</span></a> or issue tracker
+on GitHub for a complete list.</p>
+<section id="support-for-non-unique-indexes">
+<h2>Support for non-unique indexes<a class="headerlink" href="#support-for-non-unique-indexes" title="Permalink to this headline">#</a></h2>
+<p>All objects can now work with non-unique indexes. Data alignment / join
+operations work according to SQL join semantics (including, if application,
+index duplication in many-to-many joins)</p>
+</section>
+<section id="numpy-datetime64-dtype-and-1-6-dependency">
+<h2>NumPy datetime64 dtype and 1.6 dependency<a class="headerlink" href="#numpy-datetime64-dtype-and-1-6-dependency" title="Permalink to this headline">#</a></h2>
+<p>Time series data are now represented using NumPy’s datetime64 dtype; thus,
+pandas 0.8.0 now requires at least NumPy 1.6. It has been tested and verified
+to work with the development version (1.7+) of NumPy as well which includes
+some significant user-facing API changes. NumPy 1.6 also has a number of bugs
+having to do with nanosecond resolution data, so I recommend that you steer
+clear of NumPy 1.6’s datetime64 API functions (though limited as they are) and
+only interact with this data using the interface that pandas provides.</p>
+<p>See the end of the 0.8.0 section for a “porting” guide listing potential issues
+for users migrating legacy code bases from pandas 0.7 or earlier to 0.8.0.</p>
+<p>Bug fixes to the 0.7.x series for legacy NumPy &lt; 1.6 users will be provided as
+they arise. There will be no more further development in 0.7.x beyond bug
+fixes.</p>
+</section>
+<section id="time-series-changes-and-improvements">
+<h2>Time Series changes and improvements<a class="headerlink" href="#time-series-changes-and-improvements" title="Permalink to this headline">#</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>With this release, legacy scikits.timeseries users should be able to port
+their code to use pandas.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>See <a class="reference internal" href="../user_guide/timeseries.html#timeseries"><span class="std std-ref">documentation</span></a> for overview of pandas timeseries API.</p>
+</div>
+<ul class="simple">
+<li><p>New datetime64 representation <strong>speeds up join operations and data
+alignment</strong>, <strong>reduces memory usage</strong>, and improve serialization /
+deserialization performance significantly over datetime.datetime</p></li>
+<li><p>High performance and flexible <strong>resample</strong> method for converting from
+high-to-low and low-to-high frequency. Supports interpolation, user-defined
+aggregation functions, and control over how the intervals and result labeling
+are defined. A suite of high performance Cython/C-based resampling functions
+(including Open-High-Low-Close) have also been implemented.</p></li>
+<li><p>Revamp of <a class="reference internal" href="../user_guide/timeseries.html#timeseries-offset-aliases"><span class="std std-ref">frequency aliases</span></a> and support for
+<strong>frequency shortcuts</strong> like ‘15min’, or ‘1h30min’</p></li>
+<li><p>New <a class="reference internal" href="../user_guide/timeseries.html#timeseries-datetimeindex"><span class="std std-ref">DatetimeIndex class</span></a> supports both fixed
+frequency and irregular time
+series. Replaces now deprecated DateRange class</p></li>
+<li><p>New <code class="docutils literal notranslate"><span class="pre">PeriodIndex</span></code> and <code class="docutils literal notranslate"><span class="pre">Period</span></code> classes for representing
+<a class="reference internal" href="../user_guide/timeseries.html#timeseries-periods"><span class="std std-ref">time spans</span></a> and performing <strong>calendar logic</strong>,
+including the <code class="docutils literal notranslate"><span class="pre">12</span> <span class="pre">fiscal</span> <span class="pre">quarterly</span> <span class="pre">frequencies</span> <span class="pre">&lt;timeseries.quarterly&gt;</span></code>.
+This is a partial port of, and a substantial enhancement to,
+elements of the scikits.timeseries code base. Support for conversion between
+PeriodIndex and DatetimeIndex</p></li>
+<li><p>New Timestamp data type subclasses <code class="docutils literal notranslate"><span class="pre">datetime.datetime</span></code>, providing the same
+interface while enabling working with nanosecond-resolution data. Also
+provides <a class="reference internal" href="../user_guide/timeseries.html#timeseries-timezone"><span class="std std-ref">easy time zone conversions</span></a>.</p></li>
+<li><p>Enhanced support for <a class="reference internal" href="../user_guide/timeseries.html#timeseries-timezone"><span class="std std-ref">time zones</span></a>. Add
+<code class="docutils literal notranslate"><span class="pre">tz_convert</span></code> and <code class="docutils literal notranslate"><span class="pre">tz_localize</span></code> methods to TimeSeries and DataFrame. All
+timestamps are stored as UTC; Timestamps from DatetimeIndex objects with time
+zone set will be localized to local time. Time zone conversions are therefore
+essentially free. User needs to know very little about pytz library now; only
+time zone names as strings are required. Time zone-aware timestamps are
+equal if and only if their UTC timestamps match. Operations between time
+zone-aware time series with different time zones will result in a UTC-indexed
+time series.</p></li>
+<li><p>Time series <strong>string indexing conveniences</strong> / shortcuts: slice years, year
+and month, and index values with strings</p></li>
+<li><p>Enhanced time series <strong>plotting</strong>; adaptation of scikits.timeseries
+matplotlib-based plotting code</p></li>
+<li><p>New <code class="docutils literal notranslate"><span class="pre">date_range</span></code>, <code class="docutils literal notranslate"><span class="pre">bdate_range</span></code>, and <code class="docutils literal notranslate"><span class="pre">period_range</span></code> <a class="reference internal" href="../user_guide/timeseries.html#timeseries-daterange"><span class="std std-ref">factory
+functions</span></a></p></li>
+<li><p>Robust <strong>frequency inference</strong> function <code class="docutils literal notranslate"><span class="pre">infer_freq</span></code> and <code class="docutils literal notranslate"><span class="pre">inferred_freq</span></code>
+property of DatetimeIndex, with option to infer frequency on construction of
+DatetimeIndex</p></li>
+<li><p>to_datetime function efficiently <strong>parses array of strings</strong> to
+DatetimeIndex. DatetimeIndex will parse array or list of strings to
+datetime64</p></li>
+<li><p><strong>Optimized</strong> support for datetime64-dtype data in Series and DataFrame
+columns</p></li>
+<li><p>New NaT (Not-a-Time) type to represent <strong>NA</strong> in timestamp arrays</p></li>
+<li><p>Optimize Series.asof for looking up <strong>“as of” values</strong> for arrays of
+timestamps</p></li>
+<li><p>Milli, Micro, Nano date offset objects</p></li>
+<li><p>Can index time series with datetime.time objects to select all data at
+particular <strong>time of day</strong> (<code class="docutils literal notranslate"><span class="pre">TimeSeries.at_time</span></code>) or <strong>between two times</strong>
+(<code class="docutils literal notranslate"><span class="pre">TimeSeries.between_time</span></code>)</p></li>
+<li><p>Add <a class="reference internal" href="../user_guide/timeseries.html#timeseries-advanced-datetime"><span class="std std-ref">tshift</span></a> method for leading/lagging
+using the frequency (if any) of the index, as opposed to a naive lead/lag
+using shift</p></li>
+</ul>
+</section>
+<section id="other-new-features">
+<h2>Other new features<a class="headerlink" href="#other-new-features" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>New <a class="reference internal" href="../user_guide/reshaping.html#reshaping-tile-cut"><span class="std std-ref">cut</span></a> and <code class="docutils literal notranslate"><span class="pre">qcut</span></code> functions (like R’s cut
+function) for computing a categorical variable from a continuous variable by
+binning values either into value-based (<code class="docutils literal notranslate"><span class="pre">cut</span></code>) or quantile-based (<code class="docutils literal notranslate"><span class="pre">qcut</span></code>)
+bins</p></li>
+<li><p>Rename <code class="docutils literal notranslate"><span class="pre">Factor</span></code> to <code class="docutils literal notranslate"><span class="pre">Categorical</span></code> and add a number of usability features</p></li>
+<li><p>Add <a class="reference internal" href="../user_guide/missing_data.html#missing-data-fillna-limit"><span class="std std-ref">limit</span></a> argument to fillna/reindex</p></li>
+<li><p>More flexible multiple function application in GroupBy, and can pass list
+(name, function) tuples to get result in particular order with given names</p></li>
+<li><p>Add flexible <a class="reference internal" href="../user_guide/missing_data.html#missing-data-replace"><span class="std std-ref">replace</span></a> method for efficiently
+substituting values</p></li>
+<li><p>Enhanced <a class="reference internal" href="../user_guide/io.html#io-parse-dates"><span class="std std-ref">read_csv/read_table</span></a> for reading time series
+data and converting multiple columns to dates</p></li>
+<li><p>Add <a class="reference internal" href="../user_guide/io.html#io-comments"><span class="std std-ref">comments</span></a> option to parser functions: read_csv, etc.</p></li>
+<li><p>Add <a class="reference internal" href="../user_guide/io.html#io-dayfirst"><span class="std std-ref">dayfirst</span></a> option to parser functions for parsing
+international DD/MM/YYYY dates</p></li>
+<li><p>Allow the user to specify the CSV reader <a class="reference internal" href="../user_guide/io.html#io-dialect"><span class="std std-ref">dialect</span></a> to
+control quoting etc.</p></li>
+<li><p>Handling <a class="reference internal" href="../user_guide/io.html#io-thousands"><span class="std std-ref">thousands</span></a> separators in read_csv to improve
+integer parsing.</p></li>
+<li><p>Enable unstacking of multiple levels in one shot. Alleviate <code class="docutils literal notranslate"><span class="pre">pivot_table</span></code>
+bugs (empty columns being introduced)</p></li>
+<li><p>Move to klib-based hash tables for indexing; better performance and less
+memory usage than Python’s dict</p></li>
+<li><p>Add first, last, min, max, and prod optimized GroupBy functions</p></li>
+<li><p>New <a class="reference internal" href="../user_guide/merging.html#merging-merge-ordered"><span class="std std-ref">ordered_merge</span></a> function</p></li>
+<li><p>Add flexible <a class="reference internal" href="../user_guide/basics.html#basics-binop"><span class="std std-ref">comparison</span></a> instance methods eq, ne, lt,
+gt, etc. to DataFrame, Series</p></li>
+<li><p>Improve <a class="reference internal" href="../user_guide/visualization.html#visualization-scatter-matrix"><span class="std std-ref">scatter_matrix</span></a> plotting
+function and add histogram or kernel density estimates to diagonal</p></li>
+<li><p>Add <a class="reference internal" href="../user_guide/visualization.html#visualization-kde"><span class="std std-ref">‘kde’</span></a> plot option for density plots</p></li>
+<li><p>Support for converting DataFrame to R data.frame through rpy2</p></li>
+<li><p>Improved support for complex numbers in Series and DataFrame</p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">pct_change</span></code> method to all data structures</p></li>
+<li><p>Add max_colwidth configuration option for DataFrame console output</p></li>
+<li><p><a class="reference internal" href="../user_guide/missing_data.html#missing-data-interpolate"><span class="std std-ref">Interpolate</span></a> Series values using index values</p></li>
+<li><p>Can select multiple columns from GroupBy</p></li>
+<li><p>Add <a class="reference internal" href="../user_guide/merging.html#merging-combine-first-update"><span class="std std-ref">update</span></a> methods to Series/DataFrame
+for updating values in place</p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">any</span></code> and <code class="docutils literal notranslate"><span class="pre">all</span></code> method to DataFrame</p></li>
+</ul>
+</section>
+<section id="new-plotting-methods">
+<h2>New plotting methods<a class="headerlink" href="#new-plotting-methods" title="Permalink to this headline">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">fx</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_pickle</span><span class="p">(</span><span class="s2">&quot;data/fx_prices&quot;</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Series.plot</span></code> now supports a <code class="docutils literal notranslate"><span class="pre">secondary_y</span></code> option:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+
+<span class="n">fx</span><span class="p">[</span><span class="s2">&quot;FR&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">&quot;g&quot;</span><span class="p">)</span>
+
+<span class="n">fx</span><span class="p">[</span><span class="s2">&quot;IT&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">&quot;k--&quot;</span><span class="p">,</span> <span class="n">secondary_y</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Vytautas Jancauskas, the 2012 GSOC participant, has added many new plot
+types. For example, <code class="docutils literal notranslate"><span class="pre">'kde'</span></code> is a new option:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1000</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.5</span> <span class="o">+</span> <span class="mi">3</span><span class="p">))</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">s</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">s</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s2">&quot;kde&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="../user_guide/visualization.html#visualization-other"><span class="std std-ref">the plotting page</span></a> for much more.</p>
+</section>
+<section id="other-api-changes">
+<h2>Other API changes<a class="headerlink" href="#other-api-changes" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Deprecation of <code class="docutils literal notranslate"><span class="pre">offset</span></code>, <code class="docutils literal notranslate"><span class="pre">time_rule</span></code>, and <code class="docutils literal notranslate"><span class="pre">timeRule</span></code> arguments names in
+time series functions. Warnings will be printed until pandas 0.9 or 1.0.</p></li>
+</ul>
+</section>
+<section id="potential-porting-issues-for-pandas-0-7-3-users">
+<h2>Potential porting issues for pandas &lt;= 0.7.3 users<a class="headerlink" href="#potential-porting-issues-for-pandas-0-7-3-users" title="Permalink to this headline">#</a></h2>
+<p>The major change that may affect you in pandas 0.8.0 is that time series
+indexes use NumPy’s <code class="docutils literal notranslate"><span class="pre">datetime64</span></code> data type instead of <code class="docutils literal notranslate"><span class="pre">dtype=object</span></code> arrays
+of Python’s built-in <code class="docutils literal notranslate"><span class="pre">datetime.datetime</span></code> objects. <code class="docutils literal notranslate"><span class="pre">DateRange</span></code> has been
+replaced by <code class="docutils literal notranslate"><span class="pre">DatetimeIndex</span></code> but otherwise behaved identically. But, if you
+have code that converts <code class="docutils literal notranslate"><span class="pre">DateRange</span></code> or <code class="docutils literal notranslate"><span class="pre">Index</span></code> objects that used to contain
+<code class="docutils literal notranslate"><span class="pre">datetime.datetime</span></code> values to plain NumPy arrays, you may have bugs lurking
+with code using scalar values because you are handing control over to NumPy:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="kn">import</span> <span class="nn">datetime</span>
+
+<span class="gp">In [2]: </span><span class="n">rng</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">&quot;1/1/2000&quot;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="gp">In [3]: </span><span class="n">rng</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>
+<span class="gh">Out[3]: </span><span class="go">Timestamp(&#39;2000-01-06 00:00:00&#39;, freq=&#39;D&#39;)</span>
+
+<span class="gp">In [4]: </span><span class="nb">isinstance</span><span class="p">(</span><span class="n">rng</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">)</span>
+<span class="gh">Out[4]: </span><span class="go">True</span>
+
+<span class="gp">In [5]: </span><span class="n">rng_asarray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">rng</span><span class="p">)</span>
+
+<span class="gp">In [6]: </span><span class="n">scalar_val</span> <span class="o">=</span> <span class="n">rng_asarray</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>
+
+<span class="gp">In [7]: </span><span class="nb">type</span><span class="p">(</span><span class="n">scalar_val</span><span class="p">)</span>
+<span class="gh">Out[7]: </span><span class="go">numpy.datetime64</span>
+</pre></div>
+</div>
+<p>pandas’s <code class="docutils literal notranslate"><span class="pre">Timestamp</span></code> object is a subclass of <code class="docutils literal notranslate"><span class="pre">datetime.datetime</span></code> that has
+nanosecond support (the <code class="docutils literal notranslate"><span class="pre">nanosecond</span></code> field store the nanosecond value between
+0 and 999). It should substitute directly into any code that used
+<code class="docutils literal notranslate"><span class="pre">datetime.datetime</span></code> values before. Thus, I recommend not casting
+<code class="docutils literal notranslate"><span class="pre">DatetimeIndex</span></code> to regular NumPy arrays.</p>
+<p>If you have code that requires an array of <code class="docutils literal notranslate"><span class="pre">datetime.datetime</span></code> objects, you
+have a couple of options. First, the <code class="docutils literal notranslate"><span class="pre">astype(object)</span></code> method of <code class="docutils literal notranslate"><span class="pre">DatetimeIndex</span></code>
+produces an array of <code class="docutils literal notranslate"><span class="pre">Timestamp</span></code> objects:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [8]: </span><span class="n">stamp_array</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">object</span><span class="p">)</span>
+
+<span class="gp">In [9]: </span><span class="n">stamp_array</span>
+<span class="gh">Out[9]: </span>
+<span class="go">Index([2000-01-01 00:00:00, 2000-01-02 00:00:00, 2000-01-03 00:00:00,</span>
+<span class="go">       2000-01-04 00:00:00, 2000-01-05 00:00:00, 2000-01-06 00:00:00,</span>
+<span class="go">       2000-01-07 00:00:00, 2000-01-08 00:00:00, 2000-01-09 00:00:00,</span>
+<span class="go">       2000-01-10 00:00:00],</span>
+<span class="go">      dtype=&#39;object&#39;)</span>
+
+<span class="gp">In [10]: </span><span class="n">stamp_array</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>
+<span class="gh">Out[10]: </span><span class="go">Timestamp(&#39;2000-01-06 00:00:00&#39;, freq=&#39;D&#39;)</span>
+</pre></div>
+</div>
+<p>To get an array of proper <code class="docutils literal notranslate"><span class="pre">datetime.datetime</span></code> objects, use the
+<code class="docutils literal notranslate"><span class="pre">to_pydatetime</span></code> method:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [11]: </span><span class="n">dt_array</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">to_pydatetime</span><span class="p">()</span>
+
+<span class="gp">In [12]: </span><span class="n">dt_array</span>
+<span class="gh">Out[12]: </span>
+<span class="go">array([datetime.datetime(2000, 1, 1, 0, 0),</span>
+<span class="go">       datetime.datetime(2000, 1, 2, 0, 0),</span>
+<span class="go">       datetime.datetime(2000, 1, 3, 0, 0),</span>
+<span class="go">       datetime.datetime(2000, 1, 4, 0, 0),</span>
+<span class="go">       datetime.datetime(2000, 1, 5, 0, 0),</span>
+<span class="go">       datetime.datetime(2000, 1, 6, 0, 0),</span>
+<span class="go">       datetime.datetime(2000, 1, 7, 0, 0),</span>
+<span class="go">       datetime.datetime(2000, 1, 8, 0, 0),</span>
+<span class="go">       datetime.datetime(2000, 1, 9, 0, 0),</span>
+<span class="go">       datetime.datetime(2000, 1, 10, 0, 0)], dtype=object)</span>
+
+<span class="gp">In [13]: </span><span class="n">dt_array</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>
+<span class="gh">Out[13]: </span><span class="go">datetime.datetime(2000, 1, 6, 0, 0)</span>
+</pre></div>
+</div>
+<p>matplotlib knows how to handle <code class="docutils literal notranslate"><span class="pre">datetime.datetime</span></code> but not Timestamp
+objects. While I recommend that you plot time series using <code class="docutils literal notranslate"><span class="pre">TimeSeries.plot</span></code>,
+you can either use <code class="docutils literal notranslate"><span class="pre">to_pydatetime</span></code> or register a converter for the Timestamp
+type. See <a class="reference external" href="http://matplotlib.org/api/units_api.html">matplotlib documentation</a> for more on this.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>There are bugs in the user-facing API with the nanosecond datetime64 unit
+in NumPy 1.6. In particular, the string version of the array shows garbage
+values, and conversion to <code class="docutils literal notranslate"><span class="pre">dtype=object</span></code> is similarly broken.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [14]: </span><span class="n">rng</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">&quot;1/1/2000&quot;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="gp">In [15]: </span><span class="n">rng</span>
+<span class="gh">Out[15]: </span>
+<span class="go">DatetimeIndex([&#39;2000-01-01&#39;, &#39;2000-01-02&#39;, &#39;2000-01-03&#39;, &#39;2000-01-04&#39;,</span>
+<span class="go">               &#39;2000-01-05&#39;, &#39;2000-01-06&#39;, &#39;2000-01-07&#39;, &#39;2000-01-08&#39;,</span>
+<span class="go">               &#39;2000-01-09&#39;, &#39;2000-01-10&#39;],</span>
+<span class="go">              dtype=&#39;datetime64[ns]&#39;, freq=&#39;D&#39;)</span>
+
+<span class="gp">In [16]: </span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">rng</span><span class="p">)</span>
+<span class="gh">Out[16]: </span>
+<span class="go">array([&#39;2000-01-01T00:00:00.000000000&#39;, &#39;2000-01-02T00:00:00.000000000&#39;,</span>
+<span class="go">       &#39;2000-01-03T00:00:00.000000000&#39;, &#39;2000-01-04T00:00:00.000000000&#39;,</span>
+<span class="go">       &#39;2000-01-05T00:00:00.000000000&#39;, &#39;2000-01-06T00:00:00.000000000&#39;,</span>
+<span class="go">       &#39;2000-01-07T00:00:00.000000000&#39;, &#39;2000-01-08T00:00:00.000000000&#39;,</span>
+<span class="go">       &#39;2000-01-09T00:00:00.000000000&#39;, &#39;2000-01-10T00:00:00.000000000&#39;],</span>
+<span class="go">      dtype=&#39;datetime64[ns]&#39;)</span>
+
+<span class="gp">In [17]: </span><span class="n">converted</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">rng</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span>
+
+<span class="gp">In [18]: </span><span class="n">converted</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>
+<span class="gh">Out[18]: </span><span class="go">Timestamp(&#39;2000-01-06 00:00:00&#39;, freq=&#39;D&#39;)</span>
+</pre></div>
+</div>
+<p><strong>Trust me: don’t panic</strong>. If you are using NumPy 1.6 and restrict your
+interaction with <code class="docutils literal notranslate"><span class="pre">datetime64</span></code> values to pandas’s API you will be just
+fine. There is nothing wrong with the data-type (a 64-bit integer
+internally); all of the important data processing happens in pandas and is
+heavily tested. I strongly recommend that you <strong>do not work directly with
+datetime64 arrays in NumPy 1.6</strong> and only use the pandas API.</p>
+</div>
+<p><strong>Support for non-unique indexes</strong>: In the latter case, you may have code
+inside a <code class="docutils literal notranslate"><span class="pre">try:...</span> <span class="pre">catch:</span></code> block that failed due to the index not being
+unique. In many cases it will no longer fail (some method like <code class="docutils literal notranslate"><span class="pre">append</span></code> still
+check for uniqueness unless disabled). However, all is not lost: you can
+inspect <code class="docutils literal notranslate"><span class="pre">index.is_unique</span></code> and raise an exception explicitly if it is
+<code class="docutils literal notranslate"><span class="pre">False</span></code> or go to a different code branch.</p>
+</section>
+<section id="contributors">
+<span id="whatsnew-0-8-0-contributors"></span><h2>Contributors<a class="headerlink" href="#contributors" title="Permalink to this headline">#</a></h2>
+<p>A total of 27 people contributed patches to this release.  People with a
+“+” by their names contributed a patch for the first time.
+</p>
+<ul class="simple">
+<li><p>Adam Klein</p></li>
+<li><p>Chang She</p></li>
+<li><p>David Zaslavsky +</p></li>
+<li><p>Eric Chlebek +</p></li>
+<li><p>Jacques Kvam</p></li>
+<li><p>Kamil Kisiel</p></li>
+<li><p>Kelsey Jordahl +</p></li>
+<li><p>Kieran O’Mahony +</p></li>
+<li><p>Lorenzo Bolla +</p></li>
+<li><p>Luca Beltrame</p></li>
+<li><p>Marc Abramowitz +</p></li>
+<li><p>Mark Wiebe +</p></li>
+<li><p>Paddy Mullen +</p></li>
+<li><p>Peng Yu +</p></li>
+<li><p>Roy Hyunjin Han +</p></li>
+<li><p>RuiDC +</p></li>
+<li><p>Senthil Palanisami +</p></li>
+<li><p>Skipper Seabold</p></li>
+<li><p>Stefan van der Walt +</p></li>
+<li><p>Takafumi Arakaki +</p></li>
+<li><p>Thomas Kluyver</p></li>
+<li><p>Vytautas Jancauskas +</p></li>
+<li><p>Wes McKinney</p></li>
+<li><p>Wouter Overmeire</p></li>
+<li><p>Yaroslav Halchenko</p></li>
+<li><p>thuske +</p></li>
+<li><p>timmie +</p></li>
+</ul>
+</section>
+</section>
+
+
+            </article>
+            
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="v0.8.1.html" title="previous page">
+      <i class="fas fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Version 0.8.1 (July 22, 2012)</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="v0.7.3.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">Version 0.7.3 (April 12, 2012)</p>
+  </div>
+  <i class="fas fa-angle-right"></i>
+  </a>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fas fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#support-for-non-unique-indexes">
+   Support for non-unique indexes
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#numpy-datetime64-dtype-and-1-6-dependency">
+   NumPy datetime64 dtype and 1.6 dependency
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#time-series-changes-and-improvements">
+   Time Series changes and improvements
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#other-new-features">
+   Other new features
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#new-plotting-methods">
+   New plotting methods
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#other-api-changes">
+   Other API changes
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#potential-porting-issues-for-pandas-0-7-3-users">
+   Potential porting issues for pandas &lt;= 0.7.3 users
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#contributors">
+   Contributors
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+<div class="toc-item">
+  
+</div>
+
+<div class="toc-item">
+  
+<div class="tocsection sourcelink">
+    <a href="../_sources/whatsnew/v0.8.0.rst.txt">
+        <i class="fas fa-file-alt"></i> Show Source
+    </a>
+</div>
+
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+          </div>
+        </footer>
+        
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=9b1a4fa89bdd0e95b23b"></script>
+
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    <p class="copyright">
+    &copy 2023 pandas via <a href="https://numfocus.org">NumFOCUS, Inc.</a> Hosted by <a href="https://www.ovhcloud.com">OVHcloud</a>.
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>

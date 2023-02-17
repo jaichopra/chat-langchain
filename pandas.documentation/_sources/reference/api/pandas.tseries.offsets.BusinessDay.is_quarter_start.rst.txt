@@ -1,0 +1,6 @@
+pandas.tseries.offsets.BusinessDay.is\_quarter\_start
+=====================================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. automethod:: BusinessDay.is_quarter_start

@@ -1,0 +1,6 @@
+pandas.tseries.offsets.QuarterEnd.startingMonth
+===============================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. autoattribute:: QuarterEnd.startingMonth

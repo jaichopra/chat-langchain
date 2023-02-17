@@ -1,0 +1,6 @@
+pandas.api.extensions.ExtensionArray.isin
+=========================================
+
+.. currentmodule:: pandas.api.extensions
+
+.. automethod:: ExtensionArray.isin

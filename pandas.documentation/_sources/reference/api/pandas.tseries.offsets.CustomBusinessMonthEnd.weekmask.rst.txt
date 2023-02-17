@@ -1,0 +1,6 @@
+pandas.tseries.offsets.CustomBusinessMonthEnd.weekmask
+======================================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. autoattribute:: CustomBusinessMonthEnd.weekmask

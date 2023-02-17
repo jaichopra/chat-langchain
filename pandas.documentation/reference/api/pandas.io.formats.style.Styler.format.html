@@ -1,0 +1,1170 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>pandas.io.formats.style.Styler.format &#8212; pandas 1.5.3 documentation</title>
+  <script>
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=9b1a4fa89bdd0e95b23b" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=9b1a4fa89bdd0e95b23b" rel="stylesheet">
+
+  
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/getting_started.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/pandas.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=9b1a4fa89bdd0e95b23b">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/toggleprompt.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script async="async" src="https://www.google-analytics.com/analytics.js"></script>
+    <script>
+                    window.ga = window.ga || function () {
+                        (ga.q = ga.q || []).push(arguments) };
+                    ga.l = +new Date;
+                    ga('create', 'UA-27880019-2', 'auto');
+                    ga('set', 'anonymizeIp', true);
+                    ga('send', 'pageview');
+                </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'reference/api/pandas.io.formats.style.Styler.format';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        </script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="pandas.io.formats.style.Styler.format_index" href="pandas.io.formats.style.Styler.format_index.html" />
+    <link rel="prev" title="pandas.io.formats.style.Styler.export" href="pandas.io.formats.style.Styler.export.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fas fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../../_static/pandas.svg" class="logo__image only-light" alt="Logo image">
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="../../getting_started/index.html">
+                        Getting started
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../user_guide/index.html">
+                        User Guide
+                    </a>
+                </li>
+                
+
+                <li class="nav-item current active">
+                    <a class="nav-link" href="../index.html">
+                        API reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../development/index.html">
+                        Development
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../whatsnew/index.html">
+                        Release notes
+                    </a>
+                </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      <div class="navbar-end-item navbar-end__search-button-container">
+        
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search">
+  <i class="fas fa-search"></i>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        1.5.3  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pandas-dev/pandas" title="GitHub" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/pandas_dev" title="Twitter" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  <div class="search-button-container--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search">
+  <i class="fas fa-search"></i>
+</button>
+  </div>
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fas fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="../../getting_started/index.html">
+                        Getting started
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../user_guide/index.html">
+                        User Guide
+                    </a>
+                </li>
+                
+
+                <li class="nav-item current active">
+                    <a class="nav-link" href="../index.html">
+                        API reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../development/index.html">
+                        Development
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../whatsnew/index.html">
+                        Release notes
+                    </a>
+                </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        1.5.3  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pandas-dev/pandas" title="GitHub" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/pandas_dev" title="Twitter" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item navbar-nav">
+    
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../io.html">
+   Input/output
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../general_functions.html">
+   General functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../series.html">
+   Series
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../frame.html">
+   DataFrame
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../arrays.html">
+   pandas arrays, scalars, and data types
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../indexing.html">
+   Index objects
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../offset_frequency.html">
+   Date offsets
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../window.html">
+   Window
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../groupby.html">
+   GroupBy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../resampling.html">
+   Resampling
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../style.html">
+   Style
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label class="toctree-toggle" for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active has-children">
+    <a class="reference internal" href="pandas.io.formats.style.Styler.html">
+     pandas.io.formats.style.Styler
+    </a>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label class="toctree-toggle" for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="current">
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.io.formats.style.Styler.apply.html">
+       pandas.io.formats.style.Styler.apply
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.io.formats.style.Styler.apply_index.html">
+       pandas.io.formats.style.Styler.apply_index
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.io.formats.style.Styler.applymap.html">
+       pandas.io.formats.style.Styler.applymap
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.io.formats.style.Styler.applymap_index.html">
+       pandas.io.formats.style.Styler.applymap_index
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.io.formats.style.Styler.background_gradient.html">
+       pandas.io.formats.style.Styler.background_gradient
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.io.formats.style.Styler.bar.html">
+       pandas.io.formats.style.Styler.bar
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.io.formats.style.Styler.clear.html">
+       pandas.io.formats.style.Styler.clear
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.io.formats.style.Styler.concat.html">
+       pandas.io.formats.style.Styler.concat
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.io.formats.style.Styler.export.html">
+       pandas.io.formats.style.Styler.export
+      </a>
+     </li>
+     <li class="toctree-l3 current active">
+      <a class="current reference internal" href="#">
+       pandas.io.formats.style.Styler.format
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.io.formats.style.Styler.format_index.html">
+       pandas.io.formats.style.Styler.format_index
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.io.formats.style.Styler.from_custom_template.html">
+       pandas.io.formats.style.Styler.from_custom_template
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.io.formats.style.Styler.hide.html">
+       pandas.io.formats.style.Styler.hide
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.io.formats.style.Styler.hide_columns.html">
+       pandas.io.formats.style.Styler.hide_columns
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.io.formats.style.Styler.hide_index.html">
+       pandas.io.formats.style.Styler.hide_index
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.io.formats.style.Styler.highlight_between.html">
+       pandas.io.formats.style.Styler.highlight_between
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.io.formats.style.Styler.highlight_max.html">
+       pandas.io.formats.style.Styler.highlight_max
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.io.formats.style.Styler.highlight_min.html">
+       pandas.io.formats.style.Styler.highlight_min
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.io.formats.style.Styler.highlight_null.html">
+       pandas.io.formats.style.Styler.highlight_null
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.io.formats.style.Styler.highlight_quantile.html">
+       pandas.io.formats.style.Styler.highlight_quantile
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.io.formats.style.Styler.pipe.html">
+       pandas.io.formats.style.Styler.pipe
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.io.formats.style.Styler.relabel_index.html">
+       pandas.io.formats.style.Styler.relabel_index
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.io.formats.style.Styler.render.html">
+       pandas.io.formats.style.Styler.render
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.io.formats.style.Styler.set_caption.html">
+       pandas.io.formats.style.Styler.set_caption
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.io.formats.style.Styler.set_na_rep.html">
+       pandas.io.formats.style.Styler.set_na_rep
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.io.formats.style.Styler.set_precision.html">
+       pandas.io.formats.style.Styler.set_precision
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.io.formats.style.Styler.set_properties.html">
+       pandas.io.formats.style.Styler.set_properties
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.io.formats.style.Styler.set_sticky.html">
+       pandas.io.formats.style.Styler.set_sticky
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.io.formats.style.Styler.set_table_attributes.html">
+       pandas.io.formats.style.Styler.set_table_attributes
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.io.formats.style.Styler.set_table_styles.html">
+       pandas.io.formats.style.Styler.set_table_styles
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.io.formats.style.Styler.set_td_classes.html">
+       pandas.io.formats.style.Styler.set_td_classes
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.io.formats.style.Styler.set_tooltips.html">
+       pandas.io.formats.style.Styler.set_tooltips
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.io.formats.style.Styler.set_uuid.html">
+       pandas.io.formats.style.Styler.set_uuid
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.io.formats.style.Styler.text_gradient.html">
+       pandas.io.formats.style.Styler.text_gradient
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.io.formats.style.Styler.to_excel.html">
+       pandas.io.formats.style.Styler.to_excel
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.io.formats.style.Styler.to_html.html">
+       pandas.io.formats.style.Styler.to_html
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.io.formats.style.Styler.to_latex.html">
+       pandas.io.formats.style.Styler.to_latex
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.io.formats.style.Styler.to_string.html">
+       pandas.io.formats.style.Styler.to_string
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.io.formats.style.Styler.use.html">
+       pandas.io.formats.style.Styler.use
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.io.formats.style.Styler.where.html">
+       pandas.io.formats.style.Styler.where
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.io.formats.style.Styler.from_custom_template.html">
+     pandas.io.formats.style.Styler.from_custom_template
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.io.formats.style.Styler.env.html">
+     pandas.io.formats.style.Styler.env
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.io.formats.style.Styler.template_html.html">
+     pandas.io.formats.style.Styler.template_html
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.io.formats.style.Styler.template_html_style.html">
+     pandas.io.formats.style.Styler.template_html_style
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.io.formats.style.Styler.template_html_table.html">
+     pandas.io.formats.style.Styler.template_html_table
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.io.formats.style.Styler.template_latex.html">
+     pandas.io.formats.style.Styler.template_latex
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.io.formats.style.Styler.template_string.html">
+     pandas.io.formats.style.Styler.template_string
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.io.formats.style.Styler.loader.html">
+     pandas.io.formats.style.Styler.loader
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.io.formats.style.Styler.apply.html">
+     pandas.io.formats.style.Styler.apply
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.io.formats.style.Styler.applymap.html">
+     pandas.io.formats.style.Styler.applymap
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.io.formats.style.Styler.apply_index.html">
+     pandas.io.formats.style.Styler.apply_index
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.io.formats.style.Styler.applymap_index.html">
+     pandas.io.formats.style.Styler.applymap_index
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     pandas.io.formats.style.Styler.format
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.io.formats.style.Styler.format_index.html">
+     pandas.io.formats.style.Styler.format_index
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.io.formats.style.Styler.relabel_index.html">
+     pandas.io.formats.style.Styler.relabel_index
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.io.formats.style.Styler.hide.html">
+     pandas.io.formats.style.Styler.hide
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.io.formats.style.Styler.concat.html">
+     pandas.io.formats.style.Styler.concat
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.io.formats.style.Styler.set_td_classes.html">
+     pandas.io.formats.style.Styler.set_td_classes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.io.formats.style.Styler.set_table_styles.html">
+     pandas.io.formats.style.Styler.set_table_styles
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.io.formats.style.Styler.set_table_attributes.html">
+     pandas.io.formats.style.Styler.set_table_attributes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.io.formats.style.Styler.set_tooltips.html">
+     pandas.io.formats.style.Styler.set_tooltips
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.io.formats.style.Styler.set_caption.html">
+     pandas.io.formats.style.Styler.set_caption
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.io.formats.style.Styler.set_sticky.html">
+     pandas.io.formats.style.Styler.set_sticky
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.io.formats.style.Styler.set_properties.html">
+     pandas.io.formats.style.Styler.set_properties
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.io.formats.style.Styler.set_uuid.html">
+     pandas.io.formats.style.Styler.set_uuid
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.io.formats.style.Styler.clear.html">
+     pandas.io.formats.style.Styler.clear
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.io.formats.style.Styler.pipe.html">
+     pandas.io.formats.style.Styler.pipe
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.io.formats.style.Styler.highlight_null.html">
+     pandas.io.formats.style.Styler.highlight_null
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.io.formats.style.Styler.highlight_max.html">
+     pandas.io.formats.style.Styler.highlight_max
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.io.formats.style.Styler.highlight_min.html">
+     pandas.io.formats.style.Styler.highlight_min
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.io.formats.style.Styler.highlight_between.html">
+     pandas.io.formats.style.Styler.highlight_between
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.io.formats.style.Styler.highlight_quantile.html">
+     pandas.io.formats.style.Styler.highlight_quantile
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.io.formats.style.Styler.background_gradient.html">
+     pandas.io.formats.style.Styler.background_gradient
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.io.formats.style.Styler.text_gradient.html">
+     pandas.io.formats.style.Styler.text_gradient
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.io.formats.style.Styler.bar.html">
+     pandas.io.formats.style.Styler.bar
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.io.formats.style.Styler.to_html.html">
+     pandas.io.formats.style.Styler.to_html
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.io.formats.style.Styler.to_latex.html">
+     pandas.io.formats.style.Styler.to_latex
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.io.formats.style.Styler.to_excel.html">
+     pandas.io.formats.style.Styler.to_excel
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.io.formats.style.Styler.to_string.html">
+     pandas.io.formats.style.Styler.to_string
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.io.formats.style.Styler.export.html">
+     pandas.io.formats.style.Styler.export
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.io.formats.style.Styler.use.html">
+     pandas.io.formats.style.Styler.use
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../plotting.html">
+   Plotting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../options.html">
+   Options and settings
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../extensions.html">
+   Extensions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../testing.html">
+   Testing
+  </a>
+ </li>
+</ul>
+
+    
+  </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+      </div>
+      <main class="bd-main">
+        
+        
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+            </div>
+            
+            
+            <article class="bd-article" role="main">
+              
+  <section id="pandas-io-formats-style-styler-format">
+<h1>pandas.io.formats.style.Styler.format<a class="headerlink" href="#pandas-io-formats-style-styler-format" title="Permalink to this headline">#</a></h1>
+<dl class="py method">
+<dt class="sig sig-object py" id="pandas.io.formats.style.Styler.format">
+<span class="sig-prename descclassname"><span class="pre">Styler.</span></span><span class="sig-name descname"><span class="pre">format</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">formatter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">na_rep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">precision</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decimal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thousands</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">escape</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyperlinks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.5.3/pandas/io/formats/style_render.py#L942-L1170"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.io.formats.style.Styler.format" title="Permalink to this definition">#</a></dt>
+<dd><p>Format the text display value of cells.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl>
+<dt><strong>formatter</strong><span class="classifier">str, callable, dict or None</span></dt><dd><p>Object to define how values are displayed. See notes.</p>
+</dd>
+<dt><strong>subset</strong><span class="classifier">label, array-like, IndexSlice, optional</span></dt><dd><p>A valid 2d input to <cite>DataFrame.loc[&lt;subset&gt;]</cite>, or, in the case of a 1d input
+or single key, to <cite>DataFrame.loc[:, &lt;subset&gt;]</cite> where the columns are
+prioritised, to limit <code class="docutils literal notranslate"><span class="pre">data</span></code> to <em>before</em> applying the function.</p>
+</dd>
+<dt><strong>na_rep</strong><span class="classifier">str, optional</span></dt><dd><p>Representation for missing values.
+If <code class="docutils literal notranslate"><span class="pre">na_rep</span></code> is None, no special formatting is applied.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.0.0.</span></p>
+</div>
+</dd>
+<dt><strong>precision</strong><span class="classifier">int, optional</span></dt><dd><p>Floating point precision to use for display purposes, if not determined by
+the specified <code class="docutils literal notranslate"><span class="pre">formatter</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.3.0.</span></p>
+</div>
+</dd>
+<dt><strong>decimal</strong><span class="classifier">str, default “.”</span></dt><dd><p>Character used as decimal separator for floats, complex and integers.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.3.0.</span></p>
+</div>
+</dd>
+<dt><strong>thousands</strong><span class="classifier">str, optional, default None</span></dt><dd><p>Character used as thousands separator for floats, complex and integers.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.3.0.</span></p>
+</div>
+</dd>
+<dt><strong>escape</strong><span class="classifier">str, optional</span></dt><dd><p>Use ‘html’ to replace the characters <code class="docutils literal notranslate"><span class="pre">&amp;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">'</span></code>, and <code class="docutils literal notranslate"><span class="pre">&quot;</span></code>
+in cell display string with HTML-safe sequences.
+Use ‘latex’ to replace the characters <code class="docutils literal notranslate"><span class="pre">&amp;</span></code>, <code class="docutils literal notranslate"><span class="pre">%</span></code>, <code class="docutils literal notranslate"><span class="pre">$</span></code>, <code class="docutils literal notranslate"><span class="pre">#</span></code>, <code class="docutils literal notranslate"><span class="pre">_</span></code>,
+<code class="docutils literal notranslate"><span class="pre">{</span></code>, <code class="docutils literal notranslate"><span class="pre">}</span></code>, <code class="docutils literal notranslate"><span class="pre">~</span></code>, <code class="docutils literal notranslate"><span class="pre">^</span></code>, and <code class="docutils literal notranslate"><span class="pre">\</span></code> in the cell display string with
+LaTeX-safe sequences.
+Escaping is done before <code class="docutils literal notranslate"><span class="pre">formatter</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.3.0.</span></p>
+</div>
+</dd>
+<dt><strong>hyperlinks</strong><span class="classifier">{“html”, “latex”}, optional</span></dt><dd><p>Convert string patterns containing <a class="reference external" href="https://">https://</a>, <a class="reference external" href="http://">http://</a>, <a class="reference external" href="ftp://">ftp://</a> or www. to
+HTML &lt;a&gt; tags as clickable URL hyperlinks if “html”, or LaTeX href
+commands if “latex”.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.4.0.</span></p>
+</div>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>self</strong><span class="classifier">Styler</span></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="pandas.io.formats.style.Styler.format_index.html#pandas.io.formats.style.Styler.format_index" title="pandas.io.formats.style.Styler.format_index"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Styler.format_index</span></code></a></dt><dd><p>Format the text display value of index labels.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>This method assigns a formatting function, <code class="docutils literal notranslate"><span class="pre">formatter</span></code>, to each cell in the
+DataFrame. If <code class="docutils literal notranslate"><span class="pre">formatter</span></code> is <code class="docutils literal notranslate"><span class="pre">None</span></code>, then the default formatter is used.
+If a callable then that function should take a data value as input and return
+a displayable representation, such as a string. If <code class="docutils literal notranslate"><span class="pre">formatter</span></code> is
+given as a string this is assumed to be a valid Python format specification
+and is wrapped to a callable as <code class="docutils literal notranslate"><span class="pre">string.format(x)</span></code>. If a <code class="docutils literal notranslate"><span class="pre">dict</span></code> is given,
+keys should correspond to column names, and values should be string or
+callable, as above.</p>
+<p>The default formatter currently expresses floats and complex numbers with the
+pandas display precision unless using the <code class="docutils literal notranslate"><span class="pre">precision</span></code> argument here. The
+default formatter does not adjust the representation of missing values unless
+the <code class="docutils literal notranslate"><span class="pre">na_rep</span></code> argument is used.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">subset</span></code> argument defines which region to apply the formatting function
+to. If the <code class="docutils literal notranslate"><span class="pre">formatter</span></code> argument is given in dict form but does not include
+all columns within the subset then these columns will have the default formatter
+applied. Any columns in the formatter dict excluded from the subset will
+be ignored.</p>
+<p>When using a <code class="docutils literal notranslate"><span class="pre">formatter</span></code> string the dtypes must be compatible, otherwise a
+<cite>ValueError</cite> will be raised.</p>
+<p>When instantiating a Styler, default formatting can be applied be setting the
+<code class="docutils literal notranslate"><span class="pre">pandas.options</span></code>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">styler.format.formatter</span></code>: default None.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">styler.format.na_rep</span></code>: default None.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">styler.format.precision</span></code>: default 6.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">styler.format.decimal</span></code>: default “.”.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">styler.format.thousands</span></code>: default None.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">styler.format.escape</span></code>: default None.</p></li>
+</ul>
+</div></blockquote>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><cite>Styler.format</cite> is ignored when using the output format <cite>Styler.to_excel</cite>,
+since Excel and Python have inherrently different formatting structures.
+However, it is possible to use the <cite>number-format</cite> pseudo CSS attribute
+to force Excel permissible formatting. See examples.</p>
+</div>
+<p class="rubric">Examples</p>
+<p>Using <code class="docutils literal notranslate"><span class="pre">na_rep</span></code> and <code class="docutils literal notranslate"><span class="pre">precision</span></code> with the default <code class="docutils literal notranslate"><span class="pre">formatter</span></code></p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">],</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">na_rep</span><span class="o">=</span><span class="s1">&#39;MISS&#39;</span><span class="p">,</span> <span class="n">precision</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>  
+<span class="go">        0       1       2</span>
+<span class="go">0    MISS   1.000       A</span>
+<span class="go">1   2.000    MISS   3.000</span>
+</pre></div>
+</div>
+<p>Using a <code class="docutils literal notranslate"><span class="pre">formatter</span></code> specification on consistent column dtypes</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{:.2f}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">na_rep</span><span class="o">=</span><span class="s1">&#39;MISS&#39;</span><span class="p">,</span> <span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>  
+<span class="go">        0      1          2</span>
+<span class="go">0    MISS   1.00          A</span>
+<span class="go">1    2.00   MISS   3.000000</span>
+</pre></div>
+</div>
+<p>Using the default <code class="docutils literal notranslate"><span class="pre">formatter</span></code> for unspecified columns</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">format</span><span class="p">({</span><span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">{:.2f}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;£ </span><span class="si">{:.1f}</span><span class="s1">&#39;</span><span class="p">},</span> <span class="n">na_rep</span><span class="o">=</span><span class="s1">&#39;MISS&#39;</span><span class="p">,</span> <span class="n">precision</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">... </span> 
+<span class="go">         0      1     2</span>
+<span class="go">0    MISS   £ 1.0     A</span>
+<span class="go">1    2.00    MISS   3.0</span>
+</pre></div>
+</div>
+<p>Multiple <code class="docutils literal notranslate"><span class="pre">na_rep</span></code> or <code class="docutils literal notranslate"><span class="pre">precision</span></code> specifications under the default
+<code class="docutils literal notranslate"><span class="pre">formatter</span></code>.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">na_rep</span><span class="o">=</span><span class="s1">&#39;MISS&#39;</span><span class="p">,</span> <span class="n">precision</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="gp">... </span>    <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">na_rep</span><span class="o">=</span><span class="s1">&#39;PASS&#39;</span><span class="p">,</span> <span class="n">precision</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>  
+<span class="go">        0      1      2</span>
+<span class="go">0    MISS   1.00      A</span>
+<span class="go">1     2.0   PASS   3.00</span>
+</pre></div>
+</div>
+<p>Using a callable <code class="docutils literal notranslate"><span class="pre">formatter</span></code> function.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">func</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="s1">&#39;STRING&#39;</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="k">else</span> <span class="s1">&#39;FLOAT&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">format</span><span class="p">({</span><span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">{:.1f}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="n">func</span><span class="p">},</span> <span class="n">precision</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">na_rep</span><span class="o">=</span><span class="s1">&#39;MISS&#39;</span><span class="p">)</span>
+<span class="gp">... </span> 
+<span class="go">        0        1        2</span>
+<span class="go">0    MISS   1.0000   STRING</span>
+<span class="go">1     2.0     MISS    FLOAT</span>
+</pre></div>
+</div>
+<p>Using a <code class="docutils literal notranslate"><span class="pre">formatter</span></code> with HTML <code class="docutils literal notranslate"><span class="pre">escape</span></code> and <code class="docutils literal notranslate"><span class="pre">na_rep</span></code>.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="s1">&#39;&lt;div&gt;&lt;/div&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;&quot;A&amp;B&quot;&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="s1">&#39;&lt;a href=&quot;a.com/</span><span class="si">{0}</span><span class="s1">&quot;&gt;</span><span class="si">{0}</span><span class="s1">&lt;/a&gt;&#39;</span><span class="p">,</span> <span class="n">escape</span><span class="o">=</span><span class="s2">&quot;html&quot;</span><span class="p">,</span> <span class="n">na_rep</span><span class="o">=</span><span class="s2">&quot;NA&quot;</span>
+<span class="gp">... </span>    <span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">to_html</span><span class="p">()</span>  
+<span class="gp">...</span>
+<span class="go">&lt;td .. &gt;&lt;a href=&quot;a.com/&amp;lt;div&amp;gt;&amp;lt;/div&amp;gt;&quot;&gt;&amp;lt;div&amp;gt;&amp;lt;/div&amp;gt;&lt;/a&gt;&lt;/td&gt;</span>
+<span class="go">&lt;td .. &gt;&lt;a href=&quot;a.com/&amp;#34;A&amp;amp;B&amp;#34;&quot;&gt;&amp;#34;A&amp;amp;B&amp;#34;&lt;/a&gt;&lt;/td&gt;</span>
+<span class="go">&lt;td .. &gt;NA&lt;/td&gt;</span>
+<span class="gp">...</span>
+</pre></div>
+</div>
+<p>Using a <code class="docutils literal notranslate"><span class="pre">formatter</span></code> with LaTeX <code class="docutils literal notranslate"><span class="pre">escape</span></code>.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="s2">&quot;123&quot;</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;~ ^&quot;</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;$%#&quot;</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">textbf{{</span><span class="si">{}</span><span class="s2">}}&quot;</span><span class="p">,</span> <span class="n">escape</span><span class="o">=</span><span class="s2">&quot;latex&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to_latex</span><span class="p">()</span>
+<span class="gp">... </span> 
+<span class="go">\begin{tabular}{ll}</span>
+<span class="go">{} &amp; {0} \\</span>
+<span class="go">0 &amp; \textbf{123} \\</span>
+<span class="go">1 &amp; \textbf{\textasciitilde \space \textasciicircum } \\</span>
+<span class="go">2 &amp; \textbf{\$\%\#} \\</span>
+<span class="go">\end{tabular}</span>
+</pre></div>
+</div>
+<p>Pandas defines a <cite>number-format</cite> pseudo CSS attribute instead of the <cite>.format</cite>
+method to create <cite>to_excel</cite> permissible formatting. Note that semi-colons are
+CSS protected characters but used as separators in Excel’s format string.
+Replace semi-colons with the section separator character (ASCII-245) when
+defining the formatting here.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pseudo_css</span> <span class="o">=</span> <span class="s2">&quot;number-format: 0§[Red](0)§-§@;&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">applymap</span><span class="p">(</span><span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="n">css</span><span class="p">)</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="s2">&quot;formatted_file.xlsx&quot;</span><span class="p">)</span>
+<span class="gp">... </span> 
+</pre></div>
+</div>
+<figure class="align-default">
+<img alt="../../_images/format_excel_css.png" src="../../_images/format_excel_css.png" />
+</figure>
+</dd></dl>
+
+</section>
+
+
+            </article>
+            
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="pandas.io.formats.style.Styler.export.html" title="previous page">
+      <i class="fas fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">pandas.io.formats.style.Styler.export</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="pandas.io.formats.style.Styler.format_index.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">pandas.io.formats.style.Styler.format_index</p>
+  </div>
+  <i class="fas fa-angle-right"></i>
+  </a>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+</div>
+
+<div class="toc-item">
+  
+<div class="tocsection sourcelink">
+    <a href="../../_sources/reference/api/pandas.io.formats.style.Styler.format.rst.txt">
+        <i class="fas fa-file-alt"></i> Show Source
+    </a>
+</div>
+
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+          </div>
+        </footer>
+        
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=9b1a4fa89bdd0e95b23b"></script>
+
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    <p class="copyright">
+    &copy 2023 pandas via <a href="https://numfocus.org">NumFOCUS, Inc.</a> Hosted by <a href="https://www.ovhcloud.com">OVHcloud</a>.
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>

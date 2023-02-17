@@ -1,0 +1,6 @@
+pandas.tseries.offsets.FY5253Quarter.is\_month\_end
+===================================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. automethod:: FY5253Quarter.is_month_end

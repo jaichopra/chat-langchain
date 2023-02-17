@@ -1,0 +1,6 @@
+pandas.errors.SettingWithCopyError
+==================================
+
+.. currentmodule:: pandas.errors
+
+.. autoexception:: SettingWithCopyError

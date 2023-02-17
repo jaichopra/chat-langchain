@@ -1,0 +1,6 @@
+pandas.ExcelWriter.close
+========================
+
+.. currentmodule:: pandas
+
+.. automethod:: ExcelWriter.close

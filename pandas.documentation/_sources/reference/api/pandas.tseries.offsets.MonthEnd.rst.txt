@@ -1,0 +1,53 @@
+pandas.tseries.offsets.MonthEnd
+===============================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. autoclass:: MonthEnd
+
+   
+
+
+..
+   HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+   .. autosummary::
+      :toctree:
+      
+      MonthEnd.__call__
+      MonthEnd.apply
+      MonthEnd.apply_index
+      MonthEnd.copy
+      MonthEnd.isAnchored
+      MonthEnd.is_anchored
+      MonthEnd.is_month_end
+      MonthEnd.is_month_start
+      MonthEnd.is_on_offset
+      MonthEnd.is_quarter_end
+      MonthEnd.is_quarter_start
+      MonthEnd.is_year_end
+      MonthEnd.is_year_start
+      MonthEnd.onOffset
+      MonthEnd.rollback
+      MonthEnd.rollforward
+
+
+
+
+   
+
+
+..
+   HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+   .. autosummary::
+      :toctree:
+      
+      MonthEnd.base
+      MonthEnd.freqstr
+      MonthEnd.kwds
+      MonthEnd.n
+      MonthEnd.name
+      MonthEnd.nanos
+      MonthEnd.normalize
+      MonthEnd.rule_code
+
+

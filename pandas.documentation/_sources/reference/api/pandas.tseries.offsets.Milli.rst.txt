@@ -1,0 +1,54 @@
+pandas.tseries.offsets.Milli
+============================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. autoclass:: Milli
+
+   
+
+
+..
+   HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+   .. autosummary::
+      :toctree:
+      
+      Milli.__call__
+      Milli.apply
+      Milli.apply_index
+      Milli.copy
+      Milli.isAnchored
+      Milli.is_anchored
+      Milli.is_month_end
+      Milli.is_month_start
+      Milli.is_on_offset
+      Milli.is_quarter_end
+      Milli.is_quarter_start
+      Milli.is_year_end
+      Milli.is_year_start
+      Milli.onOffset
+      Milli.rollback
+      Milli.rollforward
+
+
+
+
+   
+
+
+..
+   HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+   .. autosummary::
+      :toctree:
+      
+      Milli.base
+      Milli.delta
+      Milli.freqstr
+      Milli.kwds
+      Milli.n
+      Milli.name
+      Milli.nanos
+      Milli.normalize
+      Milli.rule_code
+
+

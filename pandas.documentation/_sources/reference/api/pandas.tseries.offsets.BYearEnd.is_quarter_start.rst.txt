@@ -1,0 +1,6 @@
+pandas.tseries.offsets.BYearEnd.is\_quarter\_start
+==================================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. automethod:: BYearEnd.is_quarter_start

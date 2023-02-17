@@ -1,0 +1,6 @@
+pandas.tseries.offsets.Milli.is\_year\_start
+============================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. automethod:: Milli.is_year_start

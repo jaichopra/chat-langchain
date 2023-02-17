@@ -1,0 +1,6 @@
+pandas.tseries.offsets.Milli.n
+==============================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. autoattribute:: Milli.n

@@ -1,0 +1,6 @@
+pandas.tseries.offsets.BusinessHour.start
+=========================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. autoattribute:: BusinessHour.start

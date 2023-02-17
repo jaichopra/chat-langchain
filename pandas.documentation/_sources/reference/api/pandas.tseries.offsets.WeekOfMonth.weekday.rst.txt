@@ -1,0 +1,6 @@
+pandas.tseries.offsets.WeekOfMonth.weekday
+==========================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. autoattribute:: WeekOfMonth.weekday

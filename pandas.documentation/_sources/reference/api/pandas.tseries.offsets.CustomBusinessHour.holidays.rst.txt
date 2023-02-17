@@ -1,0 +1,6 @@
+pandas.tseries.offsets.CustomBusinessHour.holidays
+==================================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. autoattribute:: CustomBusinessHour.holidays

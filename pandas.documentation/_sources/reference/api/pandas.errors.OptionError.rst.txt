@@ -1,0 +1,6 @@
+pandas.errors.OptionError
+=========================
+
+.. currentmodule:: pandas.errors
+
+.. autoexception:: OptionError

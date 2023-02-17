@@ -1,0 +1,6 @@
+pandas.DatetimeIndex.day\_of\_week
+==================================
+
+.. currentmodule:: pandas
+
+.. autoproperty:: DatetimeIndex.day_of_week

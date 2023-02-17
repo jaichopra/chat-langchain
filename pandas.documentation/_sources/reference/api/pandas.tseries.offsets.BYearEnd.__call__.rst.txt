@@ -1,0 +1,6 @@
+pandas.tseries.offsets.BYearEnd.\_\_call\_\_
+============================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. automethod:: BYearEnd.__call__

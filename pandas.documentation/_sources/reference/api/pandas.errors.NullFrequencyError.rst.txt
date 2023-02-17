@@ -1,0 +1,6 @@
+pandas.errors.NullFrequencyError
+================================
+
+.. currentmodule:: pandas.errors
+
+.. autoexception:: NullFrequencyError

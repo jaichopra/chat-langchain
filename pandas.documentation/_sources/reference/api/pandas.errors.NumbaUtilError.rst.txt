@@ -1,0 +1,6 @@
+pandas.errors.NumbaUtilError
+============================
+
+.. currentmodule:: pandas.errors
+
+.. autoexception:: NumbaUtilError

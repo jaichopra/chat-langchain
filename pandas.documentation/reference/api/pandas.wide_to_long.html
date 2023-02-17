@@ -1,0 +1,964 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>pandas.wide_to_long &#8212; pandas 1.5.3 documentation</title>
+  <script>
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=9b1a4fa89bdd0e95b23b" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=9b1a4fa89bdd0e95b23b" rel="stylesheet">
+
+  
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/getting_started.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/pandas.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=9b1a4fa89bdd0e95b23b">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/toggleprompt.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script async="async" src="https://www.google-analytics.com/analytics.js"></script>
+    <script>
+                    window.ga = window.ga || function () {
+                        (ga.q = ga.q || []).push(arguments) };
+                    ga.l = +new Date;
+                    ga('create', 'UA-27880019-2', 'auto');
+                    ga('set', 'anonymizeIp', true);
+                    ga('send', 'pageview');
+                </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'reference/api/pandas.wide_to_long';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        </script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="pandas.isna" href="pandas.isna.html" />
+    <link rel="prev" title="pandas.unique" href="pandas.unique.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fas fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../../_static/pandas.svg" class="logo__image only-light" alt="Logo image">
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="../../getting_started/index.html">
+                        Getting started
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../user_guide/index.html">
+                        User Guide
+                    </a>
+                </li>
+                
+
+                <li class="nav-item current active">
+                    <a class="nav-link" href="../index.html">
+                        API reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../development/index.html">
+                        Development
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../whatsnew/index.html">
+                        Release notes
+                    </a>
+                </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      <div class="navbar-end-item navbar-end__search-button-container">
+        
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search">
+  <i class="fas fa-search"></i>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        1.5.3  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pandas-dev/pandas" title="GitHub" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/pandas_dev" title="Twitter" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  <div class="search-button-container--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search">
+  <i class="fas fa-search"></i>
+</button>
+  </div>
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fas fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="../../getting_started/index.html">
+                        Getting started
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../user_guide/index.html">
+                        User Guide
+                    </a>
+                </li>
+                
+
+                <li class="nav-item current active">
+                    <a class="nav-link" href="../index.html">
+                        API reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../development/index.html">
+                        Development
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../whatsnew/index.html">
+                        Release notes
+                    </a>
+                </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        1.5.3  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pandas-dev/pandas" title="GitHub" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/pandas_dev" title="Twitter" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item navbar-nav">
+    
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../io.html">
+   Input/output
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../general_functions.html">
+   General functions
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label class="toctree-toggle" for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.melt.html">
+     pandas.melt
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.pivot.html">
+     pandas.pivot
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.pivot_table.html">
+     pandas.pivot_table
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.crosstab.html">
+     pandas.crosstab
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.cut.html">
+     pandas.cut
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.qcut.html">
+     pandas.qcut
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.merge.html">
+     pandas.merge
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.merge_ordered.html">
+     pandas.merge_ordered
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.merge_asof.html">
+     pandas.merge_asof
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.concat.html">
+     pandas.concat
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.get_dummies.html">
+     pandas.get_dummies
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.from_dummies.html">
+     pandas.from_dummies
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.factorize.html">
+     pandas.factorize
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.unique.html">
+     pandas.unique
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     pandas.wide_to_long
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.isna.html">
+     pandas.isna
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.isnull.html">
+     pandas.isnull
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.notna.html">
+     pandas.notna
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.notnull.html">
+     pandas.notnull
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.to_numeric.html">
+     pandas.to_numeric
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.to_datetime.html">
+     pandas.to_datetime
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.to_timedelta.html">
+     pandas.to_timedelta
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.date_range.html">
+     pandas.date_range
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.bdate_range.html">
+     pandas.bdate_range
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.period_range.html">
+     pandas.period_range
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.timedelta_range.html">
+     pandas.timedelta_range
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.infer_freq.html">
+     pandas.infer_freq
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.interval_range.html">
+     pandas.interval_range
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.eval.html">
+     pandas.eval
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.util.hash_array.html">
+     pandas.util.hash_array
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.util.hash_pandas_object.html">
+     pandas.util.hash_pandas_object
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.api.interchange.from_dataframe.html">
+     pandas.api.interchange.from_dataframe
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../series.html">
+   Series
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../frame.html">
+   DataFrame
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../arrays.html">
+   pandas arrays, scalars, and data types
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../indexing.html">
+   Index objects
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../offset_frequency.html">
+   Date offsets
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../window.html">
+   Window
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../groupby.html">
+   GroupBy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../resampling.html">
+   Resampling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../style.html">
+   Style
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../plotting.html">
+   Plotting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../options.html">
+   Options and settings
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../extensions.html">
+   Extensions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../testing.html">
+   Testing
+  </a>
+ </li>
+</ul>
+
+    
+  </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+      </div>
+      <main class="bd-main">
+        
+        
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+            </div>
+            
+            
+            <article class="bd-article" role="main">
+              
+  <section id="pandas-wide-to-long">
+<h1>pandas.wide_to_long<a class="headerlink" href="#pandas-wide-to-long" title="Permalink to this headline">#</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="pandas.wide_to_long">
+<span class="sig-prename descclassname"><span class="pre">pandas.</span></span><span class="sig-name descname"><span class="pre">wide_to_long</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stubnames</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">j</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">suffix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'\\d+'</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.5.3/pandas/core/reshape/melt.py#L262-L551"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.wide_to_long" title="Permalink to this definition">#</a></dt>
+<dd><p>Unpivot a DataFrame from wide to long format.</p>
+<p>Less flexible but more user-friendly than melt.</p>
+<p>With stubnames [‘A’, ‘B’], this function expects to find one or more
+group of columns with format
+A-suffix1, A-suffix2,…, B-suffix1, B-suffix2,…
+You specify what you want to call this suffix in the resulting long format
+with <cite>j</cite> (for example <cite>j=’year’</cite>)</p>
+<p>Each row of these wide variables are assumed to be uniquely identified by
+<cite>i</cite> (can be a single column name or a list of column names)</p>
+<p>All remaining variables in the data frame are left intact.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>df</strong><span class="classifier">DataFrame</span></dt><dd><p>The wide-format DataFrame.</p>
+</dd>
+<dt><strong>stubnames</strong><span class="classifier">str or list-like</span></dt><dd><p>The stub name(s). The wide format variables are assumed to
+start with the stub names.</p>
+</dd>
+<dt><strong>i</strong><span class="classifier">str or list-like</span></dt><dd><p>Column(s) to use as id variable(s).</p>
+</dd>
+<dt><strong>j</strong><span class="classifier">str</span></dt><dd><p>The name of the sub-observation variable. What you wish to name your
+suffix in the long format.</p>
+</dd>
+<dt><strong>sep</strong><span class="classifier">str, default “”</span></dt><dd><p>A character indicating the separation of the variable names
+in the wide format, to be stripped from the names in the long format.
+For example, if your column names are A-suffix1, A-suffix2, you
+can strip the hyphen by specifying <cite>sep=’-’</cite>.</p>
+</dd>
+<dt><strong>suffix</strong><span class="classifier">str, default ‘\d+’</span></dt><dd><p>A regular expression capturing the wanted suffixes. ‘\d+’ captures
+numeric suffixes. Suffixes with no numbers could be specified with the
+negated character class ‘\D+’. You can also further disambiguate
+suffixes, for example, if your wide variables are of the form A-one,
+B-two,.., and you have an unrelated column A-rating, you can ignore the
+last one by specifying <cite>suffix=’(!?one|two)’</cite>. When all suffixes are
+numeric, they are cast to int64/float64.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>DataFrame</dt><dd><p>A DataFrame that contains each stub name as a variable, with new index
+(i, j).</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="pandas.melt.html#pandas.melt" title="pandas.melt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">melt</span></code></a></dt><dd><p>Unpivot a DataFrame from wide to long format, optionally leaving identifiers set.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.pivot.html#pandas.pivot" title="pandas.pivot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pivot</span></code></a></dt><dd><p>Create a spreadsheet-style pivot table as a DataFrame.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.DataFrame.pivot.html#pandas.DataFrame.pivot" title="pandas.DataFrame.pivot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.pivot</span></code></a></dt><dd><p>Pivot without aggregation that can handle non-numeric data.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.DataFrame.pivot_table.html#pandas.DataFrame.pivot_table" title="pandas.DataFrame.pivot_table"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.pivot_table</span></code></a></dt><dd><p>Generalization of pivot that can handle duplicate values for one index/column pair.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.DataFrame.unstack.html#pandas.DataFrame.unstack" title="pandas.DataFrame.unstack"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.unstack</span></code></a></dt><dd><p>Pivot based on the index values instead of a column.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>All extra variables are left untouched. This simply uses
+<cite>pandas.melt</cite> under the hood, but is hard-coded to “do the right thing”
+in a typical case.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;A1970&quot;</span> <span class="p">:</span> <span class="p">{</span><span class="mi">0</span> <span class="p">:</span> <span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="mi">1</span> <span class="p">:</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="mi">2</span> <span class="p">:</span> <span class="s2">&quot;c&quot;</span><span class="p">},</span>
+<span class="gp">... </span>                   <span class="s2">&quot;A1980&quot;</span> <span class="p">:</span> <span class="p">{</span><span class="mi">0</span> <span class="p">:</span> <span class="s2">&quot;d&quot;</span><span class="p">,</span> <span class="mi">1</span> <span class="p">:</span> <span class="s2">&quot;e&quot;</span><span class="p">,</span> <span class="mi">2</span> <span class="p">:</span> <span class="s2">&quot;f&quot;</span><span class="p">},</span>
+<span class="gp">... </span>                   <span class="s2">&quot;B1970&quot;</span> <span class="p">:</span> <span class="p">{</span><span class="mi">0</span> <span class="p">:</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mi">1</span> <span class="p">:</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mi">2</span> <span class="p">:</span> <span class="mf">.7</span><span class="p">},</span>
+<span class="gp">... </span>                   <span class="s2">&quot;B1980&quot;</span> <span class="p">:</span> <span class="p">{</span><span class="mi">0</span> <span class="p">:</span> <span class="mf">3.2</span><span class="p">,</span> <span class="mi">1</span> <span class="p">:</span> <span class="mf">1.3</span><span class="p">,</span> <span class="mi">2</span> <span class="p">:</span> <span class="mf">.1</span><span class="p">},</span>
+<span class="gp">... </span>                   <span class="s2">&quot;X&quot;</span>     <span class="p">:</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">3</span><span class="p">)))</span>
+<span class="gp">... </span>                  <span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span>
+<span class="go">  A1970 A1980  B1970  B1980         X  id</span>
+<span class="go">0     a     d    2.5    3.2 -1.085631   0</span>
+<span class="go">1     b     e    1.2    1.3  0.997345   1</span>
+<span class="go">2     c     f    0.7    0.1  0.282978   2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">wide_to_long</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">],</span> <span class="n">i</span><span class="o">=</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="n">j</span><span class="o">=</span><span class="s2">&quot;year&quot;</span><span class="p">)</span>
+<span class="gp">... </span>
+<span class="go">                X  A    B</span>
+<span class="go">id year</span>
+<span class="go">0  1970 -1.085631  a  2.5</span>
+<span class="go">1  1970  0.997345  b  1.2</span>
+<span class="go">2  1970  0.282978  c  0.7</span>
+<span class="go">0  1980 -1.085631  d  3.2</span>
+<span class="go">1  1980  0.997345  e  1.3</span>
+<span class="go">2  1980  0.282978  f  0.1</span>
+</pre></div>
+</div>
+<p>With multiple id columns</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+<span class="gp">... </span>    <span class="s1">&#39;famid&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="s1">&#39;birth&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="s1">&#39;ht1&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">2.8</span><span class="p">,</span> <span class="mf">2.9</span><span class="p">,</span> <span class="mf">2.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">,</span> <span class="mf">1.9</span><span class="p">,</span> <span class="mf">2.2</span><span class="p">,</span> <span class="mf">2.3</span><span class="p">,</span> <span class="mf">2.1</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="s1">&#39;ht2&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">3.4</span><span class="p">,</span> <span class="mf">3.8</span><span class="p">,</span> <span class="mf">2.9</span><span class="p">,</span> <span class="mf">3.2</span><span class="p">,</span> <span class="mf">2.8</span><span class="p">,</span> <span class="mf">2.4</span><span class="p">,</span> <span class="mf">3.3</span><span class="p">,</span> <span class="mf">3.4</span><span class="p">,</span> <span class="mf">2.9</span><span class="p">]</span>
+<span class="gp">... </span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span>
+<span class="go">   famid  birth  ht1  ht2</span>
+<span class="go">0      1      1  2.8  3.4</span>
+<span class="go">1      1      2  2.9  3.8</span>
+<span class="go">2      1      3  2.2  2.9</span>
+<span class="go">3      2      1  2.0  3.2</span>
+<span class="go">4      2      2  1.8  2.8</span>
+<span class="go">5      2      3  1.9  2.4</span>
+<span class="go">6      3      1  2.2  3.3</span>
+<span class="go">7      3      2  2.3  3.4</span>
+<span class="go">8      3      3  2.1  2.9</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">l</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">wide_to_long</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">stubnames</span><span class="o">=</span><span class="s1">&#39;ht&#39;</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;famid&#39;</span><span class="p">,</span> <span class="s1">&#39;birth&#39;</span><span class="p">],</span> <span class="n">j</span><span class="o">=</span><span class="s1">&#39;age&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">l</span>
+<span class="gp">... </span>
+<span class="go">                  ht</span>
+<span class="go">famid birth age</span>
+<span class="go">1     1     1    2.8</span>
+<span class="go">            2    3.4</span>
+<span class="go">      2     1    2.9</span>
+<span class="go">            2    3.8</span>
+<span class="go">      3     1    2.2</span>
+<span class="go">            2    2.9</span>
+<span class="go">2     1     1    2.0</span>
+<span class="go">            2    3.2</span>
+<span class="go">      2     1    1.8</span>
+<span class="go">            2    2.8</span>
+<span class="go">      3     1    1.9</span>
+<span class="go">            2    2.4</span>
+<span class="go">3     1     1    2.2</span>
+<span class="go">            2    3.3</span>
+<span class="go">      2     1    2.3</span>
+<span class="go">            2    3.4</span>
+<span class="go">      3     1    2.1</span>
+<span class="go">            2    2.9</span>
+</pre></div>
+</div>
+<p>Going from long back to wide just takes some creative use of <cite>unstack</cite></p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">w</span> <span class="o">=</span> <span class="n">l</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">w</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">w</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{0[0]}{0[1]}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">w</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="go">   famid  birth  ht1  ht2</span>
+<span class="go">0      1      1  2.8  3.4</span>
+<span class="go">1      1      2  2.9  3.8</span>
+<span class="go">2      1      3  2.2  2.9</span>
+<span class="go">3      2      1  2.0  3.2</span>
+<span class="go">4      2      2  1.8  2.8</span>
+<span class="go">5      2      3  1.9  2.4</span>
+<span class="go">6      3      1  2.2  3.3</span>
+<span class="go">7      3      2  2.3  3.4</span>
+<span class="go">8      3      3  2.1  2.9</span>
+</pre></div>
+</div>
+<p>Less wieldy column names are also handled</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;A(weekly)-2010&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span>
+<span class="gp">... </span>                   <span class="s1">&#39;A(weekly)-2011&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span>
+<span class="gp">... </span>                   <span class="s1">&#39;B(weekly)-2010&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span>
+<span class="gp">... </span>                   <span class="s1">&#39;B(weekly)-2011&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span>
+<span class="gp">... </span>                   <span class="s1">&#39;X&#39;</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">3</span><span class="p">)})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> 
+<span class="go">   A(weekly)-2010  A(weekly)-2011  B(weekly)-2010  B(weekly)-2011  X  id</span>
+<span class="go">0        0.548814        0.544883        0.437587        0.383442  0   0</span>
+<span class="go">1        0.715189        0.423655        0.891773        0.791725  1   1</span>
+<span class="go">2        0.602763        0.645894        0.963663        0.528895  1   2</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">wide_to_long</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;A(weekly)&#39;</span><span class="p">,</span> <span class="s1">&#39;B(weekly)&#39;</span><span class="p">],</span> <span class="n">i</span><span class="o">=</span><span class="s1">&#39;id&#39;</span><span class="p">,</span>
+<span class="gp">... </span>                <span class="n">j</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+<span class="gp">... </span>
+<span class="go">         X  A(weekly)  B(weekly)</span>
+<span class="go">id year</span>
+<span class="go">0  2010  0   0.548814   0.437587</span>
+<span class="go">1  2010  1   0.715189   0.891773</span>
+<span class="go">2  2010  1   0.602763   0.963663</span>
+<span class="go">0  2011  0   0.544883   0.383442</span>
+<span class="go">1  2011  1   0.423655   0.791725</span>
+<span class="go">2  2011  1   0.645894   0.528895</span>
+</pre></div>
+</div>
+<p>If we have many columns, we could also use a regex to find our
+stubnames and pass that list on to wide_to_long</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">stubnames</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="nb">set</span><span class="p">([</span><span class="n">match</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span>
+<span class="gp">... </span>        <span class="sa">r</span><span class="s1">&#39;[A-B]\(.*\)&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">values</span> <span class="k">if</span> <span class="n">match</span> <span class="o">!=</span> <span class="p">[]])</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">stubnames</span><span class="p">)</span>
+<span class="go">[&#39;A(weekly)&#39;, &#39;B(weekly)&#39;]</span>
+</pre></div>
+</div>
+<p>All of the above examples have integers as suffixes. It is possible to
+have non-integers as suffixes.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+<span class="gp">... </span>    <span class="s1">&#39;famid&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="s1">&#39;birth&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="s1">&#39;ht_one&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">2.8</span><span class="p">,</span> <span class="mf">2.9</span><span class="p">,</span> <span class="mf">2.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">,</span> <span class="mf">1.9</span><span class="p">,</span> <span class="mf">2.2</span><span class="p">,</span> <span class="mf">2.3</span><span class="p">,</span> <span class="mf">2.1</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="s1">&#39;ht_two&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">3.4</span><span class="p">,</span> <span class="mf">3.8</span><span class="p">,</span> <span class="mf">2.9</span><span class="p">,</span> <span class="mf">3.2</span><span class="p">,</span> <span class="mf">2.8</span><span class="p">,</span> <span class="mf">2.4</span><span class="p">,</span> <span class="mf">3.3</span><span class="p">,</span> <span class="mf">3.4</span><span class="p">,</span> <span class="mf">2.9</span><span class="p">]</span>
+<span class="gp">... </span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span>
+<span class="go">   famid  birth  ht_one  ht_two</span>
+<span class="go">0      1      1     2.8     3.4</span>
+<span class="go">1      1      2     2.9     3.8</span>
+<span class="go">2      1      3     2.2     2.9</span>
+<span class="go">3      2      1     2.0     3.2</span>
+<span class="go">4      2      2     1.8     2.8</span>
+<span class="go">5      2      3     1.9     2.4</span>
+<span class="go">6      3      1     2.2     3.3</span>
+<span class="go">7      3      2     2.3     3.4</span>
+<span class="go">8      3      3     2.1     2.9</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">l</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">wide_to_long</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">stubnames</span><span class="o">=</span><span class="s1">&#39;ht&#39;</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;famid&#39;</span><span class="p">,</span> <span class="s1">&#39;birth&#39;</span><span class="p">],</span> <span class="n">j</span><span class="o">=</span><span class="s1">&#39;age&#39;</span><span class="p">,</span>
+<span class="gp">... </span>                    <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;_&#39;</span><span class="p">,</span> <span class="n">suffix</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;\w+&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">l</span>
+<span class="gp">... </span>
+<span class="go">                  ht</span>
+<span class="go">famid birth age</span>
+<span class="go">1     1     one  2.8</span>
+<span class="go">            two  3.4</span>
+<span class="go">      2     one  2.9</span>
+<span class="go">            two  3.8</span>
+<span class="go">      3     one  2.2</span>
+<span class="go">            two  2.9</span>
+<span class="go">2     1     one  2.0</span>
+<span class="go">            two  3.2</span>
+<span class="go">      2     one  1.8</span>
+<span class="go">            two  2.8</span>
+<span class="go">      3     one  1.9</span>
+<span class="go">            two  2.4</span>
+<span class="go">3     1     one  2.2</span>
+<span class="go">            two  3.3</span>
+<span class="go">      2     one  2.3</span>
+<span class="go">            two  3.4</span>
+<span class="go">      3     one  2.1</span>
+<span class="go">            two  2.9</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+
+
+            </article>
+            
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="pandas.unique.html" title="previous page">
+      <i class="fas fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">pandas.unique</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="pandas.isna.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">pandas.isna</p>
+  </div>
+  <i class="fas fa-angle-right"></i>
+  </a>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+</div>
+
+<div class="toc-item">
+  
+<div class="tocsection sourcelink">
+    <a href="../../_sources/reference/api/pandas.wide_to_long.rst.txt">
+        <i class="fas fa-file-alt"></i> Show Source
+    </a>
+</div>
+
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+          </div>
+        </footer>
+        
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=9b1a4fa89bdd0e95b23b"></script>
+
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    <p class="copyright">
+    &copy 2023 pandas via <a href="https://numfocus.org">NumFOCUS, Inc.</a> Hosted by <a href="https://www.ovhcloud.com">OVHcloud</a>.
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>

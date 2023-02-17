@@ -1,0 +1,6 @@
+pandas.tseries.offsets.CustomBusinessHour.is\_quarter\_start
+============================================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. automethod:: CustomBusinessHour.is_quarter_start

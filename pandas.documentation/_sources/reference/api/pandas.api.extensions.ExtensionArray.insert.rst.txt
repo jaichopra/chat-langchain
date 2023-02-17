@@ -1,0 +1,6 @@
+pandas.api.extensions.ExtensionArray.insert
+===========================================
+
+.. currentmodule:: pandas.api.extensions
+
+.. automethod:: ExtensionArray.insert

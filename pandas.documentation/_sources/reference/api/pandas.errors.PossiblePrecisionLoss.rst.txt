@@ -1,0 +1,6 @@
+pandas.errors.PossiblePrecisionLoss
+===================================
+
+.. currentmodule:: pandas.errors
+
+.. autoexception:: PossiblePrecisionLoss

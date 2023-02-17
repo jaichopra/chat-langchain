@@ -1,0 +1,6 @@
+pandas.tseries.offsets.CustomBusinessHour.copy
+==============================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. automethod:: CustomBusinessHour.copy

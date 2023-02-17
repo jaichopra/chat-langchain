@@ -1,0 +1,54 @@
+pandas.tseries.offsets.Tick
+===========================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. autoclass:: Tick
+
+   
+
+
+..
+   HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+   .. autosummary::
+      :toctree:
+      
+      Tick.__call__
+      Tick.apply
+      Tick.apply_index
+      Tick.copy
+      Tick.isAnchored
+      Tick.is_anchored
+      Tick.is_month_end
+      Tick.is_month_start
+      Tick.is_on_offset
+      Tick.is_quarter_end
+      Tick.is_quarter_start
+      Tick.is_year_end
+      Tick.is_year_start
+      Tick.onOffset
+      Tick.rollback
+      Tick.rollforward
+
+
+
+
+   
+
+
+..
+   HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+   .. autosummary::
+      :toctree:
+      
+      Tick.base
+      Tick.delta
+      Tick.freqstr
+      Tick.kwds
+      Tick.n
+      Tick.name
+      Tick.nanos
+      Tick.normalize
+      Tick.rule_code
+
+

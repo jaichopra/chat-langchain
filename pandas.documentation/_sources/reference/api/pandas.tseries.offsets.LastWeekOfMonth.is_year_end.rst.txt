@@ -1,0 +1,6 @@
+pandas.tseries.offsets.LastWeekOfMonth.is\_year\_end
+====================================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. automethod:: LastWeekOfMonth.is_year_end

@@ -1,0 +1,54 @@
+pandas.tseries.offsets.Micro
+============================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. autoclass:: Micro
+
+   
+
+
+..
+   HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+   .. autosummary::
+      :toctree:
+      
+      Micro.__call__
+      Micro.apply
+      Micro.apply_index
+      Micro.copy
+      Micro.isAnchored
+      Micro.is_anchored
+      Micro.is_month_end
+      Micro.is_month_start
+      Micro.is_on_offset
+      Micro.is_quarter_end
+      Micro.is_quarter_start
+      Micro.is_year_end
+      Micro.is_year_start
+      Micro.onOffset
+      Micro.rollback
+      Micro.rollforward
+
+
+
+
+   
+
+
+..
+   HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+   .. autosummary::
+      :toctree:
+      
+      Micro.base
+      Micro.delta
+      Micro.freqstr
+      Micro.kwds
+      Micro.n
+      Micro.name
+      Micro.nanos
+      Micro.normalize
+      Micro.rule_code
+
+

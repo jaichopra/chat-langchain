@@ -1,0 +1,6 @@
+pandas.tseries.offsets.Second.is\_month\_start
+==============================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. automethod:: Second.is_month_start

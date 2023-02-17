@@ -1,0 +1,6 @@
+pandas.ExcelWriter.date\_format
+===============================
+
+.. currentmodule:: pandas
+
+.. autoproperty:: ExcelWriter.date_format

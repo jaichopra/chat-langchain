@@ -1,0 +1,6 @@
+pandas.ArrowDtype
+=================
+
+.. currentmodule:: pandas
+
+.. autoclass:: ArrowDtype

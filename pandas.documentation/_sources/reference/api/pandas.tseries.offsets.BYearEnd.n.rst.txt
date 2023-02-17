@@ -1,0 +1,6 @@
+pandas.tseries.offsets.BYearEnd.n
+=================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. autoattribute:: BYearEnd.n

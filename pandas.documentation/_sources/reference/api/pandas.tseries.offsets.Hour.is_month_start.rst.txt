@@ -1,0 +1,6 @@
+pandas.tseries.offsets.Hour.is\_month\_start
+============================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. automethod:: Hour.is_month_start

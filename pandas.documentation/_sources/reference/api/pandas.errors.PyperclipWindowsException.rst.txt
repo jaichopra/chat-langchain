@@ -1,0 +1,6 @@
+pandas.errors.PyperclipWindowsException
+=======================================
+
+.. currentmodule:: pandas.errors
+
+.. autoexception:: PyperclipWindowsException

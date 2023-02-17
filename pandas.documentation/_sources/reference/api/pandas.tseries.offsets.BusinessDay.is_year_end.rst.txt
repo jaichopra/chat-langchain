@@ -1,0 +1,6 @@
+pandas.tseries.offsets.BusinessDay.is\_year\_end
+================================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. automethod:: BusinessDay.is_year_end

@@ -1,0 +1,6 @@
+pandas.errors.IncompatibilityWarning
+====================================
+
+.. currentmodule:: pandas.errors
+
+.. autoexception:: IncompatibilityWarning

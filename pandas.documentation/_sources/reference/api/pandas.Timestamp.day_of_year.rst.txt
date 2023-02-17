@@ -1,0 +1,6 @@
+pandas.Timestamp.day\_of\_year
+==============================
+
+.. currentmodule:: pandas
+
+.. autoattribute:: Timestamp.day_of_year

@@ -1,0 +1,6 @@
+pandas.option\_context.\_\_call\_\_
+===================================
+
+.. currentmodule:: pandas
+
+.. automethod:: option_context.__call__

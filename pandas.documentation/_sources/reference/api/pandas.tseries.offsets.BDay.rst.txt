@@ -1,0 +1,6 @@
+pandas.tseries.offsets.BDay
+===========================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. autoclass:: BDay

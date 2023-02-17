@@ -1,0 +1,6 @@
+pandas.ExcelWriter.sheets
+=========================
+
+.. currentmodule:: pandas
+
+.. autoproperty:: ExcelWriter.sheets

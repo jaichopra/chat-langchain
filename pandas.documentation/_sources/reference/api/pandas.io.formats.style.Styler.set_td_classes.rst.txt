@@ -1,0 +1,6 @@
+pandas.io.formats.style.Styler.set\_td\_classes
+===============================================
+
+.. currentmodule:: pandas.io.formats.style
+
+.. automethod:: Styler.set_td_classes

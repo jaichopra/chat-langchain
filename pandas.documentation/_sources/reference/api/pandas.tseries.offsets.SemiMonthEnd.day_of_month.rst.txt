@@ -1,0 +1,6 @@
+pandas.tseries.offsets.SemiMonthEnd.day\_of\_month
+==================================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. autoattribute:: SemiMonthEnd.day_of_month

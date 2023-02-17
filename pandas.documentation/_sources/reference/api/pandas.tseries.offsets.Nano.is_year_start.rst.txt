@@ -1,0 +1,6 @@
+pandas.tseries.offsets.Nano.is\_year\_start
+===========================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. automethod:: Nano.is_year_start

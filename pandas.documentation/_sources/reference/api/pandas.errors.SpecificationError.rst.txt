@@ -1,0 +1,6 @@
+pandas.errors.SpecificationError
+================================
+
+.. currentmodule:: pandas.errors
+
+.. autoexception:: SpecificationError

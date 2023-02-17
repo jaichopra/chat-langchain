@@ -1,0 +1,6 @@
+pandas.tseries.offsets.CustomBusinessDay.calendar
+=================================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. autoattribute:: CustomBusinessDay.calendar

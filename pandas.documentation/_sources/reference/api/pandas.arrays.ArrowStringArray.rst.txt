@@ -1,0 +1,6 @@
+pandas.arrays.ArrowStringArray
+==============================
+
+.. currentmodule:: pandas.arrays
+
+.. autoclass:: ArrowStringArray

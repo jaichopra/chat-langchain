@@ -1,0 +1,6 @@
+pandas.tseries.offsets.Day.is\_month\_end
+=========================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. automethod:: Day.is_month_end

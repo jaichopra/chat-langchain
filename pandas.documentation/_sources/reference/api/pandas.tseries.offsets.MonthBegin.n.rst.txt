@@ -1,0 +1,6 @@
+pandas.tseries.offsets.MonthBegin.n
+===================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. autoattribute:: MonthBegin.n

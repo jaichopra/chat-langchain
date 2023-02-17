@@ -1,0 +1,6 @@
+pandas.errors.AbstractMethodError
+=================================
+
+.. currentmodule:: pandas.errors
+
+.. autoexception:: AbstractMethodError

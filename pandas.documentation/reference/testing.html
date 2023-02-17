@@ -1,0 +1,984 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Testing &#8212; pandas 1.5.3 documentation</title>
+  <script>
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=9b1a4fa89bdd0e95b23b" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=9b1a4fa89bdd0e95b23b" rel="stylesheet">
+
+  
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/6.1.2/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/getting_started.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/pandas.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=9b1a4fa89bdd0e95b23b">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/toggleprompt.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script async="async" src="https://www.google-analytics.com/analytics.js"></script>
+    <script>
+                    window.ga = window.ga || function () {
+                        (ga.q = ga.q || []).push(arguments) };
+                    ga.l = +new Date;
+                    ga('create', 'UA-27880019-2', 'auto');
+                    ga('set', 'anonymizeIp', true);
+                    ga('send', 'pageview');
+                </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'reference/testing';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        </script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="pandas.testing.assert_frame_equal" href="api/pandas.testing.assert_frame_equal.html" />
+    <link rel="prev" title="pandas.api.indexers.check_array_indexer" href="api/pandas.api.indexers.check_array_indexer.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fas fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../_static/pandas.svg" class="logo__image only-light" alt="Logo image">
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="../getting_started/index.html">
+                        Getting started
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../user_guide/index.html">
+                        User Guide
+                    </a>
+                </li>
+                
+
+                <li class="nav-item current active">
+                    <a class="nav-link" href="index.html">
+                        API reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../development/index.html">
+                        Development
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../whatsnew/index.html">
+                        Release notes
+                    </a>
+                </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      <div class="navbar-end-item navbar-end__search-button-container">
+        
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search">
+  <i class="fas fa-search"></i>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        1.5.3  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pandas-dev/pandas" title="GitHub" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/pandas_dev" title="Twitter" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  <div class="search-button-container--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search">
+  <i class="fas fa-search"></i>
+</button>
+  </div>
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fas fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="../getting_started/index.html">
+                        Getting started
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../user_guide/index.html">
+                        User Guide
+                    </a>
+                </li>
+                
+
+                <li class="nav-item current active">
+                    <a class="nav-link" href="index.html">
+                        API reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../development/index.html">
+                        Development
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../whatsnew/index.html">
+                        Release notes
+                    </a>
+                </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        1.5.3  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pandas-dev/pandas" title="GitHub" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/pandas_dev" title="Twitter" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item navbar-nav">
+    
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="io.html">
+   Input/output
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="general_functions.html">
+   General functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="series.html">
+   Series
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="frame.html">
+   DataFrame
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="arrays.html">
+   pandas arrays, scalars, and data types
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="indexing.html">
+   Index objects
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="offset_frequency.html">
+   Date offsets
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="window.html">
+   Window
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="groupby.html">
+   GroupBy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="resampling.html">
+   Resampling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="style.html">
+   Style
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="plotting.html">
+   Plotting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="options.html">
+   Options and settings
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extensions.html">
+   Extensions
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="current reference internal" href="#">
+   Testing
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label class="toctree-toggle" for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.testing.assert_frame_equal.html">
+     pandas.testing.assert_frame_equal
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.testing.assert_series_equal.html">
+     pandas.testing.assert_series_equal
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.testing.assert_index_equal.html">
+     pandas.testing.assert_index_equal
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.testing.assert_extension_array_equal.html">
+     pandas.testing.assert_extension_array_equal
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.errors.AbstractMethodError.html">
+     pandas.errors.AbstractMethodError
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.errors.AccessorRegistrationWarning.html">
+     pandas.errors.AccessorRegistrationWarning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.errors.AttributeConflictWarning.html">
+     pandas.errors.AttributeConflictWarning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.errors.CategoricalConversionWarning.html">
+     pandas.errors.CategoricalConversionWarning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.errors.ClosedFileError.html">
+     pandas.errors.ClosedFileError
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.errors.CSSWarning.html">
+     pandas.errors.CSSWarning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.errors.DatabaseError.html">
+     pandas.errors.DatabaseError
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.errors.DataError.html">
+     pandas.errors.DataError
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.errors.DtypeWarning.html">
+     pandas.errors.DtypeWarning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.errors.DuplicateLabelError.html">
+     pandas.errors.DuplicateLabelError
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.errors.EmptyDataError.html">
+     pandas.errors.EmptyDataError
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.errors.IncompatibilityWarning.html">
+     pandas.errors.IncompatibilityWarning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.errors.IndexingError.html">
+     pandas.errors.IndexingError
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.errors.InvalidColumnName.html">
+     pandas.errors.InvalidColumnName
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.errors.InvalidIndexError.html">
+     pandas.errors.InvalidIndexError
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.errors.IntCastingNaNError.html">
+     pandas.errors.IntCastingNaNError
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.errors.MergeError.html">
+     pandas.errors.MergeError
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.errors.NullFrequencyError.html">
+     pandas.errors.NullFrequencyError
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.errors.NumbaUtilError.html">
+     pandas.errors.NumbaUtilError
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.errors.NumExprClobberingError.html">
+     pandas.errors.NumExprClobberingError
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.errors.OptionError.html">
+     pandas.errors.OptionError
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.errors.OutOfBoundsDatetime.html">
+     pandas.errors.OutOfBoundsDatetime
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.errors.OutOfBoundsTimedelta.html">
+     pandas.errors.OutOfBoundsTimedelta
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.errors.ParserError.html">
+     pandas.errors.ParserError
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.errors.ParserWarning.html">
+     pandas.errors.ParserWarning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.errors.PerformanceWarning.html">
+     pandas.errors.PerformanceWarning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.errors.PossibleDataLossError.html">
+     pandas.errors.PossibleDataLossError
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.errors.PossiblePrecisionLoss.html">
+     pandas.errors.PossiblePrecisionLoss
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.errors.PyperclipException.html">
+     pandas.errors.PyperclipException
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.errors.PyperclipWindowsException.html">
+     pandas.errors.PyperclipWindowsException
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.errors.SettingWithCopyError.html">
+     pandas.errors.SettingWithCopyError
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.errors.SettingWithCopyWarning.html">
+     pandas.errors.SettingWithCopyWarning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.errors.SpecificationError.html">
+     pandas.errors.SpecificationError
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.errors.UndefinedVariableError.html">
+     pandas.errors.UndefinedVariableError
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.errors.UnsortedIndexError.html">
+     pandas.errors.UnsortedIndexError
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.errors.UnsupportedFunctionCall.html">
+     pandas.errors.UnsupportedFunctionCall
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.errors.ValueLabelTypeMismatch.html">
+     pandas.errors.ValueLabelTypeMismatch
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.show_versions.html">
+     pandas.show_versions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.test.html">
+     pandas.test
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    
+  </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+      </div>
+      <main class="bd-main">
+        
+        
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+            </div>
+            
+            
+            <article class="bd-article" role="main">
+              
+  <section id="testing">
+<span id="api-testing"></span><h1>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">#</a></h1>
+<section id="assertion-functions">
+<span id="api-general-testing"></span><h2>Assertion functions<a class="headerlink" href="#assertion-functions" title="Permalink to this headline">#</a></h2>
+<table class="autosummary longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.testing.assert_frame_equal.html#pandas.testing.assert_frame_equal" title="pandas.testing.assert_frame_equal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">testing.assert_frame_equal</span></code></a>(left, right[, ...])</p></td>
+<td><p>Check that left and right DataFrame are equal.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.testing.assert_series_equal.html#pandas.testing.assert_series_equal" title="pandas.testing.assert_series_equal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">testing.assert_series_equal</span></code></a>(left, right[, ...])</p></td>
+<td><p>Check that left and right Series are equal.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.testing.assert_index_equal.html#pandas.testing.assert_index_equal" title="pandas.testing.assert_index_equal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">testing.assert_index_equal</span></code></a>(left, right[, ...])</p></td>
+<td><p>Check that left and right Index are equal.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.testing.assert_extension_array_equal.html#pandas.testing.assert_extension_array_equal" title="pandas.testing.assert_extension_array_equal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">testing.assert_extension_array_equal</span></code></a>(left, right)</p></td>
+<td><p>Check that left and right ExtensionArrays are equal.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="exceptions-and-warnings">
+<h2>Exceptions and warnings<a class="headerlink" href="#exceptions-and-warnings" title="Permalink to this headline">#</a></h2>
+<table class="autosummary longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.errors.AbstractMethodError.html#pandas.errors.AbstractMethodError" title="pandas.errors.AbstractMethodError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.AbstractMethodError</span></code></a>(class_instance[, ...])</p></td>
+<td><p>Raise this error instead of NotImplementedError for abstract methods.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.errors.AccessorRegistrationWarning.html#pandas.errors.AccessorRegistrationWarning" title="pandas.errors.AccessorRegistrationWarning"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.AccessorRegistrationWarning</span></code></a></p></td>
+<td><p>Warning for attribute conflicts in accessor registration.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.errors.AttributeConflictWarning.html#pandas.errors.AttributeConflictWarning" title="pandas.errors.AttributeConflictWarning"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.AttributeConflictWarning</span></code></a></p></td>
+<td><p>Warning raised when index attributes conflict when using HDFStore.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.errors.CategoricalConversionWarning.html#pandas.errors.CategoricalConversionWarning" title="pandas.errors.CategoricalConversionWarning"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.CategoricalConversionWarning</span></code></a></p></td>
+<td><p>Warning is raised when reading a partial labeled Stata file using a iterator.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.errors.ClosedFileError.html#pandas.errors.ClosedFileError" title="pandas.errors.ClosedFileError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.ClosedFileError</span></code></a></p></td>
+<td><p>Exception is raised when trying to perform an operation on a closed HDFStore file.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.errors.CSSWarning.html#pandas.errors.CSSWarning" title="pandas.errors.CSSWarning"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.CSSWarning</span></code></a></p></td>
+<td><p>Warning is raised when converting css styling fails.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.errors.DatabaseError.html#pandas.errors.DatabaseError" title="pandas.errors.DatabaseError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.DatabaseError</span></code></a></p></td>
+<td><p>Error is raised when executing sql with bad syntax or sql that throws an error.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.errors.DataError.html#pandas.errors.DataError" title="pandas.errors.DataError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.DataError</span></code></a></p></td>
+<td><p>Exceptionn raised when performing an operation on non-numerical data.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.errors.DtypeWarning.html#pandas.errors.DtypeWarning" title="pandas.errors.DtypeWarning"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.DtypeWarning</span></code></a></p></td>
+<td><p>Warning raised when reading different dtypes in a column from a file.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.errors.DuplicateLabelError.html#pandas.errors.DuplicateLabelError" title="pandas.errors.DuplicateLabelError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.DuplicateLabelError</span></code></a></p></td>
+<td><p>Error raised when an operation would introduce duplicate labels.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.errors.EmptyDataError.html#pandas.errors.EmptyDataError" title="pandas.errors.EmptyDataError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.EmptyDataError</span></code></a></p></td>
+<td><p>Exception raised in <code class="docutils literal notranslate"><span class="pre">pd.read_csv</span></code> when empty data or header is encountered.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.errors.IncompatibilityWarning.html#pandas.errors.IncompatibilityWarning" title="pandas.errors.IncompatibilityWarning"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.IncompatibilityWarning</span></code></a></p></td>
+<td><p>Warning raised when trying to use where criteria on an incompatible HDF5 file.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.errors.IndexingError.html#pandas.errors.IndexingError" title="pandas.errors.IndexingError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.IndexingError</span></code></a></p></td>
+<td><p>Exception is raised when trying to index and there is a mismatch in dimensions.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.errors.InvalidColumnName.html#pandas.errors.InvalidColumnName" title="pandas.errors.InvalidColumnName"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.InvalidColumnName</span></code></a></p></td>
+<td><p>Warning raised by to_stata the column contains a non-valid stata name.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.errors.InvalidIndexError.html#pandas.errors.InvalidIndexError" title="pandas.errors.InvalidIndexError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.InvalidIndexError</span></code></a></p></td>
+<td><p>Exception raised when attempting to use an invalid index key.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.errors.IntCastingNaNError.html#pandas.errors.IntCastingNaNError" title="pandas.errors.IntCastingNaNError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.IntCastingNaNError</span></code></a></p></td>
+<td><p>Exception raised when converting (<code class="docutils literal notranslate"><span class="pre">astype</span></code>) an array with NaN to an integer type.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.errors.MergeError.html#pandas.errors.MergeError" title="pandas.errors.MergeError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.MergeError</span></code></a></p></td>
+<td><p>Exception raised when merging data.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.errors.NullFrequencyError.html#pandas.errors.NullFrequencyError" title="pandas.errors.NullFrequencyError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.NullFrequencyError</span></code></a></p></td>
+<td><p>Exception raised when a <code class="docutils literal notranslate"><span class="pre">freq</span></code> cannot be null.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.errors.NumbaUtilError.html#pandas.errors.NumbaUtilError" title="pandas.errors.NumbaUtilError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.NumbaUtilError</span></code></a></p></td>
+<td><p>Error raised for unsupported Numba engine routines.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.errors.NumExprClobberingError.html#pandas.errors.NumExprClobberingError" title="pandas.errors.NumExprClobberingError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.NumExprClobberingError</span></code></a></p></td>
+<td><p>Exception raised when trying to use a built-in numexpr name as a variable name.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.errors.OptionError.html#pandas.errors.OptionError" title="pandas.errors.OptionError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.OptionError</span></code></a></p></td>
+<td><p>Exception raised for pandas.options.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.errors.OutOfBoundsDatetime.html#pandas.errors.OutOfBoundsDatetime" title="pandas.errors.OutOfBoundsDatetime"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.OutOfBoundsDatetime</span></code></a></p></td>
+<td><p>Raised when the datetime is outside the range that can be represented.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.errors.OutOfBoundsTimedelta.html#pandas.errors.OutOfBoundsTimedelta" title="pandas.errors.OutOfBoundsTimedelta"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.OutOfBoundsTimedelta</span></code></a></p></td>
+<td><p>Raised when encountering a timedelta value that cannot be represented.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.errors.ParserError.html#pandas.errors.ParserError" title="pandas.errors.ParserError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.ParserError</span></code></a></p></td>
+<td><p>Exception that is raised by an error encountered in parsing file contents.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.errors.ParserWarning.html#pandas.errors.ParserWarning" title="pandas.errors.ParserWarning"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.ParserWarning</span></code></a></p></td>
+<td><p>Warning raised when reading a file that doesn't use the default 'c' parser.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.errors.PerformanceWarning.html#pandas.errors.PerformanceWarning" title="pandas.errors.PerformanceWarning"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.PerformanceWarning</span></code></a></p></td>
+<td><p>Warning raised when there is a possible performance impact.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.errors.PossibleDataLossError.html#pandas.errors.PossibleDataLossError" title="pandas.errors.PossibleDataLossError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.PossibleDataLossError</span></code></a></p></td>
+<td><p>Exception raised when trying to open a HDFStore file when already opened.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.errors.PossiblePrecisionLoss.html#pandas.errors.PossiblePrecisionLoss" title="pandas.errors.PossiblePrecisionLoss"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.PossiblePrecisionLoss</span></code></a></p></td>
+<td><p>Warning raised by to_stata on a column with a value outside or equal to int64.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.errors.PyperclipException.html#pandas.errors.PyperclipException" title="pandas.errors.PyperclipException"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.PyperclipException</span></code></a></p></td>
+<td><p>Exception raised when clipboard functionality is unsupported.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.errors.PyperclipWindowsException.html#pandas.errors.PyperclipWindowsException" title="pandas.errors.PyperclipWindowsException"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.PyperclipWindowsException</span></code></a>(message)</p></td>
+<td><p>Exception raised when clipboard functionality is unsupported by Windows.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.errors.SettingWithCopyError.html#pandas.errors.SettingWithCopyError" title="pandas.errors.SettingWithCopyError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.SettingWithCopyError</span></code></a></p></td>
+<td><p>Exception raised when trying to set on a copied slice from a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.errors.SettingWithCopyWarning.html#pandas.errors.SettingWithCopyWarning" title="pandas.errors.SettingWithCopyWarning"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.SettingWithCopyWarning</span></code></a></p></td>
+<td><p>Warning raised when trying to set on a copied slice from a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.errors.SpecificationError.html#pandas.errors.SpecificationError" title="pandas.errors.SpecificationError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.SpecificationError</span></code></a></p></td>
+<td><p>Exception raised by <code class="docutils literal notranslate"><span class="pre">agg</span></code> when the functions are ill-specified.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.errors.UndefinedVariableError.html#pandas.errors.UndefinedVariableError" title="pandas.errors.UndefinedVariableError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.UndefinedVariableError</span></code></a>(name[, is_local])</p></td>
+<td><p>Exception raised by <code class="docutils literal notranslate"><span class="pre">query</span></code> or <code class="docutils literal notranslate"><span class="pre">eval</span></code> when using an undefined variable name.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.errors.UnsortedIndexError.html#pandas.errors.UnsortedIndexError" title="pandas.errors.UnsortedIndexError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.UnsortedIndexError</span></code></a></p></td>
+<td><p>Error raised when slicing a MultiIndex which has not been lexsorted.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.errors.UnsupportedFunctionCall.html#pandas.errors.UnsupportedFunctionCall" title="pandas.errors.UnsupportedFunctionCall"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.UnsupportedFunctionCall</span></code></a></p></td>
+<td><p>Exception raised when attempting to call a unsupported numpy function.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.errors.ValueLabelTypeMismatch.html#pandas.errors.ValueLabelTypeMismatch" title="pandas.errors.ValueLabelTypeMismatch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.ValueLabelTypeMismatch</span></code></a></p></td>
+<td><p>Warning raised by to_stata on a category column that contains non-string values.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bug-report-function">
+<h2>Bug report function<a class="headerlink" href="#bug-report-function" title="Permalink to this headline">#</a></h2>
+<table class="autosummary longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.show_versions.html#pandas.show_versions" title="pandas.show_versions"><code class="xref py py-obj docutils literal notranslate"><span class="pre">show_versions</span></code></a>([as_json])</p></td>
+<td><p>Provide useful information, important for bug reports.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="test-suite-runner">
+<h2>Test suite runner<a class="headerlink" href="#test-suite-runner" title="Permalink to this headline">#</a></h2>
+<table class="autosummary longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.test.html#pandas.test" title="pandas.test"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test</span></code></a>([extra_args])</p></td>
+<td><p>Run the pandas test suite using pytest.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+
+            </article>
+            
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="api/pandas.api.indexers.check_array_indexer.html" title="previous page">
+      <i class="fas fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">pandas.api.indexers.check_array_indexer</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="api/pandas.testing.assert_frame_equal.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">pandas.testing.assert_frame_equal</p>
+  </div>
+  <i class="fas fa-angle-right"></i>
+  </a>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fas fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#assertion-functions">
+   Assertion functions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exceptions-and-warnings">
+   Exceptions and warnings
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bug-report-function">
+   Bug report function
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#test-suite-runner">
+   Test suite runner
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+<div class="toc-item">
+  
+</div>
+
+<div class="toc-item">
+  
+<div class="tocsection sourcelink">
+    <a href="../_sources/reference/testing.rst.txt">
+        <i class="fas fa-file-alt"></i> Show Source
+    </a>
+</div>
+
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+          </div>
+        </footer>
+        
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=9b1a4fa89bdd0e95b23b"></script>
+
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    <p class="copyright">
+    &copy 2023 pandas via <a href="https://numfocus.org">NumFOCUS, Inc.</a> Hosted by <a href="https://www.ovhcloud.com">OVHcloud</a>.
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>

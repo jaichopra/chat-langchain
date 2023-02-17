@@ -1,0 +1,6 @@
+pandas.errors.ClosedFileError
+=============================
+
+.. currentmodule:: pandas.errors
+
+.. autoexception:: ClosedFileError

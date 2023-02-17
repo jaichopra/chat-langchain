@@ -1,0 +1,6 @@
+pandas.Period.day\_of\_week
+===========================
+
+.. currentmodule:: pandas
+
+.. autoattribute:: Period.day_of_week

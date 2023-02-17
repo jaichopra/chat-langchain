@@ -1,0 +1,76 @@
+pandas.io.formats.style.Styler
+==============================
+
+.. currentmodule:: pandas.io.formats.style
+
+.. autoclass:: Styler
+
+   
+
+
+..
+   HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+   .. autosummary::
+      :toctree:
+      
+      Styler.apply
+      Styler.apply_index
+      Styler.applymap
+      Styler.applymap_index
+      Styler.background_gradient
+      Styler.bar
+      Styler.clear
+      Styler.concat
+      Styler.export
+      Styler.format
+      Styler.format_index
+      Styler.from_custom_template
+      Styler.hide
+      Styler.hide_columns
+      Styler.hide_index
+      Styler.highlight_between
+      Styler.highlight_max
+      Styler.highlight_min
+      Styler.highlight_null
+      Styler.highlight_quantile
+      Styler.pipe
+      Styler.relabel_index
+      Styler.render
+      Styler.set_caption
+      Styler.set_na_rep
+      Styler.set_precision
+      Styler.set_properties
+      Styler.set_sticky
+      Styler.set_table_attributes
+      Styler.set_table_styles
+      Styler.set_td_classes
+      Styler.set_tooltips
+      Styler.set_uuid
+      Styler.text_gradient
+      Styler.to_excel
+      Styler.to_html
+      Styler.to_latex
+      Styler.to_string
+      Styler.use
+      Styler.where
+
+
+
+
+   
+
+
+..
+   HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+   .. autosummary::
+      :toctree:
+      
+      Styler.env
+      Styler.loader
+      Styler.template_html
+      Styler.template_html_style
+      Styler.template_html_table
+      Styler.template_latex
+      Styler.template_string
+
+

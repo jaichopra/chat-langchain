@@ -1,0 +1,6 @@
+pandas.Series.info
+==================
+
+.. currentmodule:: pandas
+
+.. automethod:: Series.info

@@ -1,0 +1,6 @@
+pandas.tseries.offsets.Micro.\_\_call\_\_
+=========================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. automethod:: Micro.__call__

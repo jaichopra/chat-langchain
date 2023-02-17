@@ -1,0 +1,6 @@
+pandas.errors.DatabaseError
+===========================
+
+.. currentmodule:: pandas.errors
+
+.. autoexception:: DatabaseError

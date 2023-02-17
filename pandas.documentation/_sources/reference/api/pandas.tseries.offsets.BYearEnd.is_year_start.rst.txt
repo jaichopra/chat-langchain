@@ -1,0 +1,6 @@
+pandas.tseries.offsets.BYearEnd.is\_year\_start
+===============================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. automethod:: BYearEnd.is_year_start

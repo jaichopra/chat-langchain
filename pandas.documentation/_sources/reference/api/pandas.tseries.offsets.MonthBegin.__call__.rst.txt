@@ -1,0 +1,6 @@
+pandas.tseries.offsets.MonthBegin.\_\_call\_\_
+==============================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. automethod:: MonthBegin.__call__

@@ -1,0 +1,6 @@
+pandas.tseries.offsets.YearEnd.is\_month\_start
+===============================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. automethod:: YearEnd.is_month_start

@@ -1,0 +1,6 @@
+pandas.errors.IntCastingNaNError
+================================
+
+.. currentmodule:: pandas.errors
+
+.. autoexception:: IntCastingNaNError

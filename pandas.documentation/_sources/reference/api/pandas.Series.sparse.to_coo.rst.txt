@@ -1,0 +1,6 @@
+pandas.Series.sparse.to_coo
+===========================
+
+.. currentmodule:: pandas
+
+.. autoaccessormethod:: Series.sparse.to_coo

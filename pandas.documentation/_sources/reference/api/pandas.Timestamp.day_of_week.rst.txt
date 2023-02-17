@@ -1,0 +1,6 @@
+pandas.Timestamp.day\_of\_week
+==============================
+
+.. currentmodule:: pandas
+
+.. autoattribute:: Timestamp.day_of_week

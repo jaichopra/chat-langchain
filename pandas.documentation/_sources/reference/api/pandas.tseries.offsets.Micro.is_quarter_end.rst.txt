@@ -1,0 +1,6 @@
+pandas.tseries.offsets.Micro.is\_quarter\_end
+=============================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. automethod:: Micro.is_quarter_end

@@ -1,0 +1,6 @@
+pandas.tseries.offsets.QuarterEnd.is\_month\_end
+================================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. automethod:: QuarterEnd.is_month_end

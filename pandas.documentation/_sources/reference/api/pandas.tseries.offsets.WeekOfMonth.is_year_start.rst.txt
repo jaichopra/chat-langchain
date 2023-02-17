@@ -1,0 +1,6 @@
+pandas.tseries.offsets.WeekOfMonth.is\_year\_start
+==================================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. automethod:: WeekOfMonth.is_year_start

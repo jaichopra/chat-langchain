@@ -1,0 +1,1008 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Getting started &#8212; pandas 1.5.3 documentation</title>
+  <script>
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=9b1a4fa89bdd0e95b23b" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=9b1a4fa89bdd0e95b23b" rel="stylesheet">
+
+  
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/6.1.2/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/getting_started.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/pandas.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=9b1a4fa89bdd0e95b23b">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/toggleprompt.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script async="async" src="https://www.google-analytics.com/analytics.js"></script>
+    <script>
+                    window.ga = window.ga || function () {
+                        (ga.q = ga.q || []).push(arguments) };
+                    ga.l = +new Date;
+                    ga('create', 'UA-27880019-2', 'auto');
+                    ga('set', 'anonymizeIp', true);
+                    ga('send', 'pageview');
+                </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'getting_started/index';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        </script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Installation" href="install.html" />
+    <link rel="prev" title="pandas documentation" href="../index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fas fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../_static/pandas.svg" class="logo__image only-light" alt="Logo image">
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item current active">
+                    <a class="nav-link" href="#">
+                        Getting started
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../user_guide/index.html">
+                        User Guide
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../reference/index.html">
+                        API reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../development/index.html">
+                        Development
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../whatsnew/index.html">
+                        Release notes
+                    </a>
+                </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      <div class="navbar-end-item navbar-end__search-button-container">
+        
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search">
+  <i class="fas fa-search"></i>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        1.5.3  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pandas-dev/pandas" title="GitHub" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/pandas_dev" title="Twitter" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  <div class="search-button-container--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search">
+  <i class="fas fa-search"></i>
+</button>
+  </div>
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fas fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item current active">
+                    <a class="nav-link" href="#">
+                        Getting started
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../user_guide/index.html">
+                        User Guide
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../reference/index.html">
+                        API reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../development/index.html">
+                        Development
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../whatsnew/index.html">
+                        Release notes
+                    </a>
+                </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        1.5.3  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pandas-dev/pandas" title="GitHub" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/pandas_dev" title="Twitter" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item navbar-nav">
+    
+    <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="install.html">
+   Installation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="overview.html">
+   Package overview
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="intro_tutorials/index.html">
+   Getting started tutorials
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label class="toctree-toggle" for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="intro_tutorials/01_table_oriented.html">
+     What kind of data does pandas handle?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="intro_tutorials/02_read_write.html">
+     How do I read and write tabular data?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="intro_tutorials/03_subset_data.html">
+     How do I select a subset of a
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       DataFrame
+      </span>
+     </code>
+     ?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="intro_tutorials/04_plotting.html">
+     How do I create plots in pandas?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="intro_tutorials/05_add_columns.html">
+     How to create new columns derived from existing columns?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="intro_tutorials/06_calculate_statistics.html">
+     How to calculate summary statistics?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="intro_tutorials/07_reshape_table_layout.html">
+     How to reshape the layout of tables?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="intro_tutorials/08_combine_dataframes.html">
+     How to combine data from multiple tables?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="intro_tutorials/09_timeseries.html">
+     How to handle time series data with ease?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="intro_tutorials/10_text_data.html">
+     How to manipulate textual data?
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="comparison/index.html">
+   Comparison with other tools
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label class="toctree-toggle" for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="comparison/comparison_with_r.html">
+     Comparison with R / R libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="comparison/comparison_with_sql.html">
+     Comparison with SQL
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="comparison/comparison_with_spreadsheets.html">
+     Comparison with spreadsheets
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="comparison/comparison_with_sas.html">
+     Comparison with SAS
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="comparison/comparison_with_stata.html">
+     Comparison with Stata
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="tutorials.html">
+   Community tutorials
+  </a>
+ </li>
+</ul>
+
+    
+  </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+      </div>
+      <main class="bd-main">
+        
+        
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+            </div>
+            
+            
+            <article class="bd-article" role="main">
+              
+  <section id="getting-started">
+<span id="id1"></span><h1>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">#</a></h1>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">#</a></h2>
+<div class="sphinx-bs container pb-4 docutils">
+<div class="row docutils">
+<div class="d-flex col-lg-6 col-md-6 col-sm-12 col-xs-12 p-3 docutils">
+<div class="card w-100 shadow install-card docutils">
+<div class="card-header docutils">
+<p class="card-text">Working with conda?</p>
+</div>
+<div class="card-body docutils">
+<p class="card-text">pandas is part of the <a class="reference external" href="https://docs.continuum.io/anaconda/">Anaconda</a>
+distribution and can be installed with Anaconda or Miniconda:</p>
+</div>
+<div class="card-footer docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>install<span class="w"> </span>pandas
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="d-flex col-lg-6 col-md-6 col-sm-12 col-xs-12 p-3 docutils">
+<div class="card w-100 shadow install-card docutils">
+<div class="card-header docutils">
+<p class="card-text">Prefer pip?</p>
+</div>
+<div class="card-body docutils">
+<p class="card-text">pandas can be installed via pip from <a class="reference external" href="https://pypi.org/project/pandas">PyPI</a>.</p>
+</div>
+<div class="card-footer docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>pandas
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="d-flex col-12 p-3 docutils">
+<div class="card w-100 shadow install-card docutils">
+<div class="card-header docutils">
+<p class="card-text">In-depth instructions?</p>
+</div>
+<div class="card-body docutils">
+<p class="card-text">Installing a specific version? Installing from source? Check the advanced
+installation page.</p>
+<p class="card-text"><a class="sphinx-bs btn text-wrap btn-secondary stretched-link reference external" href="./install.html"><span>Learn more</span></a></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="intro-to-pandas">
+<span id="gentle-intro"></span><h2>Intro to pandas<a class="headerlink" href="#intro-to-pandas" title="Permalink to this headline">#</a></h2>
+<div class="container">
+<div id="accordion" class="shadow tutorial-accordion">
+
+    <div class="card tutorial-card">
+        <div class="card-header collapsed card-link" data-toggle="collapse" data-target="#collapseOne">
+            <div class="d-flex flex-row tutorial-card-header-1">
+                <div class="d-flex flex-row tutorial-card-header-2">
+                    <button class="btn btn-dark btn-sm"></button>
+                    What kind of data does pandas handle?
+                </div>
+                <span class="badge gs-badge-link"><p><a class="reference internal" href="intro_tutorials/01_table_oriented.html#min-tut-01-tableoriented"><span class="std std-ref">Straight to tutorial…</span></a></p>
+        </span>
+    </div>
+</div>
+<div id="collapseOne" class="collapse" data-parent="#accordion">
+    <div class="card-body"><p>When working with tabular data, such as data stored in spreadsheets or databases, pandas is the right tool for you. pandas will help you
+to explore, clean, and process your data. In pandas, a data table is called a <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a>.</p>
+<img alt="../_images/01_table_dataframe.svg" class="align-center" src="../_images/01_table_dataframe.svg" /><div class="d-flex flex-row">
+    <span class="badge gs-badge-link"><p><a class="reference internal" href="intro_tutorials/01_table_oriented.html#min-tut-01-tableoriented"><span class="std std-ref">To introduction tutorial</span></a></p>
+</span>
+<span class="badge gs-badge-link"><p><a class="reference internal" href="../user_guide/dsintro.html#dsintro"><span class="std std-ref">To user guide</span></a></p>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card tutorial-card">
+    <div class="card-header collapsed card-link" data-toggle="collapse" data-target="#collapseTwo">
+        <div class="d-flex flex-row tutorial-card-header-1">
+            <div class="d-flex flex-row tutorial-card-header-2">
+                <button class="btn btn-dark btn-sm"></button>
+                How do I read and write tabular data?
+            </div>
+            <span class="badge gs-badge-link"><p><a class="reference internal" href="intro_tutorials/02_read_write.html#min-tut-02-read-write"><span class="std std-ref">Straight to tutorial…</span></a></p>
+        </span>
+    </div>
+</div>
+<div id="collapseTwo" class="collapse" data-parent="#accordion">
+    <div class="card-body"><p>pandas supports the integration with many file formats or data sources out of the box (csv, excel, sql, json, parquet,…). Importing data from each of these
+data sources is provided by function with the prefix <code class="docutils literal notranslate"><span class="pre">read_*</span></code>. Similarly, the <code class="docutils literal notranslate"><span class="pre">to_*</span></code> methods are used to store data.</p>
+<img alt="../_images/02_io_readwrite.svg" class="align-center" src="../_images/02_io_readwrite.svg" /><div class="d-flex flex-row">
+    <span class="badge gs-badge-link"><p><a class="reference internal" href="intro_tutorials/02_read_write.html#min-tut-02-read-write"><span class="std std-ref">To introduction tutorial</span></a></p>
+</span>
+<span class="badge gs-badge-link"><p><a class="reference internal" href="../user_guide/io.html#io"><span class="std std-ref">To user guide</span></a></p>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card tutorial-card">
+    <div class="card-header collapsed card-link" data-toggle="collapse" data-target="#collapseThree">
+        <div class="d-flex flex-row tutorial-card-header-1">
+            <div class="d-flex flex-row tutorial-card-header-2">
+                <button class="btn btn-dark btn-sm"></button>
+                How do I select a subset of a table?
+            </div>
+            <span class="badge gs-badge-link"><p><a class="reference internal" href="intro_tutorials/03_subset_data.html#min-tut-03-subset"><span class="std std-ref">Straight to tutorial…</span></a></p>
+        </span>
+    </div>
+</div>
+<div id="collapseThree" class="collapse" data-parent="#accordion">
+    <div class="card-body"><p>Selecting or filtering specific rows and/or columns? Filtering the data on a condition? Methods for slicing, selecting, and extracting the
+data you need are available in pandas.</p>
+<img alt="../_images/03_subset_columns_rows.svg" class="align-center" src="../_images/03_subset_columns_rows.svg" /><div class="d-flex flex-row">
+    <span class="badge gs-badge-link"><p><a class="reference internal" href="intro_tutorials/03_subset_data.html#min-tut-03-subset"><span class="std std-ref">To introduction tutorial</span></a></p>
+</span>
+<span class="badge gs-badge-link"><p><a class="reference internal" href="../user_guide/indexing.html#indexing"><span class="std std-ref">To user guide</span></a></p>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card tutorial-card">
+    <div class="card-header collapsed card-link" data-toggle="collapse" data-target="#collapseFour">
+        <div class="d-flex flex-row tutorial-card-header-1">
+            <div class="d-flex flex-row tutorial-card-header-2">
+                <button class="btn btn-dark btn-sm"></button>
+                How to create plots in pandas?
+            </div>
+            <span class="badge gs-badge-link"><p><a class="reference internal" href="intro_tutorials/04_plotting.html#min-tut-04-plotting"><span class="std std-ref">Straight to tutorial…</span></a></p>
+        </span>
+    </div>
+</div>
+<div id="collapseFour" class="collapse" data-parent="#accordion">
+    <div class="card-body"><p>pandas provides plotting your data out of the box, using the power of Matplotlib. You can pick the plot type (scatter, bar, boxplot,…)
+corresponding to your data.</p>
+<img alt="../_images/04_plot_overview.svg" class="align-center" src="../_images/04_plot_overview.svg" /><div class="d-flex flex-row">
+    <span class="badge gs-badge-link"><p><a class="reference internal" href="intro_tutorials/04_plotting.html#min-tut-04-plotting"><span class="std std-ref">To introduction tutorial</span></a></p>
+</span>
+<span class="badge gs-badge-link"><p><a class="reference internal" href="../user_guide/visualization.html#visualization"><span class="std std-ref">To user guide</span></a></p>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card tutorial-card">
+    <div class="card-header collapsed card-link" data-toggle="collapse" data-target="#collapseFive">
+        <div class="d-flex flex-row tutorial-card-header-1">
+            <div class="d-flex flex-row tutorial-card-header-2">
+                <button class="btn btn-dark btn-sm"></button>
+                How to create new columns derived from existing columns?
+            </div>
+            <span class="badge gs-badge-link"><p><a class="reference internal" href="intro_tutorials/05_add_columns.html#min-tut-05-columns"><span class="std std-ref">Straight to tutorial…</span></a></p>
+        </span>
+    </div>
+</div>
+<div id="collapseFive" class="collapse" data-parent="#accordion">
+    <div class="card-body"><p>There is no need to loop over all rows of your data table to do calculations. Data manipulations on a column work elementwise.
+Adding a column to a <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> based on existing data in other columns is straightforward.</p>
+<img alt="../_images/05_newcolumn_2.svg" class="align-center" src="../_images/05_newcolumn_2.svg" /><div class="d-flex flex-row">
+    <span class="badge gs-badge-link"><p><a class="reference internal" href="intro_tutorials/05_add_columns.html#min-tut-05-columns"><span class="std std-ref">To introduction tutorial</span></a></p>
+</span>
+<span class="badge gs-badge-link"><p><a class="reference internal" href="../user_guide/dsintro.html#basics-dataframe-sel-add-del"><span class="std std-ref">To user guide</span></a></p>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card tutorial-card">
+    <div class="card-header collapsed card-link" data-toggle="collapse" data-target="#collapseSix">
+        <div class="d-flex flex-row tutorial-card-header-1">
+            <div class="d-flex flex-row tutorial-card-header-2">
+                <button class="btn btn-dark btn-sm"></button>
+                How to calculate summary statistics?
+            </div>
+            <span class="badge gs-badge-link"><p><a class="reference internal" href="intro_tutorials/06_calculate_statistics.html#min-tut-06-stats"><span class="std std-ref">Straight to tutorial…</span></a></p>
+        </span>
+    </div>
+</div>
+<div id="collapseSix" class="collapse" data-parent="#accordion">
+    <div class="card-body"><p>Basic statistics (mean, median, min, max, counts…) are easily calculable. These or custom aggregations can be applied on the entire
+data set, a sliding window of the data, or grouped by categories. The latter is also known as the split-apply-combine approach.</p>
+<img alt="../_images/06_groupby.svg" class="align-center" src="../_images/06_groupby.svg" /><div class="d-flex flex-row">
+    <span class="badge gs-badge-link"><p><a class="reference internal" href="intro_tutorials/06_calculate_statistics.html#min-tut-06-stats"><span class="std std-ref">To introduction tutorial</span></a></p>
+</span>
+<span class="badge gs-badge-link"><p><a class="reference internal" href="../user_guide/groupby.html#groupby"><span class="std std-ref">To user guide</span></a></p>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card tutorial-card">
+    <div class="card-header collapsed card-link" data-toggle="collapse" data-target="#collapseSeven">
+        <div class="d-flex flex-row tutorial-card-header-1">
+            <div class="d-flex flex-row tutorial-card-header-2">
+                <button class="btn btn-dark btn-sm"></button>
+                How to reshape the layout of tables?
+            </div>
+            <span class="badge gs-badge-link"><p><a class="reference internal" href="intro_tutorials/07_reshape_table_layout.html#min-tut-07-reshape"><span class="std std-ref">Straight to tutorial…</span></a></p>
+        </span>
+    </div>
+</div>
+<div id="collapseSeven" class="collapse" data-parent="#accordion">
+    <div class="card-body"><p>Change the structure of your data table in multiple ways. You can <a class="reference internal" href="../reference/api/pandas.melt.html#pandas.melt" title="pandas.melt"><code class="xref py py-func docutils literal notranslate"><span class="pre">melt()</span></code></a> your data table from wide to long/tidy form or <a class="reference internal" href="../reference/api/pandas.pivot.html#pandas.pivot" title="pandas.pivot"><code class="xref py py-func docutils literal notranslate"><span class="pre">pivot()</span></code></a>
+from long to wide format. With aggregations built-in, a pivot table is created with a single command.</p>
+<img alt="../_images/07_melt.svg" class="align-center" src="../_images/07_melt.svg" /><div class="d-flex flex-row">
+    <span class="badge gs-badge-link"><p><a class="reference internal" href="intro_tutorials/07_reshape_table_layout.html#min-tut-07-reshape"><span class="std std-ref">To introduction tutorial</span></a></p>
+</span>
+<span class="badge gs-badge-link"><p><a class="reference internal" href="../user_guide/reshaping.html#reshaping"><span class="std std-ref">To user guide</span></a></p>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card tutorial-card">
+    <div class="card-header collapsed card-link" data-toggle="collapse" data-target="#collapseEight">
+        <div class="d-flex flex-row tutorial-card-header-1">
+            <div class="d-flex flex-row tutorial-card-header-2">
+                <button class="btn btn-dark btn-sm"></button>
+                How to combine data from multiple tables?
+            </div>
+            <span class="badge gs-badge-link"><p><a class="reference internal" href="intro_tutorials/08_combine_dataframes.html#min-tut-08-combine"><span class="std std-ref">Straight to tutorial…</span></a></p>
+        </span>
+    </div>
+</div>
+<div id="collapseEight" class="collapse" data-parent="#accordion">
+    <div class="card-body"><p>Multiple tables can be concatenated both column wise and row wise as database-like join/merge operations are provided to combine multiple tables of data.</p>
+<img alt="../_images/08_concat_row.svg" class="align-center" src="../_images/08_concat_row.svg" /><div class="d-flex flex-row">
+    <span class="badge gs-badge-link"><p><a class="reference internal" href="intro_tutorials/08_combine_dataframes.html#min-tut-08-combine"><span class="std std-ref">To introduction tutorial</span></a></p>
+</span>
+<span class="badge gs-badge-link"><p><a class="reference internal" href="../user_guide/merging.html#merging"><span class="std std-ref">To user guide</span></a></p>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card tutorial-card">
+    <div class="card-header collapsed card-link" data-toggle="collapse" data-target="#collapseNine">
+        <div class="d-flex flex-row tutorial-card-header-1">
+            <div class="d-flex flex-row tutorial-card-header-2">
+                <button class="btn btn-dark btn-sm"></button>
+                How to handle time series data?
+            </div>
+            <span class="badge gs-badge-link"><p><a class="reference internal" href="intro_tutorials/09_timeseries.html#min-tut-09-timeseries"><span class="std std-ref">Straight to tutorial…</span></a></p>
+        </span>
+    </div>
+</div>
+<div id="collapseNine" class="collapse" data-parent="#accordion">
+    <div class="card-body"><p>pandas has great support for time series and has an extensive set of tools for working with dates, times, and time-indexed data.</p>
+<div class="d-flex flex-row">
+    <span class="badge gs-badge-link"><p><a class="reference internal" href="intro_tutorials/09_timeseries.html#min-tut-09-timeseries"><span class="std std-ref">To introduction tutorial</span></a></p>
+</span>
+<span class="badge gs-badge-link"><p><a class="reference internal" href="../user_guide/timeseries.html#timeseries"><span class="std std-ref">To user guide</span></a></p>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card tutorial-card">
+    <div class="card-header collapsed card-link" data-toggle="collapse" data-target="#collapseTen">
+        <div class="d-flex flex-row tutorial-card-header-1">
+            <div class="d-flex flex-row tutorial-card-header-2">
+                <button class="btn btn-dark btn-sm"></button>
+                How to manipulate textual data?
+            </div>
+            <span class="badge gs-badge-link"><p><a class="reference internal" href="intro_tutorials/10_text_data.html#min-tut-10-text"><span class="std std-ref">Straight to tutorial…</span></a></p>
+        </span>
+    </div>
+</div>
+<div id="collapseTen" class="collapse" data-parent="#accordion">
+    <div class="card-body"><p>Data sets do not only contain numerical data. pandas provides a wide range of functions to clean textual data and extract useful information from it.</p>
+<div class="d-flex flex-row">
+    <span class="badge gs-badge-link"><p><a class="reference internal" href="intro_tutorials/10_text_data.html#min-tut-10-text"><span class="std std-ref">To introduction tutorial</span></a></p>
+</span>
+<span class="badge gs-badge-link"><p><a class="reference internal" href="../user_guide/text.html#text"><span class="std std-ref">To user guide</span></a></p>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</div></section>
+<section id="coming-from">
+<span id="comingfrom"></span><h2>Coming from…<a class="headerlink" href="#coming-from" title="Permalink to this headline">#</a></h2>
+<p>Are you familiar with other software for manipulating tablular data? Learn
+the pandas-equivalent operations compared to software you already know:</p>
+<div class="sphinx-bs container pb-4 docutils">
+<div class="row docutils">
+<div class="d-flex col-lg-6 col-md-6 col-sm-6 col-xs-12 docutils">
+<div class="card w-100 shadow comparison-card text-center comparison-card-r docutils">
+<img alt="img-top" class="card-img-top" src="../_images/logo_r.svg" /><div class="card-body docutils">
+<p class="card-text">The <a class="reference external" href="https://www.r-project.org/">R programming language</a> provides the
+<code class="docutils literal notranslate"><span class="pre">data.frame</span></code> data structure and multiple packages, such as
+<a class="reference external" href="https://www.tidyverse.org">tidyverse</a> use and extend <code class="docutils literal notranslate"><span class="pre">data.frame</span></code>
+for convenient data handling functionalities similar to pandas.</p>
+</div>
+<div class="card-footer docutils">
+<p class="card-text"><a class="sphinx-bs btn text-wrap btn-secondary stretched-link reference internal" href="comparison/comparison_with_r.html#compare-with-r"><span class="std std-ref">Learn more</span></a></p>
+</div>
+</div>
+</div>
+<div class="d-flex col-lg-6 col-md-6 col-sm-6 col-xs-12 docutils">
+<div class="card w-100 shadow comparison-card text-center comparison-card-sql docutils">
+<img alt="img-top" class="card-img-top" src="../_images/logo_sql.svg" /><div class="card-body docutils">
+<p class="card-text">Already familiar to <code class="docutils literal notranslate"><span class="pre">SELECT</span></code>, <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code>, <code class="docutils literal notranslate"><span class="pre">JOIN</span></code>, etc.?
+Most of these SQL manipulations do have equivalents in pandas.</p>
+</div>
+<div class="card-footer docutils">
+<p class="card-text"><a class="sphinx-bs btn text-wrap btn-secondary stretched-link reference internal" href="comparison/comparison_with_sql.html#compare-with-sql"><span class="std std-ref">Learn more</span></a></p>
+</div>
+</div>
+</div>
+<div class="d-flex col-lg-6 col-md-6 col-sm-6 col-xs-12 docutils">
+<div class="card w-100 shadow comparison-card text-center comparison-card-stata docutils">
+<img alt="img-top" class="card-img-top" src="../_images/logo_stata.svg" /><div class="card-body docutils">
+<p class="card-text">The <code class="docutils literal notranslate"><span class="pre">data</span> <span class="pre">set</span></code> included in the <a class="reference external" href="https://en.wikipedia.org/wiki/Stata">STATA</a>
+statistical software suite corresponds to the pandas <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>.
+Many of the operations known from STATA have an equivalent in pandas.</p>
+</div>
+<div class="card-footer docutils">
+<p class="card-text"><a class="sphinx-bs btn text-wrap btn-secondary stretched-link reference internal" href="comparison/comparison_with_stata.html#compare-with-stata"><span class="std std-ref">Learn more</span></a></p>
+</div>
+</div>
+</div>
+<div class="d-flex col-lg-6 col-md-6 col-sm-6 col-xs-12 docutils">
+<div class="card w-100 shadow comparison-card text-center comparison-card-excel docutils">
+<img alt="img-top" class="card-img-top" src="../_images/logo_excel.svg" /><div class="card-body docutils">
+<p class="card-text">Users of <a class="reference external" href="https://en.wikipedia.org/wiki/Microsoft_Excel">Excel</a>
+or other spreadsheet programs will find that many of the concepts are
+transferrable to pandas.</p>
+</div>
+<div class="card-footer docutils">
+<p class="card-text"><a class="sphinx-bs btn text-wrap btn-secondary stretched-link reference internal" href="comparison/comparison_with_spreadsheets.html#compare-with-spreadsheets"><span class="std std-ref">Learn more</span></a></p>
+</div>
+</div>
+</div>
+<div class="d-flex col-lg-6 col-md-6 col-sm-6 col-xs-12 docutils">
+<div class="card w-100 shadow comparison-card text-center comparison-card-sas docutils">
+<img alt="img-top" class="card-img-top" src="../_images/logo_sas.svg" /><div class="card-body docutils">
+<p class="card-text">The <a class="reference external" href="https://en.wikipedia.org/wiki/SAS_(software)">SAS</a> statistical software suite
+also provides the <code class="docutils literal notranslate"><span class="pre">data</span> <span class="pre">set</span></code> corresponding to the pandas <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>.
+Also SAS vectorized operations, filtering, string processing operations,
+and more have similar functions in pandas.</p>
+</div>
+<div class="card-footer docutils">
+<p class="card-text"><a class="sphinx-bs btn text-wrap btn-secondary stretched-link reference internal" href="comparison/comparison_with_sas.html#compare-with-sas"><span class="std std-ref">Learn more</span></a></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="tutorials">
+<h2>Tutorials<a class="headerlink" href="#tutorials" title="Permalink to this headline">#</a></h2>
+<p>For a quick overview of pandas functionality, see <a class="reference internal" href="../user_guide/10min.html#min"><span class="std std-ref">10 Minutes to pandas</span></a>.</p>
+<p>You can also reference the pandas <a class="reference external" href="https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf">cheat sheet</a>
+for a succinct guide for manipulating data with pandas.</p>
+<p>The community produces a wide variety of tutorials available online. Some of the
+material is enlisted in the community contributed <a class="reference internal" href="tutorials.html#communitytutorials"><span class="std std-ref">Community tutorials</span></a>.</p>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+</section>
+
+
+            </article>
+            
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="../index.html" title="previous page">
+      <i class="fas fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">pandas documentation</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="install.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">Installation</p>
+  </div>
+  <i class="fas fa-angle-right"></i>
+  </a>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fas fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#installation">
+   Installation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#intro-to-pandas">
+   Intro to pandas
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#coming-from">
+   Coming from…
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tutorials">
+   Tutorials
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+<div class="toc-item">
+  
+</div>
+
+<div class="toc-item">
+  
+<div class="tocsection sourcelink">
+    <a href="../_sources/getting_started/index.rst.txt">
+        <i class="fas fa-file-alt"></i> Show Source
+    </a>
+</div>
+
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+          </div>
+        </footer>
+        
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=9b1a4fa89bdd0e95b23b"></script>
+
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    <p class="copyright">
+    &copy 2023 pandas via <a href="https://numfocus.org">NumFOCUS, Inc.</a> Hosted by <a href="https://www.ovhcloud.com">OVHcloud</a>.
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>

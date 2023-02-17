@@ -1,0 +1,6 @@
+pandas.Series.str.fullmatch
+===========================
+
+.. currentmodule:: pandas
+
+.. autoaccessormethod:: Series.str.fullmatch

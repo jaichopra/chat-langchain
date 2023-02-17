@@ -1,0 +1,6 @@
+pandas.errors.AttributeConflictWarning
+======================================
+
+.. currentmodule:: pandas.errors
+
+.. autoexception:: AttributeConflictWarning

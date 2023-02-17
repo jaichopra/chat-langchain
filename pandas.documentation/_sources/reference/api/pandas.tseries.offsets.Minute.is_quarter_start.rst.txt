@@ -1,0 +1,6 @@
+pandas.tseries.offsets.Minute.is\_quarter\_start
+================================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. automethod:: Minute.is_quarter_start

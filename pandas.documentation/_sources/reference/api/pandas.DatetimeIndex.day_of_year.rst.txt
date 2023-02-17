@@ -1,0 +1,6 @@
+pandas.DatetimeIndex.day\_of\_year
+==================================
+
+.. currentmodule:: pandas
+
+.. autoproperty:: DatetimeIndex.day_of_year

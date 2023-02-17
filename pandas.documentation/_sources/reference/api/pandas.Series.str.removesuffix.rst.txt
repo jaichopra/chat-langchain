@@ -1,0 +1,6 @@
+pandas.Series.str.removesuffix
+==============================
+
+.. currentmodule:: pandas
+
+.. autoaccessormethod:: Series.str.removesuffix

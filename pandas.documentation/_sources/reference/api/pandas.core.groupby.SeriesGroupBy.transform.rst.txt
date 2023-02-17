@@ -1,0 +1,6 @@
+pandas.core.groupby.SeriesGroupBy.transform
+===========================================
+
+.. currentmodule:: pandas.core.groupby
+
+.. automethod:: SeriesGroupBy.transform

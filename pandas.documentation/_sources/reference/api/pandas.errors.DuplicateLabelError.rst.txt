@@ -1,0 +1,6 @@
+pandas.errors.DuplicateLabelError
+=================================
+
+.. currentmodule:: pandas.errors
+
+.. autoexception:: DuplicateLabelError

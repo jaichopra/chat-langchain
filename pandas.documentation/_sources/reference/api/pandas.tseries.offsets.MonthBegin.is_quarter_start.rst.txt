@@ -1,0 +1,6 @@
+pandas.tseries.offsets.MonthBegin.is\_quarter\_start
+====================================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. automethod:: MonthBegin.is_quarter_start

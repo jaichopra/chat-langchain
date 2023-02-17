@@ -1,0 +1,6 @@
+pandas.errors.AccessorRegistrationWarning
+=========================================
+
+.. currentmodule:: pandas.errors
+
+.. autoexception:: AccessorRegistrationWarning

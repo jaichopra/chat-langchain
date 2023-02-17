@@ -1,0 +1,6 @@
+pandas.tseries.offsets.CDay
+===========================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. autoclass:: CDay

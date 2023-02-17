@@ -1,0 +1,6 @@
+pandas.tseries.offsets.YearEnd.copy
+===================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. automethod:: YearEnd.copy

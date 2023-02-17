@@ -1,0 +1,6 @@
+pandas.tseries.offsets.Day.is\_quarter\_end
+===========================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. automethod:: Day.is_quarter_end

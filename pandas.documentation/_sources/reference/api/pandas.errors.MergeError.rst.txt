@@ -1,0 +1,6 @@
+pandas.errors.MergeError
+========================
+
+.. currentmodule:: pandas.errors
+
+.. autoexception:: MergeError

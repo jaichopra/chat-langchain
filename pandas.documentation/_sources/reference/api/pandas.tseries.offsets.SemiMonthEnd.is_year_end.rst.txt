@@ -1,0 +1,6 @@
+pandas.tseries.offsets.SemiMonthEnd.is\_year\_end
+=================================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. automethod:: SemiMonthEnd.is_year_end

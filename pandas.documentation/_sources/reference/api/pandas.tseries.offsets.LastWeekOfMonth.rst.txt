@@ -1,0 +1,55 @@
+pandas.tseries.offsets.LastWeekOfMonth
+======================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. autoclass:: LastWeekOfMonth
+
+   
+
+
+..
+   HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+   .. autosummary::
+      :toctree:
+      
+      LastWeekOfMonth.__call__
+      LastWeekOfMonth.apply
+      LastWeekOfMonth.apply_index
+      LastWeekOfMonth.copy
+      LastWeekOfMonth.isAnchored
+      LastWeekOfMonth.is_anchored
+      LastWeekOfMonth.is_month_end
+      LastWeekOfMonth.is_month_start
+      LastWeekOfMonth.is_on_offset
+      LastWeekOfMonth.is_quarter_end
+      LastWeekOfMonth.is_quarter_start
+      LastWeekOfMonth.is_year_end
+      LastWeekOfMonth.is_year_start
+      LastWeekOfMonth.onOffset
+      LastWeekOfMonth.rollback
+      LastWeekOfMonth.rollforward
+
+
+
+
+   
+
+
+..
+   HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+   .. autosummary::
+      :toctree:
+      
+      LastWeekOfMonth.base
+      LastWeekOfMonth.freqstr
+      LastWeekOfMonth.kwds
+      LastWeekOfMonth.n
+      LastWeekOfMonth.name
+      LastWeekOfMonth.nanos
+      LastWeekOfMonth.normalize
+      LastWeekOfMonth.rule_code
+      LastWeekOfMonth.week
+      LastWeekOfMonth.weekday
+
+

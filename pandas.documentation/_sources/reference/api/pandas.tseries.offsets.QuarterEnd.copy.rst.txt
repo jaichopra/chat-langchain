@@ -1,0 +1,6 @@
+pandas.tseries.offsets.QuarterEnd.copy
+======================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. automethod:: QuarterEnd.copy

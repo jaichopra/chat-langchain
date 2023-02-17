@@ -1,0 +1,6 @@
+pandas.tseries.offsets.Milli.is\_month\_end
+===========================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. automethod:: Milli.is_month_end

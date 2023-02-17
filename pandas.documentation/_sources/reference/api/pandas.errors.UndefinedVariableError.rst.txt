@@ -1,0 +1,6 @@
+pandas.errors.UndefinedVariableError
+====================================
+
+.. currentmodule:: pandas.errors
+
+.. autoexception:: UndefinedVariableError

@@ -1,0 +1,6 @@
+pandas.tseries.offsets.Nano.is\_quarter\_start
+==============================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. automethod:: Nano.is_quarter_start

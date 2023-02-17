@@ -1,0 +1,6 @@
+pandas.io.formats.style.Styler.template\_string
+===============================================
+
+.. currentmodule:: pandas.io.formats.style
+
+.. autoattribute:: Styler.template_string

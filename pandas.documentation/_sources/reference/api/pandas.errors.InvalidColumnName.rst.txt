@@ -1,0 +1,6 @@
+pandas.errors.InvalidColumnName
+===============================
+
+.. currentmodule:: pandas.errors
+
+.. autoexception:: InvalidColumnName

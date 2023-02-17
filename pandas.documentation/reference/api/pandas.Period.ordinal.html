@@ -1,0 +1,1639 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>pandas.Period.ordinal &#8212; pandas 1.5.3 documentation</title>
+  <script>
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=9b1a4fa89bdd0e95b23b" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=9b1a4fa89bdd0e95b23b" rel="stylesheet">
+
+  
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/getting_started.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/pandas.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=9b1a4fa89bdd0e95b23b">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/toggleprompt.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script async="async" src="https://www.google-analytics.com/analytics.js"></script>
+    <script>
+                    window.ga = window.ga || function () {
+                        (ga.q = ga.q || []).push(arguments) };
+                    ga.l = +new Date;
+                    ga('create', 'UA-27880019-2', 'auto');
+                    ga('set', 'anonymizeIp', true);
+                    ga('send', 'pageview');
+                </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'reference/api/pandas.Period.ordinal';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        </script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="pandas.arrays.PeriodArray" href="pandas.arrays.PeriodArray.html" />
+    <link rel="prev" title="pandas.Period.freq" href="pandas.Period.freq.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fas fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../../_static/pandas.svg" class="logo__image only-light" alt="Logo image">
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="../../getting_started/index.html">
+                        Getting started
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../user_guide/index.html">
+                        User Guide
+                    </a>
+                </li>
+                
+
+                <li class="nav-item current active">
+                    <a class="nav-link" href="../index.html">
+                        API reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../development/index.html">
+                        Development
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../whatsnew/index.html">
+                        Release notes
+                    </a>
+                </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      <div class="navbar-end-item navbar-end__search-button-container">
+        
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search">
+  <i class="fas fa-search"></i>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        1.5.3  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pandas-dev/pandas" title="GitHub" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/pandas_dev" title="Twitter" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  <div class="search-button-container--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search">
+  <i class="fas fa-search"></i>
+</button>
+  </div>
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fas fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="../../getting_started/index.html">
+                        Getting started
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../user_guide/index.html">
+                        User Guide
+                    </a>
+                </li>
+                
+
+                <li class="nav-item current active">
+                    <a class="nav-link" href="../index.html">
+                        API reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../development/index.html">
+                        Development
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../whatsnew/index.html">
+                        Release notes
+                    </a>
+                </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        1.5.3  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pandas-dev/pandas" title="GitHub" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/pandas_dev" title="Twitter" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item navbar-nav">
+    
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../io.html">
+   Input/output
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../general_functions.html">
+   General functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../series.html">
+   Series
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../frame.html">
+   DataFrame
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../arrays.html">
+   pandas arrays, scalars, and data types
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label class="toctree-toggle" for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.array.html">
+     pandas.array
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.arrays.ArrowExtensionArray.html">
+     pandas.arrays.ArrowExtensionArray
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.ArrowDtype.html">
+     pandas.ArrowDtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.html">
+     pandas.Timestamp
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.asm8.html">
+     pandas.Timestamp.asm8
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.day.html">
+     pandas.Timestamp.day
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.dayofweek.html">
+     pandas.Timestamp.dayofweek
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.day_of_week.html">
+     pandas.Timestamp.day_of_week
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.dayofyear.html">
+     pandas.Timestamp.dayofyear
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.day_of_year.html">
+     pandas.Timestamp.day_of_year
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.days_in_month.html">
+     pandas.Timestamp.days_in_month
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.daysinmonth.html">
+     pandas.Timestamp.daysinmonth
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.fold.html">
+     pandas.Timestamp.fold
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.hour.html">
+     pandas.Timestamp.hour
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.is_leap_year.html">
+     pandas.Timestamp.is_leap_year
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.is_month_end.html">
+     pandas.Timestamp.is_month_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.is_month_start.html">
+     pandas.Timestamp.is_month_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.is_quarter_end.html">
+     pandas.Timestamp.is_quarter_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.is_quarter_start.html">
+     pandas.Timestamp.is_quarter_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.is_year_end.html">
+     pandas.Timestamp.is_year_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.is_year_start.html">
+     pandas.Timestamp.is_year_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.max.html">
+     pandas.Timestamp.max
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.microsecond.html">
+     pandas.Timestamp.microsecond
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.min.html">
+     pandas.Timestamp.min
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.minute.html">
+     pandas.Timestamp.minute
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.month.html">
+     pandas.Timestamp.month
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.nanosecond.html">
+     pandas.Timestamp.nanosecond
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.quarter.html">
+     pandas.Timestamp.quarter
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.resolution.html">
+     pandas.Timestamp.resolution
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.second.html">
+     pandas.Timestamp.second
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.tz.html">
+     pandas.Timestamp.tz
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.tzinfo.html">
+     pandas.Timestamp.tzinfo
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.value.html">
+     pandas.Timestamp.value
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.week.html">
+     pandas.Timestamp.week
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.weekofyear.html">
+     pandas.Timestamp.weekofyear
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.year.html">
+     pandas.Timestamp.year
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.astimezone.html">
+     pandas.Timestamp.astimezone
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.ceil.html">
+     pandas.Timestamp.ceil
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.combine.html">
+     pandas.Timestamp.combine
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.ctime.html">
+     pandas.Timestamp.ctime
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.date.html">
+     pandas.Timestamp.date
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.day_name.html">
+     pandas.Timestamp.day_name
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.dst.html">
+     pandas.Timestamp.dst
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.floor.html">
+     pandas.Timestamp.floor
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.freq.html">
+     pandas.Timestamp.freq
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.freqstr.html">
+     pandas.Timestamp.freqstr
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.fromordinal.html">
+     pandas.Timestamp.fromordinal
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.fromtimestamp.html">
+     pandas.Timestamp.fromtimestamp
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.isocalendar.html">
+     pandas.Timestamp.isocalendar
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.isoformat.html">
+     pandas.Timestamp.isoformat
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.isoweekday.html">
+     pandas.Timestamp.isoweekday
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.month_name.html">
+     pandas.Timestamp.month_name
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.normalize.html">
+     pandas.Timestamp.normalize
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.now.html">
+     pandas.Timestamp.now
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.replace.html">
+     pandas.Timestamp.replace
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.round.html">
+     pandas.Timestamp.round
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.strftime.html">
+     pandas.Timestamp.strftime
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.strptime.html">
+     pandas.Timestamp.strptime
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.time.html">
+     pandas.Timestamp.time
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.timestamp.html">
+     pandas.Timestamp.timestamp
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.timetuple.html">
+     pandas.Timestamp.timetuple
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.timetz.html">
+     pandas.Timestamp.timetz
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.to_datetime64.html">
+     pandas.Timestamp.to_datetime64
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.to_numpy.html">
+     pandas.Timestamp.to_numpy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.to_julian_date.html">
+     pandas.Timestamp.to_julian_date
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.to_period.html">
+     pandas.Timestamp.to_period
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.to_pydatetime.html">
+     pandas.Timestamp.to_pydatetime
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.today.html">
+     pandas.Timestamp.today
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.toordinal.html">
+     pandas.Timestamp.toordinal
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.tz_convert.html">
+     pandas.Timestamp.tz_convert
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.tz_localize.html">
+     pandas.Timestamp.tz_localize
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.tzname.html">
+     pandas.Timestamp.tzname
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.utcfromtimestamp.html">
+     pandas.Timestamp.utcfromtimestamp
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.utcnow.html">
+     pandas.Timestamp.utcnow
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.utcoffset.html">
+     pandas.Timestamp.utcoffset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.utctimetuple.html">
+     pandas.Timestamp.utctimetuple
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.weekday.html">
+     pandas.Timestamp.weekday
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.arrays.DatetimeArray.html">
+     pandas.arrays.DatetimeArray
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DatetimeTZDtype.html">
+     pandas.DatetimeTZDtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timedelta.html">
+     pandas.Timedelta
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timedelta.asm8.html">
+     pandas.Timedelta.asm8
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timedelta.components.html">
+     pandas.Timedelta.components
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timedelta.days.html">
+     pandas.Timedelta.days
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timedelta.delta.html">
+     pandas.Timedelta.delta
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timedelta.freq.html">
+     pandas.Timedelta.freq
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timedelta.is_populated.html">
+     pandas.Timedelta.is_populated
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timedelta.max.html">
+     pandas.Timedelta.max
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timedelta.microseconds.html">
+     pandas.Timedelta.microseconds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timedelta.min.html">
+     pandas.Timedelta.min
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timedelta.nanoseconds.html">
+     pandas.Timedelta.nanoseconds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timedelta.resolution.html">
+     pandas.Timedelta.resolution
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timedelta.seconds.html">
+     pandas.Timedelta.seconds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timedelta.value.html">
+     pandas.Timedelta.value
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timedelta.view.html">
+     pandas.Timedelta.view
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timedelta.ceil.html">
+     pandas.Timedelta.ceil
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timedelta.floor.html">
+     pandas.Timedelta.floor
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timedelta.isoformat.html">
+     pandas.Timedelta.isoformat
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timedelta.round.html">
+     pandas.Timedelta.round
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timedelta.to_pytimedelta.html">
+     pandas.Timedelta.to_pytimedelta
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timedelta.to_timedelta64.html">
+     pandas.Timedelta.to_timedelta64
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timedelta.to_numpy.html">
+     pandas.Timedelta.to_numpy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timedelta.total_seconds.html">
+     pandas.Timedelta.total_seconds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.arrays.TimedeltaArray.html">
+     pandas.arrays.TimedeltaArray
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Period.html">
+     pandas.Period
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Period.day.html">
+     pandas.Period.day
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Period.dayofweek.html">
+     pandas.Period.dayofweek
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Period.day_of_week.html">
+     pandas.Period.day_of_week
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Period.dayofyear.html">
+     pandas.Period.dayofyear
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Period.day_of_year.html">
+     pandas.Period.day_of_year
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Period.days_in_month.html">
+     pandas.Period.days_in_month
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Period.daysinmonth.html">
+     pandas.Period.daysinmonth
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Period.end_time.html">
+     pandas.Period.end_time
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Period.freq.html">
+     pandas.Period.freq
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Period.freqstr.html">
+     pandas.Period.freqstr
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Period.hour.html">
+     pandas.Period.hour
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Period.is_leap_year.html">
+     pandas.Period.is_leap_year
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Period.minute.html">
+     pandas.Period.minute
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Period.month.html">
+     pandas.Period.month
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     pandas.Period.ordinal
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Period.quarter.html">
+     pandas.Period.quarter
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Period.qyear.html">
+     pandas.Period.qyear
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Period.second.html">
+     pandas.Period.second
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Period.start_time.html">
+     pandas.Period.start_time
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Period.week.html">
+     pandas.Period.week
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Period.weekday.html">
+     pandas.Period.weekday
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Period.weekofyear.html">
+     pandas.Period.weekofyear
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Period.year.html">
+     pandas.Period.year
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Period.asfreq.html">
+     pandas.Period.asfreq
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Period.now.html">
+     pandas.Period.now
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Period.strftime.html">
+     pandas.Period.strftime
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Period.to_timestamp.html">
+     pandas.Period.to_timestamp
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.arrays.PeriodArray.html">
+     pandas.arrays.PeriodArray
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.PeriodDtype.html">
+     pandas.PeriodDtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Interval.html">
+     pandas.Interval
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Interval.closed.html">
+     pandas.Interval.closed
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Interval.closed_left.html">
+     pandas.Interval.closed_left
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Interval.closed_right.html">
+     pandas.Interval.closed_right
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Interval.is_empty.html">
+     pandas.Interval.is_empty
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Interval.left.html">
+     pandas.Interval.left
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Interval.length.html">
+     pandas.Interval.length
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Interval.mid.html">
+     pandas.Interval.mid
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Interval.open_left.html">
+     pandas.Interval.open_left
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Interval.open_right.html">
+     pandas.Interval.open_right
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Interval.overlaps.html">
+     pandas.Interval.overlaps
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Interval.right.html">
+     pandas.Interval.right
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.arrays.IntervalArray.html">
+     pandas.arrays.IntervalArray
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.IntervalDtype.html">
+     pandas.IntervalDtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.arrays.IntegerArray.html">
+     pandas.arrays.IntegerArray
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Int8Dtype.html">
+     pandas.Int8Dtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Int16Dtype.html">
+     pandas.Int16Dtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Int32Dtype.html">
+     pandas.Int32Dtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Int64Dtype.html">
+     pandas.Int64Dtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.UInt8Dtype.html">
+     pandas.UInt8Dtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.UInt16Dtype.html">
+     pandas.UInt16Dtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.UInt32Dtype.html">
+     pandas.UInt32Dtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.UInt64Dtype.html">
+     pandas.UInt64Dtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.CategoricalDtype.html">
+     pandas.CategoricalDtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.CategoricalDtype.categories.html">
+     pandas.CategoricalDtype.categories
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.CategoricalDtype.ordered.html">
+     pandas.CategoricalDtype.ordered
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Categorical.html">
+     pandas.Categorical
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Categorical.from_codes.html">
+     pandas.Categorical.from_codes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Categorical.dtype.html">
+     pandas.Categorical.dtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Categorical.categories.html">
+     pandas.Categorical.categories
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Categorical.ordered.html">
+     pandas.Categorical.ordered
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Categorical.codes.html">
+     pandas.Categorical.codes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Categorical.__array__.html">
+     pandas.Categorical.__array__
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.arrays.SparseArray.html">
+     pandas.arrays.SparseArray
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.SparseDtype.html">
+     pandas.SparseDtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.arrays.StringArray.html">
+     pandas.arrays.StringArray
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.arrays.ArrowStringArray.html">
+     pandas.arrays.ArrowStringArray
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.StringDtype.html">
+     pandas.StringDtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.arrays.BooleanArray.html">
+     pandas.arrays.BooleanArray
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.BooleanDtype.html">
+     pandas.BooleanDtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.api.types.union_categoricals.html">
+     pandas.api.types.union_categoricals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.api.types.infer_dtype.html">
+     pandas.api.types.infer_dtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.api.types.pandas_dtype.html">
+     pandas.api.types.pandas_dtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.api.types.is_bool_dtype.html">
+     pandas.api.types.is_bool_dtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.api.types.is_categorical_dtype.html">
+     pandas.api.types.is_categorical_dtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.api.types.is_complex_dtype.html">
+     pandas.api.types.is_complex_dtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.api.types.is_datetime64_any_dtype.html">
+     pandas.api.types.is_datetime64_any_dtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.api.types.is_datetime64_dtype.html">
+     pandas.api.types.is_datetime64_dtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.api.types.is_datetime64_ns_dtype.html">
+     pandas.api.types.is_datetime64_ns_dtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.api.types.is_datetime64tz_dtype.html">
+     pandas.api.types.is_datetime64tz_dtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.api.types.is_extension_type.html">
+     pandas.api.types.is_extension_type
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.api.types.is_extension_array_dtype.html">
+     pandas.api.types.is_extension_array_dtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.api.types.is_float_dtype.html">
+     pandas.api.types.is_float_dtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.api.types.is_int64_dtype.html">
+     pandas.api.types.is_int64_dtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.api.types.is_integer_dtype.html">
+     pandas.api.types.is_integer_dtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.api.types.is_interval_dtype.html">
+     pandas.api.types.is_interval_dtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.api.types.is_numeric_dtype.html">
+     pandas.api.types.is_numeric_dtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.api.types.is_object_dtype.html">
+     pandas.api.types.is_object_dtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.api.types.is_period_dtype.html">
+     pandas.api.types.is_period_dtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.api.types.is_signed_integer_dtype.html">
+     pandas.api.types.is_signed_integer_dtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.api.types.is_string_dtype.html">
+     pandas.api.types.is_string_dtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.api.types.is_timedelta64_dtype.html">
+     pandas.api.types.is_timedelta64_dtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.api.types.is_timedelta64_ns_dtype.html">
+     pandas.api.types.is_timedelta64_ns_dtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.api.types.is_unsigned_integer_dtype.html">
+     pandas.api.types.is_unsigned_integer_dtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.api.types.is_sparse.html">
+     pandas.api.types.is_sparse
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.api.types.is_dict_like.html">
+     pandas.api.types.is_dict_like
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.api.types.is_file_like.html">
+     pandas.api.types.is_file_like
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.api.types.is_list_like.html">
+     pandas.api.types.is_list_like
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.api.types.is_named_tuple.html">
+     pandas.api.types.is_named_tuple
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.api.types.is_iterator.html">
+     pandas.api.types.is_iterator
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.api.types.is_bool.html">
+     pandas.api.types.is_bool
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.api.types.is_categorical.html">
+     pandas.api.types.is_categorical
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.api.types.is_complex.html">
+     pandas.api.types.is_complex
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.api.types.is_float.html">
+     pandas.api.types.is_float
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.api.types.is_hashable.html">
+     pandas.api.types.is_hashable
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.api.types.is_integer.html">
+     pandas.api.types.is_integer
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.api.types.is_interval.html">
+     pandas.api.types.is_interval
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.api.types.is_number.html">
+     pandas.api.types.is_number
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.api.types.is_re.html">
+     pandas.api.types.is_re
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.api.types.is_re_compilable.html">
+     pandas.api.types.is_re_compilable
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.api.types.is_scalar.html">
+     pandas.api.types.is_scalar
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../indexing.html">
+   Index objects
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../offset_frequency.html">
+   Date offsets
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../window.html">
+   Window
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../groupby.html">
+   GroupBy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../resampling.html">
+   Resampling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../style.html">
+   Style
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../plotting.html">
+   Plotting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../options.html">
+   Options and settings
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../extensions.html">
+   Extensions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../testing.html">
+   Testing
+  </a>
+ </li>
+</ul>
+
+    
+  </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+      </div>
+      <main class="bd-main">
+        
+        
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+            </div>
+            
+            
+            <article class="bd-article" role="main">
+              
+  <section id="pandas-period-ordinal">
+<h1>pandas.Period.ordinal<a class="headerlink" href="#pandas-period-ordinal" title="Permalink to this headline">#</a></h1>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pandas.Period.ordinal">
+<span class="sig-prename descclassname"><span class="pre">Period.</span></span><span class="sig-name descname"><span class="pre">ordinal</span></span><a class="headerlink" href="#pandas.Period.ordinal" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</section>
+
+
+            </article>
+            
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="pandas.Period.freq.html" title="previous page">
+      <i class="fas fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">pandas.Period.freq</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="pandas.arrays.PeriodArray.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">pandas.arrays.PeriodArray</p>
+  </div>
+  <i class="fas fa-angle-right"></i>
+  </a>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+</div>
+
+<div class="toc-item">
+  
+<div class="tocsection sourcelink">
+    <a href="../../_sources/reference/api/pandas.Period.ordinal.rst.txt">
+        <i class="fas fa-file-alt"></i> Show Source
+    </a>
+</div>
+
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+          </div>
+        </footer>
+        
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=9b1a4fa89bdd0e95b23b"></script>
+
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    <p class="copyright">
+    &copy 2023 pandas via <a href="https://numfocus.org">NumFOCUS, Inc.</a> Hosted by <a href="https://www.ovhcloud.com">OVHcloud</a>.
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>

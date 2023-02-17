@@ -1,0 +1,6 @@
+pandas.api.indexers.check\_array\_indexer
+=========================================
+
+.. currentmodule:: pandas.api.indexers
+
+.. autofunction:: check_array_indexer

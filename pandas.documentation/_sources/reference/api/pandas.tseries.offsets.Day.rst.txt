@@ -1,0 +1,54 @@
+pandas.tseries.offsets.Day
+==========================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. autoclass:: Day
+
+   
+
+
+..
+   HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+   .. autosummary::
+      :toctree:
+      
+      Day.__call__
+      Day.apply
+      Day.apply_index
+      Day.copy
+      Day.isAnchored
+      Day.is_anchored
+      Day.is_month_end
+      Day.is_month_start
+      Day.is_on_offset
+      Day.is_quarter_end
+      Day.is_quarter_start
+      Day.is_year_end
+      Day.is_year_start
+      Day.onOffset
+      Day.rollback
+      Day.rollforward
+
+
+
+
+   
+
+
+..
+   HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+   .. autosummary::
+      :toctree:
+      
+      Day.base
+      Day.delta
+      Day.freqstr
+      Day.kwds
+      Day.n
+      Day.name
+      Day.nanos
+      Day.normalize
+      Day.rule_code
+
+

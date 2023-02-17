@@ -1,0 +1,6 @@
+pandas.tseries.offsets.Tick.is\_quarter\_start
+==============================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. automethod:: Tick.is_quarter_start

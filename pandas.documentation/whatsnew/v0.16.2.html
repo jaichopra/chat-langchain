@@ -1,0 +1,1229 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Version 0.16.2 (June 12, 2015) &#8212; pandas 1.5.3 documentation</title>
+  <script>
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=9b1a4fa89bdd0e95b23b" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=9b1a4fa89bdd0e95b23b" rel="stylesheet">
+
+  
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/6.1.2/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/getting_started.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/pandas.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=9b1a4fa89bdd0e95b23b">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/toggleprompt.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script async="async" src="https://www.google-analytics.com/analytics.js"></script>
+    <script>
+                    window.ga = window.ga || function () {
+                        (ga.q = ga.q || []).push(arguments) };
+                    ga.l = +new Date;
+                    ga('create', 'UA-27880019-2', 'auto');
+                    ga('set', 'anonymizeIp', true);
+                    ga('send', 'pageview');
+                </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'whatsnew/v0.16.2';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        </script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Version 0.16.1 (May 11, 2015)" href="v0.16.1.html" />
+    <link rel="prev" title="Version 0.17.0 (October 9, 2015)" href="v0.17.0.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fas fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../_static/pandas.svg" class="logo__image only-light" alt="Logo image">
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="../getting_started/index.html">
+                        Getting started
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../user_guide/index.html">
+                        User Guide
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../reference/index.html">
+                        API reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../development/index.html">
+                        Development
+                    </a>
+                </li>
+                
+
+                <li class="nav-item current active">
+                    <a class="nav-link" href="index.html">
+                        Release notes
+                    </a>
+                </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      <div class="navbar-end-item navbar-end__search-button-container">
+        
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search">
+  <i class="fas fa-search"></i>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        1.5.3  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pandas-dev/pandas" title="GitHub" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/pandas_dev" title="Twitter" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  <div class="search-button-container--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search">
+  <i class="fas fa-search"></i>
+</button>
+  </div>
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fas fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="../getting_started/index.html">
+                        Getting started
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../user_guide/index.html">
+                        User Guide
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../reference/index.html">
+                        API reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../development/index.html">
+                        Development
+                    </a>
+                </li>
+                
+
+                <li class="nav-item current active">
+                    <a class="nav-link" href="index.html">
+                        Release notes
+                    </a>
+                </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        1.5.3  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pandas-dev/pandas" title="GitHub" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/pandas_dev" title="Twitter" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item navbar-nav">
+    
+    <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.5.3.html">
+   What’s new in 1.5.3 (January 18, 2023)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.5.2.html">
+   What’s new in 1.5.2 (November 21, 2022)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.5.1.html">
+   What’s new in 1.5.1 (October 19, 2022)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.5.0.html">
+   What’s new in 1.5.0 (September 19, 2022)
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.4.4.html">
+   What’s new in 1.4.4 (August 31, 2022)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.4.3.html">
+   What’s new in 1.4.3 (June 23, 2022)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.4.2.html">
+   What’s new in 1.4.2 (April 2, 2022)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.4.1.html">
+   What’s new in 1.4.1 (February 12, 2022)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.4.0.html">
+   What’s new in 1.4.0 (January 22, 2022)
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.3.5.html">
+   What’s new in 1.3.5 (December 12, 2021)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.3.4.html">
+   What’s new in 1.3.4 (October 17, 2021)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.3.3.html">
+   What’s new in 1.3.3 (September 12, 2021)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.3.2.html">
+   What’s new in 1.3.2 (August 15, 2021)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.3.1.html">
+   What’s new in 1.3.1 (July 25, 2021)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.3.0.html">
+   What’s new in 1.3.0 (July 2, 2021)
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.2.5.html">
+   What’s new in 1.2.5 (June 22, 2021)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.2.4.html">
+   What’s new in 1.2.4 (April 12, 2021)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.2.3.html">
+   What’s new in 1.2.3 (March 02, 2021)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.2.2.html">
+   What’s new in 1.2.2 (February 09, 2021)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.2.1.html">
+   What’s new in 1.2.1 (January 20, 2021)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.2.0.html">
+   What’s new in 1.2.0 (December 26, 2020)
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.1.5.html">
+   What’s new in 1.1.5 (December 07, 2020)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.1.4.html">
+   What’s new in 1.1.4 (October 30, 2020)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.1.3.html">
+   What’s new in 1.1.3 (October 5, 2020)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.1.2.html">
+   What’s new in 1.1.2 (September 8, 2020)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.1.1.html">
+   What’s new in 1.1.1 (August 20, 2020)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.1.0.html">
+   What’s new in 1.1.0 (July 28, 2020)
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.0.5.html">
+   What’s new in 1.0.5 (June 17, 2020)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.0.4.html">
+   What’s new in 1.0.4 (May 28, 2020)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.0.3.html">
+   What’s new in 1.0.3 (March 17, 2020)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.0.2.html">
+   What’s new in 1.0.2 (March 12, 2020)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.0.1.html">
+   What’s new in 1.0.1 (February 5, 2020)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.0.0.html">
+   What’s new in 1.0.0 (January 29, 2020)
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.25.3.html">
+   What’s new in 0.25.3 (October 31, 2019)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.25.2.html">
+   What’s new in 0.25.2 (October 15, 2019)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.25.1.html">
+   What’s new in 0.25.1 (August 21, 2019)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.25.0.html">
+   What’s new in 0.25.0 (July 18, 2019)
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.24.2.html">
+   What’s new in 0.24.2 (March 12, 2019)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.24.1.html">
+   What’s new in 0.24.1 (February 3, 2019)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.24.0.html">
+   What’s new in 0.24.0 (January 25, 2019)
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.23.4.html">
+   What’s new in 0.23.4 (August 3, 2018)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.23.3.html">
+   What’s new in 0.23.3 (July 7, 2018)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.23.2.html">
+   What’s new in 0.23.2 (July 5, 2018)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.23.1.html">
+   What’s new in 0.23.1 (June 12, 2018)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.23.0.html">
+   What’s new in 0.23.0 (May 15, 2018)
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.22.0.html">
+   Version 0.22.0 (December 29, 2017)
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.21.1.html">
+   Version 0.21.1 (December 12, 2017)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.21.0.html">
+   Version 0.21.0 (October 27, 2017)
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.20.3.html">
+   Version 0.20.3 (July 7, 2017)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.20.2.html">
+   Version 0.20.2 (June 4, 2017)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.20.0.html">
+   Version 0.20.1 (May 5, 2017)
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.19.2.html">
+   Version 0.19.2 (December 24, 2016)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.19.1.html">
+   Version 0.19.1 (November 3, 2016)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.19.0.html">
+   Version 0.19.0 (October 2, 2016)
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.18.1.html">
+   Version 0.18.1 (May 3, 2016)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.18.0.html">
+   Version 0.18.0 (March 13, 2016)
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.17.1.html">
+   Version 0.17.1 (November 21, 2015)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.17.0.html">
+   Version 0.17.0 (October 9, 2015)
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Version 0.16.2 (June 12, 2015)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.16.1.html">
+   Version 0.16.1 (May 11, 2015)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.16.0.html">
+   Version 0.16.0 (March 22, 2015)
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.15.2.html">
+   Version 0.15.2 (December 12, 2014)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.15.1.html">
+   Version 0.15.1 (November 9, 2014)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.15.0.html">
+   Version 0.15.0 (October 18, 2014)
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.14.1.html">
+   Version 0.14.1 (July 11, 2014)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.14.0.html">
+   Version 0.14.0 (May 31 , 2014)
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.13.1.html">
+   Version 0.13.1 (February 3, 2014)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.13.0.html">
+   Version 0.13.0 (January 3, 2014)
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.12.0.html">
+   Version 0.12.0 (July 24, 2013)
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.11.0.html">
+   Version 0.11.0 (April 22, 2013)
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.10.1.html">
+   Version 0.10.1 (January 22, 2013)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.10.0.html">
+   Version 0.10.0 (December 17, 2012)
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.9.1.html">
+   Version 0.9.1 (November 14, 2012)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.9.0.html">
+   Version 0.9.0 (October 7, 2012)
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.8.1.html">
+   Version 0.8.1 (July 22, 2012)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.8.0.html">
+   Version 0.8.0 (June 29, 2012)
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.7.3.html">
+   Version 0.7.3 (April 12, 2012)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.7.2.html">
+   Version 0.7.2 (March 16, 2012)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.7.1.html">
+   Version 0.7.1 (February 29, 2012)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.7.0.html">
+   Version 0.7.0 (February 9, 2012)
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.6.1.html">
+   Version 0.6.1 (December 13, 2011)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.6.0.html">
+   Version 0.6.0 (November 25, 2011)
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.5.0.html">
+   Version 0.5.0 (October 24, 2011)
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.4.x.html">
+   Versions 0.4.1 through 0.4.3 (September 25 - October 9, 2011)
+  </a>
+ </li>
+</ul>
+
+    
+  </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+      </div>
+      <main class="bd-main">
+        
+        
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+            </div>
+            
+            
+            <article class="bd-article" role="main">
+              
+  <section id="version-0-16-2-june-12-2015">
+<span id="whatsnew-0162"></span><h1>Version 0.16.2 (June 12, 2015)<a class="headerlink" href="#version-0-16-2-june-12-2015" title="Permalink to this headline">#</a></h1>
+<p>This is a minor bug-fix release from 0.16.1 and includes a large number of
+bug fixes along some new features (<a class="reference internal" href="../reference/api/pandas.DataFrame.pipe.html#pandas.DataFrame.pipe" title="pandas.DataFrame.pipe"><code class="xref py py-meth docutils literal notranslate"><span class="pre">pipe()</span></code></a> method), enhancements, and performance improvements.</p>
+<p>We recommend that all users upgrade to this version.</p>
+<p>Highlights include:</p>
+<ul class="simple">
+<li><p>A new <code class="docutils literal notranslate"><span class="pre">pipe</span></code> method, see <a class="reference internal" href="#whatsnew-0162-enhancements-pipe"><span class="std std-ref">here</span></a></p></li>
+<li><p>Documentation on how to use <a class="reference external" href="http://numba.pydata.org">numba</a> with <em>pandas</em>, see <a class="reference internal" href="../user_guide/enhancingperf.html#enhancingperf-numba"><span class="std std-ref">here</span></a></p></li>
+</ul>
+<div class="contents local topic" id="what-s-new-in-v0-16-2">
+<p class="topic-title">What’s new in v0.16.2</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#new-features" id="id1">New features</a></p>
+<ul>
+<li><p><a class="reference internal" href="#pipe" id="id2">Pipe</a></p></li>
+<li><p><a class="reference internal" href="#other-enhancements" id="id3">Other enhancements</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#api-changes" id="id4">API changes</a></p></li>
+<li><p><a class="reference internal" href="#performance-improvements" id="id5">Performance improvements</a></p></li>
+<li><p><a class="reference internal" href="#bug-fixes" id="id6">Bug fixes</a></p></li>
+<li><p><a class="reference internal" href="#contributors" id="id7">Contributors</a></p></li>
+</ul>
+</div>
+<section id="new-features">
+<span id="whatsnew-0162-enhancements"></span><h2>New features<a class="headerlink" href="#new-features" title="Permalink to this headline">#</a></h2>
+<section id="pipe">
+<span id="whatsnew-0162-enhancements-pipe"></span><h3>Pipe<a class="headerlink" href="#pipe" title="Permalink to this headline">#</a></h3>
+<p>We’ve introduced a new method <a class="reference internal" href="../reference/api/pandas.DataFrame.pipe.html#pandas.DataFrame.pipe" title="pandas.DataFrame.pipe"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.pipe()</span></code></a>. As suggested by the name, <code class="docutils literal notranslate"><span class="pre">pipe</span></code>
+should be used to pipe data through a chain of function calls.
+The goal is to avoid confusing nested function calls like</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># df is a DataFrame</span>
+<span class="c1"># f, g, and h are functions that take and return DataFrames</span>
+<span class="n">f</span><span class="p">(</span><span class="n">g</span><span class="p">(</span><span class="n">h</span><span class="p">(</span><span class="n">df</span><span class="p">),</span> <span class="n">arg1</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">arg2</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">arg3</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>  <span class="c1"># noqa F821</span>
+</pre></div>
+</div>
+<p>The logic flows from inside out, and function names are separated from their keyword arguments.
+This can be rewritten as</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">(</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>  <span class="c1"># noqa F821</span>
+    <span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">arg1</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># noqa F821</span>
+    <span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">arg2</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">arg3</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>  <span class="c1"># noqa F821</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Now both the code and the logic flow from top to bottom. Keyword arguments are next to
+their functions. Overall the code is much more readable.</p>
+<p>In the example above, the functions <code class="docutils literal notranslate"><span class="pre">f</span></code>, <code class="docutils literal notranslate"><span class="pre">g</span></code>, and <code class="docutils literal notranslate"><span class="pre">h</span></code> each expected the DataFrame as the first positional argument.
+When the function you wish to apply takes its data anywhere other than the first argument, pass a tuple
+of <code class="docutils literal notranslate"><span class="pre">(function,</span> <span class="pre">keyword)</span></code> indicating where the DataFrame should flow. For example:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">sm</span>
+
+<span class="gp">In [2]: </span><span class="n">bb</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/baseball.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s2">&quot;id&quot;</span><span class="p">)</span>
+
+<span class="go"># sm.ols takes (formula, data)</span>
+<span class="gp">In [3]: </span><span class="p">(</span>
+<span class="gp">   ...: </span>    <span class="n">bb</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;h &gt; 0&quot;</span><span class="p">)</span>
+<span class="gp">   ...: </span>    <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">ln_h</span><span class="o">=</span><span class="k">lambda</span> <span class="n">df</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">h</span><span class="p">))</span>
+<span class="gp">   ...: </span>    <span class="o">.</span><span class="n">pipe</span><span class="p">((</span><span class="n">sm</span><span class="o">.</span><span class="n">ols</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">),</span> <span class="s2">&quot;hr ~ ln_h + year + g + C(lg)&quot;</span><span class="p">)</span>
+<span class="gp">   ...: </span>    <span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="gp">   ...: </span>    <span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+<span class="gp">   ...: </span><span class="p">)</span>
+<span class="gp">   ...: </span>
+<span class="gh">Out[3]: </span>
+<span class="go">&lt;class &#39;statsmodels.iolib.summary.Summary&#39;&gt;</span>
+<span class="go">&quot;&quot;&quot;</span>
+<span class="go">                            OLS Regression Results                            </span>
+<span class="go">==============================================================================</span>
+<span class="go">Dep. Variable:                     hr   R-squared:                       0.685</span>
+<span class="go">Model:                            OLS   Adj. R-squared:                  0.665</span>
+<span class="go">Method:                 Least Squares   F-statistic:                     34.28</span>
+<span class="go">Date:                Thu, 19 Jan 2023   Prob (F-statistic):           3.48e-15</span>
+<span class="go">Time:                        05:10:48   Log-Likelihood:                -205.92</span>
+<span class="go">No. Observations:                  68   AIC:                             421.8</span>
+<span class="go">Df Residuals:                      63   BIC:                             432.9</span>
+<span class="go">Df Model:                           4                                         </span>
+<span class="go">Covariance Type:            nonrobust                                         </span>
+<span class="go">===============================================================================</span>
+<span class="go">                  coef    std err          t      P&gt;|t|      [0.025      0.975]</span>
+<span class="gt">-------------------------------------------------------------------------------</span>
+<span class="n">Intercept</span>   <span class="o">-</span><span class="mf">8484.7720</span>   <span class="mf">4664.146</span>     <span class="o">-</span><span class="mf">1.819</span>      <span class="mf">0.074</span>   <span class="o">-</span><span class="mf">1.78e+04</span>     <span class="mf">835.780</span>
+<span class="n">C</span><span class="p">(</span><span class="n">lg</span><span class="p">)[</span><span class="n">T</span><span class="o">.</span><span class="n">NL</span><span class="p">]</span>    <span class="o">-</span><span class="mf">2.2736</span>      <span class="mf">1.325</span>     <span class="o">-</span><span class="mf">1.716</span>      <span class="mf">0.091</span>      <span class="o">-</span><span class="mf">4.922</span>       <span class="mf">0.375</span>
+<span class="n">ln_h</span>           <span class="o">-</span><span class="mf">1.3542</span>      <span class="mf">0.875</span>     <span class="o">-</span><span class="mf">1.547</span>      <span class="mf">0.127</span>      <span class="o">-</span><span class="mf">3.103</span>       <span class="mf">0.395</span>
+<span class="n">year</span>            <span class="mf">4.2277</span>      <span class="mf">2.324</span>      <span class="mf">1.819</span>      <span class="mf">0.074</span>      <span class="o">-</span><span class="mf">0.417</span>       <span class="mf">8.872</span>
+<span class="n">g</span>               <span class="mf">0.1841</span>      <span class="mf">0.029</span>      <span class="mf">6.258</span>      <span class="mf">0.000</span>       <span class="mf">0.125</span>       <span class="mf">0.243</span>
+<span class="o">==============================================================================</span>
+<span class="ne">Omnibus</span>:                       10.875   Durbin-Watson:                   1.999
+<span class="n">Prob</span><span class="p">(</span><span class="n">Omnibus</span><span class="p">):</span>                  <span class="mf">0.004</span>   <span class="n">Jarque</span><span class="o">-</span><span class="n">Bera</span> <span class="p">(</span><span class="n">JB</span><span class="p">):</span>               <span class="mf">17.298</span>
+<span class="ne">Skew</span>:                           0.537   Prob(JB):                     0.000175
+<span class="ne">Kurtosis</span>:                       5.225   Cond. No.                     1.49e+07
+<span class="o">==============================================================================</span>
+
+<span class="ne">Notes</span>:
+<span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">Standard</span> <span class="n">Errors</span> <span class="n">assume</span> <span class="n">that</span> <span class="n">the</span> <span class="n">covariance</span> <span class="n">matrix</span> <span class="n">of</span> <span class="n">the</span> <span class="n">errors</span> <span class="ow">is</span> <span class="n">correctly</span> <span class="n">specified</span><span class="o">.</span>
+<span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="n">The</span> <span class="n">condition</span> <span class="n">number</span> <span class="ow">is</span> <span class="n">large</span><span class="p">,</span> <span class="mf">1.49e+07</span><span class="o">.</span> <span class="n">This</span> <span class="n">might</span> <span class="n">indicate</span> <span class="n">that</span> <span class="n">there</span> <span class="n">are</span>
+<span class="n">strong</span> <span class="n">multicollinearity</span> <span class="ow">or</span> <span class="n">other</span> <span class="n">numerical</span> <span class="n">problems</span><span class="o">.</span>
+<span class="s2">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<p>The pipe method is inspired by unix pipes, which stream text through
+processes. More recently <a class="reference external" href="https://github.com/tidyverse/dplyr">dplyr</a> and <a class="reference external" href="https://github.com/smbache/magrittr">magrittr</a> have introduced the
+popular <code class="docutils literal notranslate"><span class="pre">(%&gt;%)</span></code> pipe operator for <a class="reference external" href="http://www.r-project.org">R</a>.</p>
+<p>See the <a class="reference internal" href="../user_guide/basics.html#basics-pipe"><span class="std std-ref">documentation</span></a> for more. (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/10129">GH10129</a>)</p>
+</section>
+<section id="other-enhancements">
+<span id="whatsnew-0162-enhancements-other"></span><h3>Other enhancements<a class="headerlink" href="#other-enhancements" title="Permalink to this headline">#</a></h3>
+<ul>
+<li><p>Added <code class="docutils literal notranslate"><span class="pre">rsplit</span></code> to Index/Series StringMethods (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/10303">GH10303</a>)</p></li>
+<li><p>Removed the hard-coded size limits on the <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> HTML representation
+in the IPython notebook, and leave this to IPython itself (only for IPython
+v3.0 or greater). This eliminates the duplicate scroll bars that appeared in
+the notebook with large frames (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/10231">GH10231</a>).</p>
+<p>Note that the notebook has a <code class="docutils literal notranslate"><span class="pre">toggle</span> <span class="pre">output</span> <span class="pre">scrolling</span></code> feature to limit the
+display of very large frames (by clicking left of the output).
+You can also configure the way DataFrames are displayed using the pandas
+options, see here <a class="reference internal" href="../user_guide/options.html#options-frequently-used"><span class="std std-ref">here</span></a>.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">axis</span></code> parameter of <code class="docutils literal notranslate"><span class="pre">DataFrame.quantile</span></code> now accepts also <code class="docutils literal notranslate"><span class="pre">index</span></code> and <code class="docutils literal notranslate"><span class="pre">column</span></code>. (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/9543">GH9543</a>)</p></li>
+</ul>
+</section>
+</section>
+<section id="api-changes">
+<span id="whatsnew-0162-api"></span><h2>API changes<a class="headerlink" href="#api-changes" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Holiday</span></code> now raises <code class="docutils literal notranslate"><span class="pre">NotImplementedError</span></code> if both <code class="docutils literal notranslate"><span class="pre">offset</span></code> and <code class="docutils literal notranslate"><span class="pre">observance</span></code> are used in the constructor instead of returning an incorrect result (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/10217">GH10217</a>).</p></li>
+</ul>
+</section>
+<section id="performance-improvements">
+<span id="whatsnew-0162-performance"></span><h2>Performance improvements<a class="headerlink" href="#performance-improvements" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Improved <code class="docutils literal notranslate"><span class="pre">Series.resample</span></code> performance with <code class="docutils literal notranslate"><span class="pre">dtype=datetime64[ns]</span></code> (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/7754">GH7754</a>)</p></li>
+<li><p>Increase performance of <code class="docutils literal notranslate"><span class="pre">str.split</span></code> when <code class="docutils literal notranslate"><span class="pre">expand=True</span></code> (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/10081">GH10081</a>)</p></li>
+</ul>
+</section>
+<section id="bug-fixes">
+<span id="whatsnew-0162-bug-fixes"></span><h2>Bug fixes<a class="headerlink" href="#bug-fixes" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Bug in <code class="docutils literal notranslate"><span class="pre">Series.hist</span></code> raises an error when a one row <code class="docutils literal notranslate"><span class="pre">Series</span></code> was given (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/10214">GH10214</a>)</p></li>
+<li><p>Bug where <code class="docutils literal notranslate"><span class="pre">HDFStore.select</span></code> modifies the passed columns list (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/7212">GH7212</a>)</p></li>
+<li><p>Bug in <code class="docutils literal notranslate"><span class="pre">Categorical</span></code> repr with <code class="docutils literal notranslate"><span class="pre">display.width</span></code> of <code class="docutils literal notranslate"><span class="pre">None</span></code> in Python 3 (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/10087">GH10087</a>)</p></li>
+<li><p>Bug in <code class="docutils literal notranslate"><span class="pre">to_json</span></code> with certain orients and a <code class="docutils literal notranslate"><span class="pre">CategoricalIndex</span></code> would segfault (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/10317">GH10317</a>)</p></li>
+<li><p>Bug where some of the nan functions do not have consistent return dtypes (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/10251">GH10251</a>)</p></li>
+<li><p>Bug in <code class="docutils literal notranslate"><span class="pre">DataFrame.quantile</span></code> on checking that a valid axis was passed (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/9543">GH9543</a>)</p></li>
+<li><p>Bug in <code class="docutils literal notranslate"><span class="pre">groupby.apply</span></code> aggregation for <code class="docutils literal notranslate"><span class="pre">Categorical</span></code> not preserving categories (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/10138">GH10138</a>)</p></li>
+<li><p>Bug in <code class="docutils literal notranslate"><span class="pre">to_csv</span></code> where <code class="docutils literal notranslate"><span class="pre">date_format</span></code> is ignored if the <code class="docutils literal notranslate"><span class="pre">datetime</span></code> is fractional (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/10209">GH10209</a>)</p></li>
+<li><p>Bug in <code class="docutils literal notranslate"><span class="pre">DataFrame.to_json</span></code> with mixed data types (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/10289">GH10289</a>)</p></li>
+<li><p>Bug in cache updating when consolidating (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/10264">GH10264</a>)</p></li>
+<li><p>Bug in <code class="docutils literal notranslate"><span class="pre">mean()</span></code> where integer dtypes can overflow (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/10172">GH10172</a>)</p></li>
+<li><p>Bug where <code class="docutils literal notranslate"><span class="pre">Panel.from_dict</span></code> does not set dtype when specified (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/10058">GH10058</a>)</p></li>
+<li><p>Bug in <code class="docutils literal notranslate"><span class="pre">Index.union</span></code> raises <code class="docutils literal notranslate"><span class="pre">AttributeError</span></code> when passing array-likes. (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/10149">GH10149</a>)</p></li>
+<li><p>Bug in <code class="docutils literal notranslate"><span class="pre">Timestamp</span></code>’s’ <code class="docutils literal notranslate"><span class="pre">microsecond</span></code>, <code class="docutils literal notranslate"><span class="pre">quarter</span></code>, <code class="docutils literal notranslate"><span class="pre">dayofyear</span></code>, <code class="docutils literal notranslate"><span class="pre">week</span></code> and <code class="docutils literal notranslate"><span class="pre">daysinmonth</span></code> properties return <code class="docutils literal notranslate"><span class="pre">np.int</span></code> type, not built-in <code class="docutils literal notranslate"><span class="pre">int</span></code>. (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/10050">GH10050</a>)</p></li>
+<li><p>Bug in <code class="docutils literal notranslate"><span class="pre">NaT</span></code> raises <code class="docutils literal notranslate"><span class="pre">AttributeError</span></code> when accessing to <code class="docutils literal notranslate"><span class="pre">daysinmonth</span></code>, <code class="docutils literal notranslate"><span class="pre">dayofweek</span></code> properties. (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/10096">GH10096</a>)</p></li>
+<li><p>Bug in Index repr when using the <code class="docutils literal notranslate"><span class="pre">max_seq_items=None</span></code> setting (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/10182">GH10182</a>).</p></li>
+<li><p>Bug in getting timezone data with <code class="docutils literal notranslate"><span class="pre">dateutil</span></code> on various platforms ( <a class="reference external" href="https://github.com/pandas-dev/pandas/issues/9059">GH9059</a>, <a class="reference external" href="https://github.com/pandas-dev/pandas/issues/8639">GH8639</a>, <a class="reference external" href="https://github.com/pandas-dev/pandas/issues/9663">GH9663</a>, <a class="reference external" href="https://github.com/pandas-dev/pandas/issues/10121">GH10121</a>)</p></li>
+<li><p>Bug in displaying datetimes with mixed frequencies; display ‘ms’ datetimes to the proper precision. (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/10170">GH10170</a>)</p></li>
+<li><p>Bug in <code class="docutils literal notranslate"><span class="pre">setitem</span></code> where type promotion is applied to the entire block (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/10280">GH10280</a>)</p></li>
+<li><p>Bug in <code class="docutils literal notranslate"><span class="pre">Series</span></code> arithmetic methods may incorrectly hold names (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/10068">GH10068</a>)</p></li>
+<li><p>Bug in <code class="docutils literal notranslate"><span class="pre">GroupBy.get_group</span></code> when grouping on multiple keys, one of which is categorical. (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/10132">GH10132</a>)</p></li>
+<li><p>Bug in <code class="docutils literal notranslate"><span class="pre">DatetimeIndex</span></code> and <code class="docutils literal notranslate"><span class="pre">TimedeltaIndex</span></code> names are lost after timedelta arithmetic ( <a class="reference external" href="https://github.com/pandas-dev/pandas/issues/9926">GH9926</a>)</p></li>
+<li><p>Bug in <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> construction from nested <code class="docutils literal notranslate"><span class="pre">dict</span></code> with <code class="docutils literal notranslate"><span class="pre">datetime64</span></code> (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/10160">GH10160</a>)</p></li>
+<li><p>Bug in <code class="docutils literal notranslate"><span class="pre">Series</span></code> construction from <code class="docutils literal notranslate"><span class="pre">dict</span></code> with <code class="docutils literal notranslate"><span class="pre">datetime64</span></code> keys (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/9456">GH9456</a>)</p></li>
+<li><p>Bug in <code class="docutils literal notranslate"><span class="pre">Series.plot(label=&quot;LABEL&quot;)</span></code> not correctly setting the label (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/10119">GH10119</a>)</p></li>
+<li><p>Bug in <code class="docutils literal notranslate"><span class="pre">plot</span></code> not defaulting to matplotlib <code class="docutils literal notranslate"><span class="pre">axes.grid</span></code> setting (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/9792">GH9792</a>)</p></li>
+<li><p>Bug causing strings containing an exponent, but no decimal to be parsed as <code class="docutils literal notranslate"><span class="pre">int</span></code> instead of <code class="docutils literal notranslate"><span class="pre">float</span></code> in <code class="docutils literal notranslate"><span class="pre">engine='python'</span></code> for the <code class="docutils literal notranslate"><span class="pre">read_csv</span></code> parser (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/9565">GH9565</a>)</p></li>
+<li><p>Bug in <code class="docutils literal notranslate"><span class="pre">Series.align</span></code> resets <code class="docutils literal notranslate"><span class="pre">name</span></code> when <code class="docutils literal notranslate"><span class="pre">fill_value</span></code> is specified (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/10067">GH10067</a>)</p></li>
+<li><p>Bug in <code class="docutils literal notranslate"><span class="pre">read_csv</span></code> causing index name not to be set on an empty DataFrame (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/10184">GH10184</a>)</p></li>
+<li><p>Bug in <code class="docutils literal notranslate"><span class="pre">SparseSeries.abs</span></code> resets <code class="docutils literal notranslate"><span class="pre">name</span></code> (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/10241">GH10241</a>)</p></li>
+<li><p>Bug in <code class="docutils literal notranslate"><span class="pre">TimedeltaIndex</span></code> slicing may reset freq (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/10292">GH10292</a>)</p></li>
+<li><p>Bug in <code class="docutils literal notranslate"><span class="pre">GroupBy.get_group</span></code> raises <code class="docutils literal notranslate"><span class="pre">ValueError</span></code> when group key contains <code class="docutils literal notranslate"><span class="pre">NaT</span></code> (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/6992">GH6992</a>)</p></li>
+<li><p>Bug in <code class="docutils literal notranslate"><span class="pre">SparseSeries</span></code> constructor ignores input data name (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/10258">GH10258</a>)</p></li>
+<li><p>Bug in <code class="docutils literal notranslate"><span class="pre">Categorical.remove_categories</span></code> causing a <code class="docutils literal notranslate"><span class="pre">ValueError</span></code> when removing the <code class="docutils literal notranslate"><span class="pre">NaN</span></code> category if underlying dtype is floating-point (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/10156">GH10156</a>)</p></li>
+<li><p>Bug where infer_freq infers time rule (WOM-5XXX) unsupported by to_offset (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/9425">GH9425</a>)</p></li>
+<li><p>Bug in <code class="docutils literal notranslate"><span class="pre">DataFrame.to_hdf()</span></code> where table format would raise a seemingly unrelated error for invalid (non-string) column names. This is now explicitly forbidden. (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/9057">GH9057</a>)</p></li>
+<li><p>Bug to handle masking empty <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/10126">GH10126</a>).</p></li>
+<li><p>Bug where MySQL interface could not handle numeric table/column names (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/10255">GH10255</a>)</p></li>
+<li><p>Bug in <code class="docutils literal notranslate"><span class="pre">read_csv</span></code> with a <code class="docutils literal notranslate"><span class="pre">date_parser</span></code> that returned a <code class="docutils literal notranslate"><span class="pre">datetime64</span></code> array of other time resolution than <code class="docutils literal notranslate"><span class="pre">[ns]</span></code> (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/10245">GH10245</a>)</p></li>
+<li><p>Bug in <code class="docutils literal notranslate"><span class="pre">Panel.apply</span></code> when the result has ndim=0 (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/10332">GH10332</a>)</p></li>
+<li><p>Bug in <code class="docutils literal notranslate"><span class="pre">read_hdf</span></code> where <code class="docutils literal notranslate"><span class="pre">auto_close</span></code> could not be passed (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/9327">GH9327</a>).</p></li>
+<li><p>Bug in <code class="docutils literal notranslate"><span class="pre">read_hdf</span></code> where open stores could not be used (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/10330">GH10330</a>).</p></li>
+<li><p>Bug in adding empty <code class="docutils literal notranslate"><span class="pre">DataFrames</span></code>, now results in a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> that <code class="docutils literal notranslate"><span class="pre">.equals</span></code> an empty <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/10181">GH10181</a>).</p></li>
+<li><p>Bug in <code class="docutils literal notranslate"><span class="pre">to_hdf</span></code> and <code class="docutils literal notranslate"><span class="pre">HDFStore</span></code> which did not check that complib choices were valid (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/4582">GH4582</a>, <a class="reference external" href="https://github.com/pandas-dev/pandas/issues/8874">GH8874</a>).</p></li>
+</ul>
+</section>
+<section id="contributors">
+<span id="whatsnew-0-16-2-contributors"></span><h2>Contributors<a class="headerlink" href="#contributors" title="Permalink to this headline">#</a></h2>
+<p>A total of 34 people contributed patches to this release.  People with a
+“+” by their names contributed a patch for the first time.
+</p>
+<ul class="simple">
+<li><p>Andrew Rosenfeld</p></li>
+<li><p>Artemy Kolchinsky</p></li>
+<li><p>Bernard Willers +</p></li>
+<li><p>Christer van der Meeren</p></li>
+<li><p>Christian Hudon +</p></li>
+<li><p>Constantine Glen Evans +</p></li>
+<li><p>Daniel Julius Lasiman +</p></li>
+<li><p>Evan Wright</p></li>
+<li><p>Francesco Brundu +</p></li>
+<li><p>Gaëtan de Menten +</p></li>
+<li><p>Jake VanderPlas</p></li>
+<li><p>James Hiebert +</p></li>
+<li><p>Jeff Reback</p></li>
+<li><p>Joris Van den Bossche</p></li>
+<li><p>Justin Lecher +</p></li>
+<li><p>Ka Wo Chen +</p></li>
+<li><p>Kevin Sheppard</p></li>
+<li><p>Mortada Mehyar</p></li>
+<li><p>Morton Fox +</p></li>
+<li><p>Robin Wilson +</p></li>
+<li><p>Sinhrks</p></li>
+<li><p>Stephan Hoyer</p></li>
+<li><p>Thomas Grainger</p></li>
+<li><p>Tom Ajamian</p></li>
+<li><p>Tom Augspurger</p></li>
+<li><p>Yoshiki Vázquez Baeza</p></li>
+<li><p>Younggun Kim</p></li>
+<li><p>austinc +</p></li>
+<li><p>behzad nouri</p></li>
+<li><p>jreback</p></li>
+<li><p>lexual</p></li>
+<li><p>rekcahpassyla +</p></li>
+<li><p>scls19fr</p></li>
+<li><p>sinhrks</p></li>
+</ul>
+</section>
+</section>
+
+
+            </article>
+            
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="v0.17.0.html" title="previous page">
+      <i class="fas fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Version 0.17.0 (October 9, 2015)</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="v0.16.1.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">Version 0.16.1 (May 11, 2015)</p>
+  </div>
+  <i class="fas fa-angle-right"></i>
+  </a>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fas fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#new-features">
+   New features
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pipe">
+     Pipe
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#other-enhancements">
+     Other enhancements
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#api-changes">
+   API changes
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#performance-improvements">
+   Performance improvements
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bug-fixes">
+   Bug fixes
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#contributors">
+   Contributors
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+<div class="toc-item">
+  
+</div>
+
+<div class="toc-item">
+  
+<div class="tocsection sourcelink">
+    <a href="../_sources/whatsnew/v0.16.2.rst.txt">
+        <i class="fas fa-file-alt"></i> Show Source
+    </a>
+</div>
+
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+          </div>
+        </footer>
+        
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=9b1a4fa89bdd0e95b23b"></script>
+
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    <p class="copyright">
+    &copy 2023 pandas via <a href="https://numfocus.org">NumFOCUS, Inc.</a> Hosted by <a href="https://www.ovhcloud.com">OVHcloud</a>.
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>

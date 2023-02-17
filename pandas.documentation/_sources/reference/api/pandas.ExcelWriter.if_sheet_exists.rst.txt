@@ -1,0 +1,6 @@
+pandas.ExcelWriter.if\_sheet\_exists
+====================================
+
+.. currentmodule:: pandas
+
+.. autoproperty:: ExcelWriter.if_sheet_exists

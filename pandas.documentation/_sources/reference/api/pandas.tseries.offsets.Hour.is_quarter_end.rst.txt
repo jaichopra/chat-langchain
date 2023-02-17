@@ -1,0 +1,6 @@
+pandas.tseries.offsets.Hour.is\_quarter\_end
+============================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. automethod:: Hour.is_quarter_end

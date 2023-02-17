@@ -1,0 +1,6 @@
+pandas.ExcelWriter.save
+=======================
+
+.. currentmodule:: pandas
+
+.. automethod:: ExcelWriter.save

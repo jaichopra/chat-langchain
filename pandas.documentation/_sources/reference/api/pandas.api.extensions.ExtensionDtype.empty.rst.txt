@@ -1,0 +1,6 @@
+pandas.api.extensions.ExtensionDtype.empty
+==========================================
+
+.. currentmodule:: pandas.api.extensions
+
+.. automethod:: ExtensionDtype.empty

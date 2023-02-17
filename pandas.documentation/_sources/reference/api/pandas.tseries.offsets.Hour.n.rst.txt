@@ -1,0 +1,6 @@
+pandas.tseries.offsets.Hour.n
+=============================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. autoattribute:: Hour.n

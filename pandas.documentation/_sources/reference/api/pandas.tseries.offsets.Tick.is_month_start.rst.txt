@@ -1,0 +1,6 @@
+pandas.tseries.offsets.Tick.is\_month\_start
+============================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. automethod:: Tick.is_month_start

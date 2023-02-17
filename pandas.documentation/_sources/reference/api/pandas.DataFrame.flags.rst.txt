@@ -1,0 +1,6 @@
+pandas.DataFrame.flags
+======================
+
+.. currentmodule:: pandas
+
+.. autoproperty:: DataFrame.flags

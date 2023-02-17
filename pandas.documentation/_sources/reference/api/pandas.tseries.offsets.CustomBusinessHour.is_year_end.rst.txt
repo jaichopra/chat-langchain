@@ -1,0 +1,6 @@
+pandas.tseries.offsets.CustomBusinessHour.is\_year\_end
+=======================================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. automethod:: CustomBusinessHour.is_year_end

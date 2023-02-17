@@ -1,0 +1,6 @@
+pandas.tseries.offsets.Week.is\_month\_end
+==========================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. automethod:: Week.is_month_end

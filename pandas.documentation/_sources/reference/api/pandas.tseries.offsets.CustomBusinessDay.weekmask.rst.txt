@@ -1,0 +1,6 @@
+pandas.tseries.offsets.CustomBusinessDay.weekmask
+=================================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. autoattribute:: CustomBusinessDay.weekmask

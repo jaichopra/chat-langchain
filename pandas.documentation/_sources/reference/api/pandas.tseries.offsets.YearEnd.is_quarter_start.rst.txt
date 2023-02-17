@@ -1,0 +1,6 @@
+pandas.tseries.offsets.YearEnd.is\_quarter\_start
+=================================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. automethod:: YearEnd.is_quarter_start

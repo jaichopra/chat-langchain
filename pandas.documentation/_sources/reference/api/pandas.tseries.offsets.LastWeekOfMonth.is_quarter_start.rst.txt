@@ -1,0 +1,6 @@
+pandas.tseries.offsets.LastWeekOfMonth.is\_quarter\_start
+=========================================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. automethod:: LastWeekOfMonth.is_quarter_start

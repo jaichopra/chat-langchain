@@ -1,0 +1,54 @@
+pandas.tseries.offsets.Hour
+===========================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. autoclass:: Hour
+
+   
+
+
+..
+   HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+   .. autosummary::
+      :toctree:
+      
+      Hour.__call__
+      Hour.apply
+      Hour.apply_index
+      Hour.copy
+      Hour.isAnchored
+      Hour.is_anchored
+      Hour.is_month_end
+      Hour.is_month_start
+      Hour.is_on_offset
+      Hour.is_quarter_end
+      Hour.is_quarter_start
+      Hour.is_year_end
+      Hour.is_year_start
+      Hour.onOffset
+      Hour.rollback
+      Hour.rollforward
+
+
+
+
+   
+
+
+..
+   HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+   .. autosummary::
+      :toctree:
+      
+      Hour.base
+      Hour.delta
+      Hour.freqstr
+      Hour.kwds
+      Hour.n
+      Hour.name
+      Hour.nanos
+      Hour.normalize
+      Hour.rule_code
+
+

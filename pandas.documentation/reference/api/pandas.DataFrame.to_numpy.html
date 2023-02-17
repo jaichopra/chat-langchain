@@ -1,0 +1,2835 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>pandas.DataFrame.to_numpy &#8212; pandas 1.5.3 documentation</title>
+  <script>
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=9b1a4fa89bdd0e95b23b" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=9b1a4fa89bdd0e95b23b" rel="stylesheet">
+
+  
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/getting_started.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/pandas.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=9b1a4fa89bdd0e95b23b">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/toggleprompt.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script async="async" src="https://www.google-analytics.com/analytics.js"></script>
+    <script>
+                    window.ga = window.ga || function () {
+                        (ga.q = ga.q || []).push(arguments) };
+                    ga.l = +new Date;
+                    ga('create', 'UA-27880019-2', 'auto');
+                    ga('set', 'anonymizeIp', true);
+                    ga('send', 'pageview');
+                </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'reference/api/pandas.DataFrame.to_numpy';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        </script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="pandas.DataFrame.to_period" href="pandas.DataFrame.to_period.html" />
+    <link rel="prev" title="pandas.DataFrame.to_markdown" href="pandas.DataFrame.to_markdown.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fas fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../../_static/pandas.svg" class="logo__image only-light" alt="Logo image">
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="../../getting_started/index.html">
+                        Getting started
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../user_guide/index.html">
+                        User Guide
+                    </a>
+                </li>
+                
+
+                <li class="nav-item current active">
+                    <a class="nav-link" href="../index.html">
+                        API reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../development/index.html">
+                        Development
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../whatsnew/index.html">
+                        Release notes
+                    </a>
+                </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      <div class="navbar-end-item navbar-end__search-button-container">
+        
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search">
+  <i class="fas fa-search"></i>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        1.5.3  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pandas-dev/pandas" title="GitHub" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/pandas_dev" title="Twitter" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  <div class="search-button-container--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search">
+  <i class="fas fa-search"></i>
+</button>
+  </div>
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fas fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="../../getting_started/index.html">
+                        Getting started
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../user_guide/index.html">
+                        User Guide
+                    </a>
+                </li>
+                
+
+                <li class="nav-item current active">
+                    <a class="nav-link" href="../index.html">
+                        API reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../development/index.html">
+                        Development
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../whatsnew/index.html">
+                        Release notes
+                    </a>
+                </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        1.5.3  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pandas-dev/pandas" title="GitHub" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/pandas_dev" title="Twitter" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item navbar-nav">
+    
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../io.html">
+   Input/output
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../general_functions.html">
+   General functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../series.html">
+   Series
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../frame.html">
+   DataFrame
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label class="toctree-toggle" for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active has-children">
+    <a class="reference internal" href="pandas.DataFrame.html">
+     pandas.DataFrame
+    </a>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label class="toctree-toggle" for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="current">
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.at.html">
+       pandas.DataFrame.at
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.attrs.html">
+       pandas.DataFrame.attrs
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.axes.html">
+       pandas.DataFrame.axes
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.columns.html">
+       pandas.DataFrame.columns
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.dtypes.html">
+       pandas.DataFrame.dtypes
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.empty.html">
+       pandas.DataFrame.empty
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.flags.html">
+       pandas.DataFrame.flags
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.iat.html">
+       pandas.DataFrame.iat
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.iloc.html">
+       pandas.DataFrame.iloc
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.index.html">
+       pandas.DataFrame.index
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.loc.html">
+       pandas.DataFrame.loc
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.ndim.html">
+       pandas.DataFrame.ndim
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.shape.html">
+       pandas.DataFrame.shape
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.size.html">
+       pandas.DataFrame.size
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.style.html">
+       pandas.DataFrame.style
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.values.html">
+       pandas.DataFrame.values
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.abs.html">
+       pandas.DataFrame.abs
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.add.html">
+       pandas.DataFrame.add
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.add_prefix.html">
+       pandas.DataFrame.add_prefix
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.add_suffix.html">
+       pandas.DataFrame.add_suffix
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.agg.html">
+       pandas.DataFrame.agg
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.aggregate.html">
+       pandas.DataFrame.aggregate
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.align.html">
+       pandas.DataFrame.align
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.all.html">
+       pandas.DataFrame.all
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.any.html">
+       pandas.DataFrame.any
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.append.html">
+       pandas.DataFrame.append
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.apply.html">
+       pandas.DataFrame.apply
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.applymap.html">
+       pandas.DataFrame.applymap
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.asfreq.html">
+       pandas.DataFrame.asfreq
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.asof.html">
+       pandas.DataFrame.asof
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.assign.html">
+       pandas.DataFrame.assign
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.astype.html">
+       pandas.DataFrame.astype
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.at_time.html">
+       pandas.DataFrame.at_time
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.backfill.html">
+       pandas.DataFrame.backfill
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.between_time.html">
+       pandas.DataFrame.between_time
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.bfill.html">
+       pandas.DataFrame.bfill
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.bool.html">
+       pandas.DataFrame.bool
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.boxplot.html">
+       pandas.DataFrame.boxplot
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.clip.html">
+       pandas.DataFrame.clip
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.combine.html">
+       pandas.DataFrame.combine
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.combine_first.html">
+       pandas.DataFrame.combine_first
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.compare.html">
+       pandas.DataFrame.compare
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.convert_dtypes.html">
+       pandas.DataFrame.convert_dtypes
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.copy.html">
+       pandas.DataFrame.copy
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.corr.html">
+       pandas.DataFrame.corr
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.corrwith.html">
+       pandas.DataFrame.corrwith
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.count.html">
+       pandas.DataFrame.count
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.cov.html">
+       pandas.DataFrame.cov
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.cummax.html">
+       pandas.DataFrame.cummax
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.cummin.html">
+       pandas.DataFrame.cummin
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.cumprod.html">
+       pandas.DataFrame.cumprod
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.cumsum.html">
+       pandas.DataFrame.cumsum
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.describe.html">
+       pandas.DataFrame.describe
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.diff.html">
+       pandas.DataFrame.diff
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.div.html">
+       pandas.DataFrame.div
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.divide.html">
+       pandas.DataFrame.divide
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.dot.html">
+       pandas.DataFrame.dot
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.drop.html">
+       pandas.DataFrame.drop
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.drop_duplicates.html">
+       pandas.DataFrame.drop_duplicates
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.droplevel.html">
+       pandas.DataFrame.droplevel
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.dropna.html">
+       pandas.DataFrame.dropna
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.duplicated.html">
+       pandas.DataFrame.duplicated
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.eq.html">
+       pandas.DataFrame.eq
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.equals.html">
+       pandas.DataFrame.equals
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.eval.html">
+       pandas.DataFrame.eval
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.ewm.html">
+       pandas.DataFrame.ewm
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.expanding.html">
+       pandas.DataFrame.expanding
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.explode.html">
+       pandas.DataFrame.explode
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.ffill.html">
+       pandas.DataFrame.ffill
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.fillna.html">
+       pandas.DataFrame.fillna
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.filter.html">
+       pandas.DataFrame.filter
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.first.html">
+       pandas.DataFrame.first
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.first_valid_index.html">
+       pandas.DataFrame.first_valid_index
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.floordiv.html">
+       pandas.DataFrame.floordiv
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.from_dict.html">
+       pandas.DataFrame.from_dict
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.from_records.html">
+       pandas.DataFrame.from_records
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.ge.html">
+       pandas.DataFrame.ge
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.get.html">
+       pandas.DataFrame.get
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.groupby.html">
+       pandas.DataFrame.groupby
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.gt.html">
+       pandas.DataFrame.gt
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.head.html">
+       pandas.DataFrame.head
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.hist.html">
+       pandas.DataFrame.hist
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.idxmax.html">
+       pandas.DataFrame.idxmax
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.idxmin.html">
+       pandas.DataFrame.idxmin
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.infer_objects.html">
+       pandas.DataFrame.infer_objects
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.info.html">
+       pandas.DataFrame.info
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.insert.html">
+       pandas.DataFrame.insert
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.interpolate.html">
+       pandas.DataFrame.interpolate
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.isetitem.html">
+       pandas.DataFrame.isetitem
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.isin.html">
+       pandas.DataFrame.isin
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.isna.html">
+       pandas.DataFrame.isna
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.isnull.html">
+       pandas.DataFrame.isnull
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.items.html">
+       pandas.DataFrame.items
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.iteritems.html">
+       pandas.DataFrame.iteritems
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.iterrows.html">
+       pandas.DataFrame.iterrows
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.itertuples.html">
+       pandas.DataFrame.itertuples
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.join.html">
+       pandas.DataFrame.join
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.keys.html">
+       pandas.DataFrame.keys
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.kurt.html">
+       pandas.DataFrame.kurt
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.kurtosis.html">
+       pandas.DataFrame.kurtosis
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.last.html">
+       pandas.DataFrame.last
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.last_valid_index.html">
+       pandas.DataFrame.last_valid_index
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.le.html">
+       pandas.DataFrame.le
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.lookup.html">
+       pandas.DataFrame.lookup
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.lt.html">
+       pandas.DataFrame.lt
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.mad.html">
+       pandas.DataFrame.mad
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.mask.html">
+       pandas.DataFrame.mask
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.max.html">
+       pandas.DataFrame.max
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.mean.html">
+       pandas.DataFrame.mean
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.median.html">
+       pandas.DataFrame.median
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.melt.html">
+       pandas.DataFrame.melt
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.memory_usage.html">
+       pandas.DataFrame.memory_usage
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.merge.html">
+       pandas.DataFrame.merge
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.min.html">
+       pandas.DataFrame.min
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.mod.html">
+       pandas.DataFrame.mod
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.mode.html">
+       pandas.DataFrame.mode
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.mul.html">
+       pandas.DataFrame.mul
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.multiply.html">
+       pandas.DataFrame.multiply
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.ne.html">
+       pandas.DataFrame.ne
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.nlargest.html">
+       pandas.DataFrame.nlargest
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.notna.html">
+       pandas.DataFrame.notna
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.notnull.html">
+       pandas.DataFrame.notnull
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.nsmallest.html">
+       pandas.DataFrame.nsmallest
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.nunique.html">
+       pandas.DataFrame.nunique
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.pad.html">
+       pandas.DataFrame.pad
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.pct_change.html">
+       pandas.DataFrame.pct_change
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.pipe.html">
+       pandas.DataFrame.pipe
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.pivot.html">
+       pandas.DataFrame.pivot
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.pivot_table.html">
+       pandas.DataFrame.pivot_table
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.plot.html">
+       pandas.DataFrame.plot
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.pop.html">
+       pandas.DataFrame.pop
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.pow.html">
+       pandas.DataFrame.pow
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.prod.html">
+       pandas.DataFrame.prod
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.product.html">
+       pandas.DataFrame.product
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.quantile.html">
+       pandas.DataFrame.quantile
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.query.html">
+       pandas.DataFrame.query
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.radd.html">
+       pandas.DataFrame.radd
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.rank.html">
+       pandas.DataFrame.rank
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.rdiv.html">
+       pandas.DataFrame.rdiv
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.reindex.html">
+       pandas.DataFrame.reindex
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.reindex_like.html">
+       pandas.DataFrame.reindex_like
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.rename.html">
+       pandas.DataFrame.rename
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.rename_axis.html">
+       pandas.DataFrame.rename_axis
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.reorder_levels.html">
+       pandas.DataFrame.reorder_levels
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.replace.html">
+       pandas.DataFrame.replace
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.resample.html">
+       pandas.DataFrame.resample
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.reset_index.html">
+       pandas.DataFrame.reset_index
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.rfloordiv.html">
+       pandas.DataFrame.rfloordiv
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.rmod.html">
+       pandas.DataFrame.rmod
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.rmul.html">
+       pandas.DataFrame.rmul
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.rolling.html">
+       pandas.DataFrame.rolling
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.round.html">
+       pandas.DataFrame.round
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.rpow.html">
+       pandas.DataFrame.rpow
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.rsub.html">
+       pandas.DataFrame.rsub
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.rtruediv.html">
+       pandas.DataFrame.rtruediv
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.sample.html">
+       pandas.DataFrame.sample
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.select_dtypes.html">
+       pandas.DataFrame.select_dtypes
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.sem.html">
+       pandas.DataFrame.sem
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.set_axis.html">
+       pandas.DataFrame.set_axis
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.set_flags.html">
+       pandas.DataFrame.set_flags
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.set_index.html">
+       pandas.DataFrame.set_index
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.shift.html">
+       pandas.DataFrame.shift
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.skew.html">
+       pandas.DataFrame.skew
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.slice_shift.html">
+       pandas.DataFrame.slice_shift
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.sort_index.html">
+       pandas.DataFrame.sort_index
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.sort_values.html">
+       pandas.DataFrame.sort_values
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.sparse.html">
+       pandas.DataFrame.sparse
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.squeeze.html">
+       pandas.DataFrame.squeeze
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.stack.html">
+       pandas.DataFrame.stack
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.std.html">
+       pandas.DataFrame.std
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.sub.html">
+       pandas.DataFrame.sub
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.subtract.html">
+       pandas.DataFrame.subtract
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.sum.html">
+       pandas.DataFrame.sum
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.swapaxes.html">
+       pandas.DataFrame.swapaxes
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.swaplevel.html">
+       pandas.DataFrame.swaplevel
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.tail.html">
+       pandas.DataFrame.tail
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.take.html">
+       pandas.DataFrame.take
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.to_clipboard.html">
+       pandas.DataFrame.to_clipboard
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.to_csv.html">
+       pandas.DataFrame.to_csv
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.to_dict.html">
+       pandas.DataFrame.to_dict
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.to_excel.html">
+       pandas.DataFrame.to_excel
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.to_feather.html">
+       pandas.DataFrame.to_feather
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.to_gbq.html">
+       pandas.DataFrame.to_gbq
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.to_hdf.html">
+       pandas.DataFrame.to_hdf
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.to_html.html">
+       pandas.DataFrame.to_html
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.to_json.html">
+       pandas.DataFrame.to_json
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.to_latex.html">
+       pandas.DataFrame.to_latex
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.to_markdown.html">
+       pandas.DataFrame.to_markdown
+      </a>
+     </li>
+     <li class="toctree-l3 current active">
+      <a class="current reference internal" href="#">
+       pandas.DataFrame.to_numpy
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.to_orc.html">
+       pandas.DataFrame.to_orc
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.to_parquet.html">
+       pandas.DataFrame.to_parquet
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.to_period.html">
+       pandas.DataFrame.to_period
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.to_pickle.html">
+       pandas.DataFrame.to_pickle
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.to_records.html">
+       pandas.DataFrame.to_records
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.to_sql.html">
+       pandas.DataFrame.to_sql
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.to_stata.html">
+       pandas.DataFrame.to_stata
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.to_string.html">
+       pandas.DataFrame.to_string
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.to_timestamp.html">
+       pandas.DataFrame.to_timestamp
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.to_xarray.html">
+       pandas.DataFrame.to_xarray
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.to_xml.html">
+       pandas.DataFrame.to_xml
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.transform.html">
+       pandas.DataFrame.transform
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.transpose.html">
+       pandas.DataFrame.transpose
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.truediv.html">
+       pandas.DataFrame.truediv
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.truncate.html">
+       pandas.DataFrame.truncate
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.tshift.html">
+       pandas.DataFrame.tshift
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.tz_convert.html">
+       pandas.DataFrame.tz_convert
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.tz_localize.html">
+       pandas.DataFrame.tz_localize
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.unstack.html">
+       pandas.DataFrame.unstack
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.update.html">
+       pandas.DataFrame.update
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.value_counts.html">
+       pandas.DataFrame.value_counts
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.var.html">
+       pandas.DataFrame.var
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.where.html">
+       pandas.DataFrame.where
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.DataFrame.xs.html">
+       pandas.DataFrame.xs
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.index.html">
+     pandas.DataFrame.index
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.columns.html">
+     pandas.DataFrame.columns
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.dtypes.html">
+     pandas.DataFrame.dtypes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.info.html">
+     pandas.DataFrame.info
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.select_dtypes.html">
+     pandas.DataFrame.select_dtypes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.values.html">
+     pandas.DataFrame.values
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.axes.html">
+     pandas.DataFrame.axes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.ndim.html">
+     pandas.DataFrame.ndim
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.size.html">
+     pandas.DataFrame.size
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.shape.html">
+     pandas.DataFrame.shape
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.memory_usage.html">
+     pandas.DataFrame.memory_usage
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.empty.html">
+     pandas.DataFrame.empty
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.set_flags.html">
+     pandas.DataFrame.set_flags
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.astype.html">
+     pandas.DataFrame.astype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.convert_dtypes.html">
+     pandas.DataFrame.convert_dtypes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.infer_objects.html">
+     pandas.DataFrame.infer_objects
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.copy.html">
+     pandas.DataFrame.copy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.bool.html">
+     pandas.DataFrame.bool
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.head.html">
+     pandas.DataFrame.head
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.at.html">
+     pandas.DataFrame.at
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.iat.html">
+     pandas.DataFrame.iat
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.loc.html">
+     pandas.DataFrame.loc
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.iloc.html">
+     pandas.DataFrame.iloc
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.insert.html">
+     pandas.DataFrame.insert
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.__iter__.html">
+     pandas.DataFrame.__iter__
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.items.html">
+     pandas.DataFrame.items
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.iteritems.html">
+     pandas.DataFrame.iteritems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.keys.html">
+     pandas.DataFrame.keys
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.iterrows.html">
+     pandas.DataFrame.iterrows
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.itertuples.html">
+     pandas.DataFrame.itertuples
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.lookup.html">
+     pandas.DataFrame.lookup
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.pop.html">
+     pandas.DataFrame.pop
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.tail.html">
+     pandas.DataFrame.tail
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.xs.html">
+     pandas.DataFrame.xs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.get.html">
+     pandas.DataFrame.get
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.isin.html">
+     pandas.DataFrame.isin
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.where.html">
+     pandas.DataFrame.where
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.mask.html">
+     pandas.DataFrame.mask
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.query.html">
+     pandas.DataFrame.query
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.add.html">
+     pandas.DataFrame.add
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.sub.html">
+     pandas.DataFrame.sub
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.mul.html">
+     pandas.DataFrame.mul
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.div.html">
+     pandas.DataFrame.div
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.truediv.html">
+     pandas.DataFrame.truediv
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.floordiv.html">
+     pandas.DataFrame.floordiv
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.mod.html">
+     pandas.DataFrame.mod
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.pow.html">
+     pandas.DataFrame.pow
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.dot.html">
+     pandas.DataFrame.dot
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.radd.html">
+     pandas.DataFrame.radd
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.rsub.html">
+     pandas.DataFrame.rsub
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.rmul.html">
+     pandas.DataFrame.rmul
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.rdiv.html">
+     pandas.DataFrame.rdiv
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.rtruediv.html">
+     pandas.DataFrame.rtruediv
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.rfloordiv.html">
+     pandas.DataFrame.rfloordiv
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.rmod.html">
+     pandas.DataFrame.rmod
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.rpow.html">
+     pandas.DataFrame.rpow
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.lt.html">
+     pandas.DataFrame.lt
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.gt.html">
+     pandas.DataFrame.gt
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.le.html">
+     pandas.DataFrame.le
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.ge.html">
+     pandas.DataFrame.ge
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.ne.html">
+     pandas.DataFrame.ne
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.eq.html">
+     pandas.DataFrame.eq
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.combine.html">
+     pandas.DataFrame.combine
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.combine_first.html">
+     pandas.DataFrame.combine_first
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.apply.html">
+     pandas.DataFrame.apply
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.applymap.html">
+     pandas.DataFrame.applymap
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.pipe.html">
+     pandas.DataFrame.pipe
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.agg.html">
+     pandas.DataFrame.agg
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.aggregate.html">
+     pandas.DataFrame.aggregate
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.transform.html">
+     pandas.DataFrame.transform
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.groupby.html">
+     pandas.DataFrame.groupby
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.rolling.html">
+     pandas.DataFrame.rolling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.expanding.html">
+     pandas.DataFrame.expanding
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.ewm.html">
+     pandas.DataFrame.ewm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.abs.html">
+     pandas.DataFrame.abs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.all.html">
+     pandas.DataFrame.all
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.any.html">
+     pandas.DataFrame.any
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.clip.html">
+     pandas.DataFrame.clip
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.corr.html">
+     pandas.DataFrame.corr
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.corrwith.html">
+     pandas.DataFrame.corrwith
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.count.html">
+     pandas.DataFrame.count
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.cov.html">
+     pandas.DataFrame.cov
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.cummax.html">
+     pandas.DataFrame.cummax
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.cummin.html">
+     pandas.DataFrame.cummin
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.cumprod.html">
+     pandas.DataFrame.cumprod
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.cumsum.html">
+     pandas.DataFrame.cumsum
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.describe.html">
+     pandas.DataFrame.describe
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.diff.html">
+     pandas.DataFrame.diff
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.eval.html">
+     pandas.DataFrame.eval
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.kurt.html">
+     pandas.DataFrame.kurt
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.kurtosis.html">
+     pandas.DataFrame.kurtosis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.mad.html">
+     pandas.DataFrame.mad
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.max.html">
+     pandas.DataFrame.max
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.mean.html">
+     pandas.DataFrame.mean
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.median.html">
+     pandas.DataFrame.median
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.min.html">
+     pandas.DataFrame.min
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.mode.html">
+     pandas.DataFrame.mode
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.pct_change.html">
+     pandas.DataFrame.pct_change
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.prod.html">
+     pandas.DataFrame.prod
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.product.html">
+     pandas.DataFrame.product
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.quantile.html">
+     pandas.DataFrame.quantile
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.rank.html">
+     pandas.DataFrame.rank
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.round.html">
+     pandas.DataFrame.round
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.sem.html">
+     pandas.DataFrame.sem
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.skew.html">
+     pandas.DataFrame.skew
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.sum.html">
+     pandas.DataFrame.sum
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.std.html">
+     pandas.DataFrame.std
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.var.html">
+     pandas.DataFrame.var
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.nunique.html">
+     pandas.DataFrame.nunique
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.value_counts.html">
+     pandas.DataFrame.value_counts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.add_prefix.html">
+     pandas.DataFrame.add_prefix
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.add_suffix.html">
+     pandas.DataFrame.add_suffix
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.align.html">
+     pandas.DataFrame.align
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.at_time.html">
+     pandas.DataFrame.at_time
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.between_time.html">
+     pandas.DataFrame.between_time
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.drop.html">
+     pandas.DataFrame.drop
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.drop_duplicates.html">
+     pandas.DataFrame.drop_duplicates
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.duplicated.html">
+     pandas.DataFrame.duplicated
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.equals.html">
+     pandas.DataFrame.equals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.filter.html">
+     pandas.DataFrame.filter
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.first.html">
+     pandas.DataFrame.first
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.head.html">
+     pandas.DataFrame.head
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.idxmax.html">
+     pandas.DataFrame.idxmax
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.idxmin.html">
+     pandas.DataFrame.idxmin
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.last.html">
+     pandas.DataFrame.last
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.reindex.html">
+     pandas.DataFrame.reindex
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.reindex_like.html">
+     pandas.DataFrame.reindex_like
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.rename.html">
+     pandas.DataFrame.rename
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.rename_axis.html">
+     pandas.DataFrame.rename_axis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.reset_index.html">
+     pandas.DataFrame.reset_index
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.sample.html">
+     pandas.DataFrame.sample
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.set_axis.html">
+     pandas.DataFrame.set_axis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.set_index.html">
+     pandas.DataFrame.set_index
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.tail.html">
+     pandas.DataFrame.tail
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.take.html">
+     pandas.DataFrame.take
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.truncate.html">
+     pandas.DataFrame.truncate
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.backfill.html">
+     pandas.DataFrame.backfill
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.bfill.html">
+     pandas.DataFrame.bfill
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.dropna.html">
+     pandas.DataFrame.dropna
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.ffill.html">
+     pandas.DataFrame.ffill
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.fillna.html">
+     pandas.DataFrame.fillna
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.interpolate.html">
+     pandas.DataFrame.interpolate
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.isna.html">
+     pandas.DataFrame.isna
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.isnull.html">
+     pandas.DataFrame.isnull
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.notna.html">
+     pandas.DataFrame.notna
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.notnull.html">
+     pandas.DataFrame.notnull
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.pad.html">
+     pandas.DataFrame.pad
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.replace.html">
+     pandas.DataFrame.replace
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.droplevel.html">
+     pandas.DataFrame.droplevel
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.pivot.html">
+     pandas.DataFrame.pivot
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.pivot_table.html">
+     pandas.DataFrame.pivot_table
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.reorder_levels.html">
+     pandas.DataFrame.reorder_levels
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.sort_values.html">
+     pandas.DataFrame.sort_values
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.sort_index.html">
+     pandas.DataFrame.sort_index
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.nlargest.html">
+     pandas.DataFrame.nlargest
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.nsmallest.html">
+     pandas.DataFrame.nsmallest
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.swaplevel.html">
+     pandas.DataFrame.swaplevel
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.stack.html">
+     pandas.DataFrame.stack
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.unstack.html">
+     pandas.DataFrame.unstack
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.swapaxes.html">
+     pandas.DataFrame.swapaxes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.melt.html">
+     pandas.DataFrame.melt
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.explode.html">
+     pandas.DataFrame.explode
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.squeeze.html">
+     pandas.DataFrame.squeeze
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.to_xarray.html">
+     pandas.DataFrame.to_xarray
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.T.html">
+     pandas.DataFrame.T
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.transpose.html">
+     pandas.DataFrame.transpose
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.append.html">
+     pandas.DataFrame.append
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.assign.html">
+     pandas.DataFrame.assign
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.compare.html">
+     pandas.DataFrame.compare
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.join.html">
+     pandas.DataFrame.join
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.merge.html">
+     pandas.DataFrame.merge
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.update.html">
+     pandas.DataFrame.update
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.asfreq.html">
+     pandas.DataFrame.asfreq
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.asof.html">
+     pandas.DataFrame.asof
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.shift.html">
+     pandas.DataFrame.shift
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.slice_shift.html">
+     pandas.DataFrame.slice_shift
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.tshift.html">
+     pandas.DataFrame.tshift
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.first_valid_index.html">
+     pandas.DataFrame.first_valid_index
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.last_valid_index.html">
+     pandas.DataFrame.last_valid_index
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.resample.html">
+     pandas.DataFrame.resample
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.to_period.html">
+     pandas.DataFrame.to_period
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.to_timestamp.html">
+     pandas.DataFrame.to_timestamp
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.tz_convert.html">
+     pandas.DataFrame.tz_convert
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.tz_localize.html">
+     pandas.DataFrame.tz_localize
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Flags.html">
+     pandas.Flags
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.attrs.html">
+     pandas.DataFrame.attrs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.plot.html">
+     pandas.DataFrame.plot
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.plot.area.html">
+     pandas.DataFrame.plot.area
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.plot.bar.html">
+     pandas.DataFrame.plot.bar
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.plot.barh.html">
+     pandas.DataFrame.plot.barh
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.plot.box.html">
+     pandas.DataFrame.plot.box
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.plot.density.html">
+     pandas.DataFrame.plot.density
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.plot.hexbin.html">
+     pandas.DataFrame.plot.hexbin
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.plot.hist.html">
+     pandas.DataFrame.plot.hist
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.plot.kde.html">
+     pandas.DataFrame.plot.kde
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.plot.line.html">
+     pandas.DataFrame.plot.line
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.plot.pie.html">
+     pandas.DataFrame.plot.pie
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.plot.scatter.html">
+     pandas.DataFrame.plot.scatter
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.boxplot.html">
+     pandas.DataFrame.boxplot
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.hist.html">
+     pandas.DataFrame.hist
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.sparse.density.html">
+     pandas.DataFrame.sparse.density
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.sparse.from_spmatrix.html">
+     pandas.DataFrame.sparse.from_spmatrix
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.sparse.to_coo.html">
+     pandas.DataFrame.sparse.to_coo
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.sparse.to_dense.html">
+     pandas.DataFrame.sparse.to_dense
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.from_dict.html">
+     pandas.DataFrame.from_dict
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.from_records.html">
+     pandas.DataFrame.from_records
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.to_orc.html">
+     pandas.DataFrame.to_orc
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.to_parquet.html">
+     pandas.DataFrame.to_parquet
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.to_pickle.html">
+     pandas.DataFrame.to_pickle
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.to_csv.html">
+     pandas.DataFrame.to_csv
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.to_hdf.html">
+     pandas.DataFrame.to_hdf
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.to_sql.html">
+     pandas.DataFrame.to_sql
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.to_dict.html">
+     pandas.DataFrame.to_dict
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.to_excel.html">
+     pandas.DataFrame.to_excel
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.to_json.html">
+     pandas.DataFrame.to_json
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.to_html.html">
+     pandas.DataFrame.to_html
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.to_feather.html">
+     pandas.DataFrame.to_feather
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.to_latex.html">
+     pandas.DataFrame.to_latex
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.to_stata.html">
+     pandas.DataFrame.to_stata
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.to_gbq.html">
+     pandas.DataFrame.to_gbq
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.to_records.html">
+     pandas.DataFrame.to_records
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.to_string.html">
+     pandas.DataFrame.to_string
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.to_clipboard.html">
+     pandas.DataFrame.to_clipboard
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.to_markdown.html">
+     pandas.DataFrame.to_markdown
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.style.html">
+     pandas.DataFrame.style
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.__dataframe__.html">
+     pandas.DataFrame.__dataframe__
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../arrays.html">
+   pandas arrays, scalars, and data types
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../indexing.html">
+   Index objects
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../offset_frequency.html">
+   Date offsets
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../window.html">
+   Window
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../groupby.html">
+   GroupBy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../resampling.html">
+   Resampling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../style.html">
+   Style
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../plotting.html">
+   Plotting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../options.html">
+   Options and settings
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../extensions.html">
+   Extensions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../testing.html">
+   Testing
+  </a>
+ </li>
+</ul>
+
+    
+  </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+      </div>
+      <main class="bd-main">
+        
+        
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+            </div>
+            
+            
+            <article class="bd-article" role="main">
+              
+  <section id="pandas-dataframe-to-numpy">
+<h1>pandas.DataFrame.to_numpy<a class="headerlink" href="#pandas-dataframe-to-numpy" title="Permalink to this headline">#</a></h1>
+<dl class="py method">
+<dt class="sig sig-object py" id="pandas.DataFrame.to_numpy">
+<span class="sig-prename descclassname"><span class="pre">DataFrame.</span></span><span class="sig-name descname"><span class="pre">to_numpy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">copy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">na_value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">_NoDefault.no_default</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.5.3/pandas/core/frame.py#L1780-L1847"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.DataFrame.to_numpy" title="Permalink to this definition">#</a></dt>
+<dd><p>Convert the DataFrame to a NumPy array.</p>
+<p>By default, the dtype of the returned array will be the common NumPy
+dtype of all types in the DataFrame. For example, if the dtypes are
+<code class="docutils literal notranslate"><span class="pre">float16</span></code> and <code class="docutils literal notranslate"><span class="pre">float32</span></code>, the results dtype will be <code class="docutils literal notranslate"><span class="pre">float32</span></code>.
+This may require copying data and coercing values, which may be
+expensive.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl>
+<dt><strong>dtype</strong><span class="classifier">str or numpy.dtype, optional</span></dt><dd><p>The dtype to pass to <code class="xref py py-meth docutils literal notranslate"><span class="pre">numpy.asarray()</span></code>.</p>
+</dd>
+<dt><strong>copy</strong><span class="classifier">bool, default False</span></dt><dd><p>Whether to ensure that the returned value is not a view on
+another array. Note that <code class="docutils literal notranslate"><span class="pre">copy=False</span></code> does not <em>ensure</em> that
+<code class="docutils literal notranslate"><span class="pre">to_numpy()</span></code> is no-copy. Rather, <code class="docutils literal notranslate"><span class="pre">copy=True</span></code> ensure that
+a copy is made, even if not strictly necessary.</p>
+</dd>
+<dt><strong>na_value</strong><span class="classifier">Any, optional</span></dt><dd><p>The value to use for missing values. The default value depends
+on <cite>dtype</cite> and the dtypes of the DataFrame columns.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.1.0.</span></p>
+</div>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>numpy.ndarray</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="pandas.Series.to_numpy.html#pandas.Series.to_numpy" title="pandas.Series.to_numpy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Series.to_numpy</span></code></a></dt><dd><p>Similar method for Series.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="s2">&quot;B&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]})</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+<span class="go">array([[1, 3],</span>
+<span class="go">       [2, 4]])</span>
+</pre></div>
+</div>
+<p>With heterogeneous data, the lowest common type will have to
+be used.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="s2">&quot;B&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">]})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+<span class="go">array([[1. , 3. ],</span>
+<span class="go">       [2. , 4.5]])</span>
+</pre></div>
+</div>
+<p>For a mix of numeric and non-numeric types, the output array will
+have object dtype.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;C&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s1">&#39;2000&#39;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+<span class="go">array([[1, 3.0, Timestamp(&#39;2000-01-01 00:00:00&#39;)],</span>
+<span class="go">       [2, 4.5, Timestamp(&#39;2000-01-02 00:00:00&#39;)]], dtype=object)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+
+
+            </article>
+            
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="pandas.DataFrame.to_markdown.html" title="previous page">
+      <i class="fas fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">pandas.DataFrame.to_markdown</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="pandas.DataFrame.to_period.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">pandas.DataFrame.to_period</p>
+  </div>
+  <i class="fas fa-angle-right"></i>
+  </a>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+</div>
+
+<div class="toc-item">
+  
+<div class="tocsection sourcelink">
+    <a href="../../_sources/reference/api/pandas.DataFrame.to_numpy.rst.txt">
+        <i class="fas fa-file-alt"></i> Show Source
+    </a>
+</div>
+
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+          </div>
+        </footer>
+        
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=9b1a4fa89bdd0e95b23b"></script>
+
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    <p class="copyright">
+    &copy 2023 pandas via <a href="https://numfocus.org">NumFOCUS, Inc.</a> Hosted by <a href="https://www.ovhcloud.com">OVHcloud</a>.
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>

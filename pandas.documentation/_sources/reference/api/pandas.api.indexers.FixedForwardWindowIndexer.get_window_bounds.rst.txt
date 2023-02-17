@@ -1,0 +1,6 @@
+pandas.api.indexers.FixedForwardWindowIndexer.get\_window\_bounds
+=================================================================
+
+.. currentmodule:: pandas.api.indexers
+
+.. automethod:: FixedForwardWindowIndexer.get_window_bounds

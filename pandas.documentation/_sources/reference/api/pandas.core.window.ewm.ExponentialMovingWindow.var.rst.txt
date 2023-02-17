@@ -1,0 +1,6 @@
+pandas.core.window.ewm.ExponentialMovingWindow.var
+==================================================
+
+.. currentmodule:: pandas.core.window.ewm
+
+.. automethod:: ExponentialMovingWindow.var

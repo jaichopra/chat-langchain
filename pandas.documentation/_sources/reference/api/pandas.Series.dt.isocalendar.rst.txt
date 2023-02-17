@@ -1,0 +1,6 @@
+pandas.Series.dt.isocalendar
+============================
+
+.. currentmodule:: pandas
+
+.. autoaccessormethod:: Series.dt.isocalendar

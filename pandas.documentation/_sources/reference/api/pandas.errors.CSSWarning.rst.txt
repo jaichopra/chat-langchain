@@ -1,0 +1,6 @@
+pandas.errors.CSSWarning
+========================
+
+.. currentmodule:: pandas.errors
+
+.. autoexception:: CSSWarning

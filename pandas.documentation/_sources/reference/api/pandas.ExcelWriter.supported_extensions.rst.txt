@@ -1,0 +1,6 @@
+pandas.ExcelWriter.supported\_extensions
+========================================
+
+.. currentmodule:: pandas
+
+.. autoproperty:: ExcelWriter.supported_extensions

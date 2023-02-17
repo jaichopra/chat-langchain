@@ -1,0 +1,6 @@
+pandas.tseries.offsets.Micro.n
+==============================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. autoattribute:: Micro.n

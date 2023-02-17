@@ -1,0 +1,1268 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Frequently Asked Questions (FAQ) &#8212; pandas 1.5.3 documentation</title>
+  <script>
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=9b1a4fa89bdd0e95b23b" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=9b1a4fa89bdd0e95b23b" rel="stylesheet">
+
+  
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/6.1.2/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/getting_started.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/pandas.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=9b1a4fa89bdd0e95b23b">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/toggleprompt.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script async="async" src="https://www.google-analytics.com/analytics.js"></script>
+    <script>
+                    window.ga = window.ga || function () {
+                        (ga.q = ga.q || []).push(arguments) };
+                    ga.l = +new Date;
+                    ga('create', 'UA-27880019-2', 'auto');
+                    ga('set', 'anonymizeIp', true);
+                    ga('send', 'pageview');
+                </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/gotchas';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        </script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Cookbook" href="cookbook.html" />
+    <link rel="prev" title="Sparse data structures" href="sparse.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fas fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../_static/pandas.svg" class="logo__image only-light" alt="Logo image">
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="../getting_started/index.html">
+                        Getting started
+                    </a>
+                </li>
+                
+
+                <li class="nav-item current active">
+                    <a class="nav-link" href="index.html">
+                        User Guide
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../reference/index.html">
+                        API reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../development/index.html">
+                        Development
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../whatsnew/index.html">
+                        Release notes
+                    </a>
+                </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      <div class="navbar-end-item navbar-end__search-button-container">
+        
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search">
+  <i class="fas fa-search"></i>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        1.5.3  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pandas-dev/pandas" title="GitHub" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/pandas_dev" title="Twitter" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  <div class="search-button-container--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search">
+  <i class="fas fa-search"></i>
+</button>
+  </div>
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fas fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="../getting_started/index.html">
+                        Getting started
+                    </a>
+                </li>
+                
+
+                <li class="nav-item current active">
+                    <a class="nav-link" href="index.html">
+                        User Guide
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../reference/index.html">
+                        API reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../development/index.html">
+                        Development
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../whatsnew/index.html">
+                        Release notes
+                    </a>
+                </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        1.5.3  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pandas-dev/pandas" title="GitHub" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/pandas_dev" title="Twitter" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item navbar-nav">
+    
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="10min.html">
+   10 minutes to pandas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dsintro.html">
+   Intro to data structures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="basics.html">
+   Essential basic functionality
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="io.html">
+   IO tools (text, CSV, HDF5, …)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="indexing.html">
+   Indexing and selecting data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="advanced.html">
+   MultiIndex / advanced indexing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="merging.html">
+   Merge, join, concatenate and compare
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="reshaping.html">
+   Reshaping and pivot tables
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="text.html">
+   Working with text data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="missing_data.html">
+   Working with missing data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="duplicates.html">
+   Duplicate Labels
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="categorical.html">
+   Categorical data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="integer_na.html">
+   Nullable integer data type
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="boolean.html">
+   Nullable Boolean data type
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="visualization.html">
+   Chart visualization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="style.html">
+   Table Visualization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="groupby.html">
+   Group by: split-apply-combine
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="window.html">
+   Windowing operations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="timeseries.html">
+   Time series / date functionality
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="timedeltas.html">
+   Time deltas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="options.html">
+   Options and settings
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="enhancingperf.html">
+   Enhancing performance
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="scale.html">
+   Scaling to large datasets
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="sparse.html">
+   Sparse data structures
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Frequently Asked Questions (FAQ)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cookbook.html">
+   Cookbook
+  </a>
+ </li>
+</ul>
+
+    
+  </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+      </div>
+      <main class="bd-main">
+        
+        
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+            </div>
+            
+            
+            <article class="bd-article" role="main">
+              
+  <section id="frequently-asked-questions-faq">
+<span id="gotchas"></span><h1>Frequently Asked Questions (FAQ)<a class="headerlink" href="#frequently-asked-questions-faq" title="Permalink to this headline">#</a></h1>
+<section id="dataframe-memory-usage">
+<span id="df-memory-usage"></span><h2>DataFrame memory usage<a class="headerlink" href="#dataframe-memory-usage" title="Permalink to this headline">#</a></h2>
+<p>The memory usage of a <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> (including the index) is shown when calling
+the <a class="reference internal" href="../reference/api/pandas.DataFrame.info.html#pandas.DataFrame.info" title="pandas.DataFrame.info"><code class="xref py py-meth docutils literal notranslate"><span class="pre">info()</span></code></a>. A configuration option, <code class="docutils literal notranslate"><span class="pre">display.memory_usage</span></code>
+(see <a class="reference internal" href="options.html#options-available"><span class="std std-ref">the list of options</span></a>), specifies if the
+<a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> memory usage will be displayed when invoking the <code class="docutils literal notranslate"><span class="pre">df.info()</span></code>
+method.</p>
+<p>For example, the memory usage of the <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> below is shown
+when calling <a class="reference internal" href="../reference/api/pandas.DataFrame.info.html#pandas.DataFrame.info" title="pandas.DataFrame.info"><code class="xref py py-meth docutils literal notranslate"><span class="pre">info()</span></code></a>:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="n">dtypes</span> <span class="o">=</span> <span class="p">[</span>
+<span class="gp">   ...: </span>    <span class="s2">&quot;int64&quot;</span><span class="p">,</span>
+<span class="gp">   ...: </span>    <span class="s2">&quot;float64&quot;</span><span class="p">,</span>
+<span class="gp">   ...: </span>    <span class="s2">&quot;datetime64[ns]&quot;</span><span class="p">,</span>
+<span class="gp">   ...: </span>    <span class="s2">&quot;timedelta64[ns]&quot;</span><span class="p">,</span>
+<span class="gp">   ...: </span>    <span class="s2">&quot;complex128&quot;</span><span class="p">,</span>
+<span class="gp">   ...: </span>    <span class="s2">&quot;object&quot;</span><span class="p">,</span>
+<span class="gp">   ...: </span>    <span class="s2">&quot;bool&quot;</span><span class="p">,</span>
+<span class="gp">   ...: </span><span class="p">]</span>
+<span class="gp">   ...: </span>
+
+<span class="gp">In [2]: </span><span class="n">n</span> <span class="o">=</span> <span class="mi">5000</span>
+
+<span class="gp">In [3]: </span><span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="n">t</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">dtypes</span><span class="p">}</span>
+
+<span class="gp">In [4]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="gp">In [5]: </span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;categorical&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;object&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;category&quot;</span><span class="p">)</span>
+
+<span class="gp">In [6]: </span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+<span class="go">&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;</span>
+<span class="go">RangeIndex: 5000 entries, 0 to 4999</span>
+<span class="go">Data columns (total 8 columns):</span>
+<span class="go"> #   Column           Non-Null Count  Dtype          </span>
+<span class="go">---  ------           --------------  -----          </span>
+<span class="go"> 0   int64            5000 non-null   int64          </span>
+<span class="go"> 1   float64          5000 non-null   float64        </span>
+<span class="go"> 2   datetime64[ns]   5000 non-null   datetime64[ns] </span>
+<span class="go"> 3   timedelta64[ns]  5000 non-null   timedelta64[ns]</span>
+<span class="go"> 4   complex128       5000 non-null   complex128     </span>
+<span class="go"> 5   object           5000 non-null   object         </span>
+<span class="go"> 6   bool             5000 non-null   bool           </span>
+<span class="go"> 7   categorical      5000 non-null   category       </span>
+<span class="go">dtypes: bool(1), category(1), complex128(1), datetime64[ns](1), float64(1), int64(1), object(1), timedelta64[ns](1)</span>
+<span class="go">memory usage: 288.2+ KB</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">+</span></code> symbol indicates that the true memory usage could be higher, because
+pandas does not count the memory used by values in columns with
+<code class="docutils literal notranslate"><span class="pre">dtype=object</span></code>.</p>
+<p>Passing <code class="docutils literal notranslate"><span class="pre">memory_usage='deep'</span></code> will enable a more accurate memory usage report,
+accounting for the full usage of the contained objects. This is optional
+as it can be expensive to do this deeper introspection.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [7]: </span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">memory_usage</span><span class="o">=</span><span class="s2">&quot;deep&quot;</span><span class="p">)</span>
+<span class="go">&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;</span>
+<span class="go">RangeIndex: 5000 entries, 0 to 4999</span>
+<span class="go">Data columns (total 8 columns):</span>
+<span class="go"> #   Column           Non-Null Count  Dtype          </span>
+<span class="go">---  ------           --------------  -----          </span>
+<span class="go"> 0   int64            5000 non-null   int64          </span>
+<span class="go"> 1   float64          5000 non-null   float64        </span>
+<span class="go"> 2   datetime64[ns]   5000 non-null   datetime64[ns] </span>
+<span class="go"> 3   timedelta64[ns]  5000 non-null   timedelta64[ns]</span>
+<span class="go"> 4   complex128       5000 non-null   complex128     </span>
+<span class="go"> 5   object           5000 non-null   object         </span>
+<span class="go"> 6   bool             5000 non-null   bool           </span>
+<span class="go"> 7   categorical      5000 non-null   category       </span>
+<span class="go">dtypes: bool(1), category(1), complex128(1), datetime64[ns](1), float64(1), int64(1), object(1), timedelta64[ns](1)</span>
+<span class="go">memory usage: 424.7 KB</span>
+</pre></div>
+</div>
+<p>By default the display option is set to <code class="docutils literal notranslate"><span class="pre">True</span></code> but can be explicitly
+overridden by passing the <code class="docutils literal notranslate"><span class="pre">memory_usage</span></code> argument when invoking <code class="docutils literal notranslate"><span class="pre">df.info()</span></code>.</p>
+<p>The memory usage of each column can be found by calling the
+<a class="reference internal" href="../reference/api/pandas.DataFrame.memory_usage.html#pandas.DataFrame.memory_usage" title="pandas.DataFrame.memory_usage"><code class="xref py py-meth docutils literal notranslate"><span class="pre">memory_usage()</span></code></a> method. This returns a <a class="reference internal" href="../reference/api/pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a> with an index
+represented by column names and memory usage of each column shown in bytes. For
+the <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> above, the memory usage of each column and the total memory
+usage can be found with the <code class="docutils literal notranslate"><span class="pre">memory_usage</span></code> method:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [8]: </span><span class="n">df</span><span class="o">.</span><span class="n">memory_usage</span><span class="p">()</span>
+<span class="gh">Out[8]: </span>
+<span class="go">Index                128</span>
+<span class="go">int64              40000</span>
+<span class="go">float64            40000</span>
+<span class="go">datetime64[ns]     40000</span>
+<span class="go">timedelta64[ns]    40000</span>
+<span class="go">complex128         80000</span>
+<span class="go">object             40000</span>
+<span class="go">bool                5000</span>
+<span class="go">categorical         9968</span>
+<span class="go">dtype: int64</span>
+
+<span class="go"># total memory usage of dataframe</span>
+<span class="gp">In [9]: </span><span class="n">df</span><span class="o">.</span><span class="n">memory_usage</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="gh">Out[9]: </span><span class="go">295096</span>
+</pre></div>
+</div>
+<p>By default the memory usage of the <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> index is shown in the
+returned <a class="reference internal" href="../reference/api/pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a>, the memory usage of the index can be suppressed by passing
+the <code class="docutils literal notranslate"><span class="pre">index=False</span></code> argument:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [10]: </span><span class="n">df</span><span class="o">.</span><span class="n">memory_usage</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="gh">Out[10]: </span>
+<span class="go">int64              40000</span>
+<span class="go">float64            40000</span>
+<span class="go">datetime64[ns]     40000</span>
+<span class="go">timedelta64[ns]    40000</span>
+<span class="go">complex128         80000</span>
+<span class="go">object             40000</span>
+<span class="go">bool                5000</span>
+<span class="go">categorical         9968</span>
+<span class="go">dtype: int64</span>
+</pre></div>
+</div>
+<p>The memory usage displayed by the <a class="reference internal" href="../reference/api/pandas.DataFrame.info.html#pandas.DataFrame.info" title="pandas.DataFrame.info"><code class="xref py py-meth docutils literal notranslate"><span class="pre">info()</span></code></a> method utilizes the
+<a class="reference internal" href="../reference/api/pandas.DataFrame.memory_usage.html#pandas.DataFrame.memory_usage" title="pandas.DataFrame.memory_usage"><code class="xref py py-meth docutils literal notranslate"><span class="pre">memory_usage()</span></code></a> method to determine the memory usage of a
+<a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> while also formatting the output in human-readable units (base-2
+representation; i.e. 1KB = 1024 bytes).</p>
+<p>See also <a class="reference internal" href="categorical.html#categorical-memory"><span class="std std-ref">Categorical Memory Usage</span></a>.</p>
+</section>
+<section id="using-if-truth-statements-with-pandas">
+<span id="gotchas-truth"></span><h2>Using if/truth statements with pandas<a class="headerlink" href="#using-if-truth-statements-with-pandas" title="Permalink to this headline">#</a></h2>
+<p>pandas follows the NumPy convention of raising an error when you try to convert
+something to a <code class="docutils literal notranslate"><span class="pre">bool</span></code>. This happens in an <code class="docutils literal notranslate"><span class="pre">if</span></code>-statement or when using the
+boolean operations: <code class="docutils literal notranslate"><span class="pre">and</span></code>, <code class="docutils literal notranslate"><span class="pre">or</span></code>, and <code class="docutils literal notranslate"><span class="pre">not</span></code>. It is not clear what the result
+of the following code should be:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">]):</span>
+<span class="gp">... </span>    <span class="k">pass</span>
+</pre></div>
+</div>
+<p>Should it be <code class="docutils literal notranslate"><span class="pre">True</span></code> because it’s not zero-length, or <code class="docutils literal notranslate"><span class="pre">False</span></code> because there
+are <code class="docutils literal notranslate"><span class="pre">False</span></code> values? It is unclear, so instead, pandas raises a <code class="docutils literal notranslate"><span class="pre">ValueError</span></code>:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [11]: </span><span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">]):</span>
+<span class="gp">   ....: </span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;I was true&quot;</span><span class="p">)</span>
+<span class="gp">   ....: </span>
+<span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">11</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">]):</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span>     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;I was true&quot;</span><span class="p">)</span>
+
+<span class="nn">File ~/work/pandas/pandas/pandas/core/generic.py:1527,</span> in <span class="ni">NDFrame.__nonzero__</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1525</span> <span class="nd">@final</span>
+<span class="g g-Whitespace">   </span><span class="mi">1526</span> <span class="k">def</span> <span class="nf">__nonzero__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NoReturn</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1527</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1528</span>         <span class="sa">f</span><span class="s2">&quot;The truth value of a </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2"> is ambiguous. &quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1529</span>         <span class="s2">&quot;Use a.empty, a.bool(), a.item(), a.any() or a.all().&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1530</span>     <span class="p">)</span>
+
+<span class="ne">ValueError</span>: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+</pre></div>
+</div>
+<p>You need to explicitly choose what you want to do with the <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a>, e.g.
+use <a class="reference internal" href="../reference/api/pandas.DataFrame.any.html#pandas.DataFrame.any" title="pandas.DataFrame.any"><code class="xref py py-meth docutils literal notranslate"><span class="pre">any()</span></code></a>, <a class="reference internal" href="../reference/api/pandas.DataFrame.all.html#pandas.DataFrame.all" title="pandas.DataFrame.all"><code class="xref py py-meth docutils literal notranslate"><span class="pre">all()</span></code></a> or <a class="reference internal" href="../reference/api/pandas.DataFrame.empty.html#pandas.DataFrame.empty" title="pandas.DataFrame.empty"><code class="xref py py-meth docutils literal notranslate"><span class="pre">empty()</span></code></a>.
+Alternatively, you might want to compare if the pandas object is <code class="docutils literal notranslate"><span class="pre">None</span></code>:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [12]: </span><span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">])</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="gp">   ....: </span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;I was not None&quot;</span><span class="p">)</span>
+<span class="gp">   ....: </span>
+<span class="go">I was not None</span>
+</pre></div>
+</div>
+<p>Below is how to check if any of the values are <code class="docutils literal notranslate"><span class="pre">True</span></code>:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [13]: </span><span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">])</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+<span class="gp">   ....: </span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;I am any&quot;</span><span class="p">)</span>
+<span class="gp">   ....: </span>
+<span class="go">I am any</span>
+</pre></div>
+</div>
+<p>To evaluate single-element pandas objects in a boolean context, use the method
+<a class="reference internal" href="../reference/api/pandas.DataFrame.bool.html#pandas.DataFrame.bool" title="pandas.DataFrame.bool"><code class="xref py py-meth docutils literal notranslate"><span class="pre">bool()</span></code></a>:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [14]: </span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="kc">True</span><span class="p">])</span><span class="o">.</span><span class="n">bool</span><span class="p">()</span>
+<span class="gh">Out[14]: </span><span class="go">True</span>
+
+<span class="gp">In [15]: </span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="kc">False</span><span class="p">])</span><span class="o">.</span><span class="n">bool</span><span class="p">()</span>
+<span class="gh">Out[15]: </span><span class="go">False</span>
+
+<span class="gp">In [16]: </span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="kc">True</span><span class="p">]])</span><span class="o">.</span><span class="n">bool</span><span class="p">()</span>
+<span class="gh">Out[16]: </span><span class="go">True</span>
+
+<span class="gp">In [17]: </span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="kc">False</span><span class="p">]])</span><span class="o">.</span><span class="n">bool</span><span class="p">()</span>
+<span class="gh">Out[17]: </span><span class="go">False</span>
+</pre></div>
+</div>
+<section id="bitwise-boolean">
+<h3>Bitwise boolean<a class="headerlink" href="#bitwise-boolean" title="Permalink to this headline">#</a></h3>
+<p>Bitwise boolean operators like <code class="docutils literal notranslate"><span class="pre">==</span></code> and <code class="docutils literal notranslate"><span class="pre">!=</span></code> return a boolean <a class="reference internal" href="../reference/api/pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a>
+which performs an element-wise comparison when compared to a scalar.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [18]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+
+<span class="gp">In [19]: </span><span class="n">s</span> <span class="o">==</span> <span class="mi">4</span>
+<span class="gh">Out[19]: </span>
+<span class="go">0    False</span>
+<span class="go">1    False</span>
+<span class="go">2    False</span>
+<span class="go">3    False</span>
+<span class="go">4     True</span>
+<span class="go">dtype: bool</span>
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="basics.html#basics-compare"><span class="std std-ref">boolean comparisons</span></a> for more examples.</p>
+</section>
+<section id="using-the-in-operator">
+<h3>Using the <code class="docutils literal notranslate"><span class="pre">in</span></code> operator<a class="headerlink" href="#using-the-in-operator" title="Permalink to this headline">#</a></h3>
+<p>Using the Python <code class="docutils literal notranslate"><span class="pre">in</span></code> operator on a <a class="reference internal" href="../reference/api/pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a> tests for membership in the
+<strong>index</strong>, not membership among the values.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [20]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="s2">&quot;abcde&quot;</span><span class="p">))</span>
+
+<span class="gp">In [21]: </span><span class="mi">2</span> <span class="ow">in</span> <span class="n">s</span>
+<span class="gh">Out[21]: </span><span class="go">False</span>
+
+<span class="gp">In [22]: </span><span class="s1">&#39;b&#39;</span> <span class="ow">in</span> <span class="n">s</span>
+<span class="gh">Out[22]: </span><span class="go">True</span>
+</pre></div>
+</div>
+<p>If this behavior is surprising, keep in mind that using <code class="docutils literal notranslate"><span class="pre">in</span></code> on a Python
+dictionary tests keys, not values, and <a class="reference internal" href="../reference/api/pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a> are dict-like.
+To test for membership in the values, use the method <a class="reference internal" href="../reference/api/pandas.Series.isin.html#pandas.Series.isin" title="pandas.Series.isin"><code class="xref py py-meth docutils literal notranslate"><span class="pre">isin()</span></code></a>:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [23]: </span><span class="n">s</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="mi">2</span><span class="p">])</span>
+<span class="gh">Out[23]: </span>
+<span class="go">a    False</span>
+<span class="go">b    False</span>
+<span class="go">c     True</span>
+<span class="go">d    False</span>
+<span class="go">e    False</span>
+<span class="go">dtype: bool</span>
+
+<span class="gp">In [24]: </span><span class="n">s</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="mi">2</span><span class="p">])</span><span class="o">.</span><span class="n">any</span><span class="p">()</span>
+<span class="gh">Out[24]: </span><span class="go">True</span>
+</pre></div>
+</div>
+<p>For <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a>, likewise, <code class="docutils literal notranslate"><span class="pre">in</span></code> applies to the column axis,
+testing for membership in the list of column names.</p>
+</section>
+</section>
+<section id="mutating-with-user-defined-function-udf-methods">
+<span id="gotchas-udf-mutation"></span><h2>Mutating with User Defined Function (UDF) methods<a class="headerlink" href="#mutating-with-user-defined-function-udf-methods" title="Permalink to this headline">#</a></h2>
+<p>This section applies to pandas methods that take a UDF. In particular, the methods
+<code class="docutils literal notranslate"><span class="pre">.apply</span></code>, <code class="docutils literal notranslate"><span class="pre">.aggregate</span></code>, <code class="docutils literal notranslate"><span class="pre">.transform</span></code>, and <code class="docutils literal notranslate"><span class="pre">.filter</span></code>.</p>
+<p>It is a general rule in programming that one should not mutate a container
+while it is being iterated over. Mutation will invalidate the iterator,
+causing unexpected behavior. Consider the example:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [25]: </span><span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+
+<span class="gp">In [26]: </span><span class="n">n_removed</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="gp">In [27]: </span><span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">values</span><span class="p">):</span>
+<span class="gp">   ....: </span>    <span class="n">idx</span> <span class="o">=</span> <span class="n">k</span> <span class="o">-</span> <span class="n">n_removed</span>
+<span class="gp">   ....: </span>    <span class="k">if</span> <span class="n">value</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+<span class="gp">   ....: </span>        <span class="k">del</span> <span class="n">values</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+<span class="gp">   ....: </span>        <span class="n">n_removed</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="gp">   ....: </span>    <span class="k">else</span><span class="p">:</span>
+<span class="gp">   ....: </span>        <span class="n">values</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="gp">   ....: </span>
+
+<span class="gp">In [28]: </span><span class="n">values</span>
+<span class="gh">Out[28]: </span><span class="go">[1, 4, 5]</span>
+</pre></div>
+</div>
+<p>One probably would have expected that the result would be <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">3,</span> <span class="pre">5]</span></code>.
+When using a pandas method that takes a UDF, internally pandas is often
+iterating over the
+<a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> or other pandas object. Therefore, if the UDF mutates (changes)
+the <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a>, unexpected behavior can arise.</p>
+<p>Here is a similar example with <a class="reference internal" href="../reference/api/pandas.DataFrame.apply.html#pandas.DataFrame.apply" title="pandas.DataFrame.apply"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.apply()</span></code></a>:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [29]: </span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+<span class="gp">   ....: </span>    <span class="n">s</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span>
+<span class="gp">   ....: </span>    <span class="k">return</span> <span class="n">s</span>
+<span class="gp">   ....: </span>
+
+<span class="gp">In [30]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]})</span>
+
+<span class="gp">In [31]: </span><span class="k">try</span><span class="p">:</span>
+<span class="gp">   ....: </span>    <span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s2">&quot;columns&quot;</span><span class="p">)</span>
+<span class="gp">   ....: </span><span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+<span class="gp">   ....: </span>    <span class="nb">print</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">err</span><span class="p">))</span>
+<span class="gp">   ....: </span>
+<span class="go">KeyError(&#39;a&#39;)</span>
+</pre></div>
+</div>
+<p>To resolve this issue, one can make a copy so that the mutation does
+not apply to the container being iterated over.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [32]: </span><span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+
+<span class="gp">In [33]: </span><span class="n">n_removed</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="gp">In [34]: </span><span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">values</span><span class="o">.</span><span class="n">copy</span><span class="p">()):</span>
+<span class="gp">   ....: </span>    <span class="n">idx</span> <span class="o">=</span> <span class="n">k</span> <span class="o">-</span> <span class="n">n_removed</span>
+<span class="gp">   ....: </span>    <span class="k">if</span> <span class="n">value</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+<span class="gp">   ....: </span>        <span class="k">del</span> <span class="n">values</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+<span class="gp">   ....: </span>        <span class="n">n_removed</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="gp">   ....: </span>    <span class="k">else</span><span class="p">:</span>
+<span class="gp">   ....: </span>        <span class="n">values</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="gp">   ....: </span>
+
+<span class="gp">In [35]: </span><span class="n">values</span>
+<span class="gh">Out[35]: </span><span class="go">[1, 3, 5]</span>
+</pre></div>
+</div>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [36]: </span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+<span class="gp">   ....: </span>    <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="gp">   ....: </span>    <span class="n">s</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span>
+<span class="gp">   ....: </span>    <span class="k">return</span> <span class="n">s</span>
+<span class="gp">   ....: </span>
+
+<span class="gp">In [37]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]})</span>
+
+<span class="gp">In [38]: </span><span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s2">&quot;columns&quot;</span><span class="p">)</span>
+<span class="gh">Out[38]: </span>
+<span class="go">   b</span>
+<span class="go">0  4</span>
+<span class="go">1  5</span>
+<span class="go">2  6</span>
+</pre></div>
+</div>
+</section>
+<section id="nan-integer-na-values-and-na-type-promotions">
+<h2><code class="docutils literal notranslate"><span class="pre">NaN</span></code>, Integer <code class="docutils literal notranslate"><span class="pre">NA</span></code> values and <code class="docutils literal notranslate"><span class="pre">NA</span></code> type promotions<a class="headerlink" href="#nan-integer-na-values-and-na-type-promotions" title="Permalink to this headline">#</a></h2>
+<section id="choice-of-na-representation">
+<h3>Choice of <code class="docutils literal notranslate"><span class="pre">NA</span></code> representation<a class="headerlink" href="#choice-of-na-representation" title="Permalink to this headline">#</a></h3>
+<p>For lack of <code class="docutils literal notranslate"><span class="pre">NA</span></code> (missing) support from the ground up in NumPy and Python in
+general, we were given the difficult choice between either:</p>
+<ul class="simple">
+<li><p>A <em>masked array</em> solution: an array of data and an array of boolean values
+indicating whether a value is there or is missing.</p></li>
+<li><p>Using a special sentinel value, bit pattern, or set of sentinel values to
+denote <code class="docutils literal notranslate"><span class="pre">NA</span></code> across the dtypes.</p></li>
+</ul>
+<p>For many reasons we chose the latter. After years of production use it has
+proven, at least in my opinion, to be the best decision given the state of
+affairs in NumPy and Python in general. The special value <code class="docutils literal notranslate"><span class="pre">NaN</span></code>
+(Not-A-Number) is used everywhere as the <code class="docutils literal notranslate"><span class="pre">NA</span></code> value, and there are API
+functions <a class="reference internal" href="../reference/api/pandas.DataFrame.isna.html#pandas.DataFrame.isna" title="pandas.DataFrame.isna"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.isna()</span></code></a> and <a class="reference internal" href="../reference/api/pandas.DataFrame.notna.html#pandas.DataFrame.notna" title="pandas.DataFrame.notna"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.notna()</span></code></a> which can be used across the dtypes to
+detect NA values.</p>
+<p>However, it comes with it a couple of trade-offs which I most certainly have
+not ignored.</p>
+</section>
+<section id="support-for-integer-na">
+<span id="gotchas-intna"></span><h3>Support for integer <code class="docutils literal notranslate"><span class="pre">NA</span></code><a class="headerlink" href="#support-for-integer-na" title="Permalink to this headline">#</a></h3>
+<p>In the absence of high performance <code class="docutils literal notranslate"><span class="pre">NA</span></code> support being built into NumPy from
+the ground up, the primary casualty is the ability to represent NAs in integer
+arrays. For example:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [39]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="s2">&quot;abcde&quot;</span><span class="p">))</span>
+
+<span class="gp">In [40]: </span><span class="n">s</span>
+<span class="gh">Out[40]: </span>
+<span class="go">a    1</span>
+<span class="go">b    2</span>
+<span class="go">c    3</span>
+<span class="go">d    4</span>
+<span class="go">e    5</span>
+<span class="go">dtype: int64</span>
+
+<span class="gp">In [41]: </span><span class="n">s</span><span class="o">.</span><span class="n">dtype</span>
+<span class="gh">Out[41]: </span><span class="go">dtype(&#39;int64&#39;)</span>
+
+<span class="gp">In [42]: </span><span class="n">s2</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">reindex</span><span class="p">([</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="s2">&quot;f&quot;</span><span class="p">,</span> <span class="s2">&quot;u&quot;</span><span class="p">])</span>
+
+<span class="gp">In [43]: </span><span class="n">s2</span>
+<span class="gh">Out[43]: </span>
+<span class="go">a    1.0</span>
+<span class="go">b    2.0</span>
+<span class="go">c    3.0</span>
+<span class="go">f    NaN</span>
+<span class="go">u    NaN</span>
+<span class="go">dtype: float64</span>
+
+<span class="gp">In [44]: </span><span class="n">s2</span><span class="o">.</span><span class="n">dtype</span>
+<span class="gh">Out[44]: </span><span class="go">dtype(&#39;float64&#39;)</span>
+</pre></div>
+</div>
+<p>This trade-off is made largely for memory and performance reasons, and also so
+that the resulting <a class="reference internal" href="../reference/api/pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a> continues to be “numeric”.</p>
+<p>If you need to represent integers with possibly missing values, use one of
+the nullable-integer extension dtypes provided by pandas</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../reference/api/pandas.Int8Dtype.html#pandas.Int8Dtype" title="pandas.Int8Dtype"><code class="xref py py-class docutils literal notranslate"><span class="pre">Int8Dtype</span></code></a></p></li>
+<li><p><a class="reference internal" href="../reference/api/pandas.Int16Dtype.html#pandas.Int16Dtype" title="pandas.Int16Dtype"><code class="xref py py-class docutils literal notranslate"><span class="pre">Int16Dtype</span></code></a></p></li>
+<li><p><a class="reference internal" href="../reference/api/pandas.Int32Dtype.html#pandas.Int32Dtype" title="pandas.Int32Dtype"><code class="xref py py-class docutils literal notranslate"><span class="pre">Int32Dtype</span></code></a></p></li>
+<li><p><a class="reference internal" href="../reference/api/pandas.Int64Dtype.html#pandas.Int64Dtype" title="pandas.Int64Dtype"><code class="xref py py-class docutils literal notranslate"><span class="pre">Int64Dtype</span></code></a></p></li>
+</ul>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [45]: </span><span class="n">s_int</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="s2">&quot;abcde&quot;</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">Int64Dtype</span><span class="p">())</span>
+
+<span class="gp">In [46]: </span><span class="n">s_int</span>
+<span class="gh">Out[46]: </span>
+<span class="go">a    1</span>
+<span class="go">b    2</span>
+<span class="go">c    3</span>
+<span class="go">d    4</span>
+<span class="go">e    5</span>
+<span class="go">dtype: Int64</span>
+
+<span class="gp">In [47]: </span><span class="n">s_int</span><span class="o">.</span><span class="n">dtype</span>
+<span class="gh">Out[47]: </span><span class="go">Int64Dtype()</span>
+
+<span class="gp">In [48]: </span><span class="n">s2_int</span> <span class="o">=</span> <span class="n">s_int</span><span class="o">.</span><span class="n">reindex</span><span class="p">([</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="s2">&quot;f&quot;</span><span class="p">,</span> <span class="s2">&quot;u&quot;</span><span class="p">])</span>
+
+<span class="gp">In [49]: </span><span class="n">s2_int</span>
+<span class="gh">Out[49]: </span>
+<span class="go">a       1</span>
+<span class="go">b       2</span>
+<span class="go">c       3</span>
+<span class="go">f    &lt;NA&gt;</span>
+<span class="go">u    &lt;NA&gt;</span>
+<span class="go">dtype: Int64</span>
+
+<span class="gp">In [50]: </span><span class="n">s2_int</span><span class="o">.</span><span class="n">dtype</span>
+<span class="gh">Out[50]: </span><span class="go">Int64Dtype()</span>
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="integer_na.html#integer-na"><span class="std std-ref">Nullable integer data type</span></a> for more.</p>
+</section>
+<section id="na-type-promotions">
+<h3><code class="docutils literal notranslate"><span class="pre">NA</span></code> type promotions<a class="headerlink" href="#na-type-promotions" title="Permalink to this headline">#</a></h3>
+<p>When introducing NAs into an existing <a class="reference internal" href="../reference/api/pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a> or <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> via
+<a class="reference internal" href="../reference/api/pandas.Series.reindex.html#pandas.Series.reindex" title="pandas.Series.reindex"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reindex()</span></code></a> or some other means, boolean and integer types will be
+promoted to a different dtype in order to store the NAs. The promotions are
+summarized in this table:</p>
+<table class="colwidths-given table">
+<colgroup>
+<col style="width: 40%" />
+<col style="width: 60%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Typeclass</p></th>
+<th class="head"><p>Promotion dtype for storing NAs</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">floating</span></code></p></td>
+<td><p>no change</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">object</span></code></p></td>
+<td><p>no change</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p>cast to <code class="docutils literal notranslate"><span class="pre">float64</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></td>
+<td><p>cast to <code class="docutils literal notranslate"><span class="pre">object</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>While this may seem like a heavy trade-off, I have found very few cases where
+this is an issue in practice i.e. storing values greater than 2**53. Some
+explanation for the motivation is in the next section.</p>
+</section>
+<section id="why-not-make-numpy-like-r">
+<h3>Why not make NumPy like R?<a class="headerlink" href="#why-not-make-numpy-like-r" title="Permalink to this headline">#</a></h3>
+<p>Many people have suggested that NumPy should simply emulate the <code class="docutils literal notranslate"><span class="pre">NA</span></code> support
+present in the more domain-specific statistical programming language <a class="reference external" href="https://www.r-project.org/">R</a>. Part of the reason is the NumPy type hierarchy:</p>
+<table class="colwidths-given table">
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 70%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Typeclass</p></th>
+<th class="head"><p>Dtypes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">numpy.floating</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">float16,</span> <span class="pre">float32,</span> <span class="pre">float64,</span> <span class="pre">float128</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">numpy.integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int8,</span> <span class="pre">int16,</span> <span class="pre">int32,</span> <span class="pre">int64</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">numpy.unsignedinteger</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">uint8,</span> <span class="pre">uint16,</span> <span class="pre">uint32,</span> <span class="pre">uint64</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">numpy.object_</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object_</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">numpy.bool_</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bool_</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">numpy.character</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">string_,</span> <span class="pre">unicode_</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>The R language, by contrast, only has a handful of built-in data types:
+<code class="docutils literal notranslate"><span class="pre">integer</span></code>, <code class="docutils literal notranslate"><span class="pre">numeric</span></code> (floating-point), <code class="docutils literal notranslate"><span class="pre">character</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">boolean</span></code>. <code class="docutils literal notranslate"><span class="pre">NA</span></code> types are implemented by reserving special bit patterns for
+each type to be used as the missing value. While doing this with the full NumPy
+type hierarchy would be possible, it would be a more substantial trade-off
+(especially for the 8- and 16-bit data types) and implementation undertaking.</p>
+<p>An alternate approach is that of using masked arrays. A masked array is an
+array of data with an associated boolean <em>mask</em> denoting whether each value
+should be considered <code class="docutils literal notranslate"><span class="pre">NA</span></code> or not. I am personally not in love with this
+approach as I feel that overall it places a fairly heavy burden on the user and
+the library implementer. Additionally, it exacts a fairly high performance cost
+when working with numerical data compared with the simple approach of using
+<code class="docutils literal notranslate"><span class="pre">NaN</span></code>. Thus, I have chosen the Pythonic “practicality beats purity” approach
+and traded integer <code class="docutils literal notranslate"><span class="pre">NA</span></code> capability for a much simpler approach of using a
+special value in float and object arrays to denote <code class="docutils literal notranslate"><span class="pre">NA</span></code>, and promoting
+integer arrays to floating when NAs must be introduced.</p>
+</section>
+</section>
+<section id="differences-with-numpy">
+<h2>Differences with NumPy<a class="headerlink" href="#differences-with-numpy" title="Permalink to this headline">#</a></h2>
+<p>For <a class="reference internal" href="../reference/api/pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a> and <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> objects, <a class="reference internal" href="../reference/api/pandas.DataFrame.var.html#pandas.DataFrame.var" title="pandas.DataFrame.var"><code class="xref py py-meth docutils literal notranslate"><span class="pre">var()</span></code></a> normalizes by
+<code class="docutils literal notranslate"><span class="pre">N-1</span></code> to produce <a class="reference external" href="https://en.wikipedia.org/wiki/Bias_of_an_estimator">unbiased estimates of the population variance</a>, while NumPy’s
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">numpy.var()</span></code> normalizes by N, which measures the variance of the sample. Note that
+<a class="reference internal" href="../reference/api/pandas.DataFrame.cov.html#pandas.DataFrame.cov" title="pandas.DataFrame.cov"><code class="xref py py-meth docutils literal notranslate"><span class="pre">cov()</span></code></a> normalizes by <code class="docutils literal notranslate"><span class="pre">N-1</span></code> in both pandas and NumPy.</p>
+</section>
+<section id="thread-safety">
+<span id="gotchas-thread-safety"></span><h2>Thread-safety<a class="headerlink" href="#thread-safety" title="Permalink to this headline">#</a></h2>
+<p>pandas is not 100% thread safe. The known issues relate to
+the <a class="reference internal" href="../reference/api/pandas.DataFrame.copy.html#pandas.DataFrame.copy" title="pandas.DataFrame.copy"><code class="xref py py-meth docutils literal notranslate"><span class="pre">copy()</span></code></a> method. If you are doing a lot of copying of
+<a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> objects shared among threads, we recommend holding locks inside
+the threads where the data copying occurs.</p>
+<p>See <a class="reference external" href="https://stackoverflow.com/questions/13592618/python-pandas-dataframe-thread-safe">this link</a>
+for more information.</p>
+</section>
+<section id="byte-ordering-issues">
+<h2>Byte-ordering issues<a class="headerlink" href="#byte-ordering-issues" title="Permalink to this headline">#</a></h2>
+<p>Occasionally you may have to deal with data that were created on a machine with
+a different byte order than the one on which you are running Python. A common
+symptom of this issue is an error like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Traceback</span>
+    <span class="o">...</span>
+<span class="ne">ValueError</span><span class="p">:</span> <span class="n">Big</span><span class="o">-</span><span class="n">endian</span> <span class="n">buffer</span> <span class="ow">not</span> <span class="n">supported</span> <span class="n">on</span> <span class="n">little</span><span class="o">-</span><span class="n">endian</span> <span class="n">compiler</span>
+</pre></div>
+</div>
+<p>To deal
+with this issue you should convert the underlying NumPy array to the native
+system byte order <em>before</em> passing it to <a class="reference internal" href="../reference/api/pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a> or <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a>
+constructors using something similar to the following:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [51]: </span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)),</span> <span class="s2">&quot;&gt;i4&quot;</span><span class="p">)</span>  <span class="c1"># big endian</span>
+
+<span class="gp">In [52]: </span><span class="n">newx</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">byteswap</span><span class="p">()</span><span class="o">.</span><span class="n">newbyteorder</span><span class="p">()</span>  <span class="c1"># force native byteorder</span>
+
+<span class="gp">In [53]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">newx</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>See <a class="reference external" href="https://numpy.org/doc/stable/user/basics.byteswapping.html">the NumPy documentation on byte order</a> for more
+details.</p>
+</section>
+</section>
+
+
+            </article>
+            
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="sparse.html" title="previous page">
+      <i class="fas fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Sparse data structures</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="cookbook.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">Cookbook</p>
+  </div>
+  <i class="fas fa-angle-right"></i>
+  </a>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fas fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dataframe-memory-usage">
+   DataFrame memory usage
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#using-if-truth-statements-with-pandas">
+   Using if/truth statements with pandas
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bitwise-boolean">
+     Bitwise boolean
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#using-the-in-operator">
+     Using the
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       in
+      </span>
+     </code>
+     operator
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#mutating-with-user-defined-function-udf-methods">
+   Mutating with User Defined Function (UDF) methods
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#nan-integer-na-values-and-na-type-promotions">
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     NaN
+    </span>
+   </code>
+   , Integer
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     NA
+    </span>
+   </code>
+   values and
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     NA
+    </span>
+   </code>
+   type promotions
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#choice-of-na-representation">
+     Choice of
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       NA
+      </span>
+     </code>
+     representation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#support-for-integer-na">
+     Support for integer
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       NA
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#na-type-promotions">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       NA
+      </span>
+     </code>
+     type promotions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#why-not-make-numpy-like-r">
+     Why not make NumPy like R?
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#differences-with-numpy">
+   Differences with NumPy
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#thread-safety">
+   Thread-safety
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#byte-ordering-issues">
+   Byte-ordering issues
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+<div class="toc-item">
+  
+</div>
+
+<div class="toc-item">
+  
+<div class="tocsection sourcelink">
+    <a href="../_sources/user_guide/gotchas.rst.txt">
+        <i class="fas fa-file-alt"></i> Show Source
+    </a>
+</div>
+
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+          </div>
+        </footer>
+        
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=9b1a4fa89bdd0e95b23b"></script>
+
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    <p class="copyright">
+    &copy 2023 pandas via <a href="https://numfocus.org">NumFOCUS, Inc.</a> Hosted by <a href="https://www.ovhcloud.com">OVHcloud</a>.
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>

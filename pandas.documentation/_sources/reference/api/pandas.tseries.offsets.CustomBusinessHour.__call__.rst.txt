@@ -1,0 +1,6 @@
+pandas.tseries.offsets.CustomBusinessHour.\_\_call\_\_
+======================================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. automethod:: CustomBusinessHour.__call__

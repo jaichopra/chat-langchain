@@ -1,0 +1,6 @@
+pandas.ExcelWriter.cur\_sheet
+=============================
+
+.. currentmodule:: pandas
+
+.. autoproperty:: ExcelWriter.cur_sheet

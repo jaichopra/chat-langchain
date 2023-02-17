@@ -1,0 +1,6 @@
+pandas.errors.OutOfBoundsTimedelta
+==================================
+
+.. currentmodule:: pandas.errors
+
+.. autoexception:: OutOfBoundsTimedelta

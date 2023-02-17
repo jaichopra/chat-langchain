@@ -1,0 +1,6 @@
+pandas.tseries.offsets.BusinessMonthBegin.apply\_index
+======================================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. automethod:: BusinessMonthBegin.apply_index

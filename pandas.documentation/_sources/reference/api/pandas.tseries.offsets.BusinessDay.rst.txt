@@ -1,0 +1,57 @@
+pandas.tseries.offsets.BusinessDay
+==================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. autoclass:: BusinessDay
+
+   
+
+
+..
+   HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+   .. autosummary::
+      :toctree:
+      
+      BusinessDay.__call__
+      BusinessDay.apply
+      BusinessDay.apply_index
+      BusinessDay.copy
+      BusinessDay.isAnchored
+      BusinessDay.is_anchored
+      BusinessDay.is_month_end
+      BusinessDay.is_month_start
+      BusinessDay.is_on_offset
+      BusinessDay.is_quarter_end
+      BusinessDay.is_quarter_start
+      BusinessDay.is_year_end
+      BusinessDay.is_year_start
+      BusinessDay.onOffset
+      BusinessDay.rollback
+      BusinessDay.rollforward
+
+
+
+
+   
+
+
+..
+   HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+   .. autosummary::
+      :toctree:
+      
+      BusinessDay.base
+      BusinessDay.calendar
+      BusinessDay.freqstr
+      BusinessDay.holidays
+      BusinessDay.kwds
+      BusinessDay.n
+      BusinessDay.name
+      BusinessDay.nanos
+      BusinessDay.normalize
+      BusinessDay.offset
+      BusinessDay.rule_code
+      BusinessDay.weekmask
+
+

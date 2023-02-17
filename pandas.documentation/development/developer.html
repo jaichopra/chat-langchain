@@ -1,0 +1,749 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Developer &#8212; pandas 1.5.3 documentation</title>
+  <script>
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=9b1a4fa89bdd0e95b23b" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=9b1a4fa89bdd0e95b23b" rel="stylesheet">
+
+  
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/6.1.2/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/getting_started.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/pandas.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=9b1a4fa89bdd0e95b23b">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/toggleprompt.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script async="async" src="https://www.google-analytics.com/analytics.js"></script>
+    <script>
+                    window.ga = window.ga || function () {
+                        (ga.q = ga.q || []).push(arguments) };
+                    ga.l = +new Date;
+                    ga('create', 'UA-27880019-2', 'auto');
+                    ga('set', 'anonymizeIp', true);
+                    ga('send', 'pageview');
+                </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'development/developer';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        </script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Policies" href="policies.html" />
+    <link rel="prev" title="Extending pandas" href="extending.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fas fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../_static/pandas.svg" class="logo__image only-light" alt="Logo image">
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="../getting_started/index.html">
+                        Getting started
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../user_guide/index.html">
+                        User Guide
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../reference/index.html">
+                        API reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item current active">
+                    <a class="nav-link" href="index.html">
+                        Development
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../whatsnew/index.html">
+                        Release notes
+                    </a>
+                </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      <div class="navbar-end-item navbar-end__search-button-container">
+        
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search">
+  <i class="fas fa-search"></i>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        1.5.3  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pandas-dev/pandas" title="GitHub" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/pandas_dev" title="Twitter" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  <div class="search-button-container--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search">
+  <i class="fas fa-search"></i>
+</button>
+  </div>
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fas fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="../getting_started/index.html">
+                        Getting started
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../user_guide/index.html">
+                        User Guide
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../reference/index.html">
+                        API reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item current active">
+                    <a class="nav-link" href="index.html">
+                        Development
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../whatsnew/index.html">
+                        Release notes
+                    </a>
+                </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        1.5.3  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pandas-dev/pandas" title="GitHub" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/pandas_dev" title="Twitter" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item navbar-nav">
+    
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="contributing.html">
+   Contributing to pandas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="contributing_environment.html">
+   Creating a development environment
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="contributing_documentation.html">
+   Contributing to the documentation
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label class="toctree-toggle" for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="contributing_docstring.html">
+     pandas docstring guide
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="contributing_codebase.html">
+   Contributing to the code base
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="maintaining.html">
+   pandas maintenance
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="internals.html">
+   Internals
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="debugging_extensions.html">
+   Debugging C extensions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extending.html">
+   Extending pandas
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Developer
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="policies.html">
+   Policies
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="roadmap.html">
+   Roadmap
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="community.html">
+   Contributor community
+  </a>
+ </li>
+</ul>
+
+    
+  </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+      </div>
+      <main class="bd-main">
+        
+        
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+            </div>
+            
+            
+            <article class="bd-article" role="main">
+              
+  <section id="developer">
+<span id="id1"></span><h1>Developer<a class="headerlink" href="#developer" title="Permalink to this headline">#</a></h1>
+<p>This section will focus on downstream applications of pandas.</p>
+<section id="storing-pandas-dataframe-objects-in-apache-parquet-format">
+<span id="apache-parquet"></span><h2>Storing pandas DataFrame objects in Apache Parquet format<a class="headerlink" href="#storing-pandas-dataframe-objects-in-apache-parquet-format" title="Permalink to this headline">#</a></h2>
+<p>The <a class="reference external" href="https://github.com/apache/parquet-format">Apache Parquet</a> format
+provides key-value metadata at the file and column level, stored in the footer
+of the Parquet file:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="m">5</span>:<span class="w"> </span>optional<span class="w"> </span>list&lt;KeyValue&gt;<span class="w"> </span>key_value_metadata
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">KeyValue</span></code> is</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>struct<span class="w"> </span>KeyValue<span class="w"> </span><span class="o">{</span>
+<span class="w">  </span><span class="m">1</span>:<span class="w"> </span>required<span class="w"> </span>string<span class="w"> </span>key
+<span class="w">  </span><span class="m">2</span>:<span class="w"> </span>optional<span class="w"> </span>string<span class="w"> </span>value
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>So that a <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> can be faithfully reconstructed, we store a
+<code class="docutils literal notranslate"><span class="pre">pandas</span></code> metadata key in the <code class="docutils literal notranslate"><span class="pre">FileMetaData</span></code> with the value stored as :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>{&#39;index_columns&#39;: [&lt;descr0&gt;, &lt;descr1&gt;, ...],
+ &#39;column_indexes&#39;: [&lt;ci0&gt;, &lt;ci1&gt;, ..., &lt;ciN&gt;],
+ &#39;columns&#39;: [&lt;c0&gt;, &lt;c1&gt;, ...],
+ &#39;pandas_version&#39;: $VERSION,
+ &#39;creator&#39;: {
+   &#39;library&#39;: $LIBRARY,
+   &#39;version&#39;: $LIBRARY_VERSION
+ }}
+</pre></div>
+</div>
+<p>The “descriptor” values <code class="docutils literal notranslate"><span class="pre">&lt;descr0&gt;</span></code> in the <code class="docutils literal notranslate"><span class="pre">'index_columns'</span></code> field are
+strings (referring to a column) or dictionaries with values as described below.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">&lt;c0&gt;</span></code>/<code class="docutils literal notranslate"><span class="pre">&lt;ci0&gt;</span></code> and so forth are dictionaries containing the metadata
+for each column, <em>including the index columns</em>. This has JSON form:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>{&#39;name&#39;: column_name,
+ &#39;field_name&#39;: parquet_column_name,
+ &#39;pandas_type&#39;: pandas_type,
+ &#39;numpy_type&#39;: numpy_type,
+ &#39;metadata&#39;: metadata}
+</pre></div>
+</div>
+<p>See below for the detailed specification for these.</p>
+<section id="index-metadata-descriptors">
+<h3>Index metadata descriptors<a class="headerlink" href="#index-metadata-descriptors" title="Permalink to this headline">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">RangeIndex</span></code> can be stored as metadata only, not requiring serialization. The
+descriptor format for these as is follows:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">RangeIndex</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="s2">&quot;kind&quot;</span><span class="p">:</span> <span class="s2">&quot;range&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">index</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+    <span class="s2">&quot;start&quot;</span><span class="p">:</span> <span class="n">index</span><span class="o">.</span><span class="n">start</span><span class="p">,</span>
+    <span class="s2">&quot;stop&quot;</span><span class="p">:</span> <span class="n">index</span><span class="o">.</span><span class="n">stop</span><span class="p">,</span>
+    <span class="s2">&quot;step&quot;</span><span class="p">:</span> <span class="n">index</span><span class="o">.</span><span class="n">step</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Other index types must be serialized as data columns along with the other
+DataFrame columns. The metadata for these is a string indicating the name of
+the field in the data columns, for example <code class="docutils literal notranslate"><span class="pre">'__index_level_0__'</span></code>.</p>
+<p>If an index has a non-None <code class="docutils literal notranslate"><span class="pre">name</span></code> attribute, and there is no other column
+with a name matching that value, then the <code class="docutils literal notranslate"><span class="pre">index.name</span></code> value can be used as
+the descriptor. Otherwise (for unnamed indexes and ones with names colliding
+with other column names) a disambiguating name with pattern matching
+<code class="docutils literal notranslate"><span class="pre">__index_level_\d+__</span></code> should be used. In cases of named indexes as data
+columns, <code class="docutils literal notranslate"><span class="pre">name</span></code> attribute is always stored in the column descriptors as
+above.</p>
+</section>
+<section id="column-metadata">
+<h3>Column metadata<a class="headerlink" href="#column-metadata" title="Permalink to this headline">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">pandas_type</span></code> is the logical type of the column, and is one of:</p>
+<ul class="simple">
+<li><p>Boolean: <code class="docutils literal notranslate"><span class="pre">'bool'</span></code></p></li>
+<li><p>Integers: <code class="docutils literal notranslate"><span class="pre">'int8',</span> <span class="pre">'int16',</span> <span class="pre">'int32',</span> <span class="pre">'int64',</span> <span class="pre">'uint8',</span> <span class="pre">'uint16',</span> <span class="pre">'uint32',</span> <span class="pre">'uint64'</span></code></p></li>
+<li><p>Floats: <code class="docutils literal notranslate"><span class="pre">'float16',</span> <span class="pre">'float32',</span> <span class="pre">'float64'</span></code></p></li>
+<li><p>Date and Time Types: <code class="docutils literal notranslate"><span class="pre">'datetime',</span> <span class="pre">'datetimetz'</span></code>, <code class="docutils literal notranslate"><span class="pre">'timedelta'</span></code></p></li>
+<li><p>String: <code class="docutils literal notranslate"><span class="pre">'unicode',</span> <span class="pre">'bytes'</span></code></p></li>
+<li><p>Categorical: <code class="docutils literal notranslate"><span class="pre">'categorical'</span></code></p></li>
+<li><p>Other Python objects: <code class="docutils literal notranslate"><span class="pre">'object'</span></code></p></li>
+</ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">numpy_type</span></code> is the physical storage type of the column, which is the
+result of <code class="docutils literal notranslate"><span class="pre">str(dtype)</span></code> for the underlying NumPy array that holds the data. So
+for <code class="docutils literal notranslate"><span class="pre">datetimetz</span></code> this is <code class="docutils literal notranslate"><span class="pre">datetime64[ns]</span></code> and for categorical, it may be
+any of the supported integer categorical types.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">metadata</span></code> field is <code class="docutils literal notranslate"><span class="pre">None</span></code> except for:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">datetimetz</span></code>: <code class="docutils literal notranslate"><span class="pre">{'timezone':</span> <span class="pre">zone,</span> <span class="pre">'unit':</span> <span class="pre">'ns'}</span></code>, e.g. <code class="docutils literal notranslate"><span class="pre">{'timezone',</span>
+<span class="pre">'America/New_York',</span> <span class="pre">'unit':</span> <span class="pre">'ns'}</span></code>. The <code class="docutils literal notranslate"><span class="pre">'unit'</span></code> is optional, and if
+omitted it is assumed to be nanoseconds.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">categorical</span></code>: <code class="docutils literal notranslate"><span class="pre">{'num_categories':</span> <span class="pre">K,</span> <span class="pre">'ordered':</span> <span class="pre">is_ordered,</span> <span class="pre">'type':</span> <span class="pre">$TYPE}</span></code></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Here <code class="docutils literal notranslate"><span class="pre">'type'</span></code> is optional, and can be a nested pandas type specification
+here (but not categorical)</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">unicode</span></code>: <code class="docutils literal notranslate"><span class="pre">{'encoding':</span> <span class="pre">encoding}</span></code></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>The encoding is optional, and if not present is UTF-8</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">object</span></code>: <code class="docutils literal notranslate"><span class="pre">{'encoding':</span> <span class="pre">encoding}</span></code>. Objects can be serialized and stored
+in <code class="docutils literal notranslate"><span class="pre">BYTE_ARRAY</span></code> Parquet columns. The encoding can be one of:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">'pickle'</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'bson'</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'json'</span></code></p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">timedelta</span></code>: <code class="docutils literal notranslate"><span class="pre">{'unit':</span> <span class="pre">'ns'}</span></code>. The <code class="docutils literal notranslate"><span class="pre">'unit'</span></code> is optional, and if omitted
+it is assumed to be nanoseconds. This metadata is optional altogether</p></li>
+</ul>
+<p>For types other than these, the <code class="docutils literal notranslate"><span class="pre">'metadata'</span></code> key can be
+omitted. Implementations can assume <code class="docutils literal notranslate"><span class="pre">None</span></code> if the key is not present.</p>
+<p>As an example of fully-formed metadata:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>{&#39;index_columns&#39;: [&#39;__index_level_0__&#39;],
+ &#39;column_indexes&#39;: [
+     {&#39;name&#39;: None,
+      &#39;field_name&#39;: &#39;None&#39;,
+      &#39;pandas_type&#39;: &#39;unicode&#39;,
+      &#39;numpy_type&#39;: &#39;object&#39;,
+      &#39;metadata&#39;: {&#39;encoding&#39;: &#39;UTF-8&#39;}}
+ ],
+ &#39;columns&#39;: [
+     {&#39;name&#39;: &#39;c0&#39;,
+      &#39;field_name&#39;: &#39;c0&#39;,
+      &#39;pandas_type&#39;: &#39;int8&#39;,
+      &#39;numpy_type&#39;: &#39;int8&#39;,
+      &#39;metadata&#39;: None},
+     {&#39;name&#39;: &#39;c1&#39;,
+      &#39;field_name&#39;: &#39;c1&#39;,
+      &#39;pandas_type&#39;: &#39;bytes&#39;,
+      &#39;numpy_type&#39;: &#39;object&#39;,
+      &#39;metadata&#39;: None},
+     {&#39;name&#39;: &#39;c2&#39;,
+      &#39;field_name&#39;: &#39;c2&#39;,
+      &#39;pandas_type&#39;: &#39;categorical&#39;,
+      &#39;numpy_type&#39;: &#39;int16&#39;,
+      &#39;metadata&#39;: {&#39;num_categories&#39;: 1000, &#39;ordered&#39;: False}},
+     {&#39;name&#39;: &#39;c3&#39;,
+      &#39;field_name&#39;: &#39;c3&#39;,
+      &#39;pandas_type&#39;: &#39;datetimetz&#39;,
+      &#39;numpy_type&#39;: &#39;datetime64[ns]&#39;,
+      &#39;metadata&#39;: {&#39;timezone&#39;: &#39;America/Los_Angeles&#39;}},
+     {&#39;name&#39;: &#39;c4&#39;,
+      &#39;field_name&#39;: &#39;c4&#39;,
+      &#39;pandas_type&#39;: &#39;object&#39;,
+      &#39;numpy_type&#39;: &#39;object&#39;,
+      &#39;metadata&#39;: {&#39;encoding&#39;: &#39;pickle&#39;}},
+     {&#39;name&#39;: None,
+      &#39;field_name&#39;: &#39;__index_level_0__&#39;,
+      &#39;pandas_type&#39;: &#39;int64&#39;,
+      &#39;numpy_type&#39;: &#39;int64&#39;,
+      &#39;metadata&#39;: None}
+ ],
+ &#39;pandas_version&#39;: &#39;1.4.0&#39;,
+ &#39;creator&#39;: {
+   &#39;library&#39;: &#39;pyarrow&#39;,
+   &#39;version&#39;: &#39;0.13.0&#39;
+ }}
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+            </article>
+            
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="extending.html" title="previous page">
+      <i class="fas fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Extending pandas</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="policies.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">Policies</p>
+  </div>
+  <i class="fas fa-angle-right"></i>
+  </a>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fas fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#storing-pandas-dataframe-objects-in-apache-parquet-format">
+   Storing pandas DataFrame objects in Apache Parquet format
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#index-metadata-descriptors">
+     Index metadata descriptors
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#column-metadata">
+     Column metadata
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+<div class="toc-item">
+  
+</div>
+
+<div class="toc-item">
+  
+<div class="tocsection sourcelink">
+    <a href="../_sources/development/developer.rst.txt">
+        <i class="fas fa-file-alt"></i> Show Source
+    </a>
+</div>
+
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+          </div>
+        </footer>
+        
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=9b1a4fa89bdd0e95b23b"></script>
+
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    <p class="copyright">
+    &copy 2023 pandas via <a href="https://numfocus.org">NumFOCUS, Inc.</a> Hosted by <a href="https://www.ovhcloud.com">OVHcloud</a>.
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>

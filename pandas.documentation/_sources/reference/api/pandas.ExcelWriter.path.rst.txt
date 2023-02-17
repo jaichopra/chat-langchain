@@ -1,0 +1,6 @@
+pandas.ExcelWriter.path
+=======================
+
+.. currentmodule:: pandas
+
+.. autoproperty:: ExcelWriter.path

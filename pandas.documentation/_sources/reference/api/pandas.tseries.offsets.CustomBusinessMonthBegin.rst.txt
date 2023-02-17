@@ -1,0 +1,60 @@
+pandas.tseries.offsets.CustomBusinessMonthBegin
+===============================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. autoclass:: CustomBusinessMonthBegin
+
+   
+
+
+..
+   HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+   .. autosummary::
+      :toctree:
+      
+      CustomBusinessMonthBegin.__call__
+      CustomBusinessMonthBegin.apply
+      CustomBusinessMonthBegin.apply_index
+      CustomBusinessMonthBegin.copy
+      CustomBusinessMonthBegin.isAnchored
+      CustomBusinessMonthBegin.is_anchored
+      CustomBusinessMonthBegin.is_month_end
+      CustomBusinessMonthBegin.is_month_start
+      CustomBusinessMonthBegin.is_on_offset
+      CustomBusinessMonthBegin.is_quarter_end
+      CustomBusinessMonthBegin.is_quarter_start
+      CustomBusinessMonthBegin.is_year_end
+      CustomBusinessMonthBegin.is_year_start
+      CustomBusinessMonthBegin.onOffset
+      CustomBusinessMonthBegin.rollback
+      CustomBusinessMonthBegin.rollforward
+
+
+
+
+   
+
+
+..
+   HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+   .. autosummary::
+      :toctree:
+      
+      CustomBusinessMonthBegin.base
+      CustomBusinessMonthBegin.calendar
+      CustomBusinessMonthBegin.cbday_roll
+      CustomBusinessMonthBegin.freqstr
+      CustomBusinessMonthBegin.holidays
+      CustomBusinessMonthBegin.kwds
+      CustomBusinessMonthBegin.m_offset
+      CustomBusinessMonthBegin.month_roll
+      CustomBusinessMonthBegin.n
+      CustomBusinessMonthBegin.name
+      CustomBusinessMonthBegin.nanos
+      CustomBusinessMonthBegin.normalize
+      CustomBusinessMonthBegin.offset
+      CustomBusinessMonthBegin.rule_code
+      CustomBusinessMonthBegin.weekmask
+
+

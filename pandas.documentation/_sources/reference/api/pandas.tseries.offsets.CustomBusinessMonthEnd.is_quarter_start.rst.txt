@@ -1,0 +1,6 @@
+pandas.tseries.offsets.CustomBusinessMonthEnd.is\_quarter\_start
+================================================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. automethod:: CustomBusinessMonthEnd.is_quarter_start

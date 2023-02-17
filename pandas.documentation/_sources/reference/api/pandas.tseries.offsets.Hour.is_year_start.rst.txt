@@ -1,0 +1,6 @@
+pandas.tseries.offsets.Hour.is\_year\_start
+===========================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. automethod:: Hour.is_year_start

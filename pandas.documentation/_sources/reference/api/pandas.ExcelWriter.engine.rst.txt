@@ -1,0 +1,6 @@
+pandas.ExcelWriter.engine
+=========================
+
+.. currentmodule:: pandas
+
+.. autoproperty:: ExcelWriter.engine

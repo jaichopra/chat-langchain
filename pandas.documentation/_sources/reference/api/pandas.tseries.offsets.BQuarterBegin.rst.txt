@@ -1,0 +1,54 @@
+pandas.tseries.offsets.BQuarterBegin
+====================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. autoclass:: BQuarterBegin
+
+   
+
+
+..
+   HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+   .. autosummary::
+      :toctree:
+      
+      BQuarterBegin.__call__
+      BQuarterBegin.apply
+      BQuarterBegin.apply_index
+      BQuarterBegin.copy
+      BQuarterBegin.isAnchored
+      BQuarterBegin.is_anchored
+      BQuarterBegin.is_month_end
+      BQuarterBegin.is_month_start
+      BQuarterBegin.is_on_offset
+      BQuarterBegin.is_quarter_end
+      BQuarterBegin.is_quarter_start
+      BQuarterBegin.is_year_end
+      BQuarterBegin.is_year_start
+      BQuarterBegin.onOffset
+      BQuarterBegin.rollback
+      BQuarterBegin.rollforward
+
+
+
+
+   
+
+
+..
+   HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+   .. autosummary::
+      :toctree:
+      
+      BQuarterBegin.base
+      BQuarterBegin.freqstr
+      BQuarterBegin.kwds
+      BQuarterBegin.n
+      BQuarterBegin.name
+      BQuarterBegin.nanos
+      BQuarterBegin.normalize
+      BQuarterBegin.rule_code
+      BQuarterBegin.startingMonth
+
+

@@ -1,0 +1,1135 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Scaling to large datasets &#8212; pandas 1.5.3 documentation</title>
+  <script>
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=9b1a4fa89bdd0e95b23b" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=9b1a4fa89bdd0e95b23b" rel="stylesheet">
+
+  
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/6.1.2/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/getting_started.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/pandas.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=9b1a4fa89bdd0e95b23b">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/toggleprompt.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script async="async" src="https://www.google-analytics.com/analytics.js"></script>
+    <script>
+                    window.ga = window.ga || function () {
+                        (ga.q = ga.q || []).push(arguments) };
+                    ga.l = +new Date;
+                    ga('create', 'UA-27880019-2', 'auto');
+                    ga('set', 'anonymizeIp', true);
+                    ga('send', 'pageview');
+                </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/scale';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        </script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Sparse data structures" href="sparse.html" />
+    <link rel="prev" title="Enhancing performance" href="enhancingperf.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fas fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../_static/pandas.svg" class="logo__image only-light" alt="Logo image">
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="../getting_started/index.html">
+                        Getting started
+                    </a>
+                </li>
+                
+
+                <li class="nav-item current active">
+                    <a class="nav-link" href="index.html">
+                        User Guide
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../reference/index.html">
+                        API reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../development/index.html">
+                        Development
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../whatsnew/index.html">
+                        Release notes
+                    </a>
+                </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      <div class="navbar-end-item navbar-end__search-button-container">
+        
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search">
+  <i class="fas fa-search"></i>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        1.5.3  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pandas-dev/pandas" title="GitHub" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/pandas_dev" title="Twitter" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  <div class="search-button-container--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search">
+  <i class="fas fa-search"></i>
+</button>
+  </div>
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fas fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="../getting_started/index.html">
+                        Getting started
+                    </a>
+                </li>
+                
+
+                <li class="nav-item current active">
+                    <a class="nav-link" href="index.html">
+                        User Guide
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../reference/index.html">
+                        API reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../development/index.html">
+                        Development
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../whatsnew/index.html">
+                        Release notes
+                    </a>
+                </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        1.5.3  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pandas-dev/pandas" title="GitHub" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/pandas_dev" title="Twitter" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item navbar-nav">
+    
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="10min.html">
+   10 minutes to pandas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dsintro.html">
+   Intro to data structures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="basics.html">
+   Essential basic functionality
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="io.html">
+   IO tools (text, CSV, HDF5, …)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="indexing.html">
+   Indexing and selecting data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="advanced.html">
+   MultiIndex / advanced indexing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="merging.html">
+   Merge, join, concatenate and compare
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="reshaping.html">
+   Reshaping and pivot tables
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="text.html">
+   Working with text data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="missing_data.html">
+   Working with missing data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="duplicates.html">
+   Duplicate Labels
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="categorical.html">
+   Categorical data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="integer_na.html">
+   Nullable integer data type
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="boolean.html">
+   Nullable Boolean data type
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="visualization.html">
+   Chart visualization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="style.html">
+   Table Visualization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="groupby.html">
+   Group by: split-apply-combine
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="window.html">
+   Windowing operations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="timeseries.html">
+   Time series / date functionality
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="timedeltas.html">
+   Time deltas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="options.html">
+   Options and settings
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="enhancingperf.html">
+   Enhancing performance
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Scaling to large datasets
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="sparse.html">
+   Sparse data structures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="gotchas.html">
+   Frequently Asked Questions (FAQ)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cookbook.html">
+   Cookbook
+  </a>
+ </li>
+</ul>
+
+    
+  </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+      </div>
+      <main class="bd-main">
+        
+        
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+            </div>
+            
+            
+            <article class="bd-article" role="main">
+              
+  <section id="scaling-to-large-datasets">
+<span id="scale"></span><h1>Scaling to large datasets<a class="headerlink" href="#scaling-to-large-datasets" title="Permalink to this headline">#</a></h1>
+<p>pandas provides data structures for in-memory analytics, which makes using pandas
+to analyze datasets that are larger than memory datasets somewhat tricky. Even datasets
+that are a sizable fraction of memory become unwieldy, as some pandas operations need
+to make intermediate copies.</p>
+<p>This document provides a few recommendations for scaling your analysis to larger datasets.
+It’s a complement to <a class="reference internal" href="enhancingperf.html#enhancingperf"><span class="std std-ref">Enhancing performance</span></a>, which focuses on speeding up analysis
+for datasets that fit in memory.</p>
+<p>But first, it’s worth considering <em>not using pandas</em>. pandas isn’t the right
+tool for all situations. If you’re working with very large datasets and a tool
+like PostgreSQL fits your needs, then you should probably be using that.
+Assuming you want or need the expressiveness and power of pandas, let’s carry on.</p>
+<section id="load-less-data">
+<h2>Load less data<a class="headerlink" href="#load-less-data" title="Permalink to this headline">#</a></h2>
+<p>Suppose our raw dataset on disk has many columns:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>                     <span class="n">id_0</span>    <span class="n">name_0</span>       <span class="n">x_0</span>       <span class="n">y_0</span>  <span class="n">id_1</span>   <span class="n">name_1</span>       <span class="n">x_1</span>  <span class="o">...</span>  <span class="n">name_8</span>       <span class="n">x_8</span>       <span class="n">y_8</span>  <span class="n">id_9</span>   <span class="n">name_9</span>       <span class="n">x_9</span>       <span class="n">y_9</span>
+<span class="n">timestamp</span>                                                                         <span class="o">...</span>
+<span class="mi">2000</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span> <span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span>  <span class="mi">1015</span>   <span class="n">Michael</span> <span class="o">-</span><span class="mf">0.399453</span>  <span class="mf">0.095427</span>   <span class="mi">994</span>    <span class="n">Frank</span> <span class="o">-</span><span class="mf">0.176842</span>  <span class="o">...</span>     <span class="n">Dan</span> <span class="o">-</span><span class="mf">0.315310</span>  <span class="mf">0.713892</span>  <span class="mi">1025</span>   <span class="n">Victor</span> <span class="o">-</span><span class="mf">0.135779</span>  <span class="mf">0.346801</span>
+<span class="mi">2000</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span> <span class="mi">00</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mi">00</span>   <span class="mi">969</span>  <span class="n">Patricia</span>  <span class="mf">0.650773</span> <span class="o">-</span><span class="mf">0.874275</span>  <span class="mi">1003</span>    <span class="n">Laura</span>  <span class="mf">0.459153</span>  <span class="o">...</span>  <span class="n">Ursula</span>  <span class="mf">0.913244</span> <span class="o">-</span><span class="mf">0.630308</span>  <span class="mi">1047</span>    <span class="n">Wendy</span> <span class="o">-</span><span class="mf">0.886285</span>  <span class="mf">0.035852</span>
+<span class="mi">2000</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span> <span class="mi">00</span><span class="p">:</span><span class="mi">02</span><span class="p">:</span><span class="mi">00</span>  <span class="mi">1016</span>    <span class="n">Victor</span> <span class="o">-</span><span class="mf">0.721465</span> <span class="o">-</span><span class="mf">0.584710</span>  <span class="mi">1046</span>  <span class="n">Michael</span>  <span class="mf">0.524994</span>  <span class="o">...</span>     <span class="n">Ray</span> <span class="o">-</span><span class="mf">0.656593</span>  <span class="mf">0.692568</span>  <span class="mi">1064</span>   <span class="n">Yvonne</span>  <span class="mf">0.070426</span>  <span class="mf">0.432047</span>
+<span class="mi">2000</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span> <span class="mi">00</span><span class="p">:</span><span class="mi">03</span><span class="p">:</span><span class="mi">00</span>   <span class="mi">939</span>     <span class="n">Alice</span> <span class="o">-</span><span class="mf">0.746004</span> <span class="o">-</span><span class="mf">0.908008</span>   <span class="mi">996</span>   <span class="n">Ingrid</span> <span class="o">-</span><span class="mf">0.414523</span>  <span class="o">...</span>   <span class="n">Jerry</span> <span class="o">-</span><span class="mf">0.958994</span>  <span class="mf">0.608210</span>   <span class="mi">978</span>    <span class="n">Wendy</span>  <span class="mf">0.855949</span> <span class="o">-</span><span class="mf">0.648988</span>
+<span class="mi">2000</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">01</span> <span class="mi">00</span><span class="p">:</span><span class="mi">04</span><span class="p">:</span><span class="mi">00</span>  <span class="mi">1017</span>       <span class="n">Dan</span>  <span class="mf">0.919451</span> <span class="o">-</span><span class="mf">0.803504</span>  <span class="mi">1048</span>    <span class="n">Jerry</span> <span class="o">-</span><span class="mf">0.569235</span>  <span class="o">...</span>   <span class="n">Frank</span> <span class="o">-</span><span class="mf">0.577022</span> <span class="o">-</span><span class="mf">0.409088</span>   <span class="mi">994</span>      <span class="n">Bob</span> <span class="o">-</span><span class="mf">0.270132</span>  <span class="mf">0.335176</span>
+<span class="o">...</span>                   <span class="o">...</span>       <span class="o">...</span>       <span class="o">...</span>       <span class="o">...</span>   <span class="o">...</span>      <span class="o">...</span>       <span class="o">...</span>  <span class="o">...</span>     <span class="o">...</span>       <span class="o">...</span>       <span class="o">...</span>   <span class="o">...</span>      <span class="o">...</span>       <span class="o">...</span>       <span class="o">...</span>
+<span class="mi">2000</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">30</span> <span class="mi">23</span><span class="p">:</span><span class="mi">56</span><span class="p">:</span><span class="mi">00</span>   <span class="mi">999</span>       <span class="n">Tim</span>  <span class="mf">0.162578</span>  <span class="mf">0.512817</span>   <span class="mi">973</span>    <span class="n">Kevin</span> <span class="o">-</span><span class="mf">0.403352</span>  <span class="o">...</span>     <span class="n">Tim</span> <span class="o">-</span><span class="mf">0.380415</span>  <span class="mf">0.008097</span>  <span class="mi">1041</span>  <span class="n">Charlie</span>  <span class="mf">0.191477</span> <span class="o">-</span><span class="mf">0.599519</span>
+<span class="mi">2000</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">30</span> <span class="mi">23</span><span class="p">:</span><span class="mi">57</span><span class="p">:</span><span class="mi">00</span>   <span class="mi">970</span>     <span class="n">Laura</span> <span class="o">-</span><span class="mf">0.433586</span> <span class="o">-</span><span class="mf">0.600289</span>   <span class="mi">958</span>   <span class="n">Oliver</span> <span class="o">-</span><span class="mf">0.966577</span>  <span class="o">...</span>   <span class="n">Zelda</span>  <span class="mf">0.971274</span>  <span class="mf">0.402032</span>  <span class="mi">1038</span>   <span class="n">Ursula</span>  <span class="mf">0.574016</span> <span class="o">-</span><span class="mf">0.930992</span>
+<span class="mi">2000</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">30</span> <span class="mi">23</span><span class="p">:</span><span class="mi">58</span><span class="p">:</span><span class="mi">00</span>  <span class="mi">1065</span>     <span class="n">Edith</span>  <span class="mf">0.232211</span> <span class="o">-</span><span class="mf">0.454540</span>   <span class="mi">971</span>      <span class="n">Tim</span>  <span class="mf">0.158484</span>  <span class="o">...</span>   <span class="n">Alice</span> <span class="o">-</span><span class="mf">0.222079</span> <span class="o">-</span><span class="mf">0.919274</span>  <span class="mi">1022</span>      <span class="n">Dan</span>  <span class="mf">0.031345</span> <span class="o">-</span><span class="mf">0.657755</span>
+<span class="mi">2000</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">30</span> <span class="mi">23</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mi">00</span>  <span class="mi">1019</span>    <span class="n">Ingrid</span>  <span class="mf">0.322208</span> <span class="o">-</span><span class="mf">0.615974</span>   <span class="mi">981</span>   <span class="n">Hannah</span>  <span class="mf">0.607517</span>  <span class="o">...</span>   <span class="n">Sarah</span> <span class="o">-</span><span class="mf">0.424440</span> <span class="o">-</span><span class="mf">0.117274</span>   <span class="mi">990</span>   <span class="n">George</span> <span class="o">-</span><span class="mf">0.375530</span>  <span class="mf">0.563312</span>
+<span class="mi">2000</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">31</span> <span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span>   <span class="mi">937</span>    <span class="n">Ursula</span> <span class="o">-</span><span class="mf">0.906523</span>  <span class="mf">0.943178</span>  <span class="mi">1018</span>    <span class="n">Alice</span> <span class="o">-</span><span class="mf">0.564513</span>  <span class="o">...</span>   <span class="n">Jerry</span>  <span class="mf">0.236837</span>  <span class="mf">0.807650</span>   <span class="mi">985</span>   <span class="n">Oliver</span>  <span class="mf">0.777642</span>  <span class="mf">0.783392</span>
+
+<span class="p">[</span><span class="mi">525601</span> <span class="n">rows</span> <span class="n">x</span> <span class="mi">40</span> <span class="n">columns</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>That can be generated by the following code snippet:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="gp">In [2]: </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="gp">In [3]: </span><span class="k">def</span> <span class="nf">make_timeseries</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s2">&quot;2000-01-01&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;2000-12-31&quot;</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">&quot;1D&quot;</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="gp">   ...: </span>    <span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="n">freq</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;timestamp&quot;</span><span class="p">)</span>
+<span class="gp">   ...: </span>    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
+<span class="gp">   ...: </span>    <span class="n">state</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+<span class="gp">   ...: </span>    <span class="n">columns</span> <span class="o">=</span> <span class="p">{</span>
+<span class="gp">   ...: </span>        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">state</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="s2">&quot;Alice&quot;</span><span class="p">,</span> <span class="s2">&quot;Bob&quot;</span><span class="p">,</span> <span class="s2">&quot;Charlie&quot;</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">),</span>
+<span class="gp">   ...: </span>        <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">state</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">),</span>
+<span class="gp">   ...: </span>        <span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="n">state</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span>
+<span class="gp">   ...: </span>        <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="n">state</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span>
+<span class="gp">   ...: </span>    <span class="p">}</span>
+<span class="gp">   ...: </span>    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="nb">sorted</span><span class="p">(</span><span class="n">columns</span><span class="p">))</span>
+<span class="gp">   ...: </span>    <span class="k">if</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">end</span><span class="p">:</span>
+<span class="gp">   ...: </span>        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="gp">   ...: </span>    <span class="k">return</span> <span class="n">df</span>
+<span class="gp">   ...: </span>
+
+<span class="gp">In [4]: </span><span class="n">timeseries</span> <span class="o">=</span> <span class="p">[</span>
+<span class="gp">   ...: </span>    <span class="n">make_timeseries</span><span class="p">(</span><span class="n">freq</span><span class="o">=</span><span class="s2">&quot;1T&quot;</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="gp">   ...: </span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="gp">   ...: </span><span class="p">]</span>
+<span class="gp">   ...: </span>
+
+<span class="gp">In [5]: </span><span class="n">ts_wide</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">timeseries</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="gp">In [6]: </span><span class="n">ts_wide</span><span class="o">.</span><span class="n">to_parquet</span><span class="p">(</span><span class="s2">&quot;timeseries_wide.parquet&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To load the columns we want, we have two options.
+Option 1 loads in all the data and then filters to what we need.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [7]: </span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;id_0&quot;</span><span class="p">,</span> <span class="s2">&quot;name_0&quot;</span><span class="p">,</span> <span class="s2">&quot;x_0&quot;</span><span class="p">,</span> <span class="s2">&quot;y_0&quot;</span><span class="p">]</span>
+
+<span class="gp">In [8]: </span><span class="n">pd</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span><span class="s2">&quot;timeseries_wide.parquet&quot;</span><span class="p">)[</span><span class="n">columns</span><span class="p">]</span>
+<span class="gh">Out[8]: </span>
+<span class="go">                     id_0 name_0       x_0       y_0</span>
+<span class="go">timestamp                                           </span>
+<span class="go">2000-01-01 00:00:00   977  Alice -0.821225  0.906222</span>
+<span class="go">2000-01-01 00:01:00  1018    Bob -0.219182  0.350855</span>
+<span class="go">2000-01-01 00:02:00   927  Alice  0.660908 -0.798511</span>
+<span class="go">2000-01-01 00:03:00   997    Bob -0.852458  0.735260</span>
+<span class="go">2000-01-01 00:04:00   965    Bob  0.717283  0.393391</span>
+<span class="go">...                   ...    ...       ...       ...</span>
+<span class="go">2000-12-30 23:56:00  1037    Bob -0.814321  0.612836</span>
+<span class="go">2000-12-30 23:57:00   980    Bob  0.232195 -0.618828</span>
+<span class="go">2000-12-30 23:58:00   965  Alice -0.231131  0.026310</span>
+<span class="go">2000-12-30 23:59:00   984  Alice  0.942819  0.853128</span>
+<span class="go">2000-12-31 00:00:00  1003  Alice  0.201125 -0.136655</span>
+
+<span class="go">[525601 rows x 4 columns]</span>
+</pre></div>
+</div>
+<p>Option 2 only loads the columns we request.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [9]: </span><span class="n">pd</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span><span class="s2">&quot;timeseries_wide.parquet&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">columns</span><span class="p">)</span>
+<span class="gh">Out[9]: </span>
+<span class="go">                     id_0 name_0       x_0       y_0</span>
+<span class="go">timestamp                                           </span>
+<span class="go">2000-01-01 00:00:00   977  Alice -0.821225  0.906222</span>
+<span class="go">2000-01-01 00:01:00  1018    Bob -0.219182  0.350855</span>
+<span class="go">2000-01-01 00:02:00   927  Alice  0.660908 -0.798511</span>
+<span class="go">2000-01-01 00:03:00   997    Bob -0.852458  0.735260</span>
+<span class="go">2000-01-01 00:04:00   965    Bob  0.717283  0.393391</span>
+<span class="go">...                   ...    ...       ...       ...</span>
+<span class="go">2000-12-30 23:56:00  1037    Bob -0.814321  0.612836</span>
+<span class="go">2000-12-30 23:57:00   980    Bob  0.232195 -0.618828</span>
+<span class="go">2000-12-30 23:58:00   965  Alice -0.231131  0.026310</span>
+<span class="go">2000-12-30 23:59:00   984  Alice  0.942819  0.853128</span>
+<span class="go">2000-12-31 00:00:00  1003  Alice  0.201125 -0.136655</span>
+
+<span class="go">[525601 rows x 4 columns]</span>
+</pre></div>
+</div>
+<p>If we were to measure the memory usage of the two calls, we’d see that specifying
+<code class="docutils literal notranslate"><span class="pre">columns</span></code> uses about 1/10th the memory in this case.</p>
+<p>With <a class="reference internal" href="../reference/api/pandas.read_csv.html#pandas.read_csv" title="pandas.read_csv"><code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.read_csv()</span></code></a>, you can specify <code class="docutils literal notranslate"><span class="pre">usecols</span></code> to limit the columns
+read into memory. Not all file formats that can be read by pandas provide an option
+to read a subset of columns.</p>
+</section>
+<section id="use-efficient-datatypes">
+<h2>Use efficient datatypes<a class="headerlink" href="#use-efficient-datatypes" title="Permalink to this headline">#</a></h2>
+<p>The default pandas data types are not the most memory efficient. This is
+especially true for text data columns with relatively few unique values (commonly
+referred to as “low-cardinality” data). By using more efficient data types, you
+can store larger datasets in memory.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [10]: </span><span class="n">ts</span> <span class="o">=</span> <span class="n">make_timeseries</span><span class="p">(</span><span class="n">freq</span><span class="o">=</span><span class="s2">&quot;30S&quot;</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="gp">In [11]: </span><span class="n">ts</span><span class="o">.</span><span class="n">to_parquet</span><span class="p">(</span><span class="s2">&quot;timeseries.parquet&quot;</span><span class="p">)</span>
+
+<span class="gp">In [12]: </span><span class="n">ts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span><span class="s2">&quot;timeseries.parquet&quot;</span><span class="p">)</span>
+
+<span class="gp">In [13]: </span><span class="n">ts</span>
+<span class="gh">Out[13]: </span>
+<span class="go">                       id     name         x         y</span>
+<span class="go">timestamp                                             </span>
+<span class="go">2000-01-01 00:00:00  1041    Alice  0.889987  0.281011</span>
+<span class="go">2000-01-01 00:00:30   988      Bob -0.455299  0.488153</span>
+<span class="go">2000-01-01 00:01:00  1018    Alice  0.096061  0.580473</span>
+<span class="go">2000-01-01 00:01:30   992      Bob  0.142482  0.041665</span>
+<span class="go">2000-01-01 00:02:00   960      Bob -0.036235  0.802159</span>
+<span class="go">...                   ...      ...       ...       ...</span>
+<span class="go">2000-12-30 23:58:00  1022    Alice  0.266191  0.875579</span>
+<span class="go">2000-12-30 23:58:30   974    Alice -0.009826  0.413686</span>
+<span class="go">2000-12-30 23:59:00  1028  Charlie  0.307108 -0.656789</span>
+<span class="go">2000-12-30 23:59:30  1002    Alice  0.202602  0.541335</span>
+<span class="go">2000-12-31 00:00:00   987    Alice  0.200832  0.615972</span>
+
+<span class="go">[1051201 rows x 4 columns]</span>
+</pre></div>
+</div>
+<p>Now, let’s inspect the data types and memory usage to see where we should focus our
+attention.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [14]: </span><span class="n">ts</span><span class="o">.</span><span class="n">dtypes</span>
+<span class="gh">Out[14]: </span>
+<span class="go">id        int64</span>
+<span class="go">name     object</span>
+<span class="go">x       float64</span>
+<span class="go">y       float64</span>
+<span class="go">dtype: object</span>
+</pre></div>
+</div>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [15]: </span><span class="n">ts</span><span class="o">.</span><span class="n">memory_usage</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># memory usage in bytes</span>
+<span class="gh">Out[15]: </span>
+<span class="go">Index     8409608</span>
+<span class="go">id        8409608</span>
+<span class="go">name     65176434</span>
+<span class="go">x         8409608</span>
+<span class="go">y         8409608</span>
+<span class="go">dtype: int64</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">name</span></code> column is taking up much more memory than any other. It has just a
+few unique values, so it’s a good candidate for converting to a
+<a class="reference internal" href="../reference/api/pandas.Categorical.html#pandas.Categorical" title="pandas.Categorical"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.Categorical</span></code></a>. With a <a class="reference internal" href="../reference/api/pandas.Categorical.html#pandas.Categorical" title="pandas.Categorical"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.Categorical</span></code></a>, we store each unique name once and use
+space-efficient integers to know which specific name is used in each row.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [16]: </span><span class="n">ts2</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="gp">In [17]: </span><span class="n">ts2</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ts2</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;category&quot;</span><span class="p">)</span>
+
+<span class="gp">In [18]: </span><span class="n">ts2</span><span class="o">.</span><span class="n">memory_usage</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gh">Out[18]: </span>
+<span class="go">Index    8409608</span>
+<span class="go">id       8409608</span>
+<span class="go">name     1051495</span>
+<span class="go">x        8409608</span>
+<span class="go">y        8409608</span>
+<span class="go">dtype: int64</span>
+</pre></div>
+</div>
+<p>We can go a bit further and downcast the numeric columns to their smallest types
+using <a class="reference internal" href="../reference/api/pandas.to_numeric.html#pandas.to_numeric" title="pandas.to_numeric"><code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.to_numeric()</span></code></a>.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [19]: </span><span class="n">ts2</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">ts2</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">],</span> <span class="n">downcast</span><span class="o">=</span><span class="s2">&quot;unsigned&quot;</span><span class="p">)</span>
+
+<span class="gp">In [20]: </span><span class="n">ts2</span><span class="p">[[</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">ts2</span><span class="p">[[</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">,</span> <span class="n">downcast</span><span class="o">=</span><span class="s2">&quot;float&quot;</span><span class="p">)</span>
+
+<span class="gp">In [21]: </span><span class="n">ts2</span><span class="o">.</span><span class="n">dtypes</span>
+<span class="gh">Out[21]: </span>
+<span class="go">id        uint16</span>
+<span class="go">name    category</span>
+<span class="go">x        float32</span>
+<span class="go">y        float32</span>
+<span class="go">dtype: object</span>
+</pre></div>
+</div>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [22]: </span><span class="n">ts2</span><span class="o">.</span><span class="n">memory_usage</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gh">Out[22]: </span>
+<span class="go">Index    8409608</span>
+<span class="go">id       2102402</span>
+<span class="go">name     1051495</span>
+<span class="go">x        4204804</span>
+<span class="go">y        4204804</span>
+<span class="go">dtype: int64</span>
+</pre></div>
+</div>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [23]: </span><span class="n">reduction</span> <span class="o">=</span> <span class="n">ts2</span><span class="o">.</span><span class="n">memory_usage</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">ts</span><span class="o">.</span><span class="n">memory_usage</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+<span class="gp">In [24]: </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">reduction</span><span class="si">:</span><span class="s2">0.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="go">0.20</span>
+</pre></div>
+</div>
+<p>In all, we’ve reduced the in-memory footprint of this dataset to 1/5 of its
+original size.</p>
+<p>See <a class="reference internal" href="categorical.html#categorical"><span class="std std-ref">Categorical data</span></a> for more on <a class="reference internal" href="../reference/api/pandas.Categorical.html#pandas.Categorical" title="pandas.Categorical"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.Categorical</span></code></a> and <a class="reference internal" href="basics.html#basics-dtypes"><span class="std std-ref">dtypes</span></a>
+for an overview of all of pandas’ dtypes.</p>
+</section>
+<section id="use-chunking">
+<h2>Use chunking<a class="headerlink" href="#use-chunking" title="Permalink to this headline">#</a></h2>
+<p>Some workloads can be achieved with chunking: splitting a large problem like “convert this
+directory of CSVs to parquet” into a bunch of small problems (“convert this individual CSV
+file into a Parquet file. Now repeat that for each file in this directory.”). As long as each chunk
+fits in memory, you can work with datasets that are much larger than memory.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Chunking works well when the operation you’re performing requires zero or minimal
+coordination between chunks. For more complicated workflows, you’re better off
+<a class="reference internal" href="#scale-other-libraries"><span class="std std-ref">using another library</span></a>.</p>
+</div>
+<p>Suppose we have an even larger “logical dataset” on disk that’s a directory of parquet
+files. Each file in the directory represents a different year of the entire dataset.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [25]: </span><span class="kn">import</span> <span class="nn">pathlib</span>
+
+<span class="gp">In [26]: </span><span class="n">N</span> <span class="o">=</span> <span class="mi">12</span>
+
+<span class="gp">In [27]: </span><span class="n">starts</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;20</span><span class="si">{</span><span class="n">i</span><span class="si">:</span><span class="s2">&gt;02d</span><span class="si">}</span><span class="s2">-01-01&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)]</span>
+
+<span class="gp">In [28]: </span><span class="n">ends</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;20</span><span class="si">{</span><span class="n">i</span><span class="si">:</span><span class="s2">&gt;02d</span><span class="si">}</span><span class="s2">-12-13&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)]</span>
+
+<span class="gp">In [29]: </span><span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;data/timeseries&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="gp">In [30]: </span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">starts</span><span class="p">,</span> <span class="n">ends</span><span class="p">)):</span>
+<span class="gp">   ....: </span>    <span class="n">ts</span> <span class="o">=</span> <span class="n">make_timeseries</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">&quot;1T&quot;</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="n">i</span><span class="p">)</span>
+<span class="gp">   ....: </span>    <span class="n">ts</span><span class="o">.</span><span class="n">to_parquet</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;data/timeseries/ts-</span><span class="si">{</span><span class="n">i</span><span class="si">:</span><span class="s2">0&gt;2d</span><span class="si">}</span><span class="s2">.parquet&quot;</span><span class="p">)</span>
+<span class="gp">   ....: </span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>data
+└── timeseries
+    ├── ts-00.parquet
+    ├── ts-01.parquet
+    ├── ts-02.parquet
+    ├── ts-03.parquet
+    ├── ts-04.parquet
+    ├── ts-05.parquet
+    ├── ts-06.parquet
+    ├── ts-07.parquet
+    ├── ts-08.parquet
+    ├── ts-09.parquet
+    ├── ts-10.parquet
+    └── ts-11.parquet
+</pre></div>
+</div>
+<p>Now we’ll implement an out-of-core <a class="reference internal" href="../reference/api/pandas.Series.value_counts.html#pandas.Series.value_counts" title="pandas.Series.value_counts"><code class="xref py py-meth docutils literal notranslate"><span class="pre">pandas.Series.value_counts()</span></code></a>. The peak memory usage of this
+workflow is the single largest chunk, plus a small series storing the unique value
+counts up to this point. As long as each individual file fits in memory, this will
+work for arbitrary-sized datasets.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [31]: </span><span class="o">%%time</span>
+<span class="gp">   ....: </span><span class="n">files</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;data/timeseries/&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;ts*.parquet&quot;</span><span class="p">)</span>
+<span class="gp">   ....: </span><span class="n">counts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+<span class="gp">   ....: </span><span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+<span class="gp">   ....: </span>    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+<span class="gp">   ....: </span>    <span class="n">counts</span> <span class="o">=</span> <span class="n">counts</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(),</span> <span class="n">fill_value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">   ....: </span><span class="n">counts</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="gp">   ....: </span>
+<span class="go">CPU times: user 698 ms, sys: 79.6 ms, total: 778 ms</span>
+<span class="go">Wall time: 768 ms</span>
+<span class="gh">Out[31]: </span>
+<span class="go">Alice      1994645</span>
+<span class="go">Bob        1993692</span>
+<span class="go">Charlie    1994875</span>
+<span class="go">dtype: int64</span>
+</pre></div>
+</div>
+<p>Some readers, like <a class="reference internal" href="../reference/api/pandas.read_csv.html#pandas.read_csv" title="pandas.read_csv"><code class="xref py py-meth docutils literal notranslate"><span class="pre">pandas.read_csv()</span></code></a>, offer parameters to control the
+<code class="docutils literal notranslate"><span class="pre">chunksize</span></code> when reading a single file.</p>
+<p>Manually chunking is an OK option for workflows that don’t
+require too sophisticated of operations. Some operations, like <a class="reference internal" href="../reference/api/pandas.DataFrame.groupby.html#pandas.DataFrame.groupby" title="pandas.DataFrame.groupby"><code class="xref py py-meth docutils literal notranslate"><span class="pre">pandas.DataFrame.groupby()</span></code></a>, are
+much harder to do chunkwise. In these cases, you may be better switching to a
+different library that implements these out-of-core algorithms for you.</p>
+</section>
+<section id="use-other-libraries">
+<span id="scale-other-libraries"></span><h2>Use other libraries<a class="headerlink" href="#use-other-libraries" title="Permalink to this headline">#</a></h2>
+<p>pandas is just one library offering a DataFrame API. Because of its popularity,
+pandas’ API has become something of a standard that other libraries implement.
+The pandas documentation maintains a list of libraries implementing a DataFrame API
+in <a class="reference internal" href="../ecosystem.html#ecosystem-out-of-core"><span class="std std-ref">our ecosystem page</span></a>.</p>
+<p>For example, <a class="reference external" href="https://dask.org">Dask</a>, a parallel computing library, has <a class="reference external" href="https://docs.dask.org/en/latest/dataframe.html">dask.dataframe</a>, a
+pandas-like API for working with larger than memory datasets in parallel. Dask
+can use multiple threads or processes on a single machine, or a cluster of
+machines to process data in parallel.</p>
+<p>We’ll import <code class="docutils literal notranslate"><span class="pre">dask.dataframe</span></code> and notice that the API feels similar to pandas.
+We can use Dask’s <code class="docutils literal notranslate"><span class="pre">read_parquet</span></code> function, but provide a globstring of files to read in.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [32]: </span><span class="kn">import</span> <span class="nn">dask.dataframe</span> <span class="k">as</span> <span class="nn">dd</span>
+
+<span class="gp">In [33]: </span><span class="n">ddf</span> <span class="o">=</span> <span class="n">dd</span><span class="o">.</span><span class="n">read_parquet</span><span class="p">(</span><span class="s2">&quot;data/timeseries/ts*.parquet&quot;</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s2">&quot;pyarrow&quot;</span><span class="p">)</span>
+
+<span class="gp">In [34]: </span><span class="n">ddf</span>
+<span class="gh">Out[34]: </span>
+<span class="go">Dask DataFrame Structure:</span>
+<span class="go">                   id    name        x        y</span>
+<span class="go">npartitions=12                                 </span>
+<span class="go">                int64  object  float64  float64</span>
+<span class="go">                  ...     ...      ...      ...</span>
+<span class="go">...               ...     ...      ...      ...</span>
+<span class="go">                  ...     ...      ...      ...</span>
+<span class="go">                  ...     ...      ...      ...</span>
+<span class="go">Dask Name: read-parquet, 1 graph layer</span>
+</pre></div>
+</div>
+<p>Inspecting the <code class="docutils literal notranslate"><span class="pre">ddf</span></code> object, we see a few things</p>
+<ul class="simple">
+<li><p>There are familiar attributes like <code class="docutils literal notranslate"><span class="pre">.columns</span></code> and <code class="docutils literal notranslate"><span class="pre">.dtypes</span></code></p></li>
+<li><p>There are familiar methods like <code class="docutils literal notranslate"><span class="pre">.groupby</span></code>, <code class="docutils literal notranslate"><span class="pre">.sum</span></code>, etc.</p></li>
+<li><p>There are new attributes like <code class="docutils literal notranslate"><span class="pre">.npartitions</span></code> and <code class="docutils literal notranslate"><span class="pre">.divisions</span></code></p></li>
+</ul>
+<p>The partitions and divisions are how Dask parallelizes computation. A <strong>Dask</strong>
+DataFrame is made up of many pandas <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></a>. A single method call on a
+Dask DataFrame ends up making many pandas method calls, and Dask knows how to
+coordinate everything to get the result.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [35]: </span><span class="n">ddf</span><span class="o">.</span><span class="n">columns</span>
+<span class="gh">Out[35]: </span><span class="go">Index([&#39;id&#39;, &#39;name&#39;, &#39;x&#39;, &#39;y&#39;], dtype=&#39;object&#39;)</span>
+
+<span class="gp">In [36]: </span><span class="n">ddf</span><span class="o">.</span><span class="n">dtypes</span>
+<span class="gh">Out[36]: </span>
+<span class="go">id        int64</span>
+<span class="go">name     object</span>
+<span class="go">x       float64</span>
+<span class="go">y       float64</span>
+<span class="go">dtype: object</span>
+
+<span class="gp">In [37]: </span><span class="n">ddf</span><span class="o">.</span><span class="n">npartitions</span>
+<span class="gh">Out[37]: </span><span class="go">12</span>
+</pre></div>
+</div>
+<p>One major difference: the <code class="docutils literal notranslate"><span class="pre">dask.dataframe</span></code> API is <em>lazy</em>. If you look at the
+repr above, you’ll notice that the values aren’t actually printed out; just the
+column names and dtypes. That’s because Dask hasn’t actually read the data yet.
+Rather than executing immediately, doing operations build up a <strong>task graph</strong>.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [38]: </span><span class="n">ddf</span>
+<span class="gh">Out[38]: </span>
+<span class="go">Dask DataFrame Structure:</span>
+<span class="go">                   id    name        x        y</span>
+<span class="go">npartitions=12                                 </span>
+<span class="go">                int64  object  float64  float64</span>
+<span class="go">                  ...     ...      ...      ...</span>
+<span class="go">...               ...     ...      ...      ...</span>
+<span class="go">                  ...     ...      ...      ...</span>
+<span class="go">                  ...     ...      ...      ...</span>
+<span class="go">Dask Name: read-parquet, 1 graph layer</span>
+
+<span class="gp">In [39]: </span><span class="n">ddf</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span>
+<span class="gh">Out[39]: </span>
+<span class="go">Dask Series Structure:</span>
+<span class="go">npartitions=12</span>
+<span class="go">    object</span>
+<span class="go">       ...</span>
+<span class="go">     ...  </span>
+<span class="go">       ...</span>
+<span class="go">       ...</span>
+<span class="go">Name: name, dtype: object</span>
+<span class="go">Dask Name: getitem, 2 graph layers</span>
+
+<span class="gp">In [40]: </span><span class="n">ddf</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<span class="gh">Out[40]: </span>
+<span class="go">Dask Series Structure:</span>
+<span class="go">npartitions=1</span>
+<span class="go">    int64</span>
+<span class="go">      ...</span>
+<span class="go">Name: name, dtype: int64</span>
+<span class="go">Dask Name: value-counts-agg, 4 graph layers</span>
+</pre></div>
+</div>
+<p>Each of these calls is instant because the result isn’t being computed yet.
+We’re just building up a list of computation to do when someone needs the
+result. Dask knows that the return type of a <a class="reference internal" href="../reference/api/pandas.Series.value_counts.html#pandas.Series.value_counts" title="pandas.Series.value_counts"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.Series.value_counts</span></code></a>
+is a pandas <a class="reference internal" href="../reference/api/pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.Series</span></code></a> with a certain dtype and a certain name. So the Dask version
+returns a Dask Series with the same dtype and the same name.</p>
+<p>To get the actual result you can call <code class="docutils literal notranslate"><span class="pre">.compute()</span></code>.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [41]: </span><span class="o">%</span><span class="k">time</span> ddf[&quot;name&quot;].value_counts().compute()
+<span class="go">CPU times: user 767 ms, sys: 44.4 ms, total: 811 ms</span>
+<span class="go">Wall time: 788 ms</span>
+<span class="gh">Out[41]: </span>
+<span class="go">Charlie    1994875</span>
+<span class="go">Alice      1994645</span>
+<span class="go">Bob        1993692</span>
+<span class="go">Name: name, dtype: int64</span>
+</pre></div>
+</div>
+<p>At that point, you get back the same thing you’d get with pandas, in this case
+a concrete pandas <a class="reference internal" href="../reference/api/pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.Series</span></code></a> with the count of each <code class="docutils literal notranslate"><span class="pre">name</span></code>.</p>
+<p>Calling <code class="docutils literal notranslate"><span class="pre">.compute</span></code> causes the full task graph to be executed. This includes
+reading the data, selecting the columns, and doing the <code class="docutils literal notranslate"><span class="pre">value_counts</span></code>. The
+execution is done <em>in parallel</em> where possible, and Dask tries to keep the
+overall memory footprint small. You can work with datasets that are much larger
+than memory, as long as each partition (a regular pandas <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></a>) fits in memory.</p>
+<p>By default, <code class="docutils literal notranslate"><span class="pre">dask.dataframe</span></code> operations use a threadpool to do operations in
+parallel. We can also connect to a cluster to distribute the work on many
+machines. In this case we’ll connect to a local “cluster” made up of several
+processes on this single machine.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">dask.distributed</span> <span class="kn">import</span> <span class="n">Client</span><span class="p">,</span> <span class="n">LocalCluster</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cluster</span> <span class="o">=</span> <span class="n">LocalCluster</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="n">cluster</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">client</span>
+<span class="go">&lt;Client: &#39;tcp://127.0.0.1:53349&#39; processes=4 threads=8, memory=17.18 GB&gt;</span>
+</pre></div>
+</div>
+<p>Once this <code class="docutils literal notranslate"><span class="pre">client</span></code> is created, all of Dask’s computation will take place on
+the cluster (which is just processes in this case).</p>
+<p>Dask implements the most used parts of the pandas API. For example, we can do
+a familiar groupby aggregation.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [42]: </span><span class="o">%</span><span class="k">time</span> ddf.groupby(&quot;name&quot;)[[&quot;x&quot;, &quot;y&quot;]].mean().compute().head()
+<span class="go">CPU times: user 1.24 s, sys: 91.7 ms, total: 1.33 s</span>
+<span class="go">Wall time: 1.2 s</span>
+<span class="gh">Out[42]: </span>
+<span class="go">                x         y</span>
+<span class="go">name                       </span>
+<span class="go">Alice   -0.000224 -0.000194</span>
+<span class="go">Bob     -0.000746  0.000349</span>
+<span class="go">Charlie  0.000604  0.000250</span>
+</pre></div>
+</div>
+<p>The grouping and aggregation is done out-of-core and in parallel.</p>
+<p>When Dask knows the <code class="docutils literal notranslate"><span class="pre">divisions</span></code> of a dataset, certain optimizations are
+possible. When reading parquet datasets written by dask, the divisions will be
+known automatically. In this case, since we created the parquet files manually,
+we need to supply the divisions manually.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [43]: </span><span class="n">N</span> <span class="o">=</span> <span class="mi">12</span>
+
+<span class="gp">In [44]: </span><span class="n">starts</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;20</span><span class="si">{</span><span class="n">i</span><span class="si">:</span><span class="s2">&gt;02d</span><span class="si">}</span><span class="s2">-01-01&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)]</span>
+
+<span class="gp">In [45]: </span><span class="n">ends</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;20</span><span class="si">{</span><span class="n">i</span><span class="si">:</span><span class="s2">&gt;02d</span><span class="si">}</span><span class="s2">-12-13&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)]</span>
+
+<span class="gp">In [46]: </span><span class="n">divisions</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">starts</span><span class="p">))</span> <span class="o">+</span> <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="n">ends</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]),)</span>
+
+<span class="gp">In [47]: </span><span class="n">ddf</span><span class="o">.</span><span class="n">divisions</span> <span class="o">=</span> <span class="n">divisions</span>
+
+<span class="gp">In [48]: </span><span class="n">ddf</span>
+<span class="gh">Out[48]: </span>
+<span class="go">Dask DataFrame Structure:</span>
+<span class="go">                   id    name        x        y</span>
+<span class="go">npartitions=12                                 </span>
+<span class="go">2000-01-01      int64  object  float64  float64</span>
+<span class="go">2001-01-01        ...     ...      ...      ...</span>
+<span class="go">...               ...     ...      ...      ...</span>
+<span class="go">2011-01-01        ...     ...      ...      ...</span>
+<span class="go">2011-12-13        ...     ...      ...      ...</span>
+<span class="go">Dask Name: read-parquet, 1 graph layer</span>
+</pre></div>
+</div>
+<p>Now we can do things like fast random access with <code class="docutils literal notranslate"><span class="pre">.loc</span></code>.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [49]: </span><span class="n">ddf</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;2002-01-01 12:01&quot;</span><span class="p">:</span><span class="s2">&quot;2002-01-01 12:05&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
+<span class="gh">Out[49]: </span>
+<span class="go">                       id     name         x         y</span>
+<span class="go">timestamp                                             </span>
+<span class="go">2002-01-01 12:01:00   971      Bob -0.659481  0.556184</span>
+<span class="go">2002-01-01 12:02:00  1015  Charlie  0.120131 -0.609522</span>
+<span class="go">2002-01-01 12:03:00   991      Bob -0.357816  0.811362</span>
+<span class="go">2002-01-01 12:04:00   984    Alice -0.608760  0.034187</span>
+<span class="go">2002-01-01 12:05:00   998  Charlie  0.551662 -0.461972</span>
+</pre></div>
+</div>
+<p>Dask knows to just look in the 3rd partition for selecting values in 2002. It
+doesn’t need to look at any other data.</p>
+<p>Many workflows involve a large amount of data and processing it in a way that
+reduces the size to something that fits in memory. In this case, we’ll resample
+to daily frequency and take the mean. Once we’ve taken the mean, we know the
+results will fit in memory, so we can safely call <code class="docutils literal notranslate"><span class="pre">compute</span></code> without running
+out of memory. At that point it’s just a regular pandas object.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [50]: </span><span class="n">ddf</span><span class="p">[[</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s2">&quot;1D&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="gh">Out[50]: </span><span class="go">&lt;AxesSubplot: xlabel=&#39;timestamp&#39;&gt;</span>
+</pre></div>
+</div>
+<img alt="../_images/dask_resample.png" src="../_images/dask_resample.png" />
+<p>These Dask examples have all be done using multiple processes on a single
+machine. Dask can be <a class="reference external" href="https://docs.dask.org/en/latest/setup.html">deployed on a cluster</a> to scale up to even larger
+datasets.</p>
+<p>You see more dask examples at <a class="reference external" href="https://examples.dask.org">https://examples.dask.org</a>.</p>
+</section>
+</section>
+
+
+            </article>
+            
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="enhancingperf.html" title="previous page">
+      <i class="fas fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Enhancing performance</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="sparse.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">Sparse data structures</p>
+  </div>
+  <i class="fas fa-angle-right"></i>
+  </a>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fas fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#load-less-data">
+   Load less data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#use-efficient-datatypes">
+   Use efficient datatypes
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#use-chunking">
+   Use chunking
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#use-other-libraries">
+   Use other libraries
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+<div class="toc-item">
+  
+</div>
+
+<div class="toc-item">
+  
+<div class="tocsection sourcelink">
+    <a href="../_sources/user_guide/scale.rst.txt">
+        <i class="fas fa-file-alt"></i> Show Source
+    </a>
+</div>
+
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+          </div>
+        </footer>
+        
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=9b1a4fa89bdd0e95b23b"></script>
+
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    <p class="copyright">
+    &copy 2023 pandas via <a href="https://numfocus.org">NumFOCUS, Inc.</a> Hosted by <a href="https://www.ovhcloud.com">OVHcloud</a>.
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>

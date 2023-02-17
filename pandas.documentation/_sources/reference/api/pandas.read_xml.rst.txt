@@ -1,0 +1,6 @@
+pandas.read\_xml
+================
+
+.. currentmodule:: pandas
+
+.. autofunction:: read_xml

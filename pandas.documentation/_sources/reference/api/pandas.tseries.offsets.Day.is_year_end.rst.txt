@@ -1,0 +1,6 @@
+pandas.tseries.offsets.Day.is\_year\_end
+========================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. automethod:: Day.is_year_end

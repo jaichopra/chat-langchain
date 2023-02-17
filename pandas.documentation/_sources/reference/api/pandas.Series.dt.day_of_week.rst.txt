@@ -1,0 +1,6 @@
+pandas.Series.dt.day_of_week
+============================
+
+.. currentmodule:: pandas
+
+.. autoaccessorattribute:: Series.dt.day_of_week

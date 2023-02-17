@@ -1,0 +1,995 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Contributing to pandas &#8212; pandas 1.5.3 documentation</title>
+  <script>
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=9b1a4fa89bdd0e95b23b" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=9b1a4fa89bdd0e95b23b" rel="stylesheet">
+
+  
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/6.1.2/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/getting_started.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/pandas.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=9b1a4fa89bdd0e95b23b">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/toggleprompt.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script async="async" src="https://www.google-analytics.com/analytics.js"></script>
+    <script>
+                    window.ga = window.ga || function () {
+                        (ga.q = ga.q || []).push(arguments) };
+                    ga.l = +new Date;
+                    ga('create', 'UA-27880019-2', 'auto');
+                    ga('set', 'anonymizeIp', true);
+                    ga('send', 'pageview');
+                </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'development/contributing';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        </script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Creating a development environment" href="contributing_environment.html" />
+    <link rel="prev" title="Development" href="index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fas fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../_static/pandas.svg" class="logo__image only-light" alt="Logo image">
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="../getting_started/index.html">
+                        Getting started
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../user_guide/index.html">
+                        User Guide
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../reference/index.html">
+                        API reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item current active">
+                    <a class="nav-link" href="index.html">
+                        Development
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../whatsnew/index.html">
+                        Release notes
+                    </a>
+                </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      <div class="navbar-end-item navbar-end__search-button-container">
+        
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search">
+  <i class="fas fa-search"></i>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        1.5.3  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pandas-dev/pandas" title="GitHub" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/pandas_dev" title="Twitter" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  <div class="search-button-container--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search">
+  <i class="fas fa-search"></i>
+</button>
+  </div>
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fas fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="../getting_started/index.html">
+                        Getting started
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../user_guide/index.html">
+                        User Guide
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../reference/index.html">
+                        API reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item current active">
+                    <a class="nav-link" href="index.html">
+                        Development
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../whatsnew/index.html">
+                        Release notes
+                    </a>
+                </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        1.5.3  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pandas-dev/pandas" title="GitHub" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/pandas_dev" title="Twitter" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item navbar-nav">
+    
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Contributing to pandas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="contributing_environment.html">
+   Creating a development environment
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="contributing_documentation.html">
+   Contributing to the documentation
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label class="toctree-toggle" for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="contributing_docstring.html">
+     pandas docstring guide
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="contributing_codebase.html">
+   Contributing to the code base
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="maintaining.html">
+   pandas maintenance
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="internals.html">
+   Internals
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="debugging_extensions.html">
+   Debugging C extensions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extending.html">
+   Extending pandas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="developer.html">
+   Developer
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="policies.html">
+   Policies
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="roadmap.html">
+   Roadmap
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="community.html">
+   Contributor community
+  </a>
+ </li>
+</ul>
+
+    
+  </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+      </div>
+      <main class="bd-main">
+        
+        
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+            </div>
+            
+            
+            <article class="bd-article" role="main">
+              
+  <section id="contributing-to-pandas">
+<span id="contributing"></span><h1>Contributing to pandas<a class="headerlink" href="#contributing-to-pandas" title="Permalink to this headline">#</a></h1>
+<div class="contents local topic" id="table-of-contents">
+<p class="topic-title">Table of contents:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#where-to-start" id="id1">Where to start?</a></p></li>
+<li><p><a class="reference internal" href="#bug-reports-and-enhancement-requests" id="id2">Bug reports and enhancement requests</a></p></li>
+<li><p><a class="reference internal" href="#working-with-the-code" id="id3">Working with the code</a></p>
+<ul>
+<li><p><a class="reference internal" href="#version-control-git-and-github" id="id4">Version control, Git, and GitHub</a></p></li>
+<li><p><a class="reference internal" href="#getting-started-with-git" id="id5">Getting started with Git</a></p></li>
+<li><p><a class="reference internal" href="#forking" id="id6">Forking</a></p></li>
+<li><p><a class="reference internal" href="#creating-a-branch" id="id7">Creating a branch</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#contributing-your-changes-to-pandas" id="id8">Contributing your changes to pandas</a></p>
+<ul>
+<li><p><a class="reference internal" href="#committing-your-code" id="id9">Committing your code</a></p></li>
+<li><p><a class="reference internal" href="#pushing-your-changes" id="id10">Pushing your changes</a></p></li>
+<li><p><a class="reference internal" href="#review-your-code" id="id11">Review your code</a></p></li>
+<li><p><a class="reference internal" href="#finally-make-the-pull-request" id="id12">Finally, make the pull request</a></p></li>
+<li><p><a class="reference internal" href="#updating-your-pull-request" id="id13">Updating your pull request</a></p></li>
+<li><p><a class="reference internal" href="#autofixing-formatting-errors" id="id14">Autofixing formatting errors</a></p></li>
+<li><p><a class="reference internal" href="#delete-your-merged-branch-optional" id="id15">Delete your merged branch (optional)</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#tips-for-a-successful-pull-request" id="id16">Tips for a successful pull request</a></p></li>
+</ul>
+</div>
+<section id="where-to-start">
+<h2><a class="toc-backref" href="#id1">Where to start?</a><a class="headerlink" href="#where-to-start" title="Permalink to this headline">#</a></h2>
+<p>All contributions, bug reports, bug fixes, documentation improvements,
+enhancements, and ideas are welcome.</p>
+<p>If you are brand new to pandas or open-source development, we recommend going
+through the <a class="reference external" href="https://github.com/pandas-dev/pandas/issues">GitHub “issues” tab</a>
+to find issues that interest you. There are a number of issues listed under <a class="reference external" href="https://github.com/pandas-dev/pandas/issues?labels=Docs&amp;sort=updated&amp;state=open">Docs</a>
+and <a class="reference external" href="https://github.com/pandas-dev/pandas/issues?labels=good+first+issue&amp;sort=updated&amp;state=open">good first issue</a>
+where you could start out. Once you’ve found an interesting issue, you can
+return here to get your development environment setup.</p>
+<p>When you start working on an issue, it’s a good idea to assign the issue to yourself,
+so nobody else duplicates the work on it. GitHub restricts assigning issues to maintainers
+of the project only. In most projects, and until recently in pandas, contributors added a
+comment letting others know they are working on an issue. While this is ok, you need to
+check each issue individually, and it’s not possible to find the unassigned ones.</p>
+<p>For this reason, we implemented a workaround consisting of adding a comment with the exact
+text <code class="docutils literal notranslate"><span class="pre">take</span></code>. When you do it, a GitHub action will automatically assign you the issue
+(this will take seconds, and may require refreshing the page to see it).
+By doing this, it’s possible to filter the list of issues and find only the unassigned ones.</p>
+<p>So, a good way to find an issue to start contributing to pandas is to check the list of
+<a class="reference external" href="https://github.com/pandas-dev/pandas/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22+no%3Aassignee">unassigned good first issues</a>
+and assign yourself one you like by writing a comment with the exact text <code class="docutils literal notranslate"><span class="pre">take</span></code>.</p>
+<p>If for whatever reason you are not able to continue working with the issue, please try to
+unassign it, so other people know it’s available again. You can check the list of
+assigned issues, since people may not be working in them anymore. If you want to work on one
+that is assigned, feel free to kindly ask the current assignee if you can take it
+(please allow at least a week of inactivity before considering work in the issue discontinued).</p>
+<p>We have several <a class="reference internal" href="community.html#community"><span class="std std-ref">contributor community</span></a> communication channels, which you are
+welcome to join, and ask questions as you figure things out. Among them are regular meetings for
+new contributors, dev meetings, a dev mailing list, and a slack for the contributor community.
+All pandas contributors are welcome to these spaces, where they can connect with each other. Even
+maintainers who have been with us for a long time felt just like you when they started out, and
+are happy to welcome you and support you as you get to know how we work, and where things are.
+Take a look at the next sections to learn more.</p>
+</section>
+<section id="bug-reports-and-enhancement-requests">
+<span id="contributing-bug-reports"></span><h2><a class="toc-backref" href="#id2">Bug reports and enhancement requests</a><a class="headerlink" href="#bug-reports-and-enhancement-requests" title="Permalink to this headline">#</a></h2>
+<p>Bug reports are an important part of making pandas more stable. Having a complete bug report
+will allow others to reproduce the bug and provide insight into fixing. See
+<a class="reference external" href="https://stackoverflow.com/help/mcve">this stackoverflow article</a> and
+<a class="reference external" href="https://matthewrocklin.com/blog/work/2018/02/28/minimal-bug-reports">this blogpost</a>
+for tips on writing a good bug report.</p>
+<p>Trying the bug-producing code out on the <em>main</em> branch is often a worthwhile exercise
+to confirm the bug still exists. It is also worth searching existing bug reports and pull requests
+to see if the issue has already been reported and/or fixed.</p>
+<p>Bug reports must:</p>
+<ol class="arabic">
+<li><p>Include a short, self-contained Python snippet reproducing the problem.
+You can format the code nicely by using <a class="reference external" href="https://github.github.com/github-flavored-markdown/">GitHub Flavored Markdown</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>```python
+&gt;&gt;&gt; from pandas import DataFrame
+&gt;&gt;&gt; df = DataFrame(...)
+...
+```
+</pre></div>
+</div>
+</li>
+<li><p>Include the full version string of pandas and its dependencies. You can use the built-in function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">show_versions</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p>Explain why the current behavior is wrong/not desired and what you expect instead.</p></li>
+</ol>
+<p>The issue will then show up to the pandas community and be open to comments/ideas from others.</p>
+</section>
+<section id="working-with-the-code">
+<span id="contributing-github"></span><h2><a class="toc-backref" href="#id3">Working with the code</a><a class="headerlink" href="#working-with-the-code" title="Permalink to this headline">#</a></h2>
+<p>Now that you have an issue you want to fix, enhancement to add, or documentation to improve,
+you need to learn how to work with GitHub and the pandas code base.</p>
+<section id="version-control-git-and-github">
+<span id="contributing-version-control"></span><h3><a class="toc-backref" href="#id4">Version control, Git, and GitHub</a><a class="headerlink" href="#version-control-git-and-github" title="Permalink to this headline">#</a></h3>
+<p>To the new user, working with Git is one of the more daunting aspects of contributing to pandas.
+It can very quickly become overwhelming, but sticking to the guidelines below will help keep the process
+straightforward and mostly trouble free.  As always, if you are having difficulties please
+feel free to ask for help.</p>
+<p>The code is hosted on <a class="reference external" href="https://www.github.com/pandas-dev/pandas">GitHub</a>. To
+contribute you will need to sign up for a <a class="reference external" href="https://github.com/signup/free">free GitHub account</a>. We use <a class="reference external" href="https://git-scm.com/">Git</a> for
+version control to allow many people to work together on the project.</p>
+<p>Some great resources for learning Git:</p>
+<ul class="simple">
+<li><p>the <a class="reference external" href="https://help.github.com/">GitHub help pages</a>.</p></li>
+<li><p>the <a class="reference external" href="https://numpy.org/doc/stable/dev/index.html">NumPy documentation</a>.</p></li>
+<li><p>Matthew Brett’s <a class="reference external" href="https://matthew-brett.github.io/pydagogue/">Pydagogue</a>.</p></li>
+</ul>
+</section>
+<section id="getting-started-with-git">
+<h3><a class="toc-backref" href="#id5">Getting started with Git</a><a class="headerlink" href="#getting-started-with-git" title="Permalink to this headline">#</a></h3>
+<p><a class="reference external" href="https://help.github.com/set-up-git-redirect">GitHub has instructions</a> for installing git,
+setting up your SSH key, and configuring git.  All these steps need to be completed before
+you can work seamlessly between your local repository and GitHub.</p>
+</section>
+<section id="forking">
+<span id="contributing-forking"></span><h3><a class="toc-backref" href="#id6">Forking</a><a class="headerlink" href="#forking" title="Permalink to this headline">#</a></h3>
+<p>You will need your own fork to work on the code. Go to the <a class="reference external" href="https://github.com/pandas-dev/pandas">pandas project
+page</a> and hit the <code class="docutils literal notranslate"><span class="pre">Fork</span></code> button. You will
+want to clone your fork to your machine:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">your</span><span class="o">-</span><span class="n">user</span><span class="o">-</span><span class="n">name</span><span class="o">/</span><span class="n">pandas</span><span class="o">.</span><span class="n">git</span> <span class="n">pandas</span><span class="o">-</span><span class="n">yourname</span>
+<span class="n">cd</span> <span class="n">pandas</span><span class="o">-</span><span class="n">yourname</span>
+<span class="n">git</span> <span class="n">remote</span> <span class="n">add</span> <span class="n">upstream</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">pandas</span><span class="o">-</span><span class="n">dev</span><span class="o">/</span><span class="n">pandas</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+<p>This creates the directory <code class="docutils literal notranslate"><span class="pre">pandas-yourname</span></code> and connects your repository to
+the upstream (main project) <em>pandas</em> repository.</p>
+<p>Note that performing a shallow clone (with <code class="docutils literal notranslate"><span class="pre">--depth==N</span></code>, for some <code class="docutils literal notranslate"><span class="pre">N</span></code> greater
+or equal to 1) might break some tests and features as <code class="docutils literal notranslate"><span class="pre">pd.show_versions()</span></code>
+as the version number cannot be computed anymore.</p>
+</section>
+<section id="creating-a-branch">
+<h3><a class="toc-backref" href="#id7">Creating a branch</a><a class="headerlink" href="#creating-a-branch" title="Permalink to this headline">#</a></h3>
+<p>You want your main branch to reflect only production-ready code, so create a
+feature branch for making your changes. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">branch</span> <span class="n">shiny</span><span class="o">-</span><span class="n">new</span><span class="o">-</span><span class="n">feature</span>
+<span class="n">git</span> <span class="n">checkout</span> <span class="n">shiny</span><span class="o">-</span><span class="n">new</span><span class="o">-</span><span class="n">feature</span>
+</pre></div>
+</div>
+<p>The above can be simplified to:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="o">-</span><span class="n">b</span> <span class="n">shiny</span><span class="o">-</span><span class="n">new</span><span class="o">-</span><span class="n">feature</span>
+</pre></div>
+</div>
+<p>This changes your working directory to the shiny-new-feature branch.  Keep any
+changes in this branch specific to one bug or feature so it is clear
+what the branch brings to pandas. You can have many shiny-new-features
+and switch in between them using the git checkout command.</p>
+<p>When creating this branch, make sure your main branch is up to date with
+the latest upstream main version. To update your local main branch, you
+can do:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="n">main</span>
+<span class="n">git</span> <span class="n">pull</span> <span class="n">upstream</span> <span class="n">main</span> <span class="o">--</span><span class="n">ff</span><span class="o">-</span><span class="n">only</span>
+</pre></div>
+</div>
+<p>When you want to update the feature branch with changes in main after
+you created the branch, check the section on
+<a class="reference internal" href="#contributing-update-pr"><span class="std std-ref">updating a PR</span></a>.</p>
+</section>
+</section>
+<section id="contributing-your-changes-to-pandas">
+<h2><a class="toc-backref" href="#id8">Contributing your changes to pandas</a><a class="headerlink" href="#contributing-your-changes-to-pandas" title="Permalink to this headline">#</a></h2>
+<section id="committing-your-code">
+<span id="contributing-commit-code"></span><h3><a class="toc-backref" href="#id9">Committing your code</a><a class="headerlink" href="#committing-your-code" title="Permalink to this headline">#</a></h3>
+<p>Keep style fixes to a separate commit to make your pull request more readable.</p>
+<p>Once you’ve made changes, you can see them by typing:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">status</span>
+</pre></div>
+</div>
+<p>If you have created a new file, it is not being tracked by git. Add it by typing:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">add</span> <span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">file</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">be</span><span class="o">-</span><span class="n">added</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>Doing ‘git status’ again should give something like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># On branch shiny-new-feature</span>
+<span class="c1">#</span>
+<span class="c1">#       modified:   /relative/path/to/file-you-added.py</span>
+<span class="c1">#</span>
+</pre></div>
+</div>
+<p>Finally, commit your changes to your local repository with an explanatory message. pandas
+uses a convention for commit message prefixes and layout.  Here are
+some common prefixes along with general guidelines for when to use them:</p>
+<ul class="simple">
+<li><p>ENH: Enhancement, new functionality</p></li>
+<li><p>BUG: Bug fix</p></li>
+<li><p>DOC: Additions/updates to documentation</p></li>
+<li><p>TST: Additions/updates to tests</p></li>
+<li><p>BLD: Updates to the build process/scripts</p></li>
+<li><p>PERF: Performance improvement</p></li>
+<li><p>TYP: Type annotations</p></li>
+<li><p>CLN: Code cleanup</p></li>
+</ul>
+<p>The following defines how a commit message should be structured.  Please reference the
+relevant GitHub issues in your commit message using GH1234 or #1234.  Either style
+is fine, but the former is generally preferred:</p>
+<ul class="simple">
+<li><p>a subject line with <code class="docutils literal notranslate"><span class="pre">&lt;</span> <span class="pre">80</span></code> chars.</p></li>
+<li><p>One blank line.</p></li>
+<li><p>Optionally, a commit message body.</p></li>
+</ul>
+<p>Now you can commit your changes in your local repository:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span>
+</pre></div>
+</div>
+</section>
+<section id="pushing-your-changes">
+<span id="contributing-push-code"></span><h3><a class="toc-backref" href="#id10">Pushing your changes</a><a class="headerlink" href="#pushing-your-changes" title="Permalink to this headline">#</a></h3>
+<p>When you want your changes to appear publicly on your GitHub page, push your
+forked feature branch’s commits:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">shiny</span><span class="o">-</span><span class="n">new</span><span class="o">-</span><span class="n">feature</span>
+</pre></div>
+</div>
+<p>Here <code class="docutils literal notranslate"><span class="pre">origin</span></code> is the default name given to your remote repository on GitHub.
+You can see the remote repositories:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">remote</span> <span class="o">-</span><span class="n">v</span>
+</pre></div>
+</div>
+<p>If you added the upstream repository as described above you will see something
+like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">origin</span>  <span class="n">git</span><span class="nd">@github</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="n">yourname</span><span class="o">/</span><span class="n">pandas</span><span class="o">.</span><span class="n">git</span> <span class="p">(</span><span class="n">fetch</span><span class="p">)</span>
+<span class="n">origin</span>  <span class="n">git</span><span class="nd">@github</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="n">yourname</span><span class="o">/</span><span class="n">pandas</span><span class="o">.</span><span class="n">git</span> <span class="p">(</span><span class="n">push</span><span class="p">)</span>
+<span class="n">upstream</span>        <span class="n">git</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">pandas</span><span class="o">-</span><span class="n">dev</span><span class="o">/</span><span class="n">pandas</span><span class="o">.</span><span class="n">git</span> <span class="p">(</span><span class="n">fetch</span><span class="p">)</span>
+<span class="n">upstream</span>        <span class="n">git</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">pandas</span><span class="o">-</span><span class="n">dev</span><span class="o">/</span><span class="n">pandas</span><span class="o">.</span><span class="n">git</span> <span class="p">(</span><span class="n">push</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now your code is on GitHub, but it is not yet a part of the pandas project. For that to
+happen, a pull request needs to be submitted on GitHub.</p>
+</section>
+<section id="review-your-code">
+<h3><a class="toc-backref" href="#id11">Review your code</a><a class="headerlink" href="#review-your-code" title="Permalink to this headline">#</a></h3>
+<p>When you’re ready to ask for a code review, file a pull request. Before you do, once
+again make sure that you have followed all the guidelines outlined in this document
+regarding code style, tests, performance tests, and documentation. You should also
+double check your branch changes against the branch it was based on:</p>
+<ol class="arabic simple">
+<li><p>Navigate to your repository on GitHub – <a class="reference external" href="https://github.com/your-user-name/pandas">https://github.com/your-user-name/pandas</a></p></li>
+<li><p>Click on <code class="docutils literal notranslate"><span class="pre">Branches</span></code></p></li>
+<li><p>Click on the <code class="docutils literal notranslate"><span class="pre">Compare</span></code> button for your feature branch</p></li>
+<li><p>Select the <code class="docutils literal notranslate"><span class="pre">base</span></code> and <code class="docutils literal notranslate"><span class="pre">compare</span></code> branches, if necessary. This will be <code class="docutils literal notranslate"><span class="pre">main</span></code> and
+<code class="docutils literal notranslate"><span class="pre">shiny-new-feature</span></code>, respectively.</p></li>
+</ol>
+</section>
+<section id="finally-make-the-pull-request">
+<h3><a class="toc-backref" href="#id12">Finally, make the pull request</a><a class="headerlink" href="#finally-make-the-pull-request" title="Permalink to this headline">#</a></h3>
+<p>If everything looks good, you are ready to make a pull request.  A pull request is how
+code from a local repository becomes available to the GitHub community and can be looked
+at and eventually merged into the main version.  This pull request and its associated
+changes will eventually be committed to the main branch and available in the next
+release.  To submit a pull request:</p>
+<ol class="arabic simple">
+<li><p>Navigate to your repository on GitHub</p></li>
+<li><p>Click on the <code class="docutils literal notranslate"><span class="pre">Pull</span> <span class="pre">Request</span></code> button</p></li>
+<li><p>You can then click on <code class="docutils literal notranslate"><span class="pre">Commits</span></code> and <code class="docutils literal notranslate"><span class="pre">Files</span> <span class="pre">Changed</span></code> to make sure everything looks
+okay one last time</p></li>
+<li><p>Write a description of your changes in the <code class="docutils literal notranslate"><span class="pre">Preview</span> <span class="pre">Discussion</span></code> tab</p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Send</span> <span class="pre">Pull</span> <span class="pre">Request</span></code>.</p></li>
+</ol>
+<p>This request then goes to the repository maintainers, and they will review
+the code.</p>
+</section>
+<section id="updating-your-pull-request">
+<span id="contributing-update-pr"></span><h3><a class="toc-backref" href="#id13">Updating your pull request</a><a class="headerlink" href="#updating-your-pull-request" title="Permalink to this headline">#</a></h3>
+<p>Based on the review you get on your pull request, you will probably need to make
+some changes to the code. In that case, you can make them in your branch,
+add a new commit to that branch, push it to GitHub, and the pull request will be
+automatically updated.  Pushing them to GitHub again is done by:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">shiny</span><span class="o">-</span><span class="n">new</span><span class="o">-</span><span class="n">feature</span>
+</pre></div>
+</div>
+<p>This will automatically update your pull request with the latest code and restart the
+<a class="reference internal" href="contributing_codebase.html#contributing-ci"><span class="std std-ref">Continuous Integration</span></a> tests.</p>
+<p>Another reason you might need to update your pull request is to solve conflicts
+with changes that have been merged into the main branch since you opened your
+pull request.</p>
+<p>To do this, you need to “merge upstream main” in your branch:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="n">shiny</span><span class="o">-</span><span class="n">new</span><span class="o">-</span><span class="n">feature</span>
+<span class="n">git</span> <span class="n">fetch</span> <span class="n">upstream</span>
+<span class="n">git</span> <span class="n">merge</span> <span class="n">upstream</span><span class="o">/</span><span class="n">main</span>
+</pre></div>
+</div>
+<p>If there are no conflicts (or they could be fixed automatically), a file with a
+default commit message will open, and you can simply save and quit this file.</p>
+<p>If there are merge conflicts, you need to solve those conflicts. See for
+example at <a class="reference external" href="https://help.github.com/articles/resolving-a-merge-conflict-using-the-command-line/">https://help.github.com/articles/resolving-a-merge-conflict-using-the-command-line/</a>
+for an explanation on how to do this.
+Once the conflicts are merged and the files where the conflicts were solved are
+added, you can run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span></code> to save those fixes.</p>
+<p>If you have uncommitted changes at the moment you want to update the branch with
+main, you will need to <code class="docutils literal notranslate"><span class="pre">stash</span></code> them prior to updating (see the
+<a class="reference external" href="https://git-scm.com/book/en/v2/Git-Tools-Stashing-and-Cleaning">stash docs</a>).
+This will effectively store your changes and they can be reapplied after updating.</p>
+<p>After the feature branch has been update locally, you can now update your pull
+request by pushing to the branch on GitHub:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="n">shiny</span><span class="o">-</span><span class="n">new</span><span class="o">-</span><span class="n">feature</span>
+</pre></div>
+</div>
+</section>
+<section id="autofixing-formatting-errors">
+<h3><a class="toc-backref" href="#id14">Autofixing formatting errors</a><a class="headerlink" href="#autofixing-formatting-errors" title="Permalink to this headline">#</a></h3>
+<p>We use several styling checks (e.g. <code class="docutils literal notranslate"><span class="pre">black</span></code>, <code class="docutils literal notranslate"><span class="pre">flake8</span></code>, <code class="docutils literal notranslate"><span class="pre">isort</span></code>) which are run after
+you make a pull request.</p>
+<p>To automatically fix formatting errors on each commit you make, you can
+set up pre-commit yourself. First, create a Python <a class="reference internal" href="contributing_environment.html#contributing-environment"><span class="std std-ref">environment</span></a> and then set up <a class="reference internal" href="contributing_codebase.html#contributing-pre-commit"><span class="std std-ref">pre-commit</span></a>.</p>
+</section>
+<section id="delete-your-merged-branch-optional">
+<h3><a class="toc-backref" href="#id15">Delete your merged branch (optional)</a><a class="headerlink" href="#delete-your-merged-branch-optional" title="Permalink to this headline">#</a></h3>
+<p>Once your feature branch is accepted into upstream, you’ll probably want to get rid of
+the branch. First, merge upstream main into your branch so git knows it is safe to
+delete your branch:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">fetch</span> <span class="n">upstream</span>
+<span class="n">git</span> <span class="n">checkout</span> <span class="n">main</span>
+<span class="n">git</span> <span class="n">merge</span> <span class="n">upstream</span><span class="o">/</span><span class="n">main</span>
+</pre></div>
+</div>
+<p>Then you can do:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">branch</span> <span class="o">-</span><span class="n">d</span> <span class="n">shiny</span><span class="o">-</span><span class="n">new</span><span class="o">-</span><span class="n">feature</span>
+</pre></div>
+</div>
+<p>Make sure you use a lower-case <code class="docutils literal notranslate"><span class="pre">-d</span></code>, or else git won’t warn you if your feature
+branch has not actually been merged.</p>
+<p>The branch will still exist on GitHub, so to delete it there do:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">push</span> <span class="n">origin</span> <span class="o">--</span><span class="n">delete</span> <span class="n">shiny</span><span class="o">-</span><span class="n">new</span><span class="o">-</span><span class="n">feature</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="tips-for-a-successful-pull-request">
+<h2><a class="toc-backref" href="#id16">Tips for a successful pull request</a><a class="headerlink" href="#tips-for-a-successful-pull-request" title="Permalink to this headline">#</a></h2>
+<p>If you have made it to the <a class="reference internal" href="#review-your-code">Review your code</a> phase, one of the core contributors may
+take a look. Please note however that a handful of people are responsible for reviewing
+all of the contributions, which can often lead to bottlenecks.</p>
+<p>To improve the chances of your pull request being reviewed, you should:</p>
+<ul class="simple">
+<li><p><strong>Reference an open issue</strong> for non-trivial changes to clarify the PR’s purpose</p></li>
+<li><p><strong>Ensure you have appropriate tests</strong>. These should be the first part of any PR</p></li>
+<li><p><strong>Keep your pull requests as simple as possible</strong>. Larger PRs take longer to review</p></li>
+<li><p><strong>Ensure that CI is in a green state</strong>. Reviewers may not even look otherwise</p></li>
+<li><p><strong>Keep</strong> <a class="reference internal" href="#updating-your-pull-request">Updating your pull request</a>, either by request or every few days</p></li>
+</ul>
+</section>
+</section>
+
+
+            </article>
+            
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="index.html" title="previous page">
+      <i class="fas fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Development</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="contributing_environment.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">Creating a development environment</p>
+  </div>
+  <i class="fas fa-angle-right"></i>
+  </a>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fas fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#where-to-start">
+   Where to start?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bug-reports-and-enhancement-requests">
+   Bug reports and enhancement requests
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#working-with-the-code">
+   Working with the code
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#version-control-git-and-github">
+     Version control, Git, and GitHub
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#getting-started-with-git">
+     Getting started with Git
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#forking">
+     Forking
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#creating-a-branch">
+     Creating a branch
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#contributing-your-changes-to-pandas">
+   Contributing your changes to pandas
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#committing-your-code">
+     Committing your code
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pushing-your-changes">
+     Pushing your changes
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#review-your-code">
+     Review your code
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#finally-make-the-pull-request">
+     Finally, make the pull request
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#updating-your-pull-request">
+     Updating your pull request
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#autofixing-formatting-errors">
+     Autofixing formatting errors
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#delete-your-merged-branch-optional">
+     Delete your merged branch (optional)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tips-for-a-successful-pull-request">
+   Tips for a successful pull request
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+<div class="toc-item">
+  
+</div>
+
+<div class="toc-item">
+  
+<div class="tocsection sourcelink">
+    <a href="../_sources/development/contributing.rst.txt">
+        <i class="fas fa-file-alt"></i> Show Source
+    </a>
+</div>
+
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+          </div>
+        </footer>
+        
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=9b1a4fa89bdd0e95b23b"></script>
+
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    <p class="copyright">
+    &copy 2023 pandas via <a href="https://numfocus.org">NumFOCUS, Inc.</a> Hosted by <a href="https://www.ovhcloud.com">OVHcloud</a>.
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>

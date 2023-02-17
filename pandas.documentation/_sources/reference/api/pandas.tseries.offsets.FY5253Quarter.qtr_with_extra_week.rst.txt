@@ -1,0 +1,6 @@
+pandas.tseries.offsets.FY5253Quarter.qtr\_with\_extra\_week
+===========================================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. autoattribute:: FY5253Quarter.qtr_with_extra_week

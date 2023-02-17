@@ -1,0 +1,6 @@
+pandas.tseries.offsets.CustomBusinessMonthBegin.\_\_call\_\_
+============================================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. automethod:: CustomBusinessMonthBegin.__call__

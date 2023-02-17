@@ -1,0 +1,53 @@
+pandas.tseries.offsets.Easter
+=============================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. autoclass:: Easter
+
+   
+
+
+..
+   HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+   .. autosummary::
+      :toctree:
+      
+      Easter.__call__
+      Easter.apply
+      Easter.apply_index
+      Easter.copy
+      Easter.isAnchored
+      Easter.is_anchored
+      Easter.is_month_end
+      Easter.is_month_start
+      Easter.is_on_offset
+      Easter.is_quarter_end
+      Easter.is_quarter_start
+      Easter.is_year_end
+      Easter.is_year_start
+      Easter.onOffset
+      Easter.rollback
+      Easter.rollforward
+
+
+
+
+   
+
+
+..
+   HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+   .. autosummary::
+      :toctree:
+      
+      Easter.base
+      Easter.freqstr
+      Easter.kwds
+      Easter.n
+      Easter.name
+      Easter.nanos
+      Easter.normalize
+      Easter.rule_code
+
+

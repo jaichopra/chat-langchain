@@ -1,0 +1,6 @@
+pandas.tseries.offsets.Second.n
+===============================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. autoattribute:: Second.n

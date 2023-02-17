@@ -1,0 +1,54 @@
+pandas.tseries.offsets.BYearEnd
+===============================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. autoclass:: BYearEnd
+
+   
+
+
+..
+   HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+   .. autosummary::
+      :toctree:
+      
+      BYearEnd.__call__
+      BYearEnd.apply
+      BYearEnd.apply_index
+      BYearEnd.copy
+      BYearEnd.isAnchored
+      BYearEnd.is_anchored
+      BYearEnd.is_month_end
+      BYearEnd.is_month_start
+      BYearEnd.is_on_offset
+      BYearEnd.is_quarter_end
+      BYearEnd.is_quarter_start
+      BYearEnd.is_year_end
+      BYearEnd.is_year_start
+      BYearEnd.onOffset
+      BYearEnd.rollback
+      BYearEnd.rollforward
+
+
+
+
+   
+
+
+..
+   HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+   .. autosummary::
+      :toctree:
+      
+      BYearEnd.base
+      BYearEnd.freqstr
+      BYearEnd.kwds
+      BYearEnd.month
+      BYearEnd.n
+      BYearEnd.name
+      BYearEnd.nanos
+      BYearEnd.normalize
+      BYearEnd.rule_code
+
+

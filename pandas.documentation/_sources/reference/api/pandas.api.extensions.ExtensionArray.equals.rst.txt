@@ -1,0 +1,6 @@
+pandas.api.extensions.ExtensionArray.equals
+===========================================
+
+.. currentmodule:: pandas.api.extensions
+
+.. automethod:: ExtensionArray.equals

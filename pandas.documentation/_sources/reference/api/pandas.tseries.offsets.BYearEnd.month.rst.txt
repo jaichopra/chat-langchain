@@ -1,0 +1,6 @@
+pandas.tseries.offsets.BYearEnd.month
+=====================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. autoattribute:: BYearEnd.month

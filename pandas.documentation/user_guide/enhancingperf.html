@@ -1,0 +1,1660 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Enhancing performance &#8212; pandas 1.5.3 documentation</title>
+  <script>
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=9b1a4fa89bdd0e95b23b" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=9b1a4fa89bdd0e95b23b" rel="stylesheet">
+
+  
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/6.1.2/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/getting_started.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/pandas.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=9b1a4fa89bdd0e95b23b">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/toggleprompt.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script async="async" src="https://www.google-analytics.com/analytics.js"></script>
+    <script>
+                    window.ga = window.ga || function () {
+                        (ga.q = ga.q || []).push(arguments) };
+                    ga.l = +new Date;
+                    ga('create', 'UA-27880019-2', 'auto');
+                    ga('set', 'anonymizeIp', true);
+                    ga('send', 'pageview');
+                </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/enhancingperf';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        </script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Scaling to large datasets" href="scale.html" />
+    <link rel="prev" title="Options and settings" href="options.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fas fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../_static/pandas.svg" class="logo__image only-light" alt="Logo image">
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="../getting_started/index.html">
+                        Getting started
+                    </a>
+                </li>
+                
+
+                <li class="nav-item current active">
+                    <a class="nav-link" href="index.html">
+                        User Guide
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../reference/index.html">
+                        API reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../development/index.html">
+                        Development
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../whatsnew/index.html">
+                        Release notes
+                    </a>
+                </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      <div class="navbar-end-item navbar-end__search-button-container">
+        
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search">
+  <i class="fas fa-search"></i>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        1.5.3  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pandas-dev/pandas" title="GitHub" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/pandas_dev" title="Twitter" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  <div class="search-button-container--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search">
+  <i class="fas fa-search"></i>
+</button>
+  </div>
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fas fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="../getting_started/index.html">
+                        Getting started
+                    </a>
+                </li>
+                
+
+                <li class="nav-item current active">
+                    <a class="nav-link" href="index.html">
+                        User Guide
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../reference/index.html">
+                        API reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../development/index.html">
+                        Development
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../whatsnew/index.html">
+                        Release notes
+                    </a>
+                </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        1.5.3  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pandas-dev/pandas" title="GitHub" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/pandas_dev" title="Twitter" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item navbar-nav">
+    
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="10min.html">
+   10 minutes to pandas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dsintro.html">
+   Intro to data structures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="basics.html">
+   Essential basic functionality
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="io.html">
+   IO tools (text, CSV, HDF5, …)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="indexing.html">
+   Indexing and selecting data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="advanced.html">
+   MultiIndex / advanced indexing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="merging.html">
+   Merge, join, concatenate and compare
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="reshaping.html">
+   Reshaping and pivot tables
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="text.html">
+   Working with text data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="missing_data.html">
+   Working with missing data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="duplicates.html">
+   Duplicate Labels
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="categorical.html">
+   Categorical data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="integer_na.html">
+   Nullable integer data type
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="boolean.html">
+   Nullable Boolean data type
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="visualization.html">
+   Chart visualization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="style.html">
+   Table Visualization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="groupby.html">
+   Group by: split-apply-combine
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="window.html">
+   Windowing operations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="timeseries.html">
+   Time series / date functionality
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="timedeltas.html">
+   Time deltas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="options.html">
+   Options and settings
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Enhancing performance
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="scale.html">
+   Scaling to large datasets
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="sparse.html">
+   Sparse data structures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="gotchas.html">
+   Frequently Asked Questions (FAQ)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cookbook.html">
+   Cookbook
+  </a>
+ </li>
+</ul>
+
+    
+  </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+      </div>
+      <main class="bd-main">
+        
+        
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+            </div>
+            
+            
+            <article class="bd-article" role="main">
+              
+  <section id="enhancing-performance">
+<span id="enhancingperf"></span><h1>Enhancing performance<a class="headerlink" href="#enhancing-performance" title="Permalink to this headline">#</a></h1>
+<p>In this part of the tutorial, we will investigate how to speed up certain
+functions operating on pandas <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> using three different techniques:
+Cython, Numba and <a class="reference internal" href="../reference/api/pandas.eval.html#pandas.eval" title="pandas.eval"><code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.eval()</span></code></a>. We will see a speed improvement of ~200
+when we use Cython and Numba on a test function operating row-wise on the
+<a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a>. Using <a class="reference internal" href="../reference/api/pandas.eval.html#pandas.eval" title="pandas.eval"><code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.eval()</span></code></a> we will speed up a sum by an order of
+~2.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In addition to following the steps in this tutorial, users interested in enhancing
+performance are highly encouraged to install the
+<a class="reference internal" href="../getting_started/install.html#install-recommended-dependencies"><span class="std std-ref">recommended dependencies</span></a> for pandas.
+These dependencies are often not installed by default, but will offer speed
+improvements if present.</p>
+</div>
+<section id="cython-writing-c-extensions-for-pandas">
+<span id="enhancingperf-cython"></span><h2>Cython (writing C extensions for pandas)<a class="headerlink" href="#cython-writing-c-extensions-for-pandas" title="Permalink to this headline">#</a></h2>
+<p>For many use cases writing pandas in pure Python and NumPy is sufficient. In some
+computationally heavy applications however, it can be possible to achieve sizable
+speed-ups by offloading work to <a class="reference external" href="https://cython.org/">cython</a>.</p>
+<p>This tutorial assumes you have refactored as much as possible in Python, for example
+by trying to remove for-loops and making use of NumPy vectorization. It’s always worth
+optimising in Python first.</p>
+<p>This tutorial walks through a “typical” process of cythonizing a slow computation.
+We use an <a class="reference external" href="https://docs.cython.org/en/latest/src/quickstart/cythonize.html">example from the Cython documentation</a>
+but in the context of pandas. Our final cythonized solution is around 100 times
+faster than the pure Python solution.</p>
+<section id="pure-python">
+<span id="enhancingperf-pure"></span><h3>Pure Python<a class="headerlink" href="#pure-python" title="Permalink to this headline">#</a></h3>
+<p>We have a <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> to which we want to apply a function row-wise.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<span class="gp">   ...: </span>    <span class="p">{</span>
+<span class="gp">   ...: </span>        <span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1000</span><span class="p">),</span>
+<span class="gp">   ...: </span>        <span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1000</span><span class="p">),</span>
+<span class="gp">   ...: </span>        <span class="s2">&quot;N&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="p">(</span><span class="mi">1000</span><span class="p">)),</span>
+<span class="gp">   ...: </span>        <span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="s2">&quot;x&quot;</span><span class="p">,</span>
+<span class="gp">   ...: </span>    <span class="p">}</span>
+<span class="gp">   ...: </span><span class="p">)</span>
+<span class="gp">   ...: </span>
+
+<span class="gp">In [2]: </span><span class="n">df</span>
+<span class="gh">Out[2]: </span>
+<span class="go">            a         b    N  x</span>
+<span class="go">0    0.469112 -0.218470  585  x</span>
+<span class="go">1   -0.282863 -0.061645  841  x</span>
+<span class="go">2   -1.509059 -0.723780  251  x</span>
+<span class="go">3   -1.135632  0.551225  972  x</span>
+<span class="go">4    1.212112 -0.497767  181  x</span>
+<span class="go">..        ...       ...  ... ..</span>
+<span class="go">995 -1.512743  0.874737  374  x</span>
+<span class="go">996  0.933753  1.120790  246  x</span>
+<span class="go">997 -0.308013  0.198768  157  x</span>
+<span class="go">998 -0.079915  1.757555  977  x</span>
+<span class="go">999 -1.010589 -1.115680  770  x</span>
+
+<span class="go">[1000 rows x 4 columns]</span>
+</pre></div>
+</div>
+<p>Here’s the function in pure Python:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [3]: </span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="gp">   ...: </span>    <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gp">   ...: </span>
+
+<span class="gp">In [4]: </span><span class="k">def</span> <span class="nf">integrate_f</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+<span class="gp">   ...: </span>    <span class="n">s</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="gp">   ...: </span>    <span class="n">dx</span> <span class="o">=</span> <span class="p">(</span><span class="n">b</span> <span class="o">-</span> <span class="n">a</span><span class="p">)</span> <span class="o">/</span> <span class="n">N</span>
+<span class="gp">   ...: </span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+<span class="gp">   ...: </span>        <span class="n">s</span> <span class="o">+=</span> <span class="n">f</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">i</span> <span class="o">*</span> <span class="n">dx</span><span class="p">)</span>
+<span class="gp">   ...: </span>    <span class="k">return</span> <span class="n">s</span> <span class="o">*</span> <span class="n">dx</span>
+<span class="gp">   ...: </span>
+</pre></div>
+</div>
+<p>We achieve our result by using <a class="reference internal" href="../reference/api/pandas.DataFrame.apply.html#pandas.DataFrame.apply" title="pandas.DataFrame.apply"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.apply()</span></code></a> (row-wise):</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [5]: </span><span class="o">%</span><span class="k">timeit</span> df.apply(lambda x: integrate_f(x[&quot;a&quot;], x[&quot;b&quot;], x[&quot;N&quot;]), axis=1)
+<span class="go">86 ms +- 1.44 ms per loop (mean +- std. dev. of 7 runs, 10 loops each)</span>
+</pre></div>
+</div>
+<p>But clearly this isn’t fast enough for us. Let’s take a look and see where the
+time is spent during this operation (limited to the most time consuming
+four calls) using the <a class="reference external" href="https://ipython.readthedocs.io/en/stable/interactive/magics.html#magic-prun">prun ipython magic function</a>:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [6]: </span><span class="o">%</span><span class="k">prun</span> -l 4 df.apply(lambda x: integrate_f(x[&quot;a&quot;], x[&quot;b&quot;], x[&quot;N&quot;]), axis=1)  # noqa E999
+<span class="go">         621327 function calls (621307 primitive calls) in 0.168 seconds</span>
+
+<span class="go">   Ordered by: internal time</span>
+<span class="go">   List reduced from 225 to 4 due to restriction &lt;4&gt;</span>
+
+<span class="go">   ncalls  tottime  percall  cumtime  percall filename:lineno(function)</span>
+<span class="go">     1000    0.093    0.000    0.143    0.000 &lt;ipython-input-4-c2a74e076cf0&gt;:1(integrate_f)</span>
+<span class="go">   552423    0.050    0.000    0.050    0.000 &lt;ipython-input-3-c138bdd570e3&gt;:1(f)</span>
+<span class="go">     3000    0.004    0.000    0.018    0.000 series.py:966(__getitem__)</span>
+<span class="go">     3000    0.002    0.000    0.009    0.000 series.py:1072(_get_value)</span>
+</pre></div>
+</div>
+<p>By far the majority of time is spend inside either <code class="docutils literal notranslate"><span class="pre">integrate_f</span></code> or <code class="docutils literal notranslate"><span class="pre">f</span></code>,
+hence we’ll concentrate our efforts cythonizing these two functions.</p>
+</section>
+<section id="plain-cython">
+<span id="enhancingperf-plain"></span><h3>Plain Cython<a class="headerlink" href="#plain-cython" title="Permalink to this headline">#</a></h3>
+<p>First we’re going to need to import the Cython magic function to IPython:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [7]: </span><span class="o">%</span><span class="k">load_ext</span> Cython
+</pre></div>
+</div>
+<p>Now, let’s simply copy our functions over to Cython as is (the suffix
+is here to distinguish between function versions):</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [8]: </span><span class="o">%%</span><span class="k">cython</span>
+<span class="gp">   ...: </span>def f_plain(x):
+<span class="gp">   ...: </span>    return x * (x - 1)
+<span class="gp">   ...: </span>def integrate_f_plain(a, b, N):
+<span class="gp">   ...: </span>    s = 0
+<span class="gp">   ...: </span>    dx = (b - a) / N
+<span class="gp">   ...: </span>    for i in range(N):
+<span class="gp">   ...: </span>        s += f_plain(a + i * dx)
+<span class="gp">   ...: </span>    return s * dx
+<span class="gp">   ...: </span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you’re having trouble pasting the above into your ipython, you may need
+to be using bleeding edge IPython for paste to play well with cell magics.</p>
+</div>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [9]: </span><span class="o">%</span><span class="k">timeit</span> df.apply(lambda x: integrate_f_plain(x[&quot;a&quot;], x[&quot;b&quot;], x[&quot;N&quot;]), axis=1)
+<span class="go">50.9 ms +- 160 us per loop (mean +- std. dev. of 7 runs, 10 loops each)</span>
+</pre></div>
+</div>
+<p>Already this has shaved a third off, not too bad for a simple copy and paste.</p>
+</section>
+<section id="adding-type">
+<span id="enhancingperf-type"></span><h3>Adding type<a class="headerlink" href="#adding-type" title="Permalink to this headline">#</a></h3>
+<p>We get another huge improvement simply by providing type information:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [10]: </span><span class="o">%%</span><span class="k">cython</span>
+<span class="gp">   ....: </span>cdef double f_typed(double x) except? -2:
+<span class="gp">   ....: </span>    return x * (x - 1)
+<span class="gp">   ....: </span>cpdef double integrate_f_typed(double a, double b, int N):
+<span class="gp">   ....: </span>    cdef int i
+<span class="gp">   ....: </span>    cdef double s, dx
+<span class="gp">   ....: </span>    s = 0
+<span class="gp">   ....: </span>    dx = (b - a) / N
+<span class="gp">   ....: </span>    for i in range(N):
+<span class="gp">   ....: </span>        s += f_typed(a + i * dx)
+<span class="gp">   ....: </span>    return s * dx
+<span class="gp">   ....: </span>
+</pre></div>
+</div>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [11]: </span><span class="o">%</span><span class="k">timeit</span> df.apply(lambda x: integrate_f_typed(x[&quot;a&quot;], x[&quot;b&quot;], x[&quot;N&quot;]), axis=1)
+<span class="go">9.47 ms +- 279 us per loop (mean +- std. dev. of 7 runs, 100 loops each)</span>
+</pre></div>
+</div>
+<p>Now, we’re talking! It’s now over ten times faster than the original Python
+implementation, and we haven’t <em>really</em> modified the code. Let’s have another
+look at what’s eating up time:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [12]: </span><span class="o">%</span><span class="k">prun</span> -l 4 df.apply(lambda x: integrate_f_typed(x[&quot;a&quot;], x[&quot;b&quot;], x[&quot;N&quot;]), axis=1)
+<span class="go">         68904 function calls (68884 primitive calls) in 0.026 seconds</span>
+
+<span class="go">   Ordered by: internal time</span>
+<span class="go">   List reduced from 224 to 4 due to restriction &lt;4&gt;</span>
+
+<span class="go">   ncalls  tottime  percall  cumtime  percall filename:lineno(function)</span>
+<span class="go">     3000    0.004    0.000    0.018    0.000 series.py:966(__getitem__)</span>
+<span class="go">     3000    0.002    0.000    0.009    0.000 series.py:1072(_get_value)</span>
+<span class="go">    16174    0.002    0.000    0.003    0.000 {built-in method builtins.isinstance}</span>
+<span class="go">     3000    0.002    0.000    0.003    0.000 base.py:3754(get_loc)</span>
+</pre></div>
+</div>
+</section>
+<section id="using-ndarray">
+<span id="enhancingperf-ndarray"></span><h3>Using ndarray<a class="headerlink" href="#using-ndarray" title="Permalink to this headline">#</a></h3>
+<p>It’s calling series a lot! It’s creating a <a class="reference internal" href="../reference/api/pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a> from each row, and calling get from both
+the index and the series (three times for each row). Function calls are expensive
+in Python, so maybe we could minimize these by cythonizing the apply part.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We are now passing ndarrays into the Cython function, fortunately Cython plays
+very nicely with NumPy.</p>
+</div>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [13]: </span><span class="o">%%</span><span class="k">cython</span>
+<span class="gp">   ....: </span>cimport numpy as np
+<span class="gp">   ....: </span>import numpy as np
+<span class="gp">   ....: </span>cdef double f_typed(double x) except? -2:
+<span class="gp">   ....: </span>    return x * (x - 1)
+<span class="gp">   ....: </span>cpdef double integrate_f_typed(double a, double b, int N):
+<span class="gp">   ....: </span>    cdef int i
+<span class="gp">   ....: </span>    cdef double s, dx
+<span class="gp">   ....: </span>    s = 0
+<span class="gp">   ....: </span>    dx = (b - a) / N
+<span class="gp">   ....: </span>    for i in range(N):
+<span class="gp">   ....: </span>        s += f_typed(a + i * dx)
+<span class="gp">   ....: </span>    return s * dx
+<span class="gp">   ....: </span>cpdef np.ndarray[double] apply_integrate_f(np.ndarray col_a, np.ndarray col_b,
+<span class="gp">   ....: </span>                                           np.ndarray col_N):
+<span class="gp">   ....: </span>    assert (col_a.dtype == np.float_
+<span class="gp">   ....: </span>            and col_b.dtype == np.float_ and col_N.dtype == np.int_)
+<span class="gp">   ....: </span>    cdef Py_ssize_t i, n = len(col_N)
+<span class="gp">   ....: </span>    assert (len(col_a) == len(col_b) == n)
+<span class="gp">   ....: </span>    cdef np.ndarray[double] res = np.empty(n)
+<span class="gp">   ....: </span>    for i in range(len(col_a)):
+<span class="gp">   ....: </span>        res[i] = integrate_f_typed(col_a[i], col_b[i], col_N[i])
+<span class="gp">   ....: </span>    return res
+<span class="gp">   ....: </span>
+</pre></div>
+</div>
+<p>The implementation is simple, it creates an array of zeros and loops over
+the rows, applying our <code class="docutils literal notranslate"><span class="pre">integrate_f_typed</span></code>, and putting this in the zeros array.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>You can <strong>not pass</strong> a <a class="reference internal" href="../reference/api/pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a> directly as a <code class="docutils literal notranslate"><span class="pre">ndarray</span></code> typed parameter
+to a Cython function. Instead pass the actual <code class="docutils literal notranslate"><span class="pre">ndarray</span></code> using the
+<a class="reference internal" href="../reference/api/pandas.Series.to_numpy.html#pandas.Series.to_numpy" title="pandas.Series.to_numpy"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.to_numpy()</span></code></a>. The reason is that the Cython
+definition is specific to an ndarray and not the passed <a class="reference internal" href="../reference/api/pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a>.</p>
+<p>So, do not do this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">apply_integrate_f</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;b&quot;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;N&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>But rather, use <a class="reference internal" href="../reference/api/pandas.Series.to_numpy.html#pandas.Series.to_numpy" title="pandas.Series.to_numpy"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.to_numpy()</span></code></a> to get the underlying <code class="docutils literal notranslate"><span class="pre">ndarray</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">apply_integrate_f</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;b&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;N&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Loops like this would be <em>extremely</em> slow in Python, but in Cython looping
+over NumPy arrays is <em>fast</em>.</p>
+</div>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [14]: </span><span class="o">%</span><span class="k">timeit</span> apply_integrate_f(df[&quot;a&quot;].to_numpy(), df[&quot;b&quot;].to_numpy(), df[&quot;N&quot;].to_numpy())
+<span class="go">854 us +- 2.62 us per loop (mean +- std. dev. of 7 runs, 1,000 loops each)</span>
+</pre></div>
+</div>
+<p>We’ve gotten another big improvement. Let’s check again where the time is spent:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [15]: </span><span class="o">%</span><span class="k">prun</span> -l 4 apply_integrate_f(df[&quot;a&quot;].to_numpy(), df[&quot;b&quot;].to_numpy(), df[&quot;N&quot;].to_numpy())
+<span class="go">         85 function calls in 0.001 seconds</span>
+
+<span class="go">   Ordered by: internal time</span>
+<span class="go">   List reduced from 24 to 4 due to restriction &lt;4&gt;</span>
+
+<span class="go">   ncalls  tottime  percall  cumtime  percall filename:lineno(function)</span>
+<span class="go">        1    0.001    0.001    0.001    0.001 {built-in method _cython_magic_6991e1e67eedbb03acaf53f278f60013.apply_integrate_f}</span>
+<span class="go">        1    0.000    0.000    0.001    0.001 {built-in method builtins.exec}</span>
+<span class="go">        3    0.000    0.000    0.000    0.000 frame.py:3758(__getitem__)</span>
+<span class="go">        3    0.000    0.000    0.000    0.000 base.py:5254(__contains__)</span>
+</pre></div>
+</div>
+<p>As one might expect, the majority of the time is now spent in <code class="docutils literal notranslate"><span class="pre">apply_integrate_f</span></code>,
+so if we wanted to make anymore efficiencies we must continue to concentrate our
+efforts here.</p>
+</section>
+<section id="more-advanced-techniques">
+<span id="enhancingperf-boundswrap"></span><h3>More advanced techniques<a class="headerlink" href="#more-advanced-techniques" title="Permalink to this headline">#</a></h3>
+<p>There is still hope for improvement. Here’s an example of using some more
+advanced Cython techniques:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [16]: </span><span class="o">%%</span><span class="k">cython</span>
+<span class="gp">   ....: </span>cimport cython
+<span class="gp">   ....: </span>cimport numpy as np
+<span class="gp">   ....: </span>import numpy as np
+<span class="gp">   ....: </span>cdef np.float64_t f_typed(np.float64_t x) except? -2:
+<span class="gp">   ....: </span>    return x * (x - 1)
+<span class="gp">   ....: </span>cpdef np.float64_t integrate_f_typed(np.float64_t a, np.float64_t b, np.int64_t N):
+<span class="gp">   ....: </span>    cdef np.int64_t i
+<span class="gp">   ....: </span>    cdef np.float64_t s = 0.0, dx
+<span class="gp">   ....: </span>    dx = (b - a) / N
+<span class="gp">   ....: </span>    for i in range(N):
+<span class="gp">   ....: </span>        s += f_typed(a + i * dx)
+<span class="gp">   ....: </span>    return s * dx
+<span class="gp">   ....: </span>@cython.boundscheck(False)
+<span class="gp">   ....: </span>@cython.wraparound(False)
+<span class="gp">   ....: </span>cpdef np.ndarray[np.float64_t] apply_integrate_f_wrap(
+<span class="gp">   ....: </span>    np.ndarray[np.float64_t] col_a,
+<span class="gp">   ....: </span>    np.ndarray[np.float64_t] col_b,
+<span class="gp">   ....: </span>    np.ndarray[np.int64_t] col_N
+<span class="gp">   ....: </span>):
+<span class="gp">   ....: </span>    cdef np.int64_t i, n = len(col_N)
+<span class="gp">   ....: </span>    assert len(col_a) == len(col_b) == n
+<span class="gp">   ....: </span>    cdef np.ndarray[np.float64_t] res = np.empty(n, dtype=np.float64)
+<span class="gp">   ....: </span>    for i in range(n):
+<span class="gp">   ....: </span>        res[i] = integrate_f_typed(col_a[i], col_b[i], col_N[i])
+<span class="gp">   ....: </span>    return res
+<span class="gp">   ....: </span>
+</pre></div>
+</div>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [17]: </span><span class="o">%</span><span class="k">timeit</span> apply_integrate_f_wrap(df[&quot;a&quot;].to_numpy(), df[&quot;b&quot;].to_numpy(), df[&quot;N&quot;].to_numpy())
+<span class="go">723 us +- 2.91 us per loop (mean +- std. dev. of 7 runs, 1,000 loops each)</span>
+</pre></div>
+</div>
+<p>Even faster, with the caveat that a bug in our Cython code (an off-by-one error,
+for example) might cause a segfault because memory access isn’t checked.
+For more about <code class="docutils literal notranslate"><span class="pre">boundscheck</span></code> and <code class="docutils literal notranslate"><span class="pre">wraparound</span></code>, see the Cython docs on
+<a class="reference external" href="https://cython.readthedocs.io/en/latest/src/reference/compilation.html?highlight=wraparound#compiler-directives">compiler directives</a>.</p>
+</section>
+</section>
+<section id="numba-jit-compilation">
+<span id="enhancingperf-numba"></span><h2>Numba (JIT compilation)<a class="headerlink" href="#numba-jit-compilation" title="Permalink to this headline">#</a></h2>
+<p>An alternative to statically compiling Cython code is to use a dynamic just-in-time (JIT) compiler with <a class="reference external" href="https://numba.pydata.org/">Numba</a>.</p>
+<p>Numba allows you to write a pure Python function which can be JIT compiled to native machine instructions, similar in performance to C, C++ and Fortran,
+by decorating your function with <code class="docutils literal notranslate"><span class="pre">&#64;jit</span></code>.</p>
+<p>Numba works by generating optimized machine code using the LLVM compiler infrastructure at import time, runtime, or statically (using the included pycc tool).
+Numba supports compilation of Python to run on either CPU or GPU hardware and is designed to integrate with the Python scientific software stack.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">&#64;jit</span></code> compilation will add overhead to the runtime of the function, so performance benefits may not be realized especially when using small data sets.
+Consider <a class="reference external" href="https://numba.readthedocs.io/en/stable/developer/caching.html">caching</a> your function to avoid compilation overhead each time your function is run.</p>
+</div>
+<p>Numba can be used in 2 ways with pandas:</p>
+<ol class="arabic simple">
+<li><p>Specify the <code class="docutils literal notranslate"><span class="pre">engine=&quot;numba&quot;</span></code> keyword in select pandas methods</p></li>
+<li><p>Define your own Python function decorated with <code class="docutils literal notranslate"><span class="pre">&#64;jit</span></code> and pass the underlying NumPy array of <a class="reference internal" href="../reference/api/pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a> or <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> (using <code class="docutils literal notranslate"><span class="pre">to_numpy()</span></code>) into the function</p></li>
+</ol>
+<section id="pandas-numba-engine">
+<h3>pandas Numba Engine<a class="headerlink" href="#pandas-numba-engine" title="Permalink to this headline">#</a></h3>
+<p>If Numba is installed, one can specify <code class="docutils literal notranslate"><span class="pre">engine=&quot;numba&quot;</span></code> in select pandas methods to execute the method using Numba.
+Methods that support <code class="docutils literal notranslate"><span class="pre">engine=&quot;numba&quot;</span></code> will also have an <code class="docutils literal notranslate"><span class="pre">engine_kwargs</span></code> keyword that accepts a dictionary that allows one to specify
+<code class="docutils literal notranslate"><span class="pre">&quot;nogil&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;nopython&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;parallel&quot;</span></code> keys with boolean values to pass into the <code class="docutils literal notranslate"><span class="pre">&#64;jit</span></code> decorator.
+If <code class="docutils literal notranslate"><span class="pre">engine_kwargs</span></code> is not specified, it defaults to <code class="docutils literal notranslate"><span class="pre">{&quot;nogil&quot;:</span> <span class="pre">False,</span> <span class="pre">&quot;nopython&quot;:</span> <span class="pre">True,</span> <span class="pre">&quot;parallel&quot;:</span> <span class="pre">False}</span></code> unless otherwise specified.</p>
+<p>In terms of performance, <strong>the first time a function is run using the Numba engine will be slow</strong>
+as Numba will have some function compilation overhead. However, the JIT compiled functions are cached,
+and subsequent calls will be fast. In general, the Numba engine is performant with
+a larger amount of data points (e.g. 1+ million).</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1_000_000</span><span class="p">))</span>  <span class="c1"># noqa: E225</span>
+
+<span class="gp">In [2]: </span><span class="n">roll</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="gp">In [3]: </span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="gp">   ...: </span>    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="mi">5</span>
+<span class="go"># Run the first time, compilation time will affect performance</span>
+<span class="gp">In [4]: </span><span class="o">%</span><span class="k">timeit</span> -r 1 -n 1 roll.apply(f, engine=&#39;numba&#39;, raw=True)
+<span class="go">1.23 s ± 0 ns per loop (mean ± std. dev. of 1 run, 1 loop each)</span>
+<span class="go"># Function is cached and performance will improve</span>
+<span class="gp">In [5]: </span><span class="o">%</span><span class="k">timeit</span> roll.apply(f, engine=&#39;numba&#39;, raw=True)
+<span class="go">188 ms ± 1.93 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)</span>
+
+<span class="gp">In [6]: </span><span class="o">%</span><span class="k">timeit</span> roll.apply(f, engine=&#39;cython&#39;, raw=True)
+<span class="go">3.92 s ± 59 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)</span>
+</pre></div>
+</div>
+<p>If your compute hardware contains multiple CPUs, the largest performance gain can be realized by setting <code class="docutils literal notranslate"><span class="pre">parallel</span></code> to <code class="docutils literal notranslate"><span class="pre">True</span></code>
+to leverage more than 1 CPU. Internally, pandas leverages numba to parallelize computations over the columns of a <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a>;
+therefore, this performance benefit is only beneficial for a <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> with a large number of columns.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="kn">import</span> <span class="nn">numba</span>
+
+<span class="gp">In [2]: </span><span class="n">numba</span><span class="o">.</span><span class="n">set_num_threads</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="gp">In [3]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">10_000</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+
+<span class="gp">In [4]: </span><span class="n">roll</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="gp">In [5]: </span><span class="o">%</span><span class="k">timeit</span> roll.mean(engine=&quot;numba&quot;, engine_kwargs={&quot;parallel&quot;: True})
+<span class="go">347 ms ± 26 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)</span>
+
+<span class="gp">In [6]: </span><span class="n">numba</span><span class="o">.</span><span class="n">set_num_threads</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="gp">In [7]: </span><span class="o">%</span><span class="k">timeit</span> roll.mean(engine=&quot;numba&quot;, engine_kwargs={&quot;parallel&quot;: True})
+<span class="go">201 ms ± 2.97 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)</span>
+</pre></div>
+</div>
+</section>
+<section id="custom-function-examples">
+<h3>Custom Function Examples<a class="headerlink" href="#custom-function-examples" title="Permalink to this headline">#</a></h3>
+<p>A custom Python function decorated with <code class="docutils literal notranslate"><span class="pre">&#64;jit</span></code> can be used with pandas objects by passing their NumPy array
+representations with <code class="docutils literal notranslate"><span class="pre">to_numpy()</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numba</span>
+
+
+<span class="nd">@numba</span><span class="o">.</span><span class="n">jit</span>
+<span class="k">def</span> <span class="nf">f_plain</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+
+
+<span class="nd">@numba</span><span class="o">.</span><span class="n">jit</span>
+<span class="k">def</span> <span class="nf">integrate_f_numba</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">dx</span> <span class="o">=</span> <span class="p">(</span><span class="n">b</span> <span class="o">-</span> <span class="n">a</span><span class="p">)</span> <span class="o">/</span> <span class="n">N</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+        <span class="n">s</span> <span class="o">+=</span> <span class="n">f_plain</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">i</span> <span class="o">*</span> <span class="n">dx</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">s</span> <span class="o">*</span> <span class="n">dx</span>
+
+
+<span class="nd">@numba</span><span class="o">.</span><span class="n">jit</span>
+<span class="k">def</span> <span class="nf">apply_integrate_f_numba</span><span class="p">(</span><span class="n">col_a</span><span class="p">,</span> <span class="n">col_b</span><span class="p">,</span> <span class="n">col_N</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">col_N</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">col_a</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">col_b</span><span class="p">)</span> <span class="o">==</span> <span class="n">n</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">result</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">integrate_f_numba</span><span class="p">(</span><span class="n">col_a</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">col_b</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">col_N</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">result</span>
+
+
+<span class="k">def</span> <span class="nf">compute_numba</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">apply_integrate_f_numba</span><span class="p">(</span>
+        <span class="n">df</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;b&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;N&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;result&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [4]: </span><span class="o">%</span><span class="k">timeit</span> compute_numba(df)
+<span class="go">1000 loops, best of 3: 798 us per loop</span>
+</pre></div>
+</div>
+<p>In this example, using Numba was faster than Cython.</p>
+<p>Numba can also be used to write vectorized functions that do not require the user to explicitly
+loop over the observations of a vector; a vectorized function will be applied to each row automatically.
+Consider the following example of doubling each observation:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numba</span>
+
+
+<span class="k">def</span> <span class="nf">double_every_value_nonumba</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">2</span>
+
+
+<span class="nd">@numba</span><span class="o">.</span><span class="n">vectorize</span>
+<span class="k">def</span> <span class="nf">double_every_value_withnumba</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>  <span class="c1"># noqa E501</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">2</span>
+</pre></div>
+</div>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="go"># Custom function without numba</span>
+<span class="gp">In [5]: </span><span class="o">%</span><span class="k">timeit</span> df[&quot;col1_doubled&quot;] = df[&quot;a&quot;].apply(double_every_value_nonumba)  # noqa E501
+<span class="go">1000 loops, best of 3: 797 us per loop</span>
+
+<span class="go"># Standard implementation (faster than a custom function)</span>
+<span class="gp">In [6]: </span><span class="o">%</span><span class="k">timeit</span> df[&quot;col1_doubled&quot;] = df[&quot;a&quot;] * 2
+<span class="go">1000 loops, best of 3: 233 us per loop</span>
+
+<span class="go"># Custom function with numba</span>
+<span class="gp">In [7]: </span><span class="o">%</span><span class="k">timeit</span> df[&quot;col1_doubled&quot;] = double_every_value_withnumba(df[&quot;a&quot;].to_numpy())
+<span class="go">1000 loops, best of 3: 145 us per loop</span>
+</pre></div>
+</div>
+</section>
+<section id="caveats">
+<h3>Caveats<a class="headerlink" href="#caveats" title="Permalink to this headline">#</a></h3>
+<p>Numba is best at accelerating functions that apply numerical functions to NumPy
+arrays. If you try to <code class="docutils literal notranslate"><span class="pre">&#64;jit</span></code> a function that contains unsupported <a class="reference external" href="https://numba.readthedocs.io/en/stable/reference/pysupported.html">Python</a>
+or <a class="reference external" href="https://numba.readthedocs.io/en/stable/reference/numpysupported.html">NumPy</a>
+code, compilation will revert <a class="reference external" href="https://numba.readthedocs.io/en/stable/glossary.html#term-object-mode">object mode</a> which
+will mostly likely not speed up your function. If you would
+prefer that Numba throw an error if it cannot compile a function in a way that
+speeds up your code, pass Numba the argument
+<code class="docutils literal notranslate"><span class="pre">nopython=True</span></code> (e.g.  <code class="docutils literal notranslate"><span class="pre">&#64;jit(nopython=True)</span></code>). For more on
+troubleshooting Numba modes, see the <a class="reference external" href="https://numba.pydata.org/numba-doc/latest/user/troubleshoot.html#the-compiled-code-is-too-slow">Numba troubleshooting page</a>.</p>
+<p>Using <code class="docutils literal notranslate"><span class="pre">parallel=True</span></code> (e.g. <code class="docutils literal notranslate"><span class="pre">&#64;jit(parallel=True)</span></code>) may result in a <code class="docutils literal notranslate"><span class="pre">SIGABRT</span></code> if the threading layer leads to unsafe
+behavior. You can first <a class="reference external" href="https://numba.readthedocs.io/en/stable/user/threading-layer.html#selecting-a-threading-layer-for-safe-parallel-execution">specify a safe threading layer</a>
+before running a JIT function with <code class="docutils literal notranslate"><span class="pre">parallel=True</span></code>.</p>
+<p>Generally if the you encounter a segfault (<code class="docutils literal notranslate"><span class="pre">SIGSEGV</span></code>) while using Numba, please report the issue
+to the <a class="reference external" href="https://github.com/numba/numba/issues/new/choose">Numba issue tracker.</a></p>
+</section>
+</section>
+<section id="expression-evaluation-via-eval">
+<span id="enhancingperf-eval"></span><h2>Expression evaluation via <a class="reference internal" href="../reference/api/pandas.eval.html#pandas.eval" title="pandas.eval"><code class="xref py py-func docutils literal notranslate"><span class="pre">eval()</span></code></a><a class="headerlink" href="#expression-evaluation-via-eval" title="Permalink to this headline">#</a></h2>
+<p>The top-level function <a class="reference internal" href="../reference/api/pandas.eval.html#pandas.eval" title="pandas.eval"><code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.eval()</span></code></a> implements expression evaluation of
+<a class="reference internal" href="../reference/api/pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a> and <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> objects.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To benefit from using <a class="reference internal" href="../reference/api/pandas.eval.html#pandas.eval" title="pandas.eval"><code class="xref py py-func docutils literal notranslate"><span class="pre">eval()</span></code></a> you need to
+install <code class="docutils literal notranslate"><span class="pre">numexpr</span></code>. See the <a class="reference internal" href="../getting_started/install.html#install-recommended-dependencies"><span class="std std-ref">recommended dependencies section</span></a> for more details.</p>
+</div>
+<p>The point of using <a class="reference internal" href="../reference/api/pandas.eval.html#pandas.eval" title="pandas.eval"><code class="xref py py-func docutils literal notranslate"><span class="pre">eval()</span></code></a> for expression evaluation rather than
+plain Python is two-fold: 1) large <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> objects are
+evaluated more efficiently and 2) large arithmetic and boolean expressions are
+evaluated all at once by the underlying engine (by default <code class="docutils literal notranslate"><span class="pre">numexpr</span></code> is used
+for evaluation).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You should not use <a class="reference internal" href="../reference/api/pandas.eval.html#pandas.eval" title="pandas.eval"><code class="xref py py-func docutils literal notranslate"><span class="pre">eval()</span></code></a> for simple
+expressions or for expressions involving small DataFrames. In fact,
+<a class="reference internal" href="../reference/api/pandas.eval.html#pandas.eval" title="pandas.eval"><code class="xref py py-func docutils literal notranslate"><span class="pre">eval()</span></code></a> is many orders of magnitude slower for
+smaller expressions/objects than plain ol’ Python. A good rule of thumb is
+to only use <a class="reference internal" href="../reference/api/pandas.eval.html#pandas.eval" title="pandas.eval"><code class="xref py py-func docutils literal notranslate"><span class="pre">eval()</span></code></a> when you have a
+<a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.core.frame.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> with more than 10,000 rows.</p>
+</div>
+<p><a class="reference internal" href="../reference/api/pandas.eval.html#pandas.eval" title="pandas.eval"><code class="xref py py-func docutils literal notranslate"><span class="pre">eval()</span></code></a> supports all arithmetic expressions supported by the
+engine in addition to some extensions available only in pandas.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The larger the frame and the larger the expression the more speedup you will
+see from using <a class="reference internal" href="../reference/api/pandas.eval.html#pandas.eval" title="pandas.eval"><code class="xref py py-func docutils literal notranslate"><span class="pre">eval()</span></code></a>.</p>
+</div>
+<section id="supported-syntax">
+<h3>Supported syntax<a class="headerlink" href="#supported-syntax" title="Permalink to this headline">#</a></h3>
+<p>These operations are supported by <a class="reference internal" href="../reference/api/pandas.eval.html#pandas.eval" title="pandas.eval"><code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.eval()</span></code></a>:</p>
+<ul class="simple">
+<li><p>Arithmetic operations except for the left shift (<code class="docutils literal notranslate"><span class="pre">&lt;&lt;</span></code>) and right shift
+(<code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span></code>) operators, e.g., <code class="docutils literal notranslate"><span class="pre">df</span> <span class="pre">+</span> <span class="pre">2</span> <span class="pre">*</span> <span class="pre">pi</span> <span class="pre">/</span> <span class="pre">s</span> <span class="pre">**</span> <span class="pre">4</span> <span class="pre">%</span> <span class="pre">42</span> <span class="pre">-</span> <span class="pre">the_golden_ratio</span></code></p></li>
+<li><p>Comparison operations, including chained comparisons, e.g., <code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">&lt;</span> <span class="pre">df</span> <span class="pre">&lt;</span> <span class="pre">df2</span></code></p></li>
+<li><p>Boolean operations, e.g., <code class="docutils literal notranslate"><span class="pre">df</span> <span class="pre">&lt;</span> <span class="pre">df2</span> <span class="pre">and</span> <span class="pre">df3</span> <span class="pre">&lt;</span> <span class="pre">df4</span> <span class="pre">or</span> <span class="pre">not</span> <span class="pre">df_bool</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">list</span></code> and <code class="docutils literal notranslate"><span class="pre">tuple</span></code> literals, e.g., <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">2]</span></code> or <code class="docutils literal notranslate"><span class="pre">(1,</span> <span class="pre">2)</span></code></p></li>
+<li><p>Attribute access, e.g., <code class="docutils literal notranslate"><span class="pre">df.a</span></code></p></li>
+<li><p>Subscript expressions, e.g., <code class="docutils literal notranslate"><span class="pre">df[0]</span></code></p></li>
+<li><p>Simple variable evaluation, e.g., <code class="docutils literal notranslate"><span class="pre">pd.eval(&quot;df&quot;)</span></code> (this is not very useful)</p></li>
+<li><p>Math functions: <code class="docutils literal notranslate"><span class="pre">sin</span></code>, <code class="docutils literal notranslate"><span class="pre">cos</span></code>, <code class="docutils literal notranslate"><span class="pre">exp</span></code>, <code class="docutils literal notranslate"><span class="pre">log</span></code>, <code class="docutils literal notranslate"><span class="pre">expm1</span></code>, <code class="docutils literal notranslate"><span class="pre">log1p</span></code>,
+<code class="docutils literal notranslate"><span class="pre">sqrt</span></code>, <code class="docutils literal notranslate"><span class="pre">sinh</span></code>, <code class="docutils literal notranslate"><span class="pre">cosh</span></code>, <code class="docutils literal notranslate"><span class="pre">tanh</span></code>, <code class="docutils literal notranslate"><span class="pre">arcsin</span></code>, <code class="docutils literal notranslate"><span class="pre">arccos</span></code>, <code class="docutils literal notranslate"><span class="pre">arctan</span></code>, <code class="docutils literal notranslate"><span class="pre">arccosh</span></code>,
+<code class="docutils literal notranslate"><span class="pre">arcsinh</span></code>, <code class="docutils literal notranslate"><span class="pre">arctanh</span></code>, <code class="docutils literal notranslate"><span class="pre">abs</span></code>, <code class="docutils literal notranslate"><span class="pre">arctan2</span></code> and <code class="docutils literal notranslate"><span class="pre">log10</span></code>.</p></li>
+</ul>
+<p>This Python syntax is <strong>not</strong> allowed:</p>
+<ul>
+<li><p>Expressions</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Function calls other than math functions.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">is</span></code>/<code class="docutils literal notranslate"><span class="pre">is</span> <span class="pre">not</span></code> operations</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">if</span></code> expressions</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lambda</span></code> expressions</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">list</span></code>/<code class="docutils literal notranslate"><span class="pre">set</span></code>/<code class="docutils literal notranslate"><span class="pre">dict</span></code> comprehensions</p></li>
+<li><p>Literal <code class="docutils literal notranslate"><span class="pre">dict</span></code> and <code class="docutils literal notranslate"><span class="pre">set</span></code> expressions</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">yield</span></code> expressions</p></li>
+<li><p>Generator expressions</p></li>
+<li><p>Boolean expressions consisting of only scalar values</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Statements</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Neither <a class="reference external" href="https://docs.python.org/3/reference/simple_stmts.html">simple</a>
+nor <a class="reference external" href="https://docs.python.org/3/reference/compound_stmts.html">compound</a>
+statements are allowed. This includes things like <code class="docutils literal notranslate"><span class="pre">for</span></code>, <code class="docutils literal notranslate"><span class="pre">while</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">if</span></code>.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="eval-examples">
+<h3><a class="reference internal" href="../reference/api/pandas.eval.html#pandas.eval" title="pandas.eval"><code class="xref py py-func docutils literal notranslate"><span class="pre">eval()</span></code></a> examples<a class="headerlink" href="#eval-examples" title="Permalink to this headline">#</a></h3>
+<p><a class="reference internal" href="../reference/api/pandas.eval.html#pandas.eval" title="pandas.eval"><code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.eval()</span></code></a> works well with expressions containing large arrays.</p>
+<p>First let’s create a few decent-sized arrays to play with:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [18]: </span><span class="n">nrows</span><span class="p">,</span> <span class="n">ncols</span> <span class="o">=</span> <span class="mi">20000</span><span class="p">,</span> <span class="mi">100</span>
+
+<span class="gp">In [19]: </span><span class="n">df1</span><span class="p">,</span> <span class="n">df2</span><span class="p">,</span> <span class="n">df3</span><span class="p">,</span> <span class="n">df4</span> <span class="o">=</span> <span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">nrows</span><span class="p">,</span> <span class="n">ncols</span><span class="p">))</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)]</span>
+</pre></div>
+</div>
+<p>Now let’s compare adding them together using plain ol’ Python versus
+<a class="reference internal" href="../reference/api/pandas.eval.html#pandas.eval" title="pandas.eval"><code class="xref py py-func docutils literal notranslate"><span class="pre">eval()</span></code></a>:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [20]: </span><span class="o">%</span><span class="k">timeit</span> df1 + df2 + df3 + df4
+<span class="go">18.3 ms +- 251 us per loop (mean +- std. dev. of 7 runs, 100 loops each)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [21]: </span><span class="o">%</span><span class="k">timeit</span> pd.eval(&quot;df1 + df2 + df3 + df4&quot;)
+<span class="go">9.56 ms +- 588 us per loop (mean +- std. dev. of 7 runs, 100 loops each)</span>
+</pre></div>
+</div>
+<p>Now let’s do the same thing but with comparisons:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [22]: </span><span class="o">%</span><span class="k">timeit</span> (df1 &gt; 0) &amp; (df2 &gt; 0) &amp; (df3 &gt; 0) &amp; (df4 &gt; 0)
+<span class="go">15.9 ms +- 225 us per loop (mean +- std. dev. of 7 runs, 100 loops each)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [23]: </span><span class="o">%</span><span class="k">timeit</span> pd.eval(&quot;(df1 &gt; 0) &amp; (df2 &gt; 0) &amp; (df3 &gt; 0) &amp; (df4 &gt; 0)&quot;)
+<span class="go">27.9 ms +- 2.34 ms per loop (mean +- std. dev. of 7 runs, 10 loops each)</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="../reference/api/pandas.eval.html#pandas.eval" title="pandas.eval"><code class="xref py py-func docutils literal notranslate"><span class="pre">eval()</span></code></a> also works with unaligned pandas objects:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [24]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">50</span><span class="p">))</span>
+
+<span class="gp">In [25]: </span><span class="o">%</span><span class="k">timeit</span> df1 + df2 + df3 + df4 + s
+<span class="go">30.1 ms +- 949 us per loop (mean +- std. dev. of 7 runs, 10 loops each)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [26]: </span><span class="o">%</span><span class="k">timeit</span> pd.eval(&quot;df1 + df2 + df3 + df4 + s&quot;)
+<span class="go">12.4 ms +- 270 us per loop (mean +- std. dev. of 7 runs, 100 loops each)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Operations such as</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span> <span class="ow">and</span> <span class="mi">2</span>  <span class="c1"># would parse to 1 &amp; 2, but should evaluate to 2</span>
+<span class="mi">3</span> <span class="ow">or</span> <span class="mi">4</span>  <span class="c1"># would parse to 3 | 4, but should evaluate to 3</span>
+<span class="o">~</span><span class="mi">1</span>  <span class="c1"># this is okay, but slower when using eval</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>should be performed in Python. An exception will be raised if you try to
+perform any boolean/bitwise operations with scalar operands that are not
+of type <code class="docutils literal notranslate"><span class="pre">bool</span></code> or <code class="docutils literal notranslate"><span class="pre">np.bool_</span></code>. Again, you should perform these kinds of
+operations in plain Python.</p>
+</div>
+</section>
+<section id="the-dataframe-eval-method">
+<h3>The <a class="reference internal" href="../reference/api/pandas.DataFrame.eval.html#pandas.DataFrame.eval" title="pandas.DataFrame.eval"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.eval()</span></code></a> method<a class="headerlink" href="#the-dataframe-eval-method" title="Permalink to this headline">#</a></h3>
+<p>In addition to the top level <a class="reference internal" href="../reference/api/pandas.eval.html#pandas.eval" title="pandas.eval"><code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.eval()</span></code></a> function you can also
+evaluate an expression in the “context” of a <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a>.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [27]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">])</span>
+
+<span class="gp">In [28]: </span><span class="n">df</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="s2">&quot;a + b&quot;</span><span class="p">)</span>
+<span class="gh">Out[28]: </span>
+<span class="go">0   -0.246747</span>
+<span class="go">1    0.867786</span>
+<span class="go">2   -1.626063</span>
+<span class="go">3   -1.134978</span>
+<span class="go">4   -1.027798</span>
+<span class="go">dtype: float64</span>
+</pre></div>
+</div>
+<p>Any expression that is a valid <a class="reference internal" href="../reference/api/pandas.eval.html#pandas.eval" title="pandas.eval"><code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.eval()</span></code></a> expression is also a valid
+<a class="reference internal" href="../reference/api/pandas.DataFrame.eval.html#pandas.DataFrame.eval" title="pandas.DataFrame.eval"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.eval()</span></code></a> expression, with the added benefit that you don’t have to
+prefix the name of the <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> to the column(s) you’re
+interested in evaluating.</p>
+<p>In addition, you can perform assignment of columns within an expression.
+This allows for <em>formulaic evaluation</em>.  The assignment target can be a
+new column name or an existing column name, and it must be a valid Python
+identifier.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">inplace</span></code> keyword determines whether this assignment will performed
+on the original <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> or return a copy with the new column.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [29]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="n">b</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)))</span>
+
+<span class="gp">In [30]: </span><span class="n">df</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="s2">&quot;c = a + b&quot;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="gp">In [31]: </span><span class="n">df</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="s2">&quot;d = a + b + c&quot;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="gp">In [32]: </span><span class="n">df</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="s2">&quot;a = 1&quot;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="gp">In [33]: </span><span class="n">df</span>
+<span class="gh">Out[33]: </span>
+<span class="go">   a  b   c   d</span>
+<span class="go">0  1  5   5  10</span>
+<span class="go">1  1  6   7  14</span>
+<span class="go">2  1  7   9  18</span>
+<span class="go">3  1  8  11  22</span>
+<span class="go">4  1  9  13  26</span>
+</pre></div>
+</div>
+<p>When <code class="docutils literal notranslate"><span class="pre">inplace</span></code> is set to <code class="docutils literal notranslate"><span class="pre">False</span></code>, the default, a copy of the <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> with the
+new or modified columns is returned and the original frame is unchanged.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [34]: </span><span class="n">df</span>
+<span class="gh">Out[34]: </span>
+<span class="go">   a  b   c   d</span>
+<span class="go">0  1  5   5  10</span>
+<span class="go">1  1  6   7  14</span>
+<span class="go">2  1  7   9  18</span>
+<span class="go">3  1  8  11  22</span>
+<span class="go">4  1  9  13  26</span>
+
+<span class="gp">In [35]: </span><span class="n">df</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="s2">&quot;e = a - c&quot;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="gh">Out[35]: </span>
+<span class="go">   a  b   c   d   e</span>
+<span class="go">0  1  5   5  10  -4</span>
+<span class="go">1  1  6   7  14  -6</span>
+<span class="go">2  1  7   9  18  -8</span>
+<span class="go">3  1  8  11  22 -10</span>
+<span class="go">4  1  9  13  26 -12</span>
+
+<span class="gp">In [36]: </span><span class="n">df</span>
+<span class="gh">Out[36]: </span>
+<span class="go">   a  b   c   d</span>
+<span class="go">0  1  5   5  10</span>
+<span class="go">1  1  6   7  14</span>
+<span class="go">2  1  7   9  18</span>
+<span class="go">3  1  8  11  22</span>
+<span class="go">4  1  9  13  26</span>
+</pre></div>
+</div>
+<p>As a convenience, multiple assignments can be performed by using a
+multi-line string.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [37]: </span><span class="n">df</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span>
+<span class="gp">   ....: </span><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="gp">   ....: </span><span class="sd">c = a + b</span>
+<span class="gp">   ....: </span><span class="sd">d = a + b + c</span>
+<span class="gp">   ....: </span><span class="sd">a = 1&quot;&quot;&quot;</span><span class="p">,</span>
+<span class="gp">   ....: </span>    <span class="n">inplace</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="gp">   ....: </span><span class="p">)</span>
+<span class="gp">   ....: </span>
+<span class="gh">Out[37]: </span>
+<span class="go">   a  b   c   d</span>
+<span class="go">0  1  5   6  12</span>
+<span class="go">1  1  6   7  14</span>
+<span class="go">2  1  7   8  16</span>
+<span class="go">3  1  8   9  18</span>
+<span class="go">4  1  9  10  20</span>
+</pre></div>
+</div>
+<p>The equivalent in standard Python would be</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [38]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="n">b</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)))</span>
+
+<span class="gp">In [39]: </span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;c&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;b&quot;</span><span class="p">]</span>
+
+<span class="gp">In [40]: </span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;d&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;b&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;c&quot;</span><span class="p">]</span>
+
+<span class="gp">In [41]: </span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="gp">In [42]: </span><span class="n">df</span>
+<span class="gh">Out[42]: </span>
+<span class="go">   a  b   c   d</span>
+<span class="go">0  1  5   5  10</span>
+<span class="go">1  1  6   7  14</span>
+<span class="go">2  1  7   9  18</span>
+<span class="go">3  1  8  11  22</span>
+<span class="go">4  1  9  13  26</span>
+</pre></div>
+</div>
+<p>The <a class="reference internal" href="../reference/api/pandas.DataFrame.query.html#pandas.DataFrame.query" title="pandas.DataFrame.query"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame.query</span></code></a> method has a <code class="docutils literal notranslate"><span class="pre">inplace</span></code> keyword which determines
+whether the query modifies the original frame.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [43]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="n">b</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)))</span>
+
+<span class="gp">In [44]: </span><span class="n">df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;a &gt; 2&quot;</span><span class="p">)</span>
+<span class="gh">Out[44]: </span>
+<span class="go">   a  b</span>
+<span class="go">3  3  8</span>
+<span class="go">4  4  9</span>
+
+<span class="gp">In [45]: </span><span class="n">df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;a &gt; 2&quot;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="gp">In [46]: </span><span class="n">df</span>
+<span class="gh">Out[46]: </span>
+<span class="go">   a  b</span>
+<span class="go">3  3  8</span>
+<span class="go">4  4  9</span>
+</pre></div>
+</div>
+</section>
+<section id="local-variables">
+<h3>Local variables<a class="headerlink" href="#local-variables" title="Permalink to this headline">#</a></h3>
+<p>You must <em>explicitly reference</em> any local variable that you want to use in an
+expression by placing the <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> character in front of the name. For example,</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [47]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="s2">&quot;ab&quot;</span><span class="p">))</span>
+
+<span class="gp">In [48]: </span><span class="n">newcol</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">))</span>
+
+<span class="gp">In [49]: </span><span class="n">df</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="s2">&quot;b + @newcol&quot;</span><span class="p">)</span>
+<span class="gh">Out[49]: </span>
+<span class="go">0   -0.173926</span>
+<span class="go">1    2.493083</span>
+<span class="go">2   -0.881831</span>
+<span class="go">3   -0.691045</span>
+<span class="go">4    1.334703</span>
+<span class="go">dtype: float64</span>
+
+<span class="gp">In [50]: </span><span class="n">df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;b &lt; @newcol&quot;</span><span class="p">)</span>
+<span class="gh">Out[50]: </span>
+<span class="go">          a         b</span>
+<span class="go">0  0.863987 -0.115998</span>
+<span class="go">2 -2.621419 -1.297879</span>
+</pre></div>
+</div>
+<p>If you don’t prefix the local variable with <code class="docutils literal notranslate"><span class="pre">&#64;</span></code>, pandas will raise an
+exception telling you the variable is undefined.</p>
+<p>When using <a class="reference internal" href="../reference/api/pandas.DataFrame.eval.html#pandas.DataFrame.eval" title="pandas.DataFrame.eval"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.eval()</span></code></a> and <a class="reference internal" href="../reference/api/pandas.DataFrame.query.html#pandas.DataFrame.query" title="pandas.DataFrame.query"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.query()</span></code></a>, this allows you
+to have a local variable and a <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> column with the same
+name in an expression.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [51]: </span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">()</span>
+
+<span class="gp">In [52]: </span><span class="n">df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;@a &lt; a&quot;</span><span class="p">)</span>
+<span class="gh">Out[52]: </span>
+<span class="go">          a         b</span>
+<span class="go">0  0.863987 -0.115998</span>
+
+<span class="gp">In [53]: </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">a</span> <span class="o">&lt;</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">]]</span>  <span class="c1"># same as the previous expression</span>
+<span class="gh">Out[53]: </span>
+<span class="go">          a         b</span>
+<span class="go">0  0.863987 -0.115998</span>
+</pre></div>
+</div>
+<p>With <a class="reference internal" href="../reference/api/pandas.eval.html#pandas.eval" title="pandas.eval"><code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.eval()</span></code></a> you cannot use the <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> prefix <em>at all</em>, because it
+isn’t defined in that context. pandas will let you know this if you try to
+use <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> in a top-level call to <a class="reference internal" href="../reference/api/pandas.eval.html#pandas.eval" title="pandas.eval"><code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.eval()</span></code></a>. For example,</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [54]: </span><span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span>
+
+<span class="gp">In [55]: </span><span class="n">pd</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="s2">&quot;@a + b&quot;</span><span class="p">)</span>
+<span class="go">Traceback (most recent call last):</span>
+
+<span class="go">  File ~/micromamba/envs/test/lib/python3.8/site-packages/IPython/core/interactiveshell.py:3442 in run_code</span>
+<span class="go">    exec(code_obj, self.user_global_ns, self.user_ns)</span>
+
+<span class="go">  Cell In[55], line 1</span>
+<span class="go">    pd.eval(&quot;@a + b&quot;)</span>
+
+<span class="go">  File ~/work/pandas/pandas/pandas/core/computation/eval.py:342 in eval</span>
+<span class="go">    _check_for_locals(expr, level, parser)</span>
+
+<span class="go">  File ~/work/pandas/pandas/pandas/core/computation/eval.py:167 in _check_for_locals</span>
+<span class="go">    raise SyntaxError(msg)</span>
+
+<span class="go">  File &lt;string&gt;</span>
+<span class="go">SyntaxError: The &#39;@&#39; prefix is not allowed in top-level eval calls.</span>
+<span class="go">please refer to your variables by name without the &#39;@&#39; prefix.</span>
+</pre></div>
+</div>
+<p>In this case, you should simply refer to the variables like you would in
+standard Python.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [56]: </span><span class="n">pd</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="s2">&quot;a + b&quot;</span><span class="p">)</span>
+<span class="gh">Out[56]: </span><span class="go">3</span>
+</pre></div>
+</div>
+</section>
+<section id="pandas-eval-parsers">
+<h3><a class="reference internal" href="../reference/api/pandas.eval.html#pandas.eval" title="pandas.eval"><code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.eval()</span></code></a> parsers<a class="headerlink" href="#pandas-eval-parsers" title="Permalink to this headline">#</a></h3>
+<p>There are two different parsers and two different engines you can use as
+the backend.</p>
+<p>The default <code class="docutils literal notranslate"><span class="pre">'pandas'</span></code> parser allows a more intuitive syntax for expressing
+query-like operations (comparisons, conjunctions and disjunctions). In
+particular, the precedence of the <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> and <code class="docutils literal notranslate"><span class="pre">|</span></code> operators is made equal to
+the precedence of the corresponding boolean operations <code class="docutils literal notranslate"><span class="pre">and</span></code> and <code class="docutils literal notranslate"><span class="pre">or</span></code>.</p>
+<p>For example, the above conjunction can be written without parentheses.
+Alternatively, you can use the <code class="docutils literal notranslate"><span class="pre">'python'</span></code> parser to enforce strict Python
+semantics.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [57]: </span><span class="n">expr</span> <span class="o">=</span> <span class="s2">&quot;(df1 &gt; 0) &amp; (df2 &gt; 0) &amp; (df3 &gt; 0) &amp; (df4 &gt; 0)&quot;</span>
+
+<span class="gp">In [58]: </span><span class="n">x</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">parser</span><span class="o">=</span><span class="s2">&quot;python&quot;</span><span class="p">)</span>
+
+<span class="gp">In [59]: </span><span class="n">expr_no_parens</span> <span class="o">=</span> <span class="s2">&quot;df1 &gt; 0 &amp; df2 &gt; 0 &amp; df3 &gt; 0 &amp; df4 &gt; 0&quot;</span>
+
+<span class="gp">In [60]: </span><span class="n">y</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">expr_no_parens</span><span class="p">,</span> <span class="n">parser</span><span class="o">=</span><span class="s2">&quot;pandas&quot;</span><span class="p">)</span>
+
+<span class="gp">In [61]: </span><span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="n">y</span><span class="p">)</span>
+<span class="gh">Out[61]: </span><span class="go">True</span>
+</pre></div>
+</div>
+<p>The same expression can be “anded” together with the word <a class="reference external" href="https://docs.python.org/3/reference/expressions.html#and" title="(in Python v3.11)"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">and</span></code></a> as
+well:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [62]: </span><span class="n">expr</span> <span class="o">=</span> <span class="s2">&quot;(df1 &gt; 0) &amp; (df2 &gt; 0) &amp; (df3 &gt; 0) &amp; (df4 &gt; 0)&quot;</span>
+
+<span class="gp">In [63]: </span><span class="n">x</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">parser</span><span class="o">=</span><span class="s2">&quot;python&quot;</span><span class="p">)</span>
+
+<span class="gp">In [64]: </span><span class="n">expr_with_ands</span> <span class="o">=</span> <span class="s2">&quot;df1 &gt; 0 and df2 &gt; 0 and df3 &gt; 0 and df4 &gt; 0&quot;</span>
+
+<span class="gp">In [65]: </span><span class="n">y</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">expr_with_ands</span><span class="p">,</span> <span class="n">parser</span><span class="o">=</span><span class="s2">&quot;pandas&quot;</span><span class="p">)</span>
+
+<span class="gp">In [66]: </span><span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="n">y</span><span class="p">)</span>
+<span class="gh">Out[66]: </span><span class="go">True</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">and</span></code> and <code class="docutils literal notranslate"><span class="pre">or</span></code> operators here have the same precedence that they would
+in vanilla Python.</p>
+</section>
+<section id="pandas-eval-backends">
+<h3><a class="reference internal" href="../reference/api/pandas.eval.html#pandas.eval" title="pandas.eval"><code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.eval()</span></code></a> backends<a class="headerlink" href="#pandas-eval-backends" title="Permalink to this headline">#</a></h3>
+<p>There’s also the option to make <a class="reference internal" href="../reference/api/pandas.eval.html#pandas.eval" title="pandas.eval"><code class="xref py py-func docutils literal notranslate"><span class="pre">eval()</span></code></a> operate identical to plain
+ol’ Python.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Using the <code class="docutils literal notranslate"><span class="pre">'python'</span></code> engine is generally <em>not</em> useful, except for testing
+other evaluation engines against it. You will achieve <strong>no</strong> performance
+benefits using <a class="reference internal" href="../reference/api/pandas.eval.html#pandas.eval" title="pandas.eval"><code class="xref py py-func docutils literal notranslate"><span class="pre">eval()</span></code></a> with <code class="docutils literal notranslate"><span class="pre">engine='python'</span></code> and in fact may
+incur a performance hit.</p>
+</div>
+<p>You can see this by using <a class="reference internal" href="../reference/api/pandas.eval.html#pandas.eval" title="pandas.eval"><code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.eval()</span></code></a> with the <code class="docutils literal notranslate"><span class="pre">'python'</span></code> engine. It
+is a bit slower (not by much) than evaluating the same expression in Python</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [67]: </span><span class="o">%</span><span class="k">timeit</span> df1 + df2 + df3 + df4
+<span class="go">17.9 ms +- 228 us per loop (mean +- std. dev. of 7 runs, 100 loops each)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [68]: </span><span class="o">%</span><span class="k">timeit</span> pd.eval(&quot;df1 + df2 + df3 + df4&quot;, engine=&quot;python&quot;)
+<span class="go">19 ms +- 375 us per loop (mean +- std. dev. of 7 runs, 100 loops each)</span>
+</pre></div>
+</div>
+</section>
+<section id="pandas-eval-performance">
+<h3><a class="reference internal" href="../reference/api/pandas.eval.html#pandas.eval" title="pandas.eval"><code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.eval()</span></code></a> performance<a class="headerlink" href="#pandas-eval-performance" title="Permalink to this headline">#</a></h3>
+<p><a class="reference internal" href="../reference/api/pandas.eval.html#pandas.eval" title="pandas.eval"><code class="xref py py-func docutils literal notranslate"><span class="pre">eval()</span></code></a> is intended to speed up certain kinds of operations. In
+particular, those operations involving complex expressions with large
+<a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a>/<a class="reference internal" href="../reference/api/pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a> objects should see a
+significant performance benefit.  Here is a plot showing the running time of
+<a class="reference internal" href="../reference/api/pandas.eval.html#pandas.eval" title="pandas.eval"><code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.eval()</span></code></a> as function of the size of the frame involved in the
+computation. The two lines are two different engines.</p>
+<img alt="../_images/eval-perf.png" src="../_images/eval-perf.png" />
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Operations with smallish objects (around 15k-20k rows) are faster using
+plain Python:</p>
+<blockquote>
+<div><img alt="../_images/eval-perf-small.png" src="../_images/eval-perf-small.png" />
+</div></blockquote>
+</div>
+<p>This plot was created using a <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> with 3 columns each containing
+floating point values generated using <code class="docutils literal notranslate"><span class="pre">numpy.random.randn()</span></code>.</p>
+</section>
+<section id="technical-minutia-regarding-expression-evaluation">
+<h3>Technical minutia regarding expression evaluation<a class="headerlink" href="#technical-minutia-regarding-expression-evaluation" title="Permalink to this headline">#</a></h3>
+<p>Expressions that would result in an object dtype or involve datetime operations
+(because of <code class="docutils literal notranslate"><span class="pre">NaT</span></code>) must be evaluated in Python space. The main reason for
+this behavior is to maintain backwards compatibility with versions of NumPy &lt;
+1.7. In those versions of NumPy a call to <code class="docutils literal notranslate"><span class="pre">ndarray.astype(str)</span></code> will
+truncate any strings that are more than 60 characters in length. Second, we
+can’t pass <code class="docutils literal notranslate"><span class="pre">object</span></code> arrays to <code class="docutils literal notranslate"><span class="pre">numexpr</span></code> thus string comparisons must be
+evaluated in Python space.</p>
+<p>The upshot is that this <em>only</em> applies to object-dtype expressions. So, if
+you have an expression–for example</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [69]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<span class="gp">   ....: </span>    <span class="p">{</span><span class="s2">&quot;strings&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="s2">&quot;cba&quot;</span><span class="p">),</span> <span class="mi">3</span><span class="p">),</span> <span class="s2">&quot;nums&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="mi">3</span><span class="p">)}</span>
+<span class="gp">   ....: </span><span class="p">)</span>
+<span class="gp">   ....: </span>
+
+<span class="gp">In [70]: </span><span class="n">df</span>
+<span class="gh">Out[70]: </span>
+<span class="go">  strings  nums</span>
+<span class="go">0       c     0</span>
+<span class="go">1       c     0</span>
+<span class="go">2       c     0</span>
+<span class="go">3       b     1</span>
+<span class="go">4       b     1</span>
+<span class="go">5       b     1</span>
+<span class="go">6       a     2</span>
+<span class="go">7       a     2</span>
+<span class="go">8       a     2</span>
+
+<span class="gp">In [71]: </span><span class="n">df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;strings == &#39;a&#39; and nums == 1&quot;</span><span class="p">)</span>
+<span class="gh">Out[71]: </span>
+<span class="go">Empty DataFrame</span>
+<span class="go">Columns: [strings, nums]</span>
+<span class="go">Index: []</span>
+</pre></div>
+</div>
+<p>the numeric part of the comparison (<code class="docutils literal notranslate"><span class="pre">nums</span> <span class="pre">==</span> <span class="pre">1</span></code>) will be evaluated by
+<code class="docutils literal notranslate"><span class="pre">numexpr</span></code>.</p>
+<p>In general, <a class="reference internal" href="../reference/api/pandas.DataFrame.query.html#pandas.DataFrame.query" title="pandas.DataFrame.query"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.query()</span></code></a>/<a class="reference internal" href="../reference/api/pandas.eval.html#pandas.eval" title="pandas.eval"><code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.eval()</span></code></a> will
+evaluate the subexpressions that <em>can</em> be evaluated by <code class="docutils literal notranslate"><span class="pre">numexpr</span></code> and those
+that must be evaluated in Python space transparently to the user. This is done
+by inferring the result type of an expression from its arguments and operators.</p>
+</section>
+</section>
+</section>
+
+
+            </article>
+            
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="options.html" title="previous page">
+      <i class="fas fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Options and settings</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="scale.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">Scaling to large datasets</p>
+  </div>
+  <i class="fas fa-angle-right"></i>
+  </a>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fas fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cython-writing-c-extensions-for-pandas">
+   Cython (writing C extensions for pandas)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pure-python">
+     Pure Python
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#plain-cython">
+     Plain Cython
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#adding-type">
+     Adding type
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#using-ndarray">
+     Using ndarray
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#more-advanced-techniques">
+     More advanced techniques
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#numba-jit-compilation">
+   Numba (JIT compilation)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pandas-numba-engine">
+     pandas Numba Engine
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#custom-function-examples">
+     Custom Function Examples
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#caveats">
+     Caveats
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#expression-evaluation-via-eval">
+   Expression evaluation via
+   <code class="xref py py-func docutils literal notranslate">
+    <span class="pre">
+     eval()
+    </span>
+   </code>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#supported-syntax">
+     Supported syntax
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#eval-examples">
+     <code class="xref py py-func docutils literal notranslate">
+      <span class="pre">
+       eval()
+      </span>
+     </code>
+     examples
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-dataframe-eval-method">
+     The
+     <code class="xref py py-meth docutils literal notranslate">
+      <span class="pre">
+       DataFrame.eval()
+      </span>
+     </code>
+     method
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#local-variables">
+     Local variables
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pandas-eval-parsers">
+     <code class="xref py py-func docutils literal notranslate">
+      <span class="pre">
+       pandas.eval()
+      </span>
+     </code>
+     parsers
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pandas-eval-backends">
+     <code class="xref py py-func docutils literal notranslate">
+      <span class="pre">
+       pandas.eval()
+      </span>
+     </code>
+     backends
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pandas-eval-performance">
+     <code class="xref py py-func docutils literal notranslate">
+      <span class="pre">
+       pandas.eval()
+      </span>
+     </code>
+     performance
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#technical-minutia-regarding-expression-evaluation">
+     Technical minutia regarding expression evaluation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+<div class="toc-item">
+  
+</div>
+
+<div class="toc-item">
+  
+<div class="tocsection sourcelink">
+    <a href="../_sources/user_guide/enhancingperf.rst.txt">
+        <i class="fas fa-file-alt"></i> Show Source
+    </a>
+</div>
+
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+          </div>
+        </footer>
+        
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=9b1a4fa89bdd0e95b23b"></script>
+
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    <p class="copyright">
+    &copy 2023 pandas via <a href="https://numfocus.org">NumFOCUS, Inc.</a> Hosted by <a href="https://www.ovhcloud.com">OVHcloud</a>.
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,6 @@
+pandas.ExcelWriter.write\_cells
+===============================
+
+.. currentmodule:: pandas
+
+.. automethod:: ExcelWriter.write_cells

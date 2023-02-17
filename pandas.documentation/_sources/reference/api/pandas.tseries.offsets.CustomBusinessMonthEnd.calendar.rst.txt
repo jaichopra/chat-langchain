@@ -1,0 +1,6 @@
+pandas.tseries.offsets.CustomBusinessMonthEnd.calendar
+======================================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. autoattribute:: CustomBusinessMonthEnd.calendar

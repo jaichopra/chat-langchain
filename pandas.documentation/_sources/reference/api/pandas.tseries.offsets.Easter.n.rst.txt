@@ -1,0 +1,6 @@
+pandas.tseries.offsets.Easter.n
+===============================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. autoattribute:: Easter.n

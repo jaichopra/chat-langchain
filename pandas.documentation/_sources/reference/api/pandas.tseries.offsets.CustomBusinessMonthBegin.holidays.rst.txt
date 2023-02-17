@@ -1,0 +1,6 @@
+pandas.tseries.offsets.CustomBusinessMonthBegin.holidays
+========================================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. autoattribute:: CustomBusinessMonthBegin.holidays

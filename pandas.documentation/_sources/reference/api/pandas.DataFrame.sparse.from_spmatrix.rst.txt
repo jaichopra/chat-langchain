@@ -1,0 +1,6 @@
+pandas.DataFrame.sparse.from_spmatrix
+=====================================
+
+.. currentmodule:: pandas
+
+.. autoaccessormethod:: DataFrame.sparse.from_spmatrix

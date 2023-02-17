@@ -1,0 +1,6 @@
+pandas.tseries.offsets.BYearBegin.n
+===================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. autoattribute:: BYearBegin.n

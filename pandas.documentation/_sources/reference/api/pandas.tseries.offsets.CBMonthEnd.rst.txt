@@ -1,0 +1,6 @@
+pandas.tseries.offsets.CBMonthEnd
+=================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. autoclass:: CBMonthEnd

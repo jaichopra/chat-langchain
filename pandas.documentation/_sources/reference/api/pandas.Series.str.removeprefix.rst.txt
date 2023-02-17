@@ -1,0 +1,6 @@
+pandas.Series.str.removeprefix
+==============================
+
+.. currentmodule:: pandas
+
+.. autoaccessormethod:: Series.str.removeprefix

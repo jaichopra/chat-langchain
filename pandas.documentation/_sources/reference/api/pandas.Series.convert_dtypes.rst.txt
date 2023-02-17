@@ -1,0 +1,6 @@
+pandas.Series.convert\_dtypes
+=============================
+
+.. currentmodule:: pandas
+
+.. automethod:: Series.convert_dtypes

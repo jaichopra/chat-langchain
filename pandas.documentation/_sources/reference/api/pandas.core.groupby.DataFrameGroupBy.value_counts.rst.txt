@@ -1,0 +1,6 @@
+pandas.core.groupby.DataFrameGroupBy.value\_counts
+==================================================
+
+.. currentmodule:: pandas.core.groupby
+
+.. automethod:: DataFrameGroupBy.value_counts

@@ -1,0 +1,6 @@
+pandas.tseries.offsets.LastWeekOfMonth.week
+===========================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. autoattribute:: LastWeekOfMonth.week

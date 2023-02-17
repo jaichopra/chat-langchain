@@ -1,0 +1,4754 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>pandas.tseries.offsets.Hour.rule_code &#8212; pandas 1.5.3 documentation</title>
+  <script>
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=9b1a4fa89bdd0e95b23b" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=9b1a4fa89bdd0e95b23b" rel="stylesheet">
+
+  
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/getting_started.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/pandas.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=9b1a4fa89bdd0e95b23b">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/toggleprompt.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script async="async" src="https://www.google-analytics.com/analytics.js"></script>
+    <script>
+                    window.ga = window.ga || function () {
+                        (ga.q = ga.q || []).push(arguments) };
+                    ga.l = +new Date;
+                    ga('create', 'UA-27880019-2', 'auto');
+                    ga('set', 'anonymizeIp', true);
+                    ga('send', 'pageview');
+                </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'reference/api/pandas.tseries.offsets.Hour.rule_code';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        </script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="pandas.tseries.offsets.Hour.n" href="pandas.tseries.offsets.Hour.n.html" />
+    <link rel="prev" title="pandas.tseries.offsets.Hour.normalize" href="pandas.tseries.offsets.Hour.normalize.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fas fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../../_static/pandas.svg" class="logo__image only-light" alt="Logo image">
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="../../getting_started/index.html">
+                        Getting started
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../user_guide/index.html">
+                        User Guide
+                    </a>
+                </li>
+                
+
+                <li class="nav-item current active">
+                    <a class="nav-link" href="../index.html">
+                        API reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../development/index.html">
+                        Development
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../whatsnew/index.html">
+                        Release notes
+                    </a>
+                </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      <div class="navbar-end-item navbar-end__search-button-container">
+        
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search">
+  <i class="fas fa-search"></i>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        1.5.3  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pandas-dev/pandas" title="GitHub" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/pandas_dev" title="Twitter" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  <div class="search-button-container--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search">
+  <i class="fas fa-search"></i>
+</button>
+  </div>
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fas fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="../../getting_started/index.html">
+                        Getting started
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../user_guide/index.html">
+                        User Guide
+                    </a>
+                </li>
+                
+
+                <li class="nav-item current active">
+                    <a class="nav-link" href="../index.html">
+                        API reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../development/index.html">
+                        Development
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../whatsnew/index.html">
+                        Release notes
+                    </a>
+                </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        1.5.3  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pandas-dev/pandas" title="GitHub" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/pandas_dev" title="Twitter" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item navbar-nav">
+    
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../io.html">
+   Input/output
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../general_functions.html">
+   General functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../series.html">
+   Series
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../frame.html">
+   DataFrame
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../arrays.html">
+   pandas arrays, scalars, and data types
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../indexing.html">
+   Index objects
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../offset_frequency.html">
+   Date offsets
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label class="toctree-toggle" for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.DateOffset.html">
+     pandas.tseries.offsets.DateOffset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.DateOffset.freqstr.html">
+     pandas.tseries.offsets.DateOffset.freqstr
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.DateOffset.kwds.html">
+     pandas.tseries.offsets.DateOffset.kwds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.DateOffset.name.html">
+     pandas.tseries.offsets.DateOffset.name
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.DateOffset.nanos.html">
+     pandas.tseries.offsets.DateOffset.nanos
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.DateOffset.normalize.html">
+     pandas.tseries.offsets.DateOffset.normalize
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.DateOffset.rule_code.html">
+     pandas.tseries.offsets.DateOffset.rule_code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.DateOffset.n.html">
+     pandas.tseries.offsets.DateOffset.n
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.DateOffset.is_month_start.html">
+     pandas.tseries.offsets.DateOffset.is_month_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.DateOffset.is_month_end.html">
+     pandas.tseries.offsets.DateOffset.is_month_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.DateOffset.apply.html">
+     pandas.tseries.offsets.DateOffset.apply
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.DateOffset.apply_index.html">
+     pandas.tseries.offsets.DateOffset.apply_index
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.DateOffset.copy.html">
+     pandas.tseries.offsets.DateOffset.copy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.DateOffset.isAnchored.html">
+     pandas.tseries.offsets.DateOffset.isAnchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.DateOffset.onOffset.html">
+     pandas.tseries.offsets.DateOffset.onOffset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.DateOffset.is_anchored.html">
+     pandas.tseries.offsets.DateOffset.is_anchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.DateOffset.is_on_offset.html">
+     pandas.tseries.offsets.DateOffset.is_on_offset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.DateOffset.__call__.html">
+     pandas.tseries.offsets.DateOffset.__call__
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.DateOffset.is_month_start.html">
+     pandas.tseries.offsets.DateOffset.is_month_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.DateOffset.is_month_end.html">
+     pandas.tseries.offsets.DateOffset.is_month_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.DateOffset.is_quarter_start.html">
+     pandas.tseries.offsets.DateOffset.is_quarter_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.DateOffset.is_quarter_end.html">
+     pandas.tseries.offsets.DateOffset.is_quarter_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.DateOffset.is_year_start.html">
+     pandas.tseries.offsets.DateOffset.is_year_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.DateOffset.is_year_end.html">
+     pandas.tseries.offsets.DateOffset.is_year_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessDay.html">
+     pandas.tseries.offsets.BusinessDay
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BDay.html">
+     pandas.tseries.offsets.BDay
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessDay.freqstr.html">
+     pandas.tseries.offsets.BusinessDay.freqstr
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessDay.kwds.html">
+     pandas.tseries.offsets.BusinessDay.kwds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessDay.name.html">
+     pandas.tseries.offsets.BusinessDay.name
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessDay.nanos.html">
+     pandas.tseries.offsets.BusinessDay.nanos
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessDay.normalize.html">
+     pandas.tseries.offsets.BusinessDay.normalize
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessDay.rule_code.html">
+     pandas.tseries.offsets.BusinessDay.rule_code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessDay.n.html">
+     pandas.tseries.offsets.BusinessDay.n
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessDay.weekmask.html">
+     pandas.tseries.offsets.BusinessDay.weekmask
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessDay.holidays.html">
+     pandas.tseries.offsets.BusinessDay.holidays
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessDay.calendar.html">
+     pandas.tseries.offsets.BusinessDay.calendar
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessDay.apply.html">
+     pandas.tseries.offsets.BusinessDay.apply
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessDay.apply_index.html">
+     pandas.tseries.offsets.BusinessDay.apply_index
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessDay.copy.html">
+     pandas.tseries.offsets.BusinessDay.copy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessDay.isAnchored.html">
+     pandas.tseries.offsets.BusinessDay.isAnchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessDay.onOffset.html">
+     pandas.tseries.offsets.BusinessDay.onOffset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessDay.is_anchored.html">
+     pandas.tseries.offsets.BusinessDay.is_anchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessDay.is_on_offset.html">
+     pandas.tseries.offsets.BusinessDay.is_on_offset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessDay.__call__.html">
+     pandas.tseries.offsets.BusinessDay.__call__
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessDay.is_month_start.html">
+     pandas.tseries.offsets.BusinessDay.is_month_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessDay.is_month_end.html">
+     pandas.tseries.offsets.BusinessDay.is_month_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessDay.is_quarter_start.html">
+     pandas.tseries.offsets.BusinessDay.is_quarter_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessDay.is_quarter_end.html">
+     pandas.tseries.offsets.BusinessDay.is_quarter_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessDay.is_year_start.html">
+     pandas.tseries.offsets.BusinessDay.is_year_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessDay.is_year_end.html">
+     pandas.tseries.offsets.BusinessDay.is_year_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessHour.html">
+     pandas.tseries.offsets.BusinessHour
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessHour.freqstr.html">
+     pandas.tseries.offsets.BusinessHour.freqstr
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessHour.kwds.html">
+     pandas.tseries.offsets.BusinessHour.kwds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessHour.name.html">
+     pandas.tseries.offsets.BusinessHour.name
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessHour.nanos.html">
+     pandas.tseries.offsets.BusinessHour.nanos
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessHour.normalize.html">
+     pandas.tseries.offsets.BusinessHour.normalize
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessHour.rule_code.html">
+     pandas.tseries.offsets.BusinessHour.rule_code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessHour.n.html">
+     pandas.tseries.offsets.BusinessHour.n
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessHour.start.html">
+     pandas.tseries.offsets.BusinessHour.start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessHour.end.html">
+     pandas.tseries.offsets.BusinessHour.end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessHour.weekmask.html">
+     pandas.tseries.offsets.BusinessHour.weekmask
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessHour.holidays.html">
+     pandas.tseries.offsets.BusinessHour.holidays
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessHour.calendar.html">
+     pandas.tseries.offsets.BusinessHour.calendar
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessHour.apply.html">
+     pandas.tseries.offsets.BusinessHour.apply
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessHour.apply_index.html">
+     pandas.tseries.offsets.BusinessHour.apply_index
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessHour.copy.html">
+     pandas.tseries.offsets.BusinessHour.copy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessHour.isAnchored.html">
+     pandas.tseries.offsets.BusinessHour.isAnchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessHour.onOffset.html">
+     pandas.tseries.offsets.BusinessHour.onOffset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessHour.is_anchored.html">
+     pandas.tseries.offsets.BusinessHour.is_anchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessHour.is_on_offset.html">
+     pandas.tseries.offsets.BusinessHour.is_on_offset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessHour.__call__.html">
+     pandas.tseries.offsets.BusinessHour.__call__
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessHour.is_month_start.html">
+     pandas.tseries.offsets.BusinessHour.is_month_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessHour.is_month_end.html">
+     pandas.tseries.offsets.BusinessHour.is_month_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessHour.is_quarter_start.html">
+     pandas.tseries.offsets.BusinessHour.is_quarter_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessHour.is_quarter_end.html">
+     pandas.tseries.offsets.BusinessHour.is_quarter_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessHour.is_year_start.html">
+     pandas.tseries.offsets.BusinessHour.is_year_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessHour.is_year_end.html">
+     pandas.tseries.offsets.BusinessHour.is_year_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessDay.html">
+     pandas.tseries.offsets.CustomBusinessDay
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CDay.html">
+     pandas.tseries.offsets.CDay
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessDay.freqstr.html">
+     pandas.tseries.offsets.CustomBusinessDay.freqstr
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessDay.kwds.html">
+     pandas.tseries.offsets.CustomBusinessDay.kwds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessDay.name.html">
+     pandas.tseries.offsets.CustomBusinessDay.name
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessDay.nanos.html">
+     pandas.tseries.offsets.CustomBusinessDay.nanos
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessDay.normalize.html">
+     pandas.tseries.offsets.CustomBusinessDay.normalize
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessDay.rule_code.html">
+     pandas.tseries.offsets.CustomBusinessDay.rule_code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessDay.n.html">
+     pandas.tseries.offsets.CustomBusinessDay.n
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessDay.weekmask.html">
+     pandas.tseries.offsets.CustomBusinessDay.weekmask
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessDay.calendar.html">
+     pandas.tseries.offsets.CustomBusinessDay.calendar
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessDay.holidays.html">
+     pandas.tseries.offsets.CustomBusinessDay.holidays
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessDay.apply_index.html">
+     pandas.tseries.offsets.CustomBusinessDay.apply_index
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessDay.apply.html">
+     pandas.tseries.offsets.CustomBusinessDay.apply
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessDay.copy.html">
+     pandas.tseries.offsets.CustomBusinessDay.copy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessDay.isAnchored.html">
+     pandas.tseries.offsets.CustomBusinessDay.isAnchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessDay.onOffset.html">
+     pandas.tseries.offsets.CustomBusinessDay.onOffset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessDay.is_anchored.html">
+     pandas.tseries.offsets.CustomBusinessDay.is_anchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessDay.is_on_offset.html">
+     pandas.tseries.offsets.CustomBusinessDay.is_on_offset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessDay.__call__.html">
+     pandas.tseries.offsets.CustomBusinessDay.__call__
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessDay.is_month_start.html">
+     pandas.tseries.offsets.CustomBusinessDay.is_month_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessDay.is_month_end.html">
+     pandas.tseries.offsets.CustomBusinessDay.is_month_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessDay.is_quarter_start.html">
+     pandas.tseries.offsets.CustomBusinessDay.is_quarter_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessDay.is_quarter_end.html">
+     pandas.tseries.offsets.CustomBusinessDay.is_quarter_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessDay.is_year_start.html">
+     pandas.tseries.offsets.CustomBusinessDay.is_year_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessDay.is_year_end.html">
+     pandas.tseries.offsets.CustomBusinessDay.is_year_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessHour.html">
+     pandas.tseries.offsets.CustomBusinessHour
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessHour.freqstr.html">
+     pandas.tseries.offsets.CustomBusinessHour.freqstr
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessHour.kwds.html">
+     pandas.tseries.offsets.CustomBusinessHour.kwds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessHour.name.html">
+     pandas.tseries.offsets.CustomBusinessHour.name
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessHour.nanos.html">
+     pandas.tseries.offsets.CustomBusinessHour.nanos
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessHour.normalize.html">
+     pandas.tseries.offsets.CustomBusinessHour.normalize
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessHour.rule_code.html">
+     pandas.tseries.offsets.CustomBusinessHour.rule_code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessHour.n.html">
+     pandas.tseries.offsets.CustomBusinessHour.n
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessHour.weekmask.html">
+     pandas.tseries.offsets.CustomBusinessHour.weekmask
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessHour.calendar.html">
+     pandas.tseries.offsets.CustomBusinessHour.calendar
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessHour.holidays.html">
+     pandas.tseries.offsets.CustomBusinessHour.holidays
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessHour.start.html">
+     pandas.tseries.offsets.CustomBusinessHour.start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessHour.end.html">
+     pandas.tseries.offsets.CustomBusinessHour.end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessHour.apply.html">
+     pandas.tseries.offsets.CustomBusinessHour.apply
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessHour.apply_index.html">
+     pandas.tseries.offsets.CustomBusinessHour.apply_index
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessHour.copy.html">
+     pandas.tseries.offsets.CustomBusinessHour.copy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessHour.isAnchored.html">
+     pandas.tseries.offsets.CustomBusinessHour.isAnchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessHour.onOffset.html">
+     pandas.tseries.offsets.CustomBusinessHour.onOffset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessHour.is_anchored.html">
+     pandas.tseries.offsets.CustomBusinessHour.is_anchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessHour.is_on_offset.html">
+     pandas.tseries.offsets.CustomBusinessHour.is_on_offset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessHour.__call__.html">
+     pandas.tseries.offsets.CustomBusinessHour.__call__
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessHour.is_month_start.html">
+     pandas.tseries.offsets.CustomBusinessHour.is_month_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessHour.is_month_end.html">
+     pandas.tseries.offsets.CustomBusinessHour.is_month_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessHour.is_quarter_start.html">
+     pandas.tseries.offsets.CustomBusinessHour.is_quarter_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessHour.is_quarter_end.html">
+     pandas.tseries.offsets.CustomBusinessHour.is_quarter_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessHour.is_year_start.html">
+     pandas.tseries.offsets.CustomBusinessHour.is_year_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessHour.is_year_end.html">
+     pandas.tseries.offsets.CustomBusinessHour.is_year_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.MonthEnd.html">
+     pandas.tseries.offsets.MonthEnd
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.MonthEnd.freqstr.html">
+     pandas.tseries.offsets.MonthEnd.freqstr
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.MonthEnd.kwds.html">
+     pandas.tseries.offsets.MonthEnd.kwds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.MonthEnd.name.html">
+     pandas.tseries.offsets.MonthEnd.name
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.MonthEnd.nanos.html">
+     pandas.tseries.offsets.MonthEnd.nanos
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.MonthEnd.normalize.html">
+     pandas.tseries.offsets.MonthEnd.normalize
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.MonthEnd.rule_code.html">
+     pandas.tseries.offsets.MonthEnd.rule_code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.MonthEnd.n.html">
+     pandas.tseries.offsets.MonthEnd.n
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.MonthEnd.apply.html">
+     pandas.tseries.offsets.MonthEnd.apply
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.MonthEnd.apply_index.html">
+     pandas.tseries.offsets.MonthEnd.apply_index
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.MonthEnd.copy.html">
+     pandas.tseries.offsets.MonthEnd.copy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.MonthEnd.isAnchored.html">
+     pandas.tseries.offsets.MonthEnd.isAnchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.MonthEnd.onOffset.html">
+     pandas.tseries.offsets.MonthEnd.onOffset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.MonthEnd.is_anchored.html">
+     pandas.tseries.offsets.MonthEnd.is_anchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.MonthEnd.is_on_offset.html">
+     pandas.tseries.offsets.MonthEnd.is_on_offset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.MonthEnd.__call__.html">
+     pandas.tseries.offsets.MonthEnd.__call__
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.MonthEnd.is_month_start.html">
+     pandas.tseries.offsets.MonthEnd.is_month_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.MonthEnd.is_month_end.html">
+     pandas.tseries.offsets.MonthEnd.is_month_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.MonthEnd.is_quarter_start.html">
+     pandas.tseries.offsets.MonthEnd.is_quarter_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.MonthEnd.is_quarter_end.html">
+     pandas.tseries.offsets.MonthEnd.is_quarter_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.MonthEnd.is_year_start.html">
+     pandas.tseries.offsets.MonthEnd.is_year_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.MonthEnd.is_year_end.html">
+     pandas.tseries.offsets.MonthEnd.is_year_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.MonthBegin.html">
+     pandas.tseries.offsets.MonthBegin
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.MonthBegin.freqstr.html">
+     pandas.tseries.offsets.MonthBegin.freqstr
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.MonthBegin.kwds.html">
+     pandas.tseries.offsets.MonthBegin.kwds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.MonthBegin.name.html">
+     pandas.tseries.offsets.MonthBegin.name
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.MonthBegin.nanos.html">
+     pandas.tseries.offsets.MonthBegin.nanos
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.MonthBegin.normalize.html">
+     pandas.tseries.offsets.MonthBegin.normalize
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.MonthBegin.rule_code.html">
+     pandas.tseries.offsets.MonthBegin.rule_code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.MonthBegin.n.html">
+     pandas.tseries.offsets.MonthBegin.n
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.MonthBegin.apply.html">
+     pandas.tseries.offsets.MonthBegin.apply
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.MonthBegin.apply_index.html">
+     pandas.tseries.offsets.MonthBegin.apply_index
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.MonthBegin.copy.html">
+     pandas.tseries.offsets.MonthBegin.copy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.MonthBegin.isAnchored.html">
+     pandas.tseries.offsets.MonthBegin.isAnchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.MonthBegin.onOffset.html">
+     pandas.tseries.offsets.MonthBegin.onOffset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.MonthBegin.is_anchored.html">
+     pandas.tseries.offsets.MonthBegin.is_anchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.MonthBegin.is_on_offset.html">
+     pandas.tseries.offsets.MonthBegin.is_on_offset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.MonthBegin.__call__.html">
+     pandas.tseries.offsets.MonthBegin.__call__
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.MonthBegin.is_month_start.html">
+     pandas.tseries.offsets.MonthBegin.is_month_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.MonthBegin.is_month_end.html">
+     pandas.tseries.offsets.MonthBegin.is_month_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.MonthBegin.is_quarter_start.html">
+     pandas.tseries.offsets.MonthBegin.is_quarter_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.MonthBegin.is_quarter_end.html">
+     pandas.tseries.offsets.MonthBegin.is_quarter_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.MonthBegin.is_year_start.html">
+     pandas.tseries.offsets.MonthBegin.is_year_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.MonthBegin.is_year_end.html">
+     pandas.tseries.offsets.MonthBegin.is_year_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessMonthEnd.html">
+     pandas.tseries.offsets.BusinessMonthEnd
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BMonthEnd.html">
+     pandas.tseries.offsets.BMonthEnd
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessMonthEnd.freqstr.html">
+     pandas.tseries.offsets.BusinessMonthEnd.freqstr
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessMonthEnd.kwds.html">
+     pandas.tseries.offsets.BusinessMonthEnd.kwds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessMonthEnd.name.html">
+     pandas.tseries.offsets.BusinessMonthEnd.name
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessMonthEnd.nanos.html">
+     pandas.tseries.offsets.BusinessMonthEnd.nanos
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessMonthEnd.normalize.html">
+     pandas.tseries.offsets.BusinessMonthEnd.normalize
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessMonthEnd.rule_code.html">
+     pandas.tseries.offsets.BusinessMonthEnd.rule_code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessMonthEnd.n.html">
+     pandas.tseries.offsets.BusinessMonthEnd.n
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessMonthEnd.apply.html">
+     pandas.tseries.offsets.BusinessMonthEnd.apply
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessMonthEnd.apply_index.html">
+     pandas.tseries.offsets.BusinessMonthEnd.apply_index
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessMonthEnd.copy.html">
+     pandas.tseries.offsets.BusinessMonthEnd.copy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessMonthEnd.isAnchored.html">
+     pandas.tseries.offsets.BusinessMonthEnd.isAnchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessMonthEnd.onOffset.html">
+     pandas.tseries.offsets.BusinessMonthEnd.onOffset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessMonthEnd.is_anchored.html">
+     pandas.tseries.offsets.BusinessMonthEnd.is_anchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessMonthEnd.is_on_offset.html">
+     pandas.tseries.offsets.BusinessMonthEnd.is_on_offset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessMonthEnd.__call__.html">
+     pandas.tseries.offsets.BusinessMonthEnd.__call__
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessMonthEnd.is_month_start.html">
+     pandas.tseries.offsets.BusinessMonthEnd.is_month_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessMonthEnd.is_month_end.html">
+     pandas.tseries.offsets.BusinessMonthEnd.is_month_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessMonthEnd.is_quarter_start.html">
+     pandas.tseries.offsets.BusinessMonthEnd.is_quarter_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessMonthEnd.is_quarter_end.html">
+     pandas.tseries.offsets.BusinessMonthEnd.is_quarter_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessMonthEnd.is_year_start.html">
+     pandas.tseries.offsets.BusinessMonthEnd.is_year_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessMonthEnd.is_year_end.html">
+     pandas.tseries.offsets.BusinessMonthEnd.is_year_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessMonthBegin.html">
+     pandas.tseries.offsets.BusinessMonthBegin
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BMonthBegin.html">
+     pandas.tseries.offsets.BMonthBegin
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessMonthBegin.freqstr.html">
+     pandas.tseries.offsets.BusinessMonthBegin.freqstr
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessMonthBegin.kwds.html">
+     pandas.tseries.offsets.BusinessMonthBegin.kwds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessMonthBegin.name.html">
+     pandas.tseries.offsets.BusinessMonthBegin.name
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessMonthBegin.nanos.html">
+     pandas.tseries.offsets.BusinessMonthBegin.nanos
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessMonthBegin.normalize.html">
+     pandas.tseries.offsets.BusinessMonthBegin.normalize
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessMonthBegin.rule_code.html">
+     pandas.tseries.offsets.BusinessMonthBegin.rule_code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessMonthBegin.n.html">
+     pandas.tseries.offsets.BusinessMonthBegin.n
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessMonthBegin.apply.html">
+     pandas.tseries.offsets.BusinessMonthBegin.apply
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessMonthBegin.apply_index.html">
+     pandas.tseries.offsets.BusinessMonthBegin.apply_index
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessMonthBegin.copy.html">
+     pandas.tseries.offsets.BusinessMonthBegin.copy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessMonthBegin.isAnchored.html">
+     pandas.tseries.offsets.BusinessMonthBegin.isAnchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessMonthBegin.onOffset.html">
+     pandas.tseries.offsets.BusinessMonthBegin.onOffset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessMonthBegin.is_anchored.html">
+     pandas.tseries.offsets.BusinessMonthBegin.is_anchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessMonthBegin.is_on_offset.html">
+     pandas.tseries.offsets.BusinessMonthBegin.is_on_offset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessMonthBegin.__call__.html">
+     pandas.tseries.offsets.BusinessMonthBegin.__call__
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessMonthBegin.is_month_start.html">
+     pandas.tseries.offsets.BusinessMonthBegin.is_month_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessMonthBegin.is_month_end.html">
+     pandas.tseries.offsets.BusinessMonthBegin.is_month_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessMonthBegin.is_quarter_start.html">
+     pandas.tseries.offsets.BusinessMonthBegin.is_quarter_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessMonthBegin.is_quarter_end.html">
+     pandas.tseries.offsets.BusinessMonthBegin.is_quarter_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessMonthBegin.is_year_start.html">
+     pandas.tseries.offsets.BusinessMonthBegin.is_year_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BusinessMonthBegin.is_year_end.html">
+     pandas.tseries.offsets.BusinessMonthBegin.is_year_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessMonthEnd.html">
+     pandas.tseries.offsets.CustomBusinessMonthEnd
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CBMonthEnd.html">
+     pandas.tseries.offsets.CBMonthEnd
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessMonthEnd.freqstr.html">
+     pandas.tseries.offsets.CustomBusinessMonthEnd.freqstr
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessMonthEnd.kwds.html">
+     pandas.tseries.offsets.CustomBusinessMonthEnd.kwds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessMonthEnd.m_offset.html">
+     pandas.tseries.offsets.CustomBusinessMonthEnd.m_offset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessMonthEnd.name.html">
+     pandas.tseries.offsets.CustomBusinessMonthEnd.name
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessMonthEnd.nanos.html">
+     pandas.tseries.offsets.CustomBusinessMonthEnd.nanos
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessMonthEnd.normalize.html">
+     pandas.tseries.offsets.CustomBusinessMonthEnd.normalize
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessMonthEnd.rule_code.html">
+     pandas.tseries.offsets.CustomBusinessMonthEnd.rule_code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessMonthEnd.n.html">
+     pandas.tseries.offsets.CustomBusinessMonthEnd.n
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessMonthEnd.weekmask.html">
+     pandas.tseries.offsets.CustomBusinessMonthEnd.weekmask
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessMonthEnd.calendar.html">
+     pandas.tseries.offsets.CustomBusinessMonthEnd.calendar
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessMonthEnd.holidays.html">
+     pandas.tseries.offsets.CustomBusinessMonthEnd.holidays
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessMonthEnd.apply.html">
+     pandas.tseries.offsets.CustomBusinessMonthEnd.apply
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessMonthEnd.apply_index.html">
+     pandas.tseries.offsets.CustomBusinessMonthEnd.apply_index
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessMonthEnd.copy.html">
+     pandas.tseries.offsets.CustomBusinessMonthEnd.copy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessMonthEnd.isAnchored.html">
+     pandas.tseries.offsets.CustomBusinessMonthEnd.isAnchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessMonthEnd.onOffset.html">
+     pandas.tseries.offsets.CustomBusinessMonthEnd.onOffset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessMonthEnd.is_anchored.html">
+     pandas.tseries.offsets.CustomBusinessMonthEnd.is_anchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessMonthEnd.is_on_offset.html">
+     pandas.tseries.offsets.CustomBusinessMonthEnd.is_on_offset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessMonthEnd.__call__.html">
+     pandas.tseries.offsets.CustomBusinessMonthEnd.__call__
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessMonthEnd.is_month_start.html">
+     pandas.tseries.offsets.CustomBusinessMonthEnd.is_month_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessMonthEnd.is_month_end.html">
+     pandas.tseries.offsets.CustomBusinessMonthEnd.is_month_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessMonthEnd.is_quarter_start.html">
+     pandas.tseries.offsets.CustomBusinessMonthEnd.is_quarter_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessMonthEnd.is_quarter_end.html">
+     pandas.tseries.offsets.CustomBusinessMonthEnd.is_quarter_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessMonthEnd.is_year_start.html">
+     pandas.tseries.offsets.CustomBusinessMonthEnd.is_year_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessMonthEnd.is_year_end.html">
+     pandas.tseries.offsets.CustomBusinessMonthEnd.is_year_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessMonthBegin.html">
+     pandas.tseries.offsets.CustomBusinessMonthBegin
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CBMonthBegin.html">
+     pandas.tseries.offsets.CBMonthBegin
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessMonthBegin.freqstr.html">
+     pandas.tseries.offsets.CustomBusinessMonthBegin.freqstr
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessMonthBegin.kwds.html">
+     pandas.tseries.offsets.CustomBusinessMonthBegin.kwds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessMonthBegin.m_offset.html">
+     pandas.tseries.offsets.CustomBusinessMonthBegin.m_offset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessMonthBegin.name.html">
+     pandas.tseries.offsets.CustomBusinessMonthBegin.name
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessMonthBegin.nanos.html">
+     pandas.tseries.offsets.CustomBusinessMonthBegin.nanos
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessMonthBegin.normalize.html">
+     pandas.tseries.offsets.CustomBusinessMonthBegin.normalize
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessMonthBegin.rule_code.html">
+     pandas.tseries.offsets.CustomBusinessMonthBegin.rule_code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessMonthBegin.n.html">
+     pandas.tseries.offsets.CustomBusinessMonthBegin.n
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessMonthBegin.weekmask.html">
+     pandas.tseries.offsets.CustomBusinessMonthBegin.weekmask
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessMonthBegin.calendar.html">
+     pandas.tseries.offsets.CustomBusinessMonthBegin.calendar
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessMonthBegin.holidays.html">
+     pandas.tseries.offsets.CustomBusinessMonthBegin.holidays
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessMonthBegin.apply.html">
+     pandas.tseries.offsets.CustomBusinessMonthBegin.apply
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessMonthBegin.apply_index.html">
+     pandas.tseries.offsets.CustomBusinessMonthBegin.apply_index
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessMonthBegin.copy.html">
+     pandas.tseries.offsets.CustomBusinessMonthBegin.copy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessMonthBegin.isAnchored.html">
+     pandas.tseries.offsets.CustomBusinessMonthBegin.isAnchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessMonthBegin.onOffset.html">
+     pandas.tseries.offsets.CustomBusinessMonthBegin.onOffset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessMonthBegin.is_anchored.html">
+     pandas.tseries.offsets.CustomBusinessMonthBegin.is_anchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessMonthBegin.is_on_offset.html">
+     pandas.tseries.offsets.CustomBusinessMonthBegin.is_on_offset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessMonthBegin.__call__.html">
+     pandas.tseries.offsets.CustomBusinessMonthBegin.__call__
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessMonthBegin.is_month_start.html">
+     pandas.tseries.offsets.CustomBusinessMonthBegin.is_month_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessMonthBegin.is_month_end.html">
+     pandas.tseries.offsets.CustomBusinessMonthBegin.is_month_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessMonthBegin.is_quarter_start.html">
+     pandas.tseries.offsets.CustomBusinessMonthBegin.is_quarter_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessMonthBegin.is_quarter_end.html">
+     pandas.tseries.offsets.CustomBusinessMonthBegin.is_quarter_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessMonthBegin.is_year_start.html">
+     pandas.tseries.offsets.CustomBusinessMonthBegin.is_year_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.CustomBusinessMonthBegin.is_year_end.html">
+     pandas.tseries.offsets.CustomBusinessMonthBegin.is_year_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.SemiMonthEnd.html">
+     pandas.tseries.offsets.SemiMonthEnd
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.SemiMonthEnd.freqstr.html">
+     pandas.tseries.offsets.SemiMonthEnd.freqstr
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.SemiMonthEnd.kwds.html">
+     pandas.tseries.offsets.SemiMonthEnd.kwds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.SemiMonthEnd.name.html">
+     pandas.tseries.offsets.SemiMonthEnd.name
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.SemiMonthEnd.nanos.html">
+     pandas.tseries.offsets.SemiMonthEnd.nanos
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.SemiMonthEnd.normalize.html">
+     pandas.tseries.offsets.SemiMonthEnd.normalize
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.SemiMonthEnd.rule_code.html">
+     pandas.tseries.offsets.SemiMonthEnd.rule_code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.SemiMonthEnd.n.html">
+     pandas.tseries.offsets.SemiMonthEnd.n
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.SemiMonthEnd.day_of_month.html">
+     pandas.tseries.offsets.SemiMonthEnd.day_of_month
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.SemiMonthEnd.apply.html">
+     pandas.tseries.offsets.SemiMonthEnd.apply
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.SemiMonthEnd.apply_index.html">
+     pandas.tseries.offsets.SemiMonthEnd.apply_index
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.SemiMonthEnd.copy.html">
+     pandas.tseries.offsets.SemiMonthEnd.copy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.SemiMonthEnd.isAnchored.html">
+     pandas.tseries.offsets.SemiMonthEnd.isAnchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.SemiMonthEnd.onOffset.html">
+     pandas.tseries.offsets.SemiMonthEnd.onOffset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.SemiMonthEnd.is_anchored.html">
+     pandas.tseries.offsets.SemiMonthEnd.is_anchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.SemiMonthEnd.is_on_offset.html">
+     pandas.tseries.offsets.SemiMonthEnd.is_on_offset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.SemiMonthEnd.__call__.html">
+     pandas.tseries.offsets.SemiMonthEnd.__call__
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.SemiMonthEnd.is_month_start.html">
+     pandas.tseries.offsets.SemiMonthEnd.is_month_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.SemiMonthEnd.is_month_end.html">
+     pandas.tseries.offsets.SemiMonthEnd.is_month_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.SemiMonthEnd.is_quarter_start.html">
+     pandas.tseries.offsets.SemiMonthEnd.is_quarter_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.SemiMonthEnd.is_quarter_end.html">
+     pandas.tseries.offsets.SemiMonthEnd.is_quarter_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.SemiMonthEnd.is_year_start.html">
+     pandas.tseries.offsets.SemiMonthEnd.is_year_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.SemiMonthEnd.is_year_end.html">
+     pandas.tseries.offsets.SemiMonthEnd.is_year_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.SemiMonthBegin.html">
+     pandas.tseries.offsets.SemiMonthBegin
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.SemiMonthBegin.freqstr.html">
+     pandas.tseries.offsets.SemiMonthBegin.freqstr
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.SemiMonthBegin.kwds.html">
+     pandas.tseries.offsets.SemiMonthBegin.kwds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.SemiMonthBegin.name.html">
+     pandas.tseries.offsets.SemiMonthBegin.name
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.SemiMonthBegin.nanos.html">
+     pandas.tseries.offsets.SemiMonthBegin.nanos
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.SemiMonthBegin.normalize.html">
+     pandas.tseries.offsets.SemiMonthBegin.normalize
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.SemiMonthBegin.rule_code.html">
+     pandas.tseries.offsets.SemiMonthBegin.rule_code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.SemiMonthBegin.n.html">
+     pandas.tseries.offsets.SemiMonthBegin.n
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.SemiMonthBegin.day_of_month.html">
+     pandas.tseries.offsets.SemiMonthBegin.day_of_month
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.SemiMonthBegin.apply.html">
+     pandas.tseries.offsets.SemiMonthBegin.apply
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.SemiMonthBegin.apply_index.html">
+     pandas.tseries.offsets.SemiMonthBegin.apply_index
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.SemiMonthBegin.copy.html">
+     pandas.tseries.offsets.SemiMonthBegin.copy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.SemiMonthBegin.isAnchored.html">
+     pandas.tseries.offsets.SemiMonthBegin.isAnchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.SemiMonthBegin.onOffset.html">
+     pandas.tseries.offsets.SemiMonthBegin.onOffset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.SemiMonthBegin.is_anchored.html">
+     pandas.tseries.offsets.SemiMonthBegin.is_anchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.SemiMonthBegin.is_on_offset.html">
+     pandas.tseries.offsets.SemiMonthBegin.is_on_offset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.SemiMonthBegin.__call__.html">
+     pandas.tseries.offsets.SemiMonthBegin.__call__
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.SemiMonthBegin.is_month_start.html">
+     pandas.tseries.offsets.SemiMonthBegin.is_month_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.SemiMonthBegin.is_month_end.html">
+     pandas.tseries.offsets.SemiMonthBegin.is_month_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.SemiMonthBegin.is_quarter_start.html">
+     pandas.tseries.offsets.SemiMonthBegin.is_quarter_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.SemiMonthBegin.is_quarter_end.html">
+     pandas.tseries.offsets.SemiMonthBegin.is_quarter_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.SemiMonthBegin.is_year_start.html">
+     pandas.tseries.offsets.SemiMonthBegin.is_year_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.SemiMonthBegin.is_year_end.html">
+     pandas.tseries.offsets.SemiMonthBegin.is_year_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Week.html">
+     pandas.tseries.offsets.Week
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Week.freqstr.html">
+     pandas.tseries.offsets.Week.freqstr
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Week.kwds.html">
+     pandas.tseries.offsets.Week.kwds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Week.name.html">
+     pandas.tseries.offsets.Week.name
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Week.nanos.html">
+     pandas.tseries.offsets.Week.nanos
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Week.normalize.html">
+     pandas.tseries.offsets.Week.normalize
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Week.rule_code.html">
+     pandas.tseries.offsets.Week.rule_code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Week.n.html">
+     pandas.tseries.offsets.Week.n
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Week.weekday.html">
+     pandas.tseries.offsets.Week.weekday
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Week.apply.html">
+     pandas.tseries.offsets.Week.apply
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Week.apply_index.html">
+     pandas.tseries.offsets.Week.apply_index
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Week.copy.html">
+     pandas.tseries.offsets.Week.copy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Week.isAnchored.html">
+     pandas.tseries.offsets.Week.isAnchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Week.onOffset.html">
+     pandas.tseries.offsets.Week.onOffset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Week.is_anchored.html">
+     pandas.tseries.offsets.Week.is_anchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Week.is_on_offset.html">
+     pandas.tseries.offsets.Week.is_on_offset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Week.__call__.html">
+     pandas.tseries.offsets.Week.__call__
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Week.is_month_start.html">
+     pandas.tseries.offsets.Week.is_month_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Week.is_month_end.html">
+     pandas.tseries.offsets.Week.is_month_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Week.is_quarter_start.html">
+     pandas.tseries.offsets.Week.is_quarter_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Week.is_quarter_end.html">
+     pandas.tseries.offsets.Week.is_quarter_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Week.is_year_start.html">
+     pandas.tseries.offsets.Week.is_year_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Week.is_year_end.html">
+     pandas.tseries.offsets.Week.is_year_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.WeekOfMonth.html">
+     pandas.tseries.offsets.WeekOfMonth
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.WeekOfMonth.freqstr.html">
+     pandas.tseries.offsets.WeekOfMonth.freqstr
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.WeekOfMonth.kwds.html">
+     pandas.tseries.offsets.WeekOfMonth.kwds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.WeekOfMonth.name.html">
+     pandas.tseries.offsets.WeekOfMonth.name
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.WeekOfMonth.nanos.html">
+     pandas.tseries.offsets.WeekOfMonth.nanos
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.WeekOfMonth.normalize.html">
+     pandas.tseries.offsets.WeekOfMonth.normalize
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.WeekOfMonth.rule_code.html">
+     pandas.tseries.offsets.WeekOfMonth.rule_code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.WeekOfMonth.n.html">
+     pandas.tseries.offsets.WeekOfMonth.n
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.WeekOfMonth.week.html">
+     pandas.tseries.offsets.WeekOfMonth.week
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.WeekOfMonth.apply.html">
+     pandas.tseries.offsets.WeekOfMonth.apply
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.WeekOfMonth.apply_index.html">
+     pandas.tseries.offsets.WeekOfMonth.apply_index
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.WeekOfMonth.copy.html">
+     pandas.tseries.offsets.WeekOfMonth.copy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.WeekOfMonth.isAnchored.html">
+     pandas.tseries.offsets.WeekOfMonth.isAnchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.WeekOfMonth.onOffset.html">
+     pandas.tseries.offsets.WeekOfMonth.onOffset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.WeekOfMonth.is_anchored.html">
+     pandas.tseries.offsets.WeekOfMonth.is_anchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.WeekOfMonth.is_on_offset.html">
+     pandas.tseries.offsets.WeekOfMonth.is_on_offset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.WeekOfMonth.__call__.html">
+     pandas.tseries.offsets.WeekOfMonth.__call__
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.WeekOfMonth.weekday.html">
+     pandas.tseries.offsets.WeekOfMonth.weekday
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.WeekOfMonth.is_month_start.html">
+     pandas.tseries.offsets.WeekOfMonth.is_month_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.WeekOfMonth.is_month_end.html">
+     pandas.tseries.offsets.WeekOfMonth.is_month_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.WeekOfMonth.is_quarter_start.html">
+     pandas.tseries.offsets.WeekOfMonth.is_quarter_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.WeekOfMonth.is_quarter_end.html">
+     pandas.tseries.offsets.WeekOfMonth.is_quarter_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.WeekOfMonth.is_year_start.html">
+     pandas.tseries.offsets.WeekOfMonth.is_year_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.WeekOfMonth.is_year_end.html">
+     pandas.tseries.offsets.WeekOfMonth.is_year_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.LastWeekOfMonth.html">
+     pandas.tseries.offsets.LastWeekOfMonth
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.LastWeekOfMonth.freqstr.html">
+     pandas.tseries.offsets.LastWeekOfMonth.freqstr
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.LastWeekOfMonth.kwds.html">
+     pandas.tseries.offsets.LastWeekOfMonth.kwds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.LastWeekOfMonth.name.html">
+     pandas.tseries.offsets.LastWeekOfMonth.name
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.LastWeekOfMonth.nanos.html">
+     pandas.tseries.offsets.LastWeekOfMonth.nanos
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.LastWeekOfMonth.normalize.html">
+     pandas.tseries.offsets.LastWeekOfMonth.normalize
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.LastWeekOfMonth.rule_code.html">
+     pandas.tseries.offsets.LastWeekOfMonth.rule_code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.LastWeekOfMonth.n.html">
+     pandas.tseries.offsets.LastWeekOfMonth.n
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.LastWeekOfMonth.weekday.html">
+     pandas.tseries.offsets.LastWeekOfMonth.weekday
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.LastWeekOfMonth.week.html">
+     pandas.tseries.offsets.LastWeekOfMonth.week
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.LastWeekOfMonth.apply.html">
+     pandas.tseries.offsets.LastWeekOfMonth.apply
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.LastWeekOfMonth.apply_index.html">
+     pandas.tseries.offsets.LastWeekOfMonth.apply_index
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.LastWeekOfMonth.copy.html">
+     pandas.tseries.offsets.LastWeekOfMonth.copy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.LastWeekOfMonth.isAnchored.html">
+     pandas.tseries.offsets.LastWeekOfMonth.isAnchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.LastWeekOfMonth.onOffset.html">
+     pandas.tseries.offsets.LastWeekOfMonth.onOffset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.LastWeekOfMonth.is_anchored.html">
+     pandas.tseries.offsets.LastWeekOfMonth.is_anchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.LastWeekOfMonth.is_on_offset.html">
+     pandas.tseries.offsets.LastWeekOfMonth.is_on_offset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.LastWeekOfMonth.__call__.html">
+     pandas.tseries.offsets.LastWeekOfMonth.__call__
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.LastWeekOfMonth.is_month_start.html">
+     pandas.tseries.offsets.LastWeekOfMonth.is_month_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.LastWeekOfMonth.is_month_end.html">
+     pandas.tseries.offsets.LastWeekOfMonth.is_month_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.LastWeekOfMonth.is_quarter_start.html">
+     pandas.tseries.offsets.LastWeekOfMonth.is_quarter_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.LastWeekOfMonth.is_quarter_end.html">
+     pandas.tseries.offsets.LastWeekOfMonth.is_quarter_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.LastWeekOfMonth.is_year_start.html">
+     pandas.tseries.offsets.LastWeekOfMonth.is_year_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.LastWeekOfMonth.is_year_end.html">
+     pandas.tseries.offsets.LastWeekOfMonth.is_year_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BQuarterEnd.html">
+     pandas.tseries.offsets.BQuarterEnd
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BQuarterEnd.freqstr.html">
+     pandas.tseries.offsets.BQuarterEnd.freqstr
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BQuarterEnd.kwds.html">
+     pandas.tseries.offsets.BQuarterEnd.kwds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BQuarterEnd.name.html">
+     pandas.tseries.offsets.BQuarterEnd.name
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BQuarterEnd.nanos.html">
+     pandas.tseries.offsets.BQuarterEnd.nanos
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BQuarterEnd.normalize.html">
+     pandas.tseries.offsets.BQuarterEnd.normalize
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BQuarterEnd.rule_code.html">
+     pandas.tseries.offsets.BQuarterEnd.rule_code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BQuarterEnd.n.html">
+     pandas.tseries.offsets.BQuarterEnd.n
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BQuarterEnd.startingMonth.html">
+     pandas.tseries.offsets.BQuarterEnd.startingMonth
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BQuarterEnd.apply.html">
+     pandas.tseries.offsets.BQuarterEnd.apply
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BQuarterEnd.apply_index.html">
+     pandas.tseries.offsets.BQuarterEnd.apply_index
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BQuarterEnd.copy.html">
+     pandas.tseries.offsets.BQuarterEnd.copy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BQuarterEnd.isAnchored.html">
+     pandas.tseries.offsets.BQuarterEnd.isAnchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BQuarterEnd.onOffset.html">
+     pandas.tseries.offsets.BQuarterEnd.onOffset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BQuarterEnd.is_anchored.html">
+     pandas.tseries.offsets.BQuarterEnd.is_anchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BQuarterEnd.is_on_offset.html">
+     pandas.tseries.offsets.BQuarterEnd.is_on_offset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BQuarterEnd.__call__.html">
+     pandas.tseries.offsets.BQuarterEnd.__call__
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BQuarterEnd.is_month_start.html">
+     pandas.tseries.offsets.BQuarterEnd.is_month_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BQuarterEnd.is_month_end.html">
+     pandas.tseries.offsets.BQuarterEnd.is_month_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BQuarterEnd.is_quarter_start.html">
+     pandas.tseries.offsets.BQuarterEnd.is_quarter_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BQuarterEnd.is_quarter_end.html">
+     pandas.tseries.offsets.BQuarterEnd.is_quarter_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BQuarterEnd.is_year_start.html">
+     pandas.tseries.offsets.BQuarterEnd.is_year_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BQuarterEnd.is_year_end.html">
+     pandas.tseries.offsets.BQuarterEnd.is_year_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BQuarterBegin.html">
+     pandas.tseries.offsets.BQuarterBegin
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BQuarterBegin.freqstr.html">
+     pandas.tseries.offsets.BQuarterBegin.freqstr
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BQuarterBegin.kwds.html">
+     pandas.tseries.offsets.BQuarterBegin.kwds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BQuarterBegin.name.html">
+     pandas.tseries.offsets.BQuarterBegin.name
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BQuarterBegin.nanos.html">
+     pandas.tseries.offsets.BQuarterBegin.nanos
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BQuarterBegin.normalize.html">
+     pandas.tseries.offsets.BQuarterBegin.normalize
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BQuarterBegin.rule_code.html">
+     pandas.tseries.offsets.BQuarterBegin.rule_code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BQuarterBegin.n.html">
+     pandas.tseries.offsets.BQuarterBegin.n
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BQuarterBegin.startingMonth.html">
+     pandas.tseries.offsets.BQuarterBegin.startingMonth
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BQuarterBegin.apply.html">
+     pandas.tseries.offsets.BQuarterBegin.apply
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BQuarterBegin.apply_index.html">
+     pandas.tseries.offsets.BQuarterBegin.apply_index
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BQuarterBegin.copy.html">
+     pandas.tseries.offsets.BQuarterBegin.copy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BQuarterBegin.isAnchored.html">
+     pandas.tseries.offsets.BQuarterBegin.isAnchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BQuarterBegin.onOffset.html">
+     pandas.tseries.offsets.BQuarterBegin.onOffset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BQuarterBegin.is_anchored.html">
+     pandas.tseries.offsets.BQuarterBegin.is_anchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BQuarterBegin.is_on_offset.html">
+     pandas.tseries.offsets.BQuarterBegin.is_on_offset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BQuarterBegin.__call__.html">
+     pandas.tseries.offsets.BQuarterBegin.__call__
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BQuarterBegin.is_month_start.html">
+     pandas.tseries.offsets.BQuarterBegin.is_month_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BQuarterBegin.is_month_end.html">
+     pandas.tseries.offsets.BQuarterBegin.is_month_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BQuarterBegin.is_quarter_start.html">
+     pandas.tseries.offsets.BQuarterBegin.is_quarter_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BQuarterBegin.is_quarter_end.html">
+     pandas.tseries.offsets.BQuarterBegin.is_quarter_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BQuarterBegin.is_year_start.html">
+     pandas.tseries.offsets.BQuarterBegin.is_year_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BQuarterBegin.is_year_end.html">
+     pandas.tseries.offsets.BQuarterBegin.is_year_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.QuarterEnd.html">
+     pandas.tseries.offsets.QuarterEnd
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.QuarterEnd.freqstr.html">
+     pandas.tseries.offsets.QuarterEnd.freqstr
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.QuarterEnd.kwds.html">
+     pandas.tseries.offsets.QuarterEnd.kwds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.QuarterEnd.name.html">
+     pandas.tseries.offsets.QuarterEnd.name
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.QuarterEnd.nanos.html">
+     pandas.tseries.offsets.QuarterEnd.nanos
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.QuarterEnd.normalize.html">
+     pandas.tseries.offsets.QuarterEnd.normalize
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.QuarterEnd.rule_code.html">
+     pandas.tseries.offsets.QuarterEnd.rule_code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.QuarterEnd.n.html">
+     pandas.tseries.offsets.QuarterEnd.n
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.QuarterEnd.startingMonth.html">
+     pandas.tseries.offsets.QuarterEnd.startingMonth
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.QuarterEnd.apply.html">
+     pandas.tseries.offsets.QuarterEnd.apply
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.QuarterEnd.apply_index.html">
+     pandas.tseries.offsets.QuarterEnd.apply_index
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.QuarterEnd.copy.html">
+     pandas.tseries.offsets.QuarterEnd.copy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.QuarterEnd.isAnchored.html">
+     pandas.tseries.offsets.QuarterEnd.isAnchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.QuarterEnd.onOffset.html">
+     pandas.tseries.offsets.QuarterEnd.onOffset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.QuarterEnd.is_anchored.html">
+     pandas.tseries.offsets.QuarterEnd.is_anchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.QuarterEnd.is_on_offset.html">
+     pandas.tseries.offsets.QuarterEnd.is_on_offset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.QuarterEnd.__call__.html">
+     pandas.tseries.offsets.QuarterEnd.__call__
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.QuarterEnd.is_month_start.html">
+     pandas.tseries.offsets.QuarterEnd.is_month_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.QuarterEnd.is_month_end.html">
+     pandas.tseries.offsets.QuarterEnd.is_month_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.QuarterEnd.is_quarter_start.html">
+     pandas.tseries.offsets.QuarterEnd.is_quarter_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.QuarterEnd.is_quarter_end.html">
+     pandas.tseries.offsets.QuarterEnd.is_quarter_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.QuarterEnd.is_year_start.html">
+     pandas.tseries.offsets.QuarterEnd.is_year_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.QuarterEnd.is_year_end.html">
+     pandas.tseries.offsets.QuarterEnd.is_year_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.QuarterBegin.html">
+     pandas.tseries.offsets.QuarterBegin
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.QuarterBegin.freqstr.html">
+     pandas.tseries.offsets.QuarterBegin.freqstr
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.QuarterBegin.kwds.html">
+     pandas.tseries.offsets.QuarterBegin.kwds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.QuarterBegin.name.html">
+     pandas.tseries.offsets.QuarterBegin.name
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.QuarterBegin.nanos.html">
+     pandas.tseries.offsets.QuarterBegin.nanos
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.QuarterBegin.normalize.html">
+     pandas.tseries.offsets.QuarterBegin.normalize
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.QuarterBegin.rule_code.html">
+     pandas.tseries.offsets.QuarterBegin.rule_code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.QuarterBegin.n.html">
+     pandas.tseries.offsets.QuarterBegin.n
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.QuarterBegin.startingMonth.html">
+     pandas.tseries.offsets.QuarterBegin.startingMonth
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.QuarterBegin.apply.html">
+     pandas.tseries.offsets.QuarterBegin.apply
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.QuarterBegin.apply_index.html">
+     pandas.tseries.offsets.QuarterBegin.apply_index
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.QuarterBegin.copy.html">
+     pandas.tseries.offsets.QuarterBegin.copy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.QuarterBegin.isAnchored.html">
+     pandas.tseries.offsets.QuarterBegin.isAnchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.QuarterBegin.onOffset.html">
+     pandas.tseries.offsets.QuarterBegin.onOffset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.QuarterBegin.is_anchored.html">
+     pandas.tseries.offsets.QuarterBegin.is_anchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.QuarterBegin.is_on_offset.html">
+     pandas.tseries.offsets.QuarterBegin.is_on_offset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.QuarterBegin.__call__.html">
+     pandas.tseries.offsets.QuarterBegin.__call__
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.QuarterBegin.is_month_start.html">
+     pandas.tseries.offsets.QuarterBegin.is_month_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.QuarterBegin.is_month_end.html">
+     pandas.tseries.offsets.QuarterBegin.is_month_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.QuarterBegin.is_quarter_start.html">
+     pandas.tseries.offsets.QuarterBegin.is_quarter_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.QuarterBegin.is_quarter_end.html">
+     pandas.tseries.offsets.QuarterBegin.is_quarter_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.QuarterBegin.is_year_start.html">
+     pandas.tseries.offsets.QuarterBegin.is_year_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.QuarterBegin.is_year_end.html">
+     pandas.tseries.offsets.QuarterBegin.is_year_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BYearEnd.html">
+     pandas.tseries.offsets.BYearEnd
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BYearEnd.freqstr.html">
+     pandas.tseries.offsets.BYearEnd.freqstr
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BYearEnd.kwds.html">
+     pandas.tseries.offsets.BYearEnd.kwds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BYearEnd.name.html">
+     pandas.tseries.offsets.BYearEnd.name
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BYearEnd.nanos.html">
+     pandas.tseries.offsets.BYearEnd.nanos
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BYearEnd.normalize.html">
+     pandas.tseries.offsets.BYearEnd.normalize
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BYearEnd.rule_code.html">
+     pandas.tseries.offsets.BYearEnd.rule_code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BYearEnd.n.html">
+     pandas.tseries.offsets.BYearEnd.n
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BYearEnd.month.html">
+     pandas.tseries.offsets.BYearEnd.month
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BYearEnd.apply.html">
+     pandas.tseries.offsets.BYearEnd.apply
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BYearEnd.apply_index.html">
+     pandas.tseries.offsets.BYearEnd.apply_index
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BYearEnd.copy.html">
+     pandas.tseries.offsets.BYearEnd.copy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BYearEnd.isAnchored.html">
+     pandas.tseries.offsets.BYearEnd.isAnchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BYearEnd.onOffset.html">
+     pandas.tseries.offsets.BYearEnd.onOffset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BYearEnd.is_anchored.html">
+     pandas.tseries.offsets.BYearEnd.is_anchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BYearEnd.is_on_offset.html">
+     pandas.tseries.offsets.BYearEnd.is_on_offset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BYearEnd.__call__.html">
+     pandas.tseries.offsets.BYearEnd.__call__
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BYearEnd.is_month_start.html">
+     pandas.tseries.offsets.BYearEnd.is_month_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BYearEnd.is_month_end.html">
+     pandas.tseries.offsets.BYearEnd.is_month_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BYearEnd.is_quarter_start.html">
+     pandas.tseries.offsets.BYearEnd.is_quarter_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BYearEnd.is_quarter_end.html">
+     pandas.tseries.offsets.BYearEnd.is_quarter_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BYearEnd.is_year_start.html">
+     pandas.tseries.offsets.BYearEnd.is_year_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BYearEnd.is_year_end.html">
+     pandas.tseries.offsets.BYearEnd.is_year_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BYearBegin.html">
+     pandas.tseries.offsets.BYearBegin
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BYearBegin.freqstr.html">
+     pandas.tseries.offsets.BYearBegin.freqstr
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BYearBegin.kwds.html">
+     pandas.tseries.offsets.BYearBegin.kwds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BYearBegin.name.html">
+     pandas.tseries.offsets.BYearBegin.name
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BYearBegin.nanos.html">
+     pandas.tseries.offsets.BYearBegin.nanos
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BYearBegin.normalize.html">
+     pandas.tseries.offsets.BYearBegin.normalize
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BYearBegin.rule_code.html">
+     pandas.tseries.offsets.BYearBegin.rule_code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BYearBegin.n.html">
+     pandas.tseries.offsets.BYearBegin.n
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BYearBegin.month.html">
+     pandas.tseries.offsets.BYearBegin.month
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BYearBegin.apply.html">
+     pandas.tseries.offsets.BYearBegin.apply
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BYearBegin.apply_index.html">
+     pandas.tseries.offsets.BYearBegin.apply_index
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BYearBegin.copy.html">
+     pandas.tseries.offsets.BYearBegin.copy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BYearBegin.isAnchored.html">
+     pandas.tseries.offsets.BYearBegin.isAnchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BYearBegin.onOffset.html">
+     pandas.tseries.offsets.BYearBegin.onOffset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BYearBegin.is_anchored.html">
+     pandas.tseries.offsets.BYearBegin.is_anchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BYearBegin.is_on_offset.html">
+     pandas.tseries.offsets.BYearBegin.is_on_offset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BYearBegin.__call__.html">
+     pandas.tseries.offsets.BYearBegin.__call__
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BYearBegin.is_month_start.html">
+     pandas.tseries.offsets.BYearBegin.is_month_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BYearBegin.is_month_end.html">
+     pandas.tseries.offsets.BYearBegin.is_month_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BYearBegin.is_quarter_start.html">
+     pandas.tseries.offsets.BYearBegin.is_quarter_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BYearBegin.is_quarter_end.html">
+     pandas.tseries.offsets.BYearBegin.is_quarter_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BYearBegin.is_year_start.html">
+     pandas.tseries.offsets.BYearBegin.is_year_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.BYearBegin.is_year_end.html">
+     pandas.tseries.offsets.BYearBegin.is_year_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.YearEnd.html">
+     pandas.tseries.offsets.YearEnd
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.YearEnd.freqstr.html">
+     pandas.tseries.offsets.YearEnd.freqstr
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.YearEnd.kwds.html">
+     pandas.tseries.offsets.YearEnd.kwds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.YearEnd.name.html">
+     pandas.tseries.offsets.YearEnd.name
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.YearEnd.nanos.html">
+     pandas.tseries.offsets.YearEnd.nanos
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.YearEnd.normalize.html">
+     pandas.tseries.offsets.YearEnd.normalize
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.YearEnd.rule_code.html">
+     pandas.tseries.offsets.YearEnd.rule_code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.YearEnd.n.html">
+     pandas.tseries.offsets.YearEnd.n
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.YearEnd.month.html">
+     pandas.tseries.offsets.YearEnd.month
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.YearEnd.apply.html">
+     pandas.tseries.offsets.YearEnd.apply
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.YearEnd.apply_index.html">
+     pandas.tseries.offsets.YearEnd.apply_index
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.YearEnd.copy.html">
+     pandas.tseries.offsets.YearEnd.copy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.YearEnd.isAnchored.html">
+     pandas.tseries.offsets.YearEnd.isAnchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.YearEnd.onOffset.html">
+     pandas.tseries.offsets.YearEnd.onOffset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.YearEnd.is_anchored.html">
+     pandas.tseries.offsets.YearEnd.is_anchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.YearEnd.is_on_offset.html">
+     pandas.tseries.offsets.YearEnd.is_on_offset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.YearEnd.__call__.html">
+     pandas.tseries.offsets.YearEnd.__call__
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.YearEnd.is_month_start.html">
+     pandas.tseries.offsets.YearEnd.is_month_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.YearEnd.is_month_end.html">
+     pandas.tseries.offsets.YearEnd.is_month_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.YearEnd.is_quarter_start.html">
+     pandas.tseries.offsets.YearEnd.is_quarter_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.YearEnd.is_quarter_end.html">
+     pandas.tseries.offsets.YearEnd.is_quarter_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.YearEnd.is_year_start.html">
+     pandas.tseries.offsets.YearEnd.is_year_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.YearEnd.is_year_end.html">
+     pandas.tseries.offsets.YearEnd.is_year_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.YearBegin.html">
+     pandas.tseries.offsets.YearBegin
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.YearBegin.freqstr.html">
+     pandas.tseries.offsets.YearBegin.freqstr
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.YearBegin.kwds.html">
+     pandas.tseries.offsets.YearBegin.kwds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.YearBegin.name.html">
+     pandas.tseries.offsets.YearBegin.name
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.YearBegin.nanos.html">
+     pandas.tseries.offsets.YearBegin.nanos
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.YearBegin.normalize.html">
+     pandas.tseries.offsets.YearBegin.normalize
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.YearBegin.rule_code.html">
+     pandas.tseries.offsets.YearBegin.rule_code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.YearBegin.n.html">
+     pandas.tseries.offsets.YearBegin.n
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.YearBegin.month.html">
+     pandas.tseries.offsets.YearBegin.month
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.YearBegin.apply.html">
+     pandas.tseries.offsets.YearBegin.apply
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.YearBegin.apply_index.html">
+     pandas.tseries.offsets.YearBegin.apply_index
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.YearBegin.copy.html">
+     pandas.tseries.offsets.YearBegin.copy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.YearBegin.isAnchored.html">
+     pandas.tseries.offsets.YearBegin.isAnchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.YearBegin.onOffset.html">
+     pandas.tseries.offsets.YearBegin.onOffset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.YearBegin.is_anchored.html">
+     pandas.tseries.offsets.YearBegin.is_anchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.YearBegin.is_on_offset.html">
+     pandas.tseries.offsets.YearBegin.is_on_offset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.YearBegin.__call__.html">
+     pandas.tseries.offsets.YearBegin.__call__
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.YearBegin.is_month_start.html">
+     pandas.tseries.offsets.YearBegin.is_month_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.YearBegin.is_month_end.html">
+     pandas.tseries.offsets.YearBegin.is_month_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.YearBegin.is_quarter_start.html">
+     pandas.tseries.offsets.YearBegin.is_quarter_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.YearBegin.is_quarter_end.html">
+     pandas.tseries.offsets.YearBegin.is_quarter_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.YearBegin.is_year_start.html">
+     pandas.tseries.offsets.YearBegin.is_year_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.YearBegin.is_year_end.html">
+     pandas.tseries.offsets.YearBegin.is_year_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.FY5253.html">
+     pandas.tseries.offsets.FY5253
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.FY5253.freqstr.html">
+     pandas.tseries.offsets.FY5253.freqstr
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.FY5253.kwds.html">
+     pandas.tseries.offsets.FY5253.kwds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.FY5253.name.html">
+     pandas.tseries.offsets.FY5253.name
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.FY5253.nanos.html">
+     pandas.tseries.offsets.FY5253.nanos
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.FY5253.normalize.html">
+     pandas.tseries.offsets.FY5253.normalize
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.FY5253.rule_code.html">
+     pandas.tseries.offsets.FY5253.rule_code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.FY5253.n.html">
+     pandas.tseries.offsets.FY5253.n
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.FY5253.startingMonth.html">
+     pandas.tseries.offsets.FY5253.startingMonth
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.FY5253.variation.html">
+     pandas.tseries.offsets.FY5253.variation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.FY5253.weekday.html">
+     pandas.tseries.offsets.FY5253.weekday
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.FY5253.apply.html">
+     pandas.tseries.offsets.FY5253.apply
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.FY5253.apply_index.html">
+     pandas.tseries.offsets.FY5253.apply_index
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.FY5253.copy.html">
+     pandas.tseries.offsets.FY5253.copy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.FY5253.get_rule_code_suffix.html">
+     pandas.tseries.offsets.FY5253.get_rule_code_suffix
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.FY5253.get_year_end.html">
+     pandas.tseries.offsets.FY5253.get_year_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.FY5253.isAnchored.html">
+     pandas.tseries.offsets.FY5253.isAnchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.FY5253.onOffset.html">
+     pandas.tseries.offsets.FY5253.onOffset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.FY5253.is_anchored.html">
+     pandas.tseries.offsets.FY5253.is_anchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.FY5253.is_on_offset.html">
+     pandas.tseries.offsets.FY5253.is_on_offset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.FY5253.__call__.html">
+     pandas.tseries.offsets.FY5253.__call__
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.FY5253.is_month_start.html">
+     pandas.tseries.offsets.FY5253.is_month_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.FY5253.is_month_end.html">
+     pandas.tseries.offsets.FY5253.is_month_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.FY5253.is_quarter_start.html">
+     pandas.tseries.offsets.FY5253.is_quarter_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.FY5253.is_quarter_end.html">
+     pandas.tseries.offsets.FY5253.is_quarter_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.FY5253.is_year_start.html">
+     pandas.tseries.offsets.FY5253.is_year_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.FY5253.is_year_end.html">
+     pandas.tseries.offsets.FY5253.is_year_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.FY5253Quarter.html">
+     pandas.tseries.offsets.FY5253Quarter
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.FY5253Quarter.freqstr.html">
+     pandas.tseries.offsets.FY5253Quarter.freqstr
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.FY5253Quarter.kwds.html">
+     pandas.tseries.offsets.FY5253Quarter.kwds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.FY5253Quarter.name.html">
+     pandas.tseries.offsets.FY5253Quarter.name
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.FY5253Quarter.nanos.html">
+     pandas.tseries.offsets.FY5253Quarter.nanos
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.FY5253Quarter.normalize.html">
+     pandas.tseries.offsets.FY5253Quarter.normalize
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.FY5253Quarter.rule_code.html">
+     pandas.tseries.offsets.FY5253Quarter.rule_code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.FY5253Quarter.n.html">
+     pandas.tseries.offsets.FY5253Quarter.n
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.FY5253Quarter.qtr_with_extra_week.html">
+     pandas.tseries.offsets.FY5253Quarter.qtr_with_extra_week
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.FY5253Quarter.startingMonth.html">
+     pandas.tseries.offsets.FY5253Quarter.startingMonth
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.FY5253Quarter.variation.html">
+     pandas.tseries.offsets.FY5253Quarter.variation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.FY5253Quarter.weekday.html">
+     pandas.tseries.offsets.FY5253Quarter.weekday
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.FY5253Quarter.apply.html">
+     pandas.tseries.offsets.FY5253Quarter.apply
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.FY5253Quarter.apply_index.html">
+     pandas.tseries.offsets.FY5253Quarter.apply_index
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.FY5253Quarter.copy.html">
+     pandas.tseries.offsets.FY5253Quarter.copy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.FY5253Quarter.get_rule_code_suffix.html">
+     pandas.tseries.offsets.FY5253Quarter.get_rule_code_suffix
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.FY5253Quarter.get_weeks.html">
+     pandas.tseries.offsets.FY5253Quarter.get_weeks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.FY5253Quarter.isAnchored.html">
+     pandas.tseries.offsets.FY5253Quarter.isAnchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.FY5253Quarter.onOffset.html">
+     pandas.tseries.offsets.FY5253Quarter.onOffset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.FY5253Quarter.is_anchored.html">
+     pandas.tseries.offsets.FY5253Quarter.is_anchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.FY5253Quarter.is_on_offset.html">
+     pandas.tseries.offsets.FY5253Quarter.is_on_offset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.FY5253Quarter.year_has_extra_week.html">
+     pandas.tseries.offsets.FY5253Quarter.year_has_extra_week
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.FY5253Quarter.__call__.html">
+     pandas.tseries.offsets.FY5253Quarter.__call__
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.FY5253Quarter.is_month_start.html">
+     pandas.tseries.offsets.FY5253Quarter.is_month_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.FY5253Quarter.is_month_end.html">
+     pandas.tseries.offsets.FY5253Quarter.is_month_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.FY5253Quarter.is_quarter_start.html">
+     pandas.tseries.offsets.FY5253Quarter.is_quarter_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.FY5253Quarter.is_quarter_end.html">
+     pandas.tseries.offsets.FY5253Quarter.is_quarter_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.FY5253Quarter.is_year_start.html">
+     pandas.tseries.offsets.FY5253Quarter.is_year_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.FY5253Quarter.is_year_end.html">
+     pandas.tseries.offsets.FY5253Quarter.is_year_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Easter.html">
+     pandas.tseries.offsets.Easter
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Easter.freqstr.html">
+     pandas.tseries.offsets.Easter.freqstr
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Easter.kwds.html">
+     pandas.tseries.offsets.Easter.kwds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Easter.name.html">
+     pandas.tseries.offsets.Easter.name
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Easter.nanos.html">
+     pandas.tseries.offsets.Easter.nanos
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Easter.normalize.html">
+     pandas.tseries.offsets.Easter.normalize
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Easter.rule_code.html">
+     pandas.tseries.offsets.Easter.rule_code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Easter.n.html">
+     pandas.tseries.offsets.Easter.n
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Easter.apply.html">
+     pandas.tseries.offsets.Easter.apply
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Easter.apply_index.html">
+     pandas.tseries.offsets.Easter.apply_index
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Easter.copy.html">
+     pandas.tseries.offsets.Easter.copy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Easter.isAnchored.html">
+     pandas.tseries.offsets.Easter.isAnchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Easter.onOffset.html">
+     pandas.tseries.offsets.Easter.onOffset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Easter.is_anchored.html">
+     pandas.tseries.offsets.Easter.is_anchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Easter.is_on_offset.html">
+     pandas.tseries.offsets.Easter.is_on_offset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Easter.__call__.html">
+     pandas.tseries.offsets.Easter.__call__
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Easter.is_month_start.html">
+     pandas.tseries.offsets.Easter.is_month_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Easter.is_month_end.html">
+     pandas.tseries.offsets.Easter.is_month_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Easter.is_quarter_start.html">
+     pandas.tseries.offsets.Easter.is_quarter_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Easter.is_quarter_end.html">
+     pandas.tseries.offsets.Easter.is_quarter_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Easter.is_year_start.html">
+     pandas.tseries.offsets.Easter.is_year_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Easter.is_year_end.html">
+     pandas.tseries.offsets.Easter.is_year_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Tick.html">
+     pandas.tseries.offsets.Tick
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Tick.delta.html">
+     pandas.tseries.offsets.Tick.delta
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Tick.freqstr.html">
+     pandas.tseries.offsets.Tick.freqstr
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Tick.kwds.html">
+     pandas.tseries.offsets.Tick.kwds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Tick.name.html">
+     pandas.tseries.offsets.Tick.name
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Tick.nanos.html">
+     pandas.tseries.offsets.Tick.nanos
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Tick.normalize.html">
+     pandas.tseries.offsets.Tick.normalize
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Tick.rule_code.html">
+     pandas.tseries.offsets.Tick.rule_code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Tick.n.html">
+     pandas.tseries.offsets.Tick.n
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Tick.copy.html">
+     pandas.tseries.offsets.Tick.copy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Tick.isAnchored.html">
+     pandas.tseries.offsets.Tick.isAnchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Tick.onOffset.html">
+     pandas.tseries.offsets.Tick.onOffset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Tick.is_anchored.html">
+     pandas.tseries.offsets.Tick.is_anchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Tick.is_on_offset.html">
+     pandas.tseries.offsets.Tick.is_on_offset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Tick.__call__.html">
+     pandas.tseries.offsets.Tick.__call__
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Tick.apply.html">
+     pandas.tseries.offsets.Tick.apply
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Tick.apply_index.html">
+     pandas.tseries.offsets.Tick.apply_index
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Tick.is_month_start.html">
+     pandas.tseries.offsets.Tick.is_month_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Tick.is_month_end.html">
+     pandas.tseries.offsets.Tick.is_month_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Tick.is_quarter_start.html">
+     pandas.tseries.offsets.Tick.is_quarter_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Tick.is_quarter_end.html">
+     pandas.tseries.offsets.Tick.is_quarter_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Tick.is_year_start.html">
+     pandas.tseries.offsets.Tick.is_year_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Tick.is_year_end.html">
+     pandas.tseries.offsets.Tick.is_year_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Day.html">
+     pandas.tseries.offsets.Day
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Day.delta.html">
+     pandas.tseries.offsets.Day.delta
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Day.freqstr.html">
+     pandas.tseries.offsets.Day.freqstr
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Day.kwds.html">
+     pandas.tseries.offsets.Day.kwds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Day.name.html">
+     pandas.tseries.offsets.Day.name
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Day.nanos.html">
+     pandas.tseries.offsets.Day.nanos
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Day.normalize.html">
+     pandas.tseries.offsets.Day.normalize
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Day.rule_code.html">
+     pandas.tseries.offsets.Day.rule_code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Day.n.html">
+     pandas.tseries.offsets.Day.n
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Day.copy.html">
+     pandas.tseries.offsets.Day.copy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Day.isAnchored.html">
+     pandas.tseries.offsets.Day.isAnchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Day.onOffset.html">
+     pandas.tseries.offsets.Day.onOffset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Day.is_anchored.html">
+     pandas.tseries.offsets.Day.is_anchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Day.is_on_offset.html">
+     pandas.tseries.offsets.Day.is_on_offset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Day.__call__.html">
+     pandas.tseries.offsets.Day.__call__
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Day.apply.html">
+     pandas.tseries.offsets.Day.apply
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Day.apply_index.html">
+     pandas.tseries.offsets.Day.apply_index
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Day.is_month_start.html">
+     pandas.tseries.offsets.Day.is_month_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Day.is_month_end.html">
+     pandas.tseries.offsets.Day.is_month_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Day.is_quarter_start.html">
+     pandas.tseries.offsets.Day.is_quarter_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Day.is_quarter_end.html">
+     pandas.tseries.offsets.Day.is_quarter_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Day.is_year_start.html">
+     pandas.tseries.offsets.Day.is_year_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Day.is_year_end.html">
+     pandas.tseries.offsets.Day.is_year_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Hour.html">
+     pandas.tseries.offsets.Hour
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Hour.delta.html">
+     pandas.tseries.offsets.Hour.delta
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Hour.freqstr.html">
+     pandas.tseries.offsets.Hour.freqstr
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Hour.kwds.html">
+     pandas.tseries.offsets.Hour.kwds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Hour.name.html">
+     pandas.tseries.offsets.Hour.name
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Hour.nanos.html">
+     pandas.tseries.offsets.Hour.nanos
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Hour.normalize.html">
+     pandas.tseries.offsets.Hour.normalize
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     pandas.tseries.offsets.Hour.rule_code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Hour.n.html">
+     pandas.tseries.offsets.Hour.n
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Hour.copy.html">
+     pandas.tseries.offsets.Hour.copy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Hour.isAnchored.html">
+     pandas.tseries.offsets.Hour.isAnchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Hour.onOffset.html">
+     pandas.tseries.offsets.Hour.onOffset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Hour.is_anchored.html">
+     pandas.tseries.offsets.Hour.is_anchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Hour.is_on_offset.html">
+     pandas.tseries.offsets.Hour.is_on_offset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Hour.__call__.html">
+     pandas.tseries.offsets.Hour.__call__
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Hour.apply.html">
+     pandas.tseries.offsets.Hour.apply
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Hour.apply_index.html">
+     pandas.tseries.offsets.Hour.apply_index
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Hour.is_month_start.html">
+     pandas.tseries.offsets.Hour.is_month_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Hour.is_month_end.html">
+     pandas.tseries.offsets.Hour.is_month_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Hour.is_quarter_start.html">
+     pandas.tseries.offsets.Hour.is_quarter_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Hour.is_quarter_end.html">
+     pandas.tseries.offsets.Hour.is_quarter_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Hour.is_year_start.html">
+     pandas.tseries.offsets.Hour.is_year_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Hour.is_year_end.html">
+     pandas.tseries.offsets.Hour.is_year_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Minute.html">
+     pandas.tseries.offsets.Minute
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Minute.delta.html">
+     pandas.tseries.offsets.Minute.delta
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Minute.freqstr.html">
+     pandas.tseries.offsets.Minute.freqstr
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Minute.kwds.html">
+     pandas.tseries.offsets.Minute.kwds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Minute.name.html">
+     pandas.tseries.offsets.Minute.name
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Minute.nanos.html">
+     pandas.tseries.offsets.Minute.nanos
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Minute.normalize.html">
+     pandas.tseries.offsets.Minute.normalize
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Minute.rule_code.html">
+     pandas.tseries.offsets.Minute.rule_code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Minute.n.html">
+     pandas.tseries.offsets.Minute.n
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Minute.copy.html">
+     pandas.tseries.offsets.Minute.copy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Minute.isAnchored.html">
+     pandas.tseries.offsets.Minute.isAnchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Minute.onOffset.html">
+     pandas.tseries.offsets.Minute.onOffset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Minute.is_anchored.html">
+     pandas.tseries.offsets.Minute.is_anchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Minute.is_on_offset.html">
+     pandas.tseries.offsets.Minute.is_on_offset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Minute.__call__.html">
+     pandas.tseries.offsets.Minute.__call__
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Minute.apply.html">
+     pandas.tseries.offsets.Minute.apply
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Minute.apply_index.html">
+     pandas.tseries.offsets.Minute.apply_index
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Minute.is_month_start.html">
+     pandas.tseries.offsets.Minute.is_month_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Minute.is_month_end.html">
+     pandas.tseries.offsets.Minute.is_month_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Minute.is_quarter_start.html">
+     pandas.tseries.offsets.Minute.is_quarter_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Minute.is_quarter_end.html">
+     pandas.tseries.offsets.Minute.is_quarter_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Minute.is_year_start.html">
+     pandas.tseries.offsets.Minute.is_year_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Minute.is_year_end.html">
+     pandas.tseries.offsets.Minute.is_year_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Second.html">
+     pandas.tseries.offsets.Second
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Second.delta.html">
+     pandas.tseries.offsets.Second.delta
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Second.freqstr.html">
+     pandas.tseries.offsets.Second.freqstr
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Second.kwds.html">
+     pandas.tseries.offsets.Second.kwds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Second.name.html">
+     pandas.tseries.offsets.Second.name
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Second.nanos.html">
+     pandas.tseries.offsets.Second.nanos
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Second.normalize.html">
+     pandas.tseries.offsets.Second.normalize
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Second.rule_code.html">
+     pandas.tseries.offsets.Second.rule_code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Second.n.html">
+     pandas.tseries.offsets.Second.n
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Second.copy.html">
+     pandas.tseries.offsets.Second.copy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Second.isAnchored.html">
+     pandas.tseries.offsets.Second.isAnchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Second.onOffset.html">
+     pandas.tseries.offsets.Second.onOffset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Second.is_anchored.html">
+     pandas.tseries.offsets.Second.is_anchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Second.is_on_offset.html">
+     pandas.tseries.offsets.Second.is_on_offset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Second.__call__.html">
+     pandas.tseries.offsets.Second.__call__
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Second.apply.html">
+     pandas.tseries.offsets.Second.apply
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Second.apply_index.html">
+     pandas.tseries.offsets.Second.apply_index
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Second.is_month_start.html">
+     pandas.tseries.offsets.Second.is_month_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Second.is_month_end.html">
+     pandas.tseries.offsets.Second.is_month_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Second.is_quarter_start.html">
+     pandas.tseries.offsets.Second.is_quarter_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Second.is_quarter_end.html">
+     pandas.tseries.offsets.Second.is_quarter_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Second.is_year_start.html">
+     pandas.tseries.offsets.Second.is_year_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Second.is_year_end.html">
+     pandas.tseries.offsets.Second.is_year_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Milli.html">
+     pandas.tseries.offsets.Milli
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Milli.delta.html">
+     pandas.tseries.offsets.Milli.delta
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Milli.freqstr.html">
+     pandas.tseries.offsets.Milli.freqstr
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Milli.kwds.html">
+     pandas.tseries.offsets.Milli.kwds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Milli.name.html">
+     pandas.tseries.offsets.Milli.name
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Milli.nanos.html">
+     pandas.tseries.offsets.Milli.nanos
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Milli.normalize.html">
+     pandas.tseries.offsets.Milli.normalize
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Milli.rule_code.html">
+     pandas.tseries.offsets.Milli.rule_code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Milli.n.html">
+     pandas.tseries.offsets.Milli.n
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Milli.copy.html">
+     pandas.tseries.offsets.Milli.copy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Milli.isAnchored.html">
+     pandas.tseries.offsets.Milli.isAnchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Milli.onOffset.html">
+     pandas.tseries.offsets.Milli.onOffset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Milli.is_anchored.html">
+     pandas.tseries.offsets.Milli.is_anchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Milli.is_on_offset.html">
+     pandas.tseries.offsets.Milli.is_on_offset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Milli.__call__.html">
+     pandas.tseries.offsets.Milli.__call__
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Milli.apply.html">
+     pandas.tseries.offsets.Milli.apply
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Milli.apply_index.html">
+     pandas.tseries.offsets.Milli.apply_index
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Milli.is_month_start.html">
+     pandas.tseries.offsets.Milli.is_month_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Milli.is_month_end.html">
+     pandas.tseries.offsets.Milli.is_month_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Milli.is_quarter_start.html">
+     pandas.tseries.offsets.Milli.is_quarter_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Milli.is_quarter_end.html">
+     pandas.tseries.offsets.Milli.is_quarter_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Milli.is_year_start.html">
+     pandas.tseries.offsets.Milli.is_year_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Milli.is_year_end.html">
+     pandas.tseries.offsets.Milli.is_year_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Micro.html">
+     pandas.tseries.offsets.Micro
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Micro.delta.html">
+     pandas.tseries.offsets.Micro.delta
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Micro.freqstr.html">
+     pandas.tseries.offsets.Micro.freqstr
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Micro.kwds.html">
+     pandas.tseries.offsets.Micro.kwds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Micro.name.html">
+     pandas.tseries.offsets.Micro.name
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Micro.nanos.html">
+     pandas.tseries.offsets.Micro.nanos
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Micro.normalize.html">
+     pandas.tseries.offsets.Micro.normalize
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Micro.rule_code.html">
+     pandas.tseries.offsets.Micro.rule_code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Micro.n.html">
+     pandas.tseries.offsets.Micro.n
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Micro.copy.html">
+     pandas.tseries.offsets.Micro.copy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Micro.isAnchored.html">
+     pandas.tseries.offsets.Micro.isAnchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Micro.onOffset.html">
+     pandas.tseries.offsets.Micro.onOffset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Micro.is_anchored.html">
+     pandas.tseries.offsets.Micro.is_anchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Micro.is_on_offset.html">
+     pandas.tseries.offsets.Micro.is_on_offset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Micro.__call__.html">
+     pandas.tseries.offsets.Micro.__call__
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Micro.apply.html">
+     pandas.tseries.offsets.Micro.apply
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Micro.apply_index.html">
+     pandas.tseries.offsets.Micro.apply_index
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Micro.is_month_start.html">
+     pandas.tseries.offsets.Micro.is_month_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Micro.is_month_end.html">
+     pandas.tseries.offsets.Micro.is_month_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Micro.is_quarter_start.html">
+     pandas.tseries.offsets.Micro.is_quarter_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Micro.is_quarter_end.html">
+     pandas.tseries.offsets.Micro.is_quarter_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Micro.is_year_start.html">
+     pandas.tseries.offsets.Micro.is_year_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Micro.is_year_end.html">
+     pandas.tseries.offsets.Micro.is_year_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Nano.html">
+     pandas.tseries.offsets.Nano
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Nano.delta.html">
+     pandas.tseries.offsets.Nano.delta
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Nano.freqstr.html">
+     pandas.tseries.offsets.Nano.freqstr
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Nano.kwds.html">
+     pandas.tseries.offsets.Nano.kwds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Nano.name.html">
+     pandas.tseries.offsets.Nano.name
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Nano.nanos.html">
+     pandas.tseries.offsets.Nano.nanos
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Nano.normalize.html">
+     pandas.tseries.offsets.Nano.normalize
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Nano.rule_code.html">
+     pandas.tseries.offsets.Nano.rule_code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Nano.n.html">
+     pandas.tseries.offsets.Nano.n
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Nano.copy.html">
+     pandas.tseries.offsets.Nano.copy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Nano.isAnchored.html">
+     pandas.tseries.offsets.Nano.isAnchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Nano.onOffset.html">
+     pandas.tseries.offsets.Nano.onOffset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Nano.is_anchored.html">
+     pandas.tseries.offsets.Nano.is_anchored
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Nano.is_on_offset.html">
+     pandas.tseries.offsets.Nano.is_on_offset
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Nano.__call__.html">
+     pandas.tseries.offsets.Nano.__call__
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Nano.apply.html">
+     pandas.tseries.offsets.Nano.apply
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Nano.apply_index.html">
+     pandas.tseries.offsets.Nano.apply_index
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Nano.is_month_start.html">
+     pandas.tseries.offsets.Nano.is_month_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Nano.is_month_end.html">
+     pandas.tseries.offsets.Nano.is_month_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Nano.is_quarter_start.html">
+     pandas.tseries.offsets.Nano.is_quarter_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Nano.is_quarter_end.html">
+     pandas.tseries.offsets.Nano.is_quarter_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Nano.is_year_start.html">
+     pandas.tseries.offsets.Nano.is_year_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.tseries.offsets.Nano.is_year_end.html">
+     pandas.tseries.offsets.Nano.is_year_end
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../window.html">
+   Window
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../groupby.html">
+   GroupBy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../resampling.html">
+   Resampling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../style.html">
+   Style
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../plotting.html">
+   Plotting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../options.html">
+   Options and settings
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../extensions.html">
+   Extensions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../testing.html">
+   Testing
+  </a>
+ </li>
+</ul>
+
+    
+  </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+      </div>
+      <main class="bd-main">
+        
+        
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+            </div>
+            
+            
+            <article class="bd-article" role="main">
+              
+  <section id="pandas-tseries-offsets-hour-rule-code">
+<h1>pandas.tseries.offsets.Hour.rule_code<a class="headerlink" href="#pandas-tseries-offsets-hour-rule-code" title="Permalink to this headline">#</a></h1>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pandas.tseries.offsets.Hour.rule_code">
+<span class="sig-prename descclassname"><span class="pre">Hour.</span></span><span class="sig-name descname"><span class="pre">rule_code</span></span><a class="headerlink" href="#pandas.tseries.offsets.Hour.rule_code" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</section>
+
+
+            </article>
+            
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="pandas.tseries.offsets.Hour.normalize.html" title="previous page">
+      <i class="fas fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">pandas.tseries.offsets.Hour.normalize</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="pandas.tseries.offsets.Hour.n.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">pandas.tseries.offsets.Hour.n</p>
+  </div>
+  <i class="fas fa-angle-right"></i>
+  </a>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+</div>
+
+<div class="toc-item">
+  
+<div class="tocsection sourcelink">
+    <a href="../../_sources/reference/api/pandas.tseries.offsets.Hour.rule_code.rst.txt">
+        <i class="fas fa-file-alt"></i> Show Source
+    </a>
+</div>
+
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+          </div>
+        </footer>
+        
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=9b1a4fa89bdd0e95b23b"></script>
+
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    <p class="copyright">
+    &copy 2023 pandas via <a href="https://numfocus.org">NumFOCUS, Inc.</a> Hosted by <a href="https://www.ovhcloud.com">OVHcloud</a>.
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>

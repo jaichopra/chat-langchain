@@ -1,0 +1,6 @@
+pandas.tseries.offsets.Milli.\_\_call\_\_
+=========================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. automethod:: Milli.__call__

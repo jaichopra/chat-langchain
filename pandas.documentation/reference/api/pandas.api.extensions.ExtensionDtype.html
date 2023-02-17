@@ -1,0 +1,761 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>pandas.api.extensions.ExtensionDtype &#8212; pandas 1.5.3 documentation</title>
+  <script>
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=9b1a4fa89bdd0e95b23b" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=9b1a4fa89bdd0e95b23b" rel="stylesheet">
+
+  
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/getting_started.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/pandas.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=9b1a4fa89bdd0e95b23b">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/toggleprompt.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script async="async" src="https://www.google-analytics.com/analytics.js"></script>
+    <script>
+                    window.ga = window.ga || function () {
+                        (ga.q = ga.q || []).push(arguments) };
+                    ga.l = +new Date;
+                    ga('create', 'UA-27880019-2', 'auto');
+                    ga('set', 'anonymizeIp', true);
+                    ga('send', 'pageview');
+                </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'reference/api/pandas.api.extensions.ExtensionDtype';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        </script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="pandas.api.extensions.ExtensionDtype.kind" href="pandas.api.extensions.ExtensionDtype.kind.html" />
+    <link rel="prev" title="pandas.api.extensions.register_index_accessor" href="pandas.api.extensions.register_index_accessor.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fas fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../../_static/pandas.svg" class="logo__image only-light" alt="Logo image">
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="../../getting_started/index.html">
+                        Getting started
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../user_guide/index.html">
+                        User Guide
+                    </a>
+                </li>
+                
+
+                <li class="nav-item current active">
+                    <a class="nav-link" href="../index.html">
+                        API reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../development/index.html">
+                        Development
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../whatsnew/index.html">
+                        Release notes
+                    </a>
+                </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      <div class="navbar-end-item navbar-end__search-button-container">
+        
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search">
+  <i class="fas fa-search"></i>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        1.5.3  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pandas-dev/pandas" title="GitHub" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/pandas_dev" title="Twitter" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  <div class="search-button-container--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search">
+  <i class="fas fa-search"></i>
+</button>
+  </div>
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fas fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="../../getting_started/index.html">
+                        Getting started
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../user_guide/index.html">
+                        User Guide
+                    </a>
+                </li>
+                
+
+                <li class="nav-item current active">
+                    <a class="nav-link" href="../index.html">
+                        API reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../development/index.html">
+                        Development
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../whatsnew/index.html">
+                        Release notes
+                    </a>
+                </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        1.5.3  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pandas-dev/pandas" title="GitHub" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/pandas_dev" title="Twitter" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item navbar-nav">
+    
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../io.html">
+   Input/output
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../general_functions.html">
+   General functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../series.html">
+   Series
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../frame.html">
+   DataFrame
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../arrays.html">
+   pandas arrays, scalars, and data types
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../indexing.html">
+   Index objects
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../offset_frequency.html">
+   Date offsets
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../window.html">
+   Window
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../groupby.html">
+   GroupBy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../resampling.html">
+   Resampling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../style.html">
+   Style
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../plotting.html">
+   Plotting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../options.html">
+   Options and settings
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../extensions.html">
+   Extensions
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label class="toctree-toggle" for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.api.extensions.register_extension_dtype.html">
+     pandas.api.extensions.register_extension_dtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.api.extensions.register_dataframe_accessor.html">
+     pandas.api.extensions.register_dataframe_accessor
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.api.extensions.register_series_accessor.html">
+     pandas.api.extensions.register_series_accessor
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.api.extensions.register_index_accessor.html">
+     pandas.api.extensions.register_index_accessor
+    </a>
+   </li>
+   <li class="toctree-l2 current active has-children">
+    <a class="current reference internal" href="#">
+     pandas.api.extensions.ExtensionDtype
+    </a>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label class="toctree-toggle" for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.api.extensions.ExtensionDtype.kind.html">
+       pandas.api.extensions.ExtensionDtype.kind
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.api.extensions.ExtensionDtype.na_value.html">
+       pandas.api.extensions.ExtensionDtype.na_value
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.api.extensions.ExtensionDtype.name.html">
+       pandas.api.extensions.ExtensionDtype.name
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.api.extensions.ExtensionDtype.names.html">
+       pandas.api.extensions.ExtensionDtype.names
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.api.extensions.ExtensionDtype.type.html">
+       pandas.api.extensions.ExtensionDtype.type
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.api.extensions.ExtensionDtype.construct_array_type.html">
+       pandas.api.extensions.ExtensionDtype.construct_array_type
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.api.extensions.ExtensionDtype.construct_from_string.html">
+       pandas.api.extensions.ExtensionDtype.construct_from_string
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.api.extensions.ExtensionDtype.empty.html">
+       pandas.api.extensions.ExtensionDtype.empty
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.api.extensions.ExtensionDtype.is_dtype.html">
+       pandas.api.extensions.ExtensionDtype.is_dtype
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.api.extensions.ExtensionArray.html">
+     pandas.api.extensions.ExtensionArray
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.arrays.PandasArray.html">
+     pandas.arrays.PandasArray
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.api.indexers.check_array_indexer.html">
+     pandas.api.indexers.check_array_indexer
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../testing.html">
+   Testing
+  </a>
+ </li>
+</ul>
+
+    
+  </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+      </div>
+      <main class="bd-main">
+        
+        
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+            </div>
+            
+            
+            <article class="bd-article" role="main">
+              
+  <section id="pandas-api-extensions-extensiondtype">
+<h1>pandas.api.extensions.ExtensionDtype<a class="headerlink" href="#pandas-api-extensions-extensiondtype" title="Permalink to this headline">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="pandas.api.extensions.ExtensionDtype">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pandas.api.extensions.</span></span><span class="sig-name descname"><span class="pre">ExtensionDtype</span></span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.5.3/pandas/core/dtypes/base.py#L39-L391"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.api.extensions.ExtensionDtype" title="Permalink to this definition">#</a></dt>
+<dd><p>A custom data type, to be paired with an ExtensionArray.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">extensions.register_extension_dtype</span></code></dt><dd><p>Register an ExtensionType with pandas as class decorator.</p>
+</dd>
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">extensions.ExtensionArray</span></code></dt><dd><p>Abstract base class for custom 1-D array types.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>The interface includes the following abstract methods that must
+be implemented by subclasses:</p>
+<ul class="simple">
+<li><p>type</p></li>
+<li><p>name</p></li>
+<li><p>construct_array_type</p></li>
+</ul>
+<p>The following attributes and methods influence the behavior of the dtype in
+pandas operations</p>
+<ul class="simple">
+<li><p>_is_numeric</p></li>
+<li><p>_is_boolean</p></li>
+<li><p>_get_common_dtype</p></li>
+</ul>
+<p>The <cite>na_value</cite> class attribute can be used to set the default NA value
+for this type. <code class="xref py py-attr docutils literal notranslate"><span class="pre">numpy.nan</span></code> is used by default.</p>
+<p>ExtensionDtypes are required to be hashable. The base class provides
+a default implementation, which relies on the <code class="docutils literal notranslate"><span class="pre">_metadata</span></code> class
+attribute. <code class="docutils literal notranslate"><span class="pre">_metadata</span></code> should be a tuple containing the strings
+that define your data type. For example, with <code class="docutils literal notranslate"><span class="pre">PeriodDtype</span></code> that’s
+the <code class="docutils literal notranslate"><span class="pre">freq</span></code> attribute.</p>
+<p><strong>If you have a parametrized dtype you should set the ``_metadata``
+class property</strong>.</p>
+<p>Ideally, the attributes in <code class="docutils literal notranslate"><span class="pre">_metadata</span></code> will match the
+parameters to your <code class="docutils literal notranslate"><span class="pre">ExtensionDtype.__init__</span></code> (if any). If any of
+the attributes in <code class="docutils literal notranslate"><span class="pre">_metadata</span></code> don’t implement the standard
+<code class="docutils literal notranslate"><span class="pre">__eq__</span></code> or <code class="docutils literal notranslate"><span class="pre">__hash__</span></code>, the default implementations here will not
+work.</p>
+<p>For interaction with Apache Arrow (pyarrow), a <code class="docutils literal notranslate"><span class="pre">__from_arrow__</span></code> method
+can be implemented: this method receives a pyarrow Array or ChunkedArray
+as only argument and is expected to return the appropriate pandas
+ExtensionArray for this dtype and the passed values:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ExtensionDtype</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="nf">__from_arrow__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">array</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">pyarrow</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">pyarrow</span><span class="o">.</span><span class="n">ChunkedArray</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ExtensionArray</span><span class="p">:</span>
+        <span class="o">...</span>
+</pre></div>
+</div>
+<p>This class does not inherit from ‘abc.ABCMeta’ for performance reasons.
+Methods and properties required by the interface raise
+<code class="docutils literal notranslate"><span class="pre">pandas.errors.AbstractMethodError</span></code> and no <code class="docutils literal notranslate"><span class="pre">register</span></code> method is
+provided for registering virtual subclasses.</p>
+<p class="rubric">Attributes</p>
+<table class="autosummary longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.api.extensions.ExtensionDtype.kind.html#pandas.api.extensions.ExtensionDtype.kind" title="pandas.api.extensions.ExtensionDtype.kind"><code class="xref py py-obj docutils literal notranslate"><span class="pre">kind</span></code></a></p></td>
+<td><p>A character code (one of 'biufcmMOSUV'), default 'O'</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.api.extensions.ExtensionDtype.na_value.html#pandas.api.extensions.ExtensionDtype.na_value" title="pandas.api.extensions.ExtensionDtype.na_value"><code class="xref py py-obj docutils literal notranslate"><span class="pre">na_value</span></code></a></p></td>
+<td><p>Default NA value to use for this type.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.api.extensions.ExtensionDtype.name.html#pandas.api.extensions.ExtensionDtype.name" title="pandas.api.extensions.ExtensionDtype.name"><code class="xref py py-obj docutils literal notranslate"><span class="pre">name</span></code></a></p></td>
+<td><p>A string identifying the data type.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.api.extensions.ExtensionDtype.names.html#pandas.api.extensions.ExtensionDtype.names" title="pandas.api.extensions.ExtensionDtype.names"><code class="xref py py-obj docutils literal notranslate"><span class="pre">names</span></code></a></p></td>
+<td><p>Ordered list of field names, or None if there are no fields.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.api.extensions.ExtensionDtype.type.html#pandas.api.extensions.ExtensionDtype.type" title="pandas.api.extensions.ExtensionDtype.type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">type</span></code></a></p></td>
+<td><p>The scalar type for the array, e.g.</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.api.extensions.ExtensionDtype.construct_array_type.html#pandas.api.extensions.ExtensionDtype.construct_array_type" title="pandas.api.extensions.ExtensionDtype.construct_array_type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">construct_array_type</span></code></a>()</p></td>
+<td><p>Return the array type associated with this dtype.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.api.extensions.ExtensionDtype.construct_from_string.html#pandas.api.extensions.ExtensionDtype.construct_from_string" title="pandas.api.extensions.ExtensionDtype.construct_from_string"><code class="xref py py-obj docutils literal notranslate"><span class="pre">construct_from_string</span></code></a>(string)</p></td>
+<td><p>Construct this type from a string.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.api.extensions.ExtensionDtype.empty.html#pandas.api.extensions.ExtensionDtype.empty" title="pandas.api.extensions.ExtensionDtype.empty"><code class="xref py py-obj docutils literal notranslate"><span class="pre">empty</span></code></a>(shape)</p></td>
+<td><p>Construct an ExtensionArray of this dtype with the given shape.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.api.extensions.ExtensionDtype.is_dtype.html#pandas.api.extensions.ExtensionDtype.is_dtype" title="pandas.api.extensions.ExtensionDtype.is_dtype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_dtype</span></code></a>(dtype)</p></td>
+<td><p>Check if we match 'dtype'.</p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</section>
+
+
+            </article>
+            
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="pandas.api.extensions.register_index_accessor.html" title="previous page">
+      <i class="fas fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">pandas.api.extensions.register_index_accessor</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="pandas.api.extensions.ExtensionDtype.kind.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">pandas.api.extensions.ExtensionDtype.kind</p>
+  </div>
+  <i class="fas fa-angle-right"></i>
+  </a>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+</div>
+
+<div class="toc-item">
+  
+<div class="tocsection sourcelink">
+    <a href="../../_sources/reference/api/pandas.api.extensions.ExtensionDtype.rst.txt">
+        <i class="fas fa-file-alt"></i> Show Source
+    </a>
+</div>
+
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+          </div>
+        </footer>
+        
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=9b1a4fa89bdd0e95b23b"></script>
+
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    <p class="copyright">
+    &copy 2023 pandas via <a href="https://numfocus.org">NumFOCUS, Inc.</a> Hosted by <a href="https://www.ovhcloud.com">OVHcloud</a>.
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>

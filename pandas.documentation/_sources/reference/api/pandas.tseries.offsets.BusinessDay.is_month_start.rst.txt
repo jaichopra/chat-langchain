@@ -1,0 +1,6 @@
+pandas.tseries.offsets.BusinessDay.is\_month\_start
+===================================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. automethod:: BusinessDay.is_month_start

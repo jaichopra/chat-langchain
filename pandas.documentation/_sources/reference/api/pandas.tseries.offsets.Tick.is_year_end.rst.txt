@@ -1,0 +1,6 @@
+pandas.tseries.offsets.Tick.is\_year\_end
+=========================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. automethod:: Tick.is_year_end

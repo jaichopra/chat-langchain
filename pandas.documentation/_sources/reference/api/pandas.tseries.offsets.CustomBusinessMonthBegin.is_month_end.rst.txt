@@ -1,0 +1,6 @@
+pandas.tseries.offsets.CustomBusinessMonthBegin.is\_month\_end
+==============================================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. automethod:: CustomBusinessMonthBegin.is_month_end

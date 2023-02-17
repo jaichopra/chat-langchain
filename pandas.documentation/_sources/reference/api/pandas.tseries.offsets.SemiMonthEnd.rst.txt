@@ -1,0 +1,54 @@
+pandas.tseries.offsets.SemiMonthEnd
+===================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. autoclass:: SemiMonthEnd
+
+   
+
+
+..
+   HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+   .. autosummary::
+      :toctree:
+      
+      SemiMonthEnd.__call__
+      SemiMonthEnd.apply
+      SemiMonthEnd.apply_index
+      SemiMonthEnd.copy
+      SemiMonthEnd.isAnchored
+      SemiMonthEnd.is_anchored
+      SemiMonthEnd.is_month_end
+      SemiMonthEnd.is_month_start
+      SemiMonthEnd.is_on_offset
+      SemiMonthEnd.is_quarter_end
+      SemiMonthEnd.is_quarter_start
+      SemiMonthEnd.is_year_end
+      SemiMonthEnd.is_year_start
+      SemiMonthEnd.onOffset
+      SemiMonthEnd.rollback
+      SemiMonthEnd.rollforward
+
+
+
+
+   
+
+
+..
+   HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+   .. autosummary::
+      :toctree:
+      
+      SemiMonthEnd.base
+      SemiMonthEnd.day_of_month
+      SemiMonthEnd.freqstr
+      SemiMonthEnd.kwds
+      SemiMonthEnd.n
+      SemiMonthEnd.name
+      SemiMonthEnd.nanos
+      SemiMonthEnd.normalize
+      SemiMonthEnd.rule_code
+
+

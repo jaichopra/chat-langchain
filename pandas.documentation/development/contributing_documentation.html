@@ -1,0 +1,803 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Contributing to the documentation &#8212; pandas 1.5.3 documentation</title>
+  <script>
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=9b1a4fa89bdd0e95b23b" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=9b1a4fa89bdd0e95b23b" rel="stylesheet">
+
+  
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/6.1.2/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/getting_started.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/pandas.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=9b1a4fa89bdd0e95b23b">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/toggleprompt.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script async="async" src="https://www.google-analytics.com/analytics.js"></script>
+    <script>
+                    window.ga = window.ga || function () {
+                        (ga.q = ga.q || []).push(arguments) };
+                    ga.l = +new Date;
+                    ga('create', 'UA-27880019-2', 'auto');
+                    ga('set', 'anonymizeIp', true);
+                    ga('send', 'pageview');
+                </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'development/contributing_documentation';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        </script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="pandas docstring guide" href="contributing_docstring.html" />
+    <link rel="prev" title="Creating a development environment" href="contributing_environment.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fas fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../_static/pandas.svg" class="logo__image only-light" alt="Logo image">
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="../getting_started/index.html">
+                        Getting started
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../user_guide/index.html">
+                        User Guide
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../reference/index.html">
+                        API reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item current active">
+                    <a class="nav-link" href="index.html">
+                        Development
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../whatsnew/index.html">
+                        Release notes
+                    </a>
+                </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      <div class="navbar-end-item navbar-end__search-button-container">
+        
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search">
+  <i class="fas fa-search"></i>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        1.5.3  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pandas-dev/pandas" title="GitHub" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/pandas_dev" title="Twitter" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  <div class="search-button-container--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search">
+  <i class="fas fa-search"></i>
+</button>
+  </div>
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fas fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="../getting_started/index.html">
+                        Getting started
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../user_guide/index.html">
+                        User Guide
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../reference/index.html">
+                        API reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item current active">
+                    <a class="nav-link" href="index.html">
+                        Development
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../whatsnew/index.html">
+                        Release notes
+                    </a>
+                </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        1.5.3  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pandas-dev/pandas" title="GitHub" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/pandas_dev" title="Twitter" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item navbar-nav">
+    
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="contributing.html">
+   Contributing to pandas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="contributing_environment.html">
+   Creating a development environment
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="current reference internal" href="#">
+   Contributing to the documentation
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label class="toctree-toggle" for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="contributing_docstring.html">
+     pandas docstring guide
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="contributing_codebase.html">
+   Contributing to the code base
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="maintaining.html">
+   pandas maintenance
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="internals.html">
+   Internals
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="debugging_extensions.html">
+   Debugging C extensions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extending.html">
+   Extending pandas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="developer.html">
+   Developer
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="policies.html">
+   Policies
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="roadmap.html">
+   Roadmap
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="community.html">
+   Contributor community
+  </a>
+ </li>
+</ul>
+
+    
+  </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+      </div>
+      <main class="bd-main">
+        
+        
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+            </div>
+            
+            
+            <article class="bd-article" role="main">
+              
+  <section id="contributing-to-the-documentation">
+<span id="contributing-documentation"></span><h1>Contributing to the documentation<a class="headerlink" href="#contributing-to-the-documentation" title="Permalink to this headline">#</a></h1>
+<p>Contributing to the documentation benefits everyone who uses pandas.
+We encourage you to help us improve the documentation, and
+you don’t have to be an expert on pandas to do so! In fact,
+there are sections of the docs that are worse off after being written by
+experts. If something in the docs doesn’t make sense to you, updating the
+relevant section after you figure it out is a great way to ensure it will help
+the next person. Please visit the <a class="reference external" href="https://github.com/pandas-dev/pandas/issues?page=1&amp;q=is%3Aopen+sort%3Aupdated-desc+label%3ADocs">issues page</a>
+for a full list of issues that are currently open regarding the
+Pandas documentation.</p>
+<div class="contents local topic" id="documentation">
+<p class="topic-title">Documentation:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#about-the-pandas-documentation" id="id1">About the pandas documentation</a></p></li>
+<li><p><a class="reference internal" href="#updating-a-pandas-docstring" id="id2">Updating a pandas docstring</a></p></li>
+<li><p><a class="reference internal" href="#how-to-build-the-pandas-documentation" id="id3">How to build the pandas documentation</a></p>
+<ul>
+<li><p><a class="reference internal" href="#requirements" id="id4">Requirements</a></p></li>
+<li><p><a class="reference internal" href="#building-the-documentation" id="id5">Building the documentation</a></p></li>
+<li><p><a class="reference internal" href="#building-main-branch-documentation" id="id6">Building main branch documentation</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#previewing-changes" id="id7">Previewing changes</a></p></li>
+</ul>
+</div>
+<section id="about-the-pandas-documentation">
+<h2><a class="toc-backref" href="#id1">About the pandas documentation</a><a class="headerlink" href="#about-the-pandas-documentation" title="Permalink to this headline">#</a></h2>
+<p>The documentation is written in <strong>reStructuredText</strong>, which is almost like writing
+in plain English, and built using <a class="reference external" href="https://www.sphinx-doc.org/en/master/">Sphinx</a>. The
+Sphinx Documentation has an excellent <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html">introduction to reST</a>. Review the Sphinx docs to perform more
+complex changes to the documentation as well.</p>
+<p>Some other important things to know about the docs:</p>
+<ul>
+<li><p>The pandas documentation consists of two parts: the docstrings in the code
+itself and the docs in this folder <code class="docutils literal notranslate"><span class="pre">doc/</span></code>.</p>
+<p>The docstrings provide a clear explanation of the usage of the individual
+functions, while the documentation in this folder consists of tutorial-like
+overviews per topic together with some other information (what’s new,
+installation, etc).</p>
+</li>
+<li><p>The docstrings follow a pandas convention, based on the <strong>Numpy Docstring
+Standard</strong>. Follow the <a class="reference internal" href="contributing_docstring.html#docstring"><span class="std std-ref">pandas docstring guide</span></a> for detailed
+instructions on how to write a correct docstring.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="contributing_docstring.html">pandas docstring guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contributing_docstring.html#about-docstrings-and-standards">About docstrings and standards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing_docstring.html#writing-a-docstring">Writing a docstring</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing_docstring.html#sharing-docstrings">Sharing docstrings</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</li>
+<li><p>The tutorials make heavy use of the <a class="reference external" href="https://matplotlib.org/sampledoc/ipython_directive.html">IPython directive</a> sphinx extension.
+This directive lets you put code in the documentation which will be run
+during the doc build. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">ipython</span><span class="p">::</span> <span class="n">python</span>
+
+    <span class="n">x</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="n">x</span><span class="o">**</span><span class="mi">3</span>
+</pre></div>
+</div>
+<p>will be rendered as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="n">x</span><span class="o">**</span><span class="mi">3</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="mi">8</span>
+</pre></div>
+</div>
+<p>Almost all code examples in the docs are run (and the output saved) during the
+doc build. This approach means that code examples will always be up to date,
+but it does make the doc building a bit more complex.</p>
+</li>
+<li><p>Our API documentation files in <code class="docutils literal notranslate"><span class="pre">doc/source/reference</span></code> house the auto-generated
+documentation from the docstrings. For classes, there are a few subtleties
+around controlling which methods and attributes have pages auto-generated.</p>
+<p>We have two autosummary templates for classes.</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">_templates/autosummary/class.rst</span></code>. Use this when you want to
+automatically generate a page for every public method and attribute on the
+class. The <code class="docutils literal notranslate"><span class="pre">Attributes</span></code> and <code class="docutils literal notranslate"><span class="pre">Methods</span></code> sections will be automatically
+added to the class’ rendered documentation by numpydoc. See <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>
+for an example.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">_templates/autosummary/class_without_autosummary</span></code>. Use this when you
+want to pick a subset of methods / attributes to auto-generate pages for.
+When using this template, you should include an <code class="docutils literal notranslate"><span class="pre">Attributes</span></code> and
+<code class="docutils literal notranslate"><span class="pre">Methods</span></code> section in the class docstring. See <code class="docutils literal notranslate"><span class="pre">CategoricalIndex</span></code> for an
+example.</p></li>
+</ol>
+<p>Every method should be included in a <code class="docutils literal notranslate"><span class="pre">toctree</span></code> in one of the documentation files in
+<code class="docutils literal notranslate"><span class="pre">doc/source/reference</span></code>, else Sphinx
+will emit a warning.</p>
+</li>
+</ul>
+<p>The utility script <code class="docutils literal notranslate"><span class="pre">scripts/validate_docstrings.py</span></code> can be used to get a csv
+summary of the API documentation. And also validate common errors in the docstring
+of a specific class, function or method. The summary also compares the list of
+methods documented in the files in <code class="docutils literal notranslate"><span class="pre">doc/source/reference</span></code> (which is used to generate
+the <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/api.html">API Reference</a> page)
+and the actual public methods.
+This will identify methods documented in <code class="docutils literal notranslate"><span class="pre">doc/source/reference</span></code> that are not actually
+class methods, and existing methods that are not documented in <code class="docutils literal notranslate"><span class="pre">doc/source/reference</span></code>.</p>
+</section>
+<section id="updating-a-pandas-docstring">
+<h2><a class="toc-backref" href="#id2">Updating a pandas docstring</a><a class="headerlink" href="#updating-a-pandas-docstring" title="Permalink to this headline">#</a></h2>
+<p>When improving a single function or method’s docstring, it is not necessarily
+needed to build the full documentation (see next section).
+However, there is a script that checks a docstring (for example for the <code class="docutils literal notranslate"><span class="pre">DataFrame.mean</span></code> method):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">scripts</span><span class="o">/</span><span class="n">validate_docstrings</span><span class="o">.</span><span class="n">py</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">mean</span>
+</pre></div>
+</div>
+<p>This script will indicate some formatting errors if present, and will also
+run and test the examples included in the docstring.
+Check the <a class="reference internal" href="contributing_docstring.html#docstring"><span class="std std-ref">pandas docstring guide</span></a> for a detailed guide
+on how to format the docstring.</p>
+<p>The examples in the docstring (‘doctests’) must be valid Python code,
+that in a deterministic way returns the presented output, and that can be
+copied and run by users. This can be checked with the script above, and is
+also tested on Travis. A failing doctest will be a blocker for merging a PR.
+Check the <a class="reference internal" href="contributing_docstring.html#docstring-examples"><span class="std std-ref">examples</span></a> section in the docstring guide
+for some tips and tricks to get the doctests passing.</p>
+<p>When doing a PR with a docstring update, it is good to post the
+output of the validation script in a comment on github.</p>
+</section>
+<section id="how-to-build-the-pandas-documentation">
+<h2><a class="toc-backref" href="#id3">How to build the pandas documentation</a><a class="headerlink" href="#how-to-build-the-pandas-documentation" title="Permalink to this headline">#</a></h2>
+<section id="requirements">
+<h3><a class="toc-backref" href="#id4">Requirements</a><a class="headerlink" href="#requirements" title="Permalink to this headline">#</a></h3>
+<p>First, you need to have a development environment to be able to build pandas
+(see the docs on <a class="reference internal" href="contributing_environment.html#contributing-environment"><span class="std std-ref">creating a development environment</span></a>).</p>
+</section>
+<section id="building-the-documentation">
+<h3><a class="toc-backref" href="#id5">Building the documentation</a><a class="headerlink" href="#building-the-documentation" title="Permalink to this headline">#</a></h3>
+<p>So how do you build the docs? Navigate to your local
+<code class="docutils literal notranslate"><span class="pre">doc/</span></code> directory in the console and run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">make</span><span class="o">.</span><span class="n">py</span> <span class="n">html</span>
+</pre></div>
+</div>
+<p>Then you can find the HTML output in the folder <code class="docutils literal notranslate"><span class="pre">doc/build/html/</span></code>.</p>
+<p>The first time you build the docs, it will take quite a while because it has to run
+all the code examples and build all the generated docstring pages. In subsequent
+evocations, sphinx will try to only build the pages that have been modified.</p>
+<p>If you want to do a full clean build, do:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">make</span><span class="o">.</span><span class="n">py</span> <span class="n">clean</span>
+<span class="n">python</span> <span class="n">make</span><span class="o">.</span><span class="n">py</span> <span class="n">html</span>
+</pre></div>
+</div>
+<p>You can tell <code class="docutils literal notranslate"><span class="pre">make.py</span></code> to compile only a single section of the docs, greatly
+reducing the turn-around time for checking your changes.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># omit autosummary and API section</span>
+<span class="n">python</span> <span class="n">make</span><span class="o">.</span><span class="n">py</span> <span class="n">clean</span>
+<span class="n">python</span> <span class="n">make</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">api</span>
+
+<span class="c1"># compile the docs with only a single section, relative to the &quot;source&quot; folder.</span>
+<span class="c1"># For example, compiling only this guide (doc/source/development/contributing.rst)</span>
+<span class="n">python</span> <span class="n">make</span><span class="o">.</span><span class="n">py</span> <span class="n">clean</span>
+<span class="n">python</span> <span class="n">make</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">single</span> <span class="n">development</span><span class="o">/</span><span class="n">contributing</span><span class="o">.</span><span class="n">rst</span>
+
+<span class="c1"># compile the reference docs for a single function</span>
+<span class="n">python</span> <span class="n">make</span><span class="o">.</span><span class="n">py</span> <span class="n">clean</span>
+<span class="n">python</span> <span class="n">make</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">single</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">join</span>
+
+<span class="c1"># compile whatsnew and API section (to resolve links in the whatsnew)</span>
+<span class="n">python</span> <span class="n">make</span><span class="o">.</span><span class="n">py</span> <span class="n">clean</span>
+<span class="n">python</span> <span class="n">make</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">whatsnew</span>
+</pre></div>
+</div>
+<p>For comparison, a full documentation build may take 15 minutes, but a single
+section may take 15 seconds. Subsequent builds, which only process portions
+you have changed, will be faster.</p>
+<p>The build will automatically use the number of cores available on your machine
+to speed up the documentation build. You can override this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">make</span><span class="o">.</span><span class="n">py</span> <span class="n">html</span> <span class="o">--</span><span class="n">num</span><span class="o">-</span><span class="n">jobs</span> <span class="mi">4</span>
+</pre></div>
+</div>
+<p>Open the following file in a web browser to see the full documentation you
+just built:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">doc</span><span class="o">/</span><span class="n">build</span><span class="o">/</span><span class="n">html</span><span class="o">/</span><span class="n">index</span><span class="o">.</span><span class="n">html</span>
+</pre></div>
+</div>
+<p>And you’ll have the satisfaction of seeing your new and improved documentation!</p>
+</section>
+<section id="building-main-branch-documentation">
+<span id="contributing-dev-docs"></span><h3><a class="toc-backref" href="#id6">Building main branch documentation</a><a class="headerlink" href="#building-main-branch-documentation" title="Permalink to this headline">#</a></h3>
+<p>When pull requests are merged into the pandas <code class="docutils literal notranslate"><span class="pre">main</span></code> branch, the main parts of
+the documentation are also built by Travis-CI. These docs are then hosted <a class="reference external" href="https://pandas.pydata.org/docs/dev/">here</a>, see also
+the <a class="reference internal" href="contributing_codebase.html#contributing-ci"><span class="std std-ref">Continuous Integration</span></a> section.</p>
+</section>
+</section>
+<section id="previewing-changes">
+<h2><a class="toc-backref" href="#id7">Previewing changes</a><a class="headerlink" href="#previewing-changes" title="Permalink to this headline">#</a></h2>
+<p>Once, the pull request is submitted, GitHub Actions will automatically build the
+documentation. To view the built site:</p>
+<ol class="arabic simple">
+<li><p>Wait for the <code class="docutils literal notranslate"><span class="pre">CI</span> <span class="pre">/</span> <span class="pre">Web</span> <span class="pre">and</span> <span class="pre">docs</span></code> check to complete.</p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Details</span></code> next to it.</p></li>
+<li><p>From the <code class="docutils literal notranslate"><span class="pre">Artifacts</span></code> drop-down, click <code class="docutils literal notranslate"><span class="pre">docs</span></code> or <code class="docutils literal notranslate"><span class="pre">website</span></code> to download
+the site as a ZIP file.</p></li>
+</ol>
+</section>
+</section>
+
+
+            </article>
+            
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="contributing_environment.html" title="previous page">
+      <i class="fas fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Creating a development environment</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="contributing_docstring.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">pandas docstring guide</p>
+  </div>
+  <i class="fas fa-angle-right"></i>
+  </a>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fas fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#about-the-pandas-documentation">
+   About the pandas documentation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#updating-a-pandas-docstring">
+   Updating a pandas docstring
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-to-build-the-pandas-documentation">
+   How to build the pandas documentation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#requirements">
+     Requirements
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#building-the-documentation">
+     Building the documentation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#building-main-branch-documentation">
+     Building main branch documentation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#previewing-changes">
+   Previewing changes
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+<div class="toc-item">
+  
+</div>
+
+<div class="toc-item">
+  
+<div class="tocsection sourcelink">
+    <a href="../_sources/development/contributing_documentation.rst.txt">
+        <i class="fas fa-file-alt"></i> Show Source
+    </a>
+</div>
+
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+          </div>
+        </footer>
+        
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=9b1a4fa89bdd0e95b23b"></script>
+
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    <p class="copyright">
+    &copy 2023 pandas via <a href="https://numfocus.org">NumFOCUS, Inc.</a> Hosted by <a href="https://www.ovhcloud.com">OVHcloud</a>.
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>

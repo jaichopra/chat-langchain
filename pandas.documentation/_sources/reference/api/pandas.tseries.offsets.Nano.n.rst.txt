@@ -1,0 +1,6 @@
+pandas.tseries.offsets.Nano.n
+=============================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. autoattribute:: Nano.n

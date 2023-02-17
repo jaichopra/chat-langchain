@@ -1,0 +1,6 @@
+pandas.tseries.offsets.Day.n
+============================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. autoattribute:: Day.n

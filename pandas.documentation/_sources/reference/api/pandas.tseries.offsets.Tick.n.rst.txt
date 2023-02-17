@@ -1,0 +1,6 @@
+pandas.tseries.offsets.Tick.n
+=============================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. autoattribute:: Tick.n

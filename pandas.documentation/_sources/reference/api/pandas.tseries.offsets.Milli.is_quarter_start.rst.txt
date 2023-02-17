@@ -1,0 +1,6 @@
+pandas.tseries.offsets.Milli.is\_quarter\_start
+===============================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. automethod:: Milli.is_quarter_start

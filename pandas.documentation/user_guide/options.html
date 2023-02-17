@@ -1,0 +1,1656 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Options and settings &#8212; pandas 1.5.3 documentation</title>
+  <script>
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=9b1a4fa89bdd0e95b23b" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=9b1a4fa89bdd0e95b23b" rel="stylesheet">
+
+  
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/6.1.2/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/getting_started.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/pandas.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=9b1a4fa89bdd0e95b23b">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/toggleprompt.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script async="async" src="https://www.google-analytics.com/analytics.js"></script>
+    <script>
+                    window.ga = window.ga || function () {
+                        (ga.q = ga.q || []).push(arguments) };
+                    ga.l = +new Date;
+                    ga('create', 'UA-27880019-2', 'auto');
+                    ga('set', 'anonymizeIp', true);
+                    ga('send', 'pageview');
+                </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/options';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        </script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Enhancing performance" href="enhancingperf.html" />
+    <link rel="prev" title="Time deltas" href="timedeltas.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fas fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../_static/pandas.svg" class="logo__image only-light" alt="Logo image">
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="../getting_started/index.html">
+                        Getting started
+                    </a>
+                </li>
+                
+
+                <li class="nav-item current active">
+                    <a class="nav-link" href="index.html">
+                        User Guide
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../reference/index.html">
+                        API reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../development/index.html">
+                        Development
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../whatsnew/index.html">
+                        Release notes
+                    </a>
+                </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      <div class="navbar-end-item navbar-end__search-button-container">
+        
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search">
+  <i class="fas fa-search"></i>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        1.5.3  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pandas-dev/pandas" title="GitHub" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/pandas_dev" title="Twitter" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  <div class="search-button-container--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search">
+  <i class="fas fa-search"></i>
+</button>
+  </div>
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fas fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="../getting_started/index.html">
+                        Getting started
+                    </a>
+                </li>
+                
+
+                <li class="nav-item current active">
+                    <a class="nav-link" href="index.html">
+                        User Guide
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../reference/index.html">
+                        API reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../development/index.html">
+                        Development
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../whatsnew/index.html">
+                        Release notes
+                    </a>
+                </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        1.5.3  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pandas-dev/pandas" title="GitHub" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/pandas_dev" title="Twitter" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item navbar-nav">
+    
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="10min.html">
+   10 minutes to pandas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dsintro.html">
+   Intro to data structures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="basics.html">
+   Essential basic functionality
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="io.html">
+   IO tools (text, CSV, HDF5, …)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="indexing.html">
+   Indexing and selecting data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="advanced.html">
+   MultiIndex / advanced indexing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="merging.html">
+   Merge, join, concatenate and compare
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="reshaping.html">
+   Reshaping and pivot tables
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="text.html">
+   Working with text data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="missing_data.html">
+   Working with missing data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="duplicates.html">
+   Duplicate Labels
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="categorical.html">
+   Categorical data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="integer_na.html">
+   Nullable integer data type
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="boolean.html">
+   Nullable Boolean data type
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="visualization.html">
+   Chart visualization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="style.html">
+   Table Visualization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="groupby.html">
+   Group by: split-apply-combine
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="window.html">
+   Windowing operations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="timeseries.html">
+   Time series / date functionality
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="timedeltas.html">
+   Time deltas
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Options and settings
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="enhancingperf.html">
+   Enhancing performance
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="scale.html">
+   Scaling to large datasets
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="sparse.html">
+   Sparse data structures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="gotchas.html">
+   Frequently Asked Questions (FAQ)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="cookbook.html">
+   Cookbook
+  </a>
+ </li>
+</ul>
+
+    
+  </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+      </div>
+      <main class="bd-main">
+        
+        
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+            </div>
+            
+            
+            <article class="bd-article" role="main">
+              
+  <section id="options-and-settings">
+<span id="options"></span><h1>Options and settings<a class="headerlink" href="#options-and-settings" title="Permalink to this headline">#</a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">#</a></h2>
+<p>pandas has an options API configure and customize global behavior related to
+<a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> display, data behavior and more.</p>
+<p>Options have a full “dotted-style”, case-insensitive name (e.g. <code class="docutils literal notranslate"><span class="pre">display.max_rows</span></code>).
+You can get/set options directly as attributes of the top-level <code class="docutils literal notranslate"><span class="pre">options</span></code> attribute:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="gp">In [2]: </span><span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">max_rows</span>
+<span class="gh">Out[2]: </span><span class="go">15</span>
+
+<span class="gp">In [3]: </span><span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">max_rows</span> <span class="o">=</span> <span class="mi">999</span>
+
+<span class="gp">In [4]: </span><span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">max_rows</span>
+<span class="gh">Out[4]: </span><span class="go">999</span>
+</pre></div>
+</div>
+<p>The API is composed of 5 relevant functions, available directly from the <code class="docutils literal notranslate"><span class="pre">pandas</span></code>
+namespace:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../reference/api/pandas.get_option.html#pandas.get_option" title="pandas.get_option"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_option()</span></code></a> / <a class="reference internal" href="../reference/api/pandas.set_option.html#pandas.set_option" title="pandas.set_option"><code class="xref py py-func docutils literal notranslate"><span class="pre">set_option()</span></code></a> - get/set the value of a single option.</p></li>
+<li><p><a class="reference internal" href="../reference/api/pandas.reset_option.html#pandas.reset_option" title="pandas.reset_option"><code class="xref py py-func docutils literal notranslate"><span class="pre">reset_option()</span></code></a> - reset one or more options to their default value.</p></li>
+<li><p><a class="reference internal" href="../reference/api/pandas.describe_option.html#pandas.describe_option" title="pandas.describe_option"><code class="xref py py-func docutils literal notranslate"><span class="pre">describe_option()</span></code></a> - print the descriptions of one or more options.</p></li>
+<li><p><a class="reference internal" href="../reference/api/pandas.option_context.html#pandas.option_context" title="pandas.option_context"><code class="xref py py-func docutils literal notranslate"><span class="pre">option_context()</span></code></a> - execute a codeblock with a set of options
+that revert to prior settings after execution.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Developers can check out <a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/core/config_init.py">pandas/core/config_init.py</a> for more information.</p>
+</div>
+<p>All of the functions above accept a regexp pattern (<code class="docutils literal notranslate"><span class="pre">re.search</span></code> style) as an argument,
+to match an unambiguous substring:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [5]: </span><span class="n">pd</span><span class="o">.</span><span class="n">get_option</span><span class="p">(</span><span class="s2">&quot;display.chop_threshold&quot;</span><span class="p">)</span>
+
+<span class="gp">In [6]: </span><span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;display.chop_threshold&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="gp">In [7]: </span><span class="n">pd</span><span class="o">.</span><span class="n">get_option</span><span class="p">(</span><span class="s2">&quot;display.chop_threshold&quot;</span><span class="p">)</span>
+<span class="gh">Out[7]: </span><span class="go">2</span>
+
+<span class="gp">In [8]: </span><span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;chop&quot;</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+
+<span class="gp">In [9]: </span><span class="n">pd</span><span class="o">.</span><span class="n">get_option</span><span class="p">(</span><span class="s2">&quot;display.chop_threshold&quot;</span><span class="p">)</span>
+<span class="gh">Out[9]: </span><span class="go">4</span>
+</pre></div>
+</div>
+<p>The following will <strong>not work</strong> because it matches multiple option names, e.g.
+<code class="docutils literal notranslate"><span class="pre">display.max_colwidth</span></code>, <code class="docutils literal notranslate"><span class="pre">display.max_rows</span></code>, <code class="docutils literal notranslate"><span class="pre">display.max_columns</span></code>:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [10]: </span><span class="n">pd</span><span class="o">.</span><span class="n">get_option</span><span class="p">(</span><span class="s2">&quot;max&quot;</span><span class="p">)</span>
+<span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">OptionError</span><span class="g g-Whitespace">                               </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_option</span><span class="p">(</span><span class="s2">&quot;max&quot;</span><span class="p">)</span>
+
+<span class="nn">File ~/work/pandas/pandas/pandas/_config/config.py:263,</span> in <span class="ni">CallableDynamicDoc.__call__</span><span class="nt">(self, *args, **kwds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">262</span> <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">263</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__func__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+
+<span class="nn">File ~/work/pandas/pandas/pandas/_config/config.py:135,</span> in <span class="ni">_get_option</span><span class="nt">(pat, silent)</span>
+<span class="g g-Whitespace">    </span><span class="mi">134</span> <span class="k">def</span> <span class="nf">_get_option</span><span class="p">(</span><span class="n">pat</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">silent</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">135</span>     <span class="n">key</span> <span class="o">=</span> <span class="n">_get_single_key</span><span class="p">(</span><span class="n">pat</span><span class="p">,</span> <span class="n">silent</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">137</span>     <span class="c1"># walk the nested dict</span>
+<span class="g g-Whitespace">    </span><span class="mi">138</span>     <span class="n">root</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="n">_get_root</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+
+<span class="nn">File ~/work/pandas/pandas/pandas/_config/config.py:123,</span> in <span class="ni">_get_single_key</span><span class="nt">(pat, silent)</span>
+<span class="g g-Whitespace">    </span><span class="mi">121</span>     <span class="k">raise</span> <span class="n">OptionError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No such keys(s): </span><span class="si">{</span><span class="nb">repr</span><span class="p">(</span><span class="n">pat</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">122</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">123</span>     <span class="k">raise</span> <span class="n">OptionError</span><span class="p">(</span><span class="s2">&quot;Pattern matched multiple keys&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">124</span> <span class="n">key</span> <span class="o">=</span> <span class="n">keys</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">126</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">silent</span><span class="p">:</span>
+
+<span class="ne">OptionError</span>: &#39;Pattern matched multiple keys&#39;
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Using this form of shorthand may cause your code to break if new options with similar names are added in future versions.</p>
+</div>
+</section>
+<section id="available-options">
+<span id="options-available"></span><h2>Available options<a class="headerlink" href="#available-options" title="Permalink to this headline">#</a></h2>
+<p>You can get a list of available options and their descriptions with <a class="reference internal" href="../reference/api/pandas.describe_option.html#pandas.describe_option" title="pandas.describe_option"><code class="xref py py-func docutils literal notranslate"><span class="pre">describe_option()</span></code></a>. When called
+with no argument <a class="reference internal" href="../reference/api/pandas.describe_option.html#pandas.describe_option" title="pandas.describe_option"><code class="xref py py-func docutils literal notranslate"><span class="pre">describe_option()</span></code></a> will print out the descriptions for all available options.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [11]: </span><span class="n">pd</span><span class="o">.</span><span class="n">describe_option</span><span class="p">()</span>
+<span class="go">compute.use_bottleneck : bool</span>
+<span class="go">    Use the bottleneck library to accelerate if it is installed,</span>
+<span class="go">    the default is True</span>
+<span class="go">    Valid values: False,True</span>
+<span class="go">    [default: True] [currently: True]</span>
+<span class="go">compute.use_numba : bool</span>
+<span class="go">    Use the numba engine option for select operations if it is installed,</span>
+<span class="go">    the default is False</span>
+<span class="go">    Valid values: False,True</span>
+<span class="go">    [default: False] [currently: False]</span>
+<span class="go">compute.use_numexpr : bool</span>
+<span class="go">    Use the numexpr library to accelerate computation if it is installed,</span>
+<span class="go">    the default is True</span>
+<span class="go">    Valid values: False,True</span>
+<span class="go">    [default: True] [currently: True]</span>
+<span class="go">display.chop_threshold : float or None</span>
+<span class="go">    if set to a float value, all float values smaller than the given threshold</span>
+<span class="go">    will be displayed as exactly 0 by repr and friends.</span>
+<span class="go">    [default: None] [currently: None]</span>
+<span class="go">display.colheader_justify : &#39;left&#39;/&#39;right&#39;</span>
+<span class="go">    Controls the justification of column headers. used by DataFrameFormatter.</span>
+<span class="go">    [default: right] [currently: right]</span>
+<span class="go">display.column_space No description available.</span>
+<span class="go">    [default: 12] [currently: 12]</span>
+<span class="go">display.date_dayfirst : boolean</span>
+<span class="go">    When True, prints and parses dates with the day first, eg 20/01/2005</span>
+<span class="go">    [default: False] [currently: False]</span>
+<span class="go">display.date_yearfirst : boolean</span>
+<span class="go">    When True, prints and parses dates with the year first, eg 2005/01/20</span>
+<span class="go">    [default: False] [currently: False]</span>
+<span class="go">display.encoding : str/unicode</span>
+<span class="go">    Defaults to the detected encoding of the console.</span>
+<span class="go">    Specifies the encoding to be used for strings returned by to_string,</span>
+<span class="go">    these are generally strings meant to be displayed on the console.</span>
+<span class="go">    [default: utf-8] [currently: utf8]</span>
+<span class="go">display.expand_frame_repr : boolean</span>
+<span class="go">    Whether to print out the full DataFrame repr for wide DataFrames across</span>
+<span class="go">    multiple lines, `max_columns` is still respected, but the output will</span>
+<span class="go">    wrap-around across multiple &quot;pages&quot; if its width exceeds `display.width`.</span>
+<span class="go">    [default: True] [currently: True]</span>
+<span class="go">display.float_format : callable</span>
+<span class="go">    The callable should accept a floating point number and return</span>
+<span class="go">    a string with the desired format of the number. This is used</span>
+<span class="go">    in some places like SeriesFormatter.</span>
+<span class="go">    See formats.format.EngFormatter for an example.</span>
+<span class="go">    [default: None] [currently: None]</span>
+<span class="go">display.html.border : int</span>
+<span class="go">    A ``border=value`` attribute is inserted in the ``&lt;table&gt;`` tag</span>
+<span class="go">    for the DataFrame HTML repr.</span>
+<span class="go">    [default: 1] [currently: 1]</span>
+<span class="go">display.html.table_schema : boolean</span>
+<span class="go">    Whether to publish a Table Schema representation for frontends</span>
+<span class="go">    that support it.</span>
+<span class="go">    (default: False)</span>
+<span class="go">    [default: False] [currently: False]</span>
+<span class="go">display.html.use_mathjax : boolean</span>
+<span class="go">    When True, Jupyter notebook will process table contents using MathJax,</span>
+<span class="go">    rendering mathematical expressions enclosed by the dollar symbol.</span>
+<span class="go">    (default: True)</span>
+<span class="go">    [default: True] [currently: True]</span>
+<span class="go">display.large_repr : &#39;truncate&#39;/&#39;info&#39;</span>
+<span class="go">    For DataFrames exceeding max_rows/max_cols, the repr (and HTML repr) can</span>
+<span class="go">    show a truncated table (the default from 0.13), or switch to the view from</span>
+<span class="go">    df.info() (the behaviour in earlier versions of pandas).</span>
+<span class="go">    [default: truncate] [currently: truncate]</span>
+<span class="go">display.latex.escape : bool</span>
+<span class="go">    This specifies if the to_latex method of a Dataframe uses escapes special</span>
+<span class="go">    characters.</span>
+<span class="go">    Valid values: False,True</span>
+<span class="go">    [default: True] [currently: True]</span>
+<span class="go">display.latex.longtable :bool</span>
+<span class="go">    This specifies if the to_latex method of a Dataframe uses the longtable</span>
+<span class="go">    format.</span>
+<span class="go">    Valid values: False,True</span>
+<span class="go">    [default: False] [currently: False]</span>
+<span class="go">display.latex.multicolumn : bool</span>
+<span class="go">    This specifies if the to_latex method of a Dataframe uses multicolumns</span>
+<span class="go">    to pretty-print MultiIndex columns.</span>
+<span class="go">    Valid values: False,True</span>
+<span class="go">    [default: True] [currently: True]</span>
+<span class="go">display.latex.multicolumn_format : bool</span>
+<span class="go">    This specifies if the to_latex method of a Dataframe uses multicolumns</span>
+<span class="go">    to pretty-print MultiIndex columns.</span>
+<span class="go">    Valid values: False,True</span>
+<span class="go">    [default: l] [currently: l]</span>
+<span class="go">display.latex.multirow : bool</span>
+<span class="go">    This specifies if the to_latex method of a Dataframe uses multirows</span>
+<span class="go">    to pretty-print MultiIndex rows.</span>
+<span class="go">    Valid values: False,True</span>
+<span class="go">    [default: False] [currently: False]</span>
+<span class="go">display.latex.repr : boolean</span>
+<span class="go">    Whether to produce a latex DataFrame representation for jupyter</span>
+<span class="go">    environments that support it.</span>
+<span class="go">    (default: False)</span>
+<span class="go">    [default: False] [currently: False]</span>
+<span class="go">display.max_categories : int</span>
+<span class="go">    This sets the maximum number of categories pandas should output when</span>
+<span class="go">    printing out a `Categorical` or a Series of dtype &quot;category&quot;.</span>
+<span class="go">    [default: 8] [currently: 8]</span>
+<span class="go">display.max_columns : int</span>
+<span class="go">    If max_cols is exceeded, switch to truncate view. Depending on</span>
+<span class="go">    `large_repr`, objects are either centrally truncated or printed as</span>
+<span class="go">    a summary view. &#39;None&#39; value means unlimited.</span>
+
+<span class="go">    In case python/IPython is running in a terminal and `large_repr`</span>
+<span class="go">    equals &#39;truncate&#39; this can be set to 0 and pandas will auto-detect</span>
+<span class="go">    the width of the terminal and print a truncated object which fits</span>
+<span class="go">    the screen width. The IPython notebook, IPython qtconsole, or IDLE</span>
+<span class="go">    do not run in a terminal and hence it is not possible to do</span>
+<span class="go">    correct auto-detection.</span>
+<span class="go">    [default: 0] [currently: 0]</span>
+<span class="go">display.max_colwidth : int or None</span>
+<span class="go">    The maximum width in characters of a column in the repr of</span>
+<span class="go">    a pandas data structure. When the column overflows, a &quot;...&quot;</span>
+<span class="go">    placeholder is embedded in the output. A &#39;None&#39; value means unlimited.</span>
+<span class="go">    [default: 50] [currently: 50]</span>
+<span class="go">display.max_dir_items : int</span>
+<span class="go">    The number of items that will be added to `dir(...)`. &#39;None&#39; value means</span>
+<span class="go">    unlimited. Because dir is cached, changing this option will not immediately</span>
+<span class="go">    affect already existing dataframes until a column is deleted or added.</span>
+
+<span class="go">    This is for instance used to suggest columns from a dataframe to tab</span>
+<span class="go">    completion.</span>
+<span class="go">    [default: 100] [currently: 100]</span>
+<span class="go">display.max_info_columns : int</span>
+<span class="go">    max_info_columns is used in DataFrame.info method to decide if</span>
+<span class="go">    per column information will be printed.</span>
+<span class="go">    [default: 100] [currently: 100]</span>
+<span class="go">display.max_info_rows : int or None</span>
+<span class="go">    df.info() will usually show null-counts for each column.</span>
+<span class="go">    For large frames this can be quite slow. max_info_rows and max_info_cols</span>
+<span class="go">    limit this null check only to frames with smaller dimensions than</span>
+<span class="go">    specified.</span>
+<span class="go">    [default: 1690785] [currently: 1690785]</span>
+<span class="go">display.max_rows : int</span>
+<span class="go">    If max_rows is exceeded, switch to truncate view. Depending on</span>
+<span class="go">    `large_repr`, objects are either centrally truncated or printed as</span>
+<span class="go">    a summary view. &#39;None&#39; value means unlimited.</span>
+
+<span class="go">    In case python/IPython is running in a terminal and `large_repr`</span>
+<span class="go">    equals &#39;truncate&#39; this can be set to 0 and pandas will auto-detect</span>
+<span class="go">    the height of the terminal and print a truncated object which fits</span>
+<span class="go">    the screen height. The IPython notebook, IPython qtconsole, or</span>
+<span class="go">    IDLE do not run in a terminal and hence it is not possible to do</span>
+<span class="go">    correct auto-detection.</span>
+<span class="go">    [default: 60] [currently: 60]</span>
+<span class="go">display.max_seq_items : int or None</span>
+<span class="go">    When pretty-printing a long sequence, no more then `max_seq_items`</span>
+<span class="go">    will be printed. If items are omitted, they will be denoted by the</span>
+<span class="go">    addition of &quot;...&quot; to the resulting string.</span>
+
+<span class="go">    If set to None, the number of items to be printed is unlimited.</span>
+<span class="go">    [default: 100] [currently: 100]</span>
+<span class="go">display.memory_usage : bool, string or None</span>
+<span class="go">    This specifies if the memory usage of a DataFrame should be displayed when</span>
+<span class="go">    df.info() is called. Valid values True,False,&#39;deep&#39;</span>
+<span class="go">    [default: True] [currently: True]</span>
+<span class="go">display.min_rows : int</span>
+<span class="go">    The numbers of rows to show in a truncated view (when `max_rows` is</span>
+<span class="go">    exceeded). Ignored when `max_rows` is set to None or 0. When set to</span>
+<span class="go">    None, follows the value of `max_rows`.</span>
+<span class="go">    [default: 10] [currently: 10]</span>
+<span class="go">display.multi_sparse : boolean</span>
+<span class="go">    &quot;sparsify&quot; MultiIndex display (don&#39;t display repeated</span>
+<span class="go">    elements in outer levels within groups)</span>
+<span class="go">    [default: True] [currently: True]</span>
+<span class="go">display.notebook_repr_html : boolean</span>
+<span class="go">    When True, IPython notebook will use html representation for</span>
+<span class="go">    pandas objects (if it is available).</span>
+<span class="go">    [default: True] [currently: True]</span>
+<span class="go">display.pprint_nest_depth : int</span>
+<span class="go">    Controls the number of nested levels to process when pretty-printing</span>
+<span class="go">    [default: 3] [currently: 3]</span>
+<span class="go">display.precision : int</span>
+<span class="go">    Floating point output precision in terms of number of places after the</span>
+<span class="go">    decimal, for regular formatting as well as scientific notation. Similar</span>
+<span class="go">    to ``precision`` in :meth:`numpy.set_printoptions`.</span>
+<span class="go">    [default: 6] [currently: 6]</span>
+<span class="go">display.show_dimensions : boolean or &#39;truncate&#39;</span>
+<span class="go">    Whether to print out dimensions at the end of DataFrame repr.</span>
+<span class="go">    If &#39;truncate&#39; is specified, only print out the dimensions if the</span>
+<span class="go">    frame is truncated (e.g. not display all rows and/or columns)</span>
+<span class="go">    [default: truncate] [currently: truncate]</span>
+<span class="go">display.unicode.ambiguous_as_wide : boolean</span>
+<span class="go">    Whether to use the Unicode East Asian Width to calculate the display text</span>
+<span class="go">    width.</span>
+<span class="go">    Enabling this may affect to the performance (default: False)</span>
+<span class="go">    [default: False] [currently: False]</span>
+<span class="go">display.unicode.east_asian_width : boolean</span>
+<span class="go">    Whether to use the Unicode East Asian Width to calculate the display text</span>
+<span class="go">    width.</span>
+<span class="go">    Enabling this may affect to the performance (default: False)</span>
+<span class="go">    [default: False] [currently: False]</span>
+<span class="go">display.width : int</span>
+<span class="go">    Width of the display in characters. In case python/IPython is running in</span>
+<span class="go">    a terminal this can be set to None and pandas will correctly auto-detect</span>
+<span class="go">    the width.</span>
+<span class="go">    Note that the IPython notebook, IPython qtconsole, or IDLE do not run in a</span>
+<span class="go">    terminal and hence it is not possible to correctly detect the width.</span>
+<span class="go">    [default: 80] [currently: 80]</span>
+<span class="go">io.excel.ods.reader : string</span>
+<span class="go">    The default Excel reader engine for &#39;ods&#39; files. Available options:</span>
+<span class="go">    auto, odf.</span>
+<span class="go">    [default: auto] [currently: auto]</span>
+<span class="go">io.excel.ods.writer : string</span>
+<span class="go">    The default Excel writer engine for &#39;ods&#39; files. Available options:</span>
+<span class="go">    auto, odf.</span>
+<span class="go">    [default: auto] [currently: auto]</span>
+<span class="go">io.excel.xls.reader : string</span>
+<span class="go">    The default Excel reader engine for &#39;xls&#39; files. Available options:</span>
+<span class="go">    auto, xlrd.</span>
+<span class="go">    [default: auto] [currently: auto]</span>
+<span class="go">io.excel.xls.writer : string</span>
+<span class="go">    The default Excel writer engine for &#39;xls&#39; files. Available options:</span>
+<span class="go">    auto, xlwt.</span>
+<span class="go">    [default: auto] [currently: auto]</span>
+<span class="go">    (Deprecated, use `` instead.)</span>
+<span class="go">io.excel.xlsb.reader : string</span>
+<span class="go">    The default Excel reader engine for &#39;xlsb&#39; files. Available options:</span>
+<span class="go">    auto, pyxlsb.</span>
+<span class="go">    [default: auto] [currently: auto]</span>
+<span class="go">io.excel.xlsm.reader : string</span>
+<span class="go">    The default Excel reader engine for &#39;xlsm&#39; files. Available options:</span>
+<span class="go">    auto, xlrd, openpyxl.</span>
+<span class="go">    [default: auto] [currently: auto]</span>
+<span class="go">io.excel.xlsm.writer : string</span>
+<span class="go">    The default Excel writer engine for &#39;xlsm&#39; files. Available options:</span>
+<span class="go">    auto, openpyxl.</span>
+<span class="go">    [default: auto] [currently: auto]</span>
+<span class="go">io.excel.xlsx.reader : string</span>
+<span class="go">    The default Excel reader engine for &#39;xlsx&#39; files. Available options:</span>
+<span class="go">    auto, xlrd, openpyxl.</span>
+<span class="go">    [default: auto] [currently: auto]</span>
+<span class="go">io.excel.xlsx.writer : string</span>
+<span class="go">    The default Excel writer engine for &#39;xlsx&#39; files. Available options:</span>
+<span class="go">    auto, openpyxl, xlsxwriter.</span>
+<span class="go">    [default: auto] [currently: auto]</span>
+<span class="go">io.hdf.default_format : format</span>
+<span class="go">    default format writing format, if None, then</span>
+<span class="go">    put will default to &#39;fixed&#39; and append will default to &#39;table&#39;</span>
+<span class="go">    [default: None] [currently: None]</span>
+<span class="go">io.hdf.dropna_table : boolean</span>
+<span class="go">    drop ALL nan rows when appending to a table</span>
+<span class="go">    [default: False] [currently: False]</span>
+<span class="go">io.parquet.engine : string</span>
+<span class="go">    The default parquet reader/writer engine. Available options:</span>
+<span class="go">    &#39;auto&#39;, &#39;pyarrow&#39;, &#39;fastparquet&#39;, the default is &#39;auto&#39;</span>
+<span class="go">    [default: auto] [currently: auto]</span>
+<span class="go">io.sql.engine : string</span>
+<span class="go">    The default sql reader/writer engine. Available options:</span>
+<span class="go">    &#39;auto&#39;, &#39;sqlalchemy&#39;, the default is &#39;auto&#39;</span>
+<span class="go">    [default: auto] [currently: auto]</span>
+<span class="go">mode.chained_assignment : string</span>
+<span class="go">    Raise an exception, warn, or no action if trying to use chained assignment,</span>
+<span class="go">    The default is warn</span>
+<span class="go">    [default: warn] [currently: warn]</span>
+<span class="go">mode.copy_on_write : bool</span>
+<span class="go">    Use new copy-view behaviour using Copy-on-Write. Defaults to False,</span>
+<span class="go">    unless overridden by the &#39;PANDAS_COPY_ON_WRITE&#39; environment variable</span>
+<span class="go">    (if set to &quot;1&quot; for True, needs to be set before pandas is imported).</span>
+<span class="go">    [default: False] [currently: False]</span>
+<span class="go">mode.data_manager : string</span>
+<span class="go">    Internal data manager type; can be &quot;block&quot; or &quot;array&quot;. Defaults to &quot;block&quot;,</span>
+<span class="go">    unless overridden by the &#39;PANDAS_DATA_MANAGER&#39; environment variable (needs</span>
+<span class="go">    to be set before pandas is imported).</span>
+<span class="go">    [default: block] [currently: block]</span>
+<span class="go">mode.sim_interactive : boolean</span>
+<span class="go">    Whether to simulate interactive mode for purposes of testing</span>
+<span class="go">    [default: False] [currently: False]</span>
+<span class="go">mode.string_storage : string</span>
+<span class="go">    The default storage for StringDtype.</span>
+<span class="go">    [default: python] [currently: python]</span>
+<span class="go">mode.use_inf_as_na : boolean</span>
+<span class="go">    True means treat None, NaN, INF, -INF as NA (old way),</span>
+<span class="go">    False means None and NaN are null, but INF, -INF are not NA</span>
+<span class="go">    (new way).</span>
+<span class="go">    [default: False] [currently: False]</span>
+<span class="go">mode.use_inf_as_null : boolean</span>
+<span class="go">    use_inf_as_null had been deprecated and will be removed in a future</span>
+<span class="go">    version. Use `use_inf_as_na` instead.</span>
+<span class="go">    [default: False] [currently: False]</span>
+<span class="go">    (Deprecated, use `mode.use_inf_as_na` instead.)</span>
+<span class="go">plotting.backend : str</span>
+<span class="go">    The plotting backend to use. The default value is &quot;matplotlib&quot;, the</span>
+<span class="go">    backend provided with pandas. Other backends can be specified by</span>
+<span class="go">    providing the name of the module that implements the backend.</span>
+<span class="go">    [default: matplotlib] [currently: matplotlib]</span>
+<span class="go">plotting.matplotlib.register_converters : bool or &#39;auto&#39;.</span>
+<span class="go">    Whether to register converters with matplotlib&#39;s units registry for</span>
+<span class="go">    dates, times, datetimes, and Periods. Toggling to False will remove</span>
+<span class="go">    the converters, restoring any converters that pandas overwrote.</span>
+<span class="go">    [default: auto] [currently: auto]</span>
+<span class="go">styler.format.decimal : str</span>
+<span class="go">    The character representation for the decimal separator for floats and complex.</span>
+<span class="go">    [default: .] [currently: .]</span>
+<span class="go">styler.format.escape : str, optional</span>
+<span class="go">    Whether to escape certain characters according to the given context; html or latex.</span>
+<span class="go">    [default: None] [currently: None]</span>
+<span class="go">styler.format.formatter : str, callable, dict, optional</span>
+<span class="go">    A formatter object to be used as default within ``Styler.format``.</span>
+<span class="go">    [default: None] [currently: None]</span>
+<span class="go">styler.format.na_rep : str, optional</span>
+<span class="go">    The string representation for values identified as missing.</span>
+<span class="go">    [default: None] [currently: None]</span>
+<span class="go">styler.format.precision : int</span>
+<span class="go">    The precision for floats and complex numbers.</span>
+<span class="go">    [default: 6] [currently: 6]</span>
+<span class="go">styler.format.thousands : str, optional</span>
+<span class="go">    The character representation for thousands separator for floats, int and complex.</span>
+<span class="go">    [default: None] [currently: None]</span>
+<span class="go">styler.html.mathjax : bool</span>
+<span class="go">    If False will render special CSS classes to table attributes that indicate Mathjax</span>
+<span class="go">    will not be used in Jupyter Notebook.</span>
+<span class="go">    [default: True] [currently: True]</span>
+<span class="go">styler.latex.environment : str</span>
+<span class="go">    The environment to replace ``\begin{table}``. If &quot;longtable&quot; is used results</span>
+<span class="go">    in a specific longtable environment format.</span>
+<span class="go">    [default: None] [currently: None]</span>
+<span class="go">styler.latex.hrules : bool</span>
+<span class="go">    Whether to add horizontal rules on top and bottom and below the headers.</span>
+<span class="go">    [default: False] [currently: False]</span>
+<span class="go">styler.latex.multicol_align : {&quot;r&quot;, &quot;c&quot;, &quot;l&quot;, &quot;naive-l&quot;, &quot;naive-r&quot;}</span>
+<span class="go">    The specifier for horizontal alignment of sparsified LaTeX multicolumns. Pipe</span>
+<span class="go">    decorators can also be added to non-naive values to draw vertical</span>
+<span class="go">    rules, e.g. &quot;\|r&quot; will draw a rule on the left side of right aligned merged cells.</span>
+<span class="go">    [default: r] [currently: r]</span>
+<span class="go">styler.latex.multirow_align : {&quot;c&quot;, &quot;t&quot;, &quot;b&quot;}</span>
+<span class="go">    The specifier for vertical alignment of sparsified LaTeX multirows.</span>
+<span class="go">    [default: c] [currently: c]</span>
+<span class="go">styler.render.encoding : str</span>
+<span class="go">    The encoding used for output HTML and LaTeX files.</span>
+<span class="go">    [default: utf-8] [currently: utf-8]</span>
+<span class="go">styler.render.max_columns : int, optional</span>
+<span class="go">    The maximum number of columns that will be rendered. May still be reduced to</span>
+<span class="go">    satsify ``max_elements``, which takes precedence.</span>
+<span class="go">    [default: None] [currently: None]</span>
+<span class="go">styler.render.max_elements : int</span>
+<span class="go">    The maximum number of data-cell (&lt;td&gt;) elements that will be rendered before</span>
+<span class="go">    trimming will occur over columns, rows or both if needed.</span>
+<span class="go">    [default: 262144] [currently: 262144]</span>
+<span class="go">styler.render.max_rows : int, optional</span>
+<span class="go">    The maximum number of rows that will be rendered. May still be reduced to</span>
+<span class="go">    satsify ``max_elements``, which takes precedence.</span>
+<span class="go">    [default: None] [currently: None]</span>
+<span class="go">styler.render.repr : str</span>
+<span class="go">    Determine which output to use in Jupyter Notebook in {&quot;html&quot;, &quot;latex&quot;}.</span>
+<span class="go">    [default: html] [currently: html]</span>
+<span class="go">styler.sparse.columns : bool</span>
+<span class="go">    Whether to sparsify the display of hierarchical columns. Setting to False will</span>
+<span class="go">    display each explicit level element in a hierarchical key for each column.</span>
+<span class="go">    [default: True] [currently: True]</span>
+<span class="go">styler.sparse.index : bool</span>
+<span class="go">    Whether to sparsify the display of a hierarchical index. Setting to False will</span>
+<span class="go">    display each explicit level element in a hierarchical key for each row.</span>
+<span class="go">    [default: True] [currently: True]</span>
+</pre></div>
+</div>
+</section>
+<section id="getting-and-setting-options">
+<h2>Getting and setting options<a class="headerlink" href="#getting-and-setting-options" title="Permalink to this headline">#</a></h2>
+<p>As described above, <a class="reference internal" href="../reference/api/pandas.get_option.html#pandas.get_option" title="pandas.get_option"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_option()</span></code></a> and <a class="reference internal" href="../reference/api/pandas.set_option.html#pandas.set_option" title="pandas.set_option"><code class="xref py py-func docutils literal notranslate"><span class="pre">set_option()</span></code></a>
+are available from the pandas namespace.  To change an option, call
+<code class="docutils literal notranslate"><span class="pre">set_option('option</span> <span class="pre">regex',</span> <span class="pre">new_value)</span></code>.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [12]: </span><span class="n">pd</span><span class="o">.</span><span class="n">get_option</span><span class="p">(</span><span class="s2">&quot;mode.sim_interactive&quot;</span><span class="p">)</span>
+<span class="gh">Out[12]: </span><span class="go">False</span>
+
+<span class="gp">In [13]: </span><span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;mode.sim_interactive&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+
+<span class="gp">In [14]: </span><span class="n">pd</span><span class="o">.</span><span class="n">get_option</span><span class="p">(</span><span class="s2">&quot;mode.sim_interactive&quot;</span><span class="p">)</span>
+<span class="gh">Out[14]: </span><span class="go">True</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The option <code class="docutils literal notranslate"><span class="pre">'mode.sim_interactive'</span></code> is mostly used for debugging purposes.</p>
+</div>
+<p>You can use <a class="reference internal" href="../reference/api/pandas.reset_option.html#pandas.reset_option" title="pandas.reset_option"><code class="xref py py-func docutils literal notranslate"><span class="pre">reset_option()</span></code></a> to revert to a setting’s default value</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [15]: </span><span class="n">pd</span><span class="o">.</span><span class="n">get_option</span><span class="p">(</span><span class="s2">&quot;display.max_rows&quot;</span><span class="p">)</span>
+<span class="gh">Out[15]: </span><span class="go">60</span>
+
+<span class="gp">In [16]: </span><span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;display.max_rows&quot;</span><span class="p">,</span> <span class="mi">999</span><span class="p">)</span>
+
+<span class="gp">In [17]: </span><span class="n">pd</span><span class="o">.</span><span class="n">get_option</span><span class="p">(</span><span class="s2">&quot;display.max_rows&quot;</span><span class="p">)</span>
+<span class="gh">Out[17]: </span><span class="go">999</span>
+
+<span class="gp">In [18]: </span><span class="n">pd</span><span class="o">.</span><span class="n">reset_option</span><span class="p">(</span><span class="s2">&quot;display.max_rows&quot;</span><span class="p">)</span>
+
+<span class="gp">In [19]: </span><span class="n">pd</span><span class="o">.</span><span class="n">get_option</span><span class="p">(</span><span class="s2">&quot;display.max_rows&quot;</span><span class="p">)</span>
+<span class="gh">Out[19]: </span><span class="go">60</span>
+</pre></div>
+</div>
+<p>It’s also possible to reset multiple options at once (using a regex):</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [20]: </span><span class="n">pd</span><span class="o">.</span><span class="n">reset_option</span><span class="p">(</span><span class="s2">&quot;^display&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="../reference/api/pandas.option_context.html#pandas.option_context" title="pandas.option_context"><code class="xref py py-func docutils literal notranslate"><span class="pre">option_context()</span></code></a> context manager has been exposed through
+the top-level API, allowing you to execute code with given option values. Option values
+are restored automatically when you exit the <code class="docutils literal notranslate"><span class="pre">with</span></code> block:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [21]: </span><span class="k">with</span> <span class="n">pd</span><span class="o">.</span><span class="n">option_context</span><span class="p">(</span><span class="s2">&quot;display.max_rows&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="s2">&quot;display.max_columns&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">):</span>
+<span class="gp">   ....: </span>    <span class="nb">print</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">get_option</span><span class="p">(</span><span class="s2">&quot;display.max_rows&quot;</span><span class="p">))</span>
+<span class="gp">   ....: </span>    <span class="nb">print</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">get_option</span><span class="p">(</span><span class="s2">&quot;display.max_columns&quot;</span><span class="p">))</span>
+<span class="gp">   ....: </span>
+<span class="go">10</span>
+<span class="go">5</span>
+
+<span class="gp">In [22]: </span><span class="nb">print</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">get_option</span><span class="p">(</span><span class="s2">&quot;display.max_rows&quot;</span><span class="p">))</span>
+<span class="go">60</span>
+
+<span class="gp">In [23]: </span><span class="nb">print</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">get_option</span><span class="p">(</span><span class="s2">&quot;display.max_columns&quot;</span><span class="p">))</span>
+<span class="go">0</span>
+</pre></div>
+</div>
+</section>
+<section id="setting-startup-options-in-python-ipython-environment">
+<h2>Setting startup options in Python/IPython environment<a class="headerlink" href="#setting-startup-options-in-python-ipython-environment" title="Permalink to this headline">#</a></h2>
+<p>Using startup scripts for the Python/IPython environment to import pandas and set options makes working with pandas more efficient.
+To do this, create a <code class="docutils literal notranslate"><span class="pre">.py</span></code> or <code class="docutils literal notranslate"><span class="pre">.ipy</span></code> script in the startup directory of the desired profile.
+An example where the startup folder is in a default IPython profile can be found at:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$IPYTHONDIR/profile_default/startup
+</pre></div>
+</div>
+<p>More information can be found in the <a class="reference external" href="https://ipython.org/ipython-doc/stable/interactive/tutorial.html#startup-files">IPython documentation</a>.  An example startup script for pandas is displayed below:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;display.max_rows&quot;</span><span class="p">,</span> <span class="mi">999</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;display.precision&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="frequently-used-options">
+<span id="options-frequently-used"></span><h2>Frequently used options<a class="headerlink" href="#frequently-used-options" title="Permalink to this headline">#</a></h2>
+<p>The following is a demonstrates the more frequently used display options.</p>
+<p><code class="docutils literal notranslate"><span class="pre">display.max_rows</span></code> and <code class="docutils literal notranslate"><span class="pre">display.max_columns</span></code> sets the maximum number
+of rows and columns displayed when a frame is pretty-printed. Truncated
+lines are replaced by an ellipsis.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [24]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+
+<span class="gp">In [25]: </span><span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;display.max_rows&quot;</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+
+<span class="gp">In [26]: </span><span class="n">df</span>
+<span class="gh">Out[26]: </span>
+<span class="go">          0         1</span>
+<span class="go">0  0.469112 -0.282863</span>
+<span class="go">1 -1.509059 -1.135632</span>
+<span class="go">2  1.212112 -0.173215</span>
+<span class="go">3  0.119209 -1.044236</span>
+<span class="go">4 -0.861849 -2.104569</span>
+<span class="go">5 -0.494929  1.071804</span>
+<span class="go">6  0.721555 -0.706771</span>
+
+<span class="gp">In [27]: </span><span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;display.max_rows&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+
+<span class="gp">In [28]: </span><span class="n">df</span>
+<span class="gh">Out[28]: </span>
+<span class="go">           0         1</span>
+<span class="go">0   0.469112 -0.282863</span>
+<span class="go">1  -1.509059 -1.135632</span>
+<span class="go">..       ...       ...</span>
+<span class="go">5  -0.494929  1.071804</span>
+<span class="go">6   0.721555 -0.706771</span>
+
+<span class="go">[7 rows x 2 columns]</span>
+
+<span class="gp">In [29]: </span><span class="n">pd</span><span class="o">.</span><span class="n">reset_option</span><span class="p">(</span><span class="s2">&quot;display.max_rows&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Once the <code class="docutils literal notranslate"><span class="pre">display.max_rows</span></code> is exceeded, the <code class="docutils literal notranslate"><span class="pre">display.min_rows</span></code> options
+determines how many rows are shown in the truncated repr.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [30]: </span><span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;display.max_rows&quot;</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+
+<span class="gp">In [31]: </span><span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;display.min_rows&quot;</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+
+<span class="go"># below max_rows -&gt; all rows shown</span>
+<span class="gp">In [32]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+
+<span class="gp">In [33]: </span><span class="n">df</span>
+<span class="gh">Out[33]: </span>
+<span class="go">          0         1</span>
+<span class="go">0 -1.039575  0.271860</span>
+<span class="go">1 -0.424972  0.567020</span>
+<span class="go">2  0.276232 -1.087401</span>
+<span class="go">3 -0.673690  0.113648</span>
+<span class="go">4 -1.478427  0.524988</span>
+<span class="go">5  0.404705  0.577046</span>
+<span class="go">6 -1.715002 -1.039268</span>
+
+<span class="go"># above max_rows -&gt; only min_rows (4) rows shown</span>
+<span class="gp">In [34]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+
+<span class="gp">In [35]: </span><span class="n">df</span>
+<span class="gh">Out[35]: </span>
+<span class="go">           0         1</span>
+<span class="go">0  -0.370647 -1.157892</span>
+<span class="go">1  -1.344312  0.844885</span>
+<span class="go">..       ...       ...</span>
+<span class="go">7   0.276662 -0.472035</span>
+<span class="go">8  -0.013960 -0.362543</span>
+
+<span class="go">[9 rows x 2 columns]</span>
+
+<span class="gp">In [36]: </span><span class="n">pd</span><span class="o">.</span><span class="n">reset_option</span><span class="p">(</span><span class="s2">&quot;display.max_rows&quot;</span><span class="p">)</span>
+
+<span class="gp">In [37]: </span><span class="n">pd</span><span class="o">.</span><span class="n">reset_option</span><span class="p">(</span><span class="s2">&quot;display.min_rows&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">display.expand_frame_repr</span></code> allows for the representation of a
+<a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> to stretch across pages, wrapped over the all the columns.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [38]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+
+<span class="gp">In [39]: </span><span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;expand_frame_repr&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+
+<span class="gp">In [40]: </span><span class="n">df</span>
+<span class="gh">Out[40]: </span>
+<span class="go">          0         1         2  ...         7         8         9</span>
+<span class="go">0 -0.006154 -0.923061  0.895717  ...  1.340309 -1.170299 -0.226169</span>
+<span class="go">1  0.410835  0.813850  0.132003  ... -1.436737 -1.413681  1.607920</span>
+<span class="go">2  1.024180  0.569605  0.875906  ... -0.078638  0.545952 -1.219217</span>
+<span class="go">3 -1.226825  0.769804 -1.281247  ...  0.341734  0.959726 -1.110336</span>
+<span class="go">4 -0.619976  0.149748 -0.732339  ...  0.301624 -2.179861 -1.369849</span>
+
+<span class="go">[5 rows x 10 columns]</span>
+
+<span class="gp">In [41]: </span><span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;expand_frame_repr&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+
+<span class="gp">In [42]: </span><span class="n">df</span>
+<span class="gh">Out[42]: </span>
+<span class="go">          0         1         2         3         4         5         6         7         8         9</span>
+<span class="go">0 -0.006154 -0.923061  0.895717  0.805244 -1.206412  2.565646  1.431256  1.340309 -1.170299 -0.226169</span>
+<span class="go">1  0.410835  0.813850  0.132003 -0.827317 -0.076467 -1.187678  1.130127 -1.436737 -1.413681  1.607920</span>
+<span class="go">2  1.024180  0.569605  0.875906 -2.211372  0.974466 -2.006747 -0.410001 -0.078638  0.545952 -1.219217</span>
+<span class="go">3 -1.226825  0.769804 -1.281247 -0.727707 -0.121306 -0.097883  0.695775  0.341734  0.959726 -1.110336</span>
+<span class="go">4 -0.619976  0.149748 -0.732339  0.687738  0.176444  0.403310 -0.154951  0.301624 -2.179861 -1.369849</span>
+
+<span class="gp">In [43]: </span><span class="n">pd</span><span class="o">.</span><span class="n">reset_option</span><span class="p">(</span><span class="s2">&quot;expand_frame_repr&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">display.large_repr</span></code> displays a <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> that exceed
+<code class="docutils literal notranslate"><span class="pre">max_columns</span></code> or <code class="docutils literal notranslate"><span class="pre">max_rows</span></code> as a truncated frame or summary.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [44]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+
+<span class="gp">In [45]: </span><span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;display.max_rows&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+
+<span class="gp">In [46]: </span><span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;large_repr&quot;</span><span class="p">,</span> <span class="s2">&quot;truncate&quot;</span><span class="p">)</span>
+
+<span class="gp">In [47]: </span><span class="n">df</span>
+<span class="gh">Out[47]: </span>
+<span class="go">           0         1         2  ...         7         8         9</span>
+<span class="go">0  -0.954208  1.462696 -1.743161  ...  0.995761  2.396780  0.014871</span>
+<span class="go">1   3.357427 -0.317441 -1.236269  ...  0.380396  0.084844  0.432390</span>
+<span class="go">..       ...       ...       ...  ...       ...       ...       ...</span>
+<span class="go">8  -0.303421 -0.858447  0.306996  ...  0.476720  0.473424 -0.242861</span>
+<span class="go">9  -0.014805 -0.284319  0.650776  ...  1.613616  0.464000  0.227371</span>
+
+<span class="go">[10 rows x 10 columns]</span>
+
+<span class="gp">In [48]: </span><span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;large_repr&quot;</span><span class="p">,</span> <span class="s2">&quot;info&quot;</span><span class="p">)</span>
+
+<span class="gp">In [49]: </span><span class="n">df</span>
+<span class="gh">Out[49]: </span>
+<span class="go">&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;</span>
+<span class="go">RangeIndex: 10 entries, 0 to 9</span>
+<span class="go">Data columns (total 10 columns):</span>
+<span class="go"> #   Column  Non-Null Count  Dtype  </span>
+<span class="go">---  ------  --------------  -----  </span>
+<span class="go"> 0   0       10 non-null     float64</span>
+<span class="go"> 1   1       10 non-null     float64</span>
+<span class="go"> 2   2       10 non-null     float64</span>
+<span class="go"> 3   3       10 non-null     float64</span>
+<span class="go"> 4   4       10 non-null     float64</span>
+<span class="go"> 5   5       10 non-null     float64</span>
+<span class="go"> 6   6       10 non-null     float64</span>
+<span class="go"> 7   7       10 non-null     float64</span>
+<span class="go"> 8   8       10 non-null     float64</span>
+<span class="go"> 9   9       10 non-null     float64</span>
+<span class="go">dtypes: float64(10)</span>
+<span class="go">memory usage: 928.0 bytes</span>
+
+<span class="gp">In [50]: </span><span class="n">pd</span><span class="o">.</span><span class="n">reset_option</span><span class="p">(</span><span class="s2">&quot;large_repr&quot;</span><span class="p">)</span>
+
+<span class="gp">In [51]: </span><span class="n">pd</span><span class="o">.</span><span class="n">reset_option</span><span class="p">(</span><span class="s2">&quot;display.max_rows&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">display.max_colwidth</span></code> sets the maximum width of columns.  Cells
+of this length or longer will be truncated with an ellipsis.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [52]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<span class="gp">   ....: </span>    <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+<span class="gp">   ....: </span>        <span class="p">[</span>
+<span class="gp">   ....: </span>            <span class="p">[</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="s2">&quot;bar&quot;</span><span class="p">,</span> <span class="s2">&quot;bim&quot;</span><span class="p">,</span> <span class="s2">&quot;uncomfortably long string&quot;</span><span class="p">],</span>
+<span class="gp">   ....: </span>            <span class="p">[</span><span class="s2">&quot;horse&quot;</span><span class="p">,</span> <span class="s2">&quot;cow&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">,</span> <span class="s2">&quot;apple&quot;</span><span class="p">],</span>
+<span class="gp">   ....: </span>        <span class="p">]</span>
+<span class="gp">   ....: </span>    <span class="p">)</span>
+<span class="gp">   ....: </span><span class="p">)</span>
+<span class="gp">   ....: </span>
+
+<span class="gp">In [53]: </span><span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;max_colwidth&quot;</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span>
+
+<span class="gp">In [54]: </span><span class="n">df</span>
+<span class="gh">Out[54]: </span>
+<span class="go">       0    1       2                          3</span>
+<span class="go">0    foo  bar     bim  uncomfortably long string</span>
+<span class="go">1  horse  cow  banana                      apple</span>
+
+<span class="gp">In [55]: </span><span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;max_colwidth&quot;</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+
+<span class="gp">In [56]: </span><span class="n">df</span>
+<span class="gh">Out[56]: </span>
+<span class="go">       0    1      2      3</span>
+<span class="go">0    foo  bar    bim  un...</span>
+<span class="go">1  horse  cow  ba...  apple</span>
+
+<span class="gp">In [57]: </span><span class="n">pd</span><span class="o">.</span><span class="n">reset_option</span><span class="p">(</span><span class="s2">&quot;max_colwidth&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">display.max_info_columns</span></code> sets a threshold for the number of columns
+displayed when calling <a class="reference internal" href="../reference/api/pandas.DataFrame.info.html#pandas.DataFrame.info" title="pandas.DataFrame.info"><code class="xref py py-meth docutils literal notranslate"><span class="pre">info()</span></code></a>.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [58]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+
+<span class="gp">In [59]: </span><span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;max_info_columns&quot;</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
+
+<span class="gp">In [60]: </span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+<span class="go">&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;</span>
+<span class="go">RangeIndex: 10 entries, 0 to 9</span>
+<span class="go">Data columns (total 10 columns):</span>
+<span class="go"> #   Column  Non-Null Count  Dtype  </span>
+<span class="go">---  ------  --------------  -----  </span>
+<span class="go"> 0   0       10 non-null     float64</span>
+<span class="go"> 1   1       10 non-null     float64</span>
+<span class="go"> 2   2       10 non-null     float64</span>
+<span class="go"> 3   3       10 non-null     float64</span>
+<span class="go"> 4   4       10 non-null     float64</span>
+<span class="go"> 5   5       10 non-null     float64</span>
+<span class="go"> 6   6       10 non-null     float64</span>
+<span class="go"> 7   7       10 non-null     float64</span>
+<span class="go"> 8   8       10 non-null     float64</span>
+<span class="go"> 9   9       10 non-null     float64</span>
+<span class="go">dtypes: float64(10)</span>
+<span class="go">memory usage: 928.0 bytes</span>
+
+<span class="gp">In [61]: </span><span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;max_info_columns&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+
+<span class="gp">In [62]: </span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+<span class="go">&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;</span>
+<span class="go">RangeIndex: 10 entries, 0 to 9</span>
+<span class="go">Columns: 10 entries, 0 to 9</span>
+<span class="go">dtypes: float64(10)</span>
+<span class="go">memory usage: 928.0 bytes</span>
+
+<span class="gp">In [63]: </span><span class="n">pd</span><span class="o">.</span><span class="n">reset_option</span><span class="p">(</span><span class="s2">&quot;max_info_columns&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">display.max_info_rows</span></code>: <a class="reference internal" href="../reference/api/pandas.DataFrame.info.html#pandas.DataFrame.info" title="pandas.DataFrame.info"><code class="xref py py-meth docutils literal notranslate"><span class="pre">info()</span></code></a> will usually show null-counts for each column.
+For a large <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a>, this can be quite slow. <code class="docutils literal notranslate"><span class="pre">max_info_rows</span></code> and <code class="docutils literal notranslate"><span class="pre">max_info_cols</span></code>
+limit this null check to the specified rows and columns respectively. The <a class="reference internal" href="../reference/api/pandas.DataFrame.info.html#pandas.DataFrame.info" title="pandas.DataFrame.info"><code class="xref py py-meth docutils literal notranslate"><span class="pre">info()</span></code></a>
+keyword argument <code class="docutils literal notranslate"><span class="pre">null_counts=True</span></code> will override this.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [64]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)))</span>
+
+<span class="gp">In [65]: </span><span class="n">df</span>
+<span class="gh">Out[65]: </span>
+<span class="go">     0    1    2    3    4    5    6    7    8    9</span>
+<span class="go">0  0.0  NaN  1.0  NaN  NaN  0.0  NaN  0.0  NaN  1.0</span>
+<span class="go">1  1.0  NaN  1.0  1.0  1.0  1.0  NaN  0.0  0.0  NaN</span>
+<span class="go">2  0.0  NaN  1.0  0.0  0.0  NaN  NaN  NaN  NaN  0.0</span>
+<span class="go">3  NaN  NaN  NaN  0.0  1.0  1.0  NaN  1.0  NaN  1.0</span>
+<span class="go">4  0.0  NaN  NaN  NaN  0.0  NaN  NaN  NaN  1.0  0.0</span>
+<span class="go">5  0.0  1.0  1.0  1.0  1.0  0.0  NaN  NaN  1.0  0.0</span>
+<span class="go">6  1.0  1.0  1.0  NaN  1.0  NaN  1.0  0.0  NaN  NaN</span>
+<span class="go">7  0.0  0.0  1.0  0.0  1.0  0.0  1.0  1.0  0.0  NaN</span>
+<span class="go">8  NaN  NaN  NaN  0.0  NaN  NaN  NaN  NaN  1.0  NaN</span>
+<span class="go">9  0.0  NaN  0.0  NaN  NaN  0.0  NaN  1.0  1.0  0.0</span>
+
+<span class="gp">In [66]: </span><span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;max_info_rows&quot;</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
+
+<span class="gp">In [67]: </span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+<span class="go">&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;</span>
+<span class="go">RangeIndex: 10 entries, 0 to 9</span>
+<span class="go">Data columns (total 10 columns):</span>
+<span class="go"> #   Column  Non-Null Count  Dtype  </span>
+<span class="go">---  ------  --------------  -----  </span>
+<span class="go"> 0   0       8 non-null      float64</span>
+<span class="go"> 1   1       3 non-null      float64</span>
+<span class="go"> 2   2       7 non-null      float64</span>
+<span class="go"> 3   3       6 non-null      float64</span>
+<span class="go"> 4   4       7 non-null      float64</span>
+<span class="go"> 5   5       6 non-null      float64</span>
+<span class="go"> 6   6       2 non-null      float64</span>
+<span class="go"> 7   7       6 non-null      float64</span>
+<span class="go"> 8   8       6 non-null      float64</span>
+<span class="go"> 9   9       6 non-null      float64</span>
+<span class="go">dtypes: float64(10)</span>
+<span class="go">memory usage: 928.0 bytes</span>
+
+<span class="gp">In [68]: </span><span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;max_info_rows&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+
+<span class="gp">In [69]: </span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+<span class="go">&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;</span>
+<span class="go">RangeIndex: 10 entries, 0 to 9</span>
+<span class="go">Data columns (total 10 columns):</span>
+<span class="go"> #   Column  Dtype  </span>
+<span class="go">---  ------  -----  </span>
+<span class="go"> 0   0       float64</span>
+<span class="go"> 1   1       float64</span>
+<span class="go"> 2   2       float64</span>
+<span class="go"> 3   3       float64</span>
+<span class="go"> 4   4       float64</span>
+<span class="go"> 5   5       float64</span>
+<span class="go"> 6   6       float64</span>
+<span class="go"> 7   7       float64</span>
+<span class="go"> 8   8       float64</span>
+<span class="go"> 9   9       float64</span>
+<span class="go">dtypes: float64(10)</span>
+<span class="go">memory usage: 928.0 bytes</span>
+
+<span class="gp">In [70]: </span><span class="n">pd</span><span class="o">.</span><span class="n">reset_option</span><span class="p">(</span><span class="s2">&quot;max_info_rows&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">display.precision</span></code> sets the output display precision in terms of decimal places.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [71]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="gp">In [72]: </span><span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;display.precision&quot;</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+
+<span class="gp">In [73]: </span><span class="n">df</span>
+<span class="gh">Out[73]: </span>
+<span class="go">           0          1          2          3          4</span>
+<span class="go">0 -1.1506406 -0.7983341 -0.5576966  0.3813531  1.3371217</span>
+<span class="go">1 -1.5310949  1.3314582 -0.5713290 -0.0266708 -1.0856630</span>
+<span class="go">2 -1.1147378 -0.0582158 -0.4867681  1.6851483  0.1125723</span>
+<span class="go">3 -1.4953086  0.8984347 -0.1482168 -1.5960698  0.1596530</span>
+<span class="go">4  0.2621358  0.0362196  0.1847350 -0.2550694 -0.2710197</span>
+
+<span class="gp">In [74]: </span><span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;display.precision&quot;</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+
+<span class="gp">In [75]: </span><span class="n">df</span>
+<span class="gh">Out[75]: </span>
+<span class="go">        0       1       2       3       4</span>
+<span class="go">0 -1.1506 -0.7983 -0.5577  0.3814  1.3371</span>
+<span class="go">1 -1.5311  1.3315 -0.5713 -0.0267 -1.0857</span>
+<span class="go">2 -1.1147 -0.0582 -0.4868  1.6851  0.1126</span>
+<span class="go">3 -1.4953  0.8984 -0.1482 -1.5961  0.1597</span>
+<span class="go">4  0.2621  0.0362  0.1847 -0.2551 -0.2710</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">display.chop_threshold</span></code> sets the rounding threshold to zero when displaying a
+<a class="reference internal" href="../reference/api/pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a> or <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a>. This setting does not change the
+precision at which the number is stored.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [76]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="gp">In [77]: </span><span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;chop_threshold&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="gp">In [78]: </span><span class="n">df</span>
+<span class="gh">Out[78]: </span>
+<span class="go">        0       1       2       3       4       5</span>
+<span class="go">0  1.2884  0.2946 -1.1658  0.8470 -0.6856  0.6091</span>
+<span class="go">1 -0.3040  0.6256 -0.0593  0.2497  1.1039 -1.0875</span>
+<span class="go">2  1.9980 -0.2445  0.1362  0.8863 -1.3507 -0.8863</span>
+<span class="go">3 -1.0133  1.9209 -0.3882 -2.3144  0.6655  0.4026</span>
+<span class="go">4  0.3996 -1.7660  0.8504  0.3881  0.9923  0.7441</span>
+<span class="go">5 -0.7398 -1.0549 -0.1796  0.6396  1.5850  1.9067</span>
+
+<span class="gp">In [79]: </span><span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;chop_threshold&quot;</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+
+<span class="gp">In [80]: </span><span class="n">df</span>
+<span class="gh">Out[80]: </span>
+<span class="go">        0       1       2       3       4       5</span>
+<span class="go">0  1.2884  0.0000 -1.1658  0.8470 -0.6856  0.6091</span>
+<span class="go">1  0.0000  0.6256  0.0000  0.0000  1.1039 -1.0875</span>
+<span class="go">2  1.9980  0.0000  0.0000  0.8863 -1.3507 -0.8863</span>
+<span class="go">3 -1.0133  1.9209  0.0000 -2.3144  0.6655  0.0000</span>
+<span class="go">4  0.0000 -1.7660  0.8504  0.0000  0.9923  0.7441</span>
+<span class="go">5 -0.7398 -1.0549  0.0000  0.6396  1.5850  1.9067</span>
+
+<span class="gp">In [81]: </span><span class="n">pd</span><span class="o">.</span><span class="n">reset_option</span><span class="p">(</span><span class="s2">&quot;chop_threshold&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">display.colheader_justify</span></code> controls the justification of the headers.
+The options are <code class="docutils literal notranslate"><span class="pre">'right'</span></code>, and <code class="docutils literal notranslate"><span class="pre">'left'</span></code>.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [82]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<span class="gp">   ....: </span>    <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">6</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">6</span><span class="p">)])</span><span class="o">.</span><span class="n">T</span><span class="p">,</span>
+<span class="gp">   ....: </span>    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">],</span>
+<span class="gp">   ....: </span>    <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float&quot;</span><span class="p">,</span>
+<span class="gp">   ....: </span><span class="p">)</span>
+<span class="gp">   ....: </span>
+
+<span class="gp">In [83]: </span><span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;colheader_justify&quot;</span><span class="p">,</span> <span class="s2">&quot;right&quot;</span><span class="p">)</span>
+
+<span class="gp">In [84]: </span><span class="n">df</span>
+<span class="gh">Out[84]: </span>
+<span class="go">        A    B    C</span>
+<span class="go">0  0.1040  0.1  0.0</span>
+<span class="go">1  0.1741  0.5  0.0</span>
+<span class="go">2 -0.4395  0.4  0.0</span>
+<span class="go">3 -0.7413  0.8  0.0</span>
+<span class="go">4 -0.0797  0.4  0.0</span>
+<span class="go">5 -0.9229  0.3  0.0</span>
+
+<span class="gp">In [85]: </span><span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;colheader_justify&quot;</span><span class="p">,</span> <span class="s2">&quot;left&quot;</span><span class="p">)</span>
+
+<span class="gp">In [86]: </span><span class="n">df</span>
+<span class="gh">Out[86]: </span>
+<span class="go">   A       B    C  </span>
+<span class="go">0  0.1040  0.1  0.0</span>
+<span class="go">1  0.1741  0.5  0.0</span>
+<span class="go">2 -0.4395  0.4  0.0</span>
+<span class="go">3 -0.7413  0.8  0.0</span>
+<span class="go">4 -0.0797  0.4  0.0</span>
+<span class="go">5 -0.9229  0.3  0.0</span>
+
+<span class="gp">In [87]: </span><span class="n">pd</span><span class="o">.</span><span class="n">reset_option</span><span class="p">(</span><span class="s2">&quot;colheader_justify&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="number-formatting">
+<span id="basics-console-output"></span><h2>Number formatting<a class="headerlink" href="#number-formatting" title="Permalink to this headline">#</a></h2>
+<p>pandas also allows you to set how numbers are displayed in the console.
+This option is not set through the <code class="docutils literal notranslate"><span class="pre">set_options</span></code> API.</p>
+<p>Use the <code class="docutils literal notranslate"><span class="pre">set_eng_float_format</span></code> function
+to alter the floating-point formatting of pandas objects to produce a particular
+format.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [88]: </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="gp">In [89]: </span><span class="n">pd</span><span class="o">.</span><span class="n">set_eng_float_format</span><span class="p">(</span><span class="n">accuracy</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">use_eng_prefix</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="gp">In [90]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="s2">&quot;d&quot;</span><span class="p">,</span> <span class="s2">&quot;e&quot;</span><span class="p">])</span>
+
+<span class="gp">In [91]: </span><span class="n">s</span> <span class="o">/</span> <span class="mf">1.0e3</span>
+<span class="gh">Out[91]: </span>
+<span class="go">a    303.638u</span>
+<span class="go">b   -721.084u</span>
+<span class="go">c   -622.696u</span>
+<span class="go">d    648.250u</span>
+<span class="go">e     -1.945m</span>
+<span class="go">dtype: float64</span>
+
+<span class="gp">In [92]: </span><span class="n">s</span> <span class="o">/</span> <span class="mf">1.0e6</span>
+<span class="gh">Out[92]: </span>
+<span class="go">a    303.638n</span>
+<span class="go">b   -721.084n</span>
+<span class="go">c   -622.696n</span>
+<span class="go">d    648.250n</span>
+<span class="go">e     -1.945u</span>
+<span class="go">dtype: float64</span>
+</pre></div>
+</div>
+<p>Use <a class="reference internal" href="../reference/api/pandas.DataFrame.round.html#pandas.DataFrame.round" title="pandas.DataFrame.round"><code class="xref py py-meth docutils literal notranslate"><span class="pre">round()</span></code></a> to specifically control rounding of an individual <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a></p>
+</section>
+<section id="unicode-formatting">
+<span id="options-east-asian-width"></span><h2>Unicode formatting<a class="headerlink" href="#unicode-formatting" title="Permalink to this headline">#</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Enabling this option will affect the performance for printing of DataFrame and Series (about 2 times slower).
+Use only when it is actually required.</p>
+</div>
+<p>Some East Asian countries use Unicode characters whose width corresponds to two Latin characters.
+If a DataFrame or Series contains these characters, the default output mode may not align them properly.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [93]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;国籍&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;UK&quot;</span><span class="p">,</span> <span class="s2">&quot;日本&quot;</span><span class="p">],</span> <span class="s2">&quot;名前&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Alice&quot;</span><span class="p">,</span> <span class="s2">&quot;しのぶ&quot;</span><span class="p">]})</span>
+
+<span class="gp">In [94]: </span><span class="n">df</span>
+<span class="gh">Out[94]: </span>
+<span class="go">   国籍     名前</span>
+<span class="go">0  UK  Alice</span>
+<span class="go">1  日本    しのぶ</span>
+</pre></div>
+</div>
+<p>Enabling <code class="docutils literal notranslate"><span class="pre">display.unicode.east_asian_width</span></code> allows pandas to check each character’s “East Asian Width” property.
+These characters can be aligned properly by setting this option to <code class="docutils literal notranslate"><span class="pre">True</span></code>. However, this will result in longer render
+times than the standard <code class="docutils literal notranslate"><span class="pre">len</span></code> function.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [95]: </span><span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;display.unicode.east_asian_width&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+
+<span class="gp">In [96]: </span><span class="n">df</span>
+<span class="gh">Out[96]: </span>
+<span class="go">   国籍    名前</span>
+<span class="go">0    UK   Alice</span>
+<span class="go">1  日本  しのぶ</span>
+</pre></div>
+</div>
+<p>In addition, Unicode characters whose width is “ambiguous” can either be 1 or 2 characters wide depending on the
+terminal setting or encoding. The option <code class="docutils literal notranslate"><span class="pre">display.unicode.ambiguous_as_wide</span></code> can be used to handle the ambiguity.</p>
+<p>By default, an “ambiguous” character’s width, such as “¡” (inverted exclamation) in the example below, is taken to be 1.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [97]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;xxx&quot;</span><span class="p">,</span> <span class="s2">&quot;¡¡&quot;</span><span class="p">],</span> <span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;yyy&quot;</span><span class="p">,</span> <span class="s2">&quot;¡¡&quot;</span><span class="p">]})</span>
+
+<span class="gp">In [98]: </span><span class="n">df</span>
+<span class="gh">Out[98]: </span>
+<span class="go">     a    b</span>
+<span class="go">0  xxx  yyy</span>
+<span class="go">1   ¡¡   ¡¡</span>
+</pre></div>
+</div>
+<p>Enabling <code class="docutils literal notranslate"><span class="pre">display.unicode.ambiguous_as_wide</span></code> makes pandas interpret these characters’ widths to be 2.
+(Note that this option will only be effective when <code class="docutils literal notranslate"><span class="pre">display.unicode.east_asian_width</span></code> is enabled.)</p>
+<p>However, setting this option incorrectly for your terminal will cause these characters to be aligned incorrectly:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [99]: </span><span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;display.unicode.ambiguous_as_wide&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+
+<span class="gp">In [100]: </span><span class="n">df</span>
+<span class="gh">Out[100]: </span>
+<span class="go">      a     b</span>
+<span class="go">0   xxx   yyy</span>
+<span class="go">1  ¡¡  ¡¡</span>
+</pre></div>
+</div>
+</section>
+<section id="table-schema-display">
+<span id="options-table-schema"></span><h2>Table schema display<a class="headerlink" href="#table-schema-display" title="Permalink to this headline">#</a></h2>
+<p><a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> and <a class="reference internal" href="../reference/api/pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a> will publish a Table Schema representation
+by default. This can be enabled globally with the
+<code class="docutils literal notranslate"><span class="pre">display.html.table_schema</span></code> option:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [101]: </span><span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;display.html.table_schema&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Only <code class="docutils literal notranslate"><span class="pre">'display.max_rows'</span></code> are serialized and published.</p>
+</section>
+</section>
+
+
+            </article>
+            
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="timedeltas.html" title="previous page">
+      <i class="fas fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Time deltas</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="enhancingperf.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">Enhancing performance</p>
+  </div>
+  <i class="fas fa-angle-right"></i>
+  </a>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fas fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#overview">
+   Overview
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#available-options">
+   Available options
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#getting-and-setting-options">
+   Getting and setting options
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#setting-startup-options-in-python-ipython-environment">
+   Setting startup options in Python/IPython environment
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#frequently-used-options">
+   Frequently used options
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#number-formatting">
+   Number formatting
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#unicode-formatting">
+   Unicode formatting
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#table-schema-display">
+   Table schema display
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+<div class="toc-item">
+  
+</div>
+
+<div class="toc-item">
+  
+<div class="tocsection sourcelink">
+    <a href="../_sources/user_guide/options.rst.txt">
+        <i class="fas fa-file-alt"></i> Show Source
+    </a>
+</div>
+
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+          </div>
+        </footer>
+        
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=9b1a4fa89bdd0e95b23b"></script>
+
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    <p class="copyright">
+    &copy 2023 pandas via <a href="https://numfocus.org">NumFOCUS, Inc.</a> Hosted by <a href="https://www.ovhcloud.com">OVHcloud</a>.
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>

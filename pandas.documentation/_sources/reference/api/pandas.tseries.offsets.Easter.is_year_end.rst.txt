@@ -1,0 +1,6 @@
+pandas.tseries.offsets.Easter.is\_year\_end
+===========================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. automethod:: Easter.is_year_end

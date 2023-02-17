@@ -1,0 +1,6 @@
+pandas.tseries.offsets.BMonthBegin
+==================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. autoclass:: BMonthBegin

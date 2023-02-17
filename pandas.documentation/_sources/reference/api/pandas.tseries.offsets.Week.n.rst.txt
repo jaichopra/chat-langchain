@@ -1,0 +1,6 @@
+pandas.tseries.offsets.Week.n
+=============================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. autoattribute:: Week.n

@@ -1,0 +1,6 @@
+pandas.DataFrame.to\_xml
+========================
+
+.. currentmodule:: pandas
+
+.. automethod:: DataFrame.to_xml

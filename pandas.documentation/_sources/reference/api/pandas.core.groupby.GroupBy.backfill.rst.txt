@@ -1,0 +1,6 @@
+pandas.core.groupby.GroupBy.backfill
+====================================
+
+.. currentmodule:: pandas.core.groupby
+
+.. automethod:: GroupBy.backfill

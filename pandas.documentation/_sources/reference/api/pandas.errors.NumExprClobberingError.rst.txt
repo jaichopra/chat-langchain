@@ -1,0 +1,6 @@
+pandas.errors.NumExprClobberingError
+====================================
+
+.. currentmodule:: pandas.errors
+
+.. autoexception:: NumExprClobberingError

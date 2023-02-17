@@ -1,0 +1,60 @@
+pandas.tseries.offsets.BusinessHour
+===================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. autoclass:: BusinessHour
+
+   
+
+
+..
+   HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+   .. autosummary::
+      :toctree:
+      
+      BusinessHour.__call__
+      BusinessHour.apply
+      BusinessHour.apply_index
+      BusinessHour.copy
+      BusinessHour.isAnchored
+      BusinessHour.is_anchored
+      BusinessHour.is_month_end
+      BusinessHour.is_month_start
+      BusinessHour.is_on_offset
+      BusinessHour.is_quarter_end
+      BusinessHour.is_quarter_start
+      BusinessHour.is_year_end
+      BusinessHour.is_year_start
+      BusinessHour.onOffset
+      BusinessHour.rollback
+      BusinessHour.rollforward
+
+
+
+
+   
+
+
+..
+   HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+   .. autosummary::
+      :toctree:
+      
+      BusinessHour.base
+      BusinessHour.calendar
+      BusinessHour.end
+      BusinessHour.freqstr
+      BusinessHour.holidays
+      BusinessHour.kwds
+      BusinessHour.n
+      BusinessHour.name
+      BusinessHour.nanos
+      BusinessHour.next_bday
+      BusinessHour.normalize
+      BusinessHour.offset
+      BusinessHour.rule_code
+      BusinessHour.start
+      BusinessHour.weekmask
+
+

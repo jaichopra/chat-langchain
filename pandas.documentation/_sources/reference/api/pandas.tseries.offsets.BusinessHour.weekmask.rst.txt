@@ -1,0 +1,6 @@
+pandas.tseries.offsets.BusinessHour.weekmask
+============================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. autoattribute:: BusinessHour.weekmask

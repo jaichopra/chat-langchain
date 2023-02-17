@@ -1,0 +1,6 @@
+pandas.errors.ValueLabelTypeMismatch
+====================================
+
+.. currentmodule:: pandas.errors
+
+.. autoexception:: ValueLabelTypeMismatch

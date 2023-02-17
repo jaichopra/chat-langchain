@@ -1,0 +1,6 @@
+pandas.tseries.offsets.FY5253.\_\_call\_\_
+==========================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. automethod:: FY5253.__call__

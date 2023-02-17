@@ -1,0 +1,6 @@
+pandas.PeriodIndex.day\_of\_year
+================================
+
+.. currentmodule:: pandas
+
+.. autoproperty:: PeriodIndex.day_of_year

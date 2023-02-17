@@ -1,0 +1,6 @@
+pandas.core.groupby.DataFrameGroupBy.aggregate
+==============================================
+
+.. currentmodule:: pandas.core.groupby
+
+.. automethod:: DataFrameGroupBy.aggregate

@@ -1,0 +1,6 @@
+pandas.tseries.offsets.SemiMonthBegin.day\_of\_month
+====================================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. autoattribute:: SemiMonthBegin.day_of_month

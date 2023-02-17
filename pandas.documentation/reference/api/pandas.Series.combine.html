@@ -1,0 +1,3389 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>pandas.Series.combine &#8212; pandas 1.5.3 documentation</title>
+  <script>
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=9b1a4fa89bdd0e95b23b" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=9b1a4fa89bdd0e95b23b" rel="stylesheet">
+
+  
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/getting_started.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/pandas.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=9b1a4fa89bdd0e95b23b">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/toggleprompt.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script async="async" src="https://www.google-analytics.com/analytics.js"></script>
+    <script>
+                    window.ga = window.ga || function () {
+                        (ga.q = ga.q || []).push(arguments) };
+                    ga.l = +new Date;
+                    ga('create', 'UA-27880019-2', 'auto');
+                    ga('set', 'anonymizeIp', true);
+                    ga('send', 'pageview');
+                </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'reference/api/pandas.Series.combine';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        </script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="pandas.Series.combine_first" href="pandas.Series.combine_first.html" />
+    <link rel="prev" title="pandas.Series.clip" href="pandas.Series.clip.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fas fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../../_static/pandas.svg" class="logo__image only-light" alt="Logo image">
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="../../getting_started/index.html">
+                        Getting started
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../user_guide/index.html">
+                        User Guide
+                    </a>
+                </li>
+                
+
+                <li class="nav-item current active">
+                    <a class="nav-link" href="../index.html">
+                        API reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../development/index.html">
+                        Development
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../whatsnew/index.html">
+                        Release notes
+                    </a>
+                </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      <div class="navbar-end-item navbar-end__search-button-container">
+        
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search">
+  <i class="fas fa-search"></i>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        1.5.3  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pandas-dev/pandas" title="GitHub" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/pandas_dev" title="Twitter" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  <div class="search-button-container--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search">
+  <i class="fas fa-search"></i>
+</button>
+  </div>
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fas fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="../../getting_started/index.html">
+                        Getting started
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../user_guide/index.html">
+                        User Guide
+                    </a>
+                </li>
+                
+
+                <li class="nav-item current active">
+                    <a class="nav-link" href="../index.html">
+                        API reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../development/index.html">
+                        Development
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../whatsnew/index.html">
+                        Release notes
+                    </a>
+                </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        1.5.3  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pandas-dev/pandas" title="GitHub" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/pandas_dev" title="Twitter" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item navbar-nav">
+    
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../io.html">
+   Input/output
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../general_functions.html">
+   General functions
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../series.html">
+   Series
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label class="toctree-toggle" for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active has-children">
+    <a class="reference internal" href="pandas.Series.html">
+     pandas.Series
+    </a>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label class="toctree-toggle" for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="current">
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.T.html">
+       pandas.Series.T
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.array.html">
+       pandas.Series.array
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.at.html">
+       pandas.Series.at
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.attrs.html">
+       pandas.Series.attrs
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.axes.html">
+       pandas.Series.axes
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.dtype.html">
+       pandas.Series.dtype
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.dtypes.html">
+       pandas.Series.dtypes
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.flags.html">
+       pandas.Series.flags
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.hasnans.html">
+       pandas.Series.hasnans
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.iat.html">
+       pandas.Series.iat
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.iloc.html">
+       pandas.Series.iloc
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.index.html">
+       pandas.Series.index
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.is_monotonic.html">
+       pandas.Series.is_monotonic
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.is_monotonic_decreasing.html">
+       pandas.Series.is_monotonic_decreasing
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.is_monotonic_increasing.html">
+       pandas.Series.is_monotonic_increasing
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.is_unique.html">
+       pandas.Series.is_unique
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.loc.html">
+       pandas.Series.loc
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.name.html">
+       pandas.Series.name
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.nbytes.html">
+       pandas.Series.nbytes
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.ndim.html">
+       pandas.Series.ndim
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.shape.html">
+       pandas.Series.shape
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.size.html">
+       pandas.Series.size
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.values.html">
+       pandas.Series.values
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.abs.html">
+       pandas.Series.abs
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.add.html">
+       pandas.Series.add
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.add_prefix.html">
+       pandas.Series.add_prefix
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.add_suffix.html">
+       pandas.Series.add_suffix
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.agg.html">
+       pandas.Series.agg
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.aggregate.html">
+       pandas.Series.aggregate
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.align.html">
+       pandas.Series.align
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.all.html">
+       pandas.Series.all
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.any.html">
+       pandas.Series.any
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.append.html">
+       pandas.Series.append
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.apply.html">
+       pandas.Series.apply
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.argmax.html">
+       pandas.Series.argmax
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.argmin.html">
+       pandas.Series.argmin
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.argsort.html">
+       pandas.Series.argsort
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.asfreq.html">
+       pandas.Series.asfreq
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.asof.html">
+       pandas.Series.asof
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.astype.html">
+       pandas.Series.astype
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.at_time.html">
+       pandas.Series.at_time
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.autocorr.html">
+       pandas.Series.autocorr
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.backfill.html">
+       pandas.Series.backfill
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.between.html">
+       pandas.Series.between
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.between_time.html">
+       pandas.Series.between_time
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.bfill.html">
+       pandas.Series.bfill
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.bool.html">
+       pandas.Series.bool
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.cat.html">
+       pandas.Series.cat
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.clip.html">
+       pandas.Series.clip
+      </a>
+     </li>
+     <li class="toctree-l3 current active">
+      <a class="current reference internal" href="#">
+       pandas.Series.combine
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.combine_first.html">
+       pandas.Series.combine_first
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.compare.html">
+       pandas.Series.compare
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.convert_dtypes.html">
+       pandas.Series.convert_dtypes
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.copy.html">
+       pandas.Series.copy
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.corr.html">
+       pandas.Series.corr
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.count.html">
+       pandas.Series.count
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.cov.html">
+       pandas.Series.cov
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.cummax.html">
+       pandas.Series.cummax
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.cummin.html">
+       pandas.Series.cummin
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.cumprod.html">
+       pandas.Series.cumprod
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.cumsum.html">
+       pandas.Series.cumsum
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.describe.html">
+       pandas.Series.describe
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.diff.html">
+       pandas.Series.diff
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.div.html">
+       pandas.Series.div
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.divide.html">
+       pandas.Series.divide
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.divmod.html">
+       pandas.Series.divmod
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.dot.html">
+       pandas.Series.dot
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.drop.html">
+       pandas.Series.drop
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.drop_duplicates.html">
+       pandas.Series.drop_duplicates
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.droplevel.html">
+       pandas.Series.droplevel
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.dropna.html">
+       pandas.Series.dropna
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.dt.html">
+       pandas.Series.dt
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.duplicated.html">
+       pandas.Series.duplicated
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.eq.html">
+       pandas.Series.eq
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.equals.html">
+       pandas.Series.equals
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.ewm.html">
+       pandas.Series.ewm
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.expanding.html">
+       pandas.Series.expanding
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.explode.html">
+       pandas.Series.explode
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.factorize.html">
+       pandas.Series.factorize
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.ffill.html">
+       pandas.Series.ffill
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.fillna.html">
+       pandas.Series.fillna
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.filter.html">
+       pandas.Series.filter
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.first.html">
+       pandas.Series.first
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.first_valid_index.html">
+       pandas.Series.first_valid_index
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.floordiv.html">
+       pandas.Series.floordiv
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.ge.html">
+       pandas.Series.ge
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.get.html">
+       pandas.Series.get
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.groupby.html">
+       pandas.Series.groupby
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.gt.html">
+       pandas.Series.gt
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.head.html">
+       pandas.Series.head
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.hist.html">
+       pandas.Series.hist
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.idxmax.html">
+       pandas.Series.idxmax
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.idxmin.html">
+       pandas.Series.idxmin
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.infer_objects.html">
+       pandas.Series.infer_objects
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.info.html">
+       pandas.Series.info
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.interpolate.html">
+       pandas.Series.interpolate
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.isin.html">
+       pandas.Series.isin
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.isna.html">
+       pandas.Series.isna
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.isnull.html">
+       pandas.Series.isnull
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.item.html">
+       pandas.Series.item
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.items.html">
+       pandas.Series.items
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.iteritems.html">
+       pandas.Series.iteritems
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.keys.html">
+       pandas.Series.keys
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.kurt.html">
+       pandas.Series.kurt
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.kurtosis.html">
+       pandas.Series.kurtosis
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.last.html">
+       pandas.Series.last
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.last_valid_index.html">
+       pandas.Series.last_valid_index
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.le.html">
+       pandas.Series.le
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.lt.html">
+       pandas.Series.lt
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.mad.html">
+       pandas.Series.mad
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.map.html">
+       pandas.Series.map
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.mask.html">
+       pandas.Series.mask
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.max.html">
+       pandas.Series.max
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.mean.html">
+       pandas.Series.mean
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.median.html">
+       pandas.Series.median
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.memory_usage.html">
+       pandas.Series.memory_usage
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.min.html">
+       pandas.Series.min
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.mod.html">
+       pandas.Series.mod
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.mode.html">
+       pandas.Series.mode
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.mul.html">
+       pandas.Series.mul
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.multiply.html">
+       pandas.Series.multiply
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.ne.html">
+       pandas.Series.ne
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.nlargest.html">
+       pandas.Series.nlargest
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.notna.html">
+       pandas.Series.notna
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.notnull.html">
+       pandas.Series.notnull
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.nsmallest.html">
+       pandas.Series.nsmallest
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.nunique.html">
+       pandas.Series.nunique
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.pad.html">
+       pandas.Series.pad
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.pct_change.html">
+       pandas.Series.pct_change
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.pipe.html">
+       pandas.Series.pipe
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.plot.html">
+       pandas.Series.plot
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.pop.html">
+       pandas.Series.pop
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.pow.html">
+       pandas.Series.pow
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.prod.html">
+       pandas.Series.prod
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.product.html">
+       pandas.Series.product
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.quantile.html">
+       pandas.Series.quantile
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.radd.html">
+       pandas.Series.radd
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.rank.html">
+       pandas.Series.rank
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.ravel.html">
+       pandas.Series.ravel
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.rdiv.html">
+       pandas.Series.rdiv
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.rdivmod.html">
+       pandas.Series.rdivmod
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.reindex.html">
+       pandas.Series.reindex
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.reindex_like.html">
+       pandas.Series.reindex_like
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.rename.html">
+       pandas.Series.rename
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.rename_axis.html">
+       pandas.Series.rename_axis
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.reorder_levels.html">
+       pandas.Series.reorder_levels
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.repeat.html">
+       pandas.Series.repeat
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.replace.html">
+       pandas.Series.replace
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.resample.html">
+       pandas.Series.resample
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.reset_index.html">
+       pandas.Series.reset_index
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.rfloordiv.html">
+       pandas.Series.rfloordiv
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.rmod.html">
+       pandas.Series.rmod
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.rmul.html">
+       pandas.Series.rmul
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.rolling.html">
+       pandas.Series.rolling
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.round.html">
+       pandas.Series.round
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.rpow.html">
+       pandas.Series.rpow
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.rsub.html">
+       pandas.Series.rsub
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.rtruediv.html">
+       pandas.Series.rtruediv
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.sample.html">
+       pandas.Series.sample
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.searchsorted.html">
+       pandas.Series.searchsorted
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.sem.html">
+       pandas.Series.sem
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.set_axis.html">
+       pandas.Series.set_axis
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.set_flags.html">
+       pandas.Series.set_flags
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.shift.html">
+       pandas.Series.shift
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.skew.html">
+       pandas.Series.skew
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.slice_shift.html">
+       pandas.Series.slice_shift
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.sort_index.html">
+       pandas.Series.sort_index
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.sort_values.html">
+       pandas.Series.sort_values
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.sparse.html">
+       pandas.Series.sparse
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.squeeze.html">
+       pandas.Series.squeeze
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.std.html">
+       pandas.Series.std
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.str.html">
+       pandas.Series.str
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.sub.html">
+       pandas.Series.sub
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.subtract.html">
+       pandas.Series.subtract
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.sum.html">
+       pandas.Series.sum
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.swapaxes.html">
+       pandas.Series.swapaxes
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.swaplevel.html">
+       pandas.Series.swaplevel
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.tail.html">
+       pandas.Series.tail
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.take.html">
+       pandas.Series.take
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.to_clipboard.html">
+       pandas.Series.to_clipboard
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.to_csv.html">
+       pandas.Series.to_csv
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.to_dict.html">
+       pandas.Series.to_dict
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.to_excel.html">
+       pandas.Series.to_excel
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.to_frame.html">
+       pandas.Series.to_frame
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.to_hdf.html">
+       pandas.Series.to_hdf
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.to_json.html">
+       pandas.Series.to_json
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.to_latex.html">
+       pandas.Series.to_latex
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.to_list.html">
+       pandas.Series.to_list
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.to_markdown.html">
+       pandas.Series.to_markdown
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.to_numpy.html">
+       pandas.Series.to_numpy
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.to_period.html">
+       pandas.Series.to_period
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.to_pickle.html">
+       pandas.Series.to_pickle
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.to_sql.html">
+       pandas.Series.to_sql
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.to_string.html">
+       pandas.Series.to_string
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.to_timestamp.html">
+       pandas.Series.to_timestamp
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.to_xarray.html">
+       pandas.Series.to_xarray
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.tolist.html">
+       pandas.Series.tolist
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.transform.html">
+       pandas.Series.transform
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.transpose.html">
+       pandas.Series.transpose
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.truediv.html">
+       pandas.Series.truediv
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.truncate.html">
+       pandas.Series.truncate
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.tshift.html">
+       pandas.Series.tshift
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.tz_convert.html">
+       pandas.Series.tz_convert
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.tz_localize.html">
+       pandas.Series.tz_localize
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.unique.html">
+       pandas.Series.unique
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.unstack.html">
+       pandas.Series.unstack
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.update.html">
+       pandas.Series.update
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.value_counts.html">
+       pandas.Series.value_counts
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.var.html">
+       pandas.Series.var
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.view.html">
+       pandas.Series.view
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.where.html">
+       pandas.Series.where
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Series.xs.html">
+       pandas.Series.xs
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.index.html">
+     pandas.Series.index
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.array.html">
+     pandas.Series.array
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.values.html">
+     pandas.Series.values
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.dtype.html">
+     pandas.Series.dtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.shape.html">
+     pandas.Series.shape
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.nbytes.html">
+     pandas.Series.nbytes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.ndim.html">
+     pandas.Series.ndim
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.size.html">
+     pandas.Series.size
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.T.html">
+     pandas.Series.T
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.memory_usage.html">
+     pandas.Series.memory_usage
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.hasnans.html">
+     pandas.Series.hasnans
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.empty.html">
+     pandas.Series.empty
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.dtypes.html">
+     pandas.Series.dtypes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.name.html">
+     pandas.Series.name
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.flags.html">
+     pandas.Series.flags
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.set_flags.html">
+     pandas.Series.set_flags
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.astype.html">
+     pandas.Series.astype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.convert_dtypes.html">
+     pandas.Series.convert_dtypes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.infer_objects.html">
+     pandas.Series.infer_objects
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.copy.html">
+     pandas.Series.copy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.bool.html">
+     pandas.Series.bool
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.to_numpy.html">
+     pandas.Series.to_numpy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.to_period.html">
+     pandas.Series.to_period
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.to_timestamp.html">
+     pandas.Series.to_timestamp
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.to_list.html">
+     pandas.Series.to_list
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.__array__.html">
+     pandas.Series.__array__
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.get.html">
+     pandas.Series.get
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.at.html">
+     pandas.Series.at
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.iat.html">
+     pandas.Series.iat
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.loc.html">
+     pandas.Series.loc
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.iloc.html">
+     pandas.Series.iloc
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.__iter__.html">
+     pandas.Series.__iter__
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.items.html">
+     pandas.Series.items
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.iteritems.html">
+     pandas.Series.iteritems
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.keys.html">
+     pandas.Series.keys
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.pop.html">
+     pandas.Series.pop
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.item.html">
+     pandas.Series.item
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.xs.html">
+     pandas.Series.xs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.add.html">
+     pandas.Series.add
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.sub.html">
+     pandas.Series.sub
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.mul.html">
+     pandas.Series.mul
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.div.html">
+     pandas.Series.div
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.truediv.html">
+     pandas.Series.truediv
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.floordiv.html">
+     pandas.Series.floordiv
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.mod.html">
+     pandas.Series.mod
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.pow.html">
+     pandas.Series.pow
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.radd.html">
+     pandas.Series.radd
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.rsub.html">
+     pandas.Series.rsub
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.rmul.html">
+     pandas.Series.rmul
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.rdiv.html">
+     pandas.Series.rdiv
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.rtruediv.html">
+     pandas.Series.rtruediv
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.rfloordiv.html">
+     pandas.Series.rfloordiv
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.rmod.html">
+     pandas.Series.rmod
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.rpow.html">
+     pandas.Series.rpow
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     pandas.Series.combine
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.combine_first.html">
+     pandas.Series.combine_first
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.round.html">
+     pandas.Series.round
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.lt.html">
+     pandas.Series.lt
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.gt.html">
+     pandas.Series.gt
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.le.html">
+     pandas.Series.le
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.ge.html">
+     pandas.Series.ge
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.ne.html">
+     pandas.Series.ne
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.eq.html">
+     pandas.Series.eq
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.product.html">
+     pandas.Series.product
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.dot.html">
+     pandas.Series.dot
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.apply.html">
+     pandas.Series.apply
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.agg.html">
+     pandas.Series.agg
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.aggregate.html">
+     pandas.Series.aggregate
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.transform.html">
+     pandas.Series.transform
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.map.html">
+     pandas.Series.map
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.groupby.html">
+     pandas.Series.groupby
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.rolling.html">
+     pandas.Series.rolling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.expanding.html">
+     pandas.Series.expanding
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.ewm.html">
+     pandas.Series.ewm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.pipe.html">
+     pandas.Series.pipe
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.abs.html">
+     pandas.Series.abs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.all.html">
+     pandas.Series.all
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.any.html">
+     pandas.Series.any
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.autocorr.html">
+     pandas.Series.autocorr
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.between.html">
+     pandas.Series.between
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.clip.html">
+     pandas.Series.clip
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.corr.html">
+     pandas.Series.corr
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.count.html">
+     pandas.Series.count
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.cov.html">
+     pandas.Series.cov
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.cummax.html">
+     pandas.Series.cummax
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.cummin.html">
+     pandas.Series.cummin
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.cumprod.html">
+     pandas.Series.cumprod
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.cumsum.html">
+     pandas.Series.cumsum
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.describe.html">
+     pandas.Series.describe
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.diff.html">
+     pandas.Series.diff
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.factorize.html">
+     pandas.Series.factorize
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.kurt.html">
+     pandas.Series.kurt
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.mad.html">
+     pandas.Series.mad
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.max.html">
+     pandas.Series.max
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.mean.html">
+     pandas.Series.mean
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.median.html">
+     pandas.Series.median
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.min.html">
+     pandas.Series.min
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.mode.html">
+     pandas.Series.mode
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.nlargest.html">
+     pandas.Series.nlargest
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.nsmallest.html">
+     pandas.Series.nsmallest
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.pct_change.html">
+     pandas.Series.pct_change
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.prod.html">
+     pandas.Series.prod
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.quantile.html">
+     pandas.Series.quantile
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.rank.html">
+     pandas.Series.rank
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.sem.html">
+     pandas.Series.sem
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.skew.html">
+     pandas.Series.skew
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.std.html">
+     pandas.Series.std
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.sum.html">
+     pandas.Series.sum
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.var.html">
+     pandas.Series.var
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.kurtosis.html">
+     pandas.Series.kurtosis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.unique.html">
+     pandas.Series.unique
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.nunique.html">
+     pandas.Series.nunique
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.is_unique.html">
+     pandas.Series.is_unique
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.is_monotonic.html">
+     pandas.Series.is_monotonic
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.is_monotonic_increasing.html">
+     pandas.Series.is_monotonic_increasing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.is_monotonic_decreasing.html">
+     pandas.Series.is_monotonic_decreasing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.value_counts.html">
+     pandas.Series.value_counts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.align.html">
+     pandas.Series.align
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.drop.html">
+     pandas.Series.drop
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.droplevel.html">
+     pandas.Series.droplevel
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.drop_duplicates.html">
+     pandas.Series.drop_duplicates
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.duplicated.html">
+     pandas.Series.duplicated
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.equals.html">
+     pandas.Series.equals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.first.html">
+     pandas.Series.first
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.head.html">
+     pandas.Series.head
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.idxmax.html">
+     pandas.Series.idxmax
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.idxmin.html">
+     pandas.Series.idxmin
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.isin.html">
+     pandas.Series.isin
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.last.html">
+     pandas.Series.last
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.reindex.html">
+     pandas.Series.reindex
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.reindex_like.html">
+     pandas.Series.reindex_like
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.rename.html">
+     pandas.Series.rename
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.rename_axis.html">
+     pandas.Series.rename_axis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.reset_index.html">
+     pandas.Series.reset_index
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.sample.html">
+     pandas.Series.sample
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.set_axis.html">
+     pandas.Series.set_axis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.take.html">
+     pandas.Series.take
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.tail.html">
+     pandas.Series.tail
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.truncate.html">
+     pandas.Series.truncate
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.where.html">
+     pandas.Series.where
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.mask.html">
+     pandas.Series.mask
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.add_prefix.html">
+     pandas.Series.add_prefix
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.add_suffix.html">
+     pandas.Series.add_suffix
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.filter.html">
+     pandas.Series.filter
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.backfill.html">
+     pandas.Series.backfill
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.bfill.html">
+     pandas.Series.bfill
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.dropna.html">
+     pandas.Series.dropna
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.ffill.html">
+     pandas.Series.ffill
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.fillna.html">
+     pandas.Series.fillna
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.interpolate.html">
+     pandas.Series.interpolate
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.isna.html">
+     pandas.Series.isna
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.isnull.html">
+     pandas.Series.isnull
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.notna.html">
+     pandas.Series.notna
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.notnull.html">
+     pandas.Series.notnull
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.pad.html">
+     pandas.Series.pad
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.replace.html">
+     pandas.Series.replace
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.argsort.html">
+     pandas.Series.argsort
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.argmin.html">
+     pandas.Series.argmin
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.argmax.html">
+     pandas.Series.argmax
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.reorder_levels.html">
+     pandas.Series.reorder_levels
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.sort_values.html">
+     pandas.Series.sort_values
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.sort_index.html">
+     pandas.Series.sort_index
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.swaplevel.html">
+     pandas.Series.swaplevel
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.unstack.html">
+     pandas.Series.unstack
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.explode.html">
+     pandas.Series.explode
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.searchsorted.html">
+     pandas.Series.searchsorted
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.ravel.html">
+     pandas.Series.ravel
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.repeat.html">
+     pandas.Series.repeat
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.squeeze.html">
+     pandas.Series.squeeze
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.view.html">
+     pandas.Series.view
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.append.html">
+     pandas.Series.append
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.compare.html">
+     pandas.Series.compare
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.update.html">
+     pandas.Series.update
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.asfreq.html">
+     pandas.Series.asfreq
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.asof.html">
+     pandas.Series.asof
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.shift.html">
+     pandas.Series.shift
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.first_valid_index.html">
+     pandas.Series.first_valid_index
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.last_valid_index.html">
+     pandas.Series.last_valid_index
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.resample.html">
+     pandas.Series.resample
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.tz_convert.html">
+     pandas.Series.tz_convert
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.tz_localize.html">
+     pandas.Series.tz_localize
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.at_time.html">
+     pandas.Series.at_time
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.between_time.html">
+     pandas.Series.between_time
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.tshift.html">
+     pandas.Series.tshift
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.slice_shift.html">
+     pandas.Series.slice_shift
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.dt.date.html">
+     pandas.Series.dt.date
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.dt.time.html">
+     pandas.Series.dt.time
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.dt.timetz.html">
+     pandas.Series.dt.timetz
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.dt.year.html">
+     pandas.Series.dt.year
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.dt.month.html">
+     pandas.Series.dt.month
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.dt.day.html">
+     pandas.Series.dt.day
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.dt.hour.html">
+     pandas.Series.dt.hour
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.dt.minute.html">
+     pandas.Series.dt.minute
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.dt.second.html">
+     pandas.Series.dt.second
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.dt.microsecond.html">
+     pandas.Series.dt.microsecond
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.dt.nanosecond.html">
+     pandas.Series.dt.nanosecond
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.dt.week.html">
+     pandas.Series.dt.week
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.dt.weekofyear.html">
+     pandas.Series.dt.weekofyear
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.dt.dayofweek.html">
+     pandas.Series.dt.dayofweek
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.dt.day_of_week.html">
+     pandas.Series.dt.day_of_week
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.dt.weekday.html">
+     pandas.Series.dt.weekday
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.dt.dayofyear.html">
+     pandas.Series.dt.dayofyear
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.dt.day_of_year.html">
+     pandas.Series.dt.day_of_year
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.dt.quarter.html">
+     pandas.Series.dt.quarter
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.dt.is_month_start.html">
+     pandas.Series.dt.is_month_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.dt.is_month_end.html">
+     pandas.Series.dt.is_month_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.dt.is_quarter_start.html">
+     pandas.Series.dt.is_quarter_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.dt.is_quarter_end.html">
+     pandas.Series.dt.is_quarter_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.dt.is_year_start.html">
+     pandas.Series.dt.is_year_start
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.dt.is_year_end.html">
+     pandas.Series.dt.is_year_end
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.dt.is_leap_year.html">
+     pandas.Series.dt.is_leap_year
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.dt.daysinmonth.html">
+     pandas.Series.dt.daysinmonth
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.dt.days_in_month.html">
+     pandas.Series.dt.days_in_month
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.dt.tz.html">
+     pandas.Series.dt.tz
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.dt.freq.html">
+     pandas.Series.dt.freq
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.dt.isocalendar.html">
+     pandas.Series.dt.isocalendar
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.dt.to_period.html">
+     pandas.Series.dt.to_period
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.dt.to_pydatetime.html">
+     pandas.Series.dt.to_pydatetime
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.dt.tz_localize.html">
+     pandas.Series.dt.tz_localize
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.dt.tz_convert.html">
+     pandas.Series.dt.tz_convert
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.dt.normalize.html">
+     pandas.Series.dt.normalize
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.dt.strftime.html">
+     pandas.Series.dt.strftime
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.dt.round.html">
+     pandas.Series.dt.round
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.dt.floor.html">
+     pandas.Series.dt.floor
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.dt.ceil.html">
+     pandas.Series.dt.ceil
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.dt.month_name.html">
+     pandas.Series.dt.month_name
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.dt.day_name.html">
+     pandas.Series.dt.day_name
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.dt.qyear.html">
+     pandas.Series.dt.qyear
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.dt.start_time.html">
+     pandas.Series.dt.start_time
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.dt.end_time.html">
+     pandas.Series.dt.end_time
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.dt.days.html">
+     pandas.Series.dt.days
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.dt.seconds.html">
+     pandas.Series.dt.seconds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.dt.microseconds.html">
+     pandas.Series.dt.microseconds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.dt.nanoseconds.html">
+     pandas.Series.dt.nanoseconds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.dt.components.html">
+     pandas.Series.dt.components
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.dt.to_pytimedelta.html">
+     pandas.Series.dt.to_pytimedelta
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.dt.total_seconds.html">
+     pandas.Series.dt.total_seconds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.str.capitalize.html">
+     pandas.Series.str.capitalize
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.str.casefold.html">
+     pandas.Series.str.casefold
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.str.cat.html">
+     pandas.Series.str.cat
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.str.center.html">
+     pandas.Series.str.center
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.str.contains.html">
+     pandas.Series.str.contains
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.str.count.html">
+     pandas.Series.str.count
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.str.decode.html">
+     pandas.Series.str.decode
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.str.encode.html">
+     pandas.Series.str.encode
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.str.endswith.html">
+     pandas.Series.str.endswith
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.str.extract.html">
+     pandas.Series.str.extract
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.str.extractall.html">
+     pandas.Series.str.extractall
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.str.find.html">
+     pandas.Series.str.find
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.str.findall.html">
+     pandas.Series.str.findall
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.str.fullmatch.html">
+     pandas.Series.str.fullmatch
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.str.get.html">
+     pandas.Series.str.get
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.str.index.html">
+     pandas.Series.str.index
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.str.join.html">
+     pandas.Series.str.join
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.str.len.html">
+     pandas.Series.str.len
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.str.ljust.html">
+     pandas.Series.str.ljust
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.str.lower.html">
+     pandas.Series.str.lower
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.str.lstrip.html">
+     pandas.Series.str.lstrip
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.str.match.html">
+     pandas.Series.str.match
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.str.normalize.html">
+     pandas.Series.str.normalize
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.str.pad.html">
+     pandas.Series.str.pad
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.str.partition.html">
+     pandas.Series.str.partition
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.str.removeprefix.html">
+     pandas.Series.str.removeprefix
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.str.removesuffix.html">
+     pandas.Series.str.removesuffix
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.str.repeat.html">
+     pandas.Series.str.repeat
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.str.replace.html">
+     pandas.Series.str.replace
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.str.rfind.html">
+     pandas.Series.str.rfind
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.str.rindex.html">
+     pandas.Series.str.rindex
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.str.rjust.html">
+     pandas.Series.str.rjust
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.str.rpartition.html">
+     pandas.Series.str.rpartition
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.str.rstrip.html">
+     pandas.Series.str.rstrip
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.str.slice.html">
+     pandas.Series.str.slice
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.str.slice_replace.html">
+     pandas.Series.str.slice_replace
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.str.split.html">
+     pandas.Series.str.split
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.str.rsplit.html">
+     pandas.Series.str.rsplit
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.str.startswith.html">
+     pandas.Series.str.startswith
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.str.strip.html">
+     pandas.Series.str.strip
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.str.swapcase.html">
+     pandas.Series.str.swapcase
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.str.title.html">
+     pandas.Series.str.title
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.str.translate.html">
+     pandas.Series.str.translate
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.str.upper.html">
+     pandas.Series.str.upper
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.str.wrap.html">
+     pandas.Series.str.wrap
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.str.zfill.html">
+     pandas.Series.str.zfill
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.str.isalnum.html">
+     pandas.Series.str.isalnum
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.str.isalpha.html">
+     pandas.Series.str.isalpha
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.str.isdigit.html">
+     pandas.Series.str.isdigit
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.str.isspace.html">
+     pandas.Series.str.isspace
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.str.islower.html">
+     pandas.Series.str.islower
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.str.isupper.html">
+     pandas.Series.str.isupper
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.str.istitle.html">
+     pandas.Series.str.istitle
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.str.isnumeric.html">
+     pandas.Series.str.isnumeric
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.str.isdecimal.html">
+     pandas.Series.str.isdecimal
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.str.get_dummies.html">
+     pandas.Series.str.get_dummies
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.cat.categories.html">
+     pandas.Series.cat.categories
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.cat.ordered.html">
+     pandas.Series.cat.ordered
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.cat.codes.html">
+     pandas.Series.cat.codes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.cat.rename_categories.html">
+     pandas.Series.cat.rename_categories
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.cat.reorder_categories.html">
+     pandas.Series.cat.reorder_categories
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.cat.add_categories.html">
+     pandas.Series.cat.add_categories
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.cat.remove_categories.html">
+     pandas.Series.cat.remove_categories
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.cat.remove_unused_categories.html">
+     pandas.Series.cat.remove_unused_categories
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.cat.set_categories.html">
+     pandas.Series.cat.set_categories
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.cat.as_ordered.html">
+     pandas.Series.cat.as_ordered
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.cat.as_unordered.html">
+     pandas.Series.cat.as_unordered
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.sparse.npoints.html">
+     pandas.Series.sparse.npoints
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.sparse.density.html">
+     pandas.Series.sparse.density
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.sparse.fill_value.html">
+     pandas.Series.sparse.fill_value
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.sparse.sp_values.html">
+     pandas.Series.sparse.sp_values
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.sparse.from_coo.html">
+     pandas.Series.sparse.from_coo
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.sparse.to_coo.html">
+     pandas.Series.sparse.to_coo
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Flags.html">
+     pandas.Flags
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.attrs.html">
+     pandas.Series.attrs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.plot.html">
+     pandas.Series.plot
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.plot.area.html">
+     pandas.Series.plot.area
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.plot.bar.html">
+     pandas.Series.plot.bar
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.plot.barh.html">
+     pandas.Series.plot.barh
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.plot.box.html">
+     pandas.Series.plot.box
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.plot.density.html">
+     pandas.Series.plot.density
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.plot.hist.html">
+     pandas.Series.plot.hist
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.plot.kde.html">
+     pandas.Series.plot.kde
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.plot.line.html">
+     pandas.Series.plot.line
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.plot.pie.html">
+     pandas.Series.plot.pie
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.hist.html">
+     pandas.Series.hist
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.to_pickle.html">
+     pandas.Series.to_pickle
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.to_csv.html">
+     pandas.Series.to_csv
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.to_dict.html">
+     pandas.Series.to_dict
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.to_excel.html">
+     pandas.Series.to_excel
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.to_frame.html">
+     pandas.Series.to_frame
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.to_xarray.html">
+     pandas.Series.to_xarray
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.to_hdf.html">
+     pandas.Series.to_hdf
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.to_sql.html">
+     pandas.Series.to_sql
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.to_json.html">
+     pandas.Series.to_json
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.to_string.html">
+     pandas.Series.to_string
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.to_clipboard.html">
+     pandas.Series.to_clipboard
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.to_latex.html">
+     pandas.Series.to_latex
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Series.to_markdown.html">
+     pandas.Series.to_markdown
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../frame.html">
+   DataFrame
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../arrays.html">
+   pandas arrays, scalars, and data types
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../indexing.html">
+   Index objects
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../offset_frequency.html">
+   Date offsets
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../window.html">
+   Window
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../groupby.html">
+   GroupBy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../resampling.html">
+   Resampling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../style.html">
+   Style
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../plotting.html">
+   Plotting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../options.html">
+   Options and settings
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../extensions.html">
+   Extensions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../testing.html">
+   Testing
+  </a>
+ </li>
+</ul>
+
+    
+  </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+      </div>
+      <main class="bd-main">
+        
+        
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+            </div>
+            
+            
+            <article class="bd-article" role="main">
+              
+  <section id="pandas-series-combine">
+<h1>pandas.Series.combine<a class="headerlink" href="#pandas-series-combine" title="Permalink to this headline">#</a></h1>
+<dl class="py method">
+<dt class="sig sig-object py" id="pandas.Series.combine">
+<span class="sig-prename descclassname"><span class="pre">Series.</span></span><span class="sig-name descname"><span class="pre">combine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fill_value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.5.3/pandas/core/series.py#L3311-L3409"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.Series.combine" title="Permalink to this definition">#</a></dt>
+<dd><p>Combine the Series with a Series or scalar according to <cite>func</cite>.</p>
+<p>Combine the Series and <cite>other</cite> using <cite>func</cite> to perform elementwise
+selection for combined Series.
+<cite>fill_value</cite> is assumed when value is missing at some index
+from one of the two objects being combined.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>other</strong><span class="classifier">Series or scalar</span></dt><dd><p>The value(s) to be combined with the <cite>Series</cite>.</p>
+</dd>
+<dt><strong>func</strong><span class="classifier">function</span></dt><dd><p>Function that takes two scalars as inputs and returns an element.</p>
+</dd>
+<dt><strong>fill_value</strong><span class="classifier">scalar, optional</span></dt><dd><p>The value to assume when an index is missing from
+one Series or the other. The default specifies to use the
+appropriate NaN value for the underlying dtype of the Series.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>Series</dt><dd><p>The result of combining the Series with the other object.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="pandas.Series.combine_first.html#pandas.Series.combine_first" title="pandas.Series.combine_first"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Series.combine_first</span></code></a></dt><dd><p>Combine Series values, choosing the calling Series’ values first.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Examples</p>
+<p>Consider 2 Datasets <code class="docutils literal notranslate"><span class="pre">s1</span></code> and <code class="docutils literal notranslate"><span class="pre">s2</span></code> containing
+highest clocked speeds of different birds.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span><span class="s1">&#39;falcon&#39;</span><span class="p">:</span> <span class="mf">330.0</span><span class="p">,</span> <span class="s1">&#39;eagle&#39;</span><span class="p">:</span> <span class="mf">160.0</span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s1</span>
+<span class="go">falcon    330.0</span>
+<span class="go">eagle     160.0</span>
+<span class="go">dtype: float64</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">({</span><span class="s1">&#39;falcon&#39;</span><span class="p">:</span> <span class="mf">345.0</span><span class="p">,</span> <span class="s1">&#39;eagle&#39;</span><span class="p">:</span> <span class="mf">200.0</span><span class="p">,</span> <span class="s1">&#39;duck&#39;</span><span class="p">:</span> <span class="mf">30.0</span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s2</span>
+<span class="go">falcon    345.0</span>
+<span class="go">eagle     200.0</span>
+<span class="go">duck       30.0</span>
+<span class="go">dtype: float64</span>
+</pre></div>
+</div>
+<p>Now, to combine the two datasets and view the highest speeds
+of the birds across the two datasets</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s1</span><span class="o">.</span><span class="n">combine</span><span class="p">(</span><span class="n">s2</span><span class="p">,</span> <span class="nb">max</span><span class="p">)</span>
+<span class="go">duck        NaN</span>
+<span class="go">eagle     200.0</span>
+<span class="go">falcon    345.0</span>
+<span class="go">dtype: float64</span>
+</pre></div>
+</div>
+<p>In the previous example, the resulting value for duck is missing,
+because the maximum of a NaN and a float is a NaN.
+So, in the example, we set <code class="docutils literal notranslate"><span class="pre">fill_value=0</span></code>,
+so the maximum value returned will be the value from some dataset.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s1</span><span class="o">.</span><span class="n">combine</span><span class="p">(</span><span class="n">s2</span><span class="p">,</span> <span class="nb">max</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="go">duck       30.0</span>
+<span class="go">eagle     200.0</span>
+<span class="go">falcon    345.0</span>
+<span class="go">dtype: float64</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+
+
+            </article>
+            
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="pandas.Series.clip.html" title="previous page">
+      <i class="fas fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">pandas.Series.clip</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="pandas.Series.combine_first.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">pandas.Series.combine_first</p>
+  </div>
+  <i class="fas fa-angle-right"></i>
+  </a>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+</div>
+
+<div class="toc-item">
+  
+<div class="tocsection sourcelink">
+    <a href="../../_sources/reference/api/pandas.Series.combine.rst.txt">
+        <i class="fas fa-file-alt"></i> Show Source
+    </a>
+</div>
+
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+          </div>
+        </footer>
+        
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=9b1a4fa89bdd0e95b23b"></script>
+
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    <p class="copyright">
+    &copy 2023 pandas via <a href="https://numfocus.org">NumFOCUS, Inc.</a> Hosted by <a href="https://www.ovhcloud.com">OVHcloud</a>.
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>

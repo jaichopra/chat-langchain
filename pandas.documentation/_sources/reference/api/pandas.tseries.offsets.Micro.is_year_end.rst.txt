@@ -1,0 +1,6 @@
+pandas.tseries.offsets.Micro.is\_year\_end
+==========================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. automethod:: Micro.is_year_end

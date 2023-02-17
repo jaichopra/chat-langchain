@@ -1,0 +1,1771 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Comparison with spreadsheets &#8212; pandas 1.5.3 documentation</title>
+  <script>
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=9b1a4fa89bdd0e95b23b" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=9b1a4fa89bdd0e95b23b" rel="stylesheet">
+
+  
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/getting_started.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/pandas.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=9b1a4fa89bdd0e95b23b">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/toggleprompt.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script async="async" src="https://www.google-analytics.com/analytics.js"></script>
+    <script>
+                    window.ga = window.ga || function () {
+                        (ga.q = ga.q || []).push(arguments) };
+                    ga.l = +new Date;
+                    ga('create', 'UA-27880019-2', 'auto');
+                    ga('set', 'anonymizeIp', true);
+                    ga('send', 'pageview');
+                </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'getting_started/comparison/comparison_with_spreadsheets';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        </script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Comparison with SAS" href="comparison_with_sas.html" />
+    <link rel="prev" title="Comparison with SQL" href="comparison_with_sql.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fas fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../../_static/pandas.svg" class="logo__image only-light" alt="Logo image">
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item current active">
+                    <a class="nav-link" href="../index.html">
+                        Getting started
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../user_guide/index.html">
+                        User Guide
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../reference/index.html">
+                        API reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../development/index.html">
+                        Development
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../whatsnew/index.html">
+                        Release notes
+                    </a>
+                </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      <div class="navbar-end-item navbar-end__search-button-container">
+        
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search">
+  <i class="fas fa-search"></i>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        1.5.3  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pandas-dev/pandas" title="GitHub" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/pandas_dev" title="Twitter" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  <div class="search-button-container--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search">
+  <i class="fas fa-search"></i>
+</button>
+  </div>
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fas fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item current active">
+                    <a class="nav-link" href="../index.html">
+                        Getting started
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../user_guide/index.html">
+                        User Guide
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../reference/index.html">
+                        API reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../development/index.html">
+                        Development
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../whatsnew/index.html">
+                        Release notes
+                    </a>
+                </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        1.5.3  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pandas-dev/pandas" title="GitHub" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/pandas_dev" title="Twitter" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item navbar-nav">
+    
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../install.html">
+   Installation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../overview.html">
+   Package overview
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../intro_tutorials/index.html">
+   Getting started tutorials
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label class="toctree-toggle" for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_tutorials/01_table_oriented.html">
+     What kind of data does pandas handle?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_tutorials/02_read_write.html">
+     How do I read and write tabular data?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_tutorials/03_subset_data.html">
+     How do I select a subset of a
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       DataFrame
+      </span>
+     </code>
+     ?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_tutorials/04_plotting.html">
+     How do I create plots in pandas?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_tutorials/05_add_columns.html">
+     How to create new columns derived from existing columns?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_tutorials/06_calculate_statistics.html">
+     How to calculate summary statistics?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_tutorials/07_reshape_table_layout.html">
+     How to reshape the layout of tables?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_tutorials/08_combine_dataframes.html">
+     How to combine data from multiple tables?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_tutorials/09_timeseries.html">
+     How to handle time series data with ease?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../intro_tutorials/10_text_data.html">
+     How to manipulate textual data?
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   Comparison with other tools
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label class="toctree-toggle" for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="comparison_with_r.html">
+     Comparison with R / R libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="comparison_with_sql.html">
+     Comparison with SQL
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Comparison with spreadsheets
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="comparison_with_sas.html">
+     Comparison with SAS
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="comparison_with_stata.html">
+     Comparison with Stata
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../tutorials.html">
+   Community tutorials
+  </a>
+ </li>
+</ul>
+
+    
+  </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+      </div>
+      <main class="bd-main">
+        
+        
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+            </div>
+            
+            
+            <article class="bd-article" role="main">
+              
+  <section id="comparison-with-spreadsheets">
+<span id="compare-with-spreadsheets"></span><h1>Comparison with spreadsheets<a class="headerlink" href="#comparison-with-spreadsheets" title="Permalink to this headline">#</a></h1>
+<p>Since many potential pandas users have some familiarity with spreadsheet programs like
+<a class="reference external" href="https://support.microsoft.com/en-us/excel">Excel</a>, this page is meant to provide some examples
+of how various spreadsheet operations would be performed using pandas. This page will use
+terminology and link to documentation for Excel, but much will be the same/similar in
+<a class="reference external" href="https://support.google.com/a/users/answer/9282959">Google Sheets</a>,
+<a class="reference external" href="https://help.libreoffice.org/latest/en-US/text/scalc/main0000.html?DbPAR=CALC">LibreOffice Calc</a>,
+<a class="reference external" href="https://www.apple.com/numbers/compatibility/">Apple Numbers</a>, and other
+Excel-compatible spreadsheet software.</p>
+<p>If you’re new to pandas, you might want to first read through <a class="reference internal" href="../../user_guide/10min.html#min"><span class="std std-ref">10 Minutes to pandas</span></a>
+to familiarize yourself with the library.</p>
+<p>As is customary, we import pandas and NumPy as follows:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="gp">In [2]: </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+<section id="data-structures">
+<h2>Data structures<a class="headerlink" href="#data-structures" title="Permalink to this headline">#</a></h2>
+<section id="general-terminology-translation">
+<h3>General terminology translation<a class="headerlink" href="#general-terminology-translation" title="Permalink to this headline">#</a></h3>
+<table class="colwidths-given table">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>pandas</p></th>
+<th class="head"><p>Excel</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DataFrame</span></code></p></td>
+<td><p>worksheet</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Series</span></code></p></td>
+<td><p>column</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Index</span></code></p></td>
+<td><p>row headings</p></td>
+</tr>
+<tr class="row-odd"><td><p>row</p></td>
+<td><p>row</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">NaN</span></code></p></td>
+<td><p>empty cell</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="dataframe">
+<h3><code class="docutils literal notranslate"><span class="pre">DataFrame</span></code><a class="headerlink" href="#dataframe" title="Permalink to this headline">#</a></h3>
+<p>A <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> in pandas is analogous to an Excel worksheet. While an Excel workbook can contain
+multiple worksheets, pandas <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>s exist independently.</p>
+</section>
+<section id="series">
+<h3><code class="docutils literal notranslate"><span class="pre">Series</span></code><a class="headerlink" href="#series" title="Permalink to this headline">#</a></h3>
+<p>A <code class="docutils literal notranslate"><span class="pre">Series</span></code> is the data structure that represents one column of a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>. Working with a
+<code class="docutils literal notranslate"><span class="pre">Series</span></code> is analogous to referencing a column of a spreadsheet.</p>
+</section>
+<section id="index">
+<h3><code class="docutils literal notranslate"><span class="pre">Index</span></code><a class="headerlink" href="#index" title="Permalink to this headline">#</a></h3>
+<p>Every <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> and <code class="docutils literal notranslate"><span class="pre">Series</span></code> has an <code class="docutils literal notranslate"><span class="pre">Index</span></code>, which are labels on the <em>rows</em> of the data. In
+pandas, if no index is specified, a <a class="reference internal" href="../../reference/api/pandas.RangeIndex.html#pandas.RangeIndex" title="pandas.RangeIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">RangeIndex</span></code></a> is used by default (first row = 0,
+second row = 1, and so on), analogous to row headings/numbers in spreadsheets.</p>
+<p>In pandas, indexes can be set to one (or multiple) unique values, which is like having a column that
+is used as the row identifier in a worksheet. Unlike most spreadsheets, these <code class="docutils literal notranslate"><span class="pre">Index</span></code> values can
+actually be used to reference the rows. (Note that <a class="reference external" href="https://support.microsoft.com/en-us/office/using-structured-references-with-excel-tables-f5ed2452-2337-4f71-bed3-c8ae6d2b276e">this can be done in Excel with structured
+references</a>.)
+For example, in spreadsheets, you would reference the first row as <code class="docutils literal notranslate"><span class="pre">A1:Z1</span></code>, while in pandas you
+could use <code class="docutils literal notranslate"><span class="pre">populations.loc['Chicago']</span></code>.</p>
+<p>Index values are also persistent, so if you re-order the rows in a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>, the label for a
+particular row don’t change.</p>
+<p>See the <a class="reference internal" href="../../user_guide/indexing.html#indexing"><span class="std std-ref">indexing documentation</span></a> for much more on how to use an <code class="docutils literal notranslate"><span class="pre">Index</span></code>
+effectively.</p>
+</section>
+<section id="copies-vs-in-place-operations">
+<h3>Copies vs. in place operations<a class="headerlink" href="#copies-vs-in-place-operations" title="Permalink to this headline">#</a></h3>
+<p>Most pandas operations return copies of the <code class="docutils literal notranslate"><span class="pre">Series</span></code>/<code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>. To make the changes “stick”,
+you’ll need to either assign to a new variable:</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sorted_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;col1&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>or overwrite the original one:</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;col1&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You will see an <code class="docutils literal notranslate"><span class="pre">inplace=True</span></code> keyword argument available for some methods:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;col1&quot;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Its use is discouraged. <a class="reference internal" href="../../user_guide/indexing.html#indexing-view-versus-copy"><span class="std std-ref">More information.</span></a></p>
+</div>
+</section>
+</section>
+<section id="data-input-output">
+<h2>Data input / output<a class="headerlink" href="#data-input-output" title="Permalink to this headline">#</a></h2>
+<section id="constructing-a-dataframe-from-values">
+<h3>Constructing a DataFrame from values<a class="headerlink" href="#constructing-a-dataframe-from-values" title="Permalink to this headline">#</a></h3>
+<p>In a spreadsheet, <a class="reference external" href="https://support.microsoft.com/en-us/office/enter-data-manually-in-worksheet-cells-c798181d-d75a-41b1-92ad-6c0800f80038">values can be typed directly into cells</a>.</p>
+<p>A pandas <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> can be constructed in many different ways,
+but for a small number of values, it is often convenient to specify it as
+a Python dictionary, where the keys are the column names
+and the values are the data.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [3]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">]})</span>
+
+<span class="gp">In [4]: </span><span class="n">df</span>
+<span class="gh">Out[4]: </span>
+<span class="go">   x  y</span>
+<span class="go">0  1  2</span>
+<span class="go">1  3  4</span>
+<span class="go">2  5  6</span>
+</pre></div>
+</div>
+</section>
+<section id="reading-external-data">
+<h3>Reading external data<a class="headerlink" href="#reading-external-data" title="Permalink to this headline">#</a></h3>
+<p>Both <a class="reference external" href="https://support.microsoft.com/en-us/office/import-data-from-data-sources-power-query-be4330b3-5356-486c-a168-b68e9e616f5a">Excel</a>
+and <a class="reference internal" href="../intro_tutorials/02_read_write.html#min-tut-02-read-write"><span class="std std-ref">pandas</span></a> can import data from various sources in various
+formats.</p>
+<section id="csv">
+<h4>CSV<a class="headerlink" href="#csv" title="Permalink to this headline">#</a></h4>
+<p>Let’s load and display the <a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pandas/tests/io/data/csv/tips.csv">tips</a>
+dataset from the pandas tests, which is a CSV file. In Excel, you would download and then
+<a class="reference external" href="https://support.microsoft.com/en-us/office/import-or-export-text-txt-or-csv-files-5250ac4c-663c-47ce-937b-339e391393ba">open the CSV</a>.
+In pandas, you pass the URL or local path of the CSV file to <a class="reference internal" href="../../reference/api/pandas.read_csv.html#pandas.read_csv" title="pandas.read_csv"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_csv()</span></code></a>:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [5]: </span><span class="n">url</span> <span class="o">=</span> <span class="p">(</span>
+<span class="gp">   ...: </span>    <span class="s2">&quot;https://raw.githubusercontent.com/pandas-dev&quot;</span>
+<span class="gp">   ...: </span>    <span class="s2">&quot;/pandas/main/pandas/tests/io/data/csv/tips.csv&quot;</span>
+<span class="gp">   ...: </span><span class="p">)</span>
+<span class="gp">   ...: </span>
+
+<span class="gp">In [6]: </span><span class="n">tips</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
+<span class="gp">In [7]: </span><span class="n">tips</span>
+<span class="gh">Out[7]: </span>
+<span class="go">     total_bill   tip     sex smoker   day    time  size</span>
+<span class="go">0         16.99  1.01  Female     No   Sun  Dinner     2</span>
+<span class="go">1         10.34  1.66    Male     No   Sun  Dinner     3</span>
+<span class="go">2         21.01  3.50    Male     No   Sun  Dinner     3</span>
+<span class="go">3         23.68  3.31    Male     No   Sun  Dinner     2</span>
+<span class="go">4         24.59  3.61  Female     No   Sun  Dinner     4</span>
+<span class="go">..          ...   ...     ...    ...   ...     ...   ...</span>
+<span class="go">239       29.03  5.92    Male     No   Sat  Dinner     3</span>
+<span class="go">240       27.18  2.00  Female    Yes   Sat  Dinner     2</span>
+<span class="go">241       22.67  2.00    Male    Yes   Sat  Dinner     2</span>
+<span class="go">242       17.82  1.75    Male     No   Sat  Dinner     2</span>
+<span class="go">243       18.78  3.00  Female     No  Thur  Dinner     2</span>
+
+<span class="go">[244 rows x 7 columns]</span>
+</pre></div>
+</div>
+<p>Like <a class="reference external" href="https://support.microsoft.com/en-us/office/text-import-wizard-c5b02af6-fda1-4440-899f-f78bafe41857">Excel’s Text Import Wizard</a>,
+<code class="docutils literal notranslate"><span class="pre">read_csv</span></code> can take a number of parameters to specify how the data should be parsed. For
+example, if the data was instead tab delimited, and did not have column names, the pandas command
+would be:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tips</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;tips.csv&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+
+<span class="c1"># alternatively, read_table is an alias to read_csv with tab delimiter</span>
+<span class="n">tips</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s2">&quot;tips.csv&quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="excel-files">
+<h4>Excel files<a class="headerlink" href="#excel-files" title="Permalink to this headline">#</a></h4>
+<p>Excel opens <a class="reference external" href="https://support.microsoft.com/en-us/office/file-formats-that-are-supported-in-excel-0943ff2c-6014-4e8d-aaea-b83d51d46247">various Excel file formats</a>
+by double-clicking them, or using <a class="reference external" href="https://support.microsoft.com/en-us/office/open-files-from-the-file-menu-97f087d8-3136-4485-8e86-c5b12a8c4176">the Open menu</a>.
+In pandas, you use <a class="reference internal" href="../../user_guide/io.html#io-excel"><span class="std std-ref">special methods for reading and writing from/to Excel files</span></a>.</p>
+<p>Let’s first <a class="reference internal" href="../../user_guide/io.html#io-excel-writer"><span class="std std-ref">create a new Excel file</span></a> based on the <code class="docutils literal notranslate"><span class="pre">tips</span></code> dataframe in the above example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tips</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="s2">&quot;./tips.xlsx&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Should you wish to subsequently access the data in the <code class="docutils literal notranslate"><span class="pre">tips.xlsx</span></code> file, you can read it into your module using</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tips_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s2">&quot;./tips.xlsx&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You have just read in an Excel file using pandas!</p>
+</section>
+</section>
+<section id="limiting-output">
+<h3>Limiting output<a class="headerlink" href="#limiting-output" title="Permalink to this headline">#</a></h3>
+<p>Spreadsheet programs will only show one screenful of data at a time and then allow you to scroll, so
+there isn’t really a need to limit output. In pandas, you’ll need to put a little more thought into
+controlling how your <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>s are displayed.</p>
+<p>By default, pandas will truncate output of large <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>s to show the first and last rows.
+This can be overridden by <a class="reference internal" href="../../user_guide/options.html#options"><span class="std std-ref">changing the pandas options</span></a>, or using
+<a class="reference internal" href="../../reference/api/pandas.DataFrame.head.html#pandas.DataFrame.head" title="pandas.DataFrame.head"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.head()</span></code></a> or <a class="reference internal" href="../../reference/api/pandas.DataFrame.tail.html#pandas.DataFrame.tail" title="pandas.DataFrame.tail"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.tail()</span></code></a>.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [8]: </span><span class="n">tips</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="gh">Out[8]: </span>
+<span class="go">   total_bill   tip     sex smoker  day    time  size</span>
+<span class="go">0       16.99  1.01  Female     No  Sun  Dinner     2</span>
+<span class="go">1       10.34  1.66    Male     No  Sun  Dinner     3</span>
+<span class="go">2       21.01  3.50    Male     No  Sun  Dinner     3</span>
+<span class="go">3       23.68  3.31    Male     No  Sun  Dinner     2</span>
+<span class="go">4       24.59  3.61  Female     No  Sun  Dinner     4</span>
+</pre></div>
+</div>
+</section>
+<section id="exporting-data">
+<h3>Exporting data<a class="headerlink" href="#exporting-data" title="Permalink to this headline">#</a></h3>
+<p>By default, desktop spreadsheet software will save to its respective file format (<code class="docutils literal notranslate"><span class="pre">.xlsx</span></code>, <code class="docutils literal notranslate"><span class="pre">.ods</span></code>, etc). You can, however, <a class="reference external" href="https://support.microsoft.com/en-us/office/save-a-workbook-in-another-file-format-6a16c862-4a36-48f9-a300-c2ca0065286e">save to other file formats</a>.</p>
+<p><a class="reference internal" href="../../user_guide/io.html#io-excel-writer"><span class="std std-ref">pandas can create Excel files</span></a>, <a class="reference internal" href="../../user_guide/io.html#io-store-in-csv"><span class="std std-ref">CSV</span></a>, or <a class="reference internal" href="../../user_guide/io.html#io"><span class="std std-ref">a number of other formats</span></a>.</p>
+</section>
+</section>
+<section id="data-operations">
+<h2>Data operations<a class="headerlink" href="#data-operations" title="Permalink to this headline">#</a></h2>
+<section id="operations-on-columns">
+<h3>Operations on columns<a class="headerlink" href="#operations-on-columns" title="Permalink to this headline">#</a></h3>
+<p>In spreadsheets, <a class="reference external" href="https://support.microsoft.com/en-us/office/overview-of-formulas-in-excel-ecfdc708-9162-49e8-b993-c311f47ca173">formulas</a>
+are often created in individual cells and then <a class="reference external" href="https://support.microsoft.com/en-us/office/copy-a-formula-by-dragging-the-fill-handle-in-excel-for-mac-dd928259-622b-473f-9a33-83aa1a63e218">dragged</a>
+into other cells to compute them for other columns. In pandas, you’re able to do operations on whole
+columns directly.</p>
+<p>pandas provides vectorized operations by specifying the individual <code class="docutils literal notranslate"><span class="pre">Series</span></code> in the
+<code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>. New columns can be assigned in the same way. The <a class="reference internal" href="../../reference/api/pandas.DataFrame.drop.html#pandas.DataFrame.drop" title="pandas.DataFrame.drop"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.drop()</span></code></a> method drops
+a column from the <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [9]: </span><span class="n">tips</span><span class="p">[</span><span class="s2">&quot;total_bill&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tips</span><span class="p">[</span><span class="s2">&quot;total_bill&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span>
+
+<span class="gp">In [10]: </span><span class="n">tips</span><span class="p">[</span><span class="s2">&quot;new_bill&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tips</span><span class="p">[</span><span class="s2">&quot;total_bill&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="mi">2</span>
+
+<span class="gp">In [11]: </span><span class="n">tips</span>
+<span class="gh">Out[11]: </span>
+<span class="go">     total_bill   tip     sex smoker   day    time  size  new_bill</span>
+<span class="go">0         14.99  1.01  Female     No   Sun  Dinner     2     7.495</span>
+<span class="go">1          8.34  1.66    Male     No   Sun  Dinner     3     4.170</span>
+<span class="go">2         19.01  3.50    Male     No   Sun  Dinner     3     9.505</span>
+<span class="go">3         21.68  3.31    Male     No   Sun  Dinner     2    10.840</span>
+<span class="go">4         22.59  3.61  Female     No   Sun  Dinner     4    11.295</span>
+<span class="go">..          ...   ...     ...    ...   ...     ...   ...       ...</span>
+<span class="go">239       27.03  5.92    Male     No   Sat  Dinner     3    13.515</span>
+<span class="go">240       25.18  2.00  Female    Yes   Sat  Dinner     2    12.590</span>
+<span class="go">241       20.67  2.00    Male    Yes   Sat  Dinner     2    10.335</span>
+<span class="go">242       15.82  1.75    Male     No   Sat  Dinner     2     7.910</span>
+<span class="go">243       16.78  3.00  Female     No  Thur  Dinner     2     8.390</span>
+
+<span class="go">[244 rows x 8 columns]</span>
+
+<span class="gp">In [12]: </span><span class="n">tips</span> <span class="o">=</span> <span class="n">tips</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;new_bill&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Note that we aren’t having to tell it to do that subtraction cell-by-cell — pandas handles that for
+us. See <a class="reference internal" href="../intro_tutorials/05_add_columns.html#min-tut-05-columns"><span class="std std-ref">how to create new columns derived from existing columns</span></a>.</p>
+</section>
+<section id="filtering">
+<h3>Filtering<a class="headerlink" href="#filtering" title="Permalink to this headline">#</a></h3>
+<p><a class="reference external" href="https://support.microsoft.com/en-us/office/filter-data-in-a-range-or-table-01832226-31b5-4568-8806-38c37dcc180e">In Excel, filtering is done through a graphical menu.</a></p>
+<img alt="Screenshot showing filtering of the total_bill column to values greater than 10" class="align-center" src="../../_images/filter.png" />
+<p>DataFrames can be filtered in multiple ways; the most intuitive of which is using
+<a class="reference internal" href="../../user_guide/indexing.html#indexing-boolean"><span class="std std-ref">boolean indexing</span></a>.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [13]: </span><span class="n">tips</span><span class="p">[</span><span class="n">tips</span><span class="p">[</span><span class="s2">&quot;total_bill&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">]</span>
+<span class="gh">Out[13]: </span>
+<span class="go">     total_bill   tip     sex smoker   day    time  size</span>
+<span class="go">0         14.99  1.01  Female     No   Sun  Dinner     2</span>
+<span class="go">2         19.01  3.50    Male     No   Sun  Dinner     3</span>
+<span class="go">3         21.68  3.31    Male     No   Sun  Dinner     2</span>
+<span class="go">4         22.59  3.61  Female     No   Sun  Dinner     4</span>
+<span class="go">5         23.29  4.71    Male     No   Sun  Dinner     4</span>
+<span class="go">..          ...   ...     ...    ...   ...     ...   ...</span>
+<span class="go">239       27.03  5.92    Male     No   Sat  Dinner     3</span>
+<span class="go">240       25.18  2.00  Female    Yes   Sat  Dinner     2</span>
+<span class="go">241       20.67  2.00    Male    Yes   Sat  Dinner     2</span>
+<span class="go">242       15.82  1.75    Male     No   Sat  Dinner     2</span>
+<span class="go">243       16.78  3.00  Female     No  Thur  Dinner     2</span>
+
+<span class="go">[204 rows x 7 columns]</span>
+</pre></div>
+</div>
+<p>The above statement is simply passing a <code class="docutils literal notranslate"><span class="pre">Series</span></code> of <code class="docutils literal notranslate"><span class="pre">True</span></code>/<code class="docutils literal notranslate"><span class="pre">False</span></code> objects to the DataFrame,
+returning all rows with <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [14]: </span><span class="n">is_dinner</span> <span class="o">=</span> <span class="n">tips</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Dinner&quot;</span>
+
+<span class="gp">In [15]: </span><span class="n">is_dinner</span>
+<span class="gh">Out[15]: </span>
+<span class="go">0      True</span>
+<span class="go">1      True</span>
+<span class="go">2      True</span>
+<span class="go">3      True</span>
+<span class="go">4      True</span>
+<span class="go">       ... </span>
+<span class="go">239    True</span>
+<span class="go">240    True</span>
+<span class="go">241    True</span>
+<span class="go">242    True</span>
+<span class="go">243    True</span>
+<span class="go">Name: time, Length: 244, dtype: bool</span>
+
+<span class="gp">In [16]: </span><span class="n">is_dinner</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<span class="gh">Out[16]: </span>
+<span class="go">True     176</span>
+<span class="go">False     68</span>
+<span class="go">Name: time, dtype: int64</span>
+
+<span class="gp">In [17]: </span><span class="n">tips</span><span class="p">[</span><span class="n">is_dinner</span><span class="p">]</span>
+<span class="gh">Out[17]: </span>
+<span class="go">     total_bill   tip     sex smoker   day    time  size</span>
+<span class="go">0         14.99  1.01  Female     No   Sun  Dinner     2</span>
+<span class="go">1          8.34  1.66    Male     No   Sun  Dinner     3</span>
+<span class="go">2         19.01  3.50    Male     No   Sun  Dinner     3</span>
+<span class="go">3         21.68  3.31    Male     No   Sun  Dinner     2</span>
+<span class="go">4         22.59  3.61  Female     No   Sun  Dinner     4</span>
+<span class="go">..          ...   ...     ...    ...   ...     ...   ...</span>
+<span class="go">239       27.03  5.92    Male     No   Sat  Dinner     3</span>
+<span class="go">240       25.18  2.00  Female    Yes   Sat  Dinner     2</span>
+<span class="go">241       20.67  2.00    Male    Yes   Sat  Dinner     2</span>
+<span class="go">242       15.82  1.75    Male     No   Sat  Dinner     2</span>
+<span class="go">243       16.78  3.00  Female     No  Thur  Dinner     2</span>
+
+<span class="go">[176 rows x 7 columns]</span>
+</pre></div>
+</div>
+</section>
+<section id="if-then-logic">
+<h3>If/then logic<a class="headerlink" href="#if-then-logic" title="Permalink to this headline">#</a></h3>
+<p>Let’s say we want to make a <code class="docutils literal notranslate"><span class="pre">bucket</span></code> column with values of <code class="docutils literal notranslate"><span class="pre">low</span></code> and <code class="docutils literal notranslate"><span class="pre">high</span></code>, based on whether
+the <code class="docutils literal notranslate"><span class="pre">total_bill</span></code> is less or more than $10.</p>
+<p>In spreadsheets, logical comparison can be done with <a class="reference external" href="https://support.microsoft.com/en-us/office/create-conditional-formulas-ca916c57-abd8-4b44-997c-c309b7307831">conditional formulas</a>.
+We’d use a formula of <code class="docutils literal notranslate"><span class="pre">=IF(A2</span> <span class="pre">&lt;</span> <span class="pre">10,</span> <span class="pre">&quot;low&quot;,</span> <span class="pre">&quot;high&quot;)</span></code>, dragged to all cells in a new <code class="docutils literal notranslate"><span class="pre">bucket</span></code>
+column.</p>
+<img alt="Screenshot showing the formula from above in a bucket column of the tips spreadsheet" class="align-center" src="../../_images/conditional.png" />
+<p>The same operation in pandas can be accomplished using
+the <code class="docutils literal notranslate"><span class="pre">where</span></code> method from <code class="docutils literal notranslate"><span class="pre">numpy</span></code>.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [18]: </span><span class="n">tips</span><span class="p">[</span><span class="s2">&quot;bucket&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">tips</span><span class="p">[</span><span class="s2">&quot;total_bill&quot;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">,</span> <span class="s2">&quot;low&quot;</span><span class="p">,</span> <span class="s2">&quot;high&quot;</span><span class="p">)</span>
+
+<span class="gp">In [19]: </span><span class="n">tips</span>
+<span class="gh">Out[19]: </span>
+<span class="go">     total_bill   tip     sex smoker   day    time  size bucket</span>
+<span class="go">0         14.99  1.01  Female     No   Sun  Dinner     2   high</span>
+<span class="go">1          8.34  1.66    Male     No   Sun  Dinner     3    low</span>
+<span class="go">2         19.01  3.50    Male     No   Sun  Dinner     3   high</span>
+<span class="go">3         21.68  3.31    Male     No   Sun  Dinner     2   high</span>
+<span class="go">4         22.59  3.61  Female     No   Sun  Dinner     4   high</span>
+<span class="go">..          ...   ...     ...    ...   ...     ...   ...    ...</span>
+<span class="go">239       27.03  5.92    Male     No   Sat  Dinner     3   high</span>
+<span class="go">240       25.18  2.00  Female    Yes   Sat  Dinner     2   high</span>
+<span class="go">241       20.67  2.00    Male    Yes   Sat  Dinner     2   high</span>
+<span class="go">242       15.82  1.75    Male     No   Sat  Dinner     2   high</span>
+<span class="go">243       16.78  3.00  Female     No  Thur  Dinner     2   high</span>
+
+<span class="go">[244 rows x 8 columns]</span>
+</pre></div>
+</div>
+</section>
+<section id="date-functionality">
+<h3>Date functionality<a class="headerlink" href="#date-functionality" title="Permalink to this headline">#</a></h3>
+<p><em>This section will refer to “dates”, but timestamps are handled similarly.</em></p>
+<p>We can think of date functionality in two parts: parsing, and output. In spreadsheets, date values
+are generally parsed automatically, though there is a <a class="reference external" href="https://support.microsoft.com/en-us/office/datevalue-function-df8b07d4-7761-4a93-bc33-b7471bbff252">DATEVALUE</a>
+function if you need it. In pandas, you need to explicitly convert plain text to datetime objects,
+either <a class="reference internal" href="../../user_guide/io.html#io-read-csv-table-datetime"><span class="std std-ref">while reading from a CSV</span></a> or <a class="reference internal" href="../intro_tutorials/09_timeseries.html#min-tut-09-timeseries-properties"><span class="std std-ref">once in a DataFrame</span></a>.</p>
+<p>Once parsed, spreadsheets display the dates in a default format, though <a class="reference external" href="https://support.microsoft.com/en-us/office/format-a-date-the-way-you-want-8e10019e-d5d8-47a1-ba95-db95123d273e">the format can be changed</a>.
+In pandas, you’ll generally want to keep dates as <code class="docutils literal notranslate"><span class="pre">datetime</span></code> objects while you’re doing
+calculations with them. Outputting <em>parts</em> of dates (such as the year) is done through <a class="reference external" href="https://support.microsoft.com/en-us/office/date-and-time-functions-reference-fd1b5961-c1ae-4677-be58-074152f97b81">date
+functions</a>
+in spreadsheets, and <a class="reference internal" href="../intro_tutorials/09_timeseries.html#min-tut-09-timeseries-properties"><span class="std std-ref">datetime properties</span></a> in pandas.</p>
+<p>Given <code class="docutils literal notranslate"><span class="pre">date1</span></code> and <code class="docutils literal notranslate"><span class="pre">date2</span></code> in columns <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code> of a spreadsheet, you might have these
+formulas:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>column</p></th>
+<th class="head"><p>formula</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">date1_year</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">=YEAR(A2)</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">date2_month</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">=MONTH(B2)</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">date1_next</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">=DATE(YEAR(A2),MONTH(A2)+1,1)</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">months_between</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">=DATEDIF(A2,B2,&quot;M&quot;)</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>The equivalent pandas operations are shown below.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [20]: </span><span class="n">tips</span><span class="p">[</span><span class="s2">&quot;date1&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">&quot;2013-01-15&quot;</span><span class="p">)</span>
+
+<span class="gp">In [21]: </span><span class="n">tips</span><span class="p">[</span><span class="s2">&quot;date2&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">&quot;2015-02-15&quot;</span><span class="p">)</span>
+
+<span class="gp">In [22]: </span><span class="n">tips</span><span class="p">[</span><span class="s2">&quot;date1_year&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tips</span><span class="p">[</span><span class="s2">&quot;date1&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span>
+
+<span class="gp">In [23]: </span><span class="n">tips</span><span class="p">[</span><span class="s2">&quot;date2_month&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tips</span><span class="p">[</span><span class="s2">&quot;date2&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">month</span>
+
+<span class="gp">In [24]: </span><span class="n">tips</span><span class="p">[</span><span class="s2">&quot;date1_next&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tips</span><span class="p">[</span><span class="s2">&quot;date1&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">pd</span><span class="o">.</span><span class="n">offsets</span><span class="o">.</span><span class="n">MonthBegin</span><span class="p">()</span>
+
+<span class="gp">In [25]: </span><span class="n">tips</span><span class="p">[</span><span class="s2">&quot;months_between&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tips</span><span class="p">[</span><span class="s2">&quot;date2&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">to_period</span><span class="p">(</span><span class="s2">&quot;M&quot;</span><span class="p">)</span> <span class="o">-</span> <span class="n">tips</span><span class="p">[</span>
+<span class="gp">   ....: </span>    <span class="s2">&quot;date1&quot;</span>
+<span class="gp">   ....: </span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">to_period</span><span class="p">(</span><span class="s2">&quot;M&quot;</span><span class="p">)</span>
+<span class="gp">   ....: </span>
+
+<span class="gp">In [26]: </span><span class="n">tips</span><span class="p">[</span>
+<span class="gp">   ....: </span>    <span class="p">[</span><span class="s2">&quot;date1&quot;</span><span class="p">,</span> <span class="s2">&quot;date2&quot;</span><span class="p">,</span> <span class="s2">&quot;date1_year&quot;</span><span class="p">,</span> <span class="s2">&quot;date2_month&quot;</span><span class="p">,</span> <span class="s2">&quot;date1_next&quot;</span><span class="p">,</span> <span class="s2">&quot;months_between&quot;</span><span class="p">]</span>
+<span class="gp">   ....: </span><span class="p">]</span>
+<span class="gp">   ....: </span>
+<span class="gh">Out[26]: </span>
+<span class="go">         date1      date2  date1_year  date2_month date1_next    months_between</span>
+<span class="go">0   2013-01-15 2015-02-15        2013            2 2013-02-01  &lt;25 * MonthEnds&gt;</span>
+<span class="go">1   2013-01-15 2015-02-15        2013            2 2013-02-01  &lt;25 * MonthEnds&gt;</span>
+<span class="go">2   2013-01-15 2015-02-15        2013            2 2013-02-01  &lt;25 * MonthEnds&gt;</span>
+<span class="go">3   2013-01-15 2015-02-15        2013            2 2013-02-01  &lt;25 * MonthEnds&gt;</span>
+<span class="go">4   2013-01-15 2015-02-15        2013            2 2013-02-01  &lt;25 * MonthEnds&gt;</span>
+<span class="go">..         ...        ...         ...          ...        ...               ...</span>
+<span class="go">239 2013-01-15 2015-02-15        2013            2 2013-02-01  &lt;25 * MonthEnds&gt;</span>
+<span class="go">240 2013-01-15 2015-02-15        2013            2 2013-02-01  &lt;25 * MonthEnds&gt;</span>
+<span class="go">241 2013-01-15 2015-02-15        2013            2 2013-02-01  &lt;25 * MonthEnds&gt;</span>
+<span class="go">242 2013-01-15 2015-02-15        2013            2 2013-02-01  &lt;25 * MonthEnds&gt;</span>
+<span class="go">243 2013-01-15 2015-02-15        2013            2 2013-02-01  &lt;25 * MonthEnds&gt;</span>
+
+<span class="go">[244 rows x 6 columns]</span>
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="../../user_guide/timeseries.html#timeseries"><span class="std std-ref">Time series / date functionality</span></a> for more details.</p>
+</section>
+<section id="selection-of-columns">
+<h3>Selection of columns<a class="headerlink" href="#selection-of-columns" title="Permalink to this headline">#</a></h3>
+<p>In spreadsheets, you can select columns you want by:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://support.microsoft.com/en-us/office/hide-or-show-rows-or-columns-659c2cad-802e-44ee-a614-dde8443579f8">Hiding columns</a></p></li>
+<li><p><a class="reference external" href="https://support.microsoft.com/en-us/office/insert-or-delete-rows-and-columns-6f40e6e4-85af-45e0-b39d-65dd504a3246">Deleting columns</a></p></li>
+<li><p><a class="reference external" href="https://support.microsoft.com/en-us/office/create-or-change-a-cell-reference-c7b8b95d-c594-4488-947e-c835903cebaa">Referencing a range</a> from one worksheet into another</p></li>
+</ul>
+<p>Since spreadsheet columns are typically <a class="reference external" href="https://support.microsoft.com/en-us/office/turn-excel-table-headers-on-or-off-c91d1742-312c-4480-820f-cf4b534c8b3b">named in a header row</a>,
+renaming a column is simply a matter of changing the text in that first cell.</p>
+<p>The same operations are expressed in pandas below.</p>
+<section id="keep-certain-columns">
+<h4>Keep certain columns<a class="headerlink" href="#keep-certain-columns" title="Permalink to this headline">#</a></h4>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [27]: </span><span class="n">tips</span><span class="p">[[</span><span class="s2">&quot;sex&quot;</span><span class="p">,</span> <span class="s2">&quot;total_bill&quot;</span><span class="p">,</span> <span class="s2">&quot;tip&quot;</span><span class="p">]]</span>
+<span class="gh">Out[27]: </span>
+<span class="go">        sex  total_bill   tip</span>
+<span class="go">0    Female       14.99  1.01</span>
+<span class="go">1      Male        8.34  1.66</span>
+<span class="go">2      Male       19.01  3.50</span>
+<span class="go">3      Male       21.68  3.31</span>
+<span class="go">4    Female       22.59  3.61</span>
+<span class="go">..      ...         ...   ...</span>
+<span class="go">239    Male       27.03  5.92</span>
+<span class="go">240  Female       25.18  2.00</span>
+<span class="go">241    Male       20.67  2.00</span>
+<span class="go">242    Male       15.82  1.75</span>
+<span class="go">243  Female       16.78  3.00</span>
+
+<span class="go">[244 rows x 3 columns]</span>
+</pre></div>
+</div>
+</section>
+<section id="drop-a-column">
+<h4>Drop a column<a class="headerlink" href="#drop-a-column" title="Permalink to this headline">#</a></h4>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [28]: </span><span class="n">tips</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;sex&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="gh">Out[28]: </span>
+<span class="go">     total_bill   tip smoker   day    time  size</span>
+<span class="go">0         14.99  1.01     No   Sun  Dinner     2</span>
+<span class="go">1          8.34  1.66     No   Sun  Dinner     3</span>
+<span class="go">2         19.01  3.50     No   Sun  Dinner     3</span>
+<span class="go">3         21.68  3.31     No   Sun  Dinner     2</span>
+<span class="go">4         22.59  3.61     No   Sun  Dinner     4</span>
+<span class="go">..          ...   ...    ...   ...     ...   ...</span>
+<span class="go">239       27.03  5.92     No   Sat  Dinner     3</span>
+<span class="go">240       25.18  2.00    Yes   Sat  Dinner     2</span>
+<span class="go">241       20.67  2.00    Yes   Sat  Dinner     2</span>
+<span class="go">242       15.82  1.75     No   Sat  Dinner     2</span>
+<span class="go">243       16.78  3.00     No  Thur  Dinner     2</span>
+
+<span class="go">[244 rows x 6 columns]</span>
+</pre></div>
+</div>
+</section>
+<section id="rename-a-column">
+<h4>Rename a column<a class="headerlink" href="#rename-a-column" title="Permalink to this headline">#</a></h4>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [29]: </span><span class="n">tips</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;total_bill&quot;</span><span class="p">:</span> <span class="s2">&quot;total_bill_2&quot;</span><span class="p">})</span>
+<span class="gh">Out[29]: </span>
+<span class="go">     total_bill_2   tip     sex smoker   day    time  size</span>
+<span class="go">0           14.99  1.01  Female     No   Sun  Dinner     2</span>
+<span class="go">1            8.34  1.66    Male     No   Sun  Dinner     3</span>
+<span class="go">2           19.01  3.50    Male     No   Sun  Dinner     3</span>
+<span class="go">3           21.68  3.31    Male     No   Sun  Dinner     2</span>
+<span class="go">4           22.59  3.61  Female     No   Sun  Dinner     4</span>
+<span class="go">..            ...   ...     ...    ...   ...     ...   ...</span>
+<span class="go">239         27.03  5.92    Male     No   Sat  Dinner     3</span>
+<span class="go">240         25.18  2.00  Female    Yes   Sat  Dinner     2</span>
+<span class="go">241         20.67  2.00    Male    Yes   Sat  Dinner     2</span>
+<span class="go">242         15.82  1.75    Male     No   Sat  Dinner     2</span>
+<span class="go">243         16.78  3.00  Female     No  Thur  Dinner     2</span>
+
+<span class="go">[244 rows x 7 columns]</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="sorting-by-values">
+<h3>Sorting by values<a class="headerlink" href="#sorting-by-values" title="Permalink to this headline">#</a></h3>
+<p>Sorting in spreadsheets is accomplished via <a class="reference external" href="https://support.microsoft.com/en-us/office/sort-data-in-a-range-or-table-62d0b95d-2a90-4610-a6ae-2e545c4a4654">the sort dialog</a>.</p>
+<img alt="Screenshot of dialog from Excel showing sorting by the sex then total_bill columns" class="align-center" src="../../_images/sort.png" />
+<p>pandas has a <a class="reference internal" href="../../reference/api/pandas.DataFrame.sort_values.html#pandas.DataFrame.sort_values" title="pandas.DataFrame.sort_values"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.sort_values()</span></code></a> method, which takes a list of columns to sort by.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [30]: </span><span class="n">tips</span> <span class="o">=</span> <span class="n">tips</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s2">&quot;sex&quot;</span><span class="p">,</span> <span class="s2">&quot;total_bill&quot;</span><span class="p">])</span>
+
+<span class="gp">In [31]: </span><span class="n">tips</span>
+<span class="gh">Out[31]: </span>
+<span class="go">     total_bill    tip     sex smoker   day    time  size</span>
+<span class="go">67         1.07   1.00  Female    Yes   Sat  Dinner     1</span>
+<span class="go">92         3.75   1.00  Female    Yes   Fri  Dinner     2</span>
+<span class="go">111        5.25   1.00  Female     No   Sat  Dinner     1</span>
+<span class="go">145        6.35   1.50  Female     No  Thur   Lunch     2</span>
+<span class="go">135        6.51   1.25  Female     No  Thur   Lunch     2</span>
+<span class="go">..          ...    ...     ...    ...   ...     ...   ...</span>
+<span class="go">182       43.35   3.50    Male    Yes   Sun  Dinner     3</span>
+<span class="go">156       46.17   5.00    Male     No   Sun  Dinner     6</span>
+<span class="go">59        46.27   6.73    Male     No   Sat  Dinner     4</span>
+<span class="go">212       46.33   9.00    Male     No   Sat  Dinner     4</span>
+<span class="go">170       48.81  10.00    Male    Yes   Sat  Dinner     3</span>
+
+<span class="go">[244 rows x 7 columns]</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="string-processing">
+<h2>String processing<a class="headerlink" href="#string-processing" title="Permalink to this headline">#</a></h2>
+<section id="finding-length-of-string">
+<h3>Finding length of string<a class="headerlink" href="#finding-length-of-string" title="Permalink to this headline">#</a></h3>
+<p>In spreadsheets, the number of characters in text can be found with the <a class="reference external" href="https://support.microsoft.com/en-us/office/len-lenb-functions-29236f94-cedc-429d-affd-b5e33d2c67cb">LEN</a>
+function. This can be used with the <a class="reference external" href="https://support.microsoft.com/en-us/office/trim-function-410388fa-c5df-49c6-b16c-9e5630b479f9">TRIM</a>
+function to remove extra whitespace.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">=</span><span class="n">LEN</span><span class="p">(</span><span class="n">TRIM</span><span class="p">(</span><span class="n">A2</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>You can find the length of a character string with <a class="reference internal" href="../../reference/api/pandas.Series.str.len.html#pandas.Series.str.len" title="pandas.Series.str.len"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.str.len()</span></code></a>.
+In Python 3, all strings are Unicode strings. <code class="docutils literal notranslate"><span class="pre">len</span></code> includes trailing blanks.
+Use <code class="docutils literal notranslate"><span class="pre">len</span></code> and <code class="docutils literal notranslate"><span class="pre">rstrip</span></code> to exclude trailing blanks.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [32]: </span><span class="n">tips</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">len</span><span class="p">()</span>
+<span class="gh">Out[32]: </span>
+<span class="go">67     6</span>
+<span class="go">92     6</span>
+<span class="go">111    6</span>
+<span class="go">145    5</span>
+<span class="go">135    5</span>
+<span class="go">      ..</span>
+<span class="go">182    6</span>
+<span class="go">156    6</span>
+<span class="go">59     6</span>
+<span class="go">212    6</span>
+<span class="go">170    6</span>
+<span class="go">Name: time, Length: 244, dtype: int64</span>
+
+<span class="gp">In [33]: </span><span class="n">tips</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">len</span><span class="p">()</span>
+<span class="gh">Out[33]: </span>
+<span class="go">67     6</span>
+<span class="go">92     6</span>
+<span class="go">111    6</span>
+<span class="go">145    5</span>
+<span class="go">135    5</span>
+<span class="go">      ..</span>
+<span class="go">182    6</span>
+<span class="go">156    6</span>
+<span class="go">59     6</span>
+<span class="go">212    6</span>
+<span class="go">170    6</span>
+<span class="go">Name: time, Length: 244, dtype: int64</span>
+</pre></div>
+</div>
+<p>Note this will still include multiple spaces within the string, so isn’t 100% equivalent.</p>
+</section>
+<section id="finding-position-of-substring">
+<h3>Finding position of substring<a class="headerlink" href="#finding-position-of-substring" title="Permalink to this headline">#</a></h3>
+<p>The <a class="reference external" href="https://support.microsoft.com/en-us/office/find-findb-functions-c7912941-af2a-4bdf-a553-d0d89b0a0628">FIND</a>
+spreadsheet function returns the position of a substring, with the first character being <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p>
+<img alt="Screenshot of FIND formula being used in Excel" class="align-center" src="../../_images/sort.png" />
+<p>You can find the position of a character in a column of strings with the <a class="reference internal" href="../../reference/api/pandas.Series.str.find.html#pandas.Series.str.find" title="pandas.Series.str.find"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.str.find()</span></code></a>
+method. <code class="docutils literal notranslate"><span class="pre">find</span></code> searches for the first position of the substring. If the substring is found, the
+method returns its position. If not found, it returns <code class="docutils literal notranslate"><span class="pre">-1</span></code>. Keep in mind that Python indexes are
+zero-based.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [34]: </span><span class="n">tips</span><span class="p">[</span><span class="s2">&quot;sex&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;ale&quot;</span><span class="p">)</span>
+<span class="gh">Out[34]: </span>
+<span class="go">67     3</span>
+<span class="go">92     3</span>
+<span class="go">111    3</span>
+<span class="go">145    3</span>
+<span class="go">135    3</span>
+<span class="go">      ..</span>
+<span class="go">182    1</span>
+<span class="go">156    1</span>
+<span class="go">59     1</span>
+<span class="go">212    1</span>
+<span class="go">170    1</span>
+<span class="go">Name: sex, Length: 244, dtype: int64</span>
+</pre></div>
+</div>
+</section>
+<section id="extracting-substring-by-position">
+<h3>Extracting substring by position<a class="headerlink" href="#extracting-substring-by-position" title="Permalink to this headline">#</a></h3>
+<p>Spreadsheets have a <a class="reference external" href="https://support.microsoft.com/en-us/office/mid-midb-functions-d5f9e25c-d7d6-472e-b568-4ecb12433028">MID</a>
+formula for extracting a substring from a given position. To get the first character:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">=</span><span class="n">MID</span><span class="p">(</span><span class="n">A2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>With pandas you can use <code class="docutils literal notranslate"><span class="pre">[]</span></code> notation to extract a substring
+from a string by position locations. Keep in mind that Python
+indexes are zero-based.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [35]: </span><span class="n">tips</span><span class="p">[</span><span class="s2">&quot;sex&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">]</span>
+<span class="gh">Out[35]: </span>
+<span class="go">67     F</span>
+<span class="go">92     F</span>
+<span class="go">111    F</span>
+<span class="go">145    F</span>
+<span class="go">135    F</span>
+<span class="go">      ..</span>
+<span class="go">182    M</span>
+<span class="go">156    M</span>
+<span class="go">59     M</span>
+<span class="go">212    M</span>
+<span class="go">170    M</span>
+<span class="go">Name: sex, Length: 244, dtype: object</span>
+</pre></div>
+</div>
+</section>
+<section id="extracting-nth-word">
+<h3>Extracting nth word<a class="headerlink" href="#extracting-nth-word" title="Permalink to this headline">#</a></h3>
+<p>In Excel, you might use the <a class="reference external" href="https://support.microsoft.com/en-us/office/split-text-into-different-columns-with-the-convert-text-to-columns-wizard-30b14928-5550-41f5-97ca-7a3e9c363ed7">Text to Columns Wizard</a>
+for splitting text and retrieving a specific column. (Note <a class="reference external" href="https://exceljet.net/formula/extract-nth-word-from-text-string">it’s possible to do so through a formula
+as well</a>.)</p>
+<p>The simplest way to extract words in pandas is to split the strings by spaces, then reference the
+word by index. Note there are more powerful approaches should you need them.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [36]: </span><span class="n">firstlast</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;String&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;John Smith&quot;</span><span class="p">,</span> <span class="s2">&quot;Jane Cook&quot;</span><span class="p">]})</span>
+
+<span class="gp">In [37]: </span><span class="n">firstlast</span><span class="p">[</span><span class="s2">&quot;First_Name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">firstlast</span><span class="p">[</span><span class="s2">&quot;String&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="gp">In [38]: </span><span class="n">firstlast</span><span class="p">[</span><span class="s2">&quot;Last_Name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">firstlast</span><span class="p">[</span><span class="s2">&quot;String&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="gp">In [39]: </span><span class="n">firstlast</span>
+<span class="gh">Out[39]: </span>
+<span class="go">       String First_Name Last_Name</span>
+<span class="go">0  John Smith       John     Smith</span>
+<span class="go">1   Jane Cook       Jane      Cook</span>
+</pre></div>
+</div>
+</section>
+<section id="changing-case">
+<h3>Changing case<a class="headerlink" href="#changing-case" title="Permalink to this headline">#</a></h3>
+<p>Spreadsheets provide <a class="reference external" href="https://support.microsoft.com/en-us/office/change-the-case-of-text-01481046-0fa7-4f3b-a693-496795a7a44d">UPPER, LOWER, and PROPER functions</a>
+for converting text to upper, lower, and title case, respectively.</p>
+<p>The equivalent pandas methods are <a class="reference internal" href="../../reference/api/pandas.Series.str.upper.html#pandas.Series.str.upper" title="pandas.Series.str.upper"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.str.upper()</span></code></a>, <a class="reference internal" href="../../reference/api/pandas.Series.str.lower.html#pandas.Series.str.lower" title="pandas.Series.str.lower"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.str.lower()</span></code></a>, and
+<a class="reference internal" href="../../reference/api/pandas.Series.str.title.html#pandas.Series.str.title" title="pandas.Series.str.title"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.str.title()</span></code></a>.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [40]: </span><span class="n">firstlast</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;string&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;John Smith&quot;</span><span class="p">,</span> <span class="s2">&quot;Jane Cook&quot;</span><span class="p">]})</span>
+
+<span class="gp">In [41]: </span><span class="n">firstlast</span><span class="p">[</span><span class="s2">&quot;upper&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">firstlast</span><span class="p">[</span><span class="s2">&quot;string&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+
+<span class="gp">In [42]: </span><span class="n">firstlast</span><span class="p">[</span><span class="s2">&quot;lower&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">firstlast</span><span class="p">[</span><span class="s2">&quot;string&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+
+<span class="gp">In [43]: </span><span class="n">firstlast</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">firstlast</span><span class="p">[</span><span class="s2">&quot;string&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">title</span><span class="p">()</span>
+
+<span class="gp">In [44]: </span><span class="n">firstlast</span>
+<span class="gh">Out[44]: </span>
+<span class="go">       string       upper       lower       title</span>
+<span class="go">0  John Smith  JOHN SMITH  john smith  John Smith</span>
+<span class="go">1   Jane Cook   JANE COOK   jane cook   Jane Cook</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="merging">
+<h2>Merging<a class="headerlink" href="#merging" title="Permalink to this headline">#</a></h2>
+<p>The following tables will be used in the merge examples:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [45]: </span><span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;key&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="s2">&quot;D&quot;</span><span class="p">],</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">4</span><span class="p">)})</span>
+
+<span class="gp">In [46]: </span><span class="n">df1</span>
+<span class="gh">Out[46]: </span>
+<span class="go">  key     value</span>
+<span class="go">0   A  0.469112</span>
+<span class="go">1   B -0.282863</span>
+<span class="go">2   C -1.509059</span>
+<span class="go">3   D -1.135632</span>
+
+<span class="gp">In [47]: </span><span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;key&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;D&quot;</span><span class="p">,</span> <span class="s2">&quot;D&quot;</span><span class="p">,</span> <span class="s2">&quot;E&quot;</span><span class="p">],</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">4</span><span class="p">)})</span>
+
+<span class="gp">In [48]: </span><span class="n">df2</span>
+<span class="gh">Out[48]: </span>
+<span class="go">  key     value</span>
+<span class="go">0   B  1.212112</span>
+<span class="go">1   D -0.173215</span>
+<span class="go">2   D  0.119209</span>
+<span class="go">3   E -1.044236</span>
+</pre></div>
+</div>
+<p>In Excel, there are <a class="reference external" href="https://support.microsoft.com/en-us/office/how-can-i-merge-two-or-more-tables-c80a9fce-c1ab-4425-bb96-497dd906d656">merging of tables can be done through a VLOOKUP</a>.</p>
+<img alt="Screenshot showing a VLOOKUP formula between two tables in Excel, with some values being filled in and others with &quot;#N/A&quot;" class="align-center" src="../../_images/vlookup.png" />
+<p>pandas DataFrames have a <a class="reference internal" href="../../reference/api/pandas.DataFrame.merge.html#pandas.DataFrame.merge" title="pandas.DataFrame.merge"><code class="xref py py-meth docutils literal notranslate"><span class="pre">merge()</span></code></a> method, which provides similar functionality. The
+data does not have to be sorted ahead of time, and different join types are accomplished via the
+<code class="docutils literal notranslate"><span class="pre">how</span></code> keyword.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [49]: </span><span class="n">inner_join</span> <span class="o">=</span> <span class="n">df1</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df2</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;key&quot;</span><span class="p">],</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;inner&quot;</span><span class="p">)</span>
+
+<span class="gp">In [50]: </span><span class="n">inner_join</span>
+<span class="gh">Out[50]: </span>
+<span class="go">  key   value_x   value_y</span>
+<span class="go">0   B -0.282863  1.212112</span>
+<span class="go">1   D -1.135632 -0.173215</span>
+<span class="go">2   D -1.135632  0.119209</span>
+
+<span class="gp">In [51]: </span><span class="n">left_join</span> <span class="o">=</span> <span class="n">df1</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df2</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;key&quot;</span><span class="p">],</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">)</span>
+
+<span class="gp">In [52]: </span><span class="n">left_join</span>
+<span class="gh">Out[52]: </span>
+<span class="go">  key   value_x   value_y</span>
+<span class="go">0   A  0.469112       NaN</span>
+<span class="go">1   B -0.282863  1.212112</span>
+<span class="go">2   C -1.509059       NaN</span>
+<span class="go">3   D -1.135632 -0.173215</span>
+<span class="go">4   D -1.135632  0.119209</span>
+
+<span class="gp">In [53]: </span><span class="n">right_join</span> <span class="o">=</span> <span class="n">df1</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df2</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;key&quot;</span><span class="p">],</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">)</span>
+
+<span class="gp">In [54]: </span><span class="n">right_join</span>
+<span class="gh">Out[54]: </span>
+<span class="go">  key   value_x   value_y</span>
+<span class="go">0   B -0.282863  1.212112</span>
+<span class="go">1   D -1.135632 -0.173215</span>
+<span class="go">2   D -1.135632  0.119209</span>
+<span class="go">3   E       NaN -1.044236</span>
+
+<span class="gp">In [55]: </span><span class="n">outer_join</span> <span class="o">=</span> <span class="n">df1</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df2</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;key&quot;</span><span class="p">],</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;outer&quot;</span><span class="p">)</span>
+
+<span class="gp">In [56]: </span><span class="n">outer_join</span>
+<span class="gh">Out[56]: </span>
+<span class="go">  key   value_x   value_y</span>
+<span class="go">0   A  0.469112       NaN</span>
+<span class="go">1   B -0.282863  1.212112</span>
+<span class="go">2   C -1.509059       NaN</span>
+<span class="go">3   D -1.135632 -0.173215</span>
+<span class="go">4   D -1.135632  0.119209</span>
+<span class="go">5   E       NaN -1.044236</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">merge</span></code> has a number of advantages over <code class="docutils literal notranslate"><span class="pre">VLOOKUP</span></code>:</p>
+<ul class="simple">
+<li><p>The lookup value doesn’t need to be the first column of the lookup table</p></li>
+<li><p>If multiple rows are matched, there will be one row for each match, instead of just the first</p></li>
+<li><p>It will include all columns from the lookup table, instead of just a single specified column</p></li>
+<li><p>It supports <a class="reference internal" href="../../user_guide/merging.html#merging-join"><span class="std std-ref">more complex join operations</span></a></p></li>
+</ul>
+</section>
+<section id="other-considerations">
+<h2>Other considerations<a class="headerlink" href="#other-considerations" title="Permalink to this headline">#</a></h2>
+<section id="fill-handle">
+<h3>Fill Handle<a class="headerlink" href="#fill-handle" title="Permalink to this headline">#</a></h3>
+<p>Create a series of numbers following a set pattern in a certain set of cells. In
+a spreadsheet, this would be done by shift+drag after entering the first number or by
+entering the first two or three values and then dragging.</p>
+<p>This can be achieved by creating a series and assigning it to the desired cells.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [57]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;AAA&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="mi">8</span><span class="p">,</span> <span class="s2">&quot;BBB&quot;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="p">))})</span>
+
+<span class="gp">In [58]: </span><span class="n">df</span>
+<span class="gh">Out[58]: </span>
+<span class="go">   AAA  BBB</span>
+<span class="go">0    1    0</span>
+<span class="go">1    1    1</span>
+<span class="go">2    1    2</span>
+<span class="go">3    1    3</span>
+<span class="go">4    1    4</span>
+<span class="go">5    1    5</span>
+<span class="go">6    1    6</span>
+<span class="go">7    1    7</span>
+
+<span class="gp">In [59]: </span><span class="n">series</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="gp">In [60]: </span><span class="n">series</span>
+<span class="gh">Out[60]: </span><span class="go">[1, 2, 3, 4]</span>
+
+<span class="gp">In [61]: </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;AAA&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">series</span>
+
+<span class="gp">In [62]: </span><span class="n">df</span>
+<span class="gh">Out[62]: </span>
+<span class="go">   AAA  BBB</span>
+<span class="go">0    1    0</span>
+<span class="go">1    1    1</span>
+<span class="go">2    1    2</span>
+<span class="go">3    2    3</span>
+<span class="go">4    3    4</span>
+<span class="go">5    4    5</span>
+<span class="go">6    1    6</span>
+<span class="go">7    1    7</span>
+</pre></div>
+</div>
+</section>
+<section id="drop-duplicates">
+<h3>Drop Duplicates<a class="headerlink" href="#drop-duplicates" title="Permalink to this headline">#</a></h3>
+<p>Excel has built-in functionality for <a class="reference external" href="https://support.microsoft.com/en-us/office/find-and-remove-duplicates-00e35bea-b46a-4d5d-b28e-66a552dc138d">removing duplicate values</a>.
+This is supported in pandas via <a class="reference internal" href="../../reference/api/pandas.DataFrame.drop_duplicates.html#pandas.DataFrame.drop_duplicates" title="pandas.DataFrame.drop_duplicates"><code class="xref py py-meth docutils literal notranslate"><span class="pre">drop_duplicates()</span></code></a>.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [63]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<span class="gp">   ....: </span>    <span class="p">{</span>
+<span class="gp">   ....: </span>        <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="s2">&quot;D&quot;</span><span class="p">],</span>
+<span class="gp">   ....: </span>        <span class="s2">&quot;student_count&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">42</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">42</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">47</span><span class="p">,</span> <span class="mi">45</span><span class="p">],</span>
+<span class="gp">   ....: </span>        <span class="s2">&quot;all_pass&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Yes&quot;</span><span class="p">,</span> <span class="s2">&quot;Yes&quot;</span><span class="p">,</span> <span class="s2">&quot;Yes&quot;</span><span class="p">,</span> <span class="s2">&quot;No&quot;</span><span class="p">,</span> <span class="s2">&quot;No&quot;</span><span class="p">,</span> <span class="s2">&quot;Yes&quot;</span><span class="p">],</span>
+<span class="gp">   ....: </span>    <span class="p">}</span>
+<span class="gp">   ....: </span><span class="p">)</span>
+<span class="gp">   ....: </span>
+
+<span class="gp">In [64]: </span><span class="n">df</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
+<span class="gh">Out[64]: </span>
+<span class="go">  class  student_count all_pass</span>
+<span class="go">0     A             42      Yes</span>
+<span class="go">1     A             35      Yes</span>
+<span class="go">3     B             50       No</span>
+<span class="go">4     C             47       No</span>
+<span class="go">5     D             45      Yes</span>
+
+<span class="gp">In [65]: </span><span class="n">df</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">([</span><span class="s2">&quot;class&quot;</span><span class="p">,</span> <span class="s2">&quot;student_count&quot;</span><span class="p">])</span>
+<span class="gh">Out[65]: </span>
+<span class="go">  class  student_count all_pass</span>
+<span class="go">0     A             42      Yes</span>
+<span class="go">1     A             35      Yes</span>
+<span class="go">3     B             50       No</span>
+<span class="go">4     C             47       No</span>
+<span class="go">5     D             45      Yes</span>
+</pre></div>
+</div>
+</section>
+<section id="pivot-tables">
+<h3>Pivot Tables<a class="headerlink" href="#pivot-tables" title="Permalink to this headline">#</a></h3>
+<p><a class="reference external" href="https://support.microsoft.com/en-us/office/create-a-pivottable-to-analyze-worksheet-data-a9a84538-bfe9-40a9-a8e9-f99134456576">PivotTables</a>
+from spreadsheets can be replicated in pandas through <a class="reference internal" href="../../user_guide/reshaping.html#reshaping"><span class="std std-ref">Reshaping and pivot tables</span></a>. Using the <code class="docutils literal notranslate"><span class="pre">tips</span></code> dataset again,
+let’s find the average gratuity by size of the party and sex of the server.</p>
+<p>In Excel, we use the following configuration for the PivotTable:</p>
+<img alt="Screenshot showing a PivotTable in Excel, using sex as the column, size as the rows, then average tip as the values" class="align-center" src="../../_images/pivot.png" />
+<p>The equivalent in pandas:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [66]: </span><span class="n">pd</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span>
+<span class="gp">   ....: </span>    <span class="n">tips</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s2">&quot;tip&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;size&quot;</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;sex&quot;</span><span class="p">],</span> <span class="n">aggfunc</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">average</span>
+<span class="gp">   ....: </span><span class="p">)</span>
+<span class="gp">   ....: </span>
+<span class="gh">Out[66]: </span>
+<span class="go">sex     Female      Male</span>
+<span class="go">size                    </span>
+<span class="go">1     1.276667  1.920000</span>
+<span class="go">2     2.528448  2.614184</span>
+<span class="go">3     3.250000  3.476667</span>
+<span class="go">4     4.021111  4.172143</span>
+<span class="go">5     5.140000  3.750000</span>
+<span class="go">6     4.600000  5.850000</span>
+</pre></div>
+</div>
+</section>
+<section id="adding-a-row">
+<h3>Adding a row<a class="headerlink" href="#adding-a-row" title="Permalink to this headline">#</a></h3>
+<p>Assuming we are using a <a class="reference internal" href="../../reference/api/pandas.RangeIndex.html#pandas.RangeIndex" title="pandas.RangeIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">RangeIndex</span></code></a> (numbered <code class="docutils literal notranslate"><span class="pre">0</span></code>, <code class="docutils literal notranslate"><span class="pre">1</span></code>, etc.), we can use <a class="reference internal" href="../../reference/api/pandas.concat.html#pandas.concat" title="pandas.concat"><code class="xref py py-func docutils literal notranslate"><span class="pre">concat()</span></code></a> to add a row to the bottom of a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [67]: </span><span class="n">df</span>
+<span class="gh">Out[67]: </span>
+<span class="go">  class  student_count all_pass</span>
+<span class="go">0     A             42      Yes</span>
+<span class="go">1     A             35      Yes</span>
+<span class="go">2     A             42      Yes</span>
+<span class="go">3     B             50       No</span>
+<span class="go">4     C             47       No</span>
+<span class="go">5     D             45      Yes</span>
+
+<span class="gp">In [68]: </span><span class="n">new_row</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="s2">&quot;E&quot;</span><span class="p">,</span> <span class="mi">51</span><span class="p">,</span> <span class="kc">True</span><span class="p">]],</span>
+<span class="gp">   ....: </span>                       <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;class&quot;</span><span class="p">,</span> <span class="s2">&quot;student_count&quot;</span><span class="p">,</span> <span class="s2">&quot;all_pass&quot;</span><span class="p">])</span>
+<span class="gp">   ....: </span>
+
+<span class="gp">In [69]: </span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df</span><span class="p">,</span> <span class="n">new_row</span><span class="p">])</span>
+<span class="gh">Out[69]: </span>
+<span class="go">  class  student_count all_pass</span>
+<span class="go">0     A             42      Yes</span>
+<span class="go">1     A             35      Yes</span>
+<span class="go">2     A             42      Yes</span>
+<span class="go">3     B             50       No</span>
+<span class="go">4     C             47       No</span>
+<span class="go">5     D             45      Yes</span>
+<span class="go">0     E             51     True</span>
+</pre></div>
+</div>
+</section>
+<section id="find-and-replace">
+<h3>Find and Replace<a class="headerlink" href="#find-and-replace" title="Permalink to this headline">#</a></h3>
+<p><a class="reference external" href="https://support.microsoft.com/en-us/office/find-or-replace-text-and-numbers-on-a-worksheet-0e304ca5-ecef-4808-b90f-fdb42f892e90">Excel’s Find dialog</a>
+takes you to cells that match, one by one. In pandas, this operation is generally done for an
+entire column or <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> at once through <a class="reference internal" href="../intro_tutorials/03_subset_data.html#min-tut-03-subset-rows-and-columns"><span class="std std-ref">conditional expressions</span></a>.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [70]: </span><span class="n">tips</span>
+<span class="gh">Out[70]: </span>
+<span class="go">     total_bill    tip     sex smoker   day    time  size</span>
+<span class="go">67         1.07   1.00  Female    Yes   Sat  Dinner     1</span>
+<span class="go">92         3.75   1.00  Female    Yes   Fri  Dinner     2</span>
+<span class="go">111        5.25   1.00  Female     No   Sat  Dinner     1</span>
+<span class="go">145        6.35   1.50  Female     No  Thur   Lunch     2</span>
+<span class="go">135        6.51   1.25  Female     No  Thur   Lunch     2</span>
+<span class="go">..          ...    ...     ...    ...   ...     ...   ...</span>
+<span class="go">182       43.35   3.50    Male    Yes   Sun  Dinner     3</span>
+<span class="go">156       46.17   5.00    Male     No   Sun  Dinner     6</span>
+<span class="go">59        46.27   6.73    Male     No   Sat  Dinner     4</span>
+<span class="go">212       46.33   9.00    Male     No   Sat  Dinner     4</span>
+<span class="go">170       48.81  10.00    Male    Yes   Sat  Dinner     3</span>
+
+<span class="go">[244 rows x 7 columns]</span>
+
+<span class="gp">In [71]: </span><span class="n">tips</span> <span class="o">==</span> <span class="s2">&quot;Sun&quot;</span>
+<span class="gh">Out[71]: </span>
+<span class="go">     total_bill    tip    sex  smoker    day   time   size</span>
+<span class="go">67        False  False  False   False  False  False  False</span>
+<span class="go">92        False  False  False   False  False  False  False</span>
+<span class="go">111       False  False  False   False  False  False  False</span>
+<span class="go">145       False  False  False   False  False  False  False</span>
+<span class="go">135       False  False  False   False  False  False  False</span>
+<span class="go">..          ...    ...    ...     ...    ...    ...    ...</span>
+<span class="go">182       False  False  False   False   True  False  False</span>
+<span class="go">156       False  False  False   False   True  False  False</span>
+<span class="go">59        False  False  False   False  False  False  False</span>
+<span class="go">212       False  False  False   False  False  False  False</span>
+<span class="go">170       False  False  False   False  False  False  False</span>
+
+<span class="go">[244 rows x 7 columns]</span>
+
+<span class="gp">In [72]: </span><span class="n">tips</span><span class="p">[</span><span class="s2">&quot;day&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s2">&quot;S&quot;</span><span class="p">)</span>
+<span class="gh">Out[72]: </span>
+<span class="go">67      True</span>
+<span class="go">92     False</span>
+<span class="go">111     True</span>
+<span class="go">145    False</span>
+<span class="go">135    False</span>
+<span class="go">       ...  </span>
+<span class="go">182     True</span>
+<span class="go">156     True</span>
+<span class="go">59      True</span>
+<span class="go">212     True</span>
+<span class="go">170     True</span>
+<span class="go">Name: day, Length: 244, dtype: bool</span>
+</pre></div>
+</div>
+<p>pandas’ <a class="reference internal" href="../../reference/api/pandas.DataFrame.replace.html#pandas.DataFrame.replace" title="pandas.DataFrame.replace"><code class="xref py py-meth docutils literal notranslate"><span class="pre">replace()</span></code></a> is comparable to Excel’s <code class="docutils literal notranslate"><span class="pre">Replace</span> <span class="pre">All</span></code>.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [73]: </span><span class="n">tips</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;Thu&quot;</span><span class="p">,</span> <span class="s2">&quot;Thursday&quot;</span><span class="p">)</span>
+<span class="gh">Out[73]: </span>
+<span class="go">     total_bill    tip     sex smoker   day    time  size</span>
+<span class="go">67         1.07   1.00  Female    Yes   Sat  Dinner     1</span>
+<span class="go">92         3.75   1.00  Female    Yes   Fri  Dinner     2</span>
+<span class="go">111        5.25   1.00  Female     No   Sat  Dinner     1</span>
+<span class="go">145        6.35   1.50  Female     No  Thur   Lunch     2</span>
+<span class="go">135        6.51   1.25  Female     No  Thur   Lunch     2</span>
+<span class="go">..          ...    ...     ...    ...   ...     ...   ...</span>
+<span class="go">182       43.35   3.50    Male    Yes   Sun  Dinner     3</span>
+<span class="go">156       46.17   5.00    Male     No   Sun  Dinner     6</span>
+<span class="go">59        46.27   6.73    Male     No   Sat  Dinner     4</span>
+<span class="go">212       46.33   9.00    Male     No   Sat  Dinner     4</span>
+<span class="go">170       48.81  10.00    Male    Yes   Sat  Dinner     3</span>
+
+<span class="go">[244 rows x 7 columns]</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+            </article>
+            
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="comparison_with_sql.html" title="previous page">
+      <i class="fas fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Comparison with SQL</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="comparison_with_sas.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">Comparison with SAS</p>
+  </div>
+  <i class="fas fa-angle-right"></i>
+  </a>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fas fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-structures">
+   Data structures
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#general-terminology-translation">
+     General terminology translation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dataframe">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       DataFrame
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#series">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       Series
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#index">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       Index
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#copies-vs-in-place-operations">
+     Copies vs. in place operations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-input-output">
+   Data input / output
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#constructing-a-dataframe-from-values">
+     Constructing a DataFrame from values
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#reading-external-data">
+     Reading external data
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#csv">
+       CSV
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#excel-files">
+       Excel files
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#limiting-output">
+     Limiting output
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exporting-data">
+     Exporting data
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-operations">
+   Data operations
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#operations-on-columns">
+     Operations on columns
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#filtering">
+     Filtering
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#if-then-logic">
+     If/then logic
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#date-functionality">
+     Date functionality
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#selection-of-columns">
+     Selection of columns
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#keep-certain-columns">
+       Keep certain columns
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#drop-a-column">
+       Drop a column
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#rename-a-column">
+       Rename a column
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sorting-by-values">
+     Sorting by values
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#string-processing">
+   String processing
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#finding-length-of-string">
+     Finding length of string
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#finding-position-of-substring">
+     Finding position of substring
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#extracting-substring-by-position">
+     Extracting substring by position
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#extracting-nth-word">
+     Extracting nth word
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#changing-case">
+     Changing case
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#merging">
+   Merging
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#other-considerations">
+   Other considerations
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fill-handle">
+     Fill Handle
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#drop-duplicates">
+     Drop Duplicates
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pivot-tables">
+     Pivot Tables
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#adding-a-row">
+     Adding a row
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#find-and-replace">
+     Find and Replace
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+<div class="toc-item">
+  
+</div>
+
+<div class="toc-item">
+  
+<div class="tocsection sourcelink">
+    <a href="../../_sources/getting_started/comparison/comparison_with_spreadsheets.rst.txt">
+        <i class="fas fa-file-alt"></i> Show Source
+    </a>
+</div>
+
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+          </div>
+        </footer>
+        
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=9b1a4fa89bdd0e95b23b"></script>
+
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    <p class="copyright">
+    &copy 2023 pandas via <a href="https://numfocus.org">NumFOCUS, Inc.</a> Hosted by <a href="https://www.ovhcloud.com">OVHcloud</a>.
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>

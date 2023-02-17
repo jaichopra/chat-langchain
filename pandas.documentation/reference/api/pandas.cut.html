@@ -1,0 +1,908 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>pandas.cut &#8212; pandas 1.5.3 documentation</title>
+  <script>
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=9b1a4fa89bdd0e95b23b" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=9b1a4fa89bdd0e95b23b" rel="stylesheet">
+
+  
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/getting_started.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/pandas.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=9b1a4fa89bdd0e95b23b">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/toggleprompt.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script async="async" src="https://www.google-analytics.com/analytics.js"></script>
+    <script>
+                    window.ga = window.ga || function () {
+                        (ga.q = ga.q || []).push(arguments) };
+                    ga.l = +new Date;
+                    ga('create', 'UA-27880019-2', 'auto');
+                    ga('set', 'anonymizeIp', true);
+                    ga('send', 'pageview');
+                </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'reference/api/pandas.cut';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        </script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="pandas.qcut" href="pandas.qcut.html" />
+    <link rel="prev" title="pandas.crosstab" href="pandas.crosstab.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fas fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../../_static/pandas.svg" class="logo__image only-light" alt="Logo image">
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="../../getting_started/index.html">
+                        Getting started
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../user_guide/index.html">
+                        User Guide
+                    </a>
+                </li>
+                
+
+                <li class="nav-item current active">
+                    <a class="nav-link" href="../index.html">
+                        API reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../development/index.html">
+                        Development
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../whatsnew/index.html">
+                        Release notes
+                    </a>
+                </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      <div class="navbar-end-item navbar-end__search-button-container">
+        
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search">
+  <i class="fas fa-search"></i>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        1.5.3  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pandas-dev/pandas" title="GitHub" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/pandas_dev" title="Twitter" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  <div class="search-button-container--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search">
+  <i class="fas fa-search"></i>
+</button>
+  </div>
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fas fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="../../getting_started/index.html">
+                        Getting started
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../user_guide/index.html">
+                        User Guide
+                    </a>
+                </li>
+                
+
+                <li class="nav-item current active">
+                    <a class="nav-link" href="../index.html">
+                        API reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../development/index.html">
+                        Development
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../whatsnew/index.html">
+                        Release notes
+                    </a>
+                </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        1.5.3  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pandas-dev/pandas" title="GitHub" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/pandas_dev" title="Twitter" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item navbar-nav">
+    
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../io.html">
+   Input/output
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../general_functions.html">
+   General functions
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label class="toctree-toggle" for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.melt.html">
+     pandas.melt
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.pivot.html">
+     pandas.pivot
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.pivot_table.html">
+     pandas.pivot_table
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.crosstab.html">
+     pandas.crosstab
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     pandas.cut
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.qcut.html">
+     pandas.qcut
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.merge.html">
+     pandas.merge
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.merge_ordered.html">
+     pandas.merge_ordered
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.merge_asof.html">
+     pandas.merge_asof
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.concat.html">
+     pandas.concat
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.get_dummies.html">
+     pandas.get_dummies
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.from_dummies.html">
+     pandas.from_dummies
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.factorize.html">
+     pandas.factorize
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.unique.html">
+     pandas.unique
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.wide_to_long.html">
+     pandas.wide_to_long
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.isna.html">
+     pandas.isna
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.isnull.html">
+     pandas.isnull
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.notna.html">
+     pandas.notna
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.notnull.html">
+     pandas.notnull
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.to_numeric.html">
+     pandas.to_numeric
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.to_datetime.html">
+     pandas.to_datetime
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.to_timedelta.html">
+     pandas.to_timedelta
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.date_range.html">
+     pandas.date_range
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.bdate_range.html">
+     pandas.bdate_range
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.period_range.html">
+     pandas.period_range
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.timedelta_range.html">
+     pandas.timedelta_range
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.infer_freq.html">
+     pandas.infer_freq
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.interval_range.html">
+     pandas.interval_range
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.eval.html">
+     pandas.eval
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.util.hash_array.html">
+     pandas.util.hash_array
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.util.hash_pandas_object.html">
+     pandas.util.hash_pandas_object
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.api.interchange.from_dataframe.html">
+     pandas.api.interchange.from_dataframe
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../series.html">
+   Series
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../frame.html">
+   DataFrame
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../arrays.html">
+   pandas arrays, scalars, and data types
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../indexing.html">
+   Index objects
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../offset_frequency.html">
+   Date offsets
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../window.html">
+   Window
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../groupby.html">
+   GroupBy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../resampling.html">
+   Resampling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../style.html">
+   Style
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../plotting.html">
+   Plotting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../options.html">
+   Options and settings
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../extensions.html">
+   Extensions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../testing.html">
+   Testing
+  </a>
+ </li>
+</ul>
+
+    
+  </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+      </div>
+      <main class="bd-main">
+        
+        
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+            </div>
+            
+            
+            <article class="bd-article" role="main">
+              
+  <section id="pandas-cut">
+<h1>pandas.cut<a class="headerlink" href="#pandas-cut" title="Permalink to this headline">#</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="pandas.cut">
+<span class="sig-prename descclassname"><span class="pre">pandas.</span></span><span class="sig-name descname"><span class="pre">cut</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bins</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retbins</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">precision</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_lowest</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">duplicates</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'raise'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ordered</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.5.3/pandas/core/reshape/tile.py#L50-L305"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.cut" title="Permalink to this definition">#</a></dt>
+<dd><p>Bin values into discrete intervals.</p>
+<p>Use <cite>cut</cite> when you need to segment and sort data values into bins. This
+function is also useful for going from a continuous variable to a
+categorical variable. For example, <cite>cut</cite> could convert ages to groups of
+age ranges. Supports binning into an equal number of bins, or a
+pre-specified array of bins.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl>
+<dt><strong>x</strong><span class="classifier">array-like</span></dt><dd><p>The input array to be binned. Must be 1-dimensional.</p>
+</dd>
+<dt><strong>bins</strong><span class="classifier">int, sequence of scalars, or IntervalIndex</span></dt><dd><p>The criteria to bin by.</p>
+<ul class="simple">
+<li><p>int : Defines the number of equal-width bins in the range of <cite>x</cite>. The
+range of <cite>x</cite> is extended by .1% on each side to include the minimum
+and maximum values of <cite>x</cite>.</p></li>
+<li><p>sequence of scalars : Defines the bin edges allowing for non-uniform
+width. No extension of the range of <cite>x</cite> is done.</p></li>
+<li><p>IntervalIndex : Defines the exact bins to be used. Note that
+IntervalIndex for <cite>bins</cite> must be non-overlapping.</p></li>
+</ul>
+</dd>
+<dt><strong>right</strong><span class="classifier">bool, default True</span></dt><dd><p>Indicates whether <cite>bins</cite> includes the rightmost edge or not. If
+<code class="docutils literal notranslate"><span class="pre">right</span> <span class="pre">==</span> <span class="pre">True</span></code> (the default), then the <cite>bins</cite> <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">4]</span></code>
+indicate (1,2], (2,3], (3,4]. This argument is ignored when
+<cite>bins</cite> is an IntervalIndex.</p>
+</dd>
+<dt><strong>labels</strong><span class="classifier">array or False, default None</span></dt><dd><p>Specifies the labels for the returned bins. Must be the same length as
+the resulting bins. If False, returns only integer indicators of the
+bins. This affects the type of the output container (see below).
+This argument is ignored when <cite>bins</cite> is an IntervalIndex. If True,
+raises an error. When <cite>ordered=False</cite>, labels must be provided.</p>
+</dd>
+<dt><strong>retbins</strong><span class="classifier">bool, default False</span></dt><dd><p>Whether to return the bins or not. Useful when bins is provided
+as a scalar.</p>
+</dd>
+<dt><strong>precision</strong><span class="classifier">int, default 3</span></dt><dd><p>The precision at which to store and display the bins labels.</p>
+</dd>
+<dt><strong>include_lowest</strong><span class="classifier">bool, default False</span></dt><dd><p>Whether the first interval should be left-inclusive or not.</p>
+</dd>
+<dt><strong>duplicates</strong><span class="classifier">{default ‘raise’, ‘drop’}, optional</span></dt><dd><p>If bin edges are not unique, raise ValueError or drop non-uniques.</p>
+</dd>
+<dt><strong>ordered</strong><span class="classifier">bool, default True</span></dt><dd><p>Whether the labels are ordered or not. Applies to returned types
+Categorical and Series (with Categorical dtype). If True,
+the resulting categorical will be ordered. If False, the resulting
+categorical will be unordered (labels must be provided).</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 1.1.0.</span></p>
+</div>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>out</strong><span class="classifier">Categorical, Series, or ndarray</span></dt><dd><p>An array-like object representing the respective bin for each value
+of <cite>x</cite>. The type depends on the value of <cite>labels</cite>.</p>
+<ul class="simple">
+<li><p>None (default) : returns a Series for Series <cite>x</cite> or a
+Categorical for all other inputs. The values stored within
+are Interval dtype.</p></li>
+<li><p>sequence of scalars : returns a Series for Series <cite>x</cite> or a
+Categorical for all other inputs. The values stored within
+are whatever the type in the sequence is.</p></li>
+<li><p>False : returns an ndarray of integers.</p></li>
+</ul>
+</dd>
+<dt><strong>bins</strong><span class="classifier">numpy.ndarray or IntervalIndex.</span></dt><dd><p>The computed or specified bins. Only returned when <cite>retbins=True</cite>.
+For scalar or sequence <cite>bins</cite>, this is an ndarray with the computed
+bins. If set <cite>duplicates=drop</cite>, <cite>bins</cite> will drop non-unique bin. For
+an IntervalIndex <cite>bins</cite>, this is equal to <cite>bins</cite>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="pandas.qcut.html#pandas.qcut" title="pandas.qcut"><code class="xref py py-obj docutils literal notranslate"><span class="pre">qcut</span></code></a></dt><dd><p>Discretize variable into equal-sized buckets based on rank or based on sample quantiles.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.Categorical.html#pandas.Categorical" title="pandas.Categorical"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Categorical</span></code></a></dt><dd><p>Array type for storing data that come from a fixed set of values.</p>
+</dd>
+<dt><a class="reference internal" href="pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Series</span></code></a></dt><dd><p>One-dimensional array with axis labels (including time series).</p>
+</dd>
+<dt><a class="reference internal" href="pandas.IntervalIndex.html#pandas.IntervalIndex" title="pandas.IntervalIndex"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IntervalIndex</span></code></a></dt><dd><p>Immutable Index implementing an ordered, sliceable set.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>Any NA values will be NA in the result. Out of bounds values will be NA in
+the resulting Series or Categorical object.</p>
+<p>Reference <a class="reference internal" href="../../user_guide/reshaping.html#reshaping-tile-cut"><span class="std std-ref">the user guide</span></a> for more examples.</p>
+<p class="rubric">Examples</p>
+<p>Discretize into three equal-sized bins.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">]),</span> <span class="mi">3</span><span class="p">)</span>
+<span class="gp">... </span>
+<span class="go">[(0.994, 3.0], (5.0, 7.0], (3.0, 5.0], (3.0, 5.0], (5.0, 7.0], ...</span>
+<span class="go">Categories (3, interval[float64, right]): [(0.994, 3.0] &lt; (3.0, 5.0] ...</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">]),</span> <span class="mi">3</span><span class="p">,</span> <span class="n">retbins</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">... </span>
+<span class="go">([(0.994, 3.0], (5.0, 7.0], (3.0, 5.0], (3.0, 5.0], (5.0, 7.0], ...</span>
+<span class="go">Categories (3, interval[float64, right]): [(0.994, 3.0] &lt; (3.0, 5.0] ...</span>
+<span class="go">array([0.994, 3.   , 5.   , 7.   ]))</span>
+</pre></div>
+</div>
+<p>Discovers the same bins, but assign them specific labels. Notice that
+the returned Categorical’s categories are <cite>labels</cite> and is ordered.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">]),</span>
+<span class="gp">... </span>       <span class="mi">3</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;bad&quot;</span><span class="p">,</span> <span class="s2">&quot;medium&quot;</span><span class="p">,</span> <span class="s2">&quot;good&quot;</span><span class="p">])</span>
+<span class="go">[&#39;bad&#39;, &#39;good&#39;, &#39;medium&#39;, &#39;medium&#39;, &#39;good&#39;, &#39;bad&#39;]</span>
+<span class="go">Categories (3, object): [&#39;bad&#39; &lt; &#39;medium&#39; &lt; &#39;good&#39;]</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">ordered=False</span></code> will result in unordered categories when labels are passed.
+This parameter can be used to allow non-unique labels:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">]),</span> <span class="mi">3</span><span class="p">,</span>
+<span class="gp">... </span>       <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">],</span> <span class="n">ordered</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="go">[&#39;B&#39;, &#39;B&#39;, &#39;A&#39;, &#39;A&#39;, &#39;B&#39;, &#39;B&#39;]</span>
+<span class="go">Categories (2, object): [&#39;A&#39;, &#39;B&#39;]</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">labels=False</span></code> implies you just want the bins back.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="go">array([0, 1, 1, 3])</span>
+</pre></div>
+</div>
+<p>Passing a Series as an input returns a Series with categorical dtype:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">]),</span>
+<span class="gp">... </span>              <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="gp">... </span>
+<span class="go">a    (1.992, 4.667]</span>
+<span class="go">b    (1.992, 4.667]</span>
+<span class="go">c    (4.667, 7.333]</span>
+<span class="go">d     (7.333, 10.0]</span>
+<span class="go">e     (7.333, 10.0]</span>
+<span class="go">dtype: category</span>
+<span class="go">Categories (3, interval[float64, right]): [(1.992, 4.667] &lt; (4.667, ...</span>
+</pre></div>
+</div>
+<p>Passing a Series as an input returns a Series with mapping value.
+It is used to map numerically to intervals based on bins.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">]),</span>
+<span class="gp">... </span>              <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="n">labels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">retbins</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="gp">... </span>
+<span class="go">(a    1.0</span>
+<span class="go"> b    2.0</span>
+<span class="go"> c    3.0</span>
+<span class="go"> d    4.0</span>
+<span class="go"> e    NaN</span>
+<span class="go"> dtype: float64,</span>
+<span class="go"> array([ 0,  2,  4,  6,  8, 10]))</span>
+</pre></div>
+</div>
+<p>Use <cite>drop</cite> optional when bins is not unique</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="n">labels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">retbins</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="gp">... </span>       <span class="n">right</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">duplicates</span><span class="o">=</span><span class="s1">&#39;drop&#39;</span><span class="p">)</span>
+<span class="gp">... </span>
+<span class="go">(a    1.0</span>
+<span class="go"> b    2.0</span>
+<span class="go"> c    3.0</span>
+<span class="go"> d    3.0</span>
+<span class="go"> e    NaN</span>
+<span class="go"> dtype: float64,</span>
+<span class="go"> array([ 0,  2,  4,  6, 10]))</span>
+</pre></div>
+</div>
+<p>Passing an IntervalIndex for <cite>bins</cite> results in those categories exactly.
+Notice that values not covered by the IntervalIndex are set to NaN. 0
+is to the left of the first bin (which is closed on the right), and 1.5
+falls between two bins.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">bins</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">IntervalIndex</span><span class="o">.</span><span class="n">from_tuples</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">],</span> <span class="n">bins</span><span class="p">)</span>
+<span class="go">[NaN, (0.0, 1.0], NaN, (2.0, 3.0], (4.0, 5.0]]</span>
+<span class="go">Categories (3, interval[int64, right]): [(0, 1] &lt; (2, 3] &lt; (4, 5]]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+
+
+            </article>
+            
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="pandas.crosstab.html" title="previous page">
+      <i class="fas fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">pandas.crosstab</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="pandas.qcut.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">pandas.qcut</p>
+  </div>
+  <i class="fas fa-angle-right"></i>
+  </a>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+</div>
+
+<div class="toc-item">
+  
+<div class="tocsection sourcelink">
+    <a href="../../_sources/reference/api/pandas.cut.rst.txt">
+        <i class="fas fa-file-alt"></i> Show Source
+    </a>
+</div>
+
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+          </div>
+        </footer>
+        
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=9b1a4fa89bdd0e95b23b"></script>
+
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    <p class="copyright">
+    &copy 2023 pandas via <a href="https://numfocus.org">NumFOCUS, Inc.</a> Hosted by <a href="https://www.ovhcloud.com">OVHcloud</a>.
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>

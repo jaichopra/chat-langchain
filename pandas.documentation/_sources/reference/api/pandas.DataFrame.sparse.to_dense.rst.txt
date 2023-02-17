@@ -1,0 +1,6 @@
+pandas.DataFrame.sparse.to_dense
+================================
+
+.. currentmodule:: pandas
+
+.. autoaccessormethod:: DataFrame.sparse.to_dense

@@ -1,0 +1,6 @@
+pandas.Timestamp.month\_name
+============================
+
+.. currentmodule:: pandas
+
+.. automethod:: Timestamp.month_name

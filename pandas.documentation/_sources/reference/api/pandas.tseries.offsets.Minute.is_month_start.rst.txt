@@ -1,0 +1,6 @@
+pandas.tseries.offsets.Minute.is\_month\_start
+==============================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. automethod:: Minute.is_month_start

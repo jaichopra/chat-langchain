@@ -1,0 +1,6 @@
+pandas.tseries.offsets.SemiMonthEnd.\_\_call\_\_
+================================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. automethod:: SemiMonthEnd.__call__

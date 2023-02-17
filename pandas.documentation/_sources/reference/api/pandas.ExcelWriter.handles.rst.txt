@@ -1,0 +1,6 @@
+pandas.ExcelWriter.handles
+==========================
+
+.. currentmodule:: pandas
+
+.. autoproperty:: ExcelWriter.handles

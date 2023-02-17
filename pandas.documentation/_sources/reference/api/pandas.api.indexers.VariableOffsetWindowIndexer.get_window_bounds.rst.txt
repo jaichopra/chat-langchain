@@ -1,0 +1,6 @@
+pandas.api.indexers.VariableOffsetWindowIndexer.get\_window\_bounds
+===================================================================
+
+.. currentmodule:: pandas.api.indexers
+
+.. automethod:: VariableOffsetWindowIndexer.get_window_bounds

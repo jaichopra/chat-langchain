@@ -1,0 +1,982 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>How to reshape the layout of tables? &#8212; pandas 1.5.3 documentation</title>
+  <script>
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=9b1a4fa89bdd0e95b23b" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=9b1a4fa89bdd0e95b23b" rel="stylesheet">
+
+  
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/getting_started.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/pandas.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=9b1a4fa89bdd0e95b23b">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/toggleprompt.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script async="async" src="https://www.google-analytics.com/analytics.js"></script>
+    <script>
+                    window.ga = window.ga || function () {
+                        (ga.q = ga.q || []).push(arguments) };
+                    ga.l = +new Date;
+                    ga('create', 'UA-27880019-2', 'auto');
+                    ga('set', 'anonymizeIp', true);
+                    ga('send', 'pageview');
+                </script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'getting_started/intro_tutorials/07_reshape_table_layout';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        </script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="How to combine data from multiple tables?" href="08_combine_dataframes.html" />
+    <link rel="prev" title="How to calculate summary statistics?" href="06_calculate_statistics.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fas fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../../_static/pandas.svg" class="logo__image only-light" alt="Logo image">
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item current active">
+                    <a class="nav-link" href="../index.html">
+                        Getting started
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../user_guide/index.html">
+                        User Guide
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../reference/index.html">
+                        API reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../development/index.html">
+                        Development
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../whatsnew/index.html">
+                        Release notes
+                    </a>
+                </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      <div class="navbar-end-item navbar-end__search-button-container">
+        
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search">
+  <i class="fas fa-search"></i>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        1.5.3  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pandas-dev/pandas" title="GitHub" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/pandas_dev" title="Twitter" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  <div class="search-button-container--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search">
+  <i class="fas fa-search"></i>
+</button>
+  </div>
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fas fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item current active">
+                    <a class="nav-link" href="../index.html">
+                        Getting started
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../user_guide/index.html">
+                        User Guide
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../reference/index.html">
+                        API reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../development/index.html">
+                        Development
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../whatsnew/index.html">
+                        Release notes
+                    </a>
+                </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        1.5.3  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pandas-dev/pandas" title="GitHub" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/pandas_dev" title="Twitter" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item navbar-nav">
+    
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../install.html">
+   Installation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../overview.html">
+   Package overview
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   Getting started tutorials
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label class="toctree-toggle" for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="01_table_oriented.html">
+     What kind of data does pandas handle?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="02_read_write.html">
+     How do I read and write tabular data?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="03_subset_data.html">
+     How do I select a subset of a
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       DataFrame
+      </span>
+     </code>
+     ?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="04_plotting.html">
+     How do I create plots in pandas?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="05_add_columns.html">
+     How to create new columns derived from existing columns?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="06_calculate_statistics.html">
+     How to calculate summary statistics?
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     How to reshape the layout of tables?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="08_combine_dataframes.html">
+     How to combine data from multiple tables?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="09_timeseries.html">
+     How to handle time series data with ease?
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="10_text_data.html">
+     How to manipulate textual data?
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../comparison/index.html">
+   Comparison with other tools
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label class="toctree-toggle" for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../comparison/comparison_with_r.html">
+     Comparison with R / R libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../comparison/comparison_with_sql.html">
+     Comparison with SQL
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../comparison/comparison_with_spreadsheets.html">
+     Comparison with spreadsheets
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../comparison/comparison_with_sas.html">
+     Comparison with SAS
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../comparison/comparison_with_stata.html">
+     Comparison with Stata
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../tutorials.html">
+   Community tutorials
+  </a>
+ </li>
+</ul>
+
+    
+  </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+      </div>
+      <main class="bd-main">
+        
+        
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+            </div>
+            
+            
+            <article class="bd-article" role="main">
+              
+  <div class="highlight-ipython notranslate" id="min-tut-07-reshape"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+<div class="card gs-data">
+    <div class="card-header">
+        <div class="gs-data-title">
+            Data used for this tutorial:
+        </div>
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item"><div data-toggle="collapse" href="#collapsedata" role="button" aria-expanded="false" aria-controls="collapsedata">
+    <span class="badge badge-dark">Titanic data</span>
+</div>
+<div class="collapse" id="collapsedata">
+    <div class="card-body">
+        <p class="card-text"><p>This tutorial uses the Titanic data set, stored as CSV. The data
+consists of the following data columns:</p>
+<ul class="simple">
+<li><p>PassengerId: Id of every passenger.</p></li>
+<li><p>Survived: Indication whether passenger survived. <code class="docutils literal notranslate"><span class="pre">0</span></code> for yes and <code class="docutils literal notranslate"><span class="pre">1</span></code> for no.</p></li>
+<li><p>Pclass: One out of the 3 ticket classes: Class <code class="docutils literal notranslate"><span class="pre">1</span></code>, Class <code class="docutils literal notranslate"><span class="pre">2</span></code> and Class <code class="docutils literal notranslate"><span class="pre">3</span></code>.</p></li>
+<li><p>Name: Name of passenger.</p></li>
+<li><p>Sex: Gender of passenger.</p></li>
+<li><p>Age: Age of passenger in years.</p></li>
+<li><p>SibSp: Number of siblings or spouses aboard.</p></li>
+<li><p>Parch: Number of parents or children aboard.</p></li>
+<li><p>Ticket: Ticket number of passenger.</p></li>
+<li><p>Fare: Indicating the fare.</p></li>
+<li><p>Cabin: Cabin number of passenger.</p></li>
+<li><p>Embarked: Port of embarkation.</p></li>
+</ul>
+        </p>
+        <a href="https://github.com/pandas-dev/pandas/raw/main/doc/data/titanic.csv" class="btn btn-dark btn-sm">To raw data</a>
+    </div>
+</div><div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [2]: </span><span class="n">titanic</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/titanic.csv&quot;</span><span class="p">)</span>
+
+<span class="gp">In [3]: </span><span class="n">titanic</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="gh">Out[3]: </span>
+<span class="go">   PassengerId  Survived  Pclass  ...     Fare Cabin  Embarked</span>
+<span class="go">0            1         0       3  ...   7.2500   NaN         S</span>
+<span class="go">1            2         1       1  ...  71.2833   C85         C</span>
+<span class="go">2            3         1       3  ...   7.9250   NaN         S</span>
+<span class="go">3            4         1       1  ...  53.1000  C123         S</span>
+<span class="go">4            5         0       3  ...   8.0500   NaN         S</span>
+
+<span class="go">[5 rows x 12 columns]</span>
+</pre></div>
+</div>
+</li>
+<li class="list-group-item">
+    <div data-toggle="collapse" href="#collapsedata2" role="button" aria-expanded="false" aria-controls="collapsedata2">
+        <span class="badge badge-dark">Air quality data</span>
+    </div>
+    <div class="collapse" id="collapsedata2">
+        <div class="card-body">
+            <p class="card-text"><p>This tutorial uses air quality data about <span class="math notranslate nohighlight">\(NO_2\)</span> and Particulate matter less than 2.5
+micrometers, made available by
+<a class="reference external" href="https://openaq.org">OpenAQ</a> and using the
+<a class="reference external" href="http://dhhagan.github.io/py-openaq/index.html">py-openaq</a> package.
+The <code class="docutils literal notranslate"><span class="pre">air_quality_long.csv</span></code> data set provides <span class="math notranslate nohighlight">\(NO_2\)</span> and
+<span class="math notranslate nohighlight">\(PM_{25}\)</span> values for the measurement stations <em>FR04014</em>, <em>BETR801</em>
+and <em>London Westminster</em> in respectively Paris, Antwerp and London.</p>
+<p>The air-quality data set has the following columns:</p>
+<ul class="simple">
+<li><p>city: city where the sensor is used, either Paris, Antwerp or London</p></li>
+<li><p>country: country where the sensor is used, either FR, BE or GB</p></li>
+<li><p>location: the id of the sensor, either <em>FR04014</em>, <em>BETR801</em> or
+<em>London Westminster</em></p></li>
+<li><p>parameter: the parameter measured by the sensor, either <span class="math notranslate nohighlight">\(NO_2\)</span>
+or Particulate matter</p></li>
+<li><p>value: the measured value</p></li>
+<li><p>unit: the unit of the measured parameter, in this case ‘µg/m³’</p></li>
+</ul>
+<p>and the index of the <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> is <code class="docutils literal notranslate"><span class="pre">datetime</span></code>, the datetime of the
+measurement.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The air-quality data is provided in a so-called <em>long format</em>
+data representation with each observation on a separate row and each
+variable a separate column of the data table. The long/narrow format is
+also known as the <a class="reference external" href="https://www.jstatsoft.org/article/view/v059i10">tidy data
+format</a>.</p>
+</div>
+            </p>
+        <a href="https://github.com/pandas-dev/pandas/tree/main/doc/data/air_quality_long.csv" class="btn btn-dark btn-sm">To raw data</a>
+    </div>
+</div><div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [4]: </span><span class="n">air_quality</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+<span class="gp">   ...: </span>    <span class="s2">&quot;data/air_quality_long.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s2">&quot;date.utc&quot;</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="kc">True</span>
+<span class="gp">   ...: </span><span class="p">)</span>
+<span class="gp">   ...: </span>
+
+<span class="gp">In [5]: </span><span class="n">air_quality</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="gh">Out[5]: </span>
+<span class="go">                                city country location parameter  value   unit</span>
+<span class="go">date.utc                                                                     </span>
+<span class="go">2019-06-18 06:00:00+00:00  Antwerpen      BE  BETR801      pm25   18.0  µg/m³</span>
+<span class="go">2019-06-17 08:00:00+00:00  Antwerpen      BE  BETR801      pm25    6.5  µg/m³</span>
+<span class="go">2019-06-17 07:00:00+00:00  Antwerpen      BE  BETR801      pm25   18.5  µg/m³</span>
+<span class="go">2019-06-17 06:00:00+00:00  Antwerpen      BE  BETR801      pm25   16.0  µg/m³</span>
+<span class="go">2019-06-17 05:00:00+00:00  Antwerpen      BE  BETR801      pm25    7.5  µg/m³</span>
+</pre></div>
+</div>
+        </li>
+    </ul>
+</div><section id="how-to-reshape-the-layout-of-tables">
+<h1>How to reshape the layout of tables?<a class="headerlink" href="#how-to-reshape-the-layout-of-tables" title="Permalink to this headline">#</a></h1>
+<section id="sort-table-rows">
+<h2>Sort table rows<a class="headerlink" href="#sort-table-rows" title="Permalink to this headline">#</a></h2>
+<ul class="task-bullet">
+    <li><p>I want to sort the Titanic data according to the age of the passengers.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [6]: </span><span class="n">titanic</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;Age&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="gh">Out[6]: </span>
+<span class="go">     PassengerId  Survived  Pclass  ...     Fare Cabin  Embarked</span>
+<span class="go">803          804         1       3  ...   8.5167   NaN         C</span>
+<span class="go">755          756         1       2  ...  14.5000   NaN         S</span>
+<span class="go">644          645         1       3  ...  19.2583   NaN         C</span>
+<span class="go">469          470         1       3  ...  19.2583   NaN         C</span>
+<span class="go">78            79         1       2  ...  29.0000   NaN         S</span>
+
+<span class="go">[5 rows x 12 columns]</span>
+</pre></div>
+</div>
+    </li>
+</ul><ul class="task-bullet">
+    <li><p>I want to sort the Titanic data according to the cabin class and age in descending order.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [7]: </span><span class="n">titanic</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Pclass&#39;</span><span class="p">,</span> <span class="s1">&#39;Age&#39;</span><span class="p">],</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="gh">Out[7]: </span>
+<span class="go">     PassengerId  Survived  Pclass  ...    Fare Cabin  Embarked</span>
+<span class="go">851          852         0       3  ...  7.7750   NaN         S</span>
+<span class="go">116          117         0       3  ...  7.7500   NaN         Q</span>
+<span class="go">280          281         0       3  ...  7.7500   NaN         Q</span>
+<span class="go">483          484         1       3  ...  9.5875   NaN         S</span>
+<span class="go">326          327         0       3  ...  6.2375   NaN         S</span>
+
+<span class="go">[5 rows x 12 columns]</span>
+</pre></div>
+</div>
+<p>With <a class="reference internal" href="../../reference/api/pandas.DataFrame.sort_values.html#pandas.DataFrame.sort_values" title="pandas.DataFrame.sort_values"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.sort_values()</span></code></a>, the rows in the table are sorted according to the
+defined column(s). The index will follow the row order.</p>
+    </li>
+</ul><div class="d-flex flex-row gs-torefguide">
+    <span class="badge badge-info">To user guide</span><p>More details about sorting of tables is provided in the user guide section on <a class="reference internal" href="../../user_guide/basics.html#basics-sorting"><span class="std std-ref">sorting data</span></a>.</p>
+</div></section>
+<section id="long-to-wide-table-format">
+<h2>Long to wide table format<a class="headerlink" href="#long-to-wide-table-format" title="Permalink to this headline">#</a></h2>
+<p>Let’s use a small subset of the air quality data set. We focus on
+<span class="math notranslate nohighlight">\(NO_2\)</span> data and only use the first two measurements of each
+location (i.e. the head of each group). The subset of data will be
+called <code class="docutils literal notranslate"><span class="pre">no2_subset</span></code>.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="go"># filter for no2 data only</span>
+<span class="gp">In [8]: </span><span class="n">no2</span> <span class="o">=</span> <span class="n">air_quality</span><span class="p">[</span><span class="n">air_quality</span><span class="p">[</span><span class="s2">&quot;parameter&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;no2&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="go"># use 2 measurements (head) for each location (groupby)</span>
+<span class="gp">In [9]: </span><span class="n">no2_subset</span> <span class="o">=</span> <span class="n">no2</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;location&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="gp">In [10]: </span><span class="n">no2_subset</span>
+<span class="gh">Out[10]: </span>
+<span class="go">                                city country  ... value   unit</span>
+<span class="go">date.utc                                      ...             </span>
+<span class="go">2019-04-09 01:00:00+00:00  Antwerpen      BE  ...  22.5  µg/m³</span>
+<span class="go">2019-04-09 01:00:00+00:00      Paris      FR  ...  24.4  µg/m³</span>
+<span class="go">2019-04-09 02:00:00+00:00     London      GB  ...  67.0  µg/m³</span>
+<span class="go">2019-04-09 02:00:00+00:00  Antwerpen      BE  ...  53.5  µg/m³</span>
+<span class="go">2019-04-09 02:00:00+00:00      Paris      FR  ...  27.4  µg/m³</span>
+<span class="go">2019-04-09 03:00:00+00:00     London      GB  ...  67.0  µg/m³</span>
+
+<span class="go">[6 rows x 6 columns]</span>
+</pre></div>
+</div>
+<img alt="../../_images/07_pivot.svg" class="align-center" src="../../_images/07_pivot.svg" /><ul class="task-bullet">
+    <li><p>I want the values for the three stations as separate columns next to each other.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [11]: </span><span class="n">no2_subset</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s2">&quot;location&quot;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">)</span>
+<span class="gh">Out[11]: </span>
+<span class="go">location                   BETR801  FR04014  London Westminster</span>
+<span class="go">date.utc                                                       </span>
+<span class="go">2019-04-09 01:00:00+00:00     22.5     24.4                 NaN</span>
+<span class="go">2019-04-09 02:00:00+00:00     53.5     27.4                67.0</span>
+<span class="go">2019-04-09 03:00:00+00:00      NaN      NaN                67.0</span>
+</pre></div>
+</div>
+<p>The <a class="reference internal" href="../../reference/api/pandas.pivot.html#pandas.pivot" title="pandas.pivot"><code class="xref py py-meth docutils literal notranslate"><span class="pre">pivot()</span></code></a> function is purely reshaping of the data: a single value
+for each index/column combination is required.</p>
+    </li>
+</ul><p>As pandas supports plotting of multiple columns (see <a class="reference internal" href="04_plotting.html#min-tut-04-plotting"><span class="std std-ref">plotting tutorial</span></a>) out of the box, the conversion from
+<em>long</em> to <em>wide</em> table format enables the plotting of the different time
+series at the same time:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [12]: </span><span class="n">no2</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="gh">Out[12]: </span>
+<span class="go">                            city country location parameter  value   unit</span>
+<span class="go">date.utc                                                                 </span>
+<span class="go">2019-06-21 00:00:00+00:00  Paris      FR  FR04014       no2   20.0  µg/m³</span>
+<span class="go">2019-06-20 23:00:00+00:00  Paris      FR  FR04014       no2   21.8  µg/m³</span>
+<span class="go">2019-06-20 22:00:00+00:00  Paris      FR  FR04014       no2   26.5  µg/m³</span>
+<span class="go">2019-06-20 21:00:00+00:00  Paris      FR  FR04014       no2   24.9  µg/m³</span>
+<span class="go">2019-06-20 20:00:00+00:00  Paris      FR  FR04014       no2   21.4  µg/m³</span>
+</pre></div>
+</div>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [13]: </span><span class="n">no2</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s2">&quot;location&quot;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="gh">Out[13]: </span><span class="go">&lt;AxesSubplot: xlabel=&#39;date.utc&#39;&gt;</span>
+</pre></div>
+</div>
+<img alt="../../_images/7_reshape_columns.png" src="../../_images/7_reshape_columns.png" />
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When the <code class="docutils literal notranslate"><span class="pre">index</span></code> parameter is not defined, the existing
+index (row labels) is used.</p>
+</div>
+<div class="d-flex flex-row gs-torefguide">
+    <span class="badge badge-info">To user guide</span><p>For more information about <a class="reference internal" href="../../reference/api/pandas.DataFrame.pivot.html#pandas.DataFrame.pivot" title="pandas.DataFrame.pivot"><code class="xref py py-meth docutils literal notranslate"><span class="pre">pivot()</span></code></a>, see the user guide section on <a class="reference internal" href="../../user_guide/reshaping.html#reshaping-reshaping"><span class="std std-ref">pivoting DataFrame objects</span></a>.</p>
+</div></section>
+<section id="pivot-table">
+<h2>Pivot table<a class="headerlink" href="#pivot-table" title="Permalink to this headline">#</a></h2>
+<img alt="../../_images/07_pivot_table.svg" class="align-center" src="../../_images/07_pivot_table.svg" /><ul class="task-bullet">
+    <li><p>I want the mean concentrations for <span class="math notranslate nohighlight">\(NO_2\)</span> and <span class="math notranslate nohighlight">\(PM_{2.5}\)</span> in each of the stations in table form.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [14]: </span><span class="n">air_quality</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span>
+<span class="gp">   ....: </span>    <span class="n">values</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="s2">&quot;location&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s2">&quot;parameter&quot;</span><span class="p">,</span> <span class="n">aggfunc</span><span class="o">=</span><span class="s2">&quot;mean&quot;</span>
+<span class="gp">   ....: </span><span class="p">)</span>
+<span class="gp">   ....: </span>
+<span class="gh">Out[14]: </span>
+<span class="go">parameter                 no2       pm25</span>
+<span class="go">location                                </span>
+<span class="go">BETR801             26.950920  23.169492</span>
+<span class="go">FR04014             29.374284        NaN</span>
+<span class="go">London Westminster  29.740050  13.443568</span>
+</pre></div>
+</div>
+<p>In the case of <a class="reference internal" href="../../reference/api/pandas.DataFrame.pivot.html#pandas.DataFrame.pivot" title="pandas.DataFrame.pivot"><code class="xref py py-meth docutils literal notranslate"><span class="pre">pivot()</span></code></a>, the data is only rearranged. When multiple
+values need to be aggregated (in this specific case, the values on
+different time steps), <a class="reference internal" href="../../reference/api/pandas.DataFrame.pivot_table.html#pandas.DataFrame.pivot_table" title="pandas.DataFrame.pivot_table"><code class="xref py py-meth docutils literal notranslate"><span class="pre">pivot_table()</span></code></a> can be used, providing an
+aggregation function (e.g. mean) on how to combine these values.</p>
+    </li>
+</ul><p>Pivot table is a well known concept in spreadsheet software. When
+interested in the row/column margins (subtotals) for each variable, set
+the <code class="docutils literal notranslate"><span class="pre">margins</span></code> parameter to <code class="docutils literal notranslate"><span class="pre">True</span></code>:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [15]: </span><span class="n">air_quality</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span>
+<span class="gp">   ....: </span>    <span class="n">values</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">,</span>
+<span class="gp">   ....: </span>    <span class="n">index</span><span class="o">=</span><span class="s2">&quot;location&quot;</span><span class="p">,</span>
+<span class="gp">   ....: </span>    <span class="n">columns</span><span class="o">=</span><span class="s2">&quot;parameter&quot;</span><span class="p">,</span>
+<span class="gp">   ....: </span>    <span class="n">aggfunc</span><span class="o">=</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span>
+<span class="gp">   ....: </span>    <span class="n">margins</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="gp">   ....: </span><span class="p">)</span>
+<span class="gp">   ....: </span>
+<span class="gh">Out[15]: </span>
+<span class="go">parameter                 no2       pm25        All</span>
+<span class="go">location                                           </span>
+<span class="go">BETR801             26.950920  23.169492  24.982353</span>
+<span class="go">FR04014             29.374284        NaN  29.374284</span>
+<span class="go">London Westminster  29.740050  13.443568  21.491708</span>
+<span class="go">All                 29.430316  14.386849  24.222743</span>
+</pre></div>
+</div>
+<div class="d-flex flex-row gs-torefguide">
+    <span class="badge badge-info">To user guide</span><p>For more information about <a class="reference internal" href="../../reference/api/pandas.DataFrame.pivot_table.html#pandas.DataFrame.pivot_table" title="pandas.DataFrame.pivot_table"><code class="xref py py-meth docutils literal notranslate"><span class="pre">pivot_table()</span></code></a>, see the user guide section on <a class="reference internal" href="../../user_guide/reshaping.html#reshaping-pivot"><span class="std std-ref">pivot tables</span></a>.</p>
+</div><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In case you are wondering, <a class="reference internal" href="../../reference/api/pandas.DataFrame.pivot_table.html#pandas.DataFrame.pivot_table" title="pandas.DataFrame.pivot_table"><code class="xref py py-meth docutils literal notranslate"><span class="pre">pivot_table()</span></code></a> is indeed directly linked
+to <a class="reference internal" href="../../reference/api/pandas.DataFrame.groupby.html#pandas.DataFrame.groupby" title="pandas.DataFrame.groupby"><code class="xref py py-meth docutils literal notranslate"><span class="pre">groupby()</span></code></a>. The same result can be derived by grouping on both
+<code class="docutils literal notranslate"><span class="pre">parameter</span></code> and <code class="docutils literal notranslate"><span class="pre">location</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">air_quality</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;parameter&quot;</span><span class="p">,</span> <span class="s2">&quot;location&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="d-flex flex-row gs-torefguide">
+    <span class="badge badge-info">To user guide</span><p>Have a look at <a class="reference internal" href="../../reference/api/pandas.DataFrame.groupby.html#pandas.DataFrame.groupby" title="pandas.DataFrame.groupby"><code class="xref py py-meth docutils literal notranslate"><span class="pre">groupby()</span></code></a> in combination with <a class="reference internal" href="../../reference/api/pandas.DataFrame.unstack.html#pandas.DataFrame.unstack" title="pandas.DataFrame.unstack"><code class="xref py py-meth docutils literal notranslate"><span class="pre">unstack()</span></code></a> at the user guide section on <a class="reference internal" href="../../user_guide/reshaping.html#reshaping-combine-with-groupby"><span class="std std-ref">combining stats and groupby</span></a>.</p>
+</div></section>
+<section id="wide-to-long-format">
+<h2>Wide to long format<a class="headerlink" href="#wide-to-long-format" title="Permalink to this headline">#</a></h2>
+<p>Starting again from the wide format table created in the previous
+section, we add a new index to the <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> with <a class="reference internal" href="../../reference/api/pandas.DataFrame.reset_index.html#pandas.DataFrame.reset_index" title="pandas.DataFrame.reset_index"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reset_index()</span></code></a>.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [16]: </span><span class="n">no2_pivoted</span> <span class="o">=</span> <span class="n">no2</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s2">&quot;location&quot;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+
+<span class="gp">In [17]: </span><span class="n">no2_pivoted</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="gh">Out[17]: </span>
+<span class="go">location                  date.utc  BETR801  FR04014  London Westminster</span>
+<span class="go">0        2019-04-09 01:00:00+00:00     22.5     24.4                 NaN</span>
+<span class="go">1        2019-04-09 02:00:00+00:00     53.5     27.4                67.0</span>
+<span class="go">2        2019-04-09 03:00:00+00:00     54.5     34.2                67.0</span>
+<span class="go">3        2019-04-09 04:00:00+00:00     34.5     48.5                41.0</span>
+<span class="go">4        2019-04-09 05:00:00+00:00     46.5     59.5                41.0</span>
+</pre></div>
+</div>
+<img alt="../../_images/07_melt.svg" class="align-center" src="../../_images/07_melt.svg" /><ul class="task-bullet">
+    <li><p>I want to collect all air quality <span class="math notranslate nohighlight">\(NO_2\)</span> measurements in a single column (long format).</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [18]: </span><span class="n">no_2</span> <span class="o">=</span> <span class="n">no2_pivoted</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">id_vars</span><span class="o">=</span><span class="s2">&quot;date.utc&quot;</span><span class="p">)</span>
+
+<span class="gp">In [19]: </span><span class="n">no_2</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="gh">Out[19]: </span>
+<span class="go">                   date.utc location  value</span>
+<span class="go">0 2019-04-09 01:00:00+00:00  BETR801   22.5</span>
+<span class="go">1 2019-04-09 02:00:00+00:00  BETR801   53.5</span>
+<span class="go">2 2019-04-09 03:00:00+00:00  BETR801   54.5</span>
+<span class="go">3 2019-04-09 04:00:00+00:00  BETR801   34.5</span>
+<span class="go">4 2019-04-09 05:00:00+00:00  BETR801   46.5</span>
+</pre></div>
+</div>
+<p>The <a class="reference internal" href="../../reference/api/pandas.melt.html#pandas.melt" title="pandas.melt"><code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.melt()</span></code></a> method on a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> converts the data table from wide
+format to long format. The column headers become the variable names in a
+newly created column.</p>
+    </li>
+</ul><p>The solution is the short version on how to apply <a class="reference internal" href="../../reference/api/pandas.melt.html#pandas.melt" title="pandas.melt"><code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.melt()</span></code></a>. The method
+will <em>melt</em> all columns NOT mentioned in <code class="docutils literal notranslate"><span class="pre">id_vars</span></code> together into two
+columns: A column with the column header names and a column with the
+values itself. The latter column gets by default the name <code class="docutils literal notranslate"><span class="pre">value</span></code>.</p>
+<p>The parameters passed to <a class="reference internal" href="../../reference/api/pandas.melt.html#pandas.melt" title="pandas.melt"><code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.melt()</span></code></a> can be defined in more detail:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [20]: </span><span class="n">no_2</span> <span class="o">=</span> <span class="n">no2_pivoted</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span>
+<span class="gp">   ....: </span>    <span class="n">id_vars</span><span class="o">=</span><span class="s2">&quot;date.utc&quot;</span><span class="p">,</span>
+<span class="gp">   ....: </span>    <span class="n">value_vars</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;BETR801&quot;</span><span class="p">,</span> <span class="s2">&quot;FR04014&quot;</span><span class="p">,</span> <span class="s2">&quot;London Westminster&quot;</span><span class="p">],</span>
+<span class="gp">   ....: </span>    <span class="n">value_name</span><span class="o">=</span><span class="s2">&quot;NO_2&quot;</span><span class="p">,</span>
+<span class="gp">   ....: </span>    <span class="n">var_name</span><span class="o">=</span><span class="s2">&quot;id_location&quot;</span><span class="p">,</span>
+<span class="gp">   ....: </span><span class="p">)</span>
+<span class="gp">   ....: </span>
+
+<span class="gp">In [21]: </span><span class="n">no_2</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="gh">Out[21]: </span>
+<span class="go">                   date.utc id_location  NO_2</span>
+<span class="go">0 2019-04-09 01:00:00+00:00     BETR801  22.5</span>
+<span class="go">1 2019-04-09 02:00:00+00:00     BETR801  53.5</span>
+<span class="go">2 2019-04-09 03:00:00+00:00     BETR801  54.5</span>
+<span class="go">3 2019-04-09 04:00:00+00:00     BETR801  34.5</span>
+<span class="go">4 2019-04-09 05:00:00+00:00     BETR801  46.5</span>
+</pre></div>
+</div>
+<p>The additional parameters have the following effects:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">value_vars</span></code> defines which columns to <em>melt</em> together</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">value_name</span></code> provides a custom column name for the values column
+instead of the default column name <code class="docutils literal notranslate"><span class="pre">value</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">var_name</span></code> provides a custom column name for the column collecting
+the column header names. Otherwise it takes the index name or a
+default <code class="docutils literal notranslate"><span class="pre">variable</span></code></p></li>
+</ul>
+<p>Hence, the arguments <code class="docutils literal notranslate"><span class="pre">value_name</span></code> and <code class="docutils literal notranslate"><span class="pre">var_name</span></code> are just
+user-defined names for the two generated columns. The columns to melt
+are defined by <code class="docutils literal notranslate"><span class="pre">id_vars</span></code> and <code class="docutils literal notranslate"><span class="pre">value_vars</span></code>.</p>
+<div class="d-flex flex-row gs-torefguide">
+    <span class="badge badge-info">To user guide</span><p>Conversion from wide to long format with <a class="reference internal" href="../../reference/api/pandas.melt.html#pandas.melt" title="pandas.melt"><code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.melt()</span></code></a> is explained in the user guide section on <a class="reference internal" href="../../user_guide/reshaping.html#reshaping-melt"><span class="std std-ref">reshaping by melt</span></a>.</p>
+</div><div class="shadow gs-callout gs-callout-remember">
+    <h4>REMEMBER</h4><ul class="simple">
+<li><p>Sorting by one or more columns is supported by <code class="docutils literal notranslate"><span class="pre">sort_values</span></code>.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">pivot</span></code> function is purely restructuring of the data,
+<code class="docutils literal notranslate"><span class="pre">pivot_table</span></code> supports aggregations.</p></li>
+<li><p>The reverse of <code class="docutils literal notranslate"><span class="pre">pivot</span></code> (long to wide format) is <code class="docutils literal notranslate"><span class="pre">melt</span></code> (wide to
+long format).</p></li>
+</ul>
+</div><div class="d-flex flex-row gs-torefguide">
+    <span class="badge badge-info">To user guide</span><p>A full overview is available in the user guide on the pages about <a class="reference internal" href="../../user_guide/reshaping.html#reshaping"><span class="std std-ref">reshaping and pivoting</span></a>.</p>
+</div></section>
+</section>
+
+
+            </article>
+            
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="06_calculate_statistics.html" title="previous page">
+      <i class="fas fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">How to calculate summary statistics?</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="08_combine_dataframes.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">How to combine data from multiple tables?</p>
+  </div>
+  <i class="fas fa-angle-right"></i>
+  </a>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fas fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sort-table-rows">
+   Sort table rows
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#long-to-wide-table-format">
+   Long to wide table format
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pivot-table">
+   Pivot table
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#wide-to-long-format">
+   Wide to long format
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+<div class="toc-item">
+  
+</div>
+
+<div class="toc-item">
+  
+<div class="tocsection sourcelink">
+    <a href="../../_sources/getting_started/intro_tutorials/07_reshape_table_layout.rst.txt">
+        <i class="fas fa-file-alt"></i> Show Source
+    </a>
+</div>
+
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+          </div>
+        </footer>
+        
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=9b1a4fa89bdd0e95b23b"></script>
+
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    <p class="copyright">
+    &copy 2023 pandas via <a href="https://numfocus.org">NumFOCUS, Inc.</a> Hosted by <a href="https://www.ovhcloud.com">OVHcloud</a>.
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,6 @@
+pandas.tseries.offsets.BusinessHour.apply\_index
+================================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. automethod:: BusinessHour.apply_index

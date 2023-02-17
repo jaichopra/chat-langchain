@@ -1,0 +1,54 @@
+pandas.tseries.offsets.Second
+=============================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. autoclass:: Second
+
+   
+
+
+..
+   HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+   .. autosummary::
+      :toctree:
+      
+      Second.__call__
+      Second.apply
+      Second.apply_index
+      Second.copy
+      Second.isAnchored
+      Second.is_anchored
+      Second.is_month_end
+      Second.is_month_start
+      Second.is_on_offset
+      Second.is_quarter_end
+      Second.is_quarter_start
+      Second.is_year_end
+      Second.is_year_start
+      Second.onOffset
+      Second.rollback
+      Second.rollforward
+
+
+
+
+   
+
+
+..
+   HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+   .. autosummary::
+      :toctree:
+      
+      Second.base
+      Second.delta
+      Second.freqstr
+      Second.kwds
+      Second.n
+      Second.name
+      Second.nanos
+      Second.normalize
+      Second.rule_code
+
+

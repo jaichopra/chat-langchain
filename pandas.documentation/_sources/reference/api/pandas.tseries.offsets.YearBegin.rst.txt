@@ -1,0 +1,54 @@
+pandas.tseries.offsets.YearBegin
+================================
+
+.. currentmodule:: pandas.tseries.offsets
+
+.. autoclass:: YearBegin
+
+   
+
+
+..
+   HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+   .. autosummary::
+      :toctree:
+      
+      YearBegin.__call__
+      YearBegin.apply
+      YearBegin.apply_index
+      YearBegin.copy
+      YearBegin.isAnchored
+      YearBegin.is_anchored
+      YearBegin.is_month_end
+      YearBegin.is_month_start
+      YearBegin.is_on_offset
+      YearBegin.is_quarter_end
+      YearBegin.is_quarter_start
+      YearBegin.is_year_end
+      YearBegin.is_year_start
+      YearBegin.onOffset
+      YearBegin.rollback
+      YearBegin.rollforward
+
+
+
+
+   
+
+
+..
+   HACK -- the point here is that we don't want this to appear in the output, but the autosummary should still generate the pages.
+   .. autosummary::
+      :toctree:
+      
+      YearBegin.base
+      YearBegin.freqstr
+      YearBegin.kwds
+      YearBegin.month
+      YearBegin.n
+      YearBegin.name
+      YearBegin.nanos
+      YearBegin.normalize
+      YearBegin.rule_code
+
+

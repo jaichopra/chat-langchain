@@ -1,0 +1,6 @@
+pandas.errors.CategoricalConversionWarning
+==========================================
+
+.. currentmodule:: pandas.errors
+
+.. autoexception:: CategoricalConversionWarning

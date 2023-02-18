@@ -17,12 +17,13 @@ def ingest_docs():
     """Get documents from web pages."""
 
     docs = []
-    for p in Path("./pandas.documentation").rglob("*.html"):
+    for p in Path("./pandas.documentation").rglob("*.html"):        
         if p.is_dir():
             continue
         loader = UnstructuredHTMLLoader(p)
         raw_document = loader.load()
-        docs.append(raw_document)
+        docs = docs + raw_document
+
 
     text_splitter = RecursiveCharacterTextSplitter(
         chunk_size=3000,

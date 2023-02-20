@@ -14,6 +14,8 @@ import nltk
 nltk.download('punkt')
 nltk.download('averaged_perceptron_tagger')
 
+import pdb
+
 def ingest_docs():
     """Get documents from web pages."""
 
@@ -25,9 +27,8 @@ def ingest_docs():
         raw_document = loader.load()
         docs = docs + raw_document
 
-
     text_splitter = RecursiveCharacterTextSplitter(
-        chunk_size=3500,
+        chunk_size=1000,
         chunk_overlap=200,
     )
     documents = text_splitter.split_documents(docs)

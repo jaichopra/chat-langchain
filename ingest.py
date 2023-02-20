@@ -2,6 +2,7 @@
 import pickle
 
 from pathlib import Path
+import time
 
 from langchain.document_loaders import UnstructuredHTMLLoader
 from langchain.embeddings import OpenAIEmbeddings
@@ -26,12 +27,28 @@ def ingest_docs():
 
 
     text_splitter = RecursiveCharacterTextSplitter(
-        chunk_size=3000,
+        chunk_size=3500,
         chunk_overlap=200,
     )
     documents = text_splitter.split_documents(docs)
     embeddings = OpenAIEmbeddings()
-    vectorstore = FAISS.from_documents(documents, embeddings)
+    vectorstore = None
+    counter = 0
+    total_count = len(documents)
+
+    for doc in documents:
+        print(f"generating embeddings {counter} / {total_count}")
+        texts = doc.page_content
+
+        if vectorstore is None:
+            vectorstore = FAISS.from_texts(texts, embeddings)
+        else:
+            vectorstore.add_texts(texts)
+        
+        counter += 1
+
+        # We sleep to throttle OpenAI API limits
+        time.sleep(5)
 
     # Save vectorstore
     with open("vectorstore.pkl", "wb") as f:

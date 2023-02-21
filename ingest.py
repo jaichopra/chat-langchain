@@ -7,8 +7,8 @@ import time
 from langchain.document_loaders import UnstructuredHTMLLoader
 from langchain.embeddings import OpenAIEmbeddings
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.vectorstores.faiss import FAISS
-from langchain.docstore.document import Document
+
+from langchain.vectorstores.lance_dataset import LanceDataset
 
 import nltk
 nltk.download('punkt')
@@ -39,7 +39,7 @@ def ingest_docs():
     )
     documents = text_splitter.split_documents(docs)
     embeddings = OpenAIEmbeddings()
-    vectorstore = FAISS.from_documents(documents, embeddings)
+    vectorstore = LanceDataset.from_documents(documents, embeddings, uri="pandas.lance")
 
     # Save vectorstore
     with open("vectorstore.pkl", "wb") as f:

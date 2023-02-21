@@ -14,18 +14,24 @@ import nltk
 nltk.download('punkt')
 nltk.download('averaged_perceptron_tagger')
 
-import pdb
-
 def ingest_docs():
     """Get documents from web pages."""
 
+    docs_path = Path("docs.pkl")
     docs = []
-    for p in Path("./pandas.documentation").rglob("*.html"):        
-        if p.is_dir():
-            continue
-        loader = UnstructuredHTMLLoader(p)
-        raw_document = loader.load()
-        docs = docs + raw_document
+    if not docs_path.exists():
+        for p in Path("./pandas.documentation").rglob("*.html"):
+            if p.is_dir():
+                continue
+            loader = UnstructuredHTMLLoader(p)
+            raw_document = loader.load()
+            docs = docs + raw_document
+
+        with docs_path.open("wb") as fh:
+            pickle.dump(docs, fh)
+    else:
+        with docs_path.open("rb") as fh:
+            docs = pickle.load(fh)
 
     text_splitter = RecursiveCharacterTextSplitter(
         chunk_size=1000,
@@ -33,28 +39,11 @@ def ingest_docs():
     )
     documents = text_splitter.split_documents(docs)
     embeddings = OpenAIEmbeddings()
-    vectorstore = None
-    counter = 0
-    total_count = len(documents)
-
-    for doc in documents:
-        print(f"generating embeddings {counter} / {total_count}")
-        texts = doc.page_content
-
-        if vectorstore is None:
-            vectorstore = FAISS.from_texts(texts, embeddings)
-        else:
-            vectorstore.add_texts(texts)
-        
-        counter += 1
-
-        # We sleep to throttle OpenAI API limits
-        time.sleep(5)
+    vectorstore = FAISS.from_documents(documents, embeddings)
 
     # Save vectorstore
     with open("vectorstore.pkl", "wb") as f:
         pickle.dump(vectorstore, f)
-
 
 if __name__ == "__main__":
     ingest_docs()

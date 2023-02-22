@@ -3,6 +3,7 @@ import pickle
 
 from pathlib import Path
 import time
+import re
 
 from langchain.document_loaders import UnstructuredHTMLLoader
 from langchain.embeddings import OpenAIEmbeddings
@@ -13,6 +14,13 @@ from langchain.vectorstores.lance_dataset import LanceDataset
 import nltk
 nltk.download('punkt')
 nltk.download('averaged_perceptron_tagger')
+
+def get_document_title(document):
+    m = str(document.metadata["source"])
+    title = re.findall("pandas.documentation(.*).html", m)
+    if title[0] is not None:
+        return(title[0])
+    return ''
 
 def ingest_docs():
     """Get documents from web pages."""
@@ -25,6 +33,10 @@ def ingest_docs():
                 continue
             loader = UnstructuredHTMLLoader(p)
             raw_document = loader.load()
+            m = {}
+            m["title"] = get_document_title(raw_document[0])
+            m["version"] = "2.0rc0"
+            raw_document[0].metadata = raw_document[0].metadata | m
             docs = docs + raw_document
 
         with docs_path.open("wb") as fh:

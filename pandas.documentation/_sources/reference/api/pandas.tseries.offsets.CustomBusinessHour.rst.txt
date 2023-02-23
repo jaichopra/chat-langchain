@@ -13,11 +13,7 @@ pandas.tseries.offsets.CustomBusinessHour
    .. autosummary::
       :toctree:
       
-      CustomBusinessHour.__call__
-      CustomBusinessHour.apply
-      CustomBusinessHour.apply_index
       CustomBusinessHour.copy
-      CustomBusinessHour.isAnchored
       CustomBusinessHour.is_anchored
       CustomBusinessHour.is_month_end
       CustomBusinessHour.is_month_start
@@ -26,7 +22,6 @@ pandas.tseries.offsets.CustomBusinessHour
       CustomBusinessHour.is_quarter_start
       CustomBusinessHour.is_year_end
       CustomBusinessHour.is_year_start
-      CustomBusinessHour.onOffset
       CustomBusinessHour.rollback
       CustomBusinessHour.rollforward
 

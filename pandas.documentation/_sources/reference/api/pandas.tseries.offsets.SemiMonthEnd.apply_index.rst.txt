@@ -1,6 +1,0 @@
-pandas.tseries.offsets.SemiMonthEnd.apply\_index
-================================================
-
-.. currentmodule:: pandas.tseries.offsets
-
-.. automethod:: SemiMonthEnd.apply_index

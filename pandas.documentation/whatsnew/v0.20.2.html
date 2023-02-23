@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Version 0.20.2 (June 4, 2017) &#8212; pandas 1.5.3 documentation</title>
+    <title>Version 0.20.2 (June 4, 2017) &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -55,7 +55,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'whatsnew/v0.20.2';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -182,7 +182,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -311,7 +311,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -363,6 +363,18 @@
   <div class="bd-toc-item navbar-nav">
     
     <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v2.0.0.html">
+   What’s new in 2.0.0 (??)
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.5.4.html">
+   What’s new in 1.5.4 (March XX, 2023)
+  </a>
+ </li>
  <li class="toctree-l1">
   <a class="reference internal" href="v1.5.3.html">
    What’s new in 1.5.3 (January 18, 2023)
@@ -898,8 +910,8 @@ We recommend that all users upgrade to this version.</p>
 <ul class="simple">
 <li><p>Unblocked access to additional compression types supported in pytables: ‘blosc:blosclz, ‘blosc:lz4’, ‘blosc:lz4hc’, ‘blosc:snappy’, ‘blosc:zlib’, ‘blosc:zstd’ (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/14478">GH14478</a>)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">Series</span></code> provides a <code class="docutils literal notranslate"><span class="pre">to_latex</span></code> method (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/16180">GH16180</a>)</p></li>
-<li><p>A new groupby method <a class="reference internal" href="../reference/api/pandas.core.groupby.GroupBy.ngroup.html#pandas.core.groupby.GroupBy.ngroup" title="pandas.core.groupby.GroupBy.ngroup"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ngroup()</span></code></a>,
-parallel to the existing <a class="reference internal" href="../reference/api/pandas.core.groupby.GroupBy.cumcount.html#pandas.core.groupby.GroupBy.cumcount" title="pandas.core.groupby.GroupBy.cumcount"><code class="xref py py-meth docutils literal notranslate"><span class="pre">cumcount()</span></code></a>,
+<li><p>A new groupby method <code class="xref py py-meth docutils literal notranslate"><span class="pre">ngroup()</span></code>,
+parallel to the existing <code class="xref py py-meth docutils literal notranslate"><span class="pre">cumcount()</span></code>,
 has been added to return the group order (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/11642">GH11642</a>); see
 <a class="reference internal" href="../user_guide/groupby.html#groupby-ngroup"><span class="std std-ref">here</span></a>.</p></li>
 </ul>

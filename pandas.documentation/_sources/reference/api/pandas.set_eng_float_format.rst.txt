@@ -1,0 +1,6 @@
+pandas.set\_eng\_float\_format
+==============================
+
+.. currentmodule:: pandas
+
+.. autofunction:: set_eng_float_format

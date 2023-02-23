@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>pandas.read_spss &#8212; pandas 1.5.3 documentation</title>
+    <title>pandas.read_spss &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -55,7 +55,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'reference/api/pandas.read_spss';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -182,7 +182,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -311,7 +311,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -421,6 +421,21 @@
    <li class="toctree-l2">
     <a class="reference internal" href="pandas.DataFrame.to_excel.html">
      pandas.DataFrame.to_excel
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.ExcelFile.html">
+     pandas.ExcelFile
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.ExcelFile.book.html">
+     pandas.ExcelFile.book
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.ExcelFile.sheet_names.html">
+     pandas.ExcelFile.sheet_names
     </a>
    </li>
    <li class="toctree-l2">
@@ -738,19 +753,31 @@
 <h1>pandas.read_spss<a class="headerlink" href="#pandas-read-spss" title="Permalink to this headline">#</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="pandas.read_spss">
-<span class="sig-prename descclassname"><span class="pre">pandas.</span></span><span class="sig-name descname"><span class="pre">read_spss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">usecols</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">convert_categoricals</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.5.3/pandas/io/spss.py#L19-L53"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.read_spss" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">pandas.</span></span><span class="sig-name descname"><span class="pre">read_spss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">usecols</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">convert_categoricals</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_nullable_dtypes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">_NoDefault.no_default</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v2.0.0rc0/pandas/io/spss.py#L22-L76"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.read_spss" title="Permalink to this definition">#</a></dt>
 <dd><p>Load an SPSS file from the file path, returning a DataFrame.</p>
-<div class="versionadded">
-<p><span class="versionmodified added">New in version 0.25.0.</span></p>
-</div>
-<dl class="field-list simple">
+<dl class="field-list">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
+<dd class="field-odd"><dl>
 <dt><strong>path</strong><span class="classifier">str or Path</span></dt><dd><p>File path.</p>
 </dd>
 <dt><strong>usecols</strong><span class="classifier">list-like, optional</span></dt><dd><p>Return a subset of the columns. If None, return all columns.</p>
 </dd>
 <dt><strong>convert_categoricals</strong><span class="classifier">bool, default is True</span></dt><dd><p>Convert categorical columns into pd.Categorical.</p>
+</dd>
+<dt><strong>use_nullable_dtypes</strong><span class="classifier">bool = False</span></dt><dd><p>Whether to use nullable dtypes as default when reading data. If
+set to True, nullable dtypes are used for all dtypes that have a nullable
+implementation, even if no nulls are present.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The nullable dtype implementation can be configured by calling
+<code class="docutils literal notranslate"><span class="pre">pd.set_option(&quot;mode.dtype_backend&quot;,</span> <span class="pre">&quot;pandas&quot;)</span></code> to use
+numpy-backed nullable dtypes or
+<code class="docutils literal notranslate"><span class="pre">pd.set_option(&quot;mode.dtype_backend&quot;,</span> <span class="pre">&quot;pyarrow&quot;)</span></code> to use
+pyarrow-backed nullable dtypes (using <code class="docutils literal notranslate"><span class="pre">pd.ArrowDtype</span></code>).</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 2.0.</span></p>
+</div>
 </dd>
 </dl>
 </dd>

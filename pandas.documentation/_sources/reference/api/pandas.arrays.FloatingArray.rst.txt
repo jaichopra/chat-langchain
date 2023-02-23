@@ -1,0 +1,6 @@
+pandas.arrays.FloatingArray
+===========================
+
+.. currentmodule:: pandas.arrays
+
+.. autoclass:: FloatingArray

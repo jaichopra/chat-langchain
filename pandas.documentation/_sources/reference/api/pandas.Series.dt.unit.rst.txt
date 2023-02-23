@@ -1,0 +1,6 @@
+pandas.Series.dt.unit
+=====================
+
+.. currentmodule:: pandas
+
+.. autoaccessorattribute:: Series.dt.unit

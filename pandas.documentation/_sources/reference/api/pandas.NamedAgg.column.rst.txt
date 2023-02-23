@@ -1,0 +1,6 @@
+pandas.NamedAgg.column
+======================
+
+.. currentmodule:: pandas
+
+.. autoattribute:: NamedAgg.column

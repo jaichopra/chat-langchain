@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>pandas.plotting.andrews_curves &#8212; pandas 1.5.3 documentation</title>
+    <title>pandas.plotting.andrews_curves &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -52,10 +52,12 @@
                     ga('set', 'anonymizeIp', true);
                     ga('send', 'pageview');
                 </script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'reference/api/pandas.plotting.andrews_curves';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -182,7 +184,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -311,7 +313,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -538,28 +540,31 @@
 <h1>pandas.plotting.andrews_curves<a class="headerlink" href="#pandas-plotting-andrews-curves" title="Permalink to this headline">#</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="pandas.plotting.andrews_curves">
-<span class="sig-prename descclassname"><span class="pre">pandas.plotting.</span></span><span class="sig-name descname"><span class="pre">andrews_curves</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">class_column</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">samples</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">200</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">colormap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.5.3/pandas/plotting/_misc.py#L263-L325"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.plotting.andrews_curves" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">pandas.plotting.</span></span><span class="sig-name descname"><span class="pre">andrews_curves</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">class_column</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">samples</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">200</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">colormap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v2.0.0rc0/pandas/plotting/_misc.py#L263-L330"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.plotting.andrews_curves" title="Permalink to this definition">#</a></dt>
 <dd><p>Generate a matplotlib plot for visualising clusters of multivariate data.</p>
 <p>Andrews curves have the functional form:</p>
-<dl class="simple">
-<dt>f(t) = x_1/sqrt(2) + x_2 sin(t) + x_3 cos(t) +</dt><dd><p>x_4 sin(2t) + x_5 cos(2t) + …</p>
-</dd>
-</dl>
-<p>Where x coefficients correspond to the values of each dimension and t is
-linearly spaced between -pi and +pi. Each row of frame then corresponds to
-a single curve.</p>
+<div class="math notranslate nohighlight">
+\[f(t) = \frac{x_1}{\sqrt{2}} + x_2 \sin(t) + x_3 \cos(t) +
+x_4 \sin(2t) + x_5 \cos(2t) + \cdots\]</div>
+<p>Where <span class="math notranslate nohighlight">\(x\)</span> coefficients correspond to the values of each dimension
+and <span class="math notranslate nohighlight">\(t\)</span> is linearly spaced between <span class="math notranslate nohighlight">\(-\pi\)</span> and <span class="math notranslate nohighlight">\(+\pi\)</span>.
+Each row of frame then corresponds to a single curve.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>frame</strong><span class="classifier">DataFrame</span></dt><dd><p>Data to be plotted, preferably normalized to (0.0, 1.0).</p>
 </dd>
-<dt><strong>class_column</strong><span class="classifier">Name of the column containing class names</span></dt><dd></dd>
-<dt><strong>ax</strong><span class="classifier">matplotlib axes object, default None</span></dt><dd></dd>
-<dt><strong>samples</strong><span class="classifier">Number of points to plot in each curve</span></dt><dd></dd>
-<dt><strong>color</strong><span class="classifier">list or tuple, optional</span></dt><dd><p>Colors to use for the different classes.</p>
+<dt><strong>class_column</strong><span class="classifier">label</span></dt><dd><p>Name of the column containing class names.</p>
 </dd>
-<dt><strong>colormap</strong><span class="classifier">str or matplotlib colormap object, default None</span></dt><dd><p>Colormap to select colors from. If string, load colormap with that name
-from matplotlib.</p>
+<dt><strong>ax</strong><span class="classifier">axes object, default None</span></dt><dd><p>Axes to use.</p>
+</dd>
+<dt><strong>samples</strong><span class="classifier">int</span></dt><dd><p>Number of points to plot in each curve.</p>
+</dd>
+<dt><strong>color</strong><span class="classifier">str, list[str] or tuple[str], optional</span></dt><dd><p>Colors to use for the different classes. Colors can be strings
+or 3-element floating point RGB values.</p>
+</dd>
+<dt><strong>colormap</strong><span class="classifier">str or matplotlib colormap object, default None</span></dt><dd><p>Colormap to select colors from. If a string, load colormap with that
+name from matplotlib.</p>
 </dd>
 <dt><strong>**kwargs</strong></dt><dd><p>Options to pass to matplotlib plotting method.</p>
 </dd>
@@ -567,7 +572,7 @@ from matplotlib.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt>class:<cite>matplotlip.axis.Axes</cite></dt><dd></dd>
+<dt><a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.html#matplotlib.axes.Axes" title="(in Matplotlib v3.7.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.axes.Axes</span></code></a></dt><dd></dd>
 </dl>
 </dd>
 </dl>

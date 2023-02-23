@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>pandas.api.extensions.ExtensionArray._values_for_factorize &#8212; pandas 1.5.3 documentation</title>
+    <title>pandas.api.extensions.ExtensionArray._values_for_factorize &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -55,7 +55,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'reference/api/pandas.api.extensions.ExtensionArray._values_for_factorize';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -182,7 +182,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -311,7 +311,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -584,6 +584,11 @@
       </a>
      </li>
      <li class="toctree-l3">
+      <a class="reference internal" href="pandas.api.extensions.ExtensionArray._accumulate.html">
+       pandas.api.extensions.ExtensionArray._accumulate
+      </a>
+     </li>
+     <li class="toctree-l3">
       <a class="reference internal" href="pandas.api.extensions.ExtensionArray._concat_same_type.html">
        pandas.api.extensions.ExtensionArray._concat_same_type
       </a>
@@ -675,7 +680,7 @@
 <h1>pandas.api.extensions.ExtensionArray._values_for_factorize<a class="headerlink" href="#pandas-api-extensions-extensionarray-values-for-factorize" title="Permalink to this headline">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="pandas.api.extensions.ExtensionArray._values_for_factorize">
-<span class="sig-prename descclassname"><span class="pre">ExtensionArray.</span></span><span class="sig-name descname"><span class="pre">_values_for_factorize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.5.3/pandas/core/arrays/base.py#L1006-L1028"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.api.extensions.ExtensionArray._values_for_factorize" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">ExtensionArray.</span></span><span class="sig-name descname"><span class="pre">_values_for_factorize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v2.0.0rc0/pandas/core/arrays/base.py#L991-L1013"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.api.extensions.ExtensionArray._values_for_factorize" title="Permalink to this definition">#</a></dt>
 <dd><p>Return an array and missing value suitable for factorization.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -686,7 +691,7 @@ By default, the extension array is cast to object dtype.</p>
 </dd>
 <dt><strong>na_value</strong><span class="classifier">object</span></dt><dd><p>The value in <cite>values</cite> to consider missing. This will be treated
 as NA in the factorization routines, so it will be coded as
-<cite>na_sentinel</cite> and not included in <cite>uniques</cite>. By default,
+<cite>-1</cite> and not included in <cite>uniques</cite>. By default,
 <code class="docutils literal notranslate"><span class="pre">np.nan</span></code> is used.</p>
 </dd>
 </dl>

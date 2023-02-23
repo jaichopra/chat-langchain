@@ -1,0 +1,6 @@
+pandas.NamedAgg.index
+=====================
+
+.. currentmodule:: pandas
+
+.. automethod:: NamedAgg.index

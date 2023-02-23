@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>pandas.core.groupby.SeriesGroupBy.nsmallest &#8212; pandas 1.5.3 documentation</title>
+    <title>pandas.core.groupby.SeriesGroupBy.nsmallest &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -55,12 +55,12 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'reference/api/pandas.core.groupby.SeriesGroupBy.nsmallest';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pandas.core.groupby.SeriesGroupBy.unique" href="pandas.core.groupby.SeriesGroupBy.unique.html" />
+    <link rel="next" title="pandas.core.groupby.SeriesGroupBy.nth" href="pandas.core.groupby.SeriesGroupBy.nth.html" />
     <link rel="prev" title="pandas.core.groupby.SeriesGroupBy.nlargest" href="pandas.core.groupby.SeriesGroupBy.nlargest.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="docsearch:language" content="en">
@@ -182,7 +182,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -311,7 +311,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -414,23 +414,43 @@
   </label>
   <ul class="current">
    <li class="toctree-l2">
-    <a class="reference internal" href="pandas.core.groupby.GroupBy.__iter__.html">
-     pandas.core.groupby.GroupBy.__iter__
+    <a class="reference internal" href="pandas.core.groupby.DataFrameGroupBy.__iter__.html">
+     pandas.core.groupby.DataFrameGroupBy.__iter__
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="pandas.core.groupby.GroupBy.groups.html">
-     pandas.core.groupby.GroupBy.groups
+    <a class="reference internal" href="pandas.core.groupby.SeriesGroupBy.__iter__.html">
+     pandas.core.groupby.SeriesGroupBy.__iter__
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="pandas.core.groupby.GroupBy.indices.html">
-     pandas.core.groupby.GroupBy.indices
+    <a class="reference internal" href="pandas.core.groupby.DataFrameGroupBy.groups.html">
+     pandas.core.groupby.DataFrameGroupBy.groups
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="pandas.core.groupby.GroupBy.get_group.html">
-     pandas.core.groupby.GroupBy.get_group
+    <a class="reference internal" href="pandas.core.groupby.SeriesGroupBy.groups.html">
+     pandas.core.groupby.SeriesGroupBy.groups
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.core.groupby.DataFrameGroupBy.indices.html">
+     pandas.core.groupby.DataFrameGroupBy.indices
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.core.groupby.SeriesGroupBy.indices.html">
+     pandas.core.groupby.SeriesGroupBy.indices
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.core.groupby.DataFrameGroupBy.get_group.html">
+     pandas.core.groupby.DataFrameGroupBy.get_group
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.core.groupby.SeriesGroupBy.get_group.html">
+     pandas.core.groupby.SeriesGroupBy.get_group
     </a>
    </li>
    <li class="toctree-l2">
@@ -439,13 +459,28 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="pandas.core.groupby.GroupBy.apply.html">
-     pandas.core.groupby.GroupBy.apply
+    <a class="reference internal" href="pandas.NamedAgg.html">
+     pandas.NamedAgg
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="pandas.core.groupby.GroupBy.agg.html">
-     pandas.core.groupby.GroupBy.agg
+    <a class="reference internal" href="pandas.core.groupby.SeriesGroupBy.apply.html">
+     pandas.core.groupby.SeriesGroupBy.apply
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.core.groupby.DataFrameGroupBy.apply.html">
+     pandas.core.groupby.DataFrameGroupBy.apply
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.core.groupby.SeriesGroupBy.agg.html">
+     pandas.core.groupby.SeriesGroupBy.agg
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.core.groupby.DataFrameGroupBy.agg.html">
+     pandas.core.groupby.DataFrameGroupBy.agg
     </a>
    </li>
    <li class="toctree-l2">
@@ -469,163 +504,23 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="pandas.core.groupby.GroupBy.pipe.html">
-     pandas.core.groupby.GroupBy.pipe
+    <a class="reference internal" href="pandas.core.groupby.SeriesGroupBy.pipe.html">
+     pandas.core.groupby.SeriesGroupBy.pipe
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="pandas.core.groupby.GroupBy.all.html">
-     pandas.core.groupby.GroupBy.all
+    <a class="reference internal" href="pandas.core.groupby.DataFrameGroupBy.pipe.html">
+     pandas.core.groupby.DataFrameGroupBy.pipe
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="pandas.core.groupby.GroupBy.any.html">
-     pandas.core.groupby.GroupBy.any
+    <a class="reference internal" href="pandas.core.groupby.DataFrameGroupBy.filter.html">
+     pandas.core.groupby.DataFrameGroupBy.filter
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="pandas.core.groupby.GroupBy.bfill.html">
-     pandas.core.groupby.GroupBy.bfill
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.core.groupby.GroupBy.backfill.html">
-     pandas.core.groupby.GroupBy.backfill
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.core.groupby.GroupBy.count.html">
-     pandas.core.groupby.GroupBy.count
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.core.groupby.GroupBy.cumcount.html">
-     pandas.core.groupby.GroupBy.cumcount
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.core.groupby.GroupBy.cummax.html">
-     pandas.core.groupby.GroupBy.cummax
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.core.groupby.GroupBy.cummin.html">
-     pandas.core.groupby.GroupBy.cummin
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.core.groupby.GroupBy.cumprod.html">
-     pandas.core.groupby.GroupBy.cumprod
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.core.groupby.GroupBy.cumsum.html">
-     pandas.core.groupby.GroupBy.cumsum
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.core.groupby.GroupBy.ffill.html">
-     pandas.core.groupby.GroupBy.ffill
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.core.groupby.GroupBy.first.html">
-     pandas.core.groupby.GroupBy.first
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.core.groupby.GroupBy.head.html">
-     pandas.core.groupby.GroupBy.head
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.core.groupby.GroupBy.last.html">
-     pandas.core.groupby.GroupBy.last
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.core.groupby.GroupBy.max.html">
-     pandas.core.groupby.GroupBy.max
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.core.groupby.GroupBy.mean.html">
-     pandas.core.groupby.GroupBy.mean
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.core.groupby.GroupBy.median.html">
-     pandas.core.groupby.GroupBy.median
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.core.groupby.GroupBy.min.html">
-     pandas.core.groupby.GroupBy.min
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.core.groupby.GroupBy.ngroup.html">
-     pandas.core.groupby.GroupBy.ngroup
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.core.groupby.GroupBy.nth.html">
-     pandas.core.groupby.GroupBy.nth
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.core.groupby.GroupBy.ohlc.html">
-     pandas.core.groupby.GroupBy.ohlc
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.core.groupby.GroupBy.pad.html">
-     pandas.core.groupby.GroupBy.pad
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.core.groupby.GroupBy.prod.html">
-     pandas.core.groupby.GroupBy.prod
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.core.groupby.GroupBy.rank.html">
-     pandas.core.groupby.GroupBy.rank
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.core.groupby.GroupBy.pct_change.html">
-     pandas.core.groupby.GroupBy.pct_change
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.core.groupby.GroupBy.size.html">
-     pandas.core.groupby.GroupBy.size
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.core.groupby.GroupBy.sem.html">
-     pandas.core.groupby.GroupBy.sem
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.core.groupby.GroupBy.std.html">
-     pandas.core.groupby.GroupBy.std
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.core.groupby.GroupBy.sum.html">
-     pandas.core.groupby.GroupBy.sum
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.core.groupby.GroupBy.var.html">
-     pandas.core.groupby.GroupBy.var
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.core.groupby.GroupBy.tail.html">
-     pandas.core.groupby.GroupBy.tail
+    <a class="reference internal" href="pandas.core.groupby.SeriesGroupBy.filter.html">
+     pandas.core.groupby.SeriesGroupBy.filter
     </a>
    </li>
    <li class="toctree-l2">
@@ -639,11 +534,6 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="pandas.core.groupby.DataFrameGroupBy.backfill.html">
-     pandas.core.groupby.DataFrameGroupBy.backfill
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="pandas.core.groupby.DataFrameGroupBy.bfill.html">
      pandas.core.groupby.DataFrameGroupBy.bfill
     </a>
@@ -651,6 +541,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="pandas.core.groupby.DataFrameGroupBy.corr.html">
      pandas.core.groupby.DataFrameGroupBy.corr
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.core.groupby.DataFrameGroupBy.corrwith.html">
+     pandas.core.groupby.DataFrameGroupBy.corrwith
     </a>
    </li>
    <li class="toctree-l2">
@@ -709,13 +604,13 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="pandas.core.groupby.DataFrameGroupBy.filter.html">
-     pandas.core.groupby.DataFrameGroupBy.filter
+    <a class="reference internal" href="pandas.core.groupby.DataFrameGroupBy.first.html">
+     pandas.core.groupby.DataFrameGroupBy.first
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="pandas.core.groupby.DataFrameGroupBy.hist.html">
-     pandas.core.groupby.DataFrameGroupBy.hist
+    <a class="reference internal" href="pandas.core.groupby.DataFrameGroupBy.head.html">
+     pandas.core.groupby.DataFrameGroupBy.head
     </a>
    </li>
    <li class="toctree-l2">
@@ -729,8 +624,38 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="pandas.core.groupby.DataFrameGroupBy.mad.html">
-     pandas.core.groupby.DataFrameGroupBy.mad
+    <a class="reference internal" href="pandas.core.groupby.DataFrameGroupBy.last.html">
+     pandas.core.groupby.DataFrameGroupBy.last
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.core.groupby.DataFrameGroupBy.max.html">
+     pandas.core.groupby.DataFrameGroupBy.max
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.core.groupby.DataFrameGroupBy.mean.html">
+     pandas.core.groupby.DataFrameGroupBy.mean
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.core.groupby.DataFrameGroupBy.median.html">
+     pandas.core.groupby.DataFrameGroupBy.median
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.core.groupby.DataFrameGroupBy.min.html">
+     pandas.core.groupby.DataFrameGroupBy.min
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.core.groupby.DataFrameGroupBy.ngroup.html">
+     pandas.core.groupby.DataFrameGroupBy.ngroup
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.core.groupby.DataFrameGroupBy.nth.html">
+     pandas.core.groupby.DataFrameGroupBy.nth
     </a>
    </li>
    <li class="toctree-l2">
@@ -739,8 +664,8 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="pandas.core.groupby.DataFrameGroupBy.pad.html">
-     pandas.core.groupby.DataFrameGroupBy.pad
+    <a class="reference internal" href="pandas.core.groupby.DataFrameGroupBy.ohlc.html">
+     pandas.core.groupby.DataFrameGroupBy.ohlc
     </a>
    </li>
    <li class="toctree-l2">
@@ -749,8 +674,8 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="pandas.core.groupby.DataFrameGroupBy.plot.html">
-     pandas.core.groupby.DataFrameGroupBy.plot
+    <a class="reference internal" href="pandas.core.groupby.DataFrameGroupBy.prod.html">
+     pandas.core.groupby.DataFrameGroupBy.prod
     </a>
    </li>
    <li class="toctree-l2">
@@ -769,8 +694,18 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="pandas.core.groupby.DataFrameGroupBy.rolling.html">
+     pandas.core.groupby.DataFrameGroupBy.rolling
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="pandas.core.groupby.DataFrameGroupBy.sample.html">
      pandas.core.groupby.DataFrameGroupBy.sample
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.core.groupby.DataFrameGroupBy.sem.html">
+     pandas.core.groupby.DataFrameGroupBy.sem
     </a>
    </li>
    <li class="toctree-l2">
@@ -789,13 +724,28 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="pandas.core.groupby.DataFrameGroupBy.take.html">
-     pandas.core.groupby.DataFrameGroupBy.take
+    <a class="reference internal" href="pandas.core.groupby.DataFrameGroupBy.std.html">
+     pandas.core.groupby.DataFrameGroupBy.std
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="pandas.core.groupby.DataFrameGroupBy.tshift.html">
-     pandas.core.groupby.DataFrameGroupBy.tshift
+    <a class="reference internal" href="pandas.core.groupby.DataFrameGroupBy.sum.html">
+     pandas.core.groupby.DataFrameGroupBy.sum
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.core.groupby.DataFrameGroupBy.var.html">
+     pandas.core.groupby.DataFrameGroupBy.var
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.core.groupby.DataFrameGroupBy.tail.html">
+     pandas.core.groupby.DataFrameGroupBy.tail
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.core.groupby.DataFrameGroupBy.take.html">
+     pandas.core.groupby.DataFrameGroupBy.take
     </a>
    </li>
    <li class="toctree-l2">
@@ -804,23 +754,103 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="pandas.core.groupby.SeriesGroupBy.hist.html">
-     pandas.core.groupby.SeriesGroupBy.hist
+    <a class="reference internal" href="pandas.core.groupby.SeriesGroupBy.all.html">
+     pandas.core.groupby.SeriesGroupBy.all
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="pandas.core.groupby.SeriesGroupBy.nlargest.html">
-     pandas.core.groupby.SeriesGroupBy.nlargest
-    </a>
-   </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     pandas.core.groupby.SeriesGroupBy.nsmallest
+    <a class="reference internal" href="pandas.core.groupby.SeriesGroupBy.any.html">
+     pandas.core.groupby.SeriesGroupBy.any
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="pandas.core.groupby.SeriesGroupBy.unique.html">
-     pandas.core.groupby.SeriesGroupBy.unique
+    <a class="reference internal" href="pandas.core.groupby.SeriesGroupBy.bfill.html">
+     pandas.core.groupby.SeriesGroupBy.bfill
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.core.groupby.SeriesGroupBy.corr.html">
+     pandas.core.groupby.SeriesGroupBy.corr
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.core.groupby.SeriesGroupBy.count.html">
+     pandas.core.groupby.SeriesGroupBy.count
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.core.groupby.SeriesGroupBy.cov.html">
+     pandas.core.groupby.SeriesGroupBy.cov
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.core.groupby.SeriesGroupBy.cumcount.html">
+     pandas.core.groupby.SeriesGroupBy.cumcount
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.core.groupby.SeriesGroupBy.cummax.html">
+     pandas.core.groupby.SeriesGroupBy.cummax
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.core.groupby.SeriesGroupBy.cummin.html">
+     pandas.core.groupby.SeriesGroupBy.cummin
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.core.groupby.SeriesGroupBy.cumprod.html">
+     pandas.core.groupby.SeriesGroupBy.cumprod
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.core.groupby.SeriesGroupBy.cumsum.html">
+     pandas.core.groupby.SeriesGroupBy.cumsum
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.core.groupby.SeriesGroupBy.describe.html">
+     pandas.core.groupby.SeriesGroupBy.describe
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.core.groupby.SeriesGroupBy.diff.html">
+     pandas.core.groupby.SeriesGroupBy.diff
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.core.groupby.SeriesGroupBy.ffill.html">
+     pandas.core.groupby.SeriesGroupBy.ffill
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.core.groupby.SeriesGroupBy.fillna.html">
+     pandas.core.groupby.SeriesGroupBy.fillna
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.core.groupby.SeriesGroupBy.first.html">
+     pandas.core.groupby.SeriesGroupBy.first
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.core.groupby.SeriesGroupBy.head.html">
+     pandas.core.groupby.SeriesGroupBy.head
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.core.groupby.SeriesGroupBy.last.html">
+     pandas.core.groupby.SeriesGroupBy.last
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.core.groupby.SeriesGroupBy.idxmax.html">
+     pandas.core.groupby.SeriesGroupBy.idxmax
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.core.groupby.SeriesGroupBy.idxmin.html">
+     pandas.core.groupby.SeriesGroupBy.idxmin
     </a>
    </li>
    <li class="toctree-l2">
@@ -834,13 +864,168 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="pandas.core.groupby.DataFrameGroupBy.corrwith.html">
-     pandas.core.groupby.DataFrameGroupBy.corrwith
+    <a class="reference internal" href="pandas.core.groupby.SeriesGroupBy.max.html">
+     pandas.core.groupby.SeriesGroupBy.max
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.core.groupby.SeriesGroupBy.mean.html">
+     pandas.core.groupby.SeriesGroupBy.mean
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.core.groupby.SeriesGroupBy.median.html">
+     pandas.core.groupby.SeriesGroupBy.median
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.core.groupby.SeriesGroupBy.min.html">
+     pandas.core.groupby.SeriesGroupBy.min
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.core.groupby.SeriesGroupBy.ngroup.html">
+     pandas.core.groupby.SeriesGroupBy.ngroup
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.core.groupby.SeriesGroupBy.nlargest.html">
+     pandas.core.groupby.SeriesGroupBy.nlargest
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     pandas.core.groupby.SeriesGroupBy.nsmallest
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.core.groupby.SeriesGroupBy.nth.html">
+     pandas.core.groupby.SeriesGroupBy.nth
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.core.groupby.SeriesGroupBy.nunique.html">
+     pandas.core.groupby.SeriesGroupBy.nunique
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.core.groupby.SeriesGroupBy.unique.html">
+     pandas.core.groupby.SeriesGroupBy.unique
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.core.groupby.SeriesGroupBy.ohlc.html">
+     pandas.core.groupby.SeriesGroupBy.ohlc
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.core.groupby.SeriesGroupBy.pct_change.html">
+     pandas.core.groupby.SeriesGroupBy.pct_change
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.core.groupby.SeriesGroupBy.prod.html">
+     pandas.core.groupby.SeriesGroupBy.prod
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.core.groupby.SeriesGroupBy.quantile.html">
+     pandas.core.groupby.SeriesGroupBy.quantile
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.core.groupby.SeriesGroupBy.rank.html">
+     pandas.core.groupby.SeriesGroupBy.rank
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.core.groupby.SeriesGroupBy.resample.html">
+     pandas.core.groupby.SeriesGroupBy.resample
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.core.groupby.SeriesGroupBy.rolling.html">
+     pandas.core.groupby.SeriesGroupBy.rolling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.core.groupby.SeriesGroupBy.sample.html">
+     pandas.core.groupby.SeriesGroupBy.sample
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.core.groupby.SeriesGroupBy.sem.html">
+     pandas.core.groupby.SeriesGroupBy.sem
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.core.groupby.SeriesGroupBy.shift.html">
+     pandas.core.groupby.SeriesGroupBy.shift
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.core.groupby.SeriesGroupBy.size.html">
+     pandas.core.groupby.SeriesGroupBy.size
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.core.groupby.SeriesGroupBy.skew.html">
+     pandas.core.groupby.SeriesGroupBy.skew
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.core.groupby.SeriesGroupBy.std.html">
+     pandas.core.groupby.SeriesGroupBy.std
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.core.groupby.SeriesGroupBy.sum.html">
+     pandas.core.groupby.SeriesGroupBy.sum
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.core.groupby.SeriesGroupBy.var.html">
+     pandas.core.groupby.SeriesGroupBy.var
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.core.groupby.SeriesGroupBy.tail.html">
+     pandas.core.groupby.SeriesGroupBy.tail
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.core.groupby.SeriesGroupBy.take.html">
+     pandas.core.groupby.SeriesGroupBy.take
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.core.groupby.SeriesGroupBy.value_counts.html">
+     pandas.core.groupby.SeriesGroupBy.value_counts
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="pandas.core.groupby.DataFrameGroupBy.boxplot.html">
      pandas.core.groupby.DataFrameGroupBy.boxplot
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.core.groupby.DataFrameGroupBy.hist.html">
+     pandas.core.groupby.DataFrameGroupBy.hist
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.core.groupby.SeriesGroupBy.hist.html">
+     pandas.core.groupby.SeriesGroupBy.hist
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.core.groupby.DataFrameGroupBy.plot.html">
+     pandas.core.groupby.DataFrameGroupBy.plot
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.core.groupby.SeriesGroupBy.plot.html">
+     pandas.core.groupby.SeriesGroupBy.plot
     </a>
    </li>
   </ul>
@@ -908,7 +1093,7 @@
 <h1>pandas.core.groupby.SeriesGroupBy.nsmallest<a class="headerlink" href="#pandas-core-groupby-seriesgroupby-nsmallest" title="Permalink to this headline">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="pandas.core.groupby.SeriesGroupBy.nsmallest">
-<span class="sig-prename descclassname"><span class="pre">SeriesGroupBy.</span></span><span class="sig-name descname"><span class="pre">nsmallest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'first'</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.5.3/pandas/core/groupby/generic.py#L771-L778"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.core.groupby.SeriesGroupBy.nsmallest" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">SeriesGroupBy.</span></span><span class="sig-name descname"><span class="pre">nsmallest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'first'</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v2.0.0rc0/pandas/core/groupby/generic.py#L1070-L1079"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.core.groupby.SeriesGroupBy.nsmallest" title="Permalink to this definition">#</a></dt>
 <dd><p>Return the smallest <cite>n</cite> elements.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1028,10 +1213,10 @@ that the returned Series has four elements due to the three duplicates.</p>
           <p class="prev-next-title">pandas.core.groupby.SeriesGroupBy.nlargest</p>
       </div>
   </a>
-  <a class='right-next' id="next-link" href="pandas.core.groupby.SeriesGroupBy.unique.html" title="next page">
+  <a class='right-next' id="next-link" href="pandas.core.groupby.SeriesGroupBy.nth.html" title="next page">
   <div class="prev-next-info">
       <p class="prev-next-subtitle">next</p>
-      <p class="prev-next-title">pandas.core.groupby.SeriesGroupBy.unique</p>
+      <p class="prev-next-title">pandas.core.groupby.SeriesGroupBy.nth</p>
   </div>
   <i class="fas fa-angle-right"></i>
   </a>

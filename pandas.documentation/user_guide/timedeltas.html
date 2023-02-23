@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Time deltas &#8212; pandas 1.5.3 documentation</title>
+    <title>Time deltas &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -55,7 +55,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/timedeltas';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -182,7 +182,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -311,7 +311,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -381,6 +381,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="io.html">
    IO tools (text, CSV, HDF5, …)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="pyarrow.html">
+   PyArrow Functionality
   </a>
  </li>
  <li class="toctree-l1">
@@ -900,9 +905,7 @@ subtraction operations on <code class="docutils literal notranslate"><span class
 </section>
 <section id="frequency-conversion">
 <span id="timedeltas-timedeltas-convert"></span><h2>Frequency conversion<a class="headerlink" href="#frequency-conversion" title="Permalink to this headline">#</a></h2>
-<p>Timedelta Series, <code class="docutils literal notranslate"><span class="pre">TimedeltaIndex</span></code>, and <code class="docutils literal notranslate"><span class="pre">Timedelta</span></code> scalars can be converted to other ‘frequencies’ by dividing by another timedelta,
-or by astyping to a specific timedelta type. These operations yield Series and propagate <code class="docutils literal notranslate"><span class="pre">NaT</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">nan</span></code>.
-Note that division by the NumPy scalar is true division, while astyping is equivalent of floor division.</p>
+<p>Timedelta Series and <code class="docutils literal notranslate"><span class="pre">TimedeltaIndex</span></code>, and <code class="docutils literal notranslate"><span class="pre">Timedelta</span></code> can be converted to other frequencies by astyping to a specific timedelta dtype.</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [71]: </span><span class="n">december</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">&quot;20121201&quot;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
 
 <span class="gp">In [72]: </span><span class="n">january</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">&quot;20130101&quot;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
@@ -921,62 +924,49 @@ Note that division by the NumPy scalar is true division, while astyping is equiv
 <span class="go">3                NaT</span>
 <span class="go">dtype: timedelta64[ns]</span>
 
-<span class="go"># to days</span>
-<span class="gp">In [77]: </span><span class="n">td</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;D&quot;</span><span class="p">)</span>
+<span class="go"># to seconds</span>
+<span class="gp">In [77]: </span><span class="n">td</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;timedelta64[s]&quot;</span><span class="p">)</span>
 <span class="gh">Out[77]: </span>
+<span class="go">0   31 days 00:00:00</span>
+<span class="go">1   31 days 00:00:00</span>
+<span class="go">2   31 days 00:05:03</span>
+<span class="go">3                NaT</span>
+<span class="go">dtype: timedelta64[s]</span>
+</pre></div>
+</div>
+<p>For timedelta64 resolutions other than the supported “s”, “ms”, “us”, “ns”,
+an alternative is to divide by another timedelta object. Note that division by the NumPy scalar is true division, while astyping is equivalent of floor division.</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="go"># to days</span>
+<span class="gp">In [78]: </span><span class="n">td</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;D&quot;</span><span class="p">)</span>
+<span class="gh">Out[78]: </span>
 <span class="go">0    31.000000</span>
 <span class="go">1    31.000000</span>
 <span class="go">2    31.003507</span>
 <span class="go">3          NaN</span>
 <span class="go">dtype: float64</span>
 
-<span class="gp">In [78]: </span><span class="n">td</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;timedelta64[D]&quot;</span><span class="p">)</span>
-<span class="gh">Out[78]: </span>
-<span class="go">0    31.0</span>
-<span class="go">1    31.0</span>
-<span class="go">2    31.0</span>
-<span class="go">3     NaN</span>
-<span class="go">dtype: float64</span>
-
-<span class="go"># to seconds</span>
-<span class="gp">In [79]: </span><span class="n">td</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;s&quot;</span><span class="p">)</span>
-<span class="gh">Out[79]: </span>
-<span class="go">0    2678400.0</span>
-<span class="go">1    2678400.0</span>
-<span class="go">2    2678703.0</span>
-<span class="go">3          NaN</span>
-<span class="go">dtype: float64</span>
-
-<span class="gp">In [80]: </span><span class="n">td</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;timedelta64[s]&quot;</span><span class="p">)</span>
-<span class="gh">Out[80]: </span>
-<span class="go">0    2678400.0</span>
-<span class="go">1    2678400.0</span>
-<span class="go">2    2678703.0</span>
-<span class="go">3          NaN</span>
-<span class="go">dtype: float64</span>
-
 <span class="go"># to months (these are constant months)</span>
-<span class="gp">In [81]: </span><span class="n">td</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;M&quot;</span><span class="p">)</span>
-<span class="gh">Out[81]: </span>
-<span class="go">0    1.018501</span>
-<span class="go">1    1.018501</span>
-<span class="go">2    1.018617</span>
+<span class="gp">In [79]: </span><span class="n">td</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;M&quot;</span><span class="p">)</span>
+<span class="gh">Out[79]: </span>
+<span class="go">0    1.000000</span>
+<span class="go">1    1.000000</span>
+<span class="go">2    1.000113</span>
 <span class="go">3         NaN</span>
 <span class="go">dtype: float64</span>
 </pre></div>
 </div>
 <p>Dividing or multiplying a <code class="docutils literal notranslate"><span class="pre">timedelta64[ns]</span></code> Series by an integer or integer Series
 yields another <code class="docutils literal notranslate"><span class="pre">timedelta64[ns]</span></code> dtypes Series.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [82]: </span><span class="n">td</span> <span class="o">*</span> <span class="o">-</span><span class="mi">1</span>
-<span class="gh">Out[82]: </span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [80]: </span><span class="n">td</span> <span class="o">*</span> <span class="o">-</span><span class="mi">1</span>
+<span class="gh">Out[80]: </span>
 <span class="go">0   -31 days +00:00:00</span>
 <span class="go">1   -31 days +00:00:00</span>
 <span class="go">2   -32 days +23:54:57</span>
 <span class="go">3                  NaT</span>
 <span class="go">dtype: timedelta64[ns]</span>
 
-<span class="gp">In [83]: </span><span class="n">td</span> <span class="o">*</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
-<span class="gh">Out[83]: </span>
+<span class="gp">In [81]: </span><span class="n">td</span> <span class="o">*</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+<span class="gh">Out[81]: </span>
 <span class="go">0   31 days 00:00:00</span>
 <span class="go">1   62 days 00:00:00</span>
 <span class="go">2   93 days 00:15:09</span>
@@ -986,16 +976,16 @@ yields another <code class="docutils literal notranslate"><span class="pre">time
 </div>
 <p>Rounded division (floor-division) of a <code class="docutils literal notranslate"><span class="pre">timedelta64[ns]</span></code> Series by a scalar
 <code class="docutils literal notranslate"><span class="pre">Timedelta</span></code> gives a series of integers.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [84]: </span><span class="n">td</span> <span class="o">//</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">hours</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
-<span class="gh">Out[84]: </span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [82]: </span><span class="n">td</span> <span class="o">//</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">hours</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="gh">Out[82]: </span>
 <span class="go">0    9.0</span>
 <span class="go">1    9.0</span>
 <span class="go">2    9.0</span>
 <span class="go">3    NaN</span>
 <span class="go">dtype: float64</span>
 
-<span class="gp">In [85]: </span><span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">hours</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span> <span class="o">//</span> <span class="n">td</span>
-<span class="gh">Out[85]: </span>
+<span class="gp">In [83]: </span><span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">hours</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span> <span class="o">//</span> <span class="n">td</span>
+<span class="gh">Out[83]: </span>
 <span class="go">0    0.0</span>
 <span class="go">1    0.0</span>
 <span class="go">2    0.0</span>
@@ -1004,16 +994,16 @@ yields another <code class="docutils literal notranslate"><span class="pre">time
 </pre></div>
 </div>
 <p id="timedeltas-mod-divmod">The mod (%) and divmod operations are defined for <code class="docutils literal notranslate"><span class="pre">Timedelta</span></code> when operating with another timedelta-like or with a numeric argument.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [86]: </span><span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">37</span><span class="p">)</span> <span class="o">%</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="gh">Out[86]: </span><span class="go">Timedelta(&#39;0 days 01:00:00&#39;)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [84]: </span><span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">37</span><span class="p">)</span> <span class="o">%</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="gh">Out[84]: </span><span class="go">Timedelta(&#39;0 days 01:00:00&#39;)</span>
 
 <span class="go"># divmod against a timedelta-like returns a pair (int, Timedelta)</span>
-<span class="gp">In [87]: </span><span class="nb">divmod</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="n">minutes</span><span class="o">=</span><span class="mi">11</span><span class="p">))</span>
-<span class="gh">Out[87]: </span><span class="go">(10, Timedelta(&#39;0 days 00:10:00&#39;))</span>
+<span class="gp">In [85]: </span><span class="nb">divmod</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="n">minutes</span><span class="o">=</span><span class="mi">11</span><span class="p">))</span>
+<span class="gh">Out[85]: </span><span class="go">(10, Timedelta(&#39;0 days 00:10:00&#39;))</span>
 
 <span class="go"># divmod against a numeric returns a pair (Timedelta, Timedelta)</span>
-<span class="gp">In [88]: </span><span class="nb">divmod</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">25</span><span class="p">),</span> <span class="mi">86400000000000</span><span class="p">)</span>
-<span class="gh">Out[88]: </span><span class="go">(Timedelta(&#39;0 days 00:00:00.000000001&#39;), Timedelta(&#39;0 days 01:00:00&#39;))</span>
+<span class="gp">In [86]: </span><span class="nb">divmod</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">25</span><span class="p">),</span> <span class="mi">86400000000000</span><span class="p">)</span>
+<span class="gh">Out[86]: </span><span class="go">(Timedelta(&#39;0 days 00:00:00.000000001&#39;), Timedelta(&#39;0 days 01:00:00&#39;))</span>
 </pre></div>
 </div>
 </section>
@@ -1026,16 +1016,16 @@ yields another <code class="docutils literal notranslate"><span class="pre">time
 <p>Note that the attributes are NOT the displayed values of the <code class="docutils literal notranslate"><span class="pre">Timedelta</span></code>. Use <code class="docutils literal notranslate"><span class="pre">.components</span></code> to retrieve the displayed values.</p>
 </div>
 <p>For a <code class="docutils literal notranslate"><span class="pre">Series</span></code>:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [89]: </span><span class="n">td</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">days</span>
-<span class="gh">Out[89]: </span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [87]: </span><span class="n">td</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">days</span>
+<span class="gh">Out[87]: </span>
 <span class="go">0    31.0</span>
 <span class="go">1    31.0</span>
 <span class="go">2    31.0</span>
 <span class="go">3     NaN</span>
 <span class="go">dtype: float64</span>
 
-<span class="gp">In [90]: </span><span class="n">td</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">seconds</span>
-<span class="gh">Out[90]: </span>
+<span class="gp">In [88]: </span><span class="n">td</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">seconds</span>
+<span class="gh">Out[88]: </span>
 <span class="go">0      0.0</span>
 <span class="go">1      0.0</span>
 <span class="go">2    303.0</span>
@@ -1044,30 +1034,30 @@ yields another <code class="docutils literal notranslate"><span class="pre">time
 </pre></div>
 </div>
 <p>You can access the value of the fields for a scalar <code class="docutils literal notranslate"><span class="pre">Timedelta</span></code> directly.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [91]: </span><span class="n">tds</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="s2">&quot;31 days 5 min 3 sec&quot;</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [89]: </span><span class="n">tds</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="s2">&quot;31 days 5 min 3 sec&quot;</span><span class="p">)</span>
 
-<span class="gp">In [92]: </span><span class="n">tds</span><span class="o">.</span><span class="n">days</span>
-<span class="gh">Out[92]: </span><span class="go">31</span>
+<span class="gp">In [90]: </span><span class="n">tds</span><span class="o">.</span><span class="n">days</span>
+<span class="gh">Out[90]: </span><span class="go">31</span>
 
-<span class="gp">In [93]: </span><span class="n">tds</span><span class="o">.</span><span class="n">seconds</span>
-<span class="gh">Out[93]: </span><span class="go">303</span>
+<span class="gp">In [91]: </span><span class="n">tds</span><span class="o">.</span><span class="n">seconds</span>
+<span class="gh">Out[91]: </span><span class="go">303</span>
 
-<span class="gp">In [94]: </span><span class="p">(</span><span class="o">-</span><span class="n">tds</span><span class="p">)</span><span class="o">.</span><span class="n">seconds</span>
-<span class="gh">Out[94]: </span><span class="go">86097</span>
+<span class="gp">In [92]: </span><span class="p">(</span><span class="o">-</span><span class="n">tds</span><span class="p">)</span><span class="o">.</span><span class="n">seconds</span>
+<span class="gh">Out[92]: </span><span class="go">86097</span>
 </pre></div>
 </div>
 <p>You can use the <code class="docutils literal notranslate"><span class="pre">.components</span></code> property to access a reduced form of the timedelta. This returns a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> indexed
 similarly to the <code class="docutils literal notranslate"><span class="pre">Series</span></code>. These are the <em>displayed</em> values of the <code class="docutils literal notranslate"><span class="pre">Timedelta</span></code>.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [95]: </span><span class="n">td</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">components</span>
-<span class="gh">Out[95]: </span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [93]: </span><span class="n">td</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">components</span>
+<span class="gh">Out[93]: </span>
 <span class="go">   days  hours  minutes  seconds  milliseconds  microseconds  nanoseconds</span>
 <span class="go">0  31.0    0.0      0.0      0.0           0.0           0.0          0.0</span>
 <span class="go">1  31.0    0.0      0.0      0.0           0.0           0.0          0.0</span>
 <span class="go">2  31.0    0.0      5.0      3.0           0.0           0.0          0.0</span>
 <span class="go">3   NaN    NaN      NaN      NaN           NaN           NaN          NaN</span>
 
-<span class="gp">In [96]: </span><span class="n">td</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">components</span><span class="o">.</span><span class="n">seconds</span>
-<span class="gh">Out[96]: </span>
+<span class="gp">In [94]: </span><span class="n">td</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">components</span><span class="o">.</span><span class="n">seconds</span>
+<span class="gh">Out[94]: </span>
 <span class="go">0    0.0</span>
 <span class="go">1    0.0</span>
 <span class="go">2    3.0</span>
@@ -1077,11 +1067,11 @@ similarly to the <code class="docutils literal notranslate"><span class="pre">Se
 </div>
 <p id="timedeltas-isoformat">You can convert a <code class="docutils literal notranslate"><span class="pre">Timedelta</span></code> to an <a class="reference external" href="https://en.wikipedia.org/wiki/ISO_8601#Durations">ISO 8601 Duration</a> string with the
 <code class="docutils literal notranslate"><span class="pre">.isoformat</span></code> method</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [97]: </span><span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [95]: </span><span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span>
 <span class="gp">   ....: </span>    <span class="n">days</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">minutes</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">seconds</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">milliseconds</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">microseconds</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">nanoseconds</span><span class="o">=</span><span class="mi">12</span>
 <span class="gp">   ....: </span><span class="p">)</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span>
 <span class="gp">   ....: </span>
-<span class="gh">Out[97]: </span><span class="go">&#39;P6DT0H50M3.010010012S&#39;</span>
+<span class="gh">Out[95]: </span><span class="go">&#39;P6DT0H50M3.010010012S&#39;</span>
 </pre></div>
 </div>
 </section>
@@ -1091,7 +1081,7 @@ similarly to the <code class="docutils literal notranslate"><span class="pre">Se
 the <a class="reference internal" href="../reference/api/pandas.timedelta_range.html#pandas.timedelta_range" title="pandas.timedelta_range"><code class="xref py py-func docutils literal notranslate"><span class="pre">timedelta_range()</span></code></a> constructor.</p>
 <p>Using <code class="docutils literal notranslate"><span class="pre">TimedeltaIndex</span></code> you can pass string-like, <code class="docutils literal notranslate"><span class="pre">Timedelta</span></code>, <code class="docutils literal notranslate"><span class="pre">timedelta</span></code>,
 or <code class="docutils literal notranslate"><span class="pre">np.timedelta64</span></code> objects. Passing <code class="docutils literal notranslate"><span class="pre">np.nan/pd.NaT/nat</span></code> will represent missing values.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [98]: </span><span class="n">pd</span><span class="o">.</span><span class="n">TimedeltaIndex</span><span class="p">(</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [96]: </span><span class="n">pd</span><span class="o">.</span><span class="n">TimedeltaIndex</span><span class="p">(</span>
 <span class="gp">   ....: </span>    <span class="p">[</span>
 <span class="gp">   ....: </span>        <span class="s2">&quot;1 days&quot;</span><span class="p">,</span>
 <span class="gp">   ....: </span>        <span class="s2">&quot;1 days, 00:00:05&quot;</span><span class="p">,</span>
@@ -1100,7 +1090,7 @@ or <code class="docutils literal notranslate"><span class="pre">np.timedelta64</
 <span class="gp">   ....: </span>    <span class="p">]</span>
 <span class="gp">   ....: </span><span class="p">)</span>
 <span class="gp">   ....: </span>
-<span class="gh">Out[98]: </span>
+<span class="gh">Out[96]: </span>
 <span class="go">TimedeltaIndex([&#39;1 days 00:00:00&#39;, &#39;1 days 00:00:05&#39;, &#39;2 days 00:00:00&#39;,</span>
 <span class="go">                &#39;2 days 00:00:02&#39;],</span>
 <span class="go">               dtype=&#39;timedelta64[ns]&#39;, freq=None)</span>
@@ -1108,8 +1098,8 @@ or <code class="docutils literal notranslate"><span class="pre">np.timedelta64</
 </div>
 <p>The string ‘infer’ can be passed in order to set the frequency of the index as the
 inferred frequency upon creation:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [99]: </span><span class="n">pd</span><span class="o">.</span><span class="n">TimedeltaIndex</span><span class="p">([</span><span class="s2">&quot;0 days&quot;</span><span class="p">,</span> <span class="s2">&quot;10 days&quot;</span><span class="p">,</span> <span class="s2">&quot;20 days&quot;</span><span class="p">],</span> <span class="n">freq</span><span class="o">=</span><span class="s2">&quot;infer&quot;</span><span class="p">)</span>
-<span class="gh">Out[99]: </span><span class="go">TimedeltaIndex([&#39;0 days&#39;, &#39;10 days&#39;, &#39;20 days&#39;], dtype=&#39;timedelta64[ns]&#39;, freq=&#39;10D&#39;)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [97]: </span><span class="n">pd</span><span class="o">.</span><span class="n">TimedeltaIndex</span><span class="p">([</span><span class="s2">&quot;0 days&quot;</span><span class="p">,</span> <span class="s2">&quot;10 days&quot;</span><span class="p">,</span> <span class="s2">&quot;20 days&quot;</span><span class="p">],</span> <span class="n">freq</span><span class="o">=</span><span class="s2">&quot;infer&quot;</span><span class="p">)</span>
+<span class="gh">Out[97]: </span><span class="go">TimedeltaIndex([&#39;0 days&#39;, &#39;10 days&#39;, &#39;20 days&#39;], dtype=&#39;timedelta64[ns]&#39;, freq=&#39;10D&#39;)</span>
 </pre></div>
 </div>
 <section id="generating-ranges-of-time-deltas">
@@ -1117,22 +1107,22 @@ inferred frequency upon creation:</p>
 <p>Similar to <a class="reference internal" href="../reference/api/pandas.date_range.html#pandas.date_range" title="pandas.date_range"><code class="xref py py-func docutils literal notranslate"><span class="pre">date_range()</span></code></a>, you can construct regular ranges of a <code class="docutils literal notranslate"><span class="pre">TimedeltaIndex</span></code>
 using <a class="reference internal" href="../reference/api/pandas.timedelta_range.html#pandas.timedelta_range" title="pandas.timedelta_range"><code class="xref py py-func docutils literal notranslate"><span class="pre">timedelta_range()</span></code></a>.  The default frequency for <code class="docutils literal notranslate"><span class="pre">timedelta_range</span></code> is
 calendar day:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [100]: </span><span class="n">pd</span><span class="o">.</span><span class="n">timedelta_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s2">&quot;1 days&quot;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-<span class="gh">Out[100]: </span><span class="go">TimedeltaIndex([&#39;1 days&#39;, &#39;2 days&#39;, &#39;3 days&#39;, &#39;4 days&#39;, &#39;5 days&#39;], dtype=&#39;timedelta64[ns]&#39;, freq=&#39;D&#39;)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [98]: </span><span class="n">pd</span><span class="o">.</span><span class="n">timedelta_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s2">&quot;1 days&quot;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="gh">Out[98]: </span><span class="go">TimedeltaIndex([&#39;1 days&#39;, &#39;2 days&#39;, &#39;3 days&#39;, &#39;4 days&#39;, &#39;5 days&#39;], dtype=&#39;timedelta64[ns]&#39;, freq=&#39;D&#39;)</span>
 </pre></div>
 </div>
 <p>Various combinations of <code class="docutils literal notranslate"><span class="pre">start</span></code>, <code class="docutils literal notranslate"><span class="pre">end</span></code>, and <code class="docutils literal notranslate"><span class="pre">periods</span></code> can be used with
 <code class="docutils literal notranslate"><span class="pre">timedelta_range</span></code>:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [101]: </span><span class="n">pd</span><span class="o">.</span><span class="n">timedelta_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s2">&quot;1 days&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;5 days&quot;</span><span class="p">)</span>
-<span class="gh">Out[101]: </span><span class="go">TimedeltaIndex([&#39;1 days&#39;, &#39;2 days&#39;, &#39;3 days&#39;, &#39;4 days&#39;, &#39;5 days&#39;], dtype=&#39;timedelta64[ns]&#39;, freq=&#39;D&#39;)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [99]: </span><span class="n">pd</span><span class="o">.</span><span class="n">timedelta_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s2">&quot;1 days&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;5 days&quot;</span><span class="p">)</span>
+<span class="gh">Out[99]: </span><span class="go">TimedeltaIndex([&#39;1 days&#39;, &#39;2 days&#39;, &#39;3 days&#39;, &#39;4 days&#39;, &#39;5 days&#39;], dtype=&#39;timedelta64[ns]&#39;, freq=&#39;D&#39;)</span>
 
-<span class="gp">In [102]: </span><span class="n">pd</span><span class="o">.</span><span class="n">timedelta_range</span><span class="p">(</span><span class="n">end</span><span class="o">=</span><span class="s2">&quot;10 days&quot;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
-<span class="gh">Out[102]: </span><span class="go">TimedeltaIndex([&#39;7 days&#39;, &#39;8 days&#39;, &#39;9 days&#39;, &#39;10 days&#39;], dtype=&#39;timedelta64[ns]&#39;, freq=&#39;D&#39;)</span>
+<span class="gp">In [100]: </span><span class="n">pd</span><span class="o">.</span><span class="n">timedelta_range</span><span class="p">(</span><span class="n">end</span><span class="o">=</span><span class="s2">&quot;10 days&quot;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="gh">Out[100]: </span><span class="go">TimedeltaIndex([&#39;7 days&#39;, &#39;8 days&#39;, &#39;9 days&#39;, &#39;10 days&#39;], dtype=&#39;timedelta64[ns]&#39;, freq=&#39;D&#39;)</span>
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">freq</span></code> parameter can passed a variety of <a class="reference internal" href="timeseries.html#timeseries-offset-aliases"><span class="std std-ref">frequency aliases</span></a>:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [103]: </span><span class="n">pd</span><span class="o">.</span><span class="n">timedelta_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s2">&quot;1 days&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;2 days&quot;</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">&quot;30T&quot;</span><span class="p">)</span>
-<span class="gh">Out[103]: </span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [101]: </span><span class="n">pd</span><span class="o">.</span><span class="n">timedelta_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s2">&quot;1 days&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;2 days&quot;</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">&quot;30T&quot;</span><span class="p">)</span>
+<span class="gh">Out[101]: </span>
 <span class="go">TimedeltaIndex([&#39;1 days 00:00:00&#39;, &#39;1 days 00:30:00&#39;, &#39;1 days 01:00:00&#39;,</span>
 <span class="go">                &#39;1 days 01:30:00&#39;, &#39;1 days 02:00:00&#39;, &#39;1 days 02:30:00&#39;,</span>
 <span class="go">                &#39;1 days 03:00:00&#39;, &#39;1 days 03:30:00&#39;, &#39;1 days 04:00:00&#39;,</span>
@@ -1152,8 +1142,8 @@ calendar day:</p>
 <span class="go">                &#39;2 days 00:00:00&#39;],</span>
 <span class="go">               dtype=&#39;timedelta64[ns]&#39;, freq=&#39;30T&#39;)</span>
 
-<span class="gp">In [104]: </span><span class="n">pd</span><span class="o">.</span><span class="n">timedelta_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s2">&quot;1 days&quot;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">&quot;2D5H&quot;</span><span class="p">)</span>
-<span class="gh">Out[104]: </span>
+<span class="gp">In [102]: </span><span class="n">pd</span><span class="o">.</span><span class="n">timedelta_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s2">&quot;1 days&quot;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">&quot;2D5H&quot;</span><span class="p">)</span>
+<span class="gh">Out[102]: </span>
 <span class="go">TimedeltaIndex([&#39;1 days 00:00:00&#39;, &#39;3 days 05:00:00&#39;, &#39;5 days 10:00:00&#39;,</span>
 <span class="go">                &#39;7 days 15:00:00&#39;, &#39;9 days 20:00:00&#39;],</span>
 <span class="go">               dtype=&#39;timedelta64[ns]&#39;, freq=&#39;53H&#39;)</span>
@@ -1162,11 +1152,11 @@ calendar day:</p>
 <p>Specifying <code class="docutils literal notranslate"><span class="pre">start</span></code>, <code class="docutils literal notranslate"><span class="pre">end</span></code>, and <code class="docutils literal notranslate"><span class="pre">periods</span></code> will generate a range of evenly spaced
 timedeltas from <code class="docutils literal notranslate"><span class="pre">start</span></code> to <code class="docutils literal notranslate"><span class="pre">end</span></code> inclusively, with <code class="docutils literal notranslate"><span class="pre">periods</span></code> number of elements
 in the resulting <code class="docutils literal notranslate"><span class="pre">TimedeltaIndex</span></code>:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [105]: </span><span class="n">pd</span><span class="o">.</span><span class="n">timedelta_range</span><span class="p">(</span><span class="s2">&quot;0 days&quot;</span><span class="p">,</span> <span class="s2">&quot;4 days&quot;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-<span class="gh">Out[105]: </span><span class="go">TimedeltaIndex([&#39;0 days&#39;, &#39;1 days&#39;, &#39;2 days&#39;, &#39;3 days&#39;, &#39;4 days&#39;], dtype=&#39;timedelta64[ns]&#39;, freq=None)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [103]: </span><span class="n">pd</span><span class="o">.</span><span class="n">timedelta_range</span><span class="p">(</span><span class="s2">&quot;0 days&quot;</span><span class="p">,</span> <span class="s2">&quot;4 days&quot;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="gh">Out[103]: </span><span class="go">TimedeltaIndex([&#39;0 days&#39;, &#39;1 days&#39;, &#39;2 days&#39;, &#39;3 days&#39;, &#39;4 days&#39;], dtype=&#39;timedelta64[ns]&#39;, freq=None)</span>
 
-<span class="gp">In [106]: </span><span class="n">pd</span><span class="o">.</span><span class="n">timedelta_range</span><span class="p">(</span><span class="s2">&quot;0 days&quot;</span><span class="p">,</span> <span class="s2">&quot;4 days&quot;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-<span class="gh">Out[106]: </span>
+<span class="gp">In [104]: </span><span class="n">pd</span><span class="o">.</span><span class="n">timedelta_range</span><span class="p">(</span><span class="s2">&quot;0 days&quot;</span><span class="p">,</span> <span class="s2">&quot;4 days&quot;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="gh">Out[104]: </span>
 <span class="go">TimedeltaIndex([&#39;0 days 00:00:00&#39;, &#39;0 days 10:40:00&#39;, &#39;0 days 21:20:00&#39;,</span>
 <span class="go">                &#39;1 days 08:00:00&#39;, &#39;1 days 18:40:00&#39;, &#39;2 days 05:20:00&#39;,</span>
 <span class="go">                &#39;2 days 16:00:00&#39;, &#39;3 days 02:40:00&#39;, &#39;3 days 13:20:00&#39;,</span>
@@ -1179,14 +1169,14 @@ in the resulting <code class="docutils literal notranslate"><span class="pre">Ti
 <h3>Using the TimedeltaIndex<a class="headerlink" href="#using-the-timedeltaindex" title="Permalink to this headline">#</a></h3>
 <p>Similarly to other of the datetime-like indices, <code class="docutils literal notranslate"><span class="pre">DatetimeIndex</span></code> and <code class="docutils literal notranslate"><span class="pre">PeriodIndex</span></code>, you can use
 <code class="docutils literal notranslate"><span class="pre">TimedeltaIndex</span></code> as the index of pandas objects.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [107]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [105]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span>
 <span class="gp">   .....: </span>    <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
 <span class="gp">   .....: </span>    <span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">timedelta_range</span><span class="p">(</span><span class="s2">&quot;1 days&quot;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">&quot;h&quot;</span><span class="p">),</span>
 <span class="gp">   .....: </span><span class="p">)</span>
 <span class="gp">   .....: </span>
 
-<span class="gp">In [108]: </span><span class="n">s</span>
-<span class="gh">Out[108]: </span>
+<span class="gp">In [106]: </span><span class="n">s</span>
+<span class="gh">Out[106]: </span>
 <span class="go">1 days 00:00:00     0</span>
 <span class="go">1 days 01:00:00     1</span>
 <span class="go">1 days 02:00:00     2</span>
@@ -1202,8 +1192,8 @@ in the resulting <code class="docutils literal notranslate"><span class="pre">Ti
 </pre></div>
 </div>
 <p>Selections work similarly, with coercion on string-likes and slices:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [109]: </span><span class="n">s</span><span class="p">[</span><span class="s2">&quot;1 day&quot;</span><span class="p">:</span><span class="s2">&quot;2 day&quot;</span><span class="p">]</span>
-<span class="gh">Out[109]: </span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [107]: </span><span class="n">s</span><span class="p">[</span><span class="s2">&quot;1 day&quot;</span><span class="p">:</span><span class="s2">&quot;2 day&quot;</span><span class="p">]</span>
+<span class="gh">Out[107]: </span>
 <span class="go">1 days 00:00:00     0</span>
 <span class="go">1 days 01:00:00     1</span>
 <span class="go">1 days 02:00:00     2</span>
@@ -1217,16 +1207,16 @@ in the resulting <code class="docutils literal notranslate"><span class="pre">Ti
 <span class="go">2 days 23:00:00    47</span>
 <span class="go">Freq: H, Length: 48, dtype: int64</span>
 
-<span class="gp">In [110]: </span><span class="n">s</span><span class="p">[</span><span class="s2">&quot;1 day 01:00:00&quot;</span><span class="p">]</span>
-<span class="gh">Out[110]: </span><span class="go">1</span>
+<span class="gp">In [108]: </span><span class="n">s</span><span class="p">[</span><span class="s2">&quot;1 day 01:00:00&quot;</span><span class="p">]</span>
+<span class="gh">Out[108]: </span><span class="go">1</span>
 
-<span class="gp">In [111]: </span><span class="n">s</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="s2">&quot;1 day 1h&quot;</span><span class="p">)]</span>
-<span class="gh">Out[111]: </span><span class="go">1</span>
+<span class="gp">In [109]: </span><span class="n">s</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="s2">&quot;1 day 1h&quot;</span><span class="p">)]</span>
+<span class="gh">Out[109]: </span><span class="go">1</span>
 </pre></div>
 </div>
 <p>Furthermore you can use partial string selection and the range will be inferred:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [112]: </span><span class="n">s</span><span class="p">[</span><span class="s2">&quot;1 day&quot;</span><span class="p">:</span><span class="s2">&quot;1 day 5 hours&quot;</span><span class="p">]</span>
-<span class="gh">Out[112]: </span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [110]: </span><span class="n">s</span><span class="p">[</span><span class="s2">&quot;1 day&quot;</span><span class="p">:</span><span class="s2">&quot;1 day 5 hours&quot;</span><span class="p">]</span>
+<span class="gh">Out[110]: </span>
 <span class="go">1 days 00:00:00    0</span>
 <span class="go">1 days 01:00:00    1</span>
 <span class="go">1 days 02:00:00    2</span>
@@ -1240,58 +1230,58 @@ in the resulting <code class="docutils literal notranslate"><span class="pre">Ti
 <section id="id1">
 <h3>Operations<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
 <p>Finally, the combination of <code class="docutils literal notranslate"><span class="pre">TimedeltaIndex</span></code> with <code class="docutils literal notranslate"><span class="pre">DatetimeIndex</span></code> allow certain combination operations that are NaT preserving:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [113]: </span><span class="n">tdi</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">TimedeltaIndex</span><span class="p">([</span><span class="s2">&quot;1 days&quot;</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">NaT</span><span class="p">,</span> <span class="s2">&quot;2 days&quot;</span><span class="p">])</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [111]: </span><span class="n">tdi</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">TimedeltaIndex</span><span class="p">([</span><span class="s2">&quot;1 days&quot;</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">NaT</span><span class="p">,</span> <span class="s2">&quot;2 days&quot;</span><span class="p">])</span>
 
-<span class="gp">In [114]: </span><span class="n">tdi</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
-<span class="gh">Out[114]: </span><span class="go">[Timedelta(&#39;1 days 00:00:00&#39;), NaT, Timedelta(&#39;2 days 00:00:00&#39;)]</span>
+<span class="gp">In [112]: </span><span class="n">tdi</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+<span class="gh">Out[112]: </span><span class="go">[Timedelta(&#39;1 days 00:00:00&#39;), NaT, Timedelta(&#39;2 days 00:00:00&#39;)]</span>
 
-<span class="gp">In [115]: </span><span class="n">dti</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">&quot;20130101&quot;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">In [113]: </span><span class="n">dti</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">&quot;20130101&quot;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 
-<span class="gp">In [116]: </span><span class="n">dti</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
-<span class="gh">Out[116]: </span>
-<span class="go">[Timestamp(&#39;2013-01-01 00:00:00&#39;, freq=&#39;D&#39;),</span>
-<span class="go"> Timestamp(&#39;2013-01-02 00:00:00&#39;, freq=&#39;D&#39;),</span>
-<span class="go"> Timestamp(&#39;2013-01-03 00:00:00&#39;, freq=&#39;D&#39;)]</span>
+<span class="gp">In [114]: </span><span class="n">dti</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+<span class="gh">Out[114]: </span>
+<span class="go">[Timestamp(&#39;2013-01-01 00:00:00&#39;),</span>
+<span class="go"> Timestamp(&#39;2013-01-02 00:00:00&#39;),</span>
+<span class="go"> Timestamp(&#39;2013-01-03 00:00:00&#39;)]</span>
 
-<span class="gp">In [117]: </span><span class="p">(</span><span class="n">dti</span> <span class="o">+</span> <span class="n">tdi</span><span class="p">)</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
-<span class="gh">Out[117]: </span><span class="go">[Timestamp(&#39;2013-01-02 00:00:00&#39;), NaT, Timestamp(&#39;2013-01-05 00:00:00&#39;)]</span>
+<span class="gp">In [115]: </span><span class="p">(</span><span class="n">dti</span> <span class="o">+</span> <span class="n">tdi</span><span class="p">)</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+<span class="gh">Out[115]: </span><span class="go">[Timestamp(&#39;2013-01-02 00:00:00&#39;), NaT, Timestamp(&#39;2013-01-05 00:00:00&#39;)]</span>
 
-<span class="gp">In [118]: </span><span class="p">(</span><span class="n">dti</span> <span class="o">-</span> <span class="n">tdi</span><span class="p">)</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
-<span class="gh">Out[118]: </span><span class="go">[Timestamp(&#39;2012-12-31 00:00:00&#39;), NaT, Timestamp(&#39;2013-01-01 00:00:00&#39;)]</span>
+<span class="gp">In [116]: </span><span class="p">(</span><span class="n">dti</span> <span class="o">-</span> <span class="n">tdi</span><span class="p">)</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+<span class="gh">Out[116]: </span><span class="go">[Timestamp(&#39;2012-12-31 00:00:00&#39;), NaT, Timestamp(&#39;2013-01-01 00:00:00&#39;)]</span>
 </pre></div>
 </div>
 </section>
 <section id="conversions">
 <h3>Conversions<a class="headerlink" href="#conversions" title="Permalink to this headline">#</a></h3>
 <p>Similarly to frequency conversion on a <code class="docutils literal notranslate"><span class="pre">Series</span></code> above, you can convert these indices to yield another Index.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [119]: </span><span class="n">tdi</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;s&quot;</span><span class="p">)</span>
-<span class="gh">Out[119]: </span><span class="go">Float64Index([86400.0, nan, 172800.0], dtype=&#39;float64&#39;)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [117]: </span><span class="n">tdi</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;s&quot;</span><span class="p">)</span>
+<span class="gh">Out[117]: </span><span class="go">Index([86400.0, nan, 172800.0], dtype=&#39;float64&#39;)</span>
 
-<span class="gp">In [120]: </span><span class="n">tdi</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;timedelta64[s]&quot;</span><span class="p">)</span>
-<span class="gh">Out[120]: </span><span class="go">Float64Index([86400.0, nan, 172800.0], dtype=&#39;float64&#39;)</span>
+<span class="gp">In [118]: </span><span class="n">tdi</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;timedelta64[s]&quot;</span><span class="p">)</span>
+<span class="gh">Out[118]: </span><span class="go">TimedeltaIndex([&#39;1 days 00:00:00&#39;, NaT, &#39;2 days 00:00:00&#39;], dtype=&#39;timedelta64[s]&#39;, freq=None)</span>
 </pre></div>
 </div>
 <p>Scalars type ops work as well. These can potentially return a <em>different</em> type of index.</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="go"># adding or timedelta and date -&gt; datelike</span>
-<span class="gp">In [121]: </span><span class="n">tdi</span> <span class="o">+</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">&quot;20130101&quot;</span><span class="p">)</span>
-<span class="gh">Out[121]: </span><span class="go">DatetimeIndex([&#39;2013-01-02&#39;, &#39;NaT&#39;, &#39;2013-01-03&#39;], dtype=&#39;datetime64[ns]&#39;, freq=None)</span>
+<span class="gp">In [119]: </span><span class="n">tdi</span> <span class="o">+</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">&quot;20130101&quot;</span><span class="p">)</span>
+<span class="gh">Out[119]: </span><span class="go">DatetimeIndex([&#39;2013-01-02&#39;, &#39;NaT&#39;, &#39;2013-01-03&#39;], dtype=&#39;datetime64[ns]&#39;, freq=None)</span>
 
 <span class="go"># subtraction of a date and a timedelta -&gt; datelike</span>
 <span class="go"># note that trying to subtract a date from a Timedelta will raise an exception</span>
-<span class="gp">In [122]: </span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">&quot;20130101&quot;</span><span class="p">)</span> <span class="o">-</span> <span class="n">tdi</span><span class="p">)</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
-<span class="gh">Out[122]: </span><span class="go">[Timestamp(&#39;2012-12-31 00:00:00&#39;), NaT, Timestamp(&#39;2012-12-30 00:00:00&#39;)]</span>
+<span class="gp">In [120]: </span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s2">&quot;20130101&quot;</span><span class="p">)</span> <span class="o">-</span> <span class="n">tdi</span><span class="p">)</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+<span class="gh">Out[120]: </span><span class="go">[Timestamp(&#39;2012-12-31 00:00:00&#39;), NaT, Timestamp(&#39;2012-12-30 00:00:00&#39;)]</span>
 
 <span class="go"># timedelta + timedelta -&gt; timedelta</span>
-<span class="gp">In [123]: </span><span class="n">tdi</span> <span class="o">+</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="s2">&quot;10 days&quot;</span><span class="p">)</span>
-<span class="gh">Out[123]: </span><span class="go">TimedeltaIndex([&#39;11 days&#39;, NaT, &#39;12 days&#39;], dtype=&#39;timedelta64[ns]&#39;, freq=None)</span>
+<span class="gp">In [121]: </span><span class="n">tdi</span> <span class="o">+</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timedelta</span><span class="p">(</span><span class="s2">&quot;10 days&quot;</span><span class="p">)</span>
+<span class="gh">Out[121]: </span><span class="go">TimedeltaIndex([&#39;11 days&#39;, NaT, &#39;12 days&#39;], dtype=&#39;timedelta64[ns]&#39;, freq=None)</span>
 
 <span class="go"># division can result in a Timedelta if the divisor is an integer</span>
-<span class="gp">In [124]: </span><span class="n">tdi</span> <span class="o">/</span> <span class="mi">2</span>
-<span class="gh">Out[124]: </span><span class="go">TimedeltaIndex([&#39;0 days 12:00:00&#39;, NaT, &#39;1 days 00:00:00&#39;], dtype=&#39;timedelta64[ns]&#39;, freq=None)</span>
+<span class="gp">In [122]: </span><span class="n">tdi</span> <span class="o">/</span> <span class="mi">2</span>
+<span class="gh">Out[122]: </span><span class="go">TimedeltaIndex([&#39;0 days 12:00:00&#39;, NaT, &#39;1 days 00:00:00&#39;], dtype=&#39;timedelta64[ns]&#39;, freq=None)</span>
 
-<span class="go"># or a Float64Index if the divisor is a Timedelta</span>
-<span class="gp">In [125]: </span><span class="n">tdi</span> <span class="o">/</span> <span class="n">tdi</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="gh">Out[125]: </span><span class="go">Float64Index([1.0, nan, 2.0], dtype=&#39;float64&#39;)</span>
+<span class="go"># or a float64 Index if the divisor is a Timedelta</span>
+<span class="gp">In [123]: </span><span class="n">tdi</span> <span class="o">/</span> <span class="n">tdi</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="gh">Out[123]: </span><span class="go">Index([1.0, nan, 2.0], dtype=&#39;float64&#39;)</span>
 </pre></div>
 </div>
 </section>
@@ -1299,8 +1289,8 @@ in the resulting <code class="docutils literal notranslate"><span class="pre">Ti
 <section id="resampling">
 <span id="timedeltas-resampling"></span><h2>Resampling<a class="headerlink" href="#resampling" title="Permalink to this headline">#</a></h2>
 <p>Similar to <a class="reference internal" href="timeseries.html#timeseries-resampling"><span class="std std-ref">timeseries resampling</span></a>, we can resample with a <code class="docutils literal notranslate"><span class="pre">TimedeltaIndex</span></code>.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [126]: </span><span class="n">s</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s2">&quot;D&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-<span class="gh">Out[126]: </span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [124]: </span><span class="n">s</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s2">&quot;D&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="gh">Out[124]: </span>
 <span class="go">1 days    11.5</span>
 <span class="go">2 days    35.5</span>
 <span class="go">3 days    59.5</span>

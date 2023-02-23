@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>pandas.errors.CategoricalConversionWarning &#8212; pandas 1.5.3 documentation</title>
+    <title>pandas.errors.CategoricalConversionWarning &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -55,12 +55,12 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'reference/api/pandas.errors.CategoricalConversionWarning';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pandas.errors.ClosedFileError" href="pandas.errors.ClosedFileError.html" />
+    <link rel="next" title="pandas.errors.ChainedAssignmentError" href="pandas.errors.ChainedAssignmentError.html" />
     <link rel="prev" title="pandas.errors.AttributeConflictWarning" href="pandas.errors.AttributeConflictWarning.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="docsearch:language" content="en">
@@ -182,7 +182,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -311,7 +311,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -484,6 +484,11 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="pandas.errors.ChainedAssignmentError.html">
+     pandas.errors.ChainedAssignmentError
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="pandas.errors.ClosedFileError.html">
      pandas.errors.ClosedFileError
     </a>
@@ -534,8 +539,18 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="pandas.errors.InvalidComparison.html">
+     pandas.errors.InvalidComparison
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="pandas.errors.InvalidIndexError.html">
      pandas.errors.InvalidIndexError
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.errors.InvalidVersion.html">
+     pandas.errors.InvalidVersion
     </a>
    </li>
    <li class="toctree-l2">
@@ -544,8 +559,18 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="pandas.errors.LossySetitemError.html">
+     pandas.errors.LossySetitemError
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="pandas.errors.MergeError.html">
      pandas.errors.MergeError
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.errors.NoBufferPresent.html">
+     pandas.errors.NoBufferPresent
     </a>
    </li>
    <li class="toctree-l2">
@@ -693,13 +718,13 @@
 <h1>pandas.errors.CategoricalConversionWarning<a class="headerlink" href="#pandas-errors-categoricalconversionwarning" title="Permalink to this headline">#</a></h1>
 <dl class="py exception">
 <dt class="sig sig-object py" id="pandas.errors.CategoricalConversionWarning">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pandas.errors.</span></span><span class="sig-name descname"><span class="pre">CategoricalConversionWarning</span></span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.5.3/pandas/errors/__init__.py#L524-L535"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.errors.CategoricalConversionWarning" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pandas.errors.</span></span><span class="sig-name descname"><span class="pre">CategoricalConversionWarning</span></span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v2.0.0rc0/pandas/errors/__init__.py#L563-L574"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.errors.CategoricalConversionWarning" title="Permalink to this definition">#</a></dt>
 <dd><p>Warning is raised when reading a partial labeled Stata file using a iterator.</p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pandas.io.stata</span> <span class="kn">import</span> <span class="n">StataReader</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">StataReader</span><span class="p">(</span><span class="s1">&#39;dta_file&#39;</span><span class="p">,</span> <span class="n">chunksize</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> <span class="k">as</span> <span class="n">reader</span><span class="p">:</span> 
 <span class="gp">... </span>  <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">block</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">reader</span><span class="p">):</span>
-<span class="gp">... </span>     <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">block</span><span class="p">))</span>
+<span class="gp">... </span>     <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">block</span><span class="p">)</span>
 <span class="gp">... </span><span class="c1"># CategoricalConversionWarning: One or more series with value labels...</span>
 </pre></div>
 </div>
@@ -722,10 +747,10 @@
           <p class="prev-next-title">pandas.errors.AttributeConflictWarning</p>
       </div>
   </a>
-  <a class='right-next' id="next-link" href="pandas.errors.ClosedFileError.html" title="next page">
+  <a class='right-next' id="next-link" href="pandas.errors.ChainedAssignmentError.html" title="next page">
   <div class="prev-next-info">
       <p class="prev-next-subtitle">next</p>
-      <p class="prev-next-title">pandas.errors.ClosedFileError</p>
+      <p class="prev-next-title">pandas.errors.ChainedAssignmentError</p>
   </div>
   <i class="fas fa-angle-right"></i>
   </a>

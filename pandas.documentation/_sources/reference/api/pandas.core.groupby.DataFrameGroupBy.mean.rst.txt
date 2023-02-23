@@ -1,0 +1,6 @@
+pandas.core.groupby.DataFrameGroupBy.mean
+=========================================
+
+.. currentmodule:: pandas.core.groupby
+
+.. automethod:: DataFrameGroupBy.mean

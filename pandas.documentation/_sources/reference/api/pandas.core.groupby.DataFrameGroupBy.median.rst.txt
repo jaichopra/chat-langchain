@@ -1,0 +1,6 @@
+pandas.core.groupby.DataFrameGroupBy.median
+===========================================
+
+.. currentmodule:: pandas.core.groupby
+
+.. automethod:: DataFrameGroupBy.median

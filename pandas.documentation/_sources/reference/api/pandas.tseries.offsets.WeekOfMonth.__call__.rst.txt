@@ -1,6 +1,0 @@
-pandas.tseries.offsets.WeekOfMonth.\_\_call\_\_
-===============================================
-
-.. currentmodule:: pandas.tseries.offsets
-
-.. automethod:: WeekOfMonth.__call__

@@ -1,0 +1,6 @@
+pandas.core.groupby.SeriesGroupBy.cumcount
+==========================================
+
+.. currentmodule:: pandas.core.groupby
+
+.. automethod:: SeriesGroupBy.cumcount

@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>pandas.io.formats.style.Styler.to_excel &#8212; pandas 1.5.3 documentation</title>
+    <title>pandas.io.formats.style.Styler.to_excel &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -55,13 +55,13 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'reference/api/pandas.io.formats.style.Styler.to_excel';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="pandas.ExcelWriter" href="pandas.ExcelWriter.html" />
-    <link rel="prev" title="pandas.ExcelFile.parse" href="pandas.ExcelFile.parse.html" />
+    <link rel="prev" title="pandas.ExcelFile.sheet_names" href="pandas.ExcelFile.sheet_names.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="docsearch:language" content="en">
   </head>
@@ -182,7 +182,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -311,7 +311,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -363,10 +363,292 @@
   <div class="bd-toc-item navbar-nav">
     
     <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
+ <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="../io.html">
    Input/output
   </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label class="toctree-toggle" for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.read_pickle.html">
+     pandas.read_pickle
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.to_pickle.html">
+     pandas.DataFrame.to_pickle
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.read_table.html">
+     pandas.read_table
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.read_csv.html">
+     pandas.read_csv
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.to_csv.html">
+     pandas.DataFrame.to_csv
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.read_fwf.html">
+     pandas.read_fwf
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.read_clipboard.html">
+     pandas.read_clipboard
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.to_clipboard.html">
+     pandas.DataFrame.to_clipboard
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.read_excel.html">
+     pandas.read_excel
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.to_excel.html">
+     pandas.DataFrame.to_excel
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.ExcelFile.html">
+     pandas.ExcelFile
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.ExcelFile.book.html">
+     pandas.ExcelFile.book
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.ExcelFile.sheet_names.html">
+     pandas.ExcelFile.sheet_names
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.ExcelFile.parse.html">
+     pandas.ExcelFile.parse
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     pandas.io.formats.style.Styler.to_excel
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.ExcelWriter.html">
+     pandas.ExcelWriter
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.read_json.html">
+     pandas.read_json
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.json_normalize.html">
+     pandas.json_normalize
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.to_json.html">
+     pandas.DataFrame.to_json
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.io.json.build_table_schema.html">
+     pandas.io.json.build_table_schema
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.read_html.html">
+     pandas.read_html
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.to_html.html">
+     pandas.DataFrame.to_html
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.io.formats.style.Styler.to_html.html">
+     pandas.io.formats.style.Styler.to_html
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.read_xml.html">
+     pandas.read_xml
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.to_xml.html">
+     pandas.DataFrame.to_xml
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.to_latex.html">
+     pandas.DataFrame.to_latex
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.io.formats.style.Styler.to_latex.html">
+     pandas.io.formats.style.Styler.to_latex
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.read_hdf.html">
+     pandas.read_hdf
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.HDFStore.put.html">
+     pandas.HDFStore.put
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.HDFStore.append.html">
+     pandas.HDFStore.append
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.HDFStore.get.html">
+     pandas.HDFStore.get
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.HDFStore.select.html">
+     pandas.HDFStore.select
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.HDFStore.info.html">
+     pandas.HDFStore.info
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.HDFStore.keys.html">
+     pandas.HDFStore.keys
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.HDFStore.groups.html">
+     pandas.HDFStore.groups
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.HDFStore.walk.html">
+     pandas.HDFStore.walk
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.read_feather.html">
+     pandas.read_feather
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.to_feather.html">
+     pandas.DataFrame.to_feather
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.read_parquet.html">
+     pandas.read_parquet
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.to_parquet.html">
+     pandas.DataFrame.to_parquet
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.read_orc.html">
+     pandas.read_orc
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.to_orc.html">
+     pandas.DataFrame.to_orc
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.read_sas.html">
+     pandas.read_sas
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.read_spss.html">
+     pandas.read_spss
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.read_sql_table.html">
+     pandas.read_sql_table
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.read_sql_query.html">
+     pandas.read_sql_query
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.read_sql.html">
+     pandas.read_sql
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.to_sql.html">
+     pandas.DataFrame.to_sql
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.read_gbq.html">
+     pandas.read_gbq
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.read_stata.html">
+     pandas.read_stata
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.to_stata.html">
+     pandas.DataFrame.to_stata
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.io.stata.StataReader.data_label.html">
+     pandas.io.stata.StataReader.data_label
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.io.stata.StataReader.value_labels.html">
+     pandas.io.stata.StataReader.value_labels
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.io.stata.StataReader.variable_labels.html">
+     pandas.io.stata.StataReader.variable_labels
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.io.stata.StataWriter.write_file.html">
+     pandas.io.stata.StataWriter.write_file
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../general_functions.html">
@@ -413,434 +695,10 @@
    Resampling
   </a>
  </li>
- <li class="toctree-l1 current active has-children">
+ <li class="toctree-l1">
   <a class="reference internal" href="../style.html">
    Style
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label class="toctree-toggle" for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="current">
-   <li class="toctree-l2 current active has-children">
-    <a class="reference internal" href="pandas.io.formats.style.Styler.html">
-     pandas.io.formats.style.Styler
-    </a>
-    <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-    <label class="toctree-toggle" for="toctree-checkbox-2">
-     <i class="fas fa-chevron-down">
-     </i>
-    </label>
-    <ul class="current">
-     <li class="toctree-l3">
-      <a class="reference internal" href="pandas.io.formats.style.Styler.apply.html">
-       pandas.io.formats.style.Styler.apply
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="pandas.io.formats.style.Styler.apply_index.html">
-       pandas.io.formats.style.Styler.apply_index
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="pandas.io.formats.style.Styler.applymap.html">
-       pandas.io.formats.style.Styler.applymap
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="pandas.io.formats.style.Styler.applymap_index.html">
-       pandas.io.formats.style.Styler.applymap_index
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="pandas.io.formats.style.Styler.background_gradient.html">
-       pandas.io.formats.style.Styler.background_gradient
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="pandas.io.formats.style.Styler.bar.html">
-       pandas.io.formats.style.Styler.bar
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="pandas.io.formats.style.Styler.clear.html">
-       pandas.io.formats.style.Styler.clear
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="pandas.io.formats.style.Styler.concat.html">
-       pandas.io.formats.style.Styler.concat
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="pandas.io.formats.style.Styler.export.html">
-       pandas.io.formats.style.Styler.export
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="pandas.io.formats.style.Styler.format.html">
-       pandas.io.formats.style.Styler.format
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="pandas.io.formats.style.Styler.format_index.html">
-       pandas.io.formats.style.Styler.format_index
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="pandas.io.formats.style.Styler.from_custom_template.html">
-       pandas.io.formats.style.Styler.from_custom_template
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="pandas.io.formats.style.Styler.hide.html">
-       pandas.io.formats.style.Styler.hide
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="pandas.io.formats.style.Styler.hide_columns.html">
-       pandas.io.formats.style.Styler.hide_columns
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="pandas.io.formats.style.Styler.hide_index.html">
-       pandas.io.formats.style.Styler.hide_index
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="pandas.io.formats.style.Styler.highlight_between.html">
-       pandas.io.formats.style.Styler.highlight_between
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="pandas.io.formats.style.Styler.highlight_max.html">
-       pandas.io.formats.style.Styler.highlight_max
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="pandas.io.formats.style.Styler.highlight_min.html">
-       pandas.io.formats.style.Styler.highlight_min
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="pandas.io.formats.style.Styler.highlight_null.html">
-       pandas.io.formats.style.Styler.highlight_null
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="pandas.io.formats.style.Styler.highlight_quantile.html">
-       pandas.io.formats.style.Styler.highlight_quantile
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="pandas.io.formats.style.Styler.pipe.html">
-       pandas.io.formats.style.Styler.pipe
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="pandas.io.formats.style.Styler.relabel_index.html">
-       pandas.io.formats.style.Styler.relabel_index
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="pandas.io.formats.style.Styler.render.html">
-       pandas.io.formats.style.Styler.render
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="pandas.io.formats.style.Styler.set_caption.html">
-       pandas.io.formats.style.Styler.set_caption
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="pandas.io.formats.style.Styler.set_na_rep.html">
-       pandas.io.formats.style.Styler.set_na_rep
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="pandas.io.formats.style.Styler.set_precision.html">
-       pandas.io.formats.style.Styler.set_precision
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="pandas.io.formats.style.Styler.set_properties.html">
-       pandas.io.formats.style.Styler.set_properties
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="pandas.io.formats.style.Styler.set_sticky.html">
-       pandas.io.formats.style.Styler.set_sticky
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="pandas.io.formats.style.Styler.set_table_attributes.html">
-       pandas.io.formats.style.Styler.set_table_attributes
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="pandas.io.formats.style.Styler.set_table_styles.html">
-       pandas.io.formats.style.Styler.set_table_styles
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="pandas.io.formats.style.Styler.set_td_classes.html">
-       pandas.io.formats.style.Styler.set_td_classes
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="pandas.io.formats.style.Styler.set_tooltips.html">
-       pandas.io.formats.style.Styler.set_tooltips
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="pandas.io.formats.style.Styler.set_uuid.html">
-       pandas.io.formats.style.Styler.set_uuid
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="pandas.io.formats.style.Styler.text_gradient.html">
-       pandas.io.formats.style.Styler.text_gradient
-      </a>
-     </li>
-     <li class="toctree-l3 current active">
-      <a class="current reference internal" href="#">
-       pandas.io.formats.style.Styler.to_excel
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="pandas.io.formats.style.Styler.to_html.html">
-       pandas.io.formats.style.Styler.to_html
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="pandas.io.formats.style.Styler.to_latex.html">
-       pandas.io.formats.style.Styler.to_latex
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="pandas.io.formats.style.Styler.to_string.html">
-       pandas.io.formats.style.Styler.to_string
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="pandas.io.formats.style.Styler.use.html">
-       pandas.io.formats.style.Styler.use
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="pandas.io.formats.style.Styler.where.html">
-       pandas.io.formats.style.Styler.where
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.io.formats.style.Styler.from_custom_template.html">
-     pandas.io.formats.style.Styler.from_custom_template
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.io.formats.style.Styler.env.html">
-     pandas.io.formats.style.Styler.env
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.io.formats.style.Styler.template_html.html">
-     pandas.io.formats.style.Styler.template_html
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.io.formats.style.Styler.template_html_style.html">
-     pandas.io.formats.style.Styler.template_html_style
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.io.formats.style.Styler.template_html_table.html">
-     pandas.io.formats.style.Styler.template_html_table
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.io.formats.style.Styler.template_latex.html">
-     pandas.io.formats.style.Styler.template_latex
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.io.formats.style.Styler.template_string.html">
-     pandas.io.formats.style.Styler.template_string
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.io.formats.style.Styler.loader.html">
-     pandas.io.formats.style.Styler.loader
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.io.formats.style.Styler.apply.html">
-     pandas.io.formats.style.Styler.apply
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.io.formats.style.Styler.applymap.html">
-     pandas.io.formats.style.Styler.applymap
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.io.formats.style.Styler.apply_index.html">
-     pandas.io.formats.style.Styler.apply_index
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.io.formats.style.Styler.applymap_index.html">
-     pandas.io.formats.style.Styler.applymap_index
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.io.formats.style.Styler.format.html">
-     pandas.io.formats.style.Styler.format
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.io.formats.style.Styler.format_index.html">
-     pandas.io.formats.style.Styler.format_index
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.io.formats.style.Styler.relabel_index.html">
-     pandas.io.formats.style.Styler.relabel_index
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.io.formats.style.Styler.hide.html">
-     pandas.io.formats.style.Styler.hide
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.io.formats.style.Styler.concat.html">
-     pandas.io.formats.style.Styler.concat
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.io.formats.style.Styler.set_td_classes.html">
-     pandas.io.formats.style.Styler.set_td_classes
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.io.formats.style.Styler.set_table_styles.html">
-     pandas.io.formats.style.Styler.set_table_styles
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.io.formats.style.Styler.set_table_attributes.html">
-     pandas.io.formats.style.Styler.set_table_attributes
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.io.formats.style.Styler.set_tooltips.html">
-     pandas.io.formats.style.Styler.set_tooltips
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.io.formats.style.Styler.set_caption.html">
-     pandas.io.formats.style.Styler.set_caption
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.io.formats.style.Styler.set_sticky.html">
-     pandas.io.formats.style.Styler.set_sticky
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.io.formats.style.Styler.set_properties.html">
-     pandas.io.formats.style.Styler.set_properties
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.io.formats.style.Styler.set_uuid.html">
-     pandas.io.formats.style.Styler.set_uuid
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.io.formats.style.Styler.clear.html">
-     pandas.io.formats.style.Styler.clear
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.io.formats.style.Styler.pipe.html">
-     pandas.io.formats.style.Styler.pipe
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.io.formats.style.Styler.highlight_null.html">
-     pandas.io.formats.style.Styler.highlight_null
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.io.formats.style.Styler.highlight_max.html">
-     pandas.io.formats.style.Styler.highlight_max
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.io.formats.style.Styler.highlight_min.html">
-     pandas.io.formats.style.Styler.highlight_min
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.io.formats.style.Styler.highlight_between.html">
-     pandas.io.formats.style.Styler.highlight_between
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.io.formats.style.Styler.highlight_quantile.html">
-     pandas.io.formats.style.Styler.highlight_quantile
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.io.formats.style.Styler.background_gradient.html">
-     pandas.io.formats.style.Styler.background_gradient
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.io.formats.style.Styler.text_gradient.html">
-     pandas.io.formats.style.Styler.text_gradient
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.io.formats.style.Styler.bar.html">
-     pandas.io.formats.style.Styler.bar
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.io.formats.style.Styler.to_html.html">
-     pandas.io.formats.style.Styler.to_html
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.io.formats.style.Styler.to_latex.html">
-     pandas.io.formats.style.Styler.to_latex
-    </a>
-   </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     pandas.io.formats.style.Styler.to_excel
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.io.formats.style.Styler.to_string.html">
-     pandas.io.formats.style.Styler.to_string
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.io.formats.style.Styler.export.html">
-     pandas.io.formats.style.Styler.export
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.io.formats.style.Styler.use.html">
-     pandas.io.formats.style.Styler.use
-    </a>
-   </li>
-  </ul>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../plotting.html">
@@ -895,7 +753,7 @@
 <h1>pandas.io.formats.style.Styler.to_excel<a class="headerlink" href="#pandas-io-formats-style-styler-to-excel" title="Permalink to this headline">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="pandas.io.formats.style.Styler.to_excel">
-<span class="sig-prename descclassname"><span class="pre">Styler.</span></span><span class="sig-name descname"><span class="pre">to_excel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">excel_writer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sheet_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Sheet1'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">na_rep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">columns</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">header</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">startrow</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">startcol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">engine</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">merge_cells</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inf_rep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'inf'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freeze_panes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">storage_options</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.5.3/pandas/io/formats/style.py#L555-L603"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.io.formats.style.Styler.to_excel" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">Styler.</span></span><span class="sig-name descname"><span class="pre">to_excel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">excel_writer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sheet_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Sheet1'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">na_rep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">columns</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">header</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">startrow</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">startcol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">engine</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">merge_cells</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inf_rep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'inf'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freeze_panes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">storage_options</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v2.0.0rc0/pandas/io/formats/style.py#L489-L536"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.io.formats.style.Styler.to_excel" title="Permalink to this definition">#</a></dt>
 <dd><p>Write Styler to an Excel sheet.</p>
 <p>To write a single Styler to an Excel .xlsx file it is only necessary to
 specify a target file name. To write to multiple sheets it is necessary to
@@ -933,29 +791,13 @@ sequence should be given if the DataFrame uses MultiIndex.</p>
 <dt><strong>startcol</strong><span class="classifier">int, default 0</span></dt><dd><p>Upper left cell column to dump data frame.</p>
 </dd>
 <dt><strong>engine</strong><span class="classifier">str, optional</span></dt><dd><p>Write engine to use, ‘openpyxl’ or ‘xlsxwriter’. You can also set this
-via the options <code class="docutils literal notranslate"><span class="pre">io.excel.xlsx.writer</span></code>, <code class="docutils literal notranslate"><span class="pre">io.excel.xls.writer</span></code>, and
+via the options <code class="docutils literal notranslate"><span class="pre">io.excel.xlsx.writer</span></code> or
 <code class="docutils literal notranslate"><span class="pre">io.excel.xlsm.writer</span></code>.</p>
-<div class="deprecated">
-<p><span class="versionmodified deprecated">Deprecated since version 1.2.0: </span>As the <a class="reference external" href="https://pypi.org/project/xlwt/">xlwt</a> package is no longer
-maintained, the <code class="docutils literal notranslate"><span class="pre">xlwt</span></code> engine will be removed in a future version
-of pandas.</p>
-</div>
 </dd>
 <dt><strong>merge_cells</strong><span class="classifier">bool, default True</span></dt><dd><p>Write MultiIndex and Hierarchical Rows as merged cells.</p>
 </dd>
-<dt><strong>encoding</strong><span class="classifier">str, optional</span></dt><dd><p>Encoding of the resulting excel file. Only necessary for xlwt,
-other writers support unicode natively.</p>
-<div class="deprecated">
-<p><span class="versionmodified deprecated">Deprecated since version 1.5.0: </span>This keyword was not used.</p>
-</div>
-</dd>
 <dt><strong>inf_rep</strong><span class="classifier">str, default ‘inf’</span></dt><dd><p>Representation for infinity (there is no native representation for
 infinity in Excel).</p>
-</dd>
-<dt><strong>verbose</strong><span class="classifier">bool, default True</span></dt><dd><p>Display more information in the error logs.</p>
-<div class="deprecated">
-<p><span class="versionmodified deprecated">Deprecated since version 1.5.0: </span>This keyword was not used.</p>
-</div>
 </dd>
 <dt><strong>freeze_panes</strong><span class="classifier">tuple of int (length 2), optional</span></dt><dd><p>Specifies the one-based bottommost row and rightmost column that
 is to be frozen.</p>
@@ -1038,11 +880,11 @@ automatically chosen depending on the file extension):</p>
             <footer class="bd-footer-article">
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-  <a class='left-prev' id="prev-link" href="pandas.ExcelFile.parse.html" title="previous page">
+  <a class='left-prev' id="prev-link" href="pandas.ExcelFile.sheet_names.html" title="previous page">
       <i class="fas fa-angle-left"></i>
       <div class="prev-next-info">
           <p class="prev-next-subtitle">previous</p>
-          <p class="prev-next-title">pandas.ExcelFile.parse</p>
+          <p class="prev-next-title">pandas.ExcelFile.sheet_names</p>
       </div>
   </a>
   <a class='right-next' id="next-link" href="pandas.ExcelWriter.html" title="next page">

@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>pandas.ExcelWriter &#8212; pandas 1.5.3 documentation</title>
+    <title>pandas.ExcelWriter &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -55,7 +55,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'reference/api/pandas.ExcelWriter';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -182,7 +182,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -311,7 +311,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -424,6 +424,21 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="pandas.ExcelFile.html">
+     pandas.ExcelFile
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.ExcelFile.book.html">
+     pandas.ExcelFile.book
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.ExcelFile.sheet_names.html">
+     pandas.ExcelFile.sheet_names
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="pandas.ExcelFile.parse.html">
      pandas.ExcelFile.parse
     </a>
@@ -449,11 +464,6 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="pandas.ExcelWriter.cur_sheet.html">
-       pandas.ExcelWriter.cur_sheet
-      </a>
-     </li>
-     <li class="toctree-l3">
       <a class="reference internal" href="pandas.ExcelWriter.date_format.html">
        pandas.ExcelWriter.date_format
       </a>
@@ -469,18 +479,8 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="pandas.ExcelWriter.handles.html">
-       pandas.ExcelWriter.handles
-      </a>
-     </li>
-     <li class="toctree-l3">
       <a class="reference internal" href="pandas.ExcelWriter.if_sheet_exists.html">
        pandas.ExcelWriter.if_sheet_exists
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="pandas.ExcelWriter.path.html">
-       pandas.ExcelWriter.path
       </a>
      </li>
      <li class="toctree-l3">
@@ -501,16 +501,6 @@
      <li class="toctree-l3">
       <a class="reference internal" href="pandas.ExcelWriter.close.html">
        pandas.ExcelWriter.close
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="pandas.ExcelWriter.save.html">
-       pandas.ExcelWriter.save
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="pandas.ExcelWriter.write_cells.html">
-       pandas.ExcelWriter.write_cells
       </a>
      </li>
     </ul>
@@ -815,11 +805,10 @@
 <h1>pandas.ExcelWriter<a class="headerlink" href="#pandas-excelwriter" title="Permalink to this headline">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="pandas.ExcelWriter">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pandas.</span></span><span class="sig-name descname"><span class="pre">ExcelWriter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">engine</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datetime_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'w'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">storage_options</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">if_sheet_exists</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">engine_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.5.3/pandas/io/excel/_base.py#L910-L1481"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.ExcelWriter" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pandas.</span></span><span class="sig-name descname"><span class="pre">ExcelWriter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">engine</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datetime_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'w'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">storage_options</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">if_sheet_exists</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">engine_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v2.0.0rc0/pandas/io/excel/_base.py#L911-L1337"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.ExcelWriter" title="Permalink to this definition">#</a></dt>
 <dd><p>Class for writing DataFrame objects into excel sheets.</p>
 <p>Default is to use:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://pypi.org/project/xlwt/">xlwt</a> for xls files</p></li>
 <li><p><a class="reference external" href="https://pypi.org/project/XlsxWriter/">xlsxwriter</a> for xlsx files if xlsxwriter
 is installed otherwise <a class="reference external" href="https://pypi.org/project/openpyxl/">openpyxl</a></p></li>
 <li><p><a class="reference external" href="https://pypi.org/project/odswriter/">odswriter</a> for ods files</p></li>
@@ -835,11 +824,6 @@ and close any opened file handles.</p>
 <dt><strong>engine</strong><span class="classifier">str (optional)</span></dt><dd><p>Engine to use for writing. If None, defaults to
 <code class="docutils literal notranslate"><span class="pre">io.excel.&lt;extension&gt;.writer</span></code>.  NOTE: can only be passed as a keyword
 argument.</p>
-<div class="deprecated">
-<p><span class="versionmodified deprecated">Deprecated since version 1.2.0: </span>As the <a class="reference external" href="https://pypi.org/project/xlwt/">xlwt</a> package is no longer
-maintained, the <code class="docutils literal notranslate"><span class="pre">xlwt</span></code> engine will be removed in a future
-version of pandas.</p>
-</div>
 </dd>
 <dt><strong>date_format</strong><span class="classifier">str, default None</span></dt><dd><p>Format string for dates written into Excel files (e.g. ‘YYYY-MM-DD’).</p>
 </dd>
@@ -884,11 +868,6 @@ the following functions of the respective engines:</p>
 </ul>
 <div class="versionadded">
 <p><span class="versionmodified added">New in version 1.3.0.</span></p>
-</div>
-</dd>
-<dt><strong>**kwargs</strong><span class="classifier">dict, optional</span></dt><dd><p>Keyword arguments to be passed into the engine.</p>
-<div class="deprecated">
-<p><span class="versionmodified deprecated">Deprecated since version 1.3.0: </span>Use engine_kwargs instead.</p>
 </div>
 </dd>
 </dl>
@@ -1004,31 +983,22 @@ openpyxl’s <code class="docutils literal notranslate"><span class="pre">load_w
 <tr class="row-odd"><td><p><a class="reference internal" href="pandas.ExcelWriter.book.html#pandas.ExcelWriter.book" title="pandas.ExcelWriter.book"><code class="xref py py-obj docutils literal notranslate"><span class="pre">book</span></code></a></p></td>
 <td><p>Book instance.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pandas.ExcelWriter.cur_sheet.html#pandas.ExcelWriter.cur_sheet" title="pandas.ExcelWriter.cur_sheet"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cur_sheet</span></code></a></p></td>
-<td><p>(DEPRECATED) Current sheet for writing.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pandas.ExcelWriter.date_format.html#pandas.ExcelWriter.date_format" title="pandas.ExcelWriter.date_format"><code class="xref py py-obj docutils literal notranslate"><span class="pre">date_format</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.ExcelWriter.date_format.html#pandas.ExcelWriter.date_format" title="pandas.ExcelWriter.date_format"><code class="xref py py-obj docutils literal notranslate"><span class="pre">date_format</span></code></a></p></td>
 <td><p>Format string for dates written into Excel files (e.g.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pandas.ExcelWriter.datetime_format.html#pandas.ExcelWriter.datetime_format" title="pandas.ExcelWriter.datetime_format"><code class="xref py py-obj docutils literal notranslate"><span class="pre">datetime_format</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.ExcelWriter.datetime_format.html#pandas.ExcelWriter.datetime_format" title="pandas.ExcelWriter.datetime_format"><code class="xref py py-obj docutils literal notranslate"><span class="pre">datetime_format</span></code></a></p></td>
 <td><p>Format string for dates written into Excel files (e.g.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pandas.ExcelWriter.engine.html#pandas.ExcelWriter.engine" title="pandas.ExcelWriter.engine"><code class="xref py py-obj docutils literal notranslate"><span class="pre">engine</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.ExcelWriter.engine.html#pandas.ExcelWriter.engine" title="pandas.ExcelWriter.engine"><code class="xref py py-obj docutils literal notranslate"><span class="pre">engine</span></code></a></p></td>
 <td><p>Name of engine.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pandas.ExcelWriter.handles.html#pandas.ExcelWriter.handles" title="pandas.ExcelWriter.handles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">handles</span></code></a></p></td>
-<td><p>(DEPRECATED) Handles to Excel sheets.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="pandas.ExcelWriter.if_sheet_exists.html#pandas.ExcelWriter.if_sheet_exists" title="pandas.ExcelWriter.if_sheet_exists"><code class="xref py py-obj docutils literal notranslate"><span class="pre">if_sheet_exists</span></code></a></p></td>
 <td><p>How to behave when writing to a sheet that already exists in append mode.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pandas.ExcelWriter.path.html#pandas.ExcelWriter.path" title="pandas.ExcelWriter.path"><code class="xref py py-obj docutils literal notranslate"><span class="pre">path</span></code></a></p></td>
-<td><p>(DEPRECATED) Path to Excel file.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pandas.ExcelWriter.sheets.html#pandas.ExcelWriter.sheets" title="pandas.ExcelWriter.sheets"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sheets</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.ExcelWriter.sheets.html#pandas.ExcelWriter.sheets" title="pandas.ExcelWriter.sheets"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sheets</span></code></a></p></td>
 <td><p>Mapping of sheet names to sheet objects.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pandas.ExcelWriter.supported_extensions.html#pandas.ExcelWriter.supported_extensions" title="pandas.ExcelWriter.supported_extensions"><code class="xref py py-obj docutils literal notranslate"><span class="pre">supported_extensions</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.ExcelWriter.supported_extensions.html#pandas.ExcelWriter.supported_extensions" title="pandas.ExcelWriter.supported_extensions"><code class="xref py py-obj docutils literal notranslate"><span class="pre">supported_extensions</span></code></a></p></td>
 <td><p>Extensions that writer engine supports.</p></td>
 </tr>
 </tbody>
@@ -1045,12 +1015,6 @@ openpyxl’s <code class="docutils literal notranslate"><span class="pre">load_w
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="pandas.ExcelWriter.close.html#pandas.ExcelWriter.close" title="pandas.ExcelWriter.close"><code class="xref py py-obj docutils literal notranslate"><span class="pre">close</span></code></a>()</p></td>
 <td><p>synonym for save, to make it more file-like</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pandas.ExcelWriter.save.html#pandas.ExcelWriter.save" title="pandas.ExcelWriter.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code></a>()</p></td>
-<td><p>(DEPRECATED) Save workbook to disk.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pandas.ExcelWriter.write_cells.html#pandas.ExcelWriter.write_cells" title="pandas.ExcelWriter.write_cells"><code class="xref py py-obj docutils literal notranslate"><span class="pre">write_cells</span></code></a>(cells[, sheet_name, startrow, ...])</p></td>
-<td><p>(DEPRECATED) Write given formatted cells into Excel an excel sheet</p></td>
 </tr>
 </tbody>
 </table>

@@ -1,0 +1,6 @@
+pandas.TimedeltaIndex.as\_unit
+==============================
+
+.. currentmodule:: pandas
+
+.. automethod:: TimedeltaIndex.as_unit

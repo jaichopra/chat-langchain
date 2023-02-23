@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>What’s new in 1.2.1 (January 20, 2021) &#8212; pandas 1.5.3 documentation</title>
+    <title>What’s new in 1.2.1 (January 20, 2021) &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -55,7 +55,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'whatsnew/v1.2.1';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -182,7 +182,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -311,7 +311,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -363,6 +363,18 @@
   <div class="bd-toc-item navbar-nav">
     
     <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v2.0.0.html">
+   What’s new in 2.0.0 (??)
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.5.4.html">
+   What’s new in 1.5.4 (March XX, 2023)
+  </a>
+ </li>
  <li class="toctree-l1">
   <a class="reference internal" href="v1.5.3.html">
    What’s new in 1.5.3 (January 18, 2023)
@@ -882,7 +894,7 @@ including other versions of pandas.</p>
 <li><p>Fixed regression in setting with <a class="reference internal" href="../reference/api/pandas.DataFrame.loc.html#pandas.DataFrame.loc" title="pandas.DataFrame.loc"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.loc()</span></code></a>  raising <code class="docutils literal notranslate"><span class="pre">ValueError</span></code> when <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> has unsorted <a class="reference internal" href="../reference/api/pandas.MultiIndex.html#pandas.MultiIndex" title="pandas.MultiIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiIndex</span></code></a> columns and indexer is a scalar (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/38601">GH38601</a>)</p></li>
 <li><p>Fixed regression in setting with <a class="reference internal" href="../reference/api/pandas.DataFrame.loc.html#pandas.DataFrame.loc" title="pandas.DataFrame.loc"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.loc()</span></code></a> raising <code class="docutils literal notranslate"><span class="pre">KeyError</span></code> with <a class="reference internal" href="../reference/api/pandas.MultiIndex.html#pandas.MultiIndex" title="pandas.MultiIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiIndex</span></code></a> and list-like columns indexer enlarging <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/39147">GH39147</a>)</p></li>
 <li><p>Fixed regression in <a class="reference internal" href="../reference/api/pandas.DataFrame.groupby.html#pandas.DataFrame.groupby" title="pandas.DataFrame.groupby"><code class="xref py py-meth docutils literal notranslate"><span class="pre">groupby()</span></code></a> with <a class="reference internal" href="../reference/api/pandas.Categorical.html#pandas.Categorical" title="pandas.Categorical"><code class="xref py py-class docutils literal notranslate"><span class="pre">Categorical</span></code></a> grouping column not showing unused categories for <code class="docutils literal notranslate"><span class="pre">grouped.indices</span></code> (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/38642">GH38642</a>)</p></li>
-<li><p>Fixed regression in <a class="reference internal" href="../reference/api/pandas.core.groupby.GroupBy.sem.html#pandas.core.groupby.GroupBy.sem" title="pandas.core.groupby.GroupBy.sem"><code class="xref py py-meth docutils literal notranslate"><span class="pre">GroupBy.sem()</span></code></a> where the presence of non-numeric columns would cause an error instead of being dropped (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/38774">GH38774</a>)</p></li>
+<li><p>Fixed regression in <a class="reference internal" href="../reference/api/pandas.core.groupby.DataFrameGroupBy.sem.html#pandas.core.groupby.DataFrameGroupBy.sem" title="pandas.core.groupby.DataFrameGroupBy.sem"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrameGroupBy.sem()</span></code></a> and <a class="reference internal" href="../reference/api/pandas.core.groupby.SeriesGroupBy.sem.html#pandas.core.groupby.SeriesGroupBy.sem" title="pandas.core.groupby.SeriesGroupBy.sem"><code class="xref py py-meth docutils literal notranslate"><span class="pre">SeriesGroupBy.sem()</span></code></a> where the presence of non-numeric columns would cause an error instead of being dropped (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/38774">GH38774</a>)</p></li>
 <li><p>Fixed regression in <a class="reference internal" href="../reference/api/pandas.core.groupby.DataFrameGroupBy.diff.html#pandas.core.groupby.DataFrameGroupBy.diff" title="pandas.core.groupby.DataFrameGroupBy.diff"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrameGroupBy.diff()</span></code></a> raising for <code class="docutils literal notranslate"><span class="pre">int8</span></code> and <code class="docutils literal notranslate"><span class="pre">int16</span></code> columns (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/39050">GH39050</a>)</p></li>
 <li><p>Fixed regression in <a class="reference internal" href="../reference/api/pandas.DataFrame.groupby.html#pandas.DataFrame.groupby" title="pandas.DataFrame.groupby"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.groupby()</span></code></a> when aggregating an <code class="docutils literal notranslate"><span class="pre">ExtensionDType</span></code> that could fail for non-numeric values (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/38980">GH38980</a>)</p></li>
 <li><p>Fixed regression in <a class="reference internal" href="../reference/api/pandas.core.window.rolling.Rolling.skew.html#pandas.core.window.rolling.Rolling.skew" title="pandas.core.window.rolling.Rolling.skew"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Rolling.skew()</span></code></a> and <a class="reference internal" href="../reference/api/pandas.core.window.rolling.Rolling.kurt.html#pandas.core.window.rolling.Rolling.kurt" title="pandas.core.window.rolling.Rolling.kurt"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Rolling.kurt()</span></code></a> modifying the object inplace (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/38908">GH38908</a>)</p></li>

@@ -1,0 +1,6 @@
+pandas.core.groupby.DataFrameGroupBy.tail
+=========================================
+
+.. currentmodule:: pandas.core.groupby
+
+.. automethod:: DataFrameGroupBy.tail

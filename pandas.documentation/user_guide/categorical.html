@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Categorical data &#8212; pandas 1.5.3 documentation</title>
+    <title>Categorical data &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -55,7 +55,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/categorical';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -182,7 +182,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -311,7 +311,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -381,6 +381,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="io.html">
    IO tools (text, CSV, HDF5, …)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="pyarrow.html">
+   PyArrow Functionality
   </a>
  </li>
  <li class="toctree-l1">
@@ -1027,11 +1032,6 @@ in the order of appearance, and it only includes values that are actually presen
 <p class="admonition-title">Note</p>
 <p>In contrast to R’s <code class="docutils literal notranslate"><span class="pre">factor</span></code>, categorical data can have categories of other types than string.</p>
 </div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Be aware that assigning new categories is an inplace operation, while most other operations
-under <code class="docutils literal notranslate"><span class="pre">Series.cat</span></code> per default return a new <code class="docutils literal notranslate"><span class="pre">Series</span></code> of dtype <code class="docutils literal notranslate"><span class="pre">category</span></code>.</p>
-</div>
 <p>Categories must be unique or a <code class="docutils literal notranslate"><span class="pre">ValueError</span></code> is raised:</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [74]: </span><span class="k">try</span><span class="p">:</span>
 <span class="gp">   ....: </span>    <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">rename_categories</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
@@ -1154,11 +1154,11 @@ NumPy S1 dtype and Python strings). This can result in surprising behaviour!</p>
 meaning and certain operations are possible. If the categorical is unordered, <code class="docutils literal notranslate"><span class="pre">.min()/.max()</span></code> will raise a <code class="docutils literal notranslate"><span class="pre">TypeError</span></code>.</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [88]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">([</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">],</span> <span class="n">ordered</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
 
-<span class="gp">In [89]: </span><span class="n">s</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">In [89]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span>
 
 <span class="gp">In [90]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">CategoricalDtype</span><span class="p">(</span><span class="n">ordered</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
 
-<span class="gp">In [91]: </span><span class="n">s</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">In [91]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span>
 
 <span class="gp">In [92]: </span><span class="n">s</span>
 <span class="gh">Out[92]: </span>
@@ -1209,7 +1209,7 @@ This is even true for strings and numeric data:</p>
 <span class="go">dtype: category</span>
 <span class="go">Categories (3, int64): [2 &lt; 3 &lt; 1]</span>
 
-<span class="gp">In [99]: </span><span class="n">s</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">In [99]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span>
 
 <span class="gp">In [100]: </span><span class="n">s</span>
 <span class="gh">Out[100]: </span>
@@ -1243,7 +1243,7 @@ necessarily make the sort order the same as the categories order.</p>
 <span class="go">dtype: category</span>
 <span class="go">Categories (3, int64): [2 &lt; 3 &lt; 1]</span>
 
-<span class="gp">In [105]: </span><span class="n">s</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">In [105]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span>
 
 <span class="gp">In [106]: </span><span class="n">s</span>
 <span class="gh">Out[106]: </span>
@@ -1460,7 +1460,7 @@ even if some categories are not present in the data:</p>
 <span class="go">a    1</span>
 <span class="go">b    1</span>
 <span class="go">d    0</span>
-<span class="go">dtype: int64</span>
+<span class="go">Name: count, dtype: int64</span>
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> methods like <a class="reference internal" href="../reference/api/pandas.DataFrame.sum.html#pandas.DataFrame.sum" title="pandas.DataFrame.sum"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.sum()</span></code></a> also show “unused” categories.</p>
@@ -1665,7 +1665,7 @@ an appropriate type:</p>
 <span class="go">2    3</span>
 <span class="go">3    4</span>
 <span class="go">4    5</span>
-<span class="go">dtype: int64</span>
+<span class="go">dtype: int32</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -2043,8 +2043,8 @@ relevant columns back to <code class="docutils literal notranslate"><span class=
 <span class="go"># Redo the category</span>
 <span class="gp">In [228]: </span><span class="n">df2</span><span class="p">[</span><span class="s2">&quot;cats&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df2</span><span class="p">[</span><span class="s2">&quot;cats&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;category&quot;</span><span class="p">)</span>
 
-<span class="gp">In [229]: </span><span class="n">df2</span><span class="p">[</span><span class="s2">&quot;cats&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">set_categories</span><span class="p">(</span>
-<span class="gp">   .....: </span>    <span class="p">[</span><span class="s2">&quot;very bad&quot;</span><span class="p">,</span> <span class="s2">&quot;bad&quot;</span><span class="p">,</span> <span class="s2">&quot;medium&quot;</span><span class="p">,</span> <span class="s2">&quot;good&quot;</span><span class="p">,</span> <span class="s2">&quot;very good&quot;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span>
+<span class="gp">In [229]: </span><span class="n">df2</span><span class="p">[</span><span class="s2">&quot;cats&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df2</span><span class="p">[</span><span class="s2">&quot;cats&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">set_categories</span><span class="p">(</span>
+<span class="gp">   .....: </span>    <span class="p">[</span><span class="s2">&quot;very bad&quot;</span><span class="p">,</span> <span class="s2">&quot;bad&quot;</span><span class="p">,</span> <span class="s2">&quot;medium&quot;</span><span class="p">,</span> <span class="s2">&quot;good&quot;</span><span class="p">,</span> <span class="s2">&quot;very good&quot;</span><span class="p">]</span>
 <span class="gp">   .....: </span><span class="p">)</span>
 <span class="gp">   .....: </span>
 
@@ -2314,31 +2314,22 @@ change the original <code class="docutils literal notranslate"><span class="pre"
 <span class="gh">Out[267]: </span>
 <span class="go">[10, 10, 3, 10]</span>
 <span class="go">Categories (5, int64): [1, 2, 3, 4, 10]</span>
-
-<span class="gp">In [268]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-
-<span class="gp">In [269]: </span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;cat&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">categories</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
-
-<span class="gp">In [270]: </span><span class="n">cat</span>
-<span class="gh">Out[270]: </span>
-<span class="go">[5, 5, 3, 5]</span>
-<span class="go">Categories (5, int64): [1, 2, 3, 4, 5]</span>
 </pre></div>
 </div>
 <p>Use <code class="docutils literal notranslate"><span class="pre">copy=True</span></code> to prevent such a behaviour or simply don’t reuse <code class="docutils literal notranslate"><span class="pre">Categoricals</span></code>:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [271]: </span><span class="n">cat</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="n">categories</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [268]: </span><span class="n">cat</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="n">categories</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
 
-<span class="gp">In [272]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">cat</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;cat&quot;</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">In [269]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">cat</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;cat&quot;</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-<span class="gp">In [273]: </span><span class="n">cat</span>
-<span class="gh">Out[273]: </span>
+<span class="gp">In [270]: </span><span class="n">cat</span>
+<span class="gh">Out[270]: </span>
 <span class="go">[1, 2, 3, 10]</span>
 <span class="go">Categories (5, int64): [1, 2, 3, 4, 10]</span>
 
-<span class="gp">In [274]: </span><span class="n">s</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="gp">In [271]: </span><span class="n">s</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>
 
-<span class="gp">In [275]: </span><span class="n">cat</span>
-<span class="gh">Out[275]: </span>
+<span class="gp">In [272]: </span><span class="n">cat</span>
+<span class="gh">Out[272]: </span>
 <span class="go">[1, 2, 3, 10]</span>
 <span class="go">Categories (5, int64): [1, 2, 3, 4, 10]</span>
 </pre></div>

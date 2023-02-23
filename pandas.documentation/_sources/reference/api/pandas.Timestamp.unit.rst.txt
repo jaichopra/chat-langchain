@@ -1,0 +1,6 @@
+pandas.Timestamp.unit
+=====================
+
+.. currentmodule:: pandas
+
+.. autoattribute:: Timestamp.unit

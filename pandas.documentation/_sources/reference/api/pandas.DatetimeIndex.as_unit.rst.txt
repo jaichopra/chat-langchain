@@ -1,0 +1,6 @@
+pandas.DatetimeIndex.as\_unit
+=============================
+
+.. currentmodule:: pandas
+
+.. automethod:: DatetimeIndex.as_unit

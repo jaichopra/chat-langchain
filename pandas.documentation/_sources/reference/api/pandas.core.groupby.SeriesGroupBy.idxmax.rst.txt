@@ -1,0 +1,6 @@
+pandas.core.groupby.SeriesGroupBy.idxmax
+========================================
+
+.. currentmodule:: pandas.core.groupby
+
+.. automethod:: SeriesGroupBy.idxmax

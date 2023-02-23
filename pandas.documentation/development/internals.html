@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Internals &#8212; pandas 1.5.3 documentation</title>
+    <title>Internals &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -55,12 +55,12 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'development/internals';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Debugging C extensions" href="debugging_extensions.html" />
+    <link rel="next" title="Copy on write" href="copy_on_write.html" />
     <link rel="prev" title="pandas maintenance" href="maintaining.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="docsearch:language" content="en">
@@ -182,7 +182,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -311,7 +311,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -368,17 +368,29 @@
    Contributing to pandas
   </a>
  </li>
- <li class="toctree-l1">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="contributing_environment.html">
    Creating a development environment
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label class="toctree-toggle" for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="contributing_gitpod.html">
+     Using Gitpod for pandas development
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="contributing_documentation.html">
    Contributing to the documentation
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label class="toctree-toggle" for="toctree-checkbox-1">
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label class="toctree-toggle" for="toctree-checkbox-2">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -403,6 +415,11 @@
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Internals
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="copy_on_write.html">
+   Copy on write
   </a>
  </li>
  <li class="toctree-l1">
@@ -473,24 +490,21 @@ intended for developers of pandas itself.</p>
 <p>In pandas there are a few objects implemented which can serve as valid
 containers for the axis labels:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">Index</span></code>: the generic “ordered set” object, an ndarray of object dtype
+<li><p><a class="reference internal" href="../reference/api/pandas.Index.html#pandas.Index" title="pandas.Index"><code class="xref py py-class docutils literal notranslate"><span class="pre">Index</span></code></a>: the generic “ordered set” object, an ndarray of object dtype
 assuming nothing about its contents. The labels must be hashable (and
 likely immutable) and unique. Populates a dict of label to location in
 Cython to do <code class="docutils literal notranslate"><span class="pre">O(1)</span></code> lookups.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Int64Index</span></code>: a version of <code class="docutils literal notranslate"><span class="pre">Index</span></code> highly optimized for 64-bit integer
-data, such as time stamps</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Float64Index</span></code>: a version of <code class="docutils literal notranslate"><span class="pre">Index</span></code> highly optimized for 64-bit float data</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">MultiIndex</span></code>: the standard hierarchical index object</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">DatetimeIndex</span></code>: An Index object with <code class="docutils literal notranslate"><span class="pre">Timestamp</span></code> boxed elements (impl are the int64 values)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">TimedeltaIndex</span></code>: An Index object with <code class="docutils literal notranslate"><span class="pre">Timedelta</span></code> boxed elements (impl are the in64 values)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">PeriodIndex</span></code>: An Index object with Period elements</p></li>
+<li><p><a class="reference internal" href="../reference/api/pandas.MultiIndex.html#pandas.MultiIndex" title="pandas.MultiIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiIndex</span></code></a>: the standard hierarchical index object</p></li>
+<li><p><a class="reference internal" href="../reference/api/pandas.DatetimeIndex.html#pandas.DatetimeIndex" title="pandas.DatetimeIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">DatetimeIndex</span></code></a>: An Index object with <a class="reference internal" href="../reference/api/pandas.Timestamp.html#pandas.Timestamp" title="pandas.Timestamp"><code class="xref py py-class docutils literal notranslate"><span class="pre">Timestamp</span></code></a> boxed elements (impl are the int64 values)</p></li>
+<li><p><a class="reference internal" href="../reference/api/pandas.TimedeltaIndex.html#pandas.TimedeltaIndex" title="pandas.TimedeltaIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">TimedeltaIndex</span></code></a>: An Index object with <a class="reference internal" href="../reference/api/pandas.Timedelta.html#pandas.Timedelta" title="pandas.Timedelta"><code class="xref py py-class docutils literal notranslate"><span class="pre">Timedelta</span></code></a> boxed elements (impl are the in64 values)</p></li>
+<li><p><a class="reference internal" href="../reference/api/pandas.PeriodIndex.html#pandas.PeriodIndex" title="pandas.PeriodIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">PeriodIndex</span></code></a>: An Index object with Period elements</p></li>
 </ul>
 <p>There are functions that make the creation of a regular index easy:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">date_range</span></code>: fixed frequency date range generated from a time rule or
+<li><p><a class="reference internal" href="../reference/api/pandas.date_range.html#pandas.date_range" title="pandas.date_range"><code class="xref py py-func docutils literal notranslate"><span class="pre">date_range()</span></code></a>: fixed frequency date range generated from a time rule or
 DateOffset. An ndarray of Python datetime objects</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">period_range</span></code>: fixed frequency date range generated from a time rule or
-DateOffset. An ndarray of <code class="docutils literal notranslate"><span class="pre">Period</span></code> objects, representing timespans</p></li>
+<li><p><a class="reference internal" href="../reference/api/pandas.period_range.html#pandas.period_range" title="pandas.period_range"><code class="xref py py-func docutils literal notranslate"><span class="pre">period_range()</span></code></a>: fixed frequency date range generated from a time rule or
+DateOffset. An ndarray of <a class="reference internal" href="../reference/api/pandas.Period.html#pandas.Period" title="pandas.Period"><code class="xref py py-class docutils literal notranslate"><span class="pre">Period</span></code></a> objects, representing timespans</p></li>
 </ul>
 <p>The motivation for having an <code class="docutils literal notranslate"><span class="pre">Index</span></code> class in the first place was to enable
 different implementations of indexing. This means that it’s possible for you,
@@ -500,27 +514,27 @@ a particular application than the ones provided in pandas.</p>
 <code class="docutils literal notranslate"><span class="pre">Index</span></code> must define are one or more of the following (depending on how
 incompatible the new object internals are with the <code class="docutils literal notranslate"><span class="pre">Index</span></code> functions):</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">get_loc</span></code>: returns an “indexer” (an integer, or in some cases a
+<li><p><a class="reference internal" href="../reference/api/pandas.Index.get_loc.html#pandas.Index.get_loc" title="pandas.Index.get_loc"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_loc()</span></code></a>: returns an “indexer” (an integer, or in some cases a
 slice object) for a label</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">slice_locs</span></code>: returns the “range” to slice between two labels</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">get_indexer</span></code>: Computes the indexing vector for reindexing / data
+<li><p><a class="reference internal" href="../reference/api/pandas.Index.slice_locs.html#pandas.Index.slice_locs" title="pandas.Index.slice_locs"><code class="xref py py-meth docutils literal notranslate"><span class="pre">slice_locs()</span></code></a>: returns the “range” to slice between two labels</p></li>
+<li><p><a class="reference internal" href="../reference/api/pandas.Index.get_indexer.html#pandas.Index.get_indexer" title="pandas.Index.get_indexer"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_indexer()</span></code></a>: Computes the indexing vector for reindexing / data
 alignment purposes. See the source / docstrings for more on this</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">get_indexer_non_unique</span></code>: Computes the indexing vector for reindexing / data
+<li><p><a class="reference internal" href="../reference/api/pandas.Index.get_indexer_non_unique.html#pandas.Index.get_indexer_non_unique" title="pandas.Index.get_indexer_non_unique"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_indexer_non_unique()</span></code></a>: Computes the indexing vector for reindexing / data
 alignment purposes when the index is non-unique. See the source / docstrings
 for more on this</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">reindex</span></code>: Does any pre-conversion of the input index then calls
+<li><p><a class="reference internal" href="../reference/api/pandas.Index.reindex.html#pandas.Index.reindex" title="pandas.Index.reindex"><code class="xref py py-meth docutils literal notranslate"><span class="pre">reindex()</span></code></a>: Does any pre-conversion of the input index then calls
 <code class="docutils literal notranslate"><span class="pre">get_indexer</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">union</span></code>, <code class="docutils literal notranslate"><span class="pre">intersection</span></code>: computes the union or intersection of two
+<li><p><a class="reference internal" href="../reference/api/pandas.Index.union.html#pandas.Index.union" title="pandas.Index.union"><code class="xref py py-meth docutils literal notranslate"><span class="pre">union()</span></code></a>, <a class="reference internal" href="../reference/api/pandas.Index.intersection.html#pandas.Index.intersection" title="pandas.Index.intersection"><code class="xref py py-meth docutils literal notranslate"><span class="pre">intersection()</span></code></a>: computes the union or intersection of two
 Index objects</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">insert</span></code>: Inserts a new label into an Index, yielding a new object</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">delete</span></code>: Delete a label, yielding a new object</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">drop</span></code>: Deletes a set of labels</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">take</span></code>: Analogous to ndarray.take</p></li>
+<li><p><a class="reference internal" href="../reference/api/pandas.Index.insert.html#pandas.Index.insert" title="pandas.Index.insert"><code class="xref py py-meth docutils literal notranslate"><span class="pre">insert()</span></code></a>: Inserts a new label into an Index, yielding a new object</p></li>
+<li><p><a class="reference internal" href="../reference/api/pandas.Index.delete.html#pandas.Index.delete" title="pandas.Index.delete"><code class="xref py py-meth docutils literal notranslate"><span class="pre">delete()</span></code></a>: Delete a label, yielding a new object</p></li>
+<li><p><a class="reference internal" href="../reference/api/pandas.Index.drop.html#pandas.Index.drop" title="pandas.Index.drop"><code class="xref py py-meth docutils literal notranslate"><span class="pre">drop()</span></code></a>: Deletes a set of labels</p></li>
+<li><p><a class="reference internal" href="../reference/api/pandas.Index.take.html#pandas.Index.take" title="pandas.Index.take"><code class="xref py py-meth docutils literal notranslate"><span class="pre">take()</span></code></a>: Analogous to ndarray.take</p></li>
 </ul>
 <section id="multiindex">
 <h3>MultiIndex<a class="headerlink" href="#multiindex" title="Permalink to this headline">#</a></h3>
-<p>Internally, the <code class="docutils literal notranslate"><span class="pre">MultiIndex</span></code> consists of a few things: the <strong>levels</strong>, the
-integer <strong>codes</strong> (until version 0.24 named <em>labels</em>), and the level <strong>names</strong>:</p>
+<p>Internally, the <a class="reference internal" href="../reference/api/pandas.MultiIndex.html#pandas.MultiIndex" title="pandas.MultiIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiIndex</span></code></a> consists of a few things: the <strong>levels</strong>, the
+integer <strong>codes</strong>, and the level <strong>names</strong>:</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_product</span><span class="p">(</span>
 <span class="gp">   ...: </span>    <span class="p">[</span><span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="p">[</span><span class="s2">&quot;one&quot;</span><span class="p">,</span> <span class="s2">&quot;two&quot;</span><span class="p">]],</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;first&quot;</span><span class="p">,</span> <span class="s2">&quot;second&quot;</span><span class="p">]</span>
 <span class="gp">   ...: </span><span class="p">)</span>
@@ -550,12 +564,12 @@ integer <strong>codes</strong> (until version 0.24 named <em>labels</em>), and t
 identified with that location at each layer of the index. It’s important to
 note that sortedness is determined <strong>solely</strong> from the integer codes and does
 not check (or care) whether the levels themselves are sorted. Fortunately, the
-constructors <code class="docutils literal notranslate"><span class="pre">from_tuples</span></code> and <code class="docutils literal notranslate"><span class="pre">from_arrays</span></code> ensure that this is true, but
-if you compute the levels and codes yourself, please be careful.</p>
+constructors <a class="reference internal" href="../reference/api/pandas.MultiIndex.from_tuples.html#pandas.MultiIndex.from_tuples" title="pandas.MultiIndex.from_tuples"><code class="xref py py-meth docutils literal notranslate"><span class="pre">from_tuples()</span></code></a> and <a class="reference internal" href="../reference/api/pandas.MultiIndex.from_arrays.html#pandas.MultiIndex.from_arrays" title="pandas.MultiIndex.from_arrays"><code class="xref py py-meth docutils literal notranslate"><span class="pre">from_arrays()</span></code></a> ensure
+that this is true, but if you compute the levels and codes yourself, please be careful.</p>
 </section>
 <section id="values">
 <h3>Values<a class="headerlink" href="#values" title="Permalink to this headline">#</a></h3>
-<p>pandas extends NumPy’s type system with custom types, like <code class="docutils literal notranslate"><span class="pre">Categorical</span></code> or
+<p>pandas extends NumPy’s type system with custom types, like <a class="reference internal" href="../reference/api/pandas.Categorical.html#pandas.Categorical" title="pandas.Categorical"><code class="xref py py-class docutils literal notranslate"><span class="pre">Categorical</span></code></a> or
 datetimes with a timezone, so we have multiple notions of “values”. For 1-D
 containers (<code class="docutils literal notranslate"><span class="pre">Index</span></code> classes and <code class="docutils literal notranslate"><span class="pre">Series</span></code>) we have the following convention:</p>
 <ul class="simple">
@@ -586,10 +600,10 @@ containers (<code class="docutils literal notranslate"><span class="pre">Index</
           <p class="prev-next-title">pandas maintenance</p>
       </div>
   </a>
-  <a class='right-next' id="next-link" href="debugging_extensions.html" title="next page">
+  <a class='right-next' id="next-link" href="copy_on_write.html" title="next page">
   <div class="prev-next-info">
       <p class="prev-next-subtitle">next</p>
-      <p class="prev-next-title">Debugging C extensions</p>
+      <p class="prev-next-title">Copy on write</p>
   </div>
   <i class="fas fa-angle-right"></i>
   </a>

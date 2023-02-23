@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Version 0.9.0 (October 7, 2012) &#8212; pandas 1.5.3 documentation</title>
+    <title>Version 0.9.0 (October 7, 2012) &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -55,7 +55,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'whatsnew/v0.9.0';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -182,7 +182,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -311,7 +311,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -363,6 +363,18 @@
   <div class="bd-toc-item navbar-nav">
     
     <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v2.0.0.html">
+   What’s new in 2.0.0 (??)
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.5.4.html">
+   What’s new in 1.5.4 (March XX, 2023)
+  </a>
+ </li>
  <li class="toctree-l1">
   <a class="reference internal" href="v1.5.3.html">
    What’s new in 1.5.3 (January 18, 2023)
@@ -920,8 +932,6 @@ attribute access:</p></li>
 <span class="go">0  0  0  1</span>
 <span class="go">1  1  1  0</span>
 <span class="go">2  0  1  0</span>
-
-<span class="go">[3 rows x 3 columns]</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -938,7 +948,7 @@ cases. To be perfectly clear:</p></li>
 <span class="go">0    1</span>
 <span class="go">1    2</span>
 <span class="go">2    3</span>
-<span class="go">Length: 3, dtype: int64</span>
+<span class="go">dtype: int64</span>
 
 <span class="gp">In [7]: </span><span class="n">s2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="s2">&quot;bar&quot;</span><span class="p">,</span> <span class="s2">&quot;baz&quot;</span><span class="p">])</span>
 
@@ -947,7 +957,7 @@ cases. To be perfectly clear:</p></li>
 <span class="go">foo   NaN</span>
 <span class="go">bar   NaN</span>
 <span class="go">baz   NaN</span>
-<span class="go">Length: 3, dtype: float64</span>
+<span class="go">dtype: float64</span>
 </pre></div>
 </div>
 <ul class="simple">

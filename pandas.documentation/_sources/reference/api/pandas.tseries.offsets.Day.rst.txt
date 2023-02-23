@@ -13,11 +13,7 @@ pandas.tseries.offsets.Day
    .. autosummary::
       :toctree:
       
-      Day.__call__
-      Day.apply
-      Day.apply_index
       Day.copy
-      Day.isAnchored
       Day.is_anchored
       Day.is_month_end
       Day.is_month_start
@@ -26,7 +22,6 @@ pandas.tseries.offsets.Day
       Day.is_quarter_start
       Day.is_year_end
       Day.is_year_start
-      Day.onOffset
       Day.rollback
       Day.rollforward
 

@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Installation &#8212; pandas 1.5.3 documentation</title>
+    <title>Installation &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -55,7 +55,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'getting_started/install';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -182,7 +182,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -311,7 +311,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -411,32 +411,32 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="intro_tutorials/05_add_columns.html">
-     How to create new columns derived from existing columns?
+     How to create new columns derived from existing columns
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="intro_tutorials/06_calculate_statistics.html">
-     How to calculate summary statistics?
+     How to calculate summary statistics
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="intro_tutorials/07_reshape_table_layout.html">
-     How to reshape the layout of tables?
+     How to reshape the layout of tables
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="intro_tutorials/08_combine_dataframes.html">
-     How to combine data from multiple tables?
+     How to combine data from multiple tables
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="intro_tutorials/09_timeseries.html">
-     How to handle time series data with ease?
+     How to handle time series data with ease
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="intro_tutorials/10_text_data.html">
-     How to manipulate textual data?
+     How to manipulate textual data
     </a>
    </li>
   </ul>
@@ -623,6 +623,12 @@ install pip, and then use pip to install those packages:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">pandas</span>
 </pre></div>
 </div>
+<p>pandas can also be installed with sets of optional dependencies to enable certain functionality. For example,
+to install pandas with the optional dependencies to read Excel files.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="s2">&quot;pandas[excel]&quot;</span>
+</pre></div>
+</div>
+<p>The full list of extras that can be installed can be found in the <a class="reference internal" href="#install-optional-dependencies"><span class="std std-ref">dependency section.</span></a></p>
 </section>
 <section id="installing-with-activepython">
 <h3>Installing with ActivePython<a class="headerlink" href="#installing-with-activepython" title="Permalink to this headline">#</a></h3>
@@ -705,13 +711,29 @@ You can find simple installation instructions for pandas in this document: <code
 <h3>Installing from source<a class="headerlink" href="#installing-from-source" title="Permalink to this headline">#</a></h3>
 <p>See the <a class="reference internal" href="../development/contributing.html#contributing"><span class="std std-ref">contributing guide</span></a> for complete instructions on building from the git source tree. Further, see <a class="reference internal" href="../development/contributing_environment.html#contributing-environment"><span class="std std-ref">creating a development environment</span></a> if you wish to create a pandas development environment.</p>
 </section>
+<section id="installing-the-development-version-of-pandas">
+<h3>Installing the development version of pandas<a class="headerlink" href="#installing-the-development-version-of-pandas" title="Permalink to this headline">#</a></h3>
+<p>Installing a nightly build is the quickest way to:</p>
+<ul class="simple">
+<li><p>Try a new feature that will be shipped in the next release (that is, a feature from a pull-request that was recently merged to the main branch).</p></li>
+<li><p>Check whether a bug you encountered has been fixed since the last release.</p></li>
+</ul>
+<p>You can install the nightly build of pandas using the scipy-wheels-nightly index from the PyPI registry of anaconda.org with the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">pre</span> <span class="o">--</span><span class="n">extra</span><span class="o">-</span><span class="n">index</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">pypi</span><span class="o">.</span><span class="n">anaconda</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">scipy</span><span class="o">-</span><span class="n">wheels</span><span class="o">-</span><span class="n">nightly</span><span class="o">/</span><span class="n">simple</span> <span class="n">pandas</span>
+</pre></div>
+</div>
+<p>Note that first uninstalling pandas might be required to be able to install nightly builds:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">uninstall</span> <span class="n">pandas</span> <span class="o">-</span><span class="n">y</span>
+</pre></div>
+</div>
+</section>
 </section>
 <section id="running-the-test-suite">
 <h2>Running the test suite<a class="headerlink" href="#running-the-test-suite" title="Permalink to this headline">#</a></h2>
 <p>pandas is equipped with an exhaustive set of unit tests, covering about 97% of
 the code base as of this writing. To run it on your machine to verify that
 everything is working (and that you have all of the dependencies, soft and hard,
-installed), make sure you have <a class="reference external" href="https://docs.pytest.org/en/latest/">pytest</a> &gt;= 6.0 and <a class="reference external" href="https://hypothesis.readthedocs.io/en/latest/">Hypothesis</a> &gt;= 6.13.0, then run:</p>
+installed), make sure you have <a class="reference external" href="https://docs.pytest.org/en/latest/">pytest</a> &gt;= 7.0 and <a class="reference external" href="https://hypothesis.readthedocs.io/en/latest/">Hypothesis</a> &gt;= 6.34.2, then run:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">test</span><span class="p">()</span>
 <span class="go">running: pytest --skip-slow --skip-network --skip-db /home/user/anaconda3/lib/python3.9/site-packages/pandas</span>
 
@@ -739,6 +761,9 @@ installed), make sure you have <a class="reference external" href="https://docs.
 </section>
 <section id="dependencies">
 <span id="install-dependencies"></span><h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">#</a></h2>
+<section id="required-dependencies">
+<span id="install-required-dependencies"></span><h3>Required dependencies<a class="headerlink" href="#required-dependencies" title="Permalink to this headline">#</a></h3>
+<p>pandas requires the following dependencies.</p>
 <table class="table">
 <colgroup>
 <col style="width: 71%" />
@@ -754,28 +779,13 @@ installed), make sure you have <a class="reference external" href="https://docs.
 <td><p>1.20.3</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference external" href="https://dateutil.readthedocs.io/en/stable/">python-dateutil</a></p></td>
-<td><p>2.8.1</p></td>
+<td><p>2.8.2</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference external" href="https://pypi.org/project/pytz/">pytz</a></p></td>
 <td><p>2020.1</p></td>
 </tr>
 </tbody>
 </table>
-<section id="recommended-dependencies">
-<span id="install-recommended-dependencies"></span><h3>Recommended dependencies<a class="headerlink" href="#recommended-dependencies" title="Permalink to this headline">#</a></h3>
-<ul class="simple">
-<li><p><a class="reference external" href="https://github.com/pydata/numexpr">numexpr</a>: for accelerating certain numerical operations.
-<code class="docutils literal notranslate"><span class="pre">numexpr</span></code> uses multiple cores as well as smart chunking and caching to achieve large speedups.
-If installed, must be Version 2.7.3 or higher.</p></li>
-<li><p><a class="reference external" href="https://github.com/pydata/bottleneck">bottleneck</a>: for accelerating certain types of <code class="docutils literal notranslate"><span class="pre">nan</span></code>
-evaluations. <code class="docutils literal notranslate"><span class="pre">bottleneck</span></code> uses specialized cython routines to achieve large speedups. If installed,
-must be Version 1.3.2 or higher.</p></li>
-</ul>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>You are highly encouraged to install these libraries, as they provide speed improvements, especially
-when working with large data sets.</p>
-</div>
 </section>
 <section id="optional-dependencies">
 <span id="install-optional-dependencies"></span><h3>Optional dependencies<a class="headerlink" href="#optional-dependencies" title="Permalink to this headline">#</a></h3>
@@ -784,17 +794,64 @@ For example, <a class="reference internal" href="../reference/api/pandas.read_hd
 <a class="reference internal" href="../reference/api/pandas.DataFrame.to_markdown.html#pandas.DataFrame.to_markdown" title="pandas.DataFrame.to_markdown"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.to_markdown()</span></code></a> requires the <code class="docutils literal notranslate"><span class="pre">tabulate</span></code> package. If the
 optional dependency is not installed, pandas will raise an <code class="docutils literal notranslate"><span class="pre">ImportError</span></code> when
 the method requiring that dependency is called.</p>
-<section id="timezones">
-<h4>Timezones<a class="headerlink" href="#timezones" title="Permalink to this headline">#</a></h4>
+<p>If using pip, optional pandas dependencies can be installed or managed in a file (e.g. requirements.txt or pyproject.toml)
+as optional extras (e.g.,``pandas[performance, aws]&gt;=1.5.0``). All optional dependencies can be installed with <code class="docutils literal notranslate"><span class="pre">pandas[all]</span></code>,
+and specific sets of dependencies are listed in the sections below.</p>
+<section id="performance-dependencies-recommended">
+<span id="install-recommended-dependencies"></span><h4>Performance dependencies (recommended)<a class="headerlink" href="#performance-dependencies-recommended" title="Permalink to this headline">#</a></h4>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You are highly encouraged to install these libraries, as they provide speed improvements, especially
+when working with large data sets.</p>
+</div>
+<p>Installable with <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">&quot;pandas[performance]&quot;</span></code></p>
 <table class="table">
 <colgroup>
-<col style="width: 23%" />
-<col style="width: 23%" />
-<col style="width: 55%" />
+<col style="width: 20%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 67%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Dependency</p></th>
 <th class="head"><p>Minimum Version</p></th>
+<th class="head"><p>pip extra</p></th>
+<th class="head"><p>Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="https://github.com/pydata/numexpr">numexpr</a></p></td>
+<td><p>2.7.3</p></td>
+<td><p>performance</p></td>
+<td><p>Accelerates certain numerical operations by using uses multiple cores as well as smart chunking and caching to achieve large speedups</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://github.com/pydata/bottleneck">bottleneck</a></p></td>
+<td><p>1.3.2</p></td>
+<td><p>performance</p></td>
+<td><p>Accelerates certain types of <code class="docutils literal notranslate"><span class="pre">nan</span></code> by using specialized cython routines to achieve large speedup.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://github.com/numba/numba">numba</a></p></td>
+<td><p>0.53.1</p></td>
+<td><p>performance</p></td>
+<td><p>Alternative execution engine for operations that accept <code class="docutils literal notranslate"><span class="pre">engine=&quot;numba&quot;</span></code> using a JIT compiler that translates Python functions to optimized machine code using the LLVM compiler.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="timezones">
+<h4>Timezones<a class="headerlink" href="#timezones" title="Permalink to this headline">#</a></h4>
+<p>Installable with <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">&quot;pandas[timezone]&quot;</span></code></p>
+<table class="table">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 12%" />
+<col style="width: 48%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Dependency</p></th>
+<th class="head"><p>Minimum Version</p></th>
+<th class="head"><p>pip extra</p></th>
 <th class="head"><p>Notes</p></th>
 </tr>
 </thead>
@@ -802,6 +859,7 @@ the method requiring that dependency is called.</p>
 <tr class="row-even"><td><p>tzdata</p></td>
 <td><p>2022.1(pypi)/
 2022a(for system tzdata)</p></td>
+<td><p>timezone</p></td>
 <td><p>Allows the use of <code class="docutils literal notranslate"><span class="pre">zoneinfo</span></code> timezones with pandas.
 <strong>Note</strong>: You only need to install the pypi package if your
 system does not already provide the IANA tz database.
@@ -817,29 +875,35 @@ conda-forge.</p>
 </section>
 <section id="visualization">
 <h4>Visualization<a class="headerlink" href="#visualization" title="Permalink to this headline">#</a></h4>
+<p>Installable with <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">&quot;pandas[plot,</span> <span class="pre">output_formatting]&quot;</span></code>.</p>
 <table class="table">
 <colgroup>
-<col style="width: 24%" />
-<col style="width: 17%" />
-<col style="width: 59%" />
+<col style="width: 20%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 50%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Dependency</p></th>
 <th class="head"><p>Minimum Version</p></th>
+<th class="head"><p>pip extra</p></th>
 <th class="head"><p>Notes</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>matplotlib</p></td>
-<td><p>3.3.2</p></td>
+<td><p>3.6.1</p></td>
+<td><p>plot</p></td>
 <td><p>Plotting library</p></td>
 </tr>
 <tr class="row-odd"><td><p>Jinja2</p></td>
 <td><p>3.0.0</p></td>
+<td><p>output_formatting</p></td>
 <td><p>Conditional formatting with DataFrame.style</p></td>
 </tr>
 <tr class="row-even"><td><p>tabulate</p></td>
 <td><p>0.8.9</p></td>
+<td><p>output_formatting</p></td>
 <td><p>Printing in Markdown-friendly format (see <a class="reference external" href="https://github.com/astanin/python-tabulate">tabulate</a>)</p></td>
 </tr>
 </tbody>
@@ -847,30 +911,30 @@ conda-forge.</p>
 </section>
 <section id="computation">
 <h4>Computation<a class="headerlink" href="#computation" title="Permalink to this headline">#</a></h4>
+<p>Installable with <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">&quot;pandas[computation]&quot;</span></code>.</p>
 <table class="table">
 <colgroup>
-<col style="width: 24%" />
-<col style="width: 17%" />
-<col style="width: 59%" />
+<col style="width: 21%" />
+<col style="width: 15%" />
+<col style="width: 13%" />
+<col style="width: 51%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Dependency</p></th>
 <th class="head"><p>Minimum Version</p></th>
+<th class="head"><p>pip extra</p></th>
 <th class="head"><p>Notes</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>SciPy</p></td>
 <td><p>1.7.1</p></td>
+<td><p>computation</p></td>
 <td><p>Miscellaneous statistical functions</p></td>
 </tr>
-<tr class="row-odd"><td><p>numba</p></td>
-<td><p>0.53.1</p></td>
-<td><p>Alternative execution engine for rolling operations
-(see <a class="reference internal" href="../user_guide/enhancingperf.html#enhancingperf-numba"><span class="std std-ref">Enhancing Performance</span></a>)</p></td>
-</tr>
-<tr class="row-even"><td><p>xarray</p></td>
-<td><p>0.19.0</p></td>
+<tr class="row-odd"><td><p>xarray</p></td>
+<td><p>0.21.0</p></td>
+<td><p>computation</p></td>
 <td><p>pandas-like API for N-dimensional data</p></td>
 </tr>
 </tbody>
@@ -878,37 +942,40 @@ conda-forge.</p>
 </section>
 <section id="excel-files">
 <h4>Excel files<a class="headerlink" href="#excel-files" title="Permalink to this headline">#</a></h4>
+<p>Installable with <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">&quot;pandas[excel]&quot;</span></code>.</p>
 <table class="table">
 <colgroup>
-<col style="width: 24%" />
-<col style="width: 17%" />
-<col style="width: 59%" />
+<col style="width: 21%" />
+<col style="width: 15%" />
+<col style="width: 13%" />
+<col style="width: 51%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Dependency</p></th>
 <th class="head"><p>Minimum Version</p></th>
+<th class="head"><p>pip extra</p></th>
 <th class="head"><p>Notes</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>xlrd</p></td>
 <td><p>2.0.1</p></td>
+<td><p>excel</p></td>
 <td><p>Reading Excel</p></td>
 </tr>
-<tr class="row-odd"><td><p>xlwt</p></td>
-<td><p>1.3.0</p></td>
-<td><p>Writing Excel</p></td>
-</tr>
-<tr class="row-even"><td><p>xlsxwriter</p></td>
+<tr class="row-odd"><td><p>xlsxwriter</p></td>
 <td><p>1.4.3</p></td>
+<td><p>excel</p></td>
 <td><p>Writing Excel</p></td>
 </tr>
-<tr class="row-odd"><td><p>openpyxl</p></td>
+<tr class="row-even"><td><p>openpyxl</p></td>
 <td><p>3.0.7</p></td>
+<td><p>excel</p></td>
 <td><p>Reading / writing for xlsx files</p></td>
 </tr>
-<tr class="row-even"><td><p>pyxlsb</p></td>
+<tr class="row-odd"><td><p>pyxlsb</p></td>
 <td><p>1.0.8</p></td>
+<td><p>excel</p></td>
 <td><p>Reading for xlsb files</p></td>
 </tr>
 </tbody>
@@ -916,29 +983,35 @@ conda-forge.</p>
 </section>
 <section id="html">
 <h4>HTML<a class="headerlink" href="#html" title="Permalink to this headline">#</a></h4>
+<p>Installable with <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">&quot;pandas[html]&quot;</span></code>.</p>
 <table class="table">
 <colgroup>
-<col style="width: 24%" />
-<col style="width: 17%" />
-<col style="width: 59%" />
+<col style="width: 21%" />
+<col style="width: 15%" />
+<col style="width: 13%" />
+<col style="width: 51%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Dependency</p></th>
 <th class="head"><p>Minimum Version</p></th>
+<th class="head"><p>pip extra</p></th>
 <th class="head"><p>Notes</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>BeautifulSoup4</p></td>
 <td><p>4.9.3</p></td>
+<td><p>html</p></td>
 <td><p>HTML parser for read_html</p></td>
 </tr>
 <tr class="row-odd"><td><p>html5lib</p></td>
 <td><p>1.1</p></td>
+<td><p>html</p></td>
 <td><p>HTML parser for read_html</p></td>
 </tr>
 <tr class="row-even"><td><p>lxml</p></td>
 <td><p>4.6.3</p></td>
+<td><p>html</p></td>
 <td><p>HTML parser for read_html</p></td>
 </tr>
 </tbody>
@@ -967,21 +1040,25 @@ usage of the above three libraries.</p></li>
 </section>
 <section id="xml">
 <h4>XML<a class="headerlink" href="#xml" title="Permalink to this headline">#</a></h4>
+<p>Installable with <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">&quot;pandas[xml]&quot;</span></code>.</p>
 <table class="table">
 <colgroup>
-<col style="width: 24%" />
-<col style="width: 17%" />
-<col style="width: 59%" />
+<col style="width: 21%" />
+<col style="width: 15%" />
+<col style="width: 13%" />
+<col style="width: 51%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Dependency</p></th>
 <th class="head"><p>Minimum Version</p></th>
+<th class="head"><p>pip extra</p></th>
 <th class="head"><p>Notes</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>lxml</p></td>
-<td><p>4.5.0</p></td>
+<td><p>4.6.3</p></td>
+<td><p>xml</p></td>
 <td><p>XML parser for read_xml and tree builder for to_xml</p></td>
 </tr>
 </tbody>
@@ -989,29 +1066,37 @@ usage of the above three libraries.</p></li>
 </section>
 <section id="sql-databases">
 <h4>SQL databases<a class="headerlink" href="#sql-databases" title="Permalink to this headline">#</a></h4>
+<p>Installable with <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">&quot;pandas[postgresql,</span> <span class="pre">mysql,</span> <span class="pre">sql-other]&quot;</span></code>.</p>
 <table class="table">
 <colgroup>
-<col style="width: 24%" />
-<col style="width: 17%" />
-<col style="width: 59%" />
+<col style="width: 21%" />
+<col style="width: 15%" />
+<col style="width: 13%" />
+<col style="width: 51%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Dependency</p></th>
 <th class="head"><p>Minimum Version</p></th>
+<th class="head"><p>pip extra</p></th>
 <th class="head"><p>Notes</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>SQLAlchemy</p></td>
 <td><p>1.4.16</p></td>
+<td><p>postgresql,
+mysql,
+sql-other</p></td>
 <td><p>SQL support for databases other than sqlite</p></td>
 </tr>
 <tr class="row-odd"><td><p>psycopg2</p></td>
 <td><p>2.8.6</p></td>
+<td><p>postgresql</p></td>
 <td><p>PostgreSQL engine for sqlalchemy</p></td>
 </tr>
 <tr class="row-even"><td><p>pymysql</p></td>
 <td><p>1.0.2</p></td>
+<td><p>mysql</p></td>
 <td><p>MySQL engine for sqlalchemy</p></td>
 </tr>
 </tbody>
@@ -1019,42 +1104,59 @@ usage of the above three libraries.</p></li>
 </section>
 <section id="other-data-sources">
 <h4>Other data sources<a class="headerlink" href="#other-data-sources" title="Permalink to this headline">#</a></h4>
+<p>Installable with <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">&quot;pandas[hdf5,</span> <span class="pre">parquet,</span> <span class="pre">feather,</span> <span class="pre">spss,</span> <span class="pre">excel]&quot;</span></code></p>
 <table class="table">
 <colgroup>
-<col style="width: 24%" />
-<col style="width: 17%" />
-<col style="width: 59%" />
+<col style="width: 21%" />
+<col style="width: 15%" />
+<col style="width: 13%" />
+<col style="width: 51%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Dependency</p></th>
 <th class="head"><p>Minimum Version</p></th>
+<th class="head"><p>pip extra</p></th>
 <th class="head"><p>Notes</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>PyTables</p></td>
 <td><p>3.6.1</p></td>
+<td><p>hdf5</p></td>
 <td><p>HDF5-based reading / writing</p></td>
 </tr>
 <tr class="row-odd"><td><p>blosc</p></td>
 <td><p>1.21.0</p></td>
-<td><p>Compression for HDF5</p></td>
+<td><p>hdf5</p></td>
+<td><p>Compression for HDF5; only available on <code class="docutils literal notranslate"><span class="pre">conda</span></code></p></td>
 </tr>
 <tr class="row-even"><td><p>zlib</p></td>
 <td></td>
+<td><p>hdf5</p></td>
 <td><p>Compression for HDF5</p></td>
 </tr>
 <tr class="row-odd"><td><p>fastparquet</p></td>
-<td><p>0.4.0</p></td>
-<td><p>Parquet reading / writing</p></td>
+<td><p>0.6.3</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>Parquet reading / writing (pyarrow is default)</p></td>
 </tr>
 <tr class="row-even"><td><p>pyarrow</p></td>
-<td><p>1.0.1</p></td>
+<td><p>7.0.0</p></td>
+<td><p>parquet, feather</p></td>
 <td><p>Parquet, ORC, and feather reading / writing</p></td>
 </tr>
 <tr class="row-odd"><td><p>pyreadstat</p></td>
 <td><p>1.1.2</p></td>
+<td><p>spss</p></td>
 <td><p>SPSS files (.sav) reading</p></td>
+</tr>
+<tr class="row-even"><td><p>odfpy</p></td>
+<td><p>1.4.1</p></td>
+<td><p>excel</p></td>
+<td><p>Open document format (.odf, .ods, .odt) reading / writing</p></td>
 </tr>
 </tbody>
 </table>
@@ -1078,7 +1180,7 @@ The following is a summary of the environment in which <a class="reference inter
 <tbody>
 <tr class="row-even"><td><p>Linux</p></td>
 <td><p>Successful</p></td>
-<td><p>Failed(pyarrow==3.0 Successful)</p></td>
+<td><p>Failed</p></td>
 </tr>
 <tr class="row-odd"><td><p>macOS</p></td>
 <td><p>Successful</p></td>
@@ -1096,33 +1198,41 @@ The following is a summary of the environment in which <a class="reference inter
 </section>
 <section id="access-data-in-the-cloud">
 <h4>Access data in the cloud<a class="headerlink" href="#access-data-in-the-cloud" title="Permalink to this headline">#</a></h4>
+<p>Installable with <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">&quot;pandas[fss,</span> <span class="pre">aws,</span> <span class="pre">gcp]&quot;</span></code></p>
 <table class="table">
 <colgroup>
-<col style="width: 24%" />
-<col style="width: 17%" />
-<col style="width: 59%" />
+<col style="width: 21%" />
+<col style="width: 15%" />
+<col style="width: 13%" />
+<col style="width: 51%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Dependency</p></th>
 <th class="head"><p>Minimum Version</p></th>
+<th class="head"><p>pip extra</p></th>
 <th class="head"><p>Notes</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>fsspec</p></td>
 <td><p>2021.7.0</p></td>
-<td><p>Handling files aside from simple local and HTTP</p></td>
+<td><p>fss, gcp, aws</p></td>
+<td><p>Handling files aside from simple local and HTTP (required
+dependency of s3fs, gcsfs).</p></td>
 </tr>
 <tr class="row-odd"><td><p>gcsfs</p></td>
 <td><p>2021.7.0</p></td>
+<td><p>gcp</p></td>
 <td><p>Google Cloud Storage access</p></td>
 </tr>
 <tr class="row-even"><td><p>pandas-gbq</p></td>
 <td><p>0.15.0</p></td>
+<td><p>gcp</p></td>
 <td><p>Google Big Query access</p></td>
 </tr>
 <tr class="row-odd"><td><p>s3fs</p></td>
 <td><p>2021.08.0</p></td>
+<td><p>aws</p></td>
 <td><p>Amazon S3 access</p></td>
 </tr>
 </tbody>
@@ -1130,63 +1240,71 @@ The following is a summary of the environment in which <a class="reference inter
 </section>
 <section id="clipboard">
 <h4>Clipboard<a class="headerlink" href="#clipboard" title="Permalink to this headline">#</a></h4>
+<p>Installable with <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">&quot;pandas[clipboard]&quot;</span></code>.</p>
 <table class="table">
 <colgroup>
-<col style="width: 24%" />
-<col style="width: 17%" />
-<col style="width: 59%" />
+<col style="width: 21%" />
+<col style="width: 15%" />
+<col style="width: 13%" />
+<col style="width: 51%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Dependency</p></th>
 <th class="head"><p>Minimum Version</p></th>
+<th class="head"><p>pip extra</p></th>
 <th class="head"><p>Notes</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>PyQt4/PyQt5</p></td>
-<td></td>
+<td><p>5.15.1</p></td>
+<td><p>clipboard</p></td>
 <td><p>Clipboard I/O</p></td>
 </tr>
 <tr class="row-odd"><td><p>qtpy</p></td>
-<td></td>
+<td><p>2.2.0</p></td>
+<td><p>clipboard</p></td>
 <td><p>Clipboard I/O</p></td>
-</tr>
-<tr class="row-even"><td><p>xclip</p></td>
-<td></td>
-<td><p>Clipboard I/O on linux</p></td>
-</tr>
-<tr class="row-odd"><td><p>xsel</p></td>
-<td></td>
-<td><p>Clipboard I/O on linux</p></td>
 </tr>
 </tbody>
 </table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Depending on operating system, system-level packages may need to installed.
+For clipboard to operate on Linux one of the CLI tools <code class="docutils literal notranslate"><span class="pre">xclip</span></code> or <code class="docutils literal notranslate"><span class="pre">xsel</span></code> must be installed on your system.</p>
+</div>
 </section>
 <section id="compression">
 <h4>Compression<a class="headerlink" href="#compression" title="Permalink to this headline">#</a></h4>
+<p>Installable with <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">&quot;pandas[compression]&quot;</span></code></p>
 <table class="table">
 <colgroup>
-<col style="width: 24%" />
-<col style="width: 17%" />
-<col style="width: 59%" />
+<col style="width: 21%" />
+<col style="width: 15%" />
+<col style="width: 13%" />
+<col style="width: 51%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Dependency</p></th>
 <th class="head"><p>Minimum Version</p></th>
+<th class="head"><p>pip extra</p></th>
 <th class="head"><p>Notes</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>brotli</p></td>
 <td><p>0.7.0</p></td>
+<td><p>compression</p></td>
 <td><p>Brotli compression</p></td>
 </tr>
 <tr class="row-odd"><td><p>python-snappy</p></td>
 <td><p>0.6.0</p></td>
+<td><p>compression</p></td>
 <td><p>Snappy compression</p></td>
 </tr>
 <tr class="row-even"><td><p>Zstandard</p></td>
 <td><p>0.15.2</p></td>
+<td><p>compression</p></td>
 <td><p>Zstandard compression</p></td>
 </tr>
 </tbody>
@@ -1279,6 +1397,11 @@ The following is a summary of the environment in which <a class="reference inter
      Installing from source
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#installing-the-development-version-of-pandas">
+     Installing the development version of pandas
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -1292,8 +1415,8 @@ The following is a summary of the environment in which <a class="reference inter
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#recommended-dependencies">
-     Recommended dependencies
+    <a class="reference internal nav-link" href="#required-dependencies">
+     Required dependencies
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -1301,6 +1424,11 @@ The following is a summary of the environment in which <a class="reference inter
      Optional dependencies
     </a>
     <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#performance-dependencies-recommended">
+       Performance dependencies (recommended)
+      </a>
+     </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#timezones">
        Timezones

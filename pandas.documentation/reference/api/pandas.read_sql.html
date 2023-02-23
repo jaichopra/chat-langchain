@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>pandas.read_sql &#8212; pandas 1.5.3 documentation</title>
+    <title>pandas.read_sql &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -55,7 +55,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'reference/api/pandas.read_sql';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -182,7 +182,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -311,7 +311,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -421,6 +421,21 @@
    <li class="toctree-l2">
     <a class="reference internal" href="pandas.DataFrame.to_excel.html">
      pandas.DataFrame.to_excel
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.ExcelFile.html">
+     pandas.ExcelFile
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.ExcelFile.book.html">
+     pandas.ExcelFile.book
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.ExcelFile.sheet_names.html">
+     pandas.ExcelFile.sheet_names
     </a>
    </li>
    <li class="toctree-l2">
@@ -738,7 +753,7 @@
 <h1>pandas.read_sql<a class="headerlink" href="#pandas-read-sql" title="Permalink to this headline">#</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="pandas.read_sql">
-<span class="sig-prename descclassname"><span class="pre">pandas.</span></span><span class="sig-name descname"><span class="pre">read_sql</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sql</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">con</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index_col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coerce_float</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parse_dates</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">columns</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chunksize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.5.3/pandas/io/sql.py#L436-L597"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.read_sql" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">pandas.</span></span><span class="sig-name descname"><span class="pre">read_sql</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sql</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">con</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index_col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coerce_float</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parse_dates</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">columns</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chunksize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_nullable_dtypes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">_NoDefault.no_default</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v2.0.0rc0/pandas/io/sql.py#L526-L718"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.read_sql" title="Permalink to this definition">#</a></dt>
 <dd><p>Read SQL query or database table into a DataFrame.</p>
 <p>This function is a convenience wrapper around <code class="docutils literal notranslate"><span class="pre">read_sql_table</span></code> and
 <code class="docutils literal notranslate"><span class="pre">read_sql_query</span></code> (for backward compatibility). It will delegate
@@ -746,9 +761,9 @@ to the specific function depending on the provided input. A SQL query
 will be routed to <code class="docutils literal notranslate"><span class="pre">read_sql_query</span></code>, while a database table name will
 be routed to <code class="docutils literal notranslate"><span class="pre">read_sql_table</span></code>. Note that the delegated function might
 have more specific notes about their functionality not listed here.</p>
-<dl class="field-list simple">
+<dl class="field-list">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
+<dd class="field-odd"><dl>
 <dt><strong>sql</strong><span class="classifier">str or SQLAlchemy Selectable (select or text object)</span></dt><dd><p>SQL query to be executed or a table name.</p>
 </dd>
 <dt><strong>con</strong><span class="classifier">SQLAlchemy connectable, str, or sqlite3 connection</span></dt><dd><p>Using SQLAlchemy makes it possible to use any DB supported by that
@@ -784,6 +799,28 @@ a table).</p>
 </dd>
 <dt><strong>chunksize</strong><span class="classifier">int, default None</span></dt><dd><p>If specified, return an iterator where <cite>chunksize</cite> is the
 number of rows to include in each chunk.</p>
+</dd>
+<dt><strong>use_nullable_dtypes</strong><span class="classifier">bool = False</span></dt><dd><p>Whether to use nullable dtypes as default when reading data. If
+set to True, nullable dtypes are used for all dtypes that have a nullable
+implementation, even if no nulls are present.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The nullable dtype implementation can be configured by calling
+<code class="docutils literal notranslate"><span class="pre">pd.set_option(&quot;mode.dtype_backend&quot;,</span> <span class="pre">&quot;pandas&quot;)</span></code> to use
+numpy-backed nullable dtypes or
+<code class="docutils literal notranslate"><span class="pre">pd.set_option(&quot;mode.dtype_backend&quot;,</span> <span class="pre">&quot;pyarrow&quot;)</span></code> to use
+pyarrow-backed nullable dtypes (using <code class="docutils literal notranslate"><span class="pre">pd.ArrowDtype</span></code>).</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 2.0.</span></p>
+</div>
+</dd>
+<dt><strong>dtype</strong><span class="classifier">Type name or dict of columns</span></dt><dd><p>Data type for data or columns. E.g. np.float64 or
+{‘a’: np.float64, ‘b’: np.int32, ‘c’: ‘Int64’}.
+The argument is ignored if a table is passed instead of a query.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 2.0.0.</span></p>
+</div>
 </dd>
 </dl>
 </dd>

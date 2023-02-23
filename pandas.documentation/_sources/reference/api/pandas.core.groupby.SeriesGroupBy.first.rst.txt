@@ -1,0 +1,6 @@
+pandas.core.groupby.SeriesGroupBy.first
+=======================================
+
+.. currentmodule:: pandas.core.groupby
+
+.. automethod:: SeriesGroupBy.first

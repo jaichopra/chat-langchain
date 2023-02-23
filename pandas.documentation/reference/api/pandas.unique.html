@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>pandas.unique &#8212; pandas 1.5.3 documentation</title>
+    <title>pandas.unique &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -55,12 +55,12 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'reference/api/pandas.unique';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pandas.wide_to_long" href="pandas.wide_to_long.html" />
+    <link rel="next" title="pandas.lreshape" href="pandas.lreshape.html" />
     <link rel="prev" title="pandas.factorize" href="pandas.factorize.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="docsearch:language" content="en">
@@ -182,7 +182,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -311,7 +311,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -446,6 +446,11 @@
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
      pandas.unique
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.lreshape.html">
+     pandas.lreshape
     </a>
    </li>
    <li class="toctree-l2">
@@ -638,7 +643,7 @@
 <h1>pandas.unique<a class="headerlink" href="#pandas-unique" title="Permalink to this headline">#</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="pandas.unique">
-<span class="sig-prename descclassname"><span class="pre">pandas.</span></span><span class="sig-name descname"><span class="pre">unique</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.5.3/pandas/core/algorithms.py#L315-L409"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.unique" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">pandas.</span></span><span class="sig-name descname"><span class="pre">unique</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v2.0.0rc0/pandas/core/algorithms.py#L305-L399"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.unique" title="Permalink to this definition">#</a></dt>
 <dd><p>Return unique values based on a hash table.</p>
 <p>Uniques are returned in order of appearance. This does NOT sort.</p>
 <p>Significantly faster than numpy.unique for long enough sequences.
@@ -760,10 +765,10 @@ order of appearance.</p>
           <p class="prev-next-title">pandas.factorize</p>
       </div>
   </a>
-  <a class='right-next' id="next-link" href="pandas.wide_to_long.html" title="next page">
+  <a class='right-next' id="next-link" href="pandas.lreshape.html" title="next page">
   <div class="prev-next-info">
       <p class="prev-next-subtitle">next</p>
-      <p class="prev-next-title">pandas.wide_to_long</p>
+      <p class="prev-next-title">pandas.lreshape</p>
   </div>
   <i class="fas fa-angle-right"></i>
   </a>

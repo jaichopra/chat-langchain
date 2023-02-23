@@ -1,0 +1,6 @@
+pandas.core.groupby.SeriesGroupBy.ffill
+=======================================
+
+.. currentmodule:: pandas.core.groupby
+
+.. automethod:: SeriesGroupBy.ffill

@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Window &#8212; pandas 1.5.3 documentation</title>
+    <title>Window &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -55,7 +55,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'reference/window';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -182,7 +182,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -311,7 +311,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -711,9 +711,9 @@
               
   <section id="window">
 <span id="api-window"></span><h1>Window<a class="headerlink" href="#window" title="Permalink to this headline">#</a></h1>
-<p>Rolling objects are returned by <code class="docutils literal notranslate"><span class="pre">.rolling</span></code> calls: <a class="reference internal" href="api/pandas.DataFrame.rolling.html#pandas.DataFrame.rolling" title="pandas.DataFrame.rolling"><code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.DataFrame.rolling()</span></code></a>, <a class="reference internal" href="api/pandas.Series.rolling.html#pandas.Series.rolling" title="pandas.Series.rolling"><code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.Series.rolling()</span></code></a>, etc.
-Expanding objects are returned by <code class="docutils literal notranslate"><span class="pre">.expanding</span></code> calls: <a class="reference internal" href="api/pandas.DataFrame.expanding.html#pandas.DataFrame.expanding" title="pandas.DataFrame.expanding"><code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.DataFrame.expanding()</span></code></a>, <a class="reference internal" href="api/pandas.Series.expanding.html#pandas.Series.expanding" title="pandas.Series.expanding"><code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.Series.expanding()</span></code></a>, etc.
-ExponentialMovingWindow objects are returned by <code class="docutils literal notranslate"><span class="pre">.ewm</span></code> calls: <a class="reference internal" href="api/pandas.DataFrame.ewm.html#pandas.DataFrame.ewm" title="pandas.DataFrame.ewm"><code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.DataFrame.ewm()</span></code></a>, <a class="reference internal" href="api/pandas.Series.ewm.html#pandas.Series.ewm" title="pandas.Series.ewm"><code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.Series.ewm()</span></code></a>, etc.</p>
+<p>Rolling objects are returned by <code class="docutils literal notranslate"><span class="pre">.rolling</span></code> calls: <a class="reference internal" href="api/pandas.DataFrame.rolling.html#pandas.DataFrame.rolling" title="pandas.DataFrame.rolling"><code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.DataFrame.rolling()</span></code></a> and <a class="reference internal" href="api/pandas.Series.rolling.html#pandas.Series.rolling" title="pandas.Series.rolling"><code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.Series.rolling()</span></code></a>.
+Expanding objects are returned by <code class="docutils literal notranslate"><span class="pre">.expanding</span></code> calls: <a class="reference internal" href="api/pandas.DataFrame.expanding.html#pandas.DataFrame.expanding" title="pandas.DataFrame.expanding"><code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.DataFrame.expanding()</span></code></a> and <a class="reference internal" href="api/pandas.Series.expanding.html#pandas.Series.expanding" title="pandas.Series.expanding"><code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.Series.expanding()</span></code></a>.
+ExponentialMovingWindow objects are returned by <code class="docutils literal notranslate"><span class="pre">.ewm</span></code> calls: <a class="reference internal" href="api/pandas.DataFrame.ewm.html#pandas.DataFrame.ewm" title="pandas.DataFrame.ewm"><code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.DataFrame.ewm()</span></code></a> and <a class="reference internal" href="api/pandas.Series.ewm.html#pandas.Series.ewm" title="pandas.Series.ewm"><code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.Series.ewm()</span></code></a>.</p>
 <section id="rolling-window-functions">
 <span id="api-functions-rolling"></span><h2>Rolling window functions<a class="headerlink" href="#rolling-window-functions" title="Permalink to this headline">#</a></h2>
 <table class="autosummary longtable table autosummary">

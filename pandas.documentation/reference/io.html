@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Input/output &#8212; pandas 1.5.3 documentation</title>
+    <title>Input/output &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -55,7 +55,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'reference/io';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -182,7 +182,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -311,7 +311,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -421,6 +421,21 @@
    <li class="toctree-l2">
     <a class="reference internal" href="api/pandas.DataFrame.to_excel.html">
      pandas.DataFrame.to_excel
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.ExcelFile.html">
+     pandas.ExcelFile
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.ExcelFile.book.html">
+     pandas.ExcelFile.book
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.ExcelFile.sheet_names.html">
+     pandas.ExcelFile.sheet_names
     </a>
    </li>
    <li class="toctree-l2">
@@ -784,7 +799,7 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.read_clipboard.html#pandas.read_clipboard" title="pandas.read_clipboard"><code class="xref py py-obj docutils literal notranslate"><span class="pre">read_clipboard</span></code></a>([sep])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.read_clipboard.html#pandas.read_clipboard" title="pandas.read_clipboard"><code class="xref py py-obj docutils literal notranslate"><span class="pre">read_clipboard</span></code></a>([sep, use_nullable_dtypes])</p></td>
 <td><p>Read text from clipboard and pass to read_csv.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="api/pandas.DataFrame.to_clipboard.html#pandas.DataFrame.to_clipboard" title="pandas.DataFrame.to_clipboard"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.to_clipboard</span></code></a>([excel, sep])</p></td>
@@ -807,7 +822,16 @@
 <tr class="row-even"><td><p><a class="reference internal" href="api/pandas.DataFrame.to_excel.html#pandas.DataFrame.to_excel" title="pandas.DataFrame.to_excel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.to_excel</span></code></a>(excel_writer[, ...])</p></td>
 <td><p>Write object to an Excel sheet.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.ExcelFile.parse.html#pandas.ExcelFile.parse" title="pandas.ExcelFile.parse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ExcelFile.parse</span></code></a>([sheet_name, header, names, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.ExcelFile.html#pandas.ExcelFile" title="pandas.ExcelFile"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ExcelFile</span></code></a>(path_or_buffer[, engine, ...])</p></td>
+<td><p>Class for parsing tabular Excel sheets into DataFrame objects.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.ExcelFile.book.html#pandas.ExcelFile.book" title="pandas.ExcelFile.book"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ExcelFile.book</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.ExcelFile.sheet_names.html#pandas.ExcelFile.sheet_names" title="pandas.ExcelFile.sheet_names"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ExcelFile.sheet_names</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.ExcelFile.parse.html#pandas.ExcelFile.parse" title="pandas.ExcelFile.parse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ExcelFile.parse</span></code></a>([sheet_name, header, names, ...])</p></td>
 <td><p>Parse specified sheet(s) into a DataFrame.</p></td>
 </tr>
 </tbody>
@@ -919,7 +943,7 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.DataFrame.to_latex.html#pandas.DataFrame.to_latex" title="pandas.DataFrame.to_latex"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.to_latex</span></code></a>([buf, columns, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.DataFrame.to_latex.html#pandas.DataFrame.to_latex" title="pandas.DataFrame.to_latex"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.to_latex</span></code></a>([buf, columns, header, ...])</p></td>
 <td><p>Render object to a LaTeX tabular, longtable, or nested table.</p></td>
 </tr>
 </tbody>
@@ -1021,7 +1045,7 @@ but the type of the subclass is lost upon storing.</p>
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.read_orc.html#pandas.read_orc" title="pandas.read_orc"><code class="xref py py-obj docutils literal notranslate"><span class="pre">read_orc</span></code></a>(path[, columns])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.read_orc.html#pandas.read_orc" title="pandas.read_orc"><code class="xref py py-obj docutils literal notranslate"><span class="pre">read_orc</span></code></a>(path[, columns, use_nullable_dtypes])</p></td>
 <td><p>Load an ORC object from the file path, returning a DataFrame.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="api/pandas.DataFrame.to_orc.html#pandas.DataFrame.to_orc" title="pandas.DataFrame.to_orc"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataFrame.to_orc</span></code></a>([path, engine, index, ...])</p></td>
@@ -1052,7 +1076,7 @@ but the type of the subclass is lost upon storing.</p>
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.read_spss.html#pandas.read_spss" title="pandas.read_spss"><code class="xref py py-obj docutils literal notranslate"><span class="pre">read_spss</span></code></a>(path[, usecols, convert_categoricals])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.read_spss.html#pandas.read_spss" title="pandas.read_spss"><code class="xref py py-obj docutils literal notranslate"><span class="pre">read_spss</span></code></a>(path[, usecols, ...])</p></td>
 <td><p>Load an SPSS file from the file path, returning a DataFrame.</p></td>
 </tr>
 </tbody>

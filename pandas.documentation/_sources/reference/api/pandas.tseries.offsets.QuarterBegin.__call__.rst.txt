@@ -1,6 +1,0 @@
-pandas.tseries.offsets.QuarterBegin.\_\_call\_\_
-================================================
-
-.. currentmodule:: pandas.tseries.offsets
-
-.. automethod:: QuarterBegin.__call__

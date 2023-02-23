@@ -1,0 +1,6 @@
+pandas.core.groupby.DataFrameGroupBy.get\_group
+===============================================
+
+.. currentmodule:: pandas.core.groupby
+
+.. automethod:: DataFrameGroupBy.get_group

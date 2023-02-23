@@ -1,0 +1,6 @@
+pandas.core.groupby.DataFrameGroupBy.\_\_iter\_\_
+=================================================
+
+.. currentmodule:: pandas.core.groupby
+
+.. automethod:: DataFrameGroupBy.__iter__

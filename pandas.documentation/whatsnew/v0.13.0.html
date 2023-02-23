@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Version 0.13.0 (January 3, 2014) &#8212; pandas 1.5.3 documentation</title>
+    <title>Version 0.13.0 (January 3, 2014) &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -55,7 +55,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'whatsnew/v0.13.0';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -182,7 +182,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -311,7 +311,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -363,6 +363,18 @@
   <div class="bd-toc-item navbar-nav">
     
     <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v2.0.0.html">
+   What’s new in 2.0.0 (??)
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.5.4.html">
+   What’s new in 1.5.4 (March XX, 2023)
+  </a>
+ </li>
  <li class="toctree-l1">
   <a class="reference internal" href="v1.5.3.html">
    What’s new in 1.5.3 (January 18, 2023)
@@ -1197,12 +1209,12 @@ was not contained in the index of a particular axis. (<a class="reference extern
 <ul>
 <li><p>Added a new index type, <code class="docutils literal notranslate"><span class="pre">Float64Index</span></code>. This will be automatically created when passing floating values in index creation.
 This enables a pure label-based slicing paradigm that makes <code class="docutils literal notranslate"><span class="pre">[],ix,loc</span></code> for scalar indexing and slicing work exactly the
-same. See <a class="reference internal" href="../user_guide/advanced.html#advanced-float64index"><span class="std std-ref">the docs</span></a>, (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/263">GH263</a>)</p>
+same. (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/263">GH263</a>)</p>
 <p>Construction is by default for floating type values.</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [20]: </span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">([</span><span class="mf">1.5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
 
 <span class="gp">In [21]: </span><span class="n">index</span>
-<span class="gh">Out[21]: </span><span class="go">Float64Index([1.5, 2.0, 3.0, 4.5, 5.0], dtype=&#39;float64&#39;)</span>
+<span class="gh">Out[21]: </span><span class="go">Index([1.5, 2.0, 3.0, 4.5, 5.0], dtype=&#39;float64&#39;)</span>
 
 <span class="gp">In [22]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">)</span>
 
@@ -1439,18 +1451,18 @@ of column-keyed dictionaries. (<a class="reference external" href="https://githu
 <span class="go"># now it is not counted at all</span>
 <span class="gp">In [55]: </span><span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">])</span>
 <span class="gh">Out[55]: </span>
-<span class="go">   1.0  2.0</span>
-<span class="go">0    1    0</span>
-<span class="go">1    0    1</span>
-<span class="go">2    0    0</span>
+<span class="go">     1.0    2.0</span>
+<span class="go">0   True  False</span>
+<span class="go">1  False   True</span>
+<span class="go">2  False  False</span>
 
 <span class="go"># unless requested</span>
 <span class="gp">In [56]: </span><span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">],</span> <span class="n">dummy_na</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="gh">Out[56]: </span>
-<span class="go">   1.0  2.0  NaN</span>
-<span class="go">0    1    0    0</span>
-<span class="go">1    0    1    0</span>
-<span class="go">2    0    0    1</span>
+<span class="go">     1.0    2.0    NaN</span>
+<span class="go">0   True  False  False</span>
+<span class="go">1  False   True  False</span>
+<span class="go">2  False  False   True</span>
 </pre></div>
 </div>
 </li>
@@ -1511,14 +1523,83 @@ is frequency conversion. See <a class="reference internal" href="../user_guide/t
 <span class="go">dtype: float64</span>
 
 <span class="gp">In [68]: </span><span class="n">td</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;timedelta64[D]&#39;</span><span class="p">)</span>
-<span class="gh">Out[68]: </span>
-<span class="go">0    31.0</span>
-<span class="go">1    31.0</span>
-<span class="go">2    31.0</span>
-<span class="go">3     NaN</span>
-<span class="go">dtype: float64</span>
+<span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">68</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">td</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;timedelta64[D]&#39;</span><span class="p">)</span>
 
-<span class="go"># to seconds</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/generic.py:6305,</span> in <span class="ni">NDFrame.astype</span><span class="nt">(self, dtype, copy, errors)</span>
+<span class="g g-Whitespace">   </span><span class="mi">6298</span>     <span class="n">results</span> <span class="o">=</span> <span class="p">[</span>
+<span class="g g-Whitespace">   </span><span class="mi">6299</span>         <span class="bp">self</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">dtype</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="n">copy</span><span class="p">)</span>
+<span class="nn">   6300         for i</span> in <span class="ni">range(len</span><span class="nt">(self.columns))</span>
+<span class="g g-Whitespace">   </span><span class="mi">6301</span>     <span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">6303</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">6304</span>     <span class="c1"># else, only a single dtype is given</span>
+<span class="ne">-&gt; </span><span class="mi">6305</span>     <span class="n">new_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mgr</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="n">copy</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">6306</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_constructor</span><span class="p">(</span><span class="n">new_data</span><span class="p">)</span><span class="o">.</span><span class="n">__finalize__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;astype&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">6308</span> <span class="c1"># GH 33113: handle empty frame or series</span>
+
+<span class="nn">File ~/work/pandas/pandas/pandas/core/internals/managers.py:436,</span> in <span class="ni">BaseBlockManager.astype</span><span class="nt">(self, dtype, copy, errors)</span>
+<span class="g g-Whitespace">    </span><span class="mi">433</span>     <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">434</span>         <span class="n">copy</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="ne">--&gt; </span><span class="mi">436</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">437</span>     <span class="s2">&quot;astype&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">438</span>     <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">439</span>     <span class="n">copy</span><span class="o">=</span><span class="n">copy</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">440</span>     <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">441</span>     <span class="n">using_cow</span><span class="o">=</span><span class="n">using_copy_on_write</span><span class="p">(),</span>
+<span class="g g-Whitespace">    </span><span class="mi">442</span> <span class="p">)</span>
+
+<span class="nn">File ~/work/pandas/pandas/pandas/core/internals/managers.py:346,</span> in <span class="ni">BaseBlockManager.apply</span><span class="nt">(self, f, align_keys, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">344</span>         <span class="n">applied</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">345</span>     <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">346</span>         <span class="n">applied</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">f</span><span class="p">)(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">347</span>     <span class="n">result_blocks</span> <span class="o">=</span> <span class="n">extend_blocks</span><span class="p">(</span><span class="n">applied</span><span class="p">,</span> <span class="n">result_blocks</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">349</span> <span class="n">out</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">from_blocks</span><span class="p">(</span><span class="n">result_blocks</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">)</span>
+
+<span class="nn">File ~/work/pandas/pandas/pandas/core/internals/blocks.py:509,</span> in <span class="ni">Block.astype</span><span class="nt">(self, dtype, copy, errors, using_cow)</span>
+<span class="g g-Whitespace">    </span><span class="mi">489</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">490</span><span class="sd"> Coerce to the new dtype.</span>
+<span class="g g-Whitespace">    </span><span class="mi">491</span><span class="sd"> </span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">    </span><span class="mi">505</span><span class="sd"> Block</span>
+<span class="g g-Whitespace">    </span><span class="mi">506</span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">507</span> <span class="n">values</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span>
+<span class="ne">--&gt; </span><span class="mi">509</span> <span class="n">new_values</span> <span class="o">=</span> <span class="n">astype_array_safe</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="n">copy</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">511</span> <span class="n">new_values</span> <span class="o">=</span> <span class="n">maybe_coerce_values</span><span class="p">(</span><span class="n">new_values</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">513</span> <span class="n">refs</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="nn">File ~/work/pandas/pandas/pandas/core/dtypes/astype.py:242,</span> in <span class="ni">astype_array_safe</span><span class="nt">(values, dtype, copy, errors)</span>
+<span class="g g-Whitespace">    </span><span class="mi">239</span>     <span class="n">dtype</span> <span class="o">=</span> <span class="n">dtype</span><span class="o">.</span><span class="n">numpy_dtype</span>
+<span class="g g-Whitespace">    </span><span class="mi">241</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">242</span>     <span class="n">new_values</span> <span class="o">=</span> <span class="n">astype_array</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="n">copy</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">243</span> <span class="k">except</span> <span class="p">(</span><span class="ne">ValueError</span><span class="p">,</span> <span class="ne">TypeError</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">244</span>     <span class="c1"># e.g. _astype_nansafe can fail on object-dtype of strings</span>
+<span class="g g-Whitespace">    </span><span class="mi">245</span>     <span class="c1">#  trying to convert to float</span>
+<span class="g g-Whitespace">    </span><span class="mi">246</span>     <span class="k">if</span> <span class="n">errors</span> <span class="o">==</span> <span class="s2">&quot;ignore&quot;</span><span class="p">:</span>
+
+<span class="nn">File ~/work/pandas/pandas/pandas/core/dtypes/astype.py:184,</span> in <span class="ni">astype_array</span><span class="nt">(values, dtype, copy)</span>
+<span class="g g-Whitespace">    </span><span class="mi">180</span>     <span class="k">return</span> <span class="n">values</span>
+<span class="g g-Whitespace">    </span><span class="mi">182</span> <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">183</span>     <span class="c1"># i.e. ExtensionArray</span>
+<span class="ne">--&gt; </span><span class="mi">184</span>     <span class="n">values</span> <span class="o">=</span> <span class="n">values</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">dtype</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="n">copy</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">186</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">187</span>     <span class="n">values</span> <span class="o">=</span> <span class="n">_astype_nansafe</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="n">copy</span><span class="p">)</span>
+
+<span class="nn">File ~/work/pandas/pandas/pandas/core/arrays/timedeltas.py:354,</span> in <span class="ni">TimedeltaArray.astype</span><span class="nt">(self, dtype, copy)</span>
+<span class="g g-Whitespace">    </span><span class="mi">350</span>         <span class="k">return</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">_simple_new</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">351</span>             <span class="n">res_values</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">res_values</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">freq</span>
+<span class="g g-Whitespace">    </span><span class="mi">352</span>         <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">353</span>     <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">354</span>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">355</span>             <span class="sa">f</span><span class="s2">&quot;Cannot convert from </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">dtype</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">dtype</span><span class="si">}</span><span class="s2">. &quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">356</span>             <span class="s2">&quot;Supported resolutions are &#39;s&#39;, &#39;ms&#39;, &#39;us&#39;, &#39;ns&#39;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">357</span>         <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">359</span> <span class="k">return</span> <span class="n">dtl</span><span class="o">.</span><span class="n">DatetimeLikeArrayMixin</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="n">copy</span><span class="p">)</span>
+
+<span class="ne">ValueError</span>: Cannot convert from timedelta64[ns] to timedelta64[D]. Supported resolutions are &#39;s&#39;, &#39;ms&#39;, &#39;us&#39;, &#39;ns&#39;
+
+<span class="c1"># to seconds</span>
 <span class="gp">In [69]: </span><span class="n">td</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">)</span>
 <span class="gh">Out[69]: </span>
 <span class="go">0    2678400.0</span>
@@ -1529,11 +1610,11 @@ is frequency conversion. See <a class="reference internal" href="../user_guide/t
 
 <span class="gp">In [70]: </span><span class="n">td</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;timedelta64[s]&#39;</span><span class="p">)</span>
 <span class="gh">Out[70]: </span>
-<span class="go">0    2678400.0</span>
-<span class="go">1    2678400.0</span>
-<span class="go">2    2678703.0</span>
-<span class="go">3          NaN</span>
-<span class="go">dtype: float64</span>
+<span class="go">0   31 days 00:00:00</span>
+<span class="go">1   31 days 00:00:00</span>
+<span class="go">2   31 days 00:05:03</span>
+<span class="go">3                NaT</span>
+<span class="go">dtype: timedelta64[s]</span>
 </pre></div>
 </div>
 <p>Dividing or multiplying a <code class="docutils literal notranslate"><span class="pre">timedelta64[ns]</span></code> Series by an integer or integer Series</p>
@@ -1832,12 +1913,12 @@ complicated expressions involving large DataFrames/Series. For example,</p>
 </div>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="go"># eval with NumExpr backend</span>
 <span class="gp">In [104]: </span><span class="o">%</span><span class="k">timeit</span> pd.eval(&#39;df1 + df2 + df3 + df4&#39;)
-<span class="go">11.5 ms +- 600 us per loop (mean +- std. dev. of 7 runs, 100 loops each)</span>
+<span class="go">10.9 ms +- 89.2 us per loop (mean +- std. dev. of 7 runs, 100 loops each)</span>
 </pre></div>
 </div>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="go"># pure Python evaluation</span>
 <span class="gp">In [105]: </span><span class="o">%</span><span class="k">timeit</span> df1 + df2 + df3 + df4
-<span class="go">10.7 ms +- 1.03 ms per loop (mean +- std. dev. of 7 runs, 100 loops each)</span>
+<span class="go">9.86 ms +- 42 us per loop (mean +- std. dev. of 7 runs, 100 loops each)</span>
 </pre></div>
 </div>
 <p>For more details, see the <a class="reference internal" href="../user_guide/enhancingperf.html#enhancingperf-eval"><span class="std std-ref">the docs</span></a></p>

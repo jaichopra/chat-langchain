@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>pandas.read_excel &#8212; pandas 1.5.3 documentation</title>
+    <title>pandas.read_excel &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -55,7 +55,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'reference/api/pandas.read_excel';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -182,7 +182,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -311,7 +311,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -421,6 +421,21 @@
    <li class="toctree-l2">
     <a class="reference internal" href="pandas.DataFrame.to_excel.html">
      pandas.DataFrame.to_excel
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.ExcelFile.html">
+     pandas.ExcelFile
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.ExcelFile.book.html">
+     pandas.ExcelFile.book
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.ExcelFile.sheet_names.html">
+     pandas.ExcelFile.sheet_names
     </a>
    </li>
    <li class="toctree-l2">
@@ -738,7 +753,7 @@
 <h1>pandas.read_excel<a class="headerlink" href="#pandas-read-excel" title="Permalink to this headline">#</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="pandas.read_excel">
-<span class="sig-prename descclassname"><span class="pre">pandas.</span></span><span class="sig-name descname"><span class="pre">read_excel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">io</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sheet_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">header</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index_col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">usecols</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">squeeze</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">engine</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">converters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">true_values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">false_values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skiprows</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nrows</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">na_values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep_default_na</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">na_filter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parse_dates</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date_parser</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thousands</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decimal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comment</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skipfooter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">convert_float</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mangle_dupe_cols</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">storage_options</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.5.3/pandas/io/excel/_base.py#L440-L520"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.read_excel" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">pandas.</span></span><span class="sig-name descname"><span class="pre">read_excel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">io</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sheet_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">header</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index_col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">usecols</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">engine</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">converters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">true_values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">false_values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skiprows</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nrows</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">na_values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep_default_na</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">na_filter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parse_dates</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date_parser</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">_NoDefault.no_default</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thousands</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decimal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comment</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skipfooter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">storage_options</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_nullable_dtypes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">_NoDefault.no_default</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v2.0.0rc0/pandas/io/excel/_base.py#L443-L525"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.read_excel" title="Permalink to this definition">#</a></dt>
 <dd><p>Read an Excel file into a pandas DataFrame.</p>
 <p>Supports <cite>xls</cite>, <cite>xlsx</cite>, <cite>xlsm</cite>, <cite>xlsb</cite>, <cite>odf</cite>, <cite>ods</cite> and <cite>odt</cite> file extensions
 read from a local filesystem or URL. Supports an option to read
@@ -798,12 +813,6 @@ column if the callable returns <code class="docutils literal notranslate"><span 
 </ul>
 <p>Returns a subset of the columns according to behavior above.</p>
 </dd>
-<dt><strong>squeeze</strong><span class="classifier">bool, default False</span></dt><dd><p>If the parsed data only contains one column then return a Series.</p>
-<div class="deprecated">
-<p><span class="versionmodified deprecated">Deprecated since version 1.4.0: </span>Append <code class="docutils literal notranslate"><span class="pre">.squeeze(&quot;columns&quot;)</span></code> to the call to <code class="docutils literal notranslate"><span class="pre">read_excel</span></code> to squeeze
-the data.</p>
-</div>
-</dd>
 <dt><strong>dtype</strong><span class="classifier">Type name or dict of column -&gt; type, default None</span></dt><dd><p>Data type for data or columns. E.g. {‘a’: np.float64, ‘b’: np.int32}
 Use <cite>object</cite> to preserve data as stored in Excel and not interpret dtype.
 If converters are specified, they will be applied INSTEAD
@@ -862,8 +871,8 @@ False otherwise. An example of a valid callable argument would be <code class="d
 <dt><strong>na_values</strong><span class="classifier">scalar, str, list-like, or dict, default None</span></dt><dd><p>Additional strings to recognize as NA/NaN. If dict passed, specific
 per-column NA values. By default the following values are interpreted
 as NaN: ‘’, ‘#N/A’, ‘#N/A N/A’, ‘#NA’, ‘-1.#IND’, ‘-1.#QNAN’, ‘-NaN’, ‘-nan’,
-‘1.#IND’, ‘1.#QNAN’, ‘&lt;NA&gt;’, ‘N/A’, ‘NA’, ‘NULL’, ‘NaN’, ‘n/a’,
-‘nan’, ‘null’.</p>
+‘1.#IND’, ‘1.#QNAN’, ‘&lt;NA&gt;’, ‘N/A’, ‘NA’, ‘NULL’, ‘NaN’, ‘None’,
+‘n/a’, ‘nan’, ‘null’.</p>
 </dd>
 <dt><strong>keep_default_na</strong><span class="classifier">bool, default True</span></dt><dd><p>Whether or not to include the default NaN values when parsing the data.
 Depending on whether <cite>na_values</cite> is passed in, the behavior is as follows:</p>
@@ -911,6 +920,17 @@ string values from the columns defined by <cite>parse_dates</cite> into a single
 and pass that; and 3) call <cite>date_parser</cite> once for each row using one or
 more strings (corresponding to the columns defined by <cite>parse_dates</cite>) as
 arguments.</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 2.0.0: </span>Use <code class="docutils literal notranslate"><span class="pre">date_format</span></code> instead, or read in as <code class="docutils literal notranslate"><span class="pre">object</span></code> and then apply
+<a class="reference internal" href="pandas.to_datetime.html#pandas.to_datetime" title="pandas.to_datetime"><code class="xref py py-func docutils literal notranslate"><span class="pre">to_datetime()</span></code></a> as-needed.</p>
+</div>
+</dd>
+<dt><strong>date_format</strong><span class="classifier">str or dict of column -&gt; format, default <code class="docutils literal notranslate"><span class="pre">None</span></code></span></dt><dd><p>If used in conjunction with <code class="docutils literal notranslate"><span class="pre">parse_dates</span></code>, will parse dates according to this
+format. For anything more complex,
+please read in as <code class="docutils literal notranslate"><span class="pre">object</span></code> and then apply <a class="reference internal" href="pandas.to_datetime.html#pandas.to_datetime" title="pandas.to_datetime"><code class="xref py py-func docutils literal notranslate"><span class="pre">to_datetime()</span></code></a> as-needed.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 2.0.0.</span></p>
+</div>
 </dd>
 <dt><strong>thousands</strong><span class="classifier">str, default None</span></dt><dd><p>Thousands separator for parsing string columns to numeric.  Note that
 this parameter is only necessary for columns stored as TEXT in Excel,
@@ -931,21 +951,6 @@ comment string and the end of the current line is ignored.</p>
 </dd>
 <dt><strong>skipfooter</strong><span class="classifier">int, default 0</span></dt><dd><p>Rows at the end to skip (0-indexed).</p>
 </dd>
-<dt><strong>convert_float</strong><span class="classifier">bool, default True</span></dt><dd><p>Convert integral floats to int (i.e., 1.0 –&gt; 1). If False, all numeric
-data will be read in as floats: Excel stores all numbers as floats
-internally.</p>
-<div class="deprecated">
-<p><span class="versionmodified deprecated">Deprecated since version 1.3.0: </span>convert_float will be removed in a future version</p>
-</div>
-</dd>
-<dt><strong>mangle_dupe_cols</strong><span class="classifier">bool, default True</span></dt><dd><p>Duplicate columns will be specified as ‘X’, ‘X.1’, …’X.N’, rather than
-‘X’…’X’. Passing in False will cause data to be overwritten if there
-are duplicate names in the columns.</p>
-<div class="deprecated">
-<p><span class="versionmodified deprecated">Deprecated since version 1.5.0: </span>Not implemented, and a new argument to specify the pattern for the
-names of duplicated columns will be added instead</p>
-</div>
-</dd>
 <dt><strong>storage_options</strong><span class="classifier">dict, optional</span></dt><dd><p>Extra options that make sense for a particular storage connection, e.g.
 host, port, username, password, etc. For HTTP(S) URLs the key-value pairs
 are forwarded to <code class="docutils literal notranslate"><span class="pre">urllib.request.Request</span></code> as header options. For other
@@ -954,6 +959,21 @@ forwarded to <code class="docutils literal notranslate"><span class="pre">fsspec
 details, and for more examples on storage options refer <a class="reference external" href="https://pandas.pydata.org/docs/user_guide/io.html?highlight=storage_options#reading-writing-remote-files">here</a>.</p>
 <div class="versionadded">
 <p><span class="versionmodified added">New in version 1.2.0.</span></p>
+</div>
+</dd>
+<dt><strong>use_nullable_dtypes</strong><span class="classifier">bool, default False</span></dt><dd><p>Whether or not to use nullable dtypes as default when reading data. If
+set to True, nullable dtypes are used for all dtypes that have a nullable
+implementation, even if no nulls are present. Dtype takes precedence if given.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The nullable dtype implementation can be configured by calling
+<code class="docutils literal notranslate"><span class="pre">pd.set_option(&quot;mode.dtype_backend&quot;,</span> <span class="pre">&quot;pandas&quot;)</span></code> to use
+numpy-backed nullable dtypes or
+<code class="docutils literal notranslate"><span class="pre">pd.set_option(&quot;mode.dtype_backend&quot;,</span> <span class="pre">&quot;pyarrow&quot;)</span></code> to use
+pyarrow-backed nullable dtypes (using <code class="docutils literal notranslate"><span class="pre">pd.ArrowDtype</span></code>).</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 2.0.</span></p>
 </div>
 </dd>
 </dl>

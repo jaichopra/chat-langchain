@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>What’s new in 1.1.2 (September 8, 2020) &#8212; pandas 1.5.3 documentation</title>
+    <title>What’s new in 1.1.2 (September 8, 2020) &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -55,7 +55,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'whatsnew/v1.1.2';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -182,7 +182,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -311,7 +311,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -363,6 +363,18 @@
   <div class="bd-toc-item navbar-nav">
     
     <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v2.0.0.html">
+   What’s new in 2.0.0 (??)
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.5.4.html">
+   What’s new in 1.5.4 (March XX, 2023)
+  </a>
+ </li>
  <li class="toctree-l1">
   <a class="reference internal" href="v1.5.3.html">
    What’s new in 1.5.3 (January 18, 2023)
@@ -875,7 +887,7 @@ including other versions of pandas.</p>
 <ul class="simple">
 <li><p>Regression in <code class="xref py py-meth docutils literal notranslate"><span class="pre">DatetimeIndex.intersection()</span></code> incorrectly raising <code class="docutils literal notranslate"><span class="pre">AssertionError</span></code> when intersecting against a list (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/35876">GH35876</a>)</p></li>
 <li><p>Fix regression in updating a column inplace (e.g. using <code class="docutils literal notranslate"><span class="pre">df['col'].fillna(..,</span> <span class="pre">inplace=True)</span></code>) (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/35731">GH35731</a>)</p></li>
-<li><p>Fix regression in <a class="reference internal" href="../reference/api/pandas.DataFrame.append.html#pandas.DataFrame.append" title="pandas.DataFrame.append"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.append()</span></code></a> mixing tz-aware and tz-naive datetime columns (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/35460">GH35460</a>)</p></li>
+<li><p>Fix regression in <code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.append()</span></code> mixing tz-aware and tz-naive datetime columns (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/35460">GH35460</a>)</p></li>
 <li><p>Performance regression for <code class="xref py py-meth docutils literal notranslate"><span class="pre">RangeIndex.format()</span></code> (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/35712">GH35712</a>)</p></li>
 <li><p>Regression where <a class="reference internal" href="../reference/api/pandas.MultiIndex.get_loc.html#pandas.MultiIndex.get_loc" title="pandas.MultiIndex.get_loc"><code class="xref py py-meth docutils literal notranslate"><span class="pre">MultiIndex.get_loc()</span></code></a> would return a slice spanning the full index when passed an empty list (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/35878">GH35878</a>)</p></li>
 <li><p>Fix regression in invalid cache after an indexing operation; this can manifest when setting which does not update the data (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/35521">GH35521</a>)</p></li>

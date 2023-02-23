@@ -15,8 +15,6 @@ pandas.ExcelWriter
       
       ExcelWriter.check_extension
       ExcelWriter.close
-      ExcelWriter.save
-      ExcelWriter.write_cells
 
 
 
@@ -30,13 +28,10 @@ pandas.ExcelWriter
       :toctree:
       
       ExcelWriter.book
-      ExcelWriter.cur_sheet
       ExcelWriter.date_format
       ExcelWriter.datetime_format
       ExcelWriter.engine
-      ExcelWriter.handles
       ExcelWriter.if_sheet_exists
-      ExcelWriter.path
       ExcelWriter.sheets
       ExcelWriter.supported_extensions
 

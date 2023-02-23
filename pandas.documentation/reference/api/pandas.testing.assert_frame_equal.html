@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>pandas.testing.assert_frame_equal &#8212; pandas 1.5.3 documentation</title>
+    <title>pandas.testing.assert_frame_equal &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -55,7 +55,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'reference/api/pandas.testing.assert_frame_equal';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -182,7 +182,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -311,7 +311,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -484,6 +484,11 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="pandas.errors.ChainedAssignmentError.html">
+     pandas.errors.ChainedAssignmentError
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="pandas.errors.ClosedFileError.html">
      pandas.errors.ClosedFileError
     </a>
@@ -534,8 +539,18 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="pandas.errors.InvalidComparison.html">
+     pandas.errors.InvalidComparison
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="pandas.errors.InvalidIndexError.html">
      pandas.errors.InvalidIndexError
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.errors.InvalidVersion.html">
+     pandas.errors.InvalidVersion
     </a>
    </li>
    <li class="toctree-l2">
@@ -544,8 +559,18 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="pandas.errors.LossySetitemError.html">
+     pandas.errors.LossySetitemError
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="pandas.errors.MergeError.html">
      pandas.errors.MergeError
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.errors.NoBufferPresent.html">
+     pandas.errors.NoBufferPresent
     </a>
    </li>
    <li class="toctree-l2">
@@ -693,7 +718,7 @@
 <h1>pandas.testing.assert_frame_equal<a class="headerlink" href="#pandas-testing-assert-frame-equal" title="Permalink to this headline">#</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="pandas.testing.assert_frame_equal">
-<span class="sig-prename descclassname"><span class="pre">pandas.testing.</span></span><span class="sig-name descname"><span class="pre">assert_frame_equal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">left</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_index_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'equiv'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_column_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'equiv'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_frame_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_less_precise</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">_NoDefault.no_default</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">by_blocks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_exact</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_datetimelike_compat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_categorical</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_like</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_freq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_flags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rtol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-08</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'DataFrame'</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.5.3/pandas/_testing/asserters.py#L1135-L1358"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.testing.assert_frame_equal" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">pandas.testing.</span></span><span class="sig-name descname"><span class="pre">assert_frame_equal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">left</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_index_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'equiv'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_column_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'equiv'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_frame_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">by_blocks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_exact</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_datetimelike_compat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_categorical</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_like</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_freq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_flags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rtol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-08</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'DataFrame'</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v2.0.0rc0/pandas/_testing/asserters.py#L1021-L1219"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.testing.assert_frame_equal" title="Permalink to this definition">#</a></dt>
 <dd><p>Check that left and right DataFrame are equal.</p>
 <p>This function is intended to compare two DataFrames and output any
 differences. It is mostly intended for use in unit tests.
@@ -716,19 +741,6 @@ are identical. Is passed as the <code class="docutils literal notranslate"><span
 <a class="reference internal" href="pandas.testing.assert_index_equal.html#pandas.testing.assert_index_equal" title="pandas.testing.assert_index_equal"><code class="xref py py-func docutils literal notranslate"><span class="pre">assert_index_equal()</span></code></a>.</p>
 </dd>
 <dt><strong>check_frame_type</strong><span class="classifier">bool, default True</span></dt><dd><p>Whether to check the DataFrame class is identical.</p>
-</dd>
-<dt><strong>check_less_precise</strong><span class="classifier">bool or int, default False</span></dt><dd><p>Specify comparison precision. Only used when check_exact is False.
-5 digits (False) or 3 digits (True) after decimal points are compared.
-If int, then specify the digits to compare.</p>
-<p>When comparing two numbers, if the first number has magnitude less
-than 1e-5, we compare the two numbers directly and check whether
-they are equivalent within the specified precision. Otherwise, we
-compare the <strong>ratio</strong> of the second number to the first number and
-check whether it is equivalent to 1 within the specified precision.</p>
-<div class="deprecated">
-<p><span class="versionmodified deprecated">Deprecated since version 1.1.0: </span>Use <cite>rtol</cite> and <cite>atol</cite> instead to define relative/absolute
-tolerance, respectively. Similar to <a class="reference external" href="https://docs.python.org/3/library/math.html#math.isclose" title="(in Python v3.11)"><code class="xref py py-func docutils literal notranslate"><span class="pre">math.isclose()</span></code></a>.</p>
-</div>
 </dd>
 <dt><strong>check_names</strong><span class="classifier">bool, default True</span></dt><dd><p>Whether to check that the <cite>names</cite> attribute for both the <cite>index</cite>
 and <cite>column</cite> attributes of the DataFrame is identical.</p>

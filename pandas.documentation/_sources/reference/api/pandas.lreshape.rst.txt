@@ -1,0 +1,6 @@
+pandas.lreshape
+===============
+
+.. currentmodule:: pandas
+
+.. autofunction:: lreshape

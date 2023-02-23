@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Options and settings &#8212; pandas 1.5.3 documentation</title>
+    <title>Options and settings &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -55,7 +55,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/options';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -182,7 +182,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -311,7 +311,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -381,6 +381,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="io.html">
    IO tools (text, CSV, HDF5, …)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="pyarrow.html">
+   PyArrow Functionality
   </a>
  </li>
  <li class="toctree-l1">
@@ -577,9 +582,9 @@ to match an unambiguous substring:</p>
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_option</span><span class="p">(</span><span class="s2">&quot;max&quot;</span><span class="p">)</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/_config/config.py:263,</span> in <span class="ni">CallableDynamicDoc.__call__</span><span class="nt">(self, *args, **kwds)</span>
-<span class="g g-Whitespace">    </span><span class="mi">262</span> <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">263</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__func__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/_config/config.py:261,</span> in <span class="ni">CallableDynamicDoc.__call__</span><span class="nt">(self, *args, **kwds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">260</span> <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">261</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__func__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
 
 <span class="nn">File ~/work/pandas/pandas/pandas/_config/config.py:135,</span> in <span class="ni">_get_option</span><span class="nt">(pat, silent)</span>
 <span class="g g-Whitespace">    </span><span class="mi">134</span> <span class="k">def</span> <span class="nf">_get_option</span><span class="p">(</span><span class="n">pat</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">silent</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
@@ -629,8 +634,6 @@ with no argument <a class="reference internal" href="../reference/api/pandas.des
 <span class="go">display.colheader_justify : &#39;left&#39;/&#39;right&#39;</span>
 <span class="go">    Controls the justification of column headers. used by DataFrameFormatter.</span>
 <span class="go">    [default: right] [currently: right]</span>
-<span class="go">display.column_space No description available.</span>
-<span class="go">    [default: 12] [currently: 12]</span>
 <span class="go">display.date_dayfirst : boolean</span>
 <span class="go">    When True, prints and parses dates with the day first, eg 20/01/2005</span>
 <span class="go">    [default: False] [currently: False]</span>
@@ -672,36 +675,6 @@ with no argument <a class="reference internal" href="../reference/api/pandas.des
 <span class="go">    show a truncated table (the default from 0.13), or switch to the view from</span>
 <span class="go">    df.info() (the behaviour in earlier versions of pandas).</span>
 <span class="go">    [default: truncate] [currently: truncate]</span>
-<span class="go">display.latex.escape : bool</span>
-<span class="go">    This specifies if the to_latex method of a Dataframe uses escapes special</span>
-<span class="go">    characters.</span>
-<span class="go">    Valid values: False,True</span>
-<span class="go">    [default: True] [currently: True]</span>
-<span class="go">display.latex.longtable :bool</span>
-<span class="go">    This specifies if the to_latex method of a Dataframe uses the longtable</span>
-<span class="go">    format.</span>
-<span class="go">    Valid values: False,True</span>
-<span class="go">    [default: False] [currently: False]</span>
-<span class="go">display.latex.multicolumn : bool</span>
-<span class="go">    This specifies if the to_latex method of a Dataframe uses multicolumns</span>
-<span class="go">    to pretty-print MultiIndex columns.</span>
-<span class="go">    Valid values: False,True</span>
-<span class="go">    [default: True] [currently: True]</span>
-<span class="go">display.latex.multicolumn_format : bool</span>
-<span class="go">    This specifies if the to_latex method of a Dataframe uses multicolumns</span>
-<span class="go">    to pretty-print MultiIndex columns.</span>
-<span class="go">    Valid values: False,True</span>
-<span class="go">    [default: l] [currently: l]</span>
-<span class="go">display.latex.multirow : bool</span>
-<span class="go">    This specifies if the to_latex method of a Dataframe uses multirows</span>
-<span class="go">    to pretty-print MultiIndex rows.</span>
-<span class="go">    Valid values: False,True</span>
-<span class="go">    [default: False] [currently: False]</span>
-<span class="go">display.latex.repr : boolean</span>
-<span class="go">    Whether to produce a latex DataFrame representation for jupyter</span>
-<span class="go">    environments that support it.</span>
-<span class="go">    (default: False)</span>
-<span class="go">    [default: False] [currently: False]</span>
 <span class="go">display.max_categories : int</span>
 <span class="go">    This sets the maximum number of categories pandas should output when</span>
 <span class="go">    printing out a `Categorical` or a Series of dtype &quot;category&quot;.</span>
@@ -712,11 +685,11 @@ with no argument <a class="reference internal" href="../reference/api/pandas.des
 <span class="go">    a summary view. &#39;None&#39; value means unlimited.</span>
 
 <span class="go">    In case python/IPython is running in a terminal and `large_repr`</span>
-<span class="go">    equals &#39;truncate&#39; this can be set to 0 and pandas will auto-detect</span>
+<span class="go">    equals &#39;truncate&#39; this can be set to 0 or None and pandas will auto-detect</span>
 <span class="go">    the width of the terminal and print a truncated object which fits</span>
 <span class="go">    the screen width. The IPython notebook, IPython qtconsole, or IDLE</span>
 <span class="go">    do not run in a terminal and hence it is not possible to do</span>
-<span class="go">    correct auto-detection.</span>
+<span class="go">    correct auto-detection and defaults to 20.</span>
 <span class="go">    [default: 0] [currently: 0]</span>
 <span class="go">display.max_colwidth : int or None</span>
 <span class="go">    The maximum width in characters of a column in the repr of</span>
@@ -819,11 +792,6 @@ with no argument <a class="reference internal" href="../reference/api/pandas.des
 <span class="go">    The default Excel reader engine for &#39;xls&#39; files. Available options:</span>
 <span class="go">    auto, xlrd.</span>
 <span class="go">    [default: auto] [currently: auto]</span>
-<span class="go">io.excel.xls.writer : string</span>
-<span class="go">    The default Excel writer engine for &#39;xls&#39; files. Available options:</span>
-<span class="go">    auto, xlwt.</span>
-<span class="go">    [default: auto] [currently: auto]</span>
-<span class="go">    (Deprecated, use `` instead.)</span>
 <span class="go">io.excel.xlsb.reader : string</span>
 <span class="go">    The default Excel reader engine for &#39;xlsb&#39; files. Available options:</span>
 <span class="go">    auto, pyxlsb.</span>
@@ -873,6 +841,15 @@ with no argument <a class="reference internal" href="../reference/api/pandas.des
 <span class="go">    unless overridden by the &#39;PANDAS_DATA_MANAGER&#39; environment variable (needs</span>
 <span class="go">    to be set before pandas is imported).</span>
 <span class="go">    [default: block] [currently: block]</span>
+<span class="go">mode.dtype_backend : string</span>
+<span class="go">    The nullable dtype implementation to return. Only applicable to certain</span>
+<span class="go">    operations where documented. Available options: &#39;pandas&#39;, &#39;pyarrow&#39;,</span>
+<span class="go">    the default is &#39;pandas&#39;.</span>
+<span class="go">    [default: pandas] [currently: pandas]</span>
+<span class="go">mode.nullable_dtypes : bool</span>
+<span class="go">    If nullable dtypes should be returned. This is only applicable to functions</span>
+<span class="go">    where the ``use_nullable_dtypes`` keyword is implemented.</span>
+<span class="go">    [default: False] [currently: False]</span>
 <span class="go">mode.sim_interactive : boolean</span>
 <span class="go">    Whether to simulate interactive mode for purposes of testing</span>
 <span class="go">    [default: False] [currently: False]</span>
@@ -884,11 +861,6 @@ with no argument <a class="reference internal" href="../reference/api/pandas.des
 <span class="go">    False means None and NaN are null, but INF, -INF are not NA</span>
 <span class="go">    (new way).</span>
 <span class="go">    [default: False] [currently: False]</span>
-<span class="go">mode.use_inf_as_null : boolean</span>
-<span class="go">    use_inf_as_null had been deprecated and will be removed in a future</span>
-<span class="go">    version. Use `use_inf_as_na` instead.</span>
-<span class="go">    [default: False] [currently: False]</span>
-<span class="go">    (Deprecated, use `mode.use_inf_as_na` instead.)</span>
 <span class="go">plotting.backend : str</span>
 <span class="go">    The plotting backend to use. The default value is &quot;matplotlib&quot;, the</span>
 <span class="go">    backend provided with pandas. Other backends can be specified by</span>
@@ -1260,7 +1232,7 @@ displayed when calling <a class="reference internal" href="../reference/api/pand
 <p><code class="docutils literal notranslate"><span class="pre">display.max_info_rows</span></code>: <a class="reference internal" href="../reference/api/pandas.DataFrame.info.html#pandas.DataFrame.info" title="pandas.DataFrame.info"><code class="xref py py-meth docutils literal notranslate"><span class="pre">info()</span></code></a> will usually show null-counts for each column.
 For a large <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a>, this can be quite slow. <code class="docutils literal notranslate"><span class="pre">max_info_rows</span></code> and <code class="docutils literal notranslate"><span class="pre">max_info_cols</span></code>
 limit this null check to the specified rows and columns respectively. The <a class="reference internal" href="../reference/api/pandas.DataFrame.info.html#pandas.DataFrame.info" title="pandas.DataFrame.info"><code class="xref py py-meth docutils literal notranslate"><span class="pre">info()</span></code></a>
-keyword argument <code class="docutils literal notranslate"><span class="pre">null_counts=True</span></code> will override this.</p>
+keyword argument <code class="docutils literal notranslate"><span class="pre">show_counts=True</span></code> will override this.</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [64]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)))</span>
 
 <span class="gp">In [65]: </span><span class="n">df</span>

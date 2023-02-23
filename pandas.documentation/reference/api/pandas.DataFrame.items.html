@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>pandas.DataFrame.items &#8212; pandas 1.5.3 documentation</title>
+    <title>pandas.DataFrame.items &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -55,12 +55,12 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'reference/api/pandas.DataFrame.items';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pandas.DataFrame.iteritems" href="pandas.DataFrame.iteritems.html" />
+    <link rel="next" title="pandas.DataFrame.iterrows" href="pandas.DataFrame.iterrows.html" />
     <link rel="prev" title="pandas.DataFrame.isnull" href="pandas.DataFrame.isnull.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="docsearch:language" content="en">
@@ -182,7 +182,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -311,7 +311,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -524,11 +524,6 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="pandas.DataFrame.iteritems.html">
-     pandas.DataFrame.iteritems
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="pandas.DataFrame.keys.html">
      pandas.DataFrame.keys
     </a>
@@ -541,11 +536,6 @@
    <li class="toctree-l2">
     <a class="reference internal" href="pandas.DataFrame.itertuples.html">
      pandas.DataFrame.itertuples
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.DataFrame.lookup.html">
-     pandas.DataFrame.lookup
     </a>
    </li>
    <li class="toctree-l2">
@@ -586,6 +576,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="pandas.DataFrame.query.html">
      pandas.DataFrame.query
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.__add__.html">
+     pandas.DataFrame.__add__
     </a>
    </li>
    <li class="toctree-l2">
@@ -846,11 +841,6 @@
    <li class="toctree-l2">
     <a class="reference internal" href="pandas.DataFrame.kurtosis.html">
      pandas.DataFrame.kurtosis
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.DataFrame.mad.html">
-     pandas.DataFrame.mad
     </a>
    </li>
    <li class="toctree-l2">
@@ -1224,11 +1214,6 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="pandas.DataFrame.append.html">
-     pandas.DataFrame.append
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="pandas.DataFrame.assign.html">
      pandas.DataFrame.assign
     </a>
@@ -1266,16 +1251,6 @@
    <li class="toctree-l2">
     <a class="reference internal" href="pandas.DataFrame.shift.html">
      pandas.DataFrame.shift
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.DataFrame.slice_shift.html">
-     pandas.DataFrame.slice_shift
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.DataFrame.tshift.html">
-     pandas.DataFrame.tshift
     </a>
    </li>
    <li class="toctree-l2">
@@ -1613,7 +1588,7 @@
 <h1>pandas.DataFrame.items<a class="headerlink" href="#pandas-dataframe-items" title="Permalink to this headline">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="pandas.DataFrame.items">
-<span class="sig-prename descclassname"><span class="pre">DataFrame.</span></span><span class="sig-name descname"><span class="pre">items</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.5.3/pandas/core/frame.py#L1319-L1326"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.DataFrame.items" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">DataFrame.</span></span><span class="sig-name descname"><span class="pre">items</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v2.0.0rc0/pandas/core/frame.py#L1342-L1349"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.DataFrame.items" title="Permalink to this definition">#</a></dt>
 <dd><p>Iterate over (column name, Series) pairs.</p>
 <p>Iterates over the DataFrame columns, returning a tuple with
 the column name and the content as a Series.</p>
@@ -1682,10 +1657,10 @@ the column name and the content as a Series.</p>
           <p class="prev-next-title">pandas.DataFrame.isnull</p>
       </div>
   </a>
-  <a class='right-next' id="next-link" href="pandas.DataFrame.iteritems.html" title="next page">
+  <a class='right-next' id="next-link" href="pandas.DataFrame.iterrows.html" title="next page">
   <div class="prev-next-info">
       <p class="prev-next-subtitle">next</p>
-      <p class="prev-next-title">pandas.DataFrame.iteritems</p>
+      <p class="prev-next-title">pandas.DataFrame.iterrows</p>
   </div>
   <i class="fas fa-angle-right"></i>
   </a>

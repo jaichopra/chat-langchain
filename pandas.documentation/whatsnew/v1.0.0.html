@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>What’s new in 1.0.0 (January 29, 2020) &#8212; pandas 1.5.3 documentation</title>
+    <title>What’s new in 1.0.0 (January 29, 2020) &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -55,7 +55,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'whatsnew/v1.0.0';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -182,7 +182,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -311,7 +311,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -363,6 +363,18 @@
   <div class="bd-toc-item navbar-nav">
     
     <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v2.0.0.html">
+   What’s new in 2.0.0 (??)
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.5.4.html">
+   What’s new in 1.5.4 (March XX, 2023)
+  </a>
+ </li>
  <li class="toctree-l1">
   <a class="reference internal" href="v1.5.3.html">
    What’s new in 1.5.3 (January 18, 2023)
@@ -944,7 +956,7 @@ data types and the new string data type (<a class="reference external" href="htt
 <span class="go">0       1</span>
 <span class="go">1       2</span>
 <span class="go">2    &lt;NA&gt;</span>
-<span class="go">Length: 3, dtype: Int64</span>
+<span class="go">dtype: Int64</span>
 
 <span class="gp">In [5]: </span><span class="n">s</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
 <span class="gh">Out[5]: </span><span class="go">&lt;NA&gt;</span>
@@ -994,7 +1006,7 @@ than <code class="docutils literal notranslate"><span class="pre">string</span><
 <span class="go">0     abc</span>
 <span class="go">1    &lt;NA&gt;</span>
 <span class="go">2     def</span>
-<span class="go">Length: 3, dtype: string</span>
+<span class="go">dtype: string</span>
 </pre></div>
 </div>
 <p>You can use the alias <code class="docutils literal notranslate"><span class="pre">&quot;string&quot;</span></code> as well.</p>
@@ -1005,7 +1017,7 @@ than <code class="docutils literal notranslate"><span class="pre">string</span><
 <span class="go">0     abc</span>
 <span class="go">1    &lt;NA&gt;</span>
 <span class="go">2     def</span>
-<span class="go">Length: 3, dtype: string</span>
+<span class="go">dtype: string</span>
 </pre></div>
 </div>
 <p>The usual string accessor methods work. Where appropriate, the return type
@@ -1015,13 +1027,13 @@ of the Series or columns of a DataFrame will also have string dtype.</p>
 <span class="go">0     ABC</span>
 <span class="go">1    &lt;NA&gt;</span>
 <span class="go">2     DEF</span>
-<span class="go">Length: 3, dtype: string</span>
+<span class="go">dtype: string</span>
 
 <span class="gp">In [13]: </span><span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">dtypes</span>
 <span class="gh">Out[13]: </span>
-<span class="go">0    string</span>
-<span class="go">1    string</span>
-<span class="go">Length: 2, dtype: object</span>
+<span class="go">0    string[python]</span>
+<span class="go">1    string[python]</span>
+<span class="go">dtype: object</span>
 </pre></div>
 </div>
 <p>String accessor methods returning integers will return a value with <a class="reference internal" href="../reference/api/pandas.Int64Dtype.html#pandas.Int64Dtype" title="pandas.Int64Dtype"><code class="xref py py-class docutils literal notranslate"><span class="pre">Int64Dtype</span></code></a></p>
@@ -1030,7 +1042,7 @@ of the Series or columns of a DataFrame will also have string dtype.</p>
 <span class="go">0       1</span>
 <span class="go">1    &lt;NA&gt;</span>
 <span class="go">2       0</span>
-<span class="go">Length: 3, dtype: Int64</span>
+<span class="go">dtype: Int64</span>
 </pre></div>
 </div>
 <p>We recommend explicitly using the <code class="docutils literal notranslate"><span class="pre">string</span></code> data type when working with strings.
@@ -1049,7 +1061,7 @@ can store missing values as well by keeping track of this in a separate mask.
 <span class="go">0     True</span>
 <span class="go">1    False</span>
 <span class="go">2     &lt;NA&gt;</span>
-<span class="go">Length: 3, dtype: boolean</span>
+<span class="go">dtype: boolean</span>
 </pre></div>
 </div>
 <p>You can use the alias <code class="docutils literal notranslate"><span class="pre">&quot;boolean&quot;</span></code> as well.</p>
@@ -1060,7 +1072,7 @@ can store missing values as well by keeping track of this in a separate mask.
 <span class="go">0     True</span>
 <span class="go">1    False</span>
 <span class="go">2     &lt;NA&gt;</span>
-<span class="go">Length: 3, dtype: boolean</span>
+<span class="go">dtype: boolean</span>
 </pre></div>
 </div>
 </section>
@@ -1083,14 +1095,12 @@ have been introduced. (<a class="reference external" href="https://github.com/pa
 <span class="go">1  None  2.0  False</span>
 <span class="go">2   def  NaN   True</span>
 
-<span class="go">[3 rows x 3 columns]</span>
-
 <span class="gp">In [20]: </span><span class="n">df</span><span class="o">.</span><span class="n">dtypes</span>
 <span class="gh">Out[20]: </span>
 <span class="go">x     object</span>
 <span class="go">y    float64</span>
 <span class="go">z       bool</span>
-<span class="go">Length: 3, dtype: object</span>
+<span class="go">dtype: object</span>
 </pre></div>
 </div>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [21]: </span><span class="n">converted</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">convert_dtypes</span><span class="p">()</span>
@@ -1102,14 +1112,12 @@ have been introduced. (<a class="reference external" href="https://github.com/pa
 <span class="go">1  &lt;NA&gt;     2  False</span>
 <span class="go">2   def  &lt;NA&gt;   True</span>
 
-<span class="go">[3 rows x 3 columns]</span>
-
 <span class="gp">In [23]: </span><span class="n">converted</span><span class="o">.</span><span class="n">dtypes</span>
 <span class="gh">Out[23]: </span>
-<span class="go">x     string</span>
-<span class="go">y      Int64</span>
-<span class="go">z    boolean</span>
-<span class="go">Length: 3, dtype: object</span>
+<span class="go">x    string[python]</span>
+<span class="go">y             Int64</span>
+<span class="go">z           boolean</span>
+<span class="go">dtype: object</span>
 </pre></div>
 </div>
 <p>This is especially useful after reading in data using readers such as <a class="reference internal" href="../reference/api/pandas.read_csv.html#pandas.read_csv" title="pandas.read_csv"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_csv()</span></code></a>
@@ -1174,17 +1182,17 @@ via the level.</p>
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">26</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">mi</span><span class="o">.</span><span class="n">levels</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;new name&quot;</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:1745,</span> in <span class="ni">Index.name</span><span class="nt">(self, value)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1741</span> <span class="nd">@name</span><span class="o">.</span><span class="n">setter</span>
-<span class="g g-Whitespace">   </span><span class="mi">1742</span> <span class="k">def</span> <span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Hashable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1743</span>     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_no_setting_name</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1744</span>         <span class="c1"># Used in MultiIndex.levels to avoid silently ignoring name updates.</span>
-<span class="ne">-&gt; </span><span class="mi">1745</span>         <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1746</span>             <span class="s2">&quot;Cannot set name on a level of a MultiIndex. Use &quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1747</span>             <span class="s2">&quot;&#39;MultiIndex.set_names&#39; instead.&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1748</span>         <span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1749</span>     <span class="n">maybe_extract_name</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
-<span class="g g-Whitespace">   </span><span class="mi">1750</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="n">value</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/indexes/base.py:1566,</span> in <span class="ni">Index.name</span><span class="nt">(self, value)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1562</span> <span class="nd">@name</span><span class="o">.</span><span class="n">setter</span>
+<span class="g g-Whitespace">   </span><span class="mi">1563</span> <span class="k">def</span> <span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Hashable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1564</span>     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_no_setting_name</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1565</span>         <span class="c1"># Used in MultiIndex.levels to avoid silently ignoring name updates.</span>
+<span class="ne">-&gt; </span><span class="mi">1566</span>         <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1567</span>             <span class="s2">&quot;Cannot set name on a level of a MultiIndex. Use &quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1568</span>             <span class="s2">&quot;&#39;MultiIndex.set_names&#39; instead.&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1569</span>         <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1570</span>     <span class="n">maybe_extract_name</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
+<span class="g g-Whitespace">   </span><span class="mi">1571</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="n">value</span>
 
 <span class="ne">RuntimeError</span>: Cannot set name on a level of a MultiIndex. Use &#39;MultiIndex.set_names&#39; instead.
 
@@ -1274,14 +1282,10 @@ supplying the <code class="docutils literal notranslate"><span class="pre">axis<
 <span class="go">   0</span>
 <span class="go">1  1</span>
 
-<span class="go">[1 rows x 1 columns]</span>
-
 <span class="gp">In [32]: </span><span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">({</span><span class="mi">0</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="gh">Out[32]: </span>
 <span class="go">   1</span>
 <span class="go">0  1</span>
-
-<span class="go">[1 rows x 1 columns]</span>
 </pre></div>
 </div>
 <p>If you would like to update both the index and column labels, be sure to use the respective
@@ -1290,8 +1294,6 @@ keywords.</p>
 <span class="gh">Out[33]: </span>
 <span class="go">   2</span>
 <span class="go">1  1</span>
-
-<span class="go">[1 rows x 1 columns]</span>
 </pre></div>
 </div>
 </section>
@@ -1372,8 +1374,8 @@ keywords.</p>
 <p>As a reminder, you can specify the <code class="docutils literal notranslate"><span class="pre">dtype</span></code> to disable all inference.</p>
 </section>
 <section id="arrays-integerarray-now-uses-pandas-na">
-<h3><a class="reference internal" href="../reference/api/pandas.arrays.IntegerArray.html#pandas.arrays.IntegerArray" title="pandas.arrays.IntegerArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">arrays.IntegerArray</span></code></a> now uses <code class="xref py py-attr docutils literal notranslate"><span class="pre">pandas.NA</span></code><a class="headerlink" href="#arrays-integerarray-now-uses-pandas-na" title="Permalink to this headline">#</a></h3>
-<p><a class="reference internal" href="../reference/api/pandas.arrays.IntegerArray.html#pandas.arrays.IntegerArray" title="pandas.arrays.IntegerArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">arrays.IntegerArray</span></code></a> now uses <code class="xref py py-attr docutils literal notranslate"><span class="pre">pandas.NA</span></code> rather than
+<h3><a class="reference internal" href="../reference/api/pandas.arrays.IntegerArray.html#pandas.arrays.IntegerArray" title="pandas.arrays.IntegerArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">arrays.IntegerArray</span></code></a> now uses <a class="reference internal" href="../reference/api/pandas.NA.html#pandas.NA" title="pandas.NA"><code class="xref py py-attr docutils literal notranslate"><span class="pre">pandas.NA</span></code></a><a class="headerlink" href="#arrays-integerarray-now-uses-pandas-na" title="Permalink to this headline">#</a></h3>
+<p><a class="reference internal" href="../reference/api/pandas.arrays.IntegerArray.html#pandas.arrays.IntegerArray" title="pandas.arrays.IntegerArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">arrays.IntegerArray</span></code></a> now uses <a class="reference internal" href="../reference/api/pandas.NA.html#pandas.NA" title="pandas.NA"><code class="xref py py-attr docutils literal notranslate"><span class="pre">pandas.NA</span></code></a> rather than
 <code class="xref py py-attr docutils literal notranslate"><span class="pre">numpy.nan</span></code> as its missing value marker (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/29964">GH29964</a>).</p>
 <p><em>pandas 0.25.x</em></p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="n">a</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;Int64&quot;</span><span class="p">)</span>
@@ -1419,28 +1421,28 @@ will now raise.</p>
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">41</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float&quot;</span><span class="p">)</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/arrays/masked.py:490,</span> in <span class="ni">BaseMaskedArray.__array__</span><span class="nt">(self, dtype)</span>
-<span class="g g-Whitespace">    </span><span class="mi">485</span> <span class="k">def</span> <span class="nf">__array__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dtype</span><span class="p">:</span> <span class="n">NpDtype</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">486</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">487</span><span class="sd">     the array interface, return my values</span>
-<span class="g g-Whitespace">    </span><span class="mi">488</span><span class="sd">     We return an object array here to preserve our scalar values</span>
-<span class="g g-Whitespace">    </span><span class="mi">489</span><span class="sd">     &quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">490</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/arrays/masked.py:513,</span> in <span class="ni">BaseMaskedArray.__array__</span><span class="nt">(self, dtype)</span>
+<span class="g g-Whitespace">    </span><span class="mi">508</span> <span class="k">def</span> <span class="nf">__array__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dtype</span><span class="p">:</span> <span class="n">NpDtype</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">509</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">510</span><span class="sd">     the array interface, return my values</span>
+<span class="g g-Whitespace">    </span><span class="mi">511</span><span class="sd">     We return an object array here to preserve our scalar values</span>
+<span class="g g-Whitespace">    </span><span class="mi">512</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">513</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/arrays/masked.py:412,</span> in <span class="ni">BaseMaskedArray.to_numpy</span><span class="nt">(self, dtype, copy, na_value)</span>
-<span class="g g-Whitespace">    </span><span class="mi">406</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hasna</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">407</span>     <span class="k">if</span> <span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">408</span>         <span class="ow">not</span> <span class="n">is_object_dtype</span><span class="p">(</span><span class="n">dtype</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">409</span>         <span class="ow">and</span> <span class="ow">not</span> <span class="n">is_string_dtype</span><span class="p">(</span><span class="n">dtype</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">410</span>         <span class="ow">and</span> <span class="n">na_value</span> <span class="ow">is</span> <span class="n">libmissing</span><span class="o">.</span><span class="n">NA</span>
-<span class="g g-Whitespace">    </span><span class="mi">411</span>     <span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">412</span>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">413</span>             <span class="sa">f</span><span class="s2">&quot;cannot convert to &#39;</span><span class="si">{</span><span class="n">dtype</span><span class="si">}</span><span class="s2">&#39;-dtype NumPy array &quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">414</span>             <span class="s2">&quot;with missing values. Specify an appropriate &#39;na_value&#39; &quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">415</span>             <span class="s2">&quot;for this dtype.&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">416</span>         <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">417</span>     <span class="c1"># don&#39;t pass copy to astype -&gt; always need a copy since we are mutating</span>
-<span class="g g-Whitespace">    </span><span class="mi">418</span>     <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">dtype</span><span class="p">)</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/arrays/masked.py:425,</span> in <span class="ni">BaseMaskedArray.to_numpy</span><span class="nt">(self, dtype, copy, na_value)</span>
+<span class="g g-Whitespace">    </span><span class="mi">419</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hasna</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">420</span>     <span class="k">if</span> <span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">421</span>         <span class="ow">not</span> <span class="n">is_object_dtype</span><span class="p">(</span><span class="n">dtype</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">422</span>         <span class="ow">and</span> <span class="ow">not</span> <span class="n">is_string_dtype</span><span class="p">(</span><span class="n">dtype</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">423</span>         <span class="ow">and</span> <span class="n">na_value</span> <span class="ow">is</span> <span class="n">libmissing</span><span class="o">.</span><span class="n">NA</span>
+<span class="g g-Whitespace">    </span><span class="mi">424</span>     <span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">425</span>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">426</span>             <span class="sa">f</span><span class="s2">&quot;cannot convert to &#39;</span><span class="si">{</span><span class="n">dtype</span><span class="si">}</span><span class="s2">&#39;-dtype NumPy array &quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">427</span>             <span class="s2">&quot;with missing values. Specify an appropriate &#39;na_value&#39; &quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">428</span>             <span class="s2">&quot;for this dtype.&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">429</span>         <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">430</span>     <span class="c1"># don&#39;t pass copy to astype -&gt; always need a copy since we are mutating</span>
+<span class="g g-Whitespace">    </span><span class="mi">431</span>     <span class="k">with</span> <span class="n">warnings</span><span class="o">.</span><span class="n">catch_warnings</span><span class="p">():</span>
 
 <span class="ne">ValueError</span>: cannot convert to &#39;float64&#39;-dtype NumPy array with missing values. Specify an appropriate &#39;na_value&#39; for this dtype.
 </pre></div>
@@ -1479,7 +1481,7 @@ integer dtype for the values.</p>
 <span class="gh">Out[44]: </span><span class="go">Int64Dtype()</span>
 </pre></div>
 </div>
-<p>See <a class="reference internal" href="../user_guide/missing_data.html#missing-data-na"><span class="std std-ref">Experimental NA scalar to denote missing values</span></a> for more on the differences between <code class="xref py py-attr docutils literal notranslate"><span class="pre">pandas.NA</span></code>
+<p>See <a class="reference internal" href="../user_guide/missing_data.html#missing-data-na"><span class="std std-ref">Experimental NA scalar to denote missing values</span></a> for more on the differences between <a class="reference internal" href="../reference/api/pandas.NA.html#pandas.NA" title="pandas.NA"><code class="xref py py-attr docutils literal notranslate"><span class="pre">pandas.NA</span></code></a>
 and <code class="xref py py-attr docutils literal notranslate"><span class="pre">numpy.nan</span></code>.</p>
 </section>
 <section id="arrays-integerarray-comparisons-return-arrays-booleanarray">
@@ -1555,8 +1557,6 @@ scalar values in the result are instances of the extension dtype’s scalar type
 <span class="go">            A</span>
 <span class="go">2000-01-01  a</span>
 <span class="go">2000-01-02  b</span>
-
-<span class="go">[2 rows x 1 columns]</span>
 </pre></div>
 </div>
 <p><em>pandas 0.25.x</em></p>
@@ -1586,8 +1586,6 @@ depending on how the results are cast back to the original dtype.</p>
 <span class="gh">Out[51]: </span>
 <span class="go">            A</span>
 <span class="go">2000-01-01  c</span>
-
-<span class="go">[1 rows x 1 columns]</span>
 </pre></div>
 </div>
 </section>
@@ -1744,7 +1742,7 @@ source, you should no longer need to install Cython into your build environment 
 <section id="other-api-changes">
 <span id="whatsnew-100-api-other"></span><h3>Other API changes<a class="headerlink" href="#other-api-changes" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
-<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">core.groupby.GroupBy.transform</span></code> now raises on invalid operation names (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/27489">GH27489</a>)</p></li>
+<li><p><a class="reference internal" href="../reference/api/pandas.core.groupby.DataFrameGroupBy.transform.html#pandas.core.groupby.DataFrameGroupBy.transform" title="pandas.core.groupby.DataFrameGroupBy.transform"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrameGroupBy.transform()</span></code></a> and <a class="reference internal" href="../reference/api/pandas.core.groupby.SeriesGroupBy.transform.html#pandas.core.groupby.SeriesGroupBy.transform" title="pandas.core.groupby.SeriesGroupBy.transform"><code class="xref py py-meth docutils literal notranslate"><span class="pre">SeriesGroupBy.transform()</span></code></a> now raises on invalid operation names (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/27489">GH27489</a>)</p></li>
 <li><p><a class="reference internal" href="../reference/api/pandas.api.types.infer_dtype.html#pandas.api.types.infer_dtype" title="pandas.api.types.infer_dtype"><code class="xref py py-meth docutils literal notranslate"><span class="pre">pandas.api.types.infer_dtype()</span></code></a> will now return “integer-na” for integer and <code class="docutils literal notranslate"><span class="pre">np.nan</span></code> mix (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/27283">GH27283</a>)</p></li>
 <li><p><a class="reference internal" href="../reference/api/pandas.MultiIndex.from_arrays.html#pandas.MultiIndex.from_arrays" title="pandas.MultiIndex.from_arrays"><code class="xref py py-meth docutils literal notranslate"><span class="pre">MultiIndex.from_arrays()</span></code></a> will no longer infer names from arrays if <code class="docutils literal notranslate"><span class="pre">names=None</span></code> is explicitly provided (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/27292">GH27292</a>)</p></li>
 <li><p>In order to improve tab-completion, pandas does not include most deprecated attributes when introspecting a pandas object using <code class="docutils literal notranslate"><span class="pre">dir</span></code> (e.g. <code class="docutils literal notranslate"><span class="pre">dir(df)</span></code>).
@@ -1782,7 +1780,7 @@ is equivalent to <code class="docutils literal notranslate"><span class="pre">ar
 <li><p><code class="docutils literal notranslate"><span class="pre">pandas.tseries.frequencies.get_offset</span></code> is deprecated and will be removed in a future version, use <code class="docutils literal notranslate"><span class="pre">pandas.tseries.frequencies.to_offset</span></code> instead (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/4205">GH4205</a>)</p></li>
 <li><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">Categorical.take_nd()</span></code> and <code class="xref py py-meth docutils literal notranslate"><span class="pre">CategoricalIndex.take_nd()</span></code> are deprecated, use <code class="xref py py-meth docutils literal notranslate"><span class="pre">Categorical.take()</span></code> and <code class="xref py py-meth docutils literal notranslate"><span class="pre">CategoricalIndex.take()</span></code> instead (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/27745">GH27745</a>)</p></li>
 <li><p>The parameter <code class="docutils literal notranslate"><span class="pre">numeric_only</span></code> of <code class="xref py py-meth docutils literal notranslate"><span class="pre">Categorical.min()</span></code> and <code class="xref py py-meth docutils literal notranslate"><span class="pre">Categorical.max()</span></code> is deprecated and replaced with <code class="docutils literal notranslate"><span class="pre">skipna</span></code> (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/25303">GH25303</a>)</p></li>
-<li><p>The parameter <code class="docutils literal notranslate"><span class="pre">label</span></code> in <code class="xref py py-func docutils literal notranslate"><span class="pre">lreshape()</span></code> has been deprecated and will be removed in a future version (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/29742">GH29742</a>)</p></li>
+<li><p>The parameter <code class="docutils literal notranslate"><span class="pre">label</span></code> in <a class="reference internal" href="../reference/api/pandas.lreshape.html#pandas.lreshape" title="pandas.lreshape"><code class="xref py py-func docutils literal notranslate"><span class="pre">lreshape()</span></code></a> has been deprecated and will be removed in a future version (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/29742">GH29742</a>)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">pandas.core.index</span></code> has been deprecated and will be removed in a future version, the public classes are available in the top-level namespace (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/19711">GH19711</a>)</p></li>
 <li><p><a class="reference internal" href="../reference/api/pandas.json_normalize.html#pandas.json_normalize" title="pandas.json_normalize"><code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.json_normalize()</span></code></a> is now exposed in the top-level namespace.
 Usage of <code class="docutils literal notranslate"><span class="pre">json_normalize</span></code> as <code class="docutils literal notranslate"><span class="pre">pandas.io.json.json_normalize</span></code> is now deprecated and
@@ -1894,7 +1892,7 @@ or <code class="docutils literal notranslate"><span class="pre">matplotlib.Axes.
 <li><p>Removed <code class="docutils literal notranslate"><span class="pre">MultiIndex.labels</span></code>, use <a class="reference internal" href="../reference/api/pandas.MultiIndex.codes.html#pandas.MultiIndex.codes" title="pandas.MultiIndex.codes"><code class="xref py py-attr docutils literal notranslate"><span class="pre">MultiIndex.codes</span></code></a> instead (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/23752">GH23752</a>)</p></li>
 <li><p>Removed the previously deprecated keyword “labels” from the <a class="reference internal" href="../reference/api/pandas.MultiIndex.html#pandas.MultiIndex" title="pandas.MultiIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiIndex</span></code></a> constructor, use “codes” instead (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/23752">GH23752</a>)</p></li>
 <li><p>Removed <code class="docutils literal notranslate"><span class="pre">MultiIndex.set_labels</span></code>, use <a class="reference internal" href="../reference/api/pandas.MultiIndex.set_codes.html#pandas.MultiIndex.set_codes" title="pandas.MultiIndex.set_codes"><code class="xref py py-meth docutils literal notranslate"><span class="pre">MultiIndex.set_codes()</span></code></a> instead (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/23752">GH23752</a>)</p></li>
-<li><p>Removed the previously deprecated keyword “labels” from <a class="reference internal" href="../reference/api/pandas.MultiIndex.set_codes.html#pandas.MultiIndex.set_codes" title="pandas.MultiIndex.set_codes"><code class="xref py py-meth docutils literal notranslate"><span class="pre">MultiIndex.set_codes()</span></code></a>, <code class="xref py py-meth docutils literal notranslate"><span class="pre">MultiIndex.copy()</span></code>, <code class="xref py py-meth docutils literal notranslate"><span class="pre">MultiIndex.drop()</span></code>, use “codes” instead (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/23752">GH23752</a>)</p></li>
+<li><p>Removed the previously deprecated keyword “labels” from <a class="reference internal" href="../reference/api/pandas.MultiIndex.set_codes.html#pandas.MultiIndex.set_codes" title="pandas.MultiIndex.set_codes"><code class="xref py py-meth docutils literal notranslate"><span class="pre">MultiIndex.set_codes()</span></code></a>, <a class="reference internal" href="../reference/api/pandas.MultiIndex.copy.html#pandas.MultiIndex.copy" title="pandas.MultiIndex.copy"><code class="xref py py-meth docutils literal notranslate"><span class="pre">MultiIndex.copy()</span></code></a>, <a class="reference internal" href="../reference/api/pandas.MultiIndex.drop.html#pandas.MultiIndex.drop" title="pandas.MultiIndex.drop"><code class="xref py py-meth docutils literal notranslate"><span class="pre">MultiIndex.drop()</span></code></a>, use “codes” instead (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/23752">GH23752</a>)</p></li>
 <li><p>Removed support for legacy HDF5 formats (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/29787">GH29787</a>)</p></li>
 <li><p>Passing a dtype alias (e.g. ‘datetime64[ns, UTC]’) to <a class="reference internal" href="../reference/api/pandas.DatetimeTZDtype.html#pandas.DatetimeTZDtype" title="pandas.DatetimeTZDtype"><code class="xref py py-class docutils literal notranslate"><span class="pre">DatetimeTZDtype</span></code></a> is no longer allowed, use <code class="xref py py-meth docutils literal notranslate"><span class="pre">DatetimeTZDtype.construct_from_string()</span></code> instead (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/23990">GH23990</a>)</p></li>
 <li><p>Removed the previously deprecated keyword “skip_footer” from <a class="reference internal" href="../reference/api/pandas.read_excel.html#pandas.read_excel" title="pandas.read_excel"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_excel()</span></code></a>; use “skipfooter” instead (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/18836">GH18836</a>)</p></li>
@@ -1997,10 +1995,10 @@ same type as if one used the <code class="xref py py-meth docutils literal notra
 <li><p>Bug in <a class="reference internal" href="../reference/api/pandas.DataFrame.replace.html#pandas.DataFrame.replace" title="pandas.DataFrame.replace"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.replace()</span></code></a> and <a class="reference internal" href="../reference/api/pandas.Series.replace.html#pandas.Series.replace" title="pandas.Series.replace"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.replace()</span></code></a> that would give incorrect results on categorical data (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/26988">GH26988</a>)</p></li>
 <li><p>Bug where calling <code class="xref py py-meth docutils literal notranslate"><span class="pre">Categorical.min()</span></code> or <code class="xref py py-meth docutils literal notranslate"><span class="pre">Categorical.max()</span></code> on an empty Categorical would raise a numpy exception (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/30227">GH30227</a>)</p></li>
 <li><p>The following methods now also correctly output values for unobserved categories when called through <code class="docutils literal notranslate"><span class="pre">groupby(...,</span> <span class="pre">observed=False)</span></code> (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/17605">GH17605</a>)
-* <code class="xref py py-meth docutils literal notranslate"><span class="pre">core.groupby.SeriesGroupBy.count()</span></code>
-* <code class="xref py py-meth docutils literal notranslate"><span class="pre">core.groupby.SeriesGroupBy.size()</span></code>
-* <code class="xref py py-meth docutils literal notranslate"><span class="pre">core.groupby.SeriesGroupBy.nunique()</span></code>
-* <code class="xref py py-meth docutils literal notranslate"><span class="pre">core.groupby.SeriesGroupBy.nth()</span></code></p></li>
+* <a class="reference internal" href="../reference/api/pandas.core.groupby.SeriesGroupBy.count.html#pandas.core.groupby.SeriesGroupBy.count" title="pandas.core.groupby.SeriesGroupBy.count"><code class="xref py py-meth docutils literal notranslate"><span class="pre">core.groupby.SeriesGroupBy.count()</span></code></a>
+* <a class="reference internal" href="../reference/api/pandas.core.groupby.SeriesGroupBy.size.html#pandas.core.groupby.SeriesGroupBy.size" title="pandas.core.groupby.SeriesGroupBy.size"><code class="xref py py-meth docutils literal notranslate"><span class="pre">core.groupby.SeriesGroupBy.size()</span></code></a>
+* <a class="reference internal" href="../reference/api/pandas.core.groupby.SeriesGroupBy.nunique.html#pandas.core.groupby.SeriesGroupBy.nunique" title="pandas.core.groupby.SeriesGroupBy.nunique"><code class="xref py py-meth docutils literal notranslate"><span class="pre">core.groupby.SeriesGroupBy.nunique()</span></code></a>
+* <a class="reference internal" href="../reference/api/pandas.core.groupby.SeriesGroupBy.nth.html#pandas.core.groupby.SeriesGroupBy.nth" title="pandas.core.groupby.SeriesGroupBy.nth"><code class="xref py py-meth docutils literal notranslate"><span class="pre">core.groupby.SeriesGroupBy.nth()</span></code></a></p></li>
 </ul>
 </section>
 <section id="datetimelike">
@@ -2010,7 +2008,7 @@ same type as if one used the <code class="xref py py-meth docutils literal notra
 <li><p>Bug in <a class="reference internal" href="../reference/api/pandas.Series.dt.html#pandas.Series.dt" title="pandas.Series.dt"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.dt()</span></code></a> property lookups when the underlying data is read-only (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/27529">GH27529</a>)</p></li>
 <li><p>Bug in <code class="docutils literal notranslate"><span class="pre">HDFStore.__getitem__</span></code> incorrectly reading tz attribute created in Python 2 (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/26443">GH26443</a>)</p></li>
 <li><p>Bug in <a class="reference internal" href="../reference/api/pandas.to_datetime.html#pandas.to_datetime" title="pandas.to_datetime"><code class="xref py py-func docutils literal notranslate"><span class="pre">to_datetime()</span></code></a> where passing arrays of malformed <code class="docutils literal notranslate"><span class="pre">str</span></code> with errors=”coerce” could incorrectly lead to raising <code class="docutils literal notranslate"><span class="pre">ValueError</span></code> (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/28299">GH28299</a>)</p></li>
-<li><p>Bug in <code class="xref py py-meth docutils literal notranslate"><span class="pre">core.groupby.SeriesGroupBy.nunique()</span></code> where <code class="docutils literal notranslate"><span class="pre">NaT</span></code> values were interfering with the count of unique values (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/27951">GH27951</a>)</p></li>
+<li><p>Bug in <a class="reference internal" href="../reference/api/pandas.core.groupby.SeriesGroupBy.nunique.html#pandas.core.groupby.SeriesGroupBy.nunique" title="pandas.core.groupby.SeriesGroupBy.nunique"><code class="xref py py-meth docutils literal notranslate"><span class="pre">core.groupby.SeriesGroupBy.nunique()</span></code></a> where <code class="docutils literal notranslate"><span class="pre">NaT</span></code> values were interfering with the count of unique values (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/27951">GH27951</a>)</p></li>
 <li><p>Bug in <a class="reference internal" href="../reference/api/pandas.Timestamp.html#pandas.Timestamp" title="pandas.Timestamp"><code class="xref py py-class docutils literal notranslate"><span class="pre">Timestamp</span></code></a> subtraction when subtracting a <a class="reference internal" href="../reference/api/pandas.Timestamp.html#pandas.Timestamp" title="pandas.Timestamp"><code class="xref py py-class docutils literal notranslate"><span class="pre">Timestamp</span></code></a> from a <code class="docutils literal notranslate"><span class="pre">np.datetime64</span></code> object incorrectly raising <code class="docutils literal notranslate"><span class="pre">TypeError</span></code> (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/28286">GH28286</a>)</p></li>
 <li><p>Addition and subtraction of integer or integer-dtype arrays with <a class="reference internal" href="../reference/api/pandas.Timestamp.html#pandas.Timestamp" title="pandas.Timestamp"><code class="xref py py-class docutils literal notranslate"><span class="pre">Timestamp</span></code></a> will now raise <code class="docutils literal notranslate"><span class="pre">NullFrequencyError</span></code> instead of <code class="docutils literal notranslate"><span class="pre">ValueError</span></code> (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/28268">GH28268</a>)</p></li>
 <li><p>Bug in <a class="reference internal" href="../reference/api/pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a> and <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> with integer dtype failing to raise <code class="docutils literal notranslate"><span class="pre">TypeError</span></code> when adding or subtracting a <code class="docutils literal notranslate"><span class="pre">np.datetime64</span></code> object (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/28080">GH28080</a>)</p></li>
@@ -2028,7 +2026,7 @@ same type as if one used the <code class="xref py py-meth docutils literal notra
 <li><p>Bug in <a class="reference internal" href="../reference/api/pandas.Series.item.html#pandas.Series.item" title="pandas.Series.item"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.item()</span></code></a> with <code class="docutils literal notranslate"><span class="pre">datetime64</span></code> or <code class="docutils literal notranslate"><span class="pre">timedelta64</span></code> dtype, <code class="xref py py-meth docutils literal notranslate"><span class="pre">DatetimeIndex.item()</span></code>, and <code class="xref py py-meth docutils literal notranslate"><span class="pre">TimedeltaIndex.item()</span></code> returning an integer instead of a <a class="reference internal" href="../reference/api/pandas.Timestamp.html#pandas.Timestamp" title="pandas.Timestamp"><code class="xref py py-class docutils literal notranslate"><span class="pre">Timestamp</span></code></a> or <a class="reference internal" href="../reference/api/pandas.Timedelta.html#pandas.Timedelta" title="pandas.Timedelta"><code class="xref py py-class docutils literal notranslate"><span class="pre">Timedelta</span></code></a> (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/30175">GH30175</a>)</p></li>
 <li><p>Bug in <a class="reference internal" href="../reference/api/pandas.DatetimeIndex.html#pandas.DatetimeIndex" title="pandas.DatetimeIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">DatetimeIndex</span></code></a> addition when adding a non-optimized <code class="xref py py-class docutils literal notranslate"><span class="pre">DateOffset</span></code> incorrectly dropping timezone information (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/30336">GH30336</a>)</p></li>
 <li><p>Bug in <a class="reference internal" href="../reference/api/pandas.DataFrame.drop.html#pandas.DataFrame.drop" title="pandas.DataFrame.drop"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.drop()</span></code></a> where attempting to drop non-existent values from a DatetimeIndex would yield a confusing error message (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/30399">GH30399</a>)</p></li>
-<li><p>Bug in <a class="reference internal" href="../reference/api/pandas.DataFrame.append.html#pandas.DataFrame.append" title="pandas.DataFrame.append"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.append()</span></code></a> would remove the timezone-awareness of new data (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/30238">GH30238</a>)</p></li>
+<li><p>Bug in <code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.append()</span></code> would remove the timezone-awareness of new data (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/30238">GH30238</a>)</p></li>
 <li><p>Bug in <a class="reference internal" href="../reference/api/pandas.Series.cummin.html#pandas.Series.cummin" title="pandas.Series.cummin"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.cummin()</span></code></a> and <a class="reference internal" href="../reference/api/pandas.Series.cummax.html#pandas.Series.cummax" title="pandas.Series.cummax"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.cummax()</span></code></a> with timezone-aware dtype incorrectly dropping its timezone (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/15553">GH15553</a>)</p></li>
 <li><p>Bug in <code class="xref py py-class docutils literal notranslate"><span class="pre">DatetimeArray</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TimedeltaArray</span></code>, and <code class="xref py py-class docutils literal notranslate"><span class="pre">PeriodArray</span></code> where inplace addition and subtraction did not actually operate inplace (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/24115">GH24115</a>)</p></li>
 <li><p>Bug in <a class="reference internal" href="../reference/api/pandas.to_datetime.html#pandas.to_datetime" title="pandas.to_datetime"><code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.to_datetime()</span></code></a> when called with <code class="docutils literal notranslate"><span class="pre">Series</span></code> storing <code class="docutils literal notranslate"><span class="pre">IntegerArray</span></code> raising <code class="docutils literal notranslate"><span class="pre">TypeError</span></code> instead of returning <code class="docutils literal notranslate"><span class="pre">Series</span></code> (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/30050">GH30050</a>)</p></li>
@@ -2059,10 +2057,10 @@ same type as if one used the <code class="xref py py-meth docutils literal notra
 <li><p>Bug in <a class="reference internal" href="../reference/api/pandas.DataFrame.interpolate.html#pandas.DataFrame.interpolate" title="pandas.DataFrame.interpolate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.interpolate()</span></code></a> where specifying axis by name references variable before it is assigned (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/29142">GH29142</a>)</p></li>
 <li><p>Bug in <a class="reference internal" href="../reference/api/pandas.Series.var.html#pandas.Series.var" title="pandas.Series.var"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.var()</span></code></a> not computing the right value with a nullable integer dtype series not passing through ddof argument (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/29128">GH29128</a>)</p></li>
 <li><p>Improved error message when using <code class="docutils literal notranslate"><span class="pre">frac</span></code> &gt; 1 and <code class="docutils literal notranslate"><span class="pre">replace</span></code> = False (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/27451">GH27451</a>)</p></li>
-<li><p>Bug in numeric indexes resulted in it being possible to instantiate an <a class="reference internal" href="../reference/api/pandas.Int64Index.html#pandas.Int64Index" title="pandas.Int64Index"><code class="xref py py-class docutils literal notranslate"><span class="pre">Int64Index</span></code></a>, <a class="reference internal" href="../reference/api/pandas.UInt64Index.html#pandas.UInt64Index" title="pandas.UInt64Index"><code class="xref py py-class docutils literal notranslate"><span class="pre">UInt64Index</span></code></a>, or <a class="reference internal" href="../reference/api/pandas.Float64Index.html#pandas.Float64Index" title="pandas.Float64Index"><code class="xref py py-class docutils literal notranslate"><span class="pre">Float64Index</span></code></a> with an invalid dtype (e.g. datetime-like) (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/29539">GH29539</a>)</p></li>
-<li><p>Bug in <a class="reference internal" href="../reference/api/pandas.UInt64Index.html#pandas.UInt64Index" title="pandas.UInt64Index"><code class="xref py py-class docutils literal notranslate"><span class="pre">UInt64Index</span></code></a> precision loss while constructing from a list with values in the <code class="docutils literal notranslate"><span class="pre">np.uint64</span></code> range (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/29526">GH29526</a>)</p></li>
+<li><p>Bug in numeric indexes resulted in it being possible to instantiate an <code class="xref py py-class docutils literal notranslate"><span class="pre">Int64Index</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">UInt64Index</span></code>, or <code class="xref py py-class docutils literal notranslate"><span class="pre">Float64Index</span></code> with an invalid dtype (e.g. datetime-like) (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/29539">GH29539</a>)</p></li>
+<li><p>Bug in <code class="xref py py-class docutils literal notranslate"><span class="pre">UInt64Index</span></code> precision loss while constructing from a list with values in the <code class="docutils literal notranslate"><span class="pre">np.uint64</span></code> range (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/29526">GH29526</a>)</p></li>
 <li><p>Bug in <code class="xref py py-class docutils literal notranslate"><span class="pre">NumericIndex</span></code> construction that caused indexing to fail when integers in the <code class="docutils literal notranslate"><span class="pre">np.uint64</span></code> range were used (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/28023">GH28023</a>)</p></li>
-<li><p>Bug in <code class="xref py py-class docutils literal notranslate"><span class="pre">NumericIndex</span></code> construction that caused <a class="reference internal" href="../reference/api/pandas.UInt64Index.html#pandas.UInt64Index" title="pandas.UInt64Index"><code class="xref py py-class docutils literal notranslate"><span class="pre">UInt64Index</span></code></a> to be casted to <a class="reference internal" href="../reference/api/pandas.Float64Index.html#pandas.Float64Index" title="pandas.Float64Index"><code class="xref py py-class docutils literal notranslate"><span class="pre">Float64Index</span></code></a> when integers in the <code class="docutils literal notranslate"><span class="pre">np.uint64</span></code> range were used to index a <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/28279">GH28279</a>)</p></li>
+<li><p>Bug in <code class="xref py py-class docutils literal notranslate"><span class="pre">NumericIndex</span></code> construction that caused <code class="xref py py-class docutils literal notranslate"><span class="pre">UInt64Index</span></code> to be casted to <code class="xref py py-class docutils literal notranslate"><span class="pre">Float64Index</span></code> when integers in the <code class="docutils literal notranslate"><span class="pre">np.uint64</span></code> range were used to index a <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/28279">GH28279</a>)</p></li>
 <li><p>Bug in <a class="reference internal" href="../reference/api/pandas.Series.interpolate.html#pandas.Series.interpolate" title="pandas.Series.interpolate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.interpolate()</span></code></a> when using method=`index` with an unsorted index, would previously return incorrect results. (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/21037">GH21037</a>)</p></li>
 <li><p>Bug in <a class="reference internal" href="../reference/api/pandas.DataFrame.round.html#pandas.DataFrame.round" title="pandas.DataFrame.round"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.round()</span></code></a> where a <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> with a <a class="reference internal" href="../reference/api/pandas.CategoricalIndex.html#pandas.CategoricalIndex" title="pandas.CategoricalIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">CategoricalIndex</span></code></a> of <a class="reference internal" href="../reference/api/pandas.IntervalIndex.html#pandas.IntervalIndex" title="pandas.IntervalIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">IntervalIndex</span></code></a> columns would incorrectly raise a <code class="docutils literal notranslate"><span class="pre">TypeError</span></code> (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/30063">GH30063</a>)</p></li>
 <li><p>Bug in <a class="reference internal" href="../reference/api/pandas.Series.pct_change.html#pandas.Series.pct_change" title="pandas.Series.pct_change"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.pct_change()</span></code></a> and <a class="reference internal" href="../reference/api/pandas.DataFrame.pct_change.html#pandas.DataFrame.pct_change" title="pandas.DataFrame.pct_change"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.pct_change()</span></code></a> when there are duplicated indices (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/30463">GH30463</a>)</p></li>
@@ -2172,7 +2170,7 @@ same type as if one used the <code class="xref py py-meth docutils literal notra
 <section id="groupby-resample-rolling">
 <h3>GroupBy/resample/rolling<a class="headerlink" href="#groupby-resample-rolling" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
-<li><p>Bug in <code class="xref py py-meth docutils literal notranslate"><span class="pre">core.groupby.DataFrameGroupBy.apply()</span></code> only showing output from a single group when function returns an <a class="reference internal" href="../reference/api/pandas.Index.html#pandas.Index" title="pandas.Index"><code class="xref py py-class docutils literal notranslate"><span class="pre">Index</span></code></a> (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/28652">GH28652</a>)</p></li>
+<li><p>Bug in <a class="reference internal" href="../reference/api/pandas.core.groupby.DataFrameGroupBy.apply.html#pandas.core.groupby.DataFrameGroupBy.apply" title="pandas.core.groupby.DataFrameGroupBy.apply"><code class="xref py py-meth docutils literal notranslate"><span class="pre">core.groupby.DataFrameGroupBy.apply()</span></code></a> only showing output from a single group when function returns an <a class="reference internal" href="../reference/api/pandas.Index.html#pandas.Index" title="pandas.Index"><code class="xref py py-class docutils literal notranslate"><span class="pre">Index</span></code></a> (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/28652">GH28652</a>)</p></li>
 <li><p>Bug in <a class="reference internal" href="../reference/api/pandas.DataFrame.groupby.html#pandas.DataFrame.groupby" title="pandas.DataFrame.groupby"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.groupby()</span></code></a> with multiple groups where an <code class="docutils literal notranslate"><span class="pre">IndexError</span></code> would be raised if any group contained all NA values (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/20519">GH20519</a>)</p></li>
 <li><p>Bug in <a class="reference internal" href="../reference/api/pandas.core.resample.Resampler.size.html#pandas.core.resample.Resampler.size" title="pandas.core.resample.Resampler.size"><code class="xref py py-meth docutils literal notranslate"><span class="pre">pandas.core.resample.Resampler.size()</span></code></a> and <a class="reference internal" href="../reference/api/pandas.core.resample.Resampler.count.html#pandas.core.resample.Resampler.count" title="pandas.core.resample.Resampler.count"><code class="xref py py-meth docutils literal notranslate"><span class="pre">pandas.core.resample.Resampler.count()</span></code></a> returning wrong dtype when used with an empty <a class="reference internal" href="../reference/api/pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a> or <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/28427">GH28427</a>)</p></li>
 <li><p>Bug in <a class="reference internal" href="../reference/api/pandas.DataFrame.rolling.html#pandas.DataFrame.rolling" title="pandas.DataFrame.rolling"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.rolling()</span></code></a> not allowing for rolling over datetimes when <code class="docutils literal notranslate"><span class="pre">axis=1</span></code> (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/28192">GH28192</a>)</p></li>
@@ -2182,14 +2180,14 @@ same type as if one used the <code class="xref py py-meth docutils literal notra
 <li><p>Bug in <code class="xref py py-meth docutils literal notranslate"><span class="pre">core.groupby.DataFrameGroupby.agg()</span></code> not able to use lambda function with named aggregation (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/27519">GH27519</a>)</p></li>
 <li><p>Bug in <a class="reference internal" href="../reference/api/pandas.DataFrame.groupby.html#pandas.DataFrame.groupby" title="pandas.DataFrame.groupby"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.groupby()</span></code></a> losing column name information when grouping by a categorical column (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/28787">GH28787</a>)</p></li>
 <li><p>Remove error raised due to duplicated input functions in named aggregation in <a class="reference internal" href="../reference/api/pandas.DataFrame.groupby.html#pandas.DataFrame.groupby" title="pandas.DataFrame.groupby"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.groupby()</span></code></a> and <a class="reference internal" href="../reference/api/pandas.Series.groupby.html#pandas.Series.groupby" title="pandas.Series.groupby"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.groupby()</span></code></a>. Previously error will be raised if the same function is applied on the same column and now it is allowed if new assigned names are different. (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/28426">GH28426</a>)</p></li>
-<li><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">core.groupby.SeriesGroupBy.value_counts()</span></code> will be able to handle the case even when the <a class="reference internal" href="../reference/api/pandas.Grouper.html#pandas.Grouper" title="pandas.Grouper"><code class="xref py py-class docutils literal notranslate"><span class="pre">Grouper</span></code></a> makes empty groups (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/28479">GH28479</a>)</p></li>
+<li><p><a class="reference internal" href="../reference/api/pandas.core.groupby.SeriesGroupBy.value_counts.html#pandas.core.groupby.SeriesGroupBy.value_counts" title="pandas.core.groupby.SeriesGroupBy.value_counts"><code class="xref py py-meth docutils literal notranslate"><span class="pre">core.groupby.SeriesGroupBy.value_counts()</span></code></a> will be able to handle the case even when the <a class="reference internal" href="../reference/api/pandas.Grouper.html#pandas.Grouper" title="pandas.Grouper"><code class="xref py py-class docutils literal notranslate"><span class="pre">Grouper</span></code></a> makes empty groups (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/28479">GH28479</a>)</p></li>
 <li><p>Bug in <a class="reference internal" href="../reference/api/pandas.core.window.rolling.Rolling.quantile.html#pandas.core.window.rolling.Rolling.quantile" title="pandas.core.window.rolling.Rolling.quantile"><code class="xref py py-meth docutils literal notranslate"><span class="pre">core.window.rolling.Rolling.quantile()</span></code></a> ignoring <code class="docutils literal notranslate"><span class="pre">interpolation</span></code> keyword argument when used within a groupby (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/28779">GH28779</a>)</p></li>
 <li><p>Bug in <a class="reference internal" href="../reference/api/pandas.DataFrame.groupby.html#pandas.DataFrame.groupby" title="pandas.DataFrame.groupby"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.groupby()</span></code></a> where <code class="docutils literal notranslate"><span class="pre">any</span></code>, <code class="docutils literal notranslate"><span class="pre">all</span></code>, <code class="docutils literal notranslate"><span class="pre">nunique</span></code> and transform functions would incorrectly handle duplicate column labels (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/21668">GH21668</a>)</p></li>
-<li><p>Bug in <code class="xref py py-meth docutils literal notranslate"><span class="pre">core.groupby.DataFrameGroupBy.agg()</span></code> with timezone-aware datetime64 column incorrectly casting results to the original dtype (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/29641">GH29641</a>)</p></li>
+<li><p>Bug in <a class="reference internal" href="../reference/api/pandas.core.groupby.DataFrameGroupBy.agg.html#pandas.core.groupby.DataFrameGroupBy.agg" title="pandas.core.groupby.DataFrameGroupBy.agg"><code class="xref py py-meth docutils literal notranslate"><span class="pre">core.groupby.DataFrameGroupBy.agg()</span></code></a> with timezone-aware datetime64 column incorrectly casting results to the original dtype (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/29641">GH29641</a>)</p></li>
 <li><p>Bug in <a class="reference internal" href="../reference/api/pandas.DataFrame.groupby.html#pandas.DataFrame.groupby" title="pandas.DataFrame.groupby"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.groupby()</span></code></a> when using axis=1 and having a single level columns index (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/30208">GH30208</a>)</p></li>
 <li><p>Bug in <a class="reference internal" href="../reference/api/pandas.DataFrame.groupby.html#pandas.DataFrame.groupby" title="pandas.DataFrame.groupby"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.groupby()</span></code></a> when using nunique on axis=1 (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/30253">GH30253</a>)</p></li>
-<li><p>Bug in <code class="xref py py-meth docutils literal notranslate"><span class="pre">GroupBy.quantile()</span></code> with multiple list-like q value and integer column names (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/30289">GH30289</a>)</p></li>
-<li><p>Bug in <code class="xref py py-meth docutils literal notranslate"><span class="pre">GroupBy.pct_change()</span></code> and <code class="xref py py-meth docutils literal notranslate"><span class="pre">core.groupby.SeriesGroupBy.pct_change()</span></code> causes <code class="docutils literal notranslate"><span class="pre">TypeError</span></code> when <code class="docutils literal notranslate"><span class="pre">fill_method</span></code> is <code class="docutils literal notranslate"><span class="pre">None</span></code> (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/30463">GH30463</a>)</p></li>
+<li><p>Bug in <a class="reference internal" href="../reference/api/pandas.core.groupby.DataFrameGroupBy.quantile.html#pandas.core.groupby.DataFrameGroupBy.quantile" title="pandas.core.groupby.DataFrameGroupBy.quantile"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrameGroupBy.quantile()</span></code></a> and <a class="reference internal" href="../reference/api/pandas.core.groupby.SeriesGroupBy.quantile.html#pandas.core.groupby.SeriesGroupBy.quantile" title="pandas.core.groupby.SeriesGroupBy.quantile"><code class="xref py py-meth docutils literal notranslate"><span class="pre">SeriesGroupBy.quantile()</span></code></a> with multiple list-like q value and integer column names (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/30289">GH30289</a>)</p></li>
+<li><p>Bug in <a class="reference internal" href="../reference/api/pandas.core.groupby.DataFrameGroupBy.pct_change.html#pandas.core.groupby.DataFrameGroupBy.pct_change" title="pandas.core.groupby.DataFrameGroupBy.pct_change"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrameGroupBy.pct_change()</span></code></a> and <a class="reference internal" href="../reference/api/pandas.core.groupby.SeriesGroupBy.pct_change.html#pandas.core.groupby.SeriesGroupBy.pct_change" title="pandas.core.groupby.SeriesGroupBy.pct_change"><code class="xref py py-meth docutils literal notranslate"><span class="pre">SeriesGroupBy.pct_change()</span></code></a> causes <code class="docutils literal notranslate"><span class="pre">TypeError</span></code> when <code class="docutils literal notranslate"><span class="pre">fill_method</span></code> is <code class="docutils literal notranslate"><span class="pre">None</span></code> (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/30463">GH30463</a>)</p></li>
 <li><p>Bug in <code class="xref py py-meth docutils literal notranslate"><span class="pre">Rolling.count()</span></code> and <code class="xref py py-meth docutils literal notranslate"><span class="pre">Expanding.count()</span></code> argument where <code class="docutils literal notranslate"><span class="pre">min_periods</span></code> was ignored (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/26996">GH26996</a>)</p></li>
 </ul>
 </section>
@@ -2238,11 +2236,11 @@ same type as if one used the <code class="xref py py-meth docutils literal notra
 <li><p>Using <a class="reference internal" href="../reference/api/pandas.DataFrame.replace.html#pandas.DataFrame.replace" title="pandas.DataFrame.replace"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.replace()</span></code></a> with overlapping keys in a nested dictionary will no longer raise, now matching the behavior of a flat dictionary (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/27660">GH27660</a>)</p></li>
 <li><p><a class="reference internal" href="../reference/api/pandas.DataFrame.to_csv.html#pandas.DataFrame.to_csv" title="pandas.DataFrame.to_csv"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.to_csv()</span></code></a> and <a class="reference internal" href="../reference/api/pandas.Series.to_csv.html#pandas.Series.to_csv" title="pandas.Series.to_csv"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.to_csv()</span></code></a> now support dicts as <code class="docutils literal notranslate"><span class="pre">compression</span></code> argument with key <code class="docutils literal notranslate"><span class="pre">'method'</span></code> being the compression method and others as additional compression options when the compression method is <code class="docutils literal notranslate"><span class="pre">'zip'</span></code>. (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/26023">GH26023</a>)</p></li>
 <li><p>Bug in <a class="reference internal" href="../reference/api/pandas.Series.diff.html#pandas.Series.diff" title="pandas.Series.diff"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.diff()</span></code></a> where a boolean series would incorrectly raise a <code class="docutils literal notranslate"><span class="pre">TypeError</span></code> (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/17294">GH17294</a>)</p></li>
-<li><p><a class="reference internal" href="../reference/api/pandas.Series.append.html#pandas.Series.append" title="pandas.Series.append"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.append()</span></code></a> will no longer raise a <code class="docutils literal notranslate"><span class="pre">TypeError</span></code> when passed a tuple of <code class="docutils literal notranslate"><span class="pre">Series</span></code> (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/28410">GH28410</a>)</p></li>
+<li><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.append()</span></code> will no longer raise a <code class="docutils literal notranslate"><span class="pre">TypeError</span></code> when passed a tuple of <code class="docutils literal notranslate"><span class="pre">Series</span></code> (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/28410">GH28410</a>)</p></li>
 <li><p>Fix corrupted error message when calling <code class="docutils literal notranslate"><span class="pre">pandas.libs._json.encode()</span></code> on a 0d array (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/18878">GH18878</a>)</p></li>
 <li><p>Backtick quoting in <a class="reference internal" href="../reference/api/pandas.DataFrame.query.html#pandas.DataFrame.query" title="pandas.DataFrame.query"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.query()</span></code></a> and <a class="reference internal" href="../reference/api/pandas.DataFrame.eval.html#pandas.DataFrame.eval" title="pandas.DataFrame.eval"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.eval()</span></code></a> can now also be used to use invalid identifiers like names that start with a digit, are python keywords, or are using single character operators. (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/27017">GH27017</a>)</p></li>
 <li><p>Bug in <code class="docutils literal notranslate"><span class="pre">pd.core.util.hashing.hash_pandas_object</span></code> where arrays containing tuples were incorrectly treated as non-hashable (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/28969">GH28969</a>)</p></li>
-<li><p>Bug in <a class="reference internal" href="../reference/api/pandas.DataFrame.append.html#pandas.DataFrame.append" title="pandas.DataFrame.append"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.append()</span></code></a> that raised <code class="docutils literal notranslate"><span class="pre">IndexError</span></code> when appending with empty list (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/28769">GH28769</a>)</p></li>
+<li><p>Bug in <code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.append()</span></code> that raised <code class="docutils literal notranslate"><span class="pre">IndexError</span></code> when appending with empty list (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/28769">GH28769</a>)</p></li>
 <li><p>Fix <code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractHolidayCalendar</span></code> to return correct results for
 years after 2030 (now goes up to 2200) (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/27790">GH27790</a>)</p></li>
 <li><p>Fixed <a class="reference internal" href="../reference/api/pandas.arrays.IntegerArray.html#pandas.arrays.IntegerArray" title="pandas.arrays.IntegerArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">IntegerArray</span></code></a> returning <code class="docutils literal notranslate"><span class="pre">inf</span></code> rather than <code class="docutils literal notranslate"><span class="pre">NaN</span></code> for operations dividing by <code class="docutils literal notranslate"><span class="pre">0</span></code> (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/27398">GH27398</a>)</p></li>

@@ -1,0 +1,6 @@
+pandas.core.groupby.SeriesGroupBy.cumprod
+=========================================
+
+.. currentmodule:: pandas.core.groupby
+
+.. automethod:: SeriesGroupBy.cumprod

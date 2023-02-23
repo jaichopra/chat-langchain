@@ -1,0 +1,6 @@
+pandas.core.groupby.SeriesGroupBy.size
+======================================
+
+.. currentmodule:: pandas.core.groupby
+
+.. automethod:: SeriesGroupBy.size

@@ -1,6 +1,0 @@
-pandas.tseries.offsets.DateOffset.\_\_call\_\_
-==============================================
-
-.. currentmodule:: pandas.tseries.offsets
-
-.. automethod:: DateOffset.__call__

@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>pandas.DataFrame.interpolate &#8212; pandas 1.5.3 documentation</title>
+    <title>pandas.DataFrame.interpolate &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -55,7 +55,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'reference/api/pandas.DataFrame.interpolate';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -182,7 +182,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -311,7 +311,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -524,11 +524,6 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="pandas.DataFrame.iteritems.html">
-     pandas.DataFrame.iteritems
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="pandas.DataFrame.keys.html">
      pandas.DataFrame.keys
     </a>
@@ -541,11 +536,6 @@
    <li class="toctree-l2">
     <a class="reference internal" href="pandas.DataFrame.itertuples.html">
      pandas.DataFrame.itertuples
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.DataFrame.lookup.html">
-     pandas.DataFrame.lookup
     </a>
    </li>
    <li class="toctree-l2">
@@ -586,6 +576,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="pandas.DataFrame.query.html">
      pandas.DataFrame.query
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.__add__.html">
+     pandas.DataFrame.__add__
     </a>
    </li>
    <li class="toctree-l2">
@@ -846,11 +841,6 @@
    <li class="toctree-l2">
     <a class="reference internal" href="pandas.DataFrame.kurtosis.html">
      pandas.DataFrame.kurtosis
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.DataFrame.mad.html">
-     pandas.DataFrame.mad
     </a>
    </li>
    <li class="toctree-l2">
@@ -1224,11 +1214,6 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="pandas.DataFrame.append.html">
-     pandas.DataFrame.append
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="pandas.DataFrame.assign.html">
      pandas.DataFrame.assign
     </a>
@@ -1266,16 +1251,6 @@
    <li class="toctree-l2">
     <a class="reference internal" href="pandas.DataFrame.shift.html">
      pandas.DataFrame.shift
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.DataFrame.slice_shift.html">
-     pandas.DataFrame.slice_shift
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.DataFrame.tshift.html">
-     pandas.DataFrame.tshift
     </a>
    </li>
    <li class="toctree-l2">
@@ -1613,7 +1588,7 @@
 <h1>pandas.DataFrame.interpolate<a class="headerlink" href="#pandas-dataframe-interpolate" title="Permalink to this headline">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="pandas.DataFrame.interpolate">
-<span class="sig-prename descclassname"><span class="pre">DataFrame.</span></span><span class="sig-name descname"><span class="pre">interpolate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'linear'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inplace</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit_direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit_area</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">downcast</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.5.3/pandas/core/frame.py#L11843-L11864"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.DataFrame.interpolate" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">DataFrame.</span></span><span class="sig-name descname"><span class="pre">interpolate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'linear'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inplace</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit_direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit_area</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">downcast</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v2.0.0rc0/pandas/core/frame.py#L11433-L11454"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.DataFrame.interpolate" title="Permalink to this definition">#</a></dt>
 <dd><p>Fill NaN values using an interpolation method.</p>
 <p>Please note that only <code class="docutils literal notranslate"><span class="pre">method='linear'</span></code> is supported for
 DataFrame/Series with a MultiIndex.</p>
@@ -1628,12 +1603,15 @@ spaced. This is the only method supported on MultiIndexes.</p></li>
 given length of interval.</p></li>
 <li><p>‘index’, ‘values’: use the actual numerical values of the index.</p></li>
 <li><p>‘pad’: Fill in NaNs using existing values.</p></li>
-<li><p>‘nearest’, ‘zero’, ‘slinear’, ‘quadratic’, ‘cubic’, ‘spline’,
+<li><p>‘nearest’, ‘zero’, ‘slinear’, ‘quadratic’, ‘cubic’,
 ‘barycentric’, ‘polynomial’: Passed to
-<cite>scipy.interpolate.interp1d</cite>. These methods use the numerical
+<cite>scipy.interpolate.interp1d</cite>, whereas ‘spline’ is passed to
+<cite>scipy.interpolate.UnivariateSpline</cite>. These methods use the numerical
 values of the index.  Both ‘polynomial’ and ‘spline’ require that
 you also specify an <cite>order</cite> (int), e.g.
-<code class="docutils literal notranslate"><span class="pre">df.interpolate(method='polynomial',</span> <span class="pre">order=5)</span></code>.</p></li>
+<code class="docutils literal notranslate"><span class="pre">df.interpolate(method='polynomial',</span> <span class="pre">order=5)</span></code>. Note that,
+<cite>slinear</cite> method in Pandas refers to the Scipy first order <cite>spline</cite>
+instead of Pandas first order <cite>spline</cite>.</p></li>
 <li><p>‘krogh’, ‘piecewise_polynomial’, ‘spline’, ‘pchip’, ‘akima’,
 ‘cubicspline’: Wrappers around the SciPy interpolation methods of
 similar names. See <cite>Notes</cite>.</p></li>
@@ -1700,17 +1678,17 @@ some or all <code class="docutils literal notranslate"><span class="pre">NaN</sp
 <dl class="simple">
 <dt><a class="reference internal" href="pandas.DataFrame.fillna.html#pandas.DataFrame.fillna" title="pandas.DataFrame.fillna"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fillna</span></code></a></dt><dd><p>Fill missing values using different methods.</p>
 </dd>
-<dt><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.Akima1DInterpolator.html#scipy.interpolate.Akima1DInterpolator" title="(in SciPy v1.10.0)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.interpolate.Akima1DInterpolator</span></code></a></dt><dd><p>Piecewise cubic polynomials (Akima interpolator).</p>
+<dt><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.Akima1DInterpolator.html#scipy.interpolate.Akima1DInterpolator" title="(in SciPy v1.10.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.interpolate.Akima1DInterpolator</span></code></a></dt><dd><p>Piecewise cubic polynomials (Akima interpolator).</p>
 </dd>
-<dt><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.BPoly.from_derivatives.html#scipy.interpolate.BPoly.from_derivatives" title="(in SciPy v1.10.0)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.interpolate.BPoly.from_derivatives</span></code></a></dt><dd><p>Piecewise polynomial in the Bernstein basis.</p>
+<dt><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.BPoly.from_derivatives.html#scipy.interpolate.BPoly.from_derivatives" title="(in SciPy v1.10.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.interpolate.BPoly.from_derivatives</span></code></a></dt><dd><p>Piecewise polynomial in the Bernstein basis.</p>
 </dd>
-<dt><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.interp1d.html#scipy.interpolate.interp1d" title="(in SciPy v1.10.0)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.interpolate.interp1d</span></code></a></dt><dd><p>Interpolate a 1-D function.</p>
+<dt><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.interp1d.html#scipy.interpolate.interp1d" title="(in SciPy v1.10.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.interpolate.interp1d</span></code></a></dt><dd><p>Interpolate a 1-D function.</p>
 </dd>
-<dt><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.KroghInterpolator.html#scipy.interpolate.KroghInterpolator" title="(in SciPy v1.10.0)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.interpolate.KroghInterpolator</span></code></a></dt><dd><p>Interpolate polynomial (Krogh interpolator).</p>
+<dt><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.KroghInterpolator.html#scipy.interpolate.KroghInterpolator" title="(in SciPy v1.10.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.interpolate.KroghInterpolator</span></code></a></dt><dd><p>Interpolate polynomial (Krogh interpolator).</p>
 </dd>
-<dt><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.PchipInterpolator.html#scipy.interpolate.PchipInterpolator" title="(in SciPy v1.10.0)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.interpolate.PchipInterpolator</span></code></a></dt><dd><p>PCHIP 1-d monotonic cubic interpolation.</p>
+<dt><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.PchipInterpolator.html#scipy.interpolate.PchipInterpolator" title="(in SciPy v1.10.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.interpolate.PchipInterpolator</span></code></a></dt><dd><p>PCHIP 1-d monotonic cubic interpolation.</p>
 </dd>
-<dt><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.CubicSpline.html#scipy.interpolate.CubicSpline" title="(in SciPy v1.10.0)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.interpolate.CubicSpline</span></code></a></dt><dd><p>Cubic spline data interpolator.</p>
+<dt><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.CubicSpline.html#scipy.interpolate.CubicSpline" title="(in SciPy v1.10.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scipy.interpolate.CubicSpline</span></code></a></dt><dd><p>Cubic spline data interpolator.</p>
 </dd>
 </dl>
 </div>

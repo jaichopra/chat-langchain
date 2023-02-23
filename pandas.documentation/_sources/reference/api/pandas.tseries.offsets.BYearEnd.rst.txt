@@ -13,11 +13,7 @@ pandas.tseries.offsets.BYearEnd
    .. autosummary::
       :toctree:
       
-      BYearEnd.__call__
-      BYearEnd.apply
-      BYearEnd.apply_index
       BYearEnd.copy
-      BYearEnd.isAnchored
       BYearEnd.is_anchored
       BYearEnd.is_month_end
       BYearEnd.is_month_start
@@ -26,7 +22,6 @@ pandas.tseries.offsets.BYearEnd
       BYearEnd.is_quarter_start
       BYearEnd.is_year_end
       BYearEnd.is_year_start
-      BYearEnd.onOffset
       BYearEnd.rollback
       BYearEnd.rollforward
 

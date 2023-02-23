@@ -1,0 +1,6 @@
+pandas.core.groupby.SeriesGroupBy.cummin
+========================================
+
+.. currentmodule:: pandas.core.groupby
+
+.. automethod:: SeriesGroupBy.cummin

@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Version 0.9.1 (November 14, 2012) &#8212; pandas 1.5.3 documentation</title>
+    <title>Version 0.9.1 (November 14, 2012) &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -55,7 +55,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'whatsnew/v0.9.1';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -182,7 +182,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -311,7 +311,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -363,6 +363,18 @@
   <div class="bd-toc-item navbar-nav">
     
     <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v2.0.0.html">
+   What’s new in 2.0.0 (??)
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.5.4.html">
+   What’s new in 1.5.4 (March XX, 2023)
+  </a>
+ </li>
  <li class="toctree-l1">
   <a class="reference internal" href="v1.5.3.html">
    What’s new in 1.5.3 (January 18, 2023)
@@ -912,8 +924,6 @@ or the smallest rank (<a class="reference external" href="https://github.com/pan
 <span class="go">4  NaN  NaN  NaN</span>
 <span class="go">5  2.0  1.0  3.0</span>
 
-<span class="go">[6 rows x 3 columns]</span>
-
 <span class="gp">In [4]: </span><span class="n">df</span><span class="o">.</span><span class="n">rank</span><span class="p">(</span><span class="n">na_option</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">)</span>
 <span class="gh">Out[4]: </span>
 <span class="go">     A    B    C</span>
@@ -924,8 +934,6 @@ or the smallest rank (<a class="reference external" href="https://github.com/pan
 <span class="go">4  2.0  2.0  2.0</span>
 <span class="go">5  5.0  4.0  6.0</span>
 
-<span class="go">[6 rows x 3 columns]</span>
-
 <span class="gp">In [5]: </span><span class="n">df</span><span class="o">.</span><span class="n">rank</span><span class="p">(</span><span class="n">na_option</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">)</span>
 <span class="gh">Out[5]: </span>
 <span class="go">     A    B    C</span>
@@ -935,8 +943,6 @@ or the smallest rank (<a class="reference external" href="https://github.com/pan
 <span class="go">3  5.0  5.0  5.0</span>
 <span class="go">4  5.0  5.0  5.0</span>
 <span class="go">5  2.0  1.0  3.0</span>
-
-<span class="go">[6 rows x 3 columns]</span>
 </pre></div>
 </div>
 </li>
@@ -956,16 +962,12 @@ The returned DataFrame has the same number of columns as the original, but is sl
 <span class="go">3 -1.039268 -0.370647 -1.157892</span>
 <span class="go">4 -1.344312  0.844885  1.075770</span>
 
-<span class="go">[5 rows x 3 columns]</span>
-
 <span class="gp">In [8]: </span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>
 <span class="gh">Out[8]: </span>
 <span class="go">          A         B         C</span>
 <span class="go">0  0.276232 -1.087401 -0.673690</span>
 <span class="go">1  0.113648 -1.478427  0.524988</span>
 <span class="go">2  0.404705  0.577046 -1.715002</span>
-
-<span class="go">[3 rows x 3 columns]</span>
 </pre></div>
 </div>
 <p>If a DataFrame is sliced with a DataFrame based boolean condition (with the same size as the original DataFrame),
@@ -981,8 +983,6 @@ the new method <code class="docutils literal notranslate"><span class="pre">Data
 <span class="go">3       NaN       NaN       NaN</span>
 <span class="go">4       NaN  0.844885  1.075770</span>
 
-<span class="go">[5 rows x 3 columns]</span>
-
 <span class="gp">In [10]: </span><span class="n">df</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">df</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
 <span class="gh">Out[10]: </span>
 <span class="go">          A         B         C</span>
@@ -992,8 +992,6 @@ the new method <code class="docutils literal notranslate"><span class="pre">Data
 <span class="go">3       NaN       NaN       NaN</span>
 <span class="go">4       NaN  0.844885  1.075770</span>
 
-<span class="go">[5 rows x 3 columns]</span>
-
 <span class="gp">In [11]: </span><span class="n">df</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">df</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="n">df</span><span class="p">)</span>
 <span class="gh">Out[11]: </span>
 <span class="go">          A         B         C</span>
@@ -1002,8 +1000,6 @@ the new method <code class="docutils literal notranslate"><span class="pre">Data
 <span class="go">2  0.404705  0.577046  1.715002</span>
 <span class="go">3  1.039268  0.370647  1.157892</span>
 <span class="go">4  1.344312  0.844885  1.075770</span>
-
-<span class="go">[5 rows x 3 columns]</span>
 </pre></div>
 </div>
 <p>Furthermore, <code class="docutils literal notranslate"><span class="pre">where</span></code> now aligns the input boolean condition (ndarray or DataFrame), such that partial selection
@@ -1020,8 +1016,6 @@ with setting is possible. This is analogous to partial setting via <code class="
 <span class="go">2  3.000000  3.000000 -1.715002</span>
 <span class="go">3 -1.039268 -0.370647 -1.157892</span>
 <span class="go">4 -1.344312  0.844885  1.075770</span>
-
-<span class="go">[5 rows x 3 columns]</span>
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">DataFrame.mask</span></code> is the inverse boolean operation of <code class="docutils literal notranslate"><span class="pre">where</span></code>.</p>
@@ -1033,8 +1027,6 @@ with setting is possible. This is analogous to partial setting via <code class="
 <span class="go">2  0.404705  0.577046       NaN</span>
 <span class="go">3       NaN       NaN       NaN</span>
 <span class="go">4       NaN  0.844885  1.075770</span>
-
-<span class="go">[5 rows x 3 columns]</span>
 </pre></div>
 </div>
 </div></blockquote>
@@ -1104,8 +1096,6 @@ converters specified (<a class="reference external" href="https://github.com/pan
 <span class="go">       A  B  C</span>
 <span class="go">0  00001  1  5</span>
 <span class="go">1  00002  2  6</span>
-
-<span class="go">[2 rows x 3 columns]</span>
 </pre></div>
 </div>
 </li>

@@ -1,0 +1,6 @@
+pandas.ExcelFile.sheet\_names
+=============================
+
+.. currentmodule:: pandas
+
+.. autoproperty:: ExcelFile.sheet_names

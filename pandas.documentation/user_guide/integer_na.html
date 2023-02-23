@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Nullable integer data type &#8212; pandas 1.5.3 documentation</title>
+    <title>Nullable integer data type &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -55,7 +55,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/integer_na';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -182,7 +182,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -311,7 +311,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -381,6 +381,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="io.html">
    IO tools (text, CSV, HDF5, …)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="pyarrow.html">
+   PyArrow Functionality
   </a>
  </li>
  <li class="toctree-l1">
@@ -530,7 +535,7 @@
 change without warning.</p>
 </div>
 <div class="versionchanged">
-<p><span class="versionmodified changed">Changed in version 1.0.0: </span>Now uses <code class="xref py py-attr docutils literal notranslate"><span class="pre">pandas.NA</span></code> as the missing value rather
+<p><span class="versionmodified changed">Changed in version 1.0.0: </span>Now uses <a class="reference internal" href="../reference/api/pandas.NA.html#pandas.NA" title="pandas.NA"><code class="xref py py-attr docutils literal notranslate"><span class="pre">pandas.NA</span></code></a> as the missing value rather
 than <code class="xref py py-attr docutils literal notranslate"><span class="pre">numpy.nan</span></code>.</p>
 </div>
 <p>In <a class="reference internal" href="missing_data.html#missing-data"><span class="std std-ref">Working with missing data</span></a>, we saw that pandas primarily uses <code class="docutils literal notranslate"><span class="pre">NaN</span></code> to represent
@@ -562,7 +567,7 @@ NumPy’s <code class="docutils literal notranslate"><span class="pre">'int64'</
 <span class="go">Length: 3, dtype: Int64</span>
 </pre></div>
 </div>
-<p>All NA-like values are replaced with <code class="xref py py-attr docutils literal notranslate"><span class="pre">pandas.NA</span></code>.</p>
+<p>All NA-like values are replaced with <a class="reference internal" href="../reference/api/pandas.NA.html#pandas.NA" title="pandas.NA"><code class="xref py py-attr docutils literal notranslate"><span class="pre">pandas.NA</span></code></a>.</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [4]: </span><span class="n">pd</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">NA</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;Int64&quot;</span><span class="p">)</span>
 <span class="gh">Out[4]: </span>
 <span class="go">&lt;IntegerArray&gt;</span>
@@ -733,9 +738,9 @@ dtype if needed.</p>
 </section>
 <section id="scalar-na-value">
 <h2>Scalar NA Value<a class="headerlink" href="#scalar-na-value" title="Permalink to this headline">#</a></h2>
-<p><a class="reference internal" href="../reference/api/pandas.arrays.IntegerArray.html#pandas.arrays.IntegerArray" title="pandas.arrays.IntegerArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">arrays.IntegerArray</span></code></a> uses <code class="xref py py-attr docutils literal notranslate"><span class="pre">pandas.NA</span></code> as its scalar
+<p><a class="reference internal" href="../reference/api/pandas.arrays.IntegerArray.html#pandas.arrays.IntegerArray" title="pandas.arrays.IntegerArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">arrays.IntegerArray</span></code></a> uses <a class="reference internal" href="../reference/api/pandas.NA.html#pandas.NA" title="pandas.NA"><code class="xref py py-attr docutils literal notranslate"><span class="pre">pandas.NA</span></code></a> as its scalar
 missing value. Slicing a single element that’s missing will return
-<code class="xref py py-attr docutils literal notranslate"><span class="pre">pandas.NA</span></code></p>
+<a class="reference internal" href="../reference/api/pandas.NA.html#pandas.NA" title="pandas.NA"><code class="xref py py-attr docutils literal notranslate"><span class="pre">pandas.NA</span></code></a></p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [25]: </span><span class="n">a</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;Int64&quot;</span><span class="p">)</span>
 
 <span class="gp">In [26]: </span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>

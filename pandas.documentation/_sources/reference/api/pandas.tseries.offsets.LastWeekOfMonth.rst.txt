@@ -13,11 +13,7 @@ pandas.tseries.offsets.LastWeekOfMonth
    .. autosummary::
       :toctree:
       
-      LastWeekOfMonth.__call__
-      LastWeekOfMonth.apply
-      LastWeekOfMonth.apply_index
       LastWeekOfMonth.copy
-      LastWeekOfMonth.isAnchored
       LastWeekOfMonth.is_anchored
       LastWeekOfMonth.is_month_end
       LastWeekOfMonth.is_month_start
@@ -26,7 +22,6 @@ pandas.tseries.offsets.LastWeekOfMonth
       LastWeekOfMonth.is_quarter_start
       LastWeekOfMonth.is_year_end
       LastWeekOfMonth.is_year_start
-      LastWeekOfMonth.onOffset
       LastWeekOfMonth.rollback
       LastWeekOfMonth.rollforward
 

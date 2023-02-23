@@ -1,0 +1,6 @@
+pandas.core.groupby.SeriesGroupBy.get\_group
+============================================
+
+.. currentmodule:: pandas.core.groupby
+
+.. automethod:: SeriesGroupBy.get_group

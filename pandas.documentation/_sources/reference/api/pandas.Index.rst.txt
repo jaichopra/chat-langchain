@@ -40,10 +40,10 @@ pandas.Index
       Index.get_level_values
       Index.get_loc
       Index.get_slice_bound
-      Index.get_value
       Index.groupby
       Index.holds_integer
       Index.identical
+      Index.infer_objects
       Index.insert
       Index.intersection
       Index.is_
@@ -52,10 +52,8 @@ pandas.Index
       Index.is_floating
       Index.is_integer
       Index.is_interval
-      Index.is_mixed
       Index.is_numeric
       Index.is_object
-      Index.is_type_compatible
       Index.isin
       Index.isna
       Index.isnull
@@ -75,7 +73,6 @@ pandas.Index
       Index.repeat
       Index.searchsorted
       Index.set_names
-      Index.set_value
       Index.shift
       Index.slice_indexer
       Index.slice_locs
@@ -87,7 +84,6 @@ pandas.Index
       Index.to_flat_index
       Index.to_frame
       Index.to_list
-      Index.to_native_types
       Index.to_numpy
       Index.to_series
       Index.tolist
@@ -111,14 +107,11 @@ pandas.Index
       
       Index.T
       Index.array
-      Index.asi8
       Index.dtype
       Index.empty
       Index.has_duplicates
       Index.hasnans
       Index.inferred_type
-      Index.is_all_dates
-      Index.is_monotonic
       Index.is_monotonic_decreasing
       Index.is_monotonic_increasing
       Index.is_unique

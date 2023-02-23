@@ -1,0 +1,6 @@
+pandas.core.groupby.DataFrameGroupBy.last
+=========================================
+
+.. currentmodule:: pandas.core.groupby
+
+.. automethod:: DataFrameGroupBy.last

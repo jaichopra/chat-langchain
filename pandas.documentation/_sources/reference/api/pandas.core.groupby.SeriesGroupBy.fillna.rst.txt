@@ -1,0 +1,6 @@
+pandas.core.groupby.SeriesGroupBy.fillna
+========================================
+
+.. currentmodule:: pandas.core.groupby
+
+.. automethod:: SeriesGroupBy.fillna

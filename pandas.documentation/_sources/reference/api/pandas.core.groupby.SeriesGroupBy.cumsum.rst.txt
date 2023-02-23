@@ -1,0 +1,6 @@
+pandas.core.groupby.SeriesGroupBy.cumsum
+========================================
+
+.. currentmodule:: pandas.core.groupby
+
+.. automethod:: SeriesGroupBy.cumsum

@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>pandas.bdate_range &#8212; pandas 1.5.3 documentation</title>
+    <title>pandas.bdate_range &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -55,7 +55,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'reference/api/pandas.bdate_range';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -182,7 +182,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -311,7 +311,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -446,6 +446,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="pandas.unique.html">
      pandas.unique
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.lreshape.html">
+     pandas.lreshape
     </a>
    </li>
    <li class="toctree-l2">
@@ -638,7 +643,7 @@
 <h1>pandas.bdate_range<a class="headerlink" href="#pandas-bdate-range" title="Permalink to this headline">#</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="pandas.bdate_range">
-<span class="sig-prename descclassname"><span class="pre">pandas.</span></span><span class="sig-name descname"><span class="pre">bdate_range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">periods</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'B'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tz</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weekmask</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">holidays</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">closed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">_NoDefault.no_default</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inclusive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.5.3/pandas/core/indexes/datetimes.py#L1138-L1246"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.bdate_range" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">pandas.</span></span><span class="sig-name descname"><span class="pre">bdate_range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">periods</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'B'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tz</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weekmask</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">holidays</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inclusive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'both'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v2.0.0rc0/pandas/core/indexes/datetimes.py#L955-L1055"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.bdate_range" title="Permalink to this definition">#</a></dt>
 <dd><p>Return a fixed frequency DatetimeIndex with business day as the default.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
@@ -649,7 +654,8 @@
 </dd>
 <dt><strong>periods</strong><span class="classifier">int, default None</span></dt><dd><p>Number of periods to generate.</p>
 </dd>
-<dt><strong>freq</strong><span class="classifier">str or DateOffset, default ‘B’ (business daily)</span></dt><dd><p>Frequency strings can have multiples, e.g. ‘5H’.</p>
+<dt><strong>freq</strong><span class="classifier">str, Timedelta, datetime.timedelta, or DateOffset, default ‘B’</span></dt><dd><p>Frequency strings can have multiples, e.g. ‘5H’. The default is
+business daily (‘B’).</p>
 </dd>
 <dt><strong>tz</strong><span class="classifier">str or None</span></dt><dd><p>Time zone name for returning localized DatetimeIndex, for example
 Asia/Beijing.</p>
@@ -665,13 +671,6 @@ value None is equivalent to ‘Mon Tue Wed Thu Fri’.</p>
 <dt><strong>holidays</strong><span class="classifier">list-like or None, default None</span></dt><dd><p>Dates to exclude from the set of valid business days, passed to
 <code class="docutils literal notranslate"><span class="pre">numpy.busdaycalendar</span></code>, only used when custom frequency strings
 are passed.</p>
-</dd>
-<dt><strong>closed</strong><span class="classifier">str, default None</span></dt><dd><p>Make the interval closed with respect to the given frequency to
-the ‘left’, ‘right’, or both sides (None).</p>
-<div class="deprecated">
-<p><span class="versionmodified deprecated">Deprecated since version 1.4.0: </span>Argument <cite>closed</cite> has been deprecated to standardize boundary inputs.
-Use <cite>inclusive</cite> instead, to set each bound as closed or open.</p>
-</div>
 </dd>
 <dt><strong>inclusive</strong><span class="classifier">{“both”, “neither”, “left”, “right”}, default “both”</span></dt><dd><p>Include boundaries; Whether to set each bound as closed or open.</p>
 <div class="versionadded">

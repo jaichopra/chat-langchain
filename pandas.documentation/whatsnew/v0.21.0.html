@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Version 0.21.0 (October 27, 2017) &#8212; pandas 1.5.3 documentation</title>
+    <title>Version 0.21.0 (October 27, 2017) &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -55,7 +55,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'whatsnew/v0.21.0';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -182,7 +182,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -311,7 +311,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -363,6 +363,18 @@
   <div class="bd-toc-item navbar-nav">
     
     <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v2.0.0.html">
+   What’s new in 2.0.0 (??)
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.5.4.html">
+   What’s new in 1.5.4 (March XX, 2023)
+  </a>
+ </li>
  <li class="toctree-l1">
   <a class="reference internal" href="v1.5.3.html">
    What’s new in 1.5.3 (January 18, 2023)
@@ -1078,9 +1090,9 @@ the <code class="docutils literal notranslate"><span class="pre">axis</span></co
 <span class="gp">In [13]: </span><span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;index&#39;</span><span class="p">)</span>
 <span class="gh">Out[13]: </span>
 <span class="go">                A  B</span>
-<span class="go">94127769263520  1  4</span>
-<span class="go">94127769263552  2  5</span>
-<span class="go">94127769263584  3  6</span>
+<span class="go">93895755218336  1  4</span>
+<span class="go">93895755218368  2  5</span>
+<span class="go">93895755218400  3  6</span>
 
 <span class="go">[3 rows x 2 columns]</span>
 </pre></div>
@@ -1109,9 +1121,9 @@ the <code class="docutils literal notranslate"><span class="pre">axis</span></co
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [16]: </span><span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="nb">id</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="nb">str</span><span class="o">.</span><span class="n">lower</span><span class="p">)</span>
 <span class="gh">Out[16]: </span>
 <span class="go">                a  b</span>
-<span class="go">94127769263520  1  4</span>
-<span class="go">94127769263552  2  5</span>
-<span class="go">94127769263584  3  6</span>
+<span class="go">93895755218336  1  4</span>
+<span class="go">93895755218368  2  5</span>
+<span class="go">93895755218400  3  6</span>
 
 <span class="go">[3 rows x 2 columns]</span>
 
@@ -1167,7 +1179,7 @@ timedeltas, we can automatically convert to the correct type</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [24]: </span><span class="n">dtype</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="n">CategoricalDtype</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])}</span>
 
 <span class="gp">In [25]: </span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">StringIO</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span><span class="o">.</span><span class="n">B</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">categories</span>
-<span class="gh">Out[25]: </span><span class="go">Int64Index([1, 2, 3], dtype=&#39;int64&#39;)</span>
+<span class="gh">Out[25]: </span><span class="go">Index([1, 2, 3], dtype=&#39;int64&#39;)</span>
 </pre></div>
 </div>
 <p>The values have been correctly interpreted as integers.</p>
@@ -1305,7 +1317,7 @@ and <code class="docutils literal notranslate"><span class="pre">pd.ExcelWriter<
 <li><p>Read/write methods that infer compression (<a class="reference internal" href="../reference/api/pandas.read_csv.html#pandas.read_csv" title="pandas.read_csv"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_csv()</span></code></a>, <a class="reference internal" href="../reference/api/pandas.read_table.html#pandas.read_table" title="pandas.read_table"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_table()</span></code></a>, <a class="reference internal" href="../reference/api/pandas.read_pickle.html#pandas.read_pickle" title="pandas.read_pickle"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_pickle()</span></code></a>, and <a class="reference internal" href="../reference/api/pandas.DataFrame.to_pickle.html#pandas.DataFrame.to_pickle" title="pandas.DataFrame.to_pickle"><code class="xref py py-meth docutils literal notranslate"><span class="pre">to_pickle()</span></code></a>) can now infer from path-like objects, such as <code class="docutils literal notranslate"><span class="pre">pathlib.Path</span></code>. (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/17206">GH17206</a>)</p></li>
 <li><p><a class="reference internal" href="../reference/api/pandas.read_sas.html#pandas.read_sas" title="pandas.read_sas"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_sas()</span></code></a> now recognizes much more of the most frequently used date (datetime) formats in SAS7BDAT files. (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/15871">GH15871</a>)</p></li>
 <li><p><a class="reference internal" href="../reference/api/pandas.DataFrame.items.html#pandas.DataFrame.items" title="pandas.DataFrame.items"><code class="xref py py-func docutils literal notranslate"><span class="pre">DataFrame.items()</span></code></a> and <a class="reference internal" href="../reference/api/pandas.Series.items.html#pandas.Series.items" title="pandas.Series.items"><code class="xref py py-func docutils literal notranslate"><span class="pre">Series.items()</span></code></a> are now present in both Python 2 and 3 and is lazy in all cases. (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/13918">GH13918</a>, <a class="reference external" href="https://github.com/pandas-dev/pandas/issues/17213">GH17213</a>)</p></li>
-<li><p><a class="reference internal" href="../reference/api/pandas.io.formats.style.Styler.where.html#pandas.io.formats.style.Styler.where" title="pandas.io.formats.style.Styler.where"><code class="xref py py-meth docutils literal notranslate"><span class="pre">pandas.io.formats.style.Styler.where()</span></code></a> has been implemented as a convenience for <a class="reference internal" href="../reference/api/pandas.io.formats.style.Styler.applymap.html#pandas.io.formats.style.Styler.applymap" title="pandas.io.formats.style.Styler.applymap"><code class="xref py py-meth docutils literal notranslate"><span class="pre">pandas.io.formats.style.Styler.applymap()</span></code></a>. (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/17474">GH17474</a>)</p></li>
+<li><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">pandas.io.formats.style.Styler.where()</span></code> has been implemented as a convenience for <a class="reference internal" href="../reference/api/pandas.io.formats.style.Styler.applymap.html#pandas.io.formats.style.Styler.applymap" title="pandas.io.formats.style.Styler.applymap"><code class="xref py py-meth docutils literal notranslate"><span class="pre">pandas.io.formats.style.Styler.applymap()</span></code></a>. (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/17474">GH17474</a>)</p></li>
 <li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">MultiIndex.is_monotonic_decreasing()</span></code> has been implemented.  Previously returned <code class="docutils literal notranslate"><span class="pre">False</span></code> in all cases. (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/16554">GH16554</a>)</p></li>
 <li><p><a class="reference internal" href="../reference/api/pandas.read_excel.html#pandas.read_excel" title="pandas.read_excel"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_excel()</span></code></a> raises <code class="docutils literal notranslate"><span class="pre">ImportError</span></code> with a better message if <code class="docutils literal notranslate"><span class="pre">xlrd</span></code> is not installed. (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/17613">GH17613</a>)</p></li>
 <li><p><a class="reference internal" href="../reference/api/pandas.DataFrame.assign.html#pandas.DataFrame.assign" title="pandas.DataFrame.assign"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.assign()</span></code></a> will preserve the original order of <code class="docutils literal notranslate"><span class="pre">**kwargs</span></code> for Python 3.6+ users instead of sorting the column names. (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/14207">GH14207</a>)</p></li>
@@ -1390,7 +1402,7 @@ whether <a class="reference external" href="https://bottleneck.readthedocs.io">b
 </div>
 <p>but for consistency with the all-NaN case, this was changed to return NaN as well:</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [35]: </span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-<span class="gh">Out[35]: </span><span class="go">0.0</span>
+<span class="gh">Out[35]: </span><span class="go">0</span>
 </pre></div>
 </div>
 </section>

@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Enhancing performance &#8212; pandas 1.5.3 documentation</title>
+    <title>Enhancing performance &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -55,7 +55,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/enhancingperf';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -182,7 +182,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -311,7 +311,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -381,6 +381,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="io.html">
    IO tools (text, CSV, HDF5, …)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="pyarrow.html">
+   PyArrow Functionality
   </a>
  </li>
  <li class="toctree-l1">
@@ -597,23 +602,23 @@ faster than the pure Python solution.</p>
 </div>
 <p>We achieve our result by using <a class="reference internal" href="../reference/api/pandas.DataFrame.apply.html#pandas.DataFrame.apply" title="pandas.DataFrame.apply"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.apply()</span></code></a> (row-wise):</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [5]: </span><span class="o">%</span><span class="k">timeit</span> df.apply(lambda x: integrate_f(x[&quot;a&quot;], x[&quot;b&quot;], x[&quot;N&quot;]), axis=1)
-<span class="go">86 ms +- 1.44 ms per loop (mean +- std. dev. of 7 runs, 10 loops each)</span>
+<span class="go">97.2 ms +- 306 us per loop (mean +- std. dev. of 7 runs, 10 loops each)</span>
 </pre></div>
 </div>
 <p>But clearly this isn’t fast enough for us. Let’s take a look and see where the
 time is spent during this operation (limited to the most time consuming
 four calls) using the <a class="reference external" href="https://ipython.readthedocs.io/en/stable/interactive/magics.html#magic-prun">prun ipython magic function</a>:</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [6]: </span><span class="o">%</span><span class="k">prun</span> -l 4 df.apply(lambda x: integrate_f(x[&quot;a&quot;], x[&quot;b&quot;], x[&quot;N&quot;]), axis=1)  # noqa E999
-<span class="go">         621327 function calls (621307 primitive calls) in 0.168 seconds</span>
+<span class="go">         618174 function calls (618156 primitive calls) in 0.187 seconds</span>
 
 <span class="go">   Ordered by: internal time</span>
-<span class="go">   List reduced from 225 to 4 due to restriction &lt;4&gt;</span>
+<span class="go">   List reduced from 182 to 4 due to restriction &lt;4&gt;</span>
 
 <span class="go">   ncalls  tottime  percall  cumtime  percall filename:lineno(function)</span>
-<span class="go">     1000    0.093    0.000    0.143    0.000 &lt;ipython-input-4-c2a74e076cf0&gt;:1(integrate_f)</span>
-<span class="go">   552423    0.050    0.000    0.050    0.000 &lt;ipython-input-3-c138bdd570e3&gt;:1(f)</span>
-<span class="go">     3000    0.004    0.000    0.018    0.000 series.py:966(__getitem__)</span>
-<span class="go">     3000    0.002    0.000    0.009    0.000 series.py:1072(_get_value)</span>
+<span class="go">     1000    0.105    0.000    0.161    0.000 &lt;ipython-input-4-c2a74e076cf0&gt;:1(integrate_f)</span>
+<span class="go">   552423    0.056    0.000    0.056    0.000 &lt;ipython-input-3-c138bdd570e3&gt;:1(f)</span>
+<span class="go">     3000    0.005    0.000    0.018    0.000 series.py:960(__getitem__)</span>
+<span class="go">     3000    0.003    0.000    0.008    0.000 series.py:1066(_get_value)</span>
 </pre></div>
 </div>
 <p>By far the majority of time is spend inside either <code class="docutils literal notranslate"><span class="pre">integrate_f</span></code> or <code class="docutils literal notranslate"><span class="pre">f</span></code>,
@@ -645,7 +650,7 @@ is here to distinguish between function versions):</p>
 to be using bleeding edge IPython for paste to play well with cell magics.</p>
 </div>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [9]: </span><span class="o">%</span><span class="k">timeit</span> df.apply(lambda x: integrate_f_plain(x[&quot;a&quot;], x[&quot;b&quot;], x[&quot;N&quot;]), axis=1)
-<span class="go">50.9 ms +- 160 us per loop (mean +- std. dev. of 7 runs, 10 loops each)</span>
+<span class="go">53.6 ms +- 50.7 us per loop (mean +- std. dev. of 7 runs, 10 loops each)</span>
 </pre></div>
 </div>
 <p>Already this has shaved a third off, not too bad for a simple copy and paste.</p>
@@ -668,23 +673,23 @@ to be using bleeding edge IPython for paste to play well with cell magics.</p>
 </pre></div>
 </div>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [11]: </span><span class="o">%</span><span class="k">timeit</span> df.apply(lambda x: integrate_f_typed(x[&quot;a&quot;], x[&quot;b&quot;], x[&quot;N&quot;]), axis=1)
-<span class="go">9.47 ms +- 279 us per loop (mean +- std. dev. of 7 runs, 100 loops each)</span>
+<span class="go">9.26 ms +- 38.4 us per loop (mean +- std. dev. of 7 runs, 100 loops each)</span>
 </pre></div>
 </div>
 <p>Now, we’re talking! It’s now over ten times faster than the original Python
 implementation, and we haven’t <em>really</em> modified the code. Let’s have another
 look at what’s eating up time:</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [12]: </span><span class="o">%</span><span class="k">prun</span> -l 4 df.apply(lambda x: integrate_f_typed(x[&quot;a&quot;], x[&quot;b&quot;], x[&quot;N&quot;]), axis=1)
-<span class="go">         68904 function calls (68884 primitive calls) in 0.026 seconds</span>
+<span class="go">         65751 function calls (65733 primitive calls) in 0.026 seconds</span>
 
 <span class="go">   Ordered by: internal time</span>
-<span class="go">   List reduced from 224 to 4 due to restriction &lt;4&gt;</span>
+<span class="go">   List reduced from 181 to 4 due to restriction &lt;4&gt;</span>
 
 <span class="go">   ncalls  tottime  percall  cumtime  percall filename:lineno(function)</span>
-<span class="go">     3000    0.004    0.000    0.018    0.000 series.py:966(__getitem__)</span>
-<span class="go">     3000    0.002    0.000    0.009    0.000 series.py:1072(_get_value)</span>
-<span class="go">    16174    0.002    0.000    0.003    0.000 {built-in method builtins.isinstance}</span>
-<span class="go">     3000    0.002    0.000    0.003    0.000 base.py:3754(get_loc)</span>
+<span class="go">     3000    0.005    0.000    0.017    0.000 series.py:960(__getitem__)</span>
+<span class="go">     3000    0.003    0.000    0.008    0.000 series.py:1066(_get_value)</span>
+<span class="go">    16136    0.002    0.000    0.003    0.000 {built-in method builtins.isinstance}</span>
+<span class="go">     3000    0.002    0.000    0.003    0.000 indexing.py:2609(check_dict_or_set_indexers)</span>
 </pre></div>
 </div>
 </section>
@@ -747,21 +752,21 @@ definition is specific to an ndarray and not the passed <a class="reference inte
 over NumPy arrays is <em>fast</em>.</p>
 </div>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [14]: </span><span class="o">%</span><span class="k">timeit</span> apply_integrate_f(df[&quot;a&quot;].to_numpy(), df[&quot;b&quot;].to_numpy(), df[&quot;N&quot;].to_numpy())
-<span class="go">854 us +- 2.62 us per loop (mean +- std. dev. of 7 runs, 1,000 loops each)</span>
+<span class="go">937 us +- 221 ns per loop (mean +- std. dev. of 7 runs, 1,000 loops each)</span>
 </pre></div>
 </div>
 <p>We’ve gotten another big improvement. Let’s check again where the time is spent:</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [15]: </span><span class="o">%</span><span class="k">prun</span> -l 4 apply_integrate_f(df[&quot;a&quot;].to_numpy(), df[&quot;b&quot;].to_numpy(), df[&quot;N&quot;].to_numpy())
-<span class="go">         85 function calls in 0.001 seconds</span>
+<span class="go">         88 function calls in 0.001 seconds</span>
 
 <span class="go">   Ordered by: internal time</span>
-<span class="go">   List reduced from 24 to 4 due to restriction &lt;4&gt;</span>
+<span class="go">   List reduced from 25 to 4 due to restriction &lt;4&gt;</span>
 
 <span class="go">   ncalls  tottime  percall  cumtime  percall filename:lineno(function)</span>
-<span class="go">        1    0.001    0.001    0.001    0.001 {built-in method _cython_magic_6991e1e67eedbb03acaf53f278f60013.apply_integrate_f}</span>
+<span class="go">        1    0.001    0.001    0.001    0.001 {built-in method _cython_magic_1d6664bca973a79bb2bf8008ecae6224.apply_integrate_f}</span>
 <span class="go">        1    0.000    0.000    0.001    0.001 {built-in method builtins.exec}</span>
-<span class="go">        3    0.000    0.000    0.000    0.000 frame.py:3758(__getitem__)</span>
-<span class="go">        3    0.000    0.000    0.000    0.000 base.py:5254(__contains__)</span>
+<span class="go">        3    0.000    0.000    0.000    0.000 frame.py:3692(__getitem__)</span>
+<span class="go">        3    0.000    0.000    0.000    0.000 base.py:429(to_numpy)</span>
 </pre></div>
 </div>
 <p>As one might expect, the majority of the time is now spent in <code class="docutils literal notranslate"><span class="pre">apply_integrate_f</span></code>,
@@ -802,7 +807,7 @@ advanced Cython techniques:</p>
 </pre></div>
 </div>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [17]: </span><span class="o">%</span><span class="k">timeit</span> apply_integrate_f_wrap(df[&quot;a&quot;].to_numpy(), df[&quot;b&quot;].to_numpy(), df[&quot;N&quot;].to_numpy())
-<span class="go">723 us +- 2.91 us per loop (mean +- std. dev. of 7 runs, 1,000 loops each)</span>
+<span class="go">821 us +- 126 ns per loop (mean +- std. dev. of 7 runs, 1,000 loops each)</span>
 </pre></div>
 </div>
 <p>Even faster, with the caveat that a bug in our Cython code (an off-by-one error,
@@ -1053,31 +1058,31 @@ statements are allowed. This includes things like <code class="docutils literal 
 <p>Now let’s compare adding them together using plain ol’ Python versus
 <a class="reference internal" href="../reference/api/pandas.eval.html#pandas.eval" title="pandas.eval"><code class="xref py py-func docutils literal notranslate"><span class="pre">eval()</span></code></a>:</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [20]: </span><span class="o">%</span><span class="k">timeit</span> df1 + df2 + df3 + df4
-<span class="go">18.3 ms +- 251 us per loop (mean +- std. dev. of 7 runs, 100 loops each)</span>
+<span class="go">12 ms +- 119 us per loop (mean +- std. dev. of 7 runs, 100 loops each)</span>
 </pre></div>
 </div>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [21]: </span><span class="o">%</span><span class="k">timeit</span> pd.eval(&quot;df1 + df2 + df3 + df4&quot;)
-<span class="go">9.56 ms +- 588 us per loop (mean +- std. dev. of 7 runs, 100 loops each)</span>
+<span class="go">6.4 ms +- 154 us per loop (mean +- std. dev. of 7 runs, 100 loops each)</span>
 </pre></div>
 </div>
 <p>Now let’s do the same thing but with comparisons:</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [22]: </span><span class="o">%</span><span class="k">timeit</span> (df1 &gt; 0) &amp; (df2 &gt; 0) &amp; (df3 &gt; 0) &amp; (df4 &gt; 0)
-<span class="go">15.9 ms +- 225 us per loop (mean +- std. dev. of 7 runs, 100 loops each)</span>
+<span class="go">11.2 ms +- 101 us per loop (mean +- std. dev. of 7 runs, 100 loops each)</span>
 </pre></div>
 </div>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [23]: </span><span class="o">%</span><span class="k">timeit</span> pd.eval(&quot;(df1 &gt; 0) &amp; (df2 &gt; 0) &amp; (df3 &gt; 0) &amp; (df4 &gt; 0)&quot;)
-<span class="go">27.9 ms +- 2.34 ms per loop (mean +- std. dev. of 7 runs, 10 loops each)</span>
+<span class="go">17.8 ms +- 58.7 us per loop (mean +- std. dev. of 7 runs, 100 loops each)</span>
 </pre></div>
 </div>
 <p><a class="reference internal" href="../reference/api/pandas.eval.html#pandas.eval" title="pandas.eval"><code class="xref py py-func docutils literal notranslate"><span class="pre">eval()</span></code></a> also works with unaligned pandas objects:</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [24]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">50</span><span class="p">))</span>
 
 <span class="gp">In [25]: </span><span class="o">%</span><span class="k">timeit</span> df1 + df2 + df3 + df4 + s
-<span class="go">30.1 ms +- 949 us per loop (mean +- std. dev. of 7 runs, 10 loops each)</span>
+<span class="go">20.7 ms +- 353 us per loop (mean +- std. dev. of 7 runs, 10 loops each)</span>
 </pre></div>
 </div>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [26]: </span><span class="o">%</span><span class="k">timeit</span> pd.eval(&quot;df1 + df2 + df3 + df4 + s&quot;)
-<span class="go">12.4 ms +- 270 us per loop (mean +- std. dev. of 7 runs, 100 loops each)</span>
+<span class="go">8.44 ms +- 180 us per loop (mean +- std. dev. of 7 runs, 100 loops each)</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -1120,15 +1125,13 @@ interested in evaluating.</p>
 This allows for <em>formulaic evaluation</em>.  The assignment target can be a
 new column name or an existing column name, and it must be a valid Python
 identifier.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">inplace</span></code> keyword determines whether this assignment will performed
-on the original <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> or return a copy with the new column.</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [29]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="n">b</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)))</span>
 
-<span class="gp">In [30]: </span><span class="n">df</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="s2">&quot;c = a + b&quot;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">In [30]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="s2">&quot;c = a + b&quot;</span><span class="p">)</span>
 
-<span class="gp">In [31]: </span><span class="n">df</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="s2">&quot;d = a + b + c&quot;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">In [31]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="s2">&quot;d = a + b + c&quot;</span><span class="p">)</span>
 
-<span class="gp">In [32]: </span><span class="n">df</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="s2">&quot;a = 1&quot;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">In [32]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="s2">&quot;a = 1&quot;</span><span class="p">)</span>
 
 <span class="gp">In [33]: </span><span class="n">df</span>
 <span class="gh">Out[33]: </span>
@@ -1140,7 +1143,7 @@ on the original <a class="reference internal" href="../reference/api/pandas.Data
 <span class="go">4  1  9  13  26</span>
 </pre></div>
 </div>
-<p>When <code class="docutils literal notranslate"><span class="pre">inplace</span></code> is set to <code class="docutils literal notranslate"><span class="pre">False</span></code>, the default, a copy of the <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> with the
+<p>A copy of the <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> with the
 new or modified columns is returned and the original frame is unchanged.</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [34]: </span><span class="n">df</span>
 <span class="gh">Out[34]: </span>
@@ -1151,7 +1154,7 @@ new or modified columns is returned and the original frame is unchanged.</p>
 <span class="go">3  1  8  11  22</span>
 <span class="go">4  1  9  13  26</span>
 
-<span class="gp">In [35]: </span><span class="n">df</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="s2">&quot;e = a - c&quot;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="gp">In [35]: </span><span class="n">df</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="s2">&quot;e = a - c&quot;</span><span class="p">)</span>
 <span class="gh">Out[35]: </span>
 <span class="go">   a  b   c   d   e</span>
 <span class="go">0  1  5   5  10  -4</span>
@@ -1177,7 +1180,6 @@ multi-line string.</p>
 <span class="gp">   ....: </span><span class="sd">c = a + b</span>
 <span class="gp">   ....: </span><span class="sd">d = a + b + c</span>
 <span class="gp">   ....: </span><span class="sd">a = 1&quot;&quot;&quot;</span><span class="p">,</span>
-<span class="gp">   ....: </span>    <span class="n">inplace</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
 <span class="gp">   ....: </span><span class="p">)</span>
 <span class="gp">   ....: </span>
 <span class="gh">Out[37]: </span>
@@ -1208,36 +1210,18 @@ multi-line string.</p>
 <span class="go">4  1  9  13  26</span>
 </pre></div>
 </div>
-<p>The <a class="reference internal" href="../reference/api/pandas.DataFrame.query.html#pandas.DataFrame.query" title="pandas.DataFrame.query"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame.query</span></code></a> method has a <code class="docutils literal notranslate"><span class="pre">inplace</span></code> keyword which determines
-whether the query modifies the original frame.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [43]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="n">b</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)))</span>
-
-<span class="gp">In [44]: </span><span class="n">df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;a &gt; 2&quot;</span><span class="p">)</span>
-<span class="gh">Out[44]: </span>
-<span class="go">   a  b</span>
-<span class="go">3  3  8</span>
-<span class="go">4  4  9</span>
-
-<span class="gp">In [45]: </span><span class="n">df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;a &gt; 2&quot;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="gp">In [46]: </span><span class="n">df</span>
-<span class="gh">Out[46]: </span>
-<span class="go">   a  b</span>
-<span class="go">3  3  8</span>
-<span class="go">4  4  9</span>
-</pre></div>
-</div>
 </section>
 <section id="local-variables">
 <h3>Local variables<a class="headerlink" href="#local-variables" title="Permalink to this headline">#</a></h3>
 <p>You must <em>explicitly reference</em> any local variable that you want to use in an
-expression by placing the <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> character in front of the name. For example,</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [47]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="s2">&quot;ab&quot;</span><span class="p">))</span>
+expression by placing the <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> character in front of the name. This mechanism is
+the same for both <a class="reference internal" href="../reference/api/pandas.DataFrame.query.html#pandas.DataFrame.query" title="pandas.DataFrame.query"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.query()</span></code></a> and <a class="reference internal" href="../reference/api/pandas.DataFrame.eval.html#pandas.DataFrame.eval" title="pandas.DataFrame.eval"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.eval()</span></code></a>. For example,</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [43]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="s2">&quot;ab&quot;</span><span class="p">))</span>
 
-<span class="gp">In [48]: </span><span class="n">newcol</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">))</span>
+<span class="gp">In [44]: </span><span class="n">newcol</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">))</span>
 
-<span class="gp">In [49]: </span><span class="n">df</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="s2">&quot;b + @newcol&quot;</span><span class="p">)</span>
-<span class="gh">Out[49]: </span>
+<span class="gp">In [45]: </span><span class="n">df</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="s2">&quot;b + @newcol&quot;</span><span class="p">)</span>
+<span class="gh">Out[45]: </span>
 <span class="go">0   -0.173926</span>
 <span class="go">1    2.493083</span>
 <span class="go">2   -0.881831</span>
@@ -1245,8 +1229,8 @@ expression by placing the <code class="docutils literal notranslate"><span class
 <span class="go">4    1.334703</span>
 <span class="go">dtype: float64</span>
 
-<span class="gp">In [50]: </span><span class="n">df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;b &lt; @newcol&quot;</span><span class="p">)</span>
-<span class="gh">Out[50]: </span>
+<span class="gp">In [46]: </span><span class="n">df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;b &lt; @newcol&quot;</span><span class="p">)</span>
+<span class="gh">Out[46]: </span>
 <span class="go">          a         b</span>
 <span class="go">0  0.863987 -0.115998</span>
 <span class="go">2 -2.621419 -1.297879</span>
@@ -1257,15 +1241,15 @@ exception telling you the variable is undefined.</p>
 <p>When using <a class="reference internal" href="../reference/api/pandas.DataFrame.eval.html#pandas.DataFrame.eval" title="pandas.DataFrame.eval"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.eval()</span></code></a> and <a class="reference internal" href="../reference/api/pandas.DataFrame.query.html#pandas.DataFrame.query" title="pandas.DataFrame.query"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.query()</span></code></a>, this allows you
 to have a local variable and a <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> column with the same
 name in an expression.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [51]: </span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">()</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [47]: </span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">()</span>
 
-<span class="gp">In [52]: </span><span class="n">df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;@a &lt; a&quot;</span><span class="p">)</span>
-<span class="gh">Out[52]: </span>
+<span class="gp">In [48]: </span><span class="n">df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;@a &lt; a&quot;</span><span class="p">)</span>
+<span class="gh">Out[48]: </span>
 <span class="go">          a         b</span>
 <span class="go">0  0.863987 -0.115998</span>
 
-<span class="gp">In [53]: </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">a</span> <span class="o">&lt;</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">]]</span>  <span class="c1"># same as the previous expression</span>
-<span class="gh">Out[53]: </span>
+<span class="gp">In [49]: </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">a</span> <span class="o">&lt;</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">]]</span>  <span class="c1"># same as the previous expression</span>
+<span class="gh">Out[49]: </span>
 <span class="go">          a         b</span>
 <span class="go">0  0.863987 -0.115998</span>
 </pre></div>
@@ -1273,18 +1257,18 @@ name in an expression.</p>
 <p>With <a class="reference internal" href="../reference/api/pandas.eval.html#pandas.eval" title="pandas.eval"><code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.eval()</span></code></a> you cannot use the <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> prefix <em>at all</em>, because it
 isn’t defined in that context. pandas will let you know this if you try to
 use <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> in a top-level call to <a class="reference internal" href="../reference/api/pandas.eval.html#pandas.eval" title="pandas.eval"><code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.eval()</span></code></a>. For example,</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [54]: </span><span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [50]: </span><span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span>
 
-<span class="gp">In [55]: </span><span class="n">pd</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="s2">&quot;@a + b&quot;</span><span class="p">)</span>
+<span class="gp">In [51]: </span><span class="n">pd</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="s2">&quot;@a + b&quot;</span><span class="p">)</span>
 <span class="go">Traceback (most recent call last):</span>
 
-<span class="go">  File ~/micromamba/envs/test/lib/python3.8/site-packages/IPython/core/interactiveshell.py:3442 in run_code</span>
+<span class="go">  File ~/micromamba/envs/test/lib/python3.8/site-packages/IPython/core/interactiveshell.py:3460 in run_code</span>
 <span class="go">    exec(code_obj, self.user_global_ns, self.user_ns)</span>
 
-<span class="go">  Cell In[55], line 1</span>
+<span class="go">  Cell In[51], line 1</span>
 <span class="go">    pd.eval(&quot;@a + b&quot;)</span>
 
-<span class="go">  File ~/work/pandas/pandas/pandas/core/computation/eval.py:342 in eval</span>
+<span class="go">  File ~/work/pandas/pandas/pandas/core/computation/eval.py:325 in eval</span>
 <span class="go">    _check_for_locals(expr, level, parser)</span>
 
 <span class="go">  File ~/work/pandas/pandas/pandas/core/computation/eval.py:167 in _check_for_locals</span>
@@ -1297,8 +1281,8 @@ use <code class="docutils literal notranslate"><span class="pre">&#64;</span></c
 </div>
 <p>In this case, you should simply refer to the variables like you would in
 standard Python.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [56]: </span><span class="n">pd</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="s2">&quot;a + b&quot;</span><span class="p">)</span>
-<span class="gh">Out[56]: </span><span class="go">3</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [52]: </span><span class="n">pd</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="s2">&quot;a + b&quot;</span><span class="p">)</span>
+<span class="gh">Out[52]: </span><span class="go">3</span>
 </pre></div>
 </div>
 </section>
@@ -1313,30 +1297,30 @@ the precedence of the corresponding boolean operations <code class="docutils lit
 <p>For example, the above conjunction can be written without parentheses.
 Alternatively, you can use the <code class="docutils literal notranslate"><span class="pre">'python'</span></code> parser to enforce strict Python
 semantics.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [57]: </span><span class="n">expr</span> <span class="o">=</span> <span class="s2">&quot;(df1 &gt; 0) &amp; (df2 &gt; 0) &amp; (df3 &gt; 0) &amp; (df4 &gt; 0)&quot;</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [53]: </span><span class="n">expr</span> <span class="o">=</span> <span class="s2">&quot;(df1 &gt; 0) &amp; (df2 &gt; 0) &amp; (df3 &gt; 0) &amp; (df4 &gt; 0)&quot;</span>
 
-<span class="gp">In [58]: </span><span class="n">x</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">parser</span><span class="o">=</span><span class="s2">&quot;python&quot;</span><span class="p">)</span>
+<span class="gp">In [54]: </span><span class="n">x</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">parser</span><span class="o">=</span><span class="s2">&quot;python&quot;</span><span class="p">)</span>
 
-<span class="gp">In [59]: </span><span class="n">expr_no_parens</span> <span class="o">=</span> <span class="s2">&quot;df1 &gt; 0 &amp; df2 &gt; 0 &amp; df3 &gt; 0 &amp; df4 &gt; 0&quot;</span>
+<span class="gp">In [55]: </span><span class="n">expr_no_parens</span> <span class="o">=</span> <span class="s2">&quot;df1 &gt; 0 &amp; df2 &gt; 0 &amp; df3 &gt; 0 &amp; df4 &gt; 0&quot;</span>
 
-<span class="gp">In [60]: </span><span class="n">y</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">expr_no_parens</span><span class="p">,</span> <span class="n">parser</span><span class="o">=</span><span class="s2">&quot;pandas&quot;</span><span class="p">)</span>
+<span class="gp">In [56]: </span><span class="n">y</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">expr_no_parens</span><span class="p">,</span> <span class="n">parser</span><span class="o">=</span><span class="s2">&quot;pandas&quot;</span><span class="p">)</span>
 
-<span class="gp">In [61]: </span><span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="n">y</span><span class="p">)</span>
-<span class="gh">Out[61]: </span><span class="go">True</span>
+<span class="gp">In [57]: </span><span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="n">y</span><span class="p">)</span>
+<span class="gh">Out[57]: </span><span class="go">True</span>
 </pre></div>
 </div>
 <p>The same expression can be “anded” together with the word <a class="reference external" href="https://docs.python.org/3/reference/expressions.html#and" title="(in Python v3.11)"><code class="xref std std-keyword docutils literal notranslate"><span class="pre">and</span></code></a> as
 well:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [62]: </span><span class="n">expr</span> <span class="o">=</span> <span class="s2">&quot;(df1 &gt; 0) &amp; (df2 &gt; 0) &amp; (df3 &gt; 0) &amp; (df4 &gt; 0)&quot;</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [58]: </span><span class="n">expr</span> <span class="o">=</span> <span class="s2">&quot;(df1 &gt; 0) &amp; (df2 &gt; 0) &amp; (df3 &gt; 0) &amp; (df4 &gt; 0)&quot;</span>
 
-<span class="gp">In [63]: </span><span class="n">x</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">parser</span><span class="o">=</span><span class="s2">&quot;python&quot;</span><span class="p">)</span>
+<span class="gp">In [59]: </span><span class="n">x</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">parser</span><span class="o">=</span><span class="s2">&quot;python&quot;</span><span class="p">)</span>
 
-<span class="gp">In [64]: </span><span class="n">expr_with_ands</span> <span class="o">=</span> <span class="s2">&quot;df1 &gt; 0 and df2 &gt; 0 and df3 &gt; 0 and df4 &gt; 0&quot;</span>
+<span class="gp">In [60]: </span><span class="n">expr_with_ands</span> <span class="o">=</span> <span class="s2">&quot;df1 &gt; 0 and df2 &gt; 0 and df3 &gt; 0 and df4 &gt; 0&quot;</span>
 
-<span class="gp">In [65]: </span><span class="n">y</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">expr_with_ands</span><span class="p">,</span> <span class="n">parser</span><span class="o">=</span><span class="s2">&quot;pandas&quot;</span><span class="p">)</span>
+<span class="gp">In [61]: </span><span class="n">y</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">expr_with_ands</span><span class="p">,</span> <span class="n">parser</span><span class="o">=</span><span class="s2">&quot;pandas&quot;</span><span class="p">)</span>
 
-<span class="gp">In [66]: </span><span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="n">y</span><span class="p">)</span>
-<span class="gh">Out[66]: </span><span class="go">True</span>
+<span class="gp">In [62]: </span><span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="n">y</span><span class="p">)</span>
+<span class="gh">Out[62]: </span><span class="go">True</span>
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">and</span></code> and <code class="docutils literal notranslate"><span class="pre">or</span></code> operators here have the same precedence that they would
@@ -1355,12 +1339,12 @@ incur a performance hit.</p>
 </div>
 <p>You can see this by using <a class="reference internal" href="../reference/api/pandas.eval.html#pandas.eval" title="pandas.eval"><code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.eval()</span></code></a> with the <code class="docutils literal notranslate"><span class="pre">'python'</span></code> engine. It
 is a bit slower (not by much) than evaluating the same expression in Python</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [67]: </span><span class="o">%</span><span class="k">timeit</span> df1 + df2 + df3 + df4
-<span class="go">17.9 ms +- 228 us per loop (mean +- std. dev. of 7 runs, 100 loops each)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [63]: </span><span class="o">%</span><span class="k">timeit</span> df1 + df2 + df3 + df4
+<span class="go">12.1 ms +- 94.4 us per loop (mean +- std. dev. of 7 runs, 100 loops each)</span>
 </pre></div>
 </div>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [68]: </span><span class="o">%</span><span class="k">timeit</span> pd.eval(&quot;df1 + df2 + df3 + df4&quot;, engine=&quot;python&quot;)
-<span class="go">19 ms +- 375 us per loop (mean +- std. dev. of 7 runs, 100 loops each)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [64]: </span><span class="o">%</span><span class="k">timeit</span> pd.eval(&quot;df1 + df2 + df3 + df4&quot;, engine=&quot;python&quot;)
+<span class="go">13.1 ms +- 155 us per loop (mean +- std. dev. of 7 runs, 100 loops each)</span>
 </pre></div>
 </div>
 </section>
@@ -1373,14 +1357,7 @@ significant performance benefit.  Here is a plot showing the running time of
 <a class="reference internal" href="../reference/api/pandas.eval.html#pandas.eval" title="pandas.eval"><code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.eval()</span></code></a> as function of the size of the frame involved in the
 computation. The two lines are two different engines.</p>
 <img alt="../_images/eval-perf.png" src="../_images/eval-perf.png" />
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Operations with smallish objects (around 15k-20k rows) are faster using
-plain Python:</p>
-<blockquote>
-<div><img alt="../_images/eval-perf-small.png" src="../_images/eval-perf-small.png" />
-</div></blockquote>
-</div>
+<p>You will only see the performance benefits of using the <code class="docutils literal notranslate"><span class="pre">numexpr</span></code> engine with <a class="reference internal" href="../reference/api/pandas.eval.html#pandas.eval" title="pandas.eval"><code class="xref py py-func docutils literal notranslate"><span class="pre">pandas.eval()</span></code></a> if your frame has more than approximately 100,000 rows.</p>
 <p>This plot was created using a <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> with 3 columns each containing
 floating point values generated using <code class="docutils literal notranslate"><span class="pre">numpy.random.randn()</span></code>.</p>
 </section>
@@ -1395,13 +1372,13 @@ can’t pass <code class="docutils literal notranslate"><span class="pre">object
 evaluated in Python space.</p>
 <p>The upshot is that this <em>only</em> applies to object-dtype expressions. So, if
 you have an expression–for example</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [69]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [65]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
 <span class="gp">   ....: </span>    <span class="p">{</span><span class="s2">&quot;strings&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="s2">&quot;cba&quot;</span><span class="p">),</span> <span class="mi">3</span><span class="p">),</span> <span class="s2">&quot;nums&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="mi">3</span><span class="p">)}</span>
 <span class="gp">   ....: </span><span class="p">)</span>
 <span class="gp">   ....: </span>
 
-<span class="gp">In [70]: </span><span class="n">df</span>
-<span class="gh">Out[70]: </span>
+<span class="gp">In [66]: </span><span class="n">df</span>
+<span class="gh">Out[66]: </span>
 <span class="go">  strings  nums</span>
 <span class="go">0       c     0</span>
 <span class="go">1       c     0</span>
@@ -1413,8 +1390,8 @@ you have an expression–for example</p>
 <span class="go">7       a     2</span>
 <span class="go">8       a     2</span>
 
-<span class="gp">In [71]: </span><span class="n">df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;strings == &#39;a&#39; and nums == 1&quot;</span><span class="p">)</span>
-<span class="gh">Out[71]: </span>
+<span class="gp">In [67]: </span><span class="n">df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;strings == &#39;a&#39; and nums == 1&quot;</span><span class="p">)</span>
+<span class="gh">Out[67]: </span>
 <span class="go">Empty DataFrame</span>
 <span class="go">Columns: [strings, nums]</span>
 <span class="go">Index: []</span>

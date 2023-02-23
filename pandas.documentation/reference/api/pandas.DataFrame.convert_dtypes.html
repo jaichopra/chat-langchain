@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>pandas.DataFrame.convert_dtypes &#8212; pandas 1.5.3 documentation</title>
+    <title>pandas.DataFrame.convert_dtypes &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -55,7 +55,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'reference/api/pandas.DataFrame.convert_dtypes';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -182,7 +182,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -311,7 +311,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -524,11 +524,6 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="pandas.DataFrame.iteritems.html">
-     pandas.DataFrame.iteritems
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="pandas.DataFrame.keys.html">
      pandas.DataFrame.keys
     </a>
@@ -541,11 +536,6 @@
    <li class="toctree-l2">
     <a class="reference internal" href="pandas.DataFrame.itertuples.html">
      pandas.DataFrame.itertuples
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.DataFrame.lookup.html">
-     pandas.DataFrame.lookup
     </a>
    </li>
    <li class="toctree-l2">
@@ -586,6 +576,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="pandas.DataFrame.query.html">
      pandas.DataFrame.query
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.__add__.html">
+     pandas.DataFrame.__add__
     </a>
    </li>
    <li class="toctree-l2">
@@ -846,11 +841,6 @@
    <li class="toctree-l2">
     <a class="reference internal" href="pandas.DataFrame.kurtosis.html">
      pandas.DataFrame.kurtosis
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.DataFrame.mad.html">
-     pandas.DataFrame.mad
     </a>
    </li>
    <li class="toctree-l2">
@@ -1224,11 +1214,6 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="pandas.DataFrame.append.html">
-     pandas.DataFrame.append
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="pandas.DataFrame.assign.html">
      pandas.DataFrame.assign
     </a>
@@ -1266,16 +1251,6 @@
    <li class="toctree-l2">
     <a class="reference internal" href="pandas.DataFrame.shift.html">
      pandas.DataFrame.shift
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.DataFrame.slice_shift.html">
-     pandas.DataFrame.slice_shift
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.DataFrame.tshift.html">
-     pandas.DataFrame.tshift
     </a>
    </li>
    <li class="toctree-l2">
@@ -1613,7 +1588,7 @@
 <h1>pandas.DataFrame.convert_dtypes<a class="headerlink" href="#pandas-dataframe-convert-dtypes" title="Permalink to this headline">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="pandas.DataFrame.convert_dtypes">
-<span class="sig-prename descclassname"><span class="pre">DataFrame.</span></span><span class="sig-name descname"><span class="pre">convert_dtypes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">infer_objects</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">convert_string</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">convert_integer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">convert_boolean</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">convert_floating</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.5.3/pandas/core/generic.py#L6468-L6630"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.DataFrame.convert_dtypes" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">DataFrame.</span></span><span class="sig-name descname"><span class="pre">convert_dtypes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">infer_objects</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">convert_string</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">convert_integer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">convert_boolean</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">convert_floating</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v2.0.0rc0/pandas/core/generic.py#L6499-L6668"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.DataFrame.convert_dtypes" title="Permalink to this definition">#</a></dt>
 <dd><p>Convert columns to best possible dtypes using dtypes supporting <code class="docutils literal notranslate"><span class="pre">pd.NA</span></code>.</p>
 <div class="versionadded">
 <p><span class="versionmodified added">New in version 1.0.0.</span></p>
@@ -1662,7 +1637,7 @@ dtypes if the floats can be faithfully casted to integers.</p>
 <p>By default, <code class="docutils literal notranslate"><span class="pre">convert_dtypes</span></code> will attempt to convert a Series (or each
 Series in a DataFrame) to dtypes that support <code class="docutils literal notranslate"><span class="pre">pd.NA</span></code>. By using the options
 <code class="docutils literal notranslate"><span class="pre">convert_string</span></code>, <code class="docutils literal notranslate"><span class="pre">convert_integer</span></code>, <code class="docutils literal notranslate"><span class="pre">convert_boolean</span></code> and
-<code class="docutils literal notranslate"><span class="pre">convert_boolean</span></code>, it is possible to turn off individual conversions
+<code class="docutils literal notranslate"><span class="pre">convert_floating</span></code>, it is possible to turn off individual conversions
 to <code class="docutils literal notranslate"><span class="pre">StringDtype</span></code>, the integer extension types, <code class="docutils literal notranslate"><span class="pre">BooleanDtype</span></code>
 or floating extension types, respectively.</p>
 <p>For object-dtyped columns, if <code class="docutils literal notranslate"><span class="pre">infer_objects</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code>, use the inference
@@ -1679,6 +1654,13 @@ to the nullable floating extension type.</p>
 </div>
 <p>In the future, as new dtypes are added that support <code class="docutils literal notranslate"><span class="pre">pd.NA</span></code>, the results
 of this method will change to support those new dtypes.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 2.0: </span>The nullable dtype implementation can be configured by calling
+<code class="docutils literal notranslate"><span class="pre">pd.set_option(&quot;mode.dtype_backend&quot;,</span> <span class="pre">&quot;pandas&quot;)</span></code> to use
+numpy-backed nullable dtypes or
+<code class="docutils literal notranslate"><span class="pre">pd.set_option(&quot;mode.dtype_backend&quot;,</span> <span class="pre">&quot;pyarrow&quot;)</span></code> to use
+pyarrow-backed nullable dtypes (using <code class="docutils literal notranslate"><span class="pre">pd.ArrowDtype</span></code>).</p>
+</div>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="p">{</span>
@@ -1720,12 +1702,12 @@ of this method will change to support those new dtypes.</p>
 </pre></div>
 </div>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dfn</span><span class="o">.</span><span class="n">dtypes</span>
-<span class="go">a      Int32</span>
-<span class="go">b     string</span>
-<span class="go">c    boolean</span>
-<span class="go">d     string</span>
-<span class="go">e      Int64</span>
-<span class="go">f    Float64</span>
+<span class="go">a             Int32</span>
+<span class="go">b    string[python]</span>
+<span class="go">c           boolean</span>
+<span class="go">d    string[python]</span>
+<span class="go">e             Int64</span>
+<span class="go">f           Float64</span>
 <span class="go">dtype: object</span>
 </pre></div>
 </div>

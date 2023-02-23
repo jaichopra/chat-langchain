@@ -13,11 +13,7 @@ pandas.tseries.offsets.Hour
    .. autosummary::
       :toctree:
       
-      Hour.__call__
-      Hour.apply
-      Hour.apply_index
       Hour.copy
-      Hour.isAnchored
       Hour.is_anchored
       Hour.is_month_end
       Hour.is_month_start
@@ -26,7 +22,6 @@ pandas.tseries.offsets.Hour
       Hour.is_quarter_start
       Hour.is_year_end
       Hour.is_year_start
-      Hour.onOffset
       Hour.rollback
       Hour.rollforward
 

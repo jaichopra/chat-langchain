@@ -13,11 +13,7 @@ pandas.tseries.offsets.DateOffset
    .. autosummary::
       :toctree:
       
-      DateOffset.__call__
-      DateOffset.apply
-      DateOffset.apply_index
       DateOffset.copy
-      DateOffset.isAnchored
       DateOffset.is_anchored
       DateOffset.is_month_end
       DateOffset.is_month_start
@@ -26,7 +22,6 @@ pandas.tseries.offsets.DateOffset
       DateOffset.is_quarter_start
       DateOffset.is_year_end
       DateOffset.is_year_start
-      DateOffset.onOffset
       DateOffset.rollback
       DateOffset.rollforward
 

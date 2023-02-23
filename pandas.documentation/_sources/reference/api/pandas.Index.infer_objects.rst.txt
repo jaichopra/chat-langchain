@@ -1,0 +1,6 @@
+pandas.Index.infer\_objects
+===========================
+
+.. currentmodule:: pandas
+
+.. automethod:: Index.infer_objects

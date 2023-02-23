@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Version 0.16.2 (June 12, 2015) &#8212; pandas 1.5.3 documentation</title>
+    <title>Version 0.16.2 (June 12, 2015) &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -55,7 +55,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'whatsnew/v0.16.2';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -182,7 +182,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -311,7 +311,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -363,6 +363,18 @@
   <div class="bd-toc-item navbar-nav">
     
     <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v2.0.0.html">
+   What’s new in 2.0.0 (??)
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.5.4.html">
+   What’s new in 1.5.4 (March XX, 2023)
+  </a>
+ </li>
  <li class="toctree-l1">
   <a class="reference internal" href="v1.5.3.html">
    What’s new in 1.5.3 (January 18, 2023)
@@ -923,29 +935,29 @@ of <code class="docutils literal notranslate"><span class="pre">(function,</span
 
 <span class="go"># sm.ols takes (formula, data)</span>
 <span class="gp">In [3]: </span><span class="p">(</span>
-<span class="gp">   ...: </span>    <span class="n">bb</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;h &gt; 0&quot;</span><span class="p">)</span>
-<span class="gp">   ...: </span>    <span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">ln_h</span><span class="o">=</span><span class="k">lambda</span> <span class="n">df</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">h</span><span class="p">))</span>
-<span class="gp">   ...: </span>    <span class="o">.</span><span class="n">pipe</span><span class="p">((</span><span class="n">sm</span><span class="o">.</span><span class="n">ols</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">),</span> <span class="s2">&quot;hr ~ ln_h + year + g + C(lg)&quot;</span><span class="p">)</span>
-<span class="gp">   ...: </span>    <span class="o">.</span><span class="n">fit</span><span class="p">()</span>
-<span class="gp">   ...: </span>    <span class="o">.</span><span class="n">summary</span><span class="p">()</span>
-<span class="gp">   ...: </span><span class="p">)</span>
-<span class="gp">   ...: </span>
-<span class="gh">Out[3]: </span>
+<span class="go">...:     bb.query(&quot;h &gt; 0&quot;)</span>
+<span class="go">...:     .assign(ln_h=lambda df: np.log(df.h))</span>
+<span class="go">...:     .pipe((sm.ols, &quot;data&quot;), &quot;hr ~ ln_h + year + g + C(lg)&quot;)</span>
+<span class="go">...:     .fit()</span>
+<span class="go">...:     .summary()</span>
+<span class="go">...: )</span>
+<span class="go">...:</span>
+<span class="gh">Out[3]:</span>
 <span class="go">&lt;class &#39;statsmodels.iolib.summary.Summary&#39;&gt;</span>
 <span class="go">&quot;&quot;&quot;</span>
-<span class="go">                            OLS Regression Results                            </span>
+<span class="go">                            OLS Regression Results</span>
 <span class="go">==============================================================================</span>
 <span class="go">Dep. Variable:                     hr   R-squared:                       0.685</span>
 <span class="go">Model:                            OLS   Adj. R-squared:                  0.665</span>
 <span class="go">Method:                 Least Squares   F-statistic:                     34.28</span>
-<span class="go">Date:                Thu, 19 Jan 2023   Prob (F-statistic):           3.48e-15</span>
-<span class="go">Time:                        05:10:48   Log-Likelihood:                -205.92</span>
+<span class="go">Date:                Tue, 22 Nov 2022   Prob (F-statistic):           3.48e-15</span>
+<span class="go">Time:                        05:35:23   Log-Likelihood:                -205.92</span>
 <span class="go">No. Observations:                  68   AIC:                             421.8</span>
 <span class="go">Df Residuals:                      63   BIC:                             432.9</span>
-<span class="go">Df Model:                           4                                         </span>
-<span class="go">Covariance Type:            nonrobust                                         </span>
+<span class="go">Df Model:                           4</span>
+<span class="go">Covariance Type:            nonrobust</span>
 <span class="go">===============================================================================</span>
-<span class="go">                  coef    std err          t      P&gt;|t|      [0.025      0.975]</span>
+<span class="go">                coef    std err          t      P&gt;|t|      [0.025      0.975]</span>
 <span class="gt">-------------------------------------------------------------------------------</span>
 <span class="n">Intercept</span>   <span class="o">-</span><span class="mf">8484.7720</span>   <span class="mf">4664.146</span>     <span class="o">-</span><span class="mf">1.819</span>      <span class="mf">0.074</span>   <span class="o">-</span><span class="mf">1.78e+04</span>     <span class="mf">835.780</span>
 <span class="n">C</span><span class="p">(</span><span class="n">lg</span><span class="p">)[</span><span class="n">T</span><span class="o">.</span><span class="n">NL</span><span class="p">]</span>    <span class="o">-</span><span class="mf">2.2736</span>      <span class="mf">1.325</span>     <span class="o">-</span><span class="mf">1.716</span>      <span class="mf">0.091</span>      <span class="o">-</span><span class="mf">4.922</span>       <span class="mf">0.375</span>

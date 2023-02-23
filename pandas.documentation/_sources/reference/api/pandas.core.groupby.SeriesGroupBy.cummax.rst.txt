@@ -1,0 +1,6 @@
+pandas.core.groupby.SeriesGroupBy.cummax
+========================================
+
+.. currentmodule:: pandas.core.groupby
+
+.. automethod:: SeriesGroupBy.cummax

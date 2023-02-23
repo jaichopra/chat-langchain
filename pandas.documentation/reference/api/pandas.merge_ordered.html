@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>pandas.merge_ordered &#8212; pandas 1.5.3 documentation</title>
+    <title>pandas.merge_ordered &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -55,7 +55,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'reference/api/pandas.merge_ordered';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -182,7 +182,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -311,7 +311,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -446,6 +446,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="pandas.unique.html">
      pandas.unique
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.lreshape.html">
+     pandas.lreshape
     </a>
    </li>
    <li class="toctree-l2">
@@ -638,15 +643,15 @@
 <h1>pandas.merge_ordered<a class="headerlink" href="#pandas-merge-ordered" title="Permalink to this headline">#</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="pandas.merge_ordered">
-<span class="sig-prename descclassname"><span class="pre">pandas.</span></span><span class="sig-name descname"><span class="pre">merge_ordered</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">left</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">left_on</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right_on</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">left_by</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right_by</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fill_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">suffixes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('_x',</span> <span class="pre">'_y')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">how</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'outer'</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.5.3/pandas/core/reshape/merge.py#L187-L325"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.merge_ordered" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">pandas.</span></span><span class="sig-name descname"><span class="pre">merge_ordered</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">left</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">left_on</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right_on</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">left_by</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right_by</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fill_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">suffixes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('_x',</span> <span class="pre">'_y')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">how</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'outer'</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v2.0.0rc0/pandas/core/reshape/merge.py#L214-L352"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.merge_ordered" title="Permalink to this definition">#</a></dt>
 <dd><p>Perform a merge for ordered data with optional filling/interpolation.</p>
 <p>Designed for ordered data like time series data. Optionally
 perform group-wise merge (see examples).</p>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl>
-<dt><strong>left</strong><span class="classifier">DataFrame</span></dt><dd></dd>
-<dt><strong>right</strong><span class="classifier">DataFrame</span></dt><dd></dd>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>left</strong><span class="classifier">DataFrame or named Series</span></dt><dd></dd>
+<dt><strong>right</strong><span class="classifier">DataFrame or named Series</span></dt><dd></dd>
 <dt><strong>on</strong><span class="classifier">label or list</span></dt><dd><p>Field names to join on. Must be found in both DataFrames.</p>
 </dd>
 <dt><strong>left_on</strong><span class="classifier">label or list, or array-like</span></dt><dd><p>Field names to join on in left DataFrame. Can be a vector or list of
@@ -657,10 +662,10 @@ the join key instead of columns.</p>
 left_on docs.</p>
 </dd>
 <dt><strong>left_by</strong><span class="classifier">column name or list of column names</span></dt><dd><p>Group left DataFrame by group columns and merge piece by piece with
-right DataFrame.</p>
+right DataFrame. Must be None if either left or right are a Series.</p>
 </dd>
 <dt><strong>right_by</strong><span class="classifier">column name or list of column names</span></dt><dd><p>Group right DataFrame by group columns and merge piece by piece with
-left DataFrame.</p>
+left DataFrame. Must be None if either left or right are a Series.</p>
 </dd>
 <dt><strong>fill_method</strong><span class="classifier">{‘ffill’, None}, default None</span></dt><dd><p>Interpolation method for data.</p>
 </dd>
@@ -670,9 +675,6 @@ indicating the suffix to add to overlapping column names in
 of a string to indicate that the column name from <cite>left</cite> or
 <cite>right</cite> should be left as-is, with no suffix. At least one of the
 values must not be None.</p>
-<div class="versionchanged">
-<p><span class="versionmodified changed">Changed in version 0.25.0.</span></p>
-</div>
 </dd>
 <dt><strong>how</strong><span class="classifier">{‘left’, ‘right’, ‘outer’, ‘inner’}, default ‘outer’</span></dt><dd><ul class="simple">
 <li><p>left: use only keys from left frame (SQL: left outer join)</p></li>
@@ -685,7 +687,7 @@ values must not be None.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt>DataFrame</dt><dd><p>The merged DataFrame output type will the be same as
+<dt>DataFrame</dt><dd><p>The merged DataFrame output type will be the same as
 ‘left’, if it is a subclass of DataFrame.</p>
 </dd>
 </dl>
@@ -701,7 +703,8 @@ values must not be None.</p>
 </dl>
 </div>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">merge_ordered</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="p">{</span>
 <span class="gp">... </span>        <span class="s2">&quot;key&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="s2">&quot;e&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="s2">&quot;e&quot;</span><span class="p">],</span>
 <span class="gp">... </span>        <span class="s2">&quot;lvalue&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>

@@ -1,6 +1,0 @@
-pandas.tseries.offsets.BQuarterEnd.apply\_index
-===============================================
-
-.. currentmodule:: pandas.tseries.offsets
-
-.. automethod:: BQuarterEnd.apply_index

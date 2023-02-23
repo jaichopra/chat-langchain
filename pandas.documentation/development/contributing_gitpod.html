@@ -1,0 +1,921 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Using Gitpod for pandas development &#8212; pandas 2.0.0rc0 documentation</title>
+  <script>
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=9b1a4fa89bdd0e95b23b" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=9b1a4fa89bdd0e95b23b" rel="stylesheet">
+
+  
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/6.1.2/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/getting_started.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/pandas.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=9b1a4fa89bdd0e95b23b">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/toggleprompt.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script async="async" src="https://www.google-analytics.com/analytics.js"></script>
+    <script>
+                    window.ga = window.ga || function () {
+                        (ga.q = ga.q || []).push(arguments) };
+                    ga.l = +new Date;
+                    ga('create', 'UA-27880019-2', 'auto');
+                    ga('set', 'anonymizeIp', true);
+                    ga('send', 'pageview');
+                </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'development/contributing_gitpod';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
+        </script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Contributing to the documentation" href="contributing_documentation.html" />
+    <link rel="prev" title="Creating a development environment" href="contributing_environment.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fas fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../_static/pandas.svg" class="logo__image only-light" alt="Logo image">
+    <img src="https://pandas.pydata.org/static/img/pandas_white.svg" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="../getting_started/index.html">
+                        Getting started
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../user_guide/index.html">
+                        User Guide
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../reference/index.html">
+                        API reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item current active">
+                    <a class="nav-link" href="index.html">
+                        Development
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../whatsnew/index.html">
+                        Release notes
+                    </a>
+                </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      <div class="navbar-end-item navbar-end__search-button-container">
+        
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search">
+  <i class="fas fa-search"></i>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pandas-dev/pandas" title="GitHub" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/pandas_dev" title="Twitter" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  <div class="search-button-container--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search">
+  <i class="fas fa-search"></i>
+</button>
+  </div>
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fas fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="../getting_started/index.html">
+                        Getting started
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../user_guide/index.html">
+                        User Guide
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../reference/index.html">
+                        API reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item current active">
+                    <a class="nav-link" href="index.html">
+                        Development
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../whatsnew/index.html">
+                        Release notes
+                    </a>
+                </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+      </div>
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/pandas-dev/pandas" title="GitHub" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/pandas_dev" title="Twitter" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item navbar-nav">
+    
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="contributing.html">
+   Contributing to pandas
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="contributing_environment.html">
+   Creating a development environment
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label class="toctree-toggle" for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Using Gitpod for pandas development
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="contributing_documentation.html">
+   Contributing to the documentation
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label class="toctree-toggle" for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="contributing_docstring.html">
+     pandas docstring guide
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="contributing_codebase.html">
+   Contributing to the code base
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="maintaining.html">
+   pandas maintenance
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="internals.html">
+   Internals
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="copy_on_write.html">
+   Copy on write
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="debugging_extensions.html">
+   Debugging C extensions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="extending.html">
+   Extending pandas
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="developer.html">
+   Developer
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="policies.html">
+   Policies
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="roadmap.html">
+   Roadmap
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="community.html">
+   Contributor community
+  </a>
+ </li>
+</ul>
+
+    
+  </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+      </div>
+      <main class="bd-main">
+        
+        
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+            </div>
+            
+            
+            <article class="bd-article" role="main">
+              
+  <section id="using-gitpod-for-pandas-development">
+<span id="contributing-gitpod"></span><h1>Using Gitpod for pandas development<a class="headerlink" href="#using-gitpod-for-pandas-development" title="Permalink to this headline">#</a></h1>
+<p>This section of the documentation will guide you through:</p>
+<ul class="simple">
+<li><p>using Gitpod for your pandas development environment</p></li>
+<li><p>creating a personal fork of the pandas repository on GitHub</p></li>
+<li><p>a quick tour of pandas and VSCode</p></li>
+<li><p>working on the pandas documentation in Gitpod</p></li>
+</ul>
+<section id="gitpod">
+<h2>Gitpod<a class="headerlink" href="#gitpod" title="Permalink to this headline">#</a></h2>
+<p><a class="reference external" href="https://www.gitpod.io/">Gitpod</a>  is an open-source platform for automated and ready-to-code
+development environments. It enables developers to describe their dev
+environment as code and start instant and fresh development environments for
+each new task directly from your browser. This reduces the need to install local
+development environments and deal with incompatible dependencies.</p>
+</section>
+<section id="gitpod-github-integration">
+<h2>Gitpod GitHub integration<a class="headerlink" href="#gitpod-github-integration" title="Permalink to this headline">#</a></h2>
+<p>To be able to use Gitpod, you will need to have the Gitpod app installed on your
+GitHub account, so if
+you do not have an account yet, you will need to create one first.</p>
+<p>To get started just login at <a class="reference external" href="https://www.gitpod.io/">Gitpod</a>, and grant the appropriate permissions to GitHub.</p>
+<p>We have built a python 3.8 environment and all development dependencies will
+install when the environment starts.</p>
+</section>
+<section id="forking-the-pandas-repository">
+<h2>Forking the pandas repository<a class="headerlink" href="#forking-the-pandas-repository" title="Permalink to this headline">#</a></h2>
+<p>The best way to work on pandas as a contributor is by making a fork of the
+repository first.</p>
+<ol class="arabic simple">
+<li><p>Browse to the <a class="reference external" href="https://github.com/pandas-dev/pandas">pandas repository on GitHub</a> and <a class="reference external" href="https://help.github.com/en/articles/fork-a-repo">create your own fork</a>.</p></li>
+<li><p>Browse to your fork. Your fork will have a URL like
+<a class="reference external" href="https://github.com/noatamir/pandas-dev">https://github.com/noatamir/pandas-dev</a>, except with your GitHub username in place of
+<code class="docutils literal notranslate"><span class="pre">noatamir</span></code>.</p></li>
+</ol>
+</section>
+<section id="starting-gitpod">
+<h2>Starting Gitpod<a class="headerlink" href="#starting-gitpod" title="Permalink to this headline">#</a></h2>
+<p>Once you have authenticated to Gitpod through GitHub, you can install the
+<a class="reference external" href="https://www.gitpod.io/docs/browser-extension">Gitpod Chromium or Firefox browser extension</a>
+which will add a <strong>Gitpod</strong> button next to the <strong>Code</strong> button in the
+repository:</p>
+<img alt="pandas repository with Gitpod button screenshot" src="../_images/pandas-github.png" />
+<ol class="arabic">
+<li><p>If you install the extension - you can click the <strong>Gitpod</strong> button to start
+a new workspace.</p></li>
+<li><p>Alternatively, if you do not want to install the browser extension, you can
+visit <a class="reference external" href="https://gitpod.io/#https://github.com/USERNAME/pandas">https://gitpod.io/#https://github.com/USERNAME/pandas</a> replacing
+<code class="docutils literal notranslate"><span class="pre">USERNAME</span></code> with your GitHub username.</p></li>
+<li><p>In both cases, this will open a new tab on your web browser and start
+building your development environment. Please note this can take a few
+minutes.</p></li>
+<li><p>Once the build is complete, you will be directed to your workspace,
+including the VSCode editor and all the dependencies you need to work on
+pandas. The first time you start your workspace, you will notice that there
+might be some actions running. This will ensure that you have a development
+version of pandas installed.</p></li>
+<li><p>When your workspace is ready, you can <a class="reference internal" href="contributing_codebase.html#contributing-running-tests"><span class="std std-ref">test the build</span></a> by
+entering:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python -m pytest pandas
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="quick-workspace-tour">
+<h2>Quick workspace tour<a class="headerlink" href="#quick-workspace-tour" title="Permalink to this headline">#</a></h2>
+<p>Gitpod uses VSCode as the editor. If you have not used this editor before, you
+can check the Getting started <a class="reference external" href="https://code.visualstudio.com/docs/getstarted/tips-and-tricks">VSCode docs</a> to familiarize yourself with it.</p>
+<p>Your workspace will look similar to the image below:</p>
+<img alt="Gitpod workspace screenshot" src="../_images/gitpod-workspace.png" />
+<p>We have marked some important sections in the editor:</p>
+<ol class="arabic simple">
+<li><p>Your current Python interpreter - by default, this is <code class="docutils literal notranslate"><span class="pre">pandas-dev</span></code> and
+should be displayed in the status bar and on your terminal. You do not need
+to activate the conda environment as this will always be activated for you.</p></li>
+<li><p>Your current branch is always displayed in the status bar. You can also use
+this button to change or create branches.</p></li>
+<li><p>GitHub Pull Requests extension - you can use this to work with Pull Requests
+from your workspace.</p></li>
+<li><p>Marketplace extensions - we have added some essential extensions to the pandas
+Gitpod. Still, you can also install other extensions or syntax highlighting
+themes for your user, and these will be preserved for you.</p></li>
+<li><p>Your workspace directory - by default, it is <code class="docutils literal notranslate"><span class="pre">/workspace/pandas-dev</span></code>. <strong>Do not
+change this</strong> as this is the only directory preserved in Gitpod.</p></li>
+</ol>
+<p>We have also pre-installed a few tools and VSCode extensions to help with the
+development experience:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=lextudio.restructuredtext">VSCode rst extension</a></p></li>
+<li><p><a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one">Markdown All in One</a></p></li>
+<li><p><a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens">VSCode Gitlens extension</a></p></li>
+<li><p><a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph">VSCode Git Graph extension</a></p></li>
+</ul>
+</section>
+<section id="development-workflow-with-gitpod">
+<h2>Development workflow with Gitpod<a class="headerlink" href="#development-workflow-with-gitpod" title="Permalink to this headline">#</a></h2>
+<p>The  <a class="reference internal" href="contributing.html#contributing"><span class="std std-ref">Contributing to pandas</span></a> section of this documentation contains
+information regarding the pandas development workflow. Make sure to check this
+before working on your contributions.</p>
+<p>When using Gitpod, git is pre configured for you:</p>
+<ol class="arabic">
+<li><p>You do not need to configure your git username, and email as this should be
+done for you as you authenticated through GitHub. Unless you are using GitHub
+feature to keep email address private. You can check the git
+configuration with the command <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">config</span> <span class="pre">--list</span></code> in your terminal. Use
+<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">config</span> <span class="pre">--global</span> <span class="pre">user.email</span> <span class="pre">“your-secret-email&#64;users.noreply.github.com”</span></code>
+to set your email address to the one you use to make commits with your github
+profile.</p></li>
+<li><p>As you started your workspace from your own pandas fork, you will by default
+have both <code class="docutils literal notranslate"><span class="pre">upstream</span></code> and <code class="docutils literal notranslate"><span class="pre">origin</span></code> added as remotes. You can verify this by
+typing <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">remote</span></code> on your terminal or by clicking on the <strong>branch name</strong>
+on the status bar (see image below).</p>
+<img alt="Gitpod workspace branches plugin screenshot" src="../_images/pandas-gitpod-branches.png" />
+</li>
+</ol>
+</section>
+<section id="rendering-the-pandas-documentation">
+<h2>Rendering the pandas documentation<a class="headerlink" href="#rendering-the-pandas-documentation" title="Permalink to this headline">#</a></h2>
+<p>You can find the detailed documentation on how rendering the documentation with
+Sphinx works in the <a class="reference internal" href="contributing_documentation.html#contributing-howto-build-docs"><span class="std std-ref">How to build the pandas documentation</span></a> section. To build the full
+docs you need to run the following command in the docs directory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd docs
+$ python make.py html
+</pre></div>
+</div>
+<p>Alternatively you can build a single page with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">make</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">single</span> <span class="n">development</span><span class="o">/</span><span class="n">contributing_gitpod</span><span class="o">.</span><span class="n">rst</span>
+</pre></div>
+</div>
+<p>You have two main options to render the documentation in Gitpod.</p>
+<section id="option-1-using-liveserve">
+<h3>Option 1: using Liveserve<a class="headerlink" href="#option-1-using-liveserve" title="Permalink to this headline">#</a></h3>
+<ol class="arabic">
+<li><p>View the documentation in <code class="docutils literal notranslate"><span class="pre">pandas/doc/build/html</span></code>.</p></li>
+<li><p>To see the rendered version of a page, you can right-click on the <code class="docutils literal notranslate"><span class="pre">.html</span></code>
+file and click on <strong>Open with Live Serve</strong>. Alternatively, you can open the
+file in the editor and click on the <strong>Go live</strong> button on the status bar.</p>
+<blockquote>
+<div><img alt="Gitpod workspace VSCode start live serve screenshot" src="../_images/vscode-statusbar.png" />
+</div></blockquote>
+</li>
+<li><p>A simple browser will open to the right-hand side of the editor. We recommend
+closing it and click on the <strong>Open in browser</strong> button in the pop-up.</p></li>
+<li><p>To stop the server click on the <strong>Port: 5500</strong> button on the status bar.</p></li>
+</ol>
+</section>
+<section id="option-2-using-the-rst-extension">
+<h3>Option 2: using the rst extension<a class="headerlink" href="#option-2-using-the-rst-extension" title="Permalink to this headline">#</a></h3>
+<p>A quick and easy way to see live changes in a <code class="docutils literal notranslate"><span class="pre">.rst</span></code> file as you work on it
+uses the rst extension with docutils.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This will generate a simple live preview of the document without the
+<code class="docutils literal notranslate"><span class="pre">html</span></code> theme, and some backlinks might not be added correctly. But it is an
+easy and lightweight way to get instant feedback on your work, without
+building the html files.</p>
+</div>
+<ol class="arabic">
+<li><p>Open any of the source documentation files located in <code class="docutils literal notranslate"><span class="pre">doc/source</span></code> in the
+editor.</p></li>
+<li><p>Open VSCode Command Palette with <kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Cmd</kbd>-<kbd class="kbd docutils literal notranslate">Shift</kbd>-<kbd class="kbd docutils literal notranslate">P</kbd></kbd> in Mac or
+<kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Ctrl</kbd>-<kbd class="kbd docutils literal notranslate">Shift</kbd>-<kbd class="kbd docutils literal notranslate">P</kbd></kbd> in Linux and Windows. Start typing “restructured”
+and choose either “Open preview” or “Open preview to the Side”.</p>
+<blockquote>
+<div><img alt="Gitpod workspace VSCode open rst screenshot" src="../_images/vscode-rst.png" />
+</div></blockquote>
+</li>
+<li><p>As you work on the document, you will see a live rendering of it on the editor.</p>
+<blockquote>
+<div><img alt="Gitpod workspace VSCode rst rendering screenshot" src="../_images/rst-rendering.png" />
+</div></blockquote>
+</li>
+</ol>
+<p>If you want to see the final output with the <code class="docutils literal notranslate"><span class="pre">html</span></code> theme you will need to
+rebuild the docs with <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">html</span></code> and use Live Serve as described in option 1.</p>
+</section>
+</section>
+<section id="faq-s-and-troubleshooting">
+<h2>FAQ’s and troubleshooting<a class="headerlink" href="#faq-s-and-troubleshooting" title="Permalink to this headline">#</a></h2>
+<section id="how-long-is-my-gitpod-workspace-kept-for">
+<h3>How long is my Gitpod workspace kept for?<a class="headerlink" href="#how-long-is-my-gitpod-workspace-kept-for" title="Permalink to this headline">#</a></h3>
+<p>Your stopped workspace will be kept for 14 days and deleted afterwards if you do
+not use them.</p>
+</section>
+<section id="can-i-come-back-to-a-previous-workspace">
+<h3>Can I come back to a previous workspace?<a class="headerlink" href="#can-i-come-back-to-a-previous-workspace" title="Permalink to this headline">#</a></h3>
+<p>Yes, let’s say you stepped away for a while and you want to carry on working on
+your pandas contributions. You need to visit <a class="reference external" href="https://gitpod.io/workspaces">https://gitpod.io/workspaces</a> and
+click on the workspace you want to spin up again. All your changes will be there
+as you last left them.</p>
+</section>
+<section id="can-i-install-additional-vscode-extensions">
+<h3>Can I install additional VSCode extensions?<a class="headerlink" href="#can-i-install-additional-vscode-extensions" title="Permalink to this headline">#</a></h3>
+<p>Absolutely! Any extensions you installed will be installed in your own workspace
+and preserved.</p>
+</section>
+<section id="i-registered-on-gitpod-but-i-still-cannot-see-a-gitpod-button-in-my-repositories">
+<h3>I registered on Gitpod but I still cannot see a <code class="docutils literal notranslate"><span class="pre">Gitpod</span></code> button in my repositories.<a class="headerlink" href="#i-registered-on-gitpod-but-i-still-cannot-see-a-gitpod-button-in-my-repositories" title="Permalink to this headline">#</a></h3>
+<p>Head to <a class="reference external" href="https://gitpod.io/integrations">https://gitpod.io/integrations</a> and make sure you are logged in.
+Hover over GitHub and click on the three buttons that appear on the right.
+Click on edit permissions and make sure you have <code class="docutils literal notranslate"><span class="pre">user:email</span></code>,
+<code class="docutils literal notranslate"><span class="pre">read:user</span></code>, and <code class="docutils literal notranslate"><span class="pre">public_repo</span></code> checked. Click on <strong>Update Permissions</strong>
+and confirm the changes in the GitHub application page.</p>
+<img alt="Gitpod integrations - edit GH permissions screenshot" src="../_images/gitpod-edit-permissions-gh.png" />
+</section>
+<section id="how-long-does-my-workspace-stay-active-if-i-m-not-using-it">
+<h3>How long does my workspace stay active if I’m not using it?<a class="headerlink" href="#how-long-does-my-workspace-stay-active-if-i-m-not-using-it" title="Permalink to this headline">#</a></h3>
+<p>If you keep your workspace open in a browser tab but don’t interact with it,
+it will shut down after 30 minutes. If you close the browser tab, it will
+shut down after 3 minutes.</p>
+</section>
+<section id="my-terminal-is-blank-there-is-no-cursor-and-it-s-completely-unresponsive">
+<h3>My terminal is blank - there is no cursor and it’s completely unresponsive<a class="headerlink" href="#my-terminal-is-blank-there-is-no-cursor-and-it-s-completely-unresponsive" title="Permalink to this headline">#</a></h3>
+<p>Unfortunately this is a known-issue on Gitpod’s side. You can sort this
+issue in two ways:</p>
+<ol class="arabic simple">
+<li><p>Create a new Gitpod workspace altogether.</p></li>
+<li><p>Head to your <a class="reference external" href="https://gitpod.io/workspaces">Gitpod dashboard</a> and locate
+the running workspace. Hover on it and click on the <strong>three dots menu</strong>
+and then click on <strong>Stop</strong>. When the workspace is completely stopped you
+can click on its name to restart it again.</p></li>
+</ol>
+<img alt="Gitpod dashboard and workspace menu screenshot" src="../_images/gitpod-dashboard-stop.png" />
+</section>
+<section id="i-authenticated-through-github-but-i-still-cannot-commit-to-the-repository-through-gitpod">
+<h3>I authenticated through GitHub but I still cannot commit to the repository through Gitpod.<a class="headerlink" href="#i-authenticated-through-github-but-i-still-cannot-commit-to-the-repository-through-gitpod" title="Permalink to this headline">#</a></h3>
+<p>Head to <a class="reference external" href="https://gitpod.io/integrations">https://gitpod.io/integrations</a> and make sure you are logged in.
+Hover over GitHub and click on the three buttons that appear on the right.
+Click on edit permissions and make sure you have <code class="docutils literal notranslate"><span class="pre">public_repo</span></code> checked.
+Click on <strong>Update Permissions</strong> and confirm the changes in the
+GitHub application page.</p>
+<img alt="Gitpod integrations - edit GH repository permissions screenshot" src="../_images/gitpod-edit-permissions-repo.png" />
+</section>
+</section>
+<section id="acknowledgments">
+<h2>Acknowledgments<a class="headerlink" href="#acknowledgments" title="Permalink to this headline">#</a></h2>
+<p>This page is lightly adapted from the <a class="reference external" href="https://www.numpy.org/">NumPy</a> project .</p>
+</section>
+</section>
+
+
+            </article>
+            
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="contributing_environment.html" title="previous page">
+      <i class="fas fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Creating a development environment</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="contributing_documentation.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">Contributing to the documentation</p>
+  </div>
+  <i class="fas fa-angle-right"></i>
+  </a>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+<div class="tocsection onthispage">
+    <i class="fas fa-list"></i> On this page
+</div>
+<nav id="bd-toc-nav" class="page-toc">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gitpod">
+   Gitpod
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gitpod-github-integration">
+   Gitpod GitHub integration
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#forking-the-pandas-repository">
+   Forking the pandas repository
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#starting-gitpod">
+   Starting Gitpod
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#quick-workspace-tour">
+   Quick workspace tour
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#development-workflow-with-gitpod">
+   Development workflow with Gitpod
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#rendering-the-pandas-documentation">
+   Rendering the pandas documentation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#option-1-using-liveserve">
+     Option 1: using Liveserve
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#option-2-using-the-rst-extension">
+     Option 2: using the rst extension
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#faq-s-and-troubleshooting">
+   FAQ’s and troubleshooting
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-long-is-my-gitpod-workspace-kept-for">
+     How long is my Gitpod workspace kept for?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#can-i-come-back-to-a-previous-workspace">
+     Can I come back to a previous workspace?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#can-i-install-additional-vscode-extensions">
+     Can I install additional VSCode extensions?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#i-registered-on-gitpod-but-i-still-cannot-see-a-gitpod-button-in-my-repositories">
+     I registered on Gitpod but I still cannot see a
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       Gitpod
+      </span>
+     </code>
+     button in my repositories.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-long-does-my-workspace-stay-active-if-i-m-not-using-it">
+     How long does my workspace stay active if I’m not using it?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#my-terminal-is-blank-there-is-no-cursor-and-it-s-completely-unresponsive">
+     My terminal is blank - there is no cursor and it’s completely unresponsive
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#i-authenticated-through-github-but-i-still-cannot-commit-to-the-repository-through-gitpod">
+     I authenticated through GitHub but I still cannot commit to the repository through Gitpod.
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#acknowledgments">
+   Acknowledgments
+  </a>
+ </li>
+</ul>
+
+</nav>
+</div>
+
+<div class="toc-item">
+  
+</div>
+
+<div class="toc-item">
+  
+<div class="tocsection sourcelink">
+    <a href="../_sources/development/contributing_gitpod.rst.txt">
+        <i class="fas fa-file-alt"></i> Show Source
+    </a>
+</div>
+
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+          </div>
+        </footer>
+        
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=9b1a4fa89bdd0e95b23b"></script>
+
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    <p class="copyright">
+    &copy 2023 pandas via <a href="https://numfocus.org">NumFOCUS, Inc.</a> Hosted by <a href="https://www.ovhcloud.com">OVHcloud</a>.
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>

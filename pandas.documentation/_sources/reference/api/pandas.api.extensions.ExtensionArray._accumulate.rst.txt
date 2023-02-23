@@ -1,0 +1,6 @@
+pandas.api.extensions.ExtensionArray.\_accumulate
+=================================================
+
+.. currentmodule:: pandas.api.extensions
+
+.. automethod:: ExtensionArray._accumulate

@@ -1,6 +1,0 @@
-pandas.tseries.offsets.Hour.\_\_call\_\_
-========================================
-
-.. currentmodule:: pandas.tseries.offsets
-
-.. automethod:: Hour.__call__

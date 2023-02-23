@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Contributing to the code base &#8212; pandas 1.5.3 documentation</title>
+    <title>Contributing to the code base &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -55,7 +55,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'development/contributing_codebase';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -182,7 +182,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -311,7 +311,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -368,17 +368,29 @@
    Contributing to pandas
   </a>
  </li>
- <li class="toctree-l1">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="contributing_environment.html">
    Creating a development environment
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label class="toctree-toggle" for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="contributing_gitpod.html">
+     Using Gitpod for pandas development
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="contributing_documentation.html">
    Contributing to the documentation
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label class="toctree-toggle" for="toctree-checkbox-1">
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label class="toctree-toggle" for="toctree-checkbox-2">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -403,6 +415,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="internals.html">
    Internals
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="copy_on_write.html">
+   Copy on write
   </a>
  </li>
  <li class="toctree-l1">
@@ -518,7 +535,7 @@ contributing them to the project:</p>
 </div>
 <p>The script validates the doctests, formatting in docstrings, and
 imported modules. It is possible to run the checks independently by using the
-parameters <code class="docutils literal notranslate"><span class="pre">docstring</span></code>, <code class="docutils literal notranslate"><span class="pre">code</span></code>, and <code class="docutils literal notranslate"><span class="pre">doctests</span></code>
+parameters <code class="docutils literal notranslate"><span class="pre">docstrings</span></code>, <code class="docutils literal notranslate"><span class="pre">code</span></code>, and <code class="docutils literal notranslate"><span class="pre">doctests</span></code>
 (e.g. <code class="docutils literal notranslate"><span class="pre">./ci/code_checks.sh</span> <span class="pre">doctests</span></code>).</p>
 <p>In addition, because a lot of people use our library, it is important that we
 do not make sudden changes to the code that could have the potential to break
@@ -531,7 +548,7 @@ for how to run them.</p>
 <section id="pre-commit">
 <span id="contributing-pre-commit"></span><h2><a class="toc-backref" href="#id3">Pre-commit</a><a class="headerlink" href="#pre-commit" title="Permalink to this headline">#</a></h2>
 <p>Additionally, <a class="reference internal" href="#contributing-ci"><span class="std std-ref">Continuous Integration</span></a> will run code formatting checks
-like <code class="docutils literal notranslate"><span class="pre">black</span></code>, <code class="docutils literal notranslate"><span class="pre">flake8</span></code> (including a <a class="reference external" href="https://github.com/pandas-dev/pandas-dev-flaker">pandas-dev-flaker</a> plugin),
+like <code class="docutils literal notranslate"><span class="pre">black</span></code>, <code class="docutils literal notranslate"><span class="pre">ruff</span></code>,
 <code class="docutils literal notranslate"><span class="pre">isort</span></code>, and <code class="docutils literal notranslate"><span class="pre">cpplint</span></code> and more using <a class="reference external" href="https://pre-commit.com/">pre-commit hooks</a>
 Any warnings from these checks will cause the <a class="reference internal" href="#contributing-ci"><span class="std std-ref">Continuous Integration</span></a> to fail; therefore,
 it is helpful to run the check yourself before submitting code. This
@@ -571,6 +588,12 @@ error - see <a class="reference external" href="https://github.com/pypa/virtuale
 <p>Also, due to a <a class="reference external" href="https://github.com/pypa/virtualenv/issues/1986">bug in virtualenv</a>,
 you may run into issues if you’re using conda. To solve this, you can downgrade
 <code class="docutils literal notranslate"><span class="pre">virtualenv</span></code> to version <code class="docutils literal notranslate"><span class="pre">20.0.33</span></code>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you have recently merged in main from the upstream branch, some of the
+dependencies used by <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> may have changed.  Make sure to
+<a class="reference internal" href="contributing.html#contributing-update-dev"><span class="std std-ref">update your development environment</span></a>.</p>
 </div>
 </section>
 <section id="optional-dependencies">
@@ -713,15 +736,21 @@ the <code class="docutils literal notranslate"><span class="pre">pandas.util._de
 </section>
 <section id="validating-type-hints">
 <h3><a class="toc-backref" href="#id9">Validating type hints</a><a class="headerlink" href="#validating-type-hints" title="Permalink to this headline">#</a></h3>
-<p>pandas uses <a class="reference external" href="http://mypy-lang.org">mypy</a> and <a class="reference external" href="https://github.com/microsoft/pyright">pyright</a> to statically analyze the code base and type hints. After making any change you can ensure your type hints are correct by running</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># the following might fail if the installed pandas version does not correspond to your local git version</span>
-pre-commit<span class="w"> </span>run<span class="w"> </span>--hook-stage<span class="w"> </span>manual<span class="w"> </span>--all-files
-
-<span class="c1"># if the above fails due to stubtest</span>
-<span class="nv">SKIP</span><span class="o">=</span>stubtest<span class="w"> </span>pre-commit<span class="w"> </span>run<span class="w"> </span>--hook-stage<span class="w"> </span>manual<span class="w"> </span>--all-files
+<p>pandas uses <a class="reference external" href="http://mypy-lang.org">mypy</a> and <a class="reference external" href="https://github.com/microsoft/pyright">pyright</a> to statically analyze the code base and type hints. After making any change you can ensure your type hints are consistent by running</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pre-commit<span class="w"> </span>run<span class="w"> </span>--hook-stage<span class="w"> </span>manual<span class="w"> </span>--all-files<span class="w"> </span>mypy
+pre-commit<span class="w"> </span>run<span class="w"> </span>--hook-stage<span class="w"> </span>manual<span class="w"> </span>--all-files<span class="w"> </span>pyright
+pre-commit<span class="w"> </span>run<span class="w"> </span>--hook-stage<span class="w"> </span>manual<span class="w"> </span>--all-files<span class="w"> </span>pyright_reportGeneralTypeIssues
+<span class="c1"># the following might fail if the installed pandas version does not correspond to your local git version</span>
+pre-commit<span class="w"> </span>run<span class="w"> </span>--hook-stage<span class="w"> </span>manual<span class="w"> </span>--all-files<span class="w"> </span>stubtest
 </pre></div>
 </div>
-<p>in your activated python environment. A recent version of <code class="docutils literal notranslate"><span class="pre">numpy</span></code> (&gt;=1.22.0) is required for type validation.</p>
+<p>in your python environment.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<ul class="simple">
+<li><p>Please be aware that the above commands will use the current python environment. If your python packages are older/newer than those installed by the pandas CI, the above commands might fail. This is often the case when the <code class="docutils literal notranslate"><span class="pre">mypy</span></code> or <code class="docutils literal notranslate"><span class="pre">numpy</span></code> versions do not match. Please see <a class="reference internal" href="contributing_environment.html#contributing-mamba"><span class="std std-ref">how to setup the python environment</span></a> or select a <a class="reference external" href="https://github.com/pandas-dev/pandas/actions/workflows/code-checks.yml?query=branch%3Amain+is%3Asuccess">recently succeeded workflow</a>, select the “Docstring validation, typing, and other manual pre-commit hooks” job, then click on “Set up Conda” and “Environment info” to see which versions the pandas CI installs.</p></li>
+</ul>
+</div>
 </section>
 <section id="testing-type-hints-in-code-using-pandas">
 <span id="contributing-ci"></span><h3><a class="toc-backref" href="#id10">Testing type hints in code using pandas</a><a class="headerlink" href="#testing-type-hints-in-code-using-pandas" title="Permalink to this headline">#</a></h3>
@@ -771,7 +800,17 @@ it is worth getting in the habit of writing tests ahead of time so this is never
 <h3><a class="toc-backref" href="#id13">Writing tests</a><a class="headerlink" href="#writing-tests" title="Permalink to this headline">#</a></h3>
 <p>All tests should go into the <code class="docutils literal notranslate"><span class="pre">tests</span></code> subdirectory of the specific package.
 This folder contains many current examples of tests, and we suggest looking to these for
-inspiration. Ideally, there should be one, and only one, obvious place for a test to reside.
+inspiration.</p>
+<p>As a general tip, you can use the search functionality in your integrated development
+environment (IDE) or the git grep command in a terminal to find test files in which the method
+is called. If you are unsure of the best location to put your test, take your best guess,
+but note that reviewers may request that you move the test to a different location.</p>
+<p>To use git grep, you can run the following command in a terminal:</p>
+<p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">grep</span> <span class="pre">&quot;function_name(&quot;</span></code></p>
+<p>This will search through all files in your repository for the text <code class="docutils literal notranslate"><span class="pre">function_name(</span></code>.
+This can be a useful way to quickly locate the function in the
+codebase and determine the best location to add a test for it.</p>
+<p>Ideally, there should be one, and only one, obvious place for a test to reside.
 Until we reach that ideal, these are some rules of thumb for where a test should
 be located.</p>
 <ol class="arabic">
@@ -1075,7 +1114,7 @@ lack of ownership of the server that is being connected to. If network connectiv
 <section id="example">
 <h4><a class="toc-backref" href="#id21">Example</a><a class="headerlink" href="#example" title="Permalink to this headline">#</a></h4>
 <p>Here is an example of a self-contained set of tests in a file <code class="docutils literal notranslate"><span class="pre">pandas/tests/test_cool_feature.py</span></code>
-that illustrate multiple features that we like to use. Please remember to add the Github Issue Number
+that illustrate multiple features that we like to use. Please remember to add the GitHub Issue Number
 as a comment to a new test.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pytest</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -1180,11 +1219,19 @@ options or subtle interactions to test (or think of!) all of them.</p>
 </section>
 </section>
 <section id="running-the-test-suite">
-<h2><a class="toc-backref" href="#id23">Running the test suite</a><a class="headerlink" href="#running-the-test-suite" title="Permalink to this headline">#</a></h2>
+<span id="contributing-running-tests"></span><h2><a class="toc-backref" href="#id23">Running the test suite</a><a class="headerlink" href="#running-the-test-suite" title="Permalink to this headline">#</a></h2>
 <p>The tests can then be run directly inside your Git clone (without having to
 install pandas) by typing:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pytest</span> <span class="n">pandas</span>
 </pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If a handful of tests don’t pass, it may not be an issue with your pandas installation.
+Some tests (e.g. some SQLAlchemy ones) require additional setup, others might start
+failing because a non-pinned library released a new version, and others might be flaky
+if run in parallel. As long as you can import pandas from your locally built version,
+your installation is probably fine and you can start contributing!</p>
 </div>
 <p>Often it is worth running only a subset of tests first around your changes before running the
 entire suite.</p>
@@ -1198,24 +1245,62 @@ entire suite.</p>
 <span class="n">pytest</span> <span class="n">pandas</span><span class="o">/</span><span class="n">tests</span><span class="o">/</span><span class="p">[</span><span class="n">test</span><span class="o">-</span><span class="n">module</span><span class="p">]</span><span class="o">.</span><span class="n">py</span><span class="p">::[</span><span class="n">TestClass</span><span class="p">]::[</span><span class="n">test_method</span><span class="p">]</span>
 </pre></div>
 </div>
-<p>Using <a class="reference external" href="https://pypi.org/project/pytest-xdist">pytest-xdist</a>, one can
-speed up local testing on multicore machines. To use this feature, you will
-need to install <code class="docutils literal notranslate"><span class="pre">pytest-xdist</span></code> via:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">pytest</span><span class="o">-</span><span class="n">xdist</span>
+<p>Using <a class="reference external" href="https://pypi.org/project/pytest-xdist">pytest-xdist</a>, which is
+included in our ‘pandas-dev’ environment, one can speed up local testing on
+multicore machines. The <code class="docutils literal notranslate"><span class="pre">-n</span></code> number flag then can be specified when running
+pytest to parallelize a test run across the number of specified cores or auto to
+utilize all the available cores on your machine.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Utilize 4 cores</span>
+pytest<span class="w"> </span>-n<span class="w"> </span><span class="m">4</span><span class="w"> </span>pandas
+
+<span class="c1"># Utilizes all available cores</span>
+pytest<span class="w"> </span>-n<span class="w"> </span>auto<span class="w"> </span>pandas
 </pre></div>
 </div>
-<p>Two scripts are provided to assist with this.  These scripts distribute
-testing across 4 threads.</p>
-<p>On Unix variants, one can type:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">test_fast</span><span class="o">.</span><span class="n">sh</span>
+<p>If you’d like to speed things along further a more advanced use of this
+command would look like this</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pytest<span class="w"> </span>pandas<span class="w"> </span>-n<span class="w"> </span><span class="m">4</span><span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;not slow and not network and not db and not single_cpu&quot;</span><span class="w"> </span>-r<span class="w"> </span>sxX
 </pre></div>
 </div>
-<p>On Windows, one can type:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">test_fast</span><span class="o">.</span><span class="n">bat</span>
+<p>In addition to the multithreaded performance increase this improves test
+speed by skipping some tests using the <code class="docutils literal notranslate"><span class="pre">-m</span></code> mark flag:</p>
+<ul class="simple">
+<li><p>slow: any test taking long (think seconds rather than milliseconds)</p></li>
+<li><p>network: tests requiring network connectivity</p></li>
+<li><p>db: tests requiring a database (mysql or postgres)</p></li>
+<li><p>single_cpu: tests that should run on a single cpu only</p></li>
+</ul>
+<p>You might want to enable the following option if it’s relevant for you:</p>
+<ul class="simple">
+<li><p>arm_slow: any test taking long on arm64 architecture</p></li>
+</ul>
+<p>These markers are defined <a class="reference external" href="https://github.com/pandas-dev/pandas/blob/main/pyproject.toml">in this toml file</a>
+, under <code class="docutils literal notranslate"><span class="pre">[tool.pytest.ini_options]</span></code> in a list called <code class="docutils literal notranslate"><span class="pre">markers</span></code>, in case
+you want to check if new ones have been created which are of interest to you.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">-r</span></code> report flag will display a short summary info (see <a class="reference external" href="https://docs.pytest.org/en/4.6.x/usage.html#detailed-summary-report">pytest
+documentation</a>)
+. Here we are displaying the number of:</p>
+<ul class="simple">
+<li><p>s: skipped tests</p></li>
+<li><p>x: xfailed tests</p></li>
+<li><p>X: xpassed tests</p></li>
+</ul>
+<p>The summary is optional and can be removed if you don’t need the added
+information. Using the parallelization option can significantly reduce the
+time it takes to locally run tests before submitting a pull request.</p>
+<p>If you require assistance with the results,
+which has happened in the past, please set a seed before running the command
+and opening a bug report, that way we can reproduce it. Here’s an example
+for setting a seed on windows</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="w"> </span><span class="nv">PYTHONHASHSEED</span><span class="o">=</span><span class="m">314159265</span>
+pytest<span class="w"> </span>pandas<span class="w"> </span>-n<span class="w"> </span><span class="m">4</span><span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;not slow and not network and not db and not single_cpu&quot;</span><span class="w"> </span>-r<span class="w"> </span>sxX
 </pre></div>
 </div>
-<p>This can significantly reduce the time it takes to locally run tests before
-submitting a pull request.</p>
+<p>On Unix use</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">PYTHONHASHSEED</span><span class="o">=</span><span class="m">314159265</span>
+pytest<span class="w"> </span>pandas<span class="w"> </span>-n<span class="w"> </span><span class="m">4</span><span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;not slow and not network and not db and not single_cpu&quot;</span><span class="w"> </span>-r<span class="w"> </span>sxX
+</pre></div>
+</div>
 <p>For more, see the <a class="reference external" href="https://docs.pytest.org/en/latest/">pytest</a> documentation.</p>
 <p>Furthermore one can run</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">test</span><span class="p">()</span>

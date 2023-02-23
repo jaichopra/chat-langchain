@@ -3,4 +3,4 @@ pandas.core.groupby.DataFrameGroupBy.cov
 
 .. currentmodule:: pandas.core.groupby
 
-.. autoproperty:: DataFrameGroupBy.cov
+.. automethod:: DataFrameGroupBy.cov

@@ -13,11 +13,7 @@ pandas.tseries.offsets.SemiMonthEnd
    .. autosummary::
       :toctree:
       
-      SemiMonthEnd.__call__
-      SemiMonthEnd.apply
-      SemiMonthEnd.apply_index
       SemiMonthEnd.copy
-      SemiMonthEnd.isAnchored
       SemiMonthEnd.is_anchored
       SemiMonthEnd.is_month_end
       SemiMonthEnd.is_month_start
@@ -26,7 +22,6 @@ pandas.tseries.offsets.SemiMonthEnd
       SemiMonthEnd.is_quarter_start
       SemiMonthEnd.is_year_end
       SemiMonthEnd.is_year_start
-      SemiMonthEnd.onOffset
       SemiMonthEnd.rollback
       SemiMonthEnd.rollforward
 

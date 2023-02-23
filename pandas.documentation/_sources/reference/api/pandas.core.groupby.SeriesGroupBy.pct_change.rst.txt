@@ -1,0 +1,6 @@
+pandas.core.groupby.SeriesGroupBy.pct\_change
+=============================================
+
+.. currentmodule:: pandas.core.groupby
+
+.. automethod:: SeriesGroupBy.pct_change

@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>How to handle time series data with ease? &#8212; pandas 1.5.3 documentation</title>
+    <title>How to handle time series data with ease &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -57,13 +57,13 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'getting_started/intro_tutorials/09_timeseries';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="How to manipulate textual data?" href="10_text_data.html" />
-    <link rel="prev" title="How to combine data from multiple tables?" href="08_combine_dataframes.html" />
+    <link rel="next" title="How to manipulate textual data" href="10_text_data.html" />
+    <link rel="prev" title="How to combine data from multiple tables" href="08_combine_dataframes.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="docsearch:language" content="en">
   </head>
@@ -184,7 +184,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -313,7 +313,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -413,32 +413,32 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="05_add_columns.html">
-     How to create new columns derived from existing columns?
+     How to create new columns derived from existing columns
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="06_calculate_statistics.html">
-     How to calculate summary statistics?
+     How to calculate summary statistics
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="07_reshape_table_layout.html">
-     How to reshape the layout of tables?
+     How to reshape the layout of tables
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="08_combine_dataframes.html">
-     How to combine data from multiple tables?
+     How to combine data from multiple tables
     </a>
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     How to handle time series data with ease?
+     How to handle time series data with ease
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="10_text_data.html">
-     How to manipulate textual data?
+     How to manipulate textual data
     </a>
    </li>
   </ul>
@@ -563,7 +563,7 @@ Westminster</em> in respectively Paris, Antwerp and London.</p>
     </li>
 </ul>
 </div><section id="how-to-handle-time-series-data-with-ease">
-<h1>How to handle time series data with ease?<a class="headerlink" href="#how-to-handle-time-series-data-with-ease" title="Permalink to this headline">#</a></h1>
+<h1>How to handle time series data with ease<a class="headerlink" href="#how-to-handle-time-series-data-with-ease" title="Permalink to this headline">#</a></h1>
 <section id="using-pandas-datetime-properties">
 <span id="min-tut-09-timeseries-properties"></span><h2>Using pandas datetime properties<a class="headerlink" href="#using-pandas-datetime-properties" title="Permalink to this headline">#</a></h2>
 <ul class="task-bullet">
@@ -645,7 +645,7 @@ from the standard Python library and defining a time duration.</p>
 </div>
 <p>By using <code class="docutils literal notranslate"><span class="pre">Timestamp</span></code> objects for dates, a lot of time-related
 properties are provided by pandas. For example the <code class="docutils literal notranslate"><span class="pre">month</span></code>, but also
-<code class="docutils literal notranslate"><span class="pre">year</span></code>, <code class="docutils literal notranslate"><span class="pre">weekofyear</span></code>, <code class="docutils literal notranslate"><span class="pre">quarter</span></code>,… All of these properties are
+<code class="docutils literal notranslate"><span class="pre">year</span></code>, <code class="docutils literal notranslate"><span class="pre">quarter</span></code>,… All of these properties are
 accessible by the <code class="docutils literal notranslate"><span class="pre">dt</span></code> accessor.</p>
     </li>
 </ul><div class="d-flex flex-row gs-torefguide">
@@ -740,14 +740,14 @@ the time series properties, but have these properties available on the
 index directly:</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [20]: </span><span class="n">no_2</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="n">no_2</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">weekday</span>
 <span class="gh">Out[20]: </span>
-<span class="go">(Int64Index([2019, 2019, 2019, 2019, 2019, 2019, 2019, 2019, 2019, 2019,</span>
-<span class="go">             ...</span>
-<span class="go">             2019, 2019, 2019, 2019, 2019, 2019, 2019, 2019, 2019, 2019],</span>
-<span class="go">            dtype=&#39;int64&#39;, name=&#39;datetime&#39;, length=1033),</span>
-<span class="go"> Int64Index([1, 1, 1, 1, 1, 1, 1, 1, 1, 1,</span>
-<span class="go">             ...</span>
-<span class="go">             3, 3, 3, 3, 3, 3, 3, 3, 3, 4],</span>
-<span class="go">            dtype=&#39;int64&#39;, name=&#39;datetime&#39;, length=1033))</span>
+<span class="go">(Index([2019, 2019, 2019, 2019, 2019, 2019, 2019, 2019, 2019, 2019,</span>
+<span class="go">        ...</span>
+<span class="go">        2019, 2019, 2019, 2019, 2019, 2019, 2019, 2019, 2019, 2019],</span>
+<span class="go">       dtype=&#39;int32&#39;, name=&#39;datetime&#39;, length=1033),</span>
+<span class="go"> Index([1, 1, 1, 1, 1, 1, 1, 1, 1, 1,</span>
+<span class="go">        ...</span>
+<span class="go">        3, 3, 3, 3, 3, 3, 3, 3, 3, 4],</span>
+<span class="go">       dtype=&#39;int32&#39;, name=&#39;datetime&#39;, length=1033))</span>
 </pre></div>
 </div>
 <p>Some other advantages are the convenient subsetting of time period or
@@ -832,13 +832,13 @@ series.</p></li>
       <i class="fas fa-angle-left"></i>
       <div class="prev-next-info">
           <p class="prev-next-subtitle">previous</p>
-          <p class="prev-next-title">How to combine data from multiple tables?</p>
+          <p class="prev-next-title">How to combine data from multiple tables</p>
       </div>
   </a>
   <a class='right-next' id="next-link" href="10_text_data.html" title="next page">
   <div class="prev-next-info">
       <p class="prev-next-subtitle">next</p>
-      <p class="prev-next-title">How to manipulate textual data?</p>
+      <p class="prev-next-title">How to manipulate textual data</p>
   </div>
   <i class="fas fa-angle-right"></i>
   </a>

@@ -1,0 +1,6 @@
+pandas.Timedelta.unit
+=====================
+
+.. currentmodule:: pandas
+
+.. autoattribute:: Timedelta.unit

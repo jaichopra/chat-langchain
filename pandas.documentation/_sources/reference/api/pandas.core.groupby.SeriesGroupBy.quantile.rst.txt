@@ -1,0 +1,6 @@
+pandas.core.groupby.SeriesGroupBy.quantile
+==========================================
+
+.. currentmodule:: pandas.core.groupby
+
+.. automethod:: SeriesGroupBy.quantile

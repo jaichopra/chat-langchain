@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Debugging C extensions &#8212; pandas 1.5.3 documentation</title>
+    <title>Debugging C extensions &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -55,13 +55,13 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'development/debugging_extensions';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Extending pandas" href="extending.html" />
-    <link rel="prev" title="Internals" href="internals.html" />
+    <link rel="prev" title="Copy on write" href="copy_on_write.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="docsearch:language" content="en">
   </head>
@@ -182,7 +182,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -311,7 +311,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -368,17 +368,29 @@
    Contributing to pandas
   </a>
  </li>
- <li class="toctree-l1">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="contributing_environment.html">
    Creating a development environment
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label class="toctree-toggle" for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="contributing_gitpod.html">
+     Using Gitpod for pandas development
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="contributing_documentation.html">
    Contributing to the documentation
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label class="toctree-toggle" for="toctree-checkbox-1">
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label class="toctree-toggle" for="toctree-checkbox-2">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -403,6 +415,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="internals.html">
    Internals
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="copy_on_write.html">
+   Copy on write
   </a>
  </li>
  <li class="toctree-l1 current active">
@@ -515,6 +532,26 @@
 </div>
 <p>Once the process launches, simply type <code class="docutils literal notranslate"><span class="pre">run</span></code> and the test suite will begin, stopping at any segmentation fault that may occur.</p>
 </section>
+<section id="improve-debugger-printing">
+<h2>Improve debugger printing<a class="headerlink" href="#improve-debugger-printing" title="Permalink to this headline">#</a></h2>
+<p>By default your debug will simply print the type and memory address of a PyObject. Assuming we passed a list containing <code class="docutils literal notranslate"><span class="pre">[&quot;a&quot;,</span> <span class="pre">&quot;b&quot;]</span></code> as an argument to a Cython-generated function with parameter <code class="docutils literal notranslate"><span class="pre">obj</span></code>, debugging that object would look as follows:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>p<span class="w"> </span>__pyx_v_obj
+<span class="nv">$1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">(</span>PyObject<span class="w"> </span>*<span class="o">)</span><span class="w"> </span>0x5555558b91e0
+</pre></div>
+</div>
+<p>Dereferencing this will yield the standard PyObject struct members of the object, which provides some more visibility</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>p<span class="w"> </span>*__pyx_v_obj
+<span class="nv">$2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">{</span><span class="nv">ob_refcnt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span>,<span class="w"> </span><span class="nv">ob_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>0x5555558b91e0<span class="w"> </span>&lt;PyList_Type&gt;<span class="o">}</span>
+</pre></div>
+</div>
+<p>If you are using gdb, CPython provides an extension that prints out more useful information about the object you are inspecting. The extension can be found in <a class="reference external" href="https://github.com/python/cpython/blob/main/Tools/gdb/libpython.py">cpython/Tools/gdb/libpython.py</a>; for best results be sure to use the gdb extension from the CPython branch that matches the version of your interpreter.</p>
+<p>To activate the extension you will need to execute <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">&lt;path_to_cpython_source&gt;/Tools/gdb/libpython.py</span></code> from an actively-running gdb session. After loading you will get more detailed information about the Python object you are inspecting.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>p<span class="w"> </span>__pyx_v_obj
+<span class="nv">$3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="s1">&#39;a&#39;</span>,<span class="w"> </span><span class="s1">&#39;b&#39;</span><span class="o">]</span>
+</pre></div>
+</div>
+<p>If you do not wish to explicitly source this file on every gdb run, you can alternately add it as a start up command to your <a class="reference external" href="https://sourceware.org/gdb/onlinedocs/gdb/gdbinit-man.html">gdbinit</a> file.</p>
+</section>
 <section id="checking-memory-leaks-with-valgrind">
 <h2>Checking memory leaks with valgrind<a class="headerlink" href="#checking-memory-leaks-with-valgrind" title="Permalink to this headline">#</a></h2>
 <p>You can use <a class="reference external" href="https://valgrind.org/">Valgrind</a> to check for and log memory leaks in extensions. For instance, to check for a memory leak in a test from the suite you can run:</p>
@@ -527,6 +564,13 @@
 <p>For best results, you should run use a Python installation configured with Valgrind support (–with-valgrind)</p>
 </div>
 </section>
+<section id="easier-code-navigation">
+<h2>Easier code navigation<a class="headerlink" href="#easier-code-navigation" title="Permalink to this headline">#</a></h2>
+<p>Generating a <code class="docutils literal notranslate"><span class="pre">compile_commands.json</span></code> file may make it easier to navigate the C extensions, as this allows your code editor to list references, jump to definitions, etc… To make this work with setuptools you can use <a class="reference external" href="https://github.com/rizsotto/Bear">Bear</a>.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>bear<span class="w"> </span>--<span class="w"> </span>python<span class="w"> </span>setup.py<span class="w"> </span>build_ext<span class="w"> </span>--inplace<span class="w"> </span>-j4<span class="w"> </span>--with-debugging-symbols
+</pre></div>
+</div>
+</section>
 </section>
 
 
@@ -537,11 +581,11 @@
             <footer class="bd-footer-article">
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-  <a class='left-prev' id="prev-link" href="internals.html" title="previous page">
+  <a class='left-prev' id="prev-link" href="copy_on_write.html" title="previous page">
       <i class="fas fa-angle-left"></i>
       <div class="prev-next-info">
           <p class="prev-next-subtitle">previous</p>
-          <p class="prev-next-title">Internals</p>
+          <p class="prev-next-title">Copy on write</p>
       </div>
   </a>
   <a class='right-next' id="next-link" href="extending.html" title="next page">
@@ -573,8 +617,18 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#improve-debugger-printing">
+   Improve debugger printing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#checking-memory-leaks-with-valgrind">
    Checking memory leaks with valgrind
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#easier-code-navigation">
+   Easier code navigation
   </a>
  </li>
 </ul>

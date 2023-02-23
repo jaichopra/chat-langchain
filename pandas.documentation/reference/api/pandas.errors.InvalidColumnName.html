@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>pandas.errors.InvalidColumnName &#8212; pandas 1.5.3 documentation</title>
+    <title>pandas.errors.InvalidColumnName &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -55,12 +55,12 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'reference/api/pandas.errors.InvalidColumnName';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pandas.errors.InvalidIndexError" href="pandas.errors.InvalidIndexError.html" />
+    <link rel="next" title="pandas.errors.InvalidComparison" href="pandas.errors.InvalidComparison.html" />
     <link rel="prev" title="pandas.errors.IndexingError" href="pandas.errors.IndexingError.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="docsearch:language" content="en">
@@ -182,7 +182,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -311,7 +311,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -484,6 +484,11 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="pandas.errors.ChainedAssignmentError.html">
+     pandas.errors.ChainedAssignmentError
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="pandas.errors.ClosedFileError.html">
      pandas.errors.ClosedFileError
     </a>
@@ -534,8 +539,18 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="pandas.errors.InvalidComparison.html">
+     pandas.errors.InvalidComparison
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="pandas.errors.InvalidIndexError.html">
      pandas.errors.InvalidIndexError
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.errors.InvalidVersion.html">
+     pandas.errors.InvalidVersion
     </a>
    </li>
    <li class="toctree-l2">
@@ -544,8 +559,18 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="pandas.errors.LossySetitemError.html">
+     pandas.errors.LossySetitemError
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="pandas.errors.MergeError.html">
      pandas.errors.MergeError
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.errors.NoBufferPresent.html">
+     pandas.errors.NoBufferPresent
     </a>
    </li>
    <li class="toctree-l2">
@@ -693,7 +718,7 @@
 <h1>pandas.errors.InvalidColumnName<a class="headerlink" href="#pandas-errors-invalidcolumnname" title="Permalink to this headline">#</a></h1>
 <dl class="py exception">
 <dt class="sig sig-object py" id="pandas.errors.InvalidColumnName">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pandas.errors.</span></span><span class="sig-name descname"><span class="pre">InvalidColumnName</span></span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.5.3/pandas/errors/__init__.py#L509-L521"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.errors.InvalidColumnName" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pandas.errors.</span></span><span class="sig-name descname"><span class="pre">InvalidColumnName</span></span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v2.0.0rc0/pandas/errors/__init__.py#L548-L560"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.errors.InvalidColumnName" title="Permalink to this definition">#</a></dt>
 <dd><p>Warning raised by to_stata the column contains a non-valid stata name.</p>
 <p>Because the column name is an invalid Stata variable, the name needs to be
 converted.</p>
@@ -722,10 +747,10 @@ converted.</p>
           <p class="prev-next-title">pandas.errors.IndexingError</p>
       </div>
   </a>
-  <a class='right-next' id="next-link" href="pandas.errors.InvalidIndexError.html" title="next page">
+  <a class='right-next' id="next-link" href="pandas.errors.InvalidComparison.html" title="next page">
   <div class="prev-next-info">
       <p class="prev-next-subtitle">next</p>
-      <p class="prev-next-title">pandas.errors.InvalidIndexError</p>
+      <p class="prev-next-title">pandas.errors.InvalidComparison</p>
   </div>
   <i class="fas fa-angle-right"></i>
   </a>

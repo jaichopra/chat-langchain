@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>User Guide &#8212; pandas 1.5.3 documentation</title>
+    <title>User Guide &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -55,7 +55,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/index';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -182,7 +182,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -311,7 +311,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -381,6 +381,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="io.html">
    IO tools (text, CSV, HDF5, …)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="pyarrow.html">
+   PyArrow Functionality
   </a>
  </li>
  <li class="toctree-l1">
@@ -630,6 +635,12 @@ pandas approaches the problem, with many examples throughout.</p>
 <li class="toctree-l2"><a class="reference internal" href="io.html#performance-considerations">Performance considerations</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="pyarrow.html">PyArrow Functionality</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyarrow.html#data-structure-integration">Data Structure Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyarrow.html#operations">Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyarrow.html#i-o-reading">I/O Reading</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="indexing.html">Indexing and selecting data</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="indexing.html#different-choices-for-indexing">Different choices for indexing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="indexing.html#basics">Basics</a></li>
@@ -757,8 +768,9 @@ pandas approaches the problem, with many examples throughout.</p>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="style.html">Table Visualization</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="style.html#Styler-Object-and-HTML">Styler Object and HTML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="style.html#Styler-Object-and-Customising-the-Display">Styler Object and Customising the Display</a></li>
 <li class="toctree-l2"><a class="reference internal" href="style.html#Formatting-the-Display">Formatting the Display</a></li>
+<li class="toctree-l2"><a class="reference internal" href="style.html#Styler-Object-and-HTML">Styler Object and HTML</a></li>
 <li class="toctree-l2"><a class="reference internal" href="style.html#Methods-to-Add-Styles">Methods to Add Styles</a></li>
 <li class="toctree-l2"><a class="reference internal" href="style.html#Table-Styles">Table Styles</a></li>
 <li class="toctree-l2"><a class="reference internal" href="style.html#Setting-Classes-and-Linking-to-External-CSS">Setting Classes and Linking to External CSS</a></li>

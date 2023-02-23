@@ -1,0 +1,6 @@
+pandas.core.groupby.SeriesGroupBy.bfill
+=======================================
+
+.. currentmodule:: pandas.core.groupby
+
+.. automethod:: SeriesGroupBy.bfill

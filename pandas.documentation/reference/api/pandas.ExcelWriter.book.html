@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>pandas.ExcelWriter.book &#8212; pandas 1.5.3 documentation</title>
+    <title>pandas.ExcelWriter.book &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -55,12 +55,12 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'reference/api/pandas.ExcelWriter.book';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="pandas.ExcelWriter.cur_sheet" href="pandas.ExcelWriter.cur_sheet.html" />
+    <link rel="next" title="pandas.ExcelWriter.date_format" href="pandas.ExcelWriter.date_format.html" />
     <link rel="prev" title="pandas.ExcelWriter" href="pandas.ExcelWriter.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="docsearch:language" content="en">
@@ -182,7 +182,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -311,7 +311,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -424,6 +424,21 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="pandas.ExcelFile.html">
+     pandas.ExcelFile
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.ExcelFile.book.html">
+     pandas.ExcelFile.book
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.ExcelFile.sheet_names.html">
+     pandas.ExcelFile.sheet_names
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="pandas.ExcelFile.parse.html">
      pandas.ExcelFile.parse
     </a>
@@ -449,11 +464,6 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="pandas.ExcelWriter.cur_sheet.html">
-       pandas.ExcelWriter.cur_sheet
-      </a>
-     </li>
-     <li class="toctree-l3">
       <a class="reference internal" href="pandas.ExcelWriter.date_format.html">
        pandas.ExcelWriter.date_format
       </a>
@@ -469,18 +479,8 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="pandas.ExcelWriter.handles.html">
-       pandas.ExcelWriter.handles
-      </a>
-     </li>
-     <li class="toctree-l3">
       <a class="reference internal" href="pandas.ExcelWriter.if_sheet_exists.html">
        pandas.ExcelWriter.if_sheet_exists
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="pandas.ExcelWriter.path.html">
-       pandas.ExcelWriter.path
       </a>
      </li>
      <li class="toctree-l3">
@@ -501,16 +501,6 @@
      <li class="toctree-l3">
       <a class="reference internal" href="pandas.ExcelWriter.close.html">
        pandas.ExcelWriter.close
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="pandas.ExcelWriter.save.html">
-       pandas.ExcelWriter.save
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="pandas.ExcelWriter.write_cells.html">
-       pandas.ExcelWriter.write_cells
       </a>
      </li>
     </ul>
@@ -815,7 +805,7 @@
 <h1>pandas.ExcelWriter.book<a class="headerlink" href="#pandas-excelwriter-book" title="Permalink to this headline">#</a></h1>
 <dl class="py property">
 <dt class="sig sig-object py" id="pandas.ExcelWriter.book">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ExcelWriter.</span></span><span class="sig-name descname"><span class="pre">book</span></span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.5.3/pandas/io/excel/_base.py#L1196-L1204"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.ExcelWriter.book" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ExcelWriter.</span></span><span class="sig-name descname"><span class="pre">book</span></span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v2.0.0rc0/pandas/io/excel/_base.py#L1151-L1158"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.ExcelWriter.book" title="Permalink to this definition">#</a></dt>
 <dd><p>Book instance. Class type will depend on the engine used.</p>
 <p>This attribute can be used to access engine-specific features.</p>
 </dd></dl>
@@ -837,10 +827,10 @@
           <p class="prev-next-title">pandas.ExcelWriter</p>
       </div>
   </a>
-  <a class='right-next' id="next-link" href="pandas.ExcelWriter.cur_sheet.html" title="next page">
+  <a class='right-next' id="next-link" href="pandas.ExcelWriter.date_format.html" title="next page">
   <div class="prev-next-info">
       <p class="prev-next-subtitle">next</p>
-      <p class="prev-next-title">pandas.ExcelWriter.cur_sheet</p>
+      <p class="prev-next-title">pandas.ExcelWriter.date_format</p>
   </div>
   <i class="fas fa-angle-right"></i>
   </a>

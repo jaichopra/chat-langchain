@@ -1,6 +1,0 @@
-pandas.core.groupby.GroupBy.pad
-===============================
-
-.. currentmodule:: pandas.core.groupby
-
-.. automethod:: GroupBy.pad

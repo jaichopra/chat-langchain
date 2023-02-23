@@ -1,6 +1,0 @@
-pandas.tseries.offsets.CustomBusinessDay.\_\_call\_\_
-=====================================================
-
-.. currentmodule:: pandas.tseries.offsets
-
-.. automethod:: CustomBusinessDay.__call__

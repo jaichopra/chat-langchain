@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>pandas.to_numeric &#8212; pandas 1.5.3 documentation</title>
+    <title>pandas.to_numeric &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -55,7 +55,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'reference/api/pandas.to_numeric';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -182,7 +182,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -311,7 +311,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -446,6 +446,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="pandas.unique.html">
      pandas.unique
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.lreshape.html">
+     pandas.lreshape
     </a>
    </li>
    <li class="toctree-l2">
@@ -638,7 +643,7 @@
 <h1>pandas.to_numeric<a class="headerlink" href="#pandas-to-numeric" title="Permalink to this headline">#</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="pandas.to_numeric">
-<span class="sig-prename descclassname"><span class="pre">pandas.</span></span><span class="sig-name descname"><span class="pre">to_numeric</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'raise'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">downcast</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.5.3/pandas/core/tools/numeric.py#L28-L244"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.to_numeric" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">pandas.</span></span><span class="sig-name descname"><span class="pre">to_numeric</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'raise'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">downcast</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_nullable_dtypes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">_NoDefault.no_default</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v2.0.0rc0/pandas/core/tools/numeric.py#L40-L314"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.to_numeric" title="Permalink to this definition">#</a></dt>
 <dd><p>Convert argument to a numeric type.</p>
 <p>The default return dtype is <cite>float64</cite> or <cite>int64</cite>
 depending on the data supplied. Use the <cite>downcast</cite> parameter
@@ -648,7 +653,7 @@ are passed in. Due to the internal limitations of <cite>ndarray</cite>, if
 numbers smaller than <cite>-9223372036854775808</cite> (np.iinfo(np.int64).min)
 or larger than <cite>18446744073709551615</cite> (np.iinfo(np.uint64).max) are
 passed in, it is very likely they will be converted to float so that
-they can stored in an <cite>ndarray</cite>. These warnings apply similarly to
+they can be stored in an <cite>ndarray</cite>. These warnings apply similarly to
 <cite>Series</cite> since it internally leverages <cite>ndarray</cite>.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
@@ -679,6 +684,21 @@ of the resulting data’s dtype is strictly larger than
 the dtype it is to be cast to, so if none of the dtypes
 checked satisfy that specification, no downcasting will be
 performed on the data.</p>
+</dd>
+<dt><strong>use_nullable_dtypes</strong><span class="classifier">bool = False</span></dt><dd><p>Whether or not to use nullable dtypes as default when converting data. If
+set to True, nullable dtypes are used for all dtypes that have a nullable
+implementation, even if no nulls are present.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The nullable dtype implementation can be configured by calling
+<code class="docutils literal notranslate"><span class="pre">pd.set_option(&quot;mode.dtype_backend&quot;,</span> <span class="pre">&quot;pandas&quot;)</span></code> to use
+numpy-backed nullable dtypes or
+<code class="docutils literal notranslate"><span class="pre">pd.set_option(&quot;mode.dtype_backend&quot;,</span> <span class="pre">&quot;pyarrow&quot;)</span></code> to use
+pyarrow-backed nullable dtypes (using <code class="docutils literal notranslate"><span class="pre">pd.ArrowDtype</span></code>).</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 2.0.0.</span></p>
+</div>
 </dd>
 </dl>
 </dd>

@@ -1,0 +1,6 @@
+pandas.core.groupby.SeriesGroupBy.ohlc
+======================================
+
+.. currentmodule:: pandas.core.groupby
+
+.. automethod:: SeriesGroupBy.ohlc

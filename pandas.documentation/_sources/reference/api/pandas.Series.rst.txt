@@ -22,7 +22,6 @@ pandas.Series
       Series.align
       Series.all
       Series.any
-      Series.append
       Series.apply
       Series.argmax
       Series.argmin
@@ -89,7 +88,6 @@ pandas.Series
       Series.isnull
       Series.item
       Series.items
-      Series.iteritems
       Series.keys
       Series.kurt
       Series.kurtosis
@@ -97,7 +95,6 @@ pandas.Series
       Series.last_valid_index
       Series.le
       Series.lt
-      Series.mad
       Series.map
       Series.mask
       Series.max
@@ -152,7 +149,6 @@ pandas.Series
       Series.set_flags
       Series.shift
       Series.skew
-      Series.slice_shift
       Series.sort_index
       Series.sort_values
       Series.squeeze
@@ -186,7 +182,6 @@ pandas.Series
       Series.transpose
       Series.truediv
       Series.truncate
-      Series.tshift
       Series.tz_convert
       Series.tz_localize
       Series.unique
@@ -222,7 +217,6 @@ pandas.Series
       Series.iat
       Series.iloc
       Series.index
-      Series.is_monotonic
       Series.is_monotonic_decreasing
       Series.is_monotonic_increasing
       Series.is_unique

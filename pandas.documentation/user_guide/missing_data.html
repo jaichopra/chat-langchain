@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Working with missing data &#8212; pandas 1.5.3 documentation</title>
+    <title>Working with missing data &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -55,7 +55,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/missing_data';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -182,7 +182,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -311,7 +311,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -381,6 +381,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="io.html">
    IO tools (text, CSV, HDF5, …)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="pyarrow.html">
+   PyArrow Functionality
   </a>
  </li>
  <li class="toctree-l1">
@@ -716,7 +721,7 @@ pandas objects provide compatibility between <code class="docutils literal notra
 <span class="go">object            1</span>
 <span class="go">bool              1</span>
 <span class="go">datetime64[ns]    1</span>
-<span class="go">dtype: int64</span>
+<span class="go">Name: count, dtype: int64</span>
 </pre></div>
 </div>
 </section>
@@ -1235,7 +1240,7 @@ that, by default, performs linear interpolation at missing data points.</p>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">method</span></code> argument gives access to fancier interpolation methods.
 If you have <a class="reference external" href="https://scipy.org/">scipy</a> installed, you can pass the name of a 1-d interpolation routine to <code class="docutils literal notranslate"><span class="pre">method</span></code>.
-You’ll want to consult the full scipy interpolation <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/interpolate.html#univariate-interpolation">documentation</a> and reference <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/tutorial/interpolate.html">guide</a> for details.
+You’ll want to consult the full scipy interpolation <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/interpolate.html#univariate-interpolation">documentation</a> and reference <a class="reference external" href="https://docs.scipy.org/doc/scipy/tutorial/interpolate.html">guide</a> for details.
 The appropriate interpolation method will depend on the type of data you are working with.</p>
 <ul class="simple">
 <li><p>If you are dealing with a time series that is growing at an increasing rate,
@@ -1738,10 +1743,6 @@ a compiled regular expression is valid as well.</p>
 <span class="gh">Out[127]: </span><span class="go">dtype(&#39;float64&#39;)</span>
 </pre></div>
 </div>
-<p>You can also operate on the DataFrame in place:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [128]: </span><span class="n">df</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-</div>
 <section id="missing-data-casting-rules-and-indexing">
 <h3>Missing data casting rules and indexing<a class="headerlink" href="#missing-data-casting-rules-and-indexing" title="Permalink to this headline">#</a></h3>
 <p>While pandas supports storing arrays of integer and boolean type, these types
@@ -1775,10 +1776,10 @@ rules introduced in the table below.</p>
 </tbody>
 </table>
 <p>For example:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [129]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">])</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [128]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">])</span>
 
-<span class="gp">In [130]: </span><span class="n">s</span> <span class="o">&gt;</span> <span class="mi">0</span>
-<span class="gh">Out[130]: </span>
+<span class="gp">In [129]: </span><span class="n">s</span> <span class="o">&gt;</span> <span class="mi">0</span>
+<span class="gh">Out[129]: </span>
 <span class="go">0    True</span>
 <span class="go">2    True</span>
 <span class="go">4    True</span>
@@ -1786,13 +1787,13 @@ rules introduced in the table below.</p>
 <span class="go">7    True</span>
 <span class="go">dtype: bool</span>
 
-<span class="gp">In [131]: </span><span class="p">(</span><span class="n">s</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">dtype</span>
-<span class="gh">Out[131]: </span><span class="go">dtype(&#39;bool&#39;)</span>
+<span class="gp">In [130]: </span><span class="p">(</span><span class="n">s</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">dtype</span>
+<span class="gh">Out[130]: </span><span class="go">dtype(&#39;bool&#39;)</span>
 
-<span class="gp">In [132]: </span><span class="n">crit</span> <span class="o">=</span> <span class="p">(</span><span class="n">s</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">)))</span>
+<span class="gp">In [131]: </span><span class="n">crit</span> <span class="o">=</span> <span class="p">(</span><span class="n">s</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">)))</span>
 
-<span class="gp">In [133]: </span><span class="n">crit</span>
-<span class="gh">Out[133]: </span>
+<span class="gp">In [132]: </span><span class="n">crit</span>
+<span class="gh">Out[132]: </span>
 <span class="go">0    True</span>
 <span class="go">1     NaN</span>
 <span class="go">2    True</span>
@@ -1803,44 +1804,44 @@ rules introduced in the table below.</p>
 <span class="go">7    True</span>
 <span class="go">dtype: object</span>
 
-<span class="gp">In [134]: </span><span class="n">crit</span><span class="o">.</span><span class="n">dtype</span>
-<span class="gh">Out[134]: </span><span class="go">dtype(&#39;O&#39;)</span>
+<span class="gp">In [133]: </span><span class="n">crit</span><span class="o">.</span><span class="n">dtype</span>
+<span class="gh">Out[133]: </span><span class="go">dtype(&#39;O&#39;)</span>
 </pre></div>
 </div>
 <p>Ordinarily NumPy will complain if you try to use an object array (even if it
 contains boolean values) instead of a boolean array to get or set values from
 an ndarray (e.g. selecting values based on some criteria). If a boolean vector
 contains NAs, an exception will be generated:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [135]: </span><span class="n">reindexed</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">)))</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [134]: </span><span class="n">reindexed</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">)))</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
-<span class="gp">In [136]: </span><span class="n">reindexed</span><span class="p">[</span><span class="n">crit</span><span class="p">]</span>
+<span class="gp">In [135]: </span><span class="n">reindexed</span><span class="p">[</span><span class="n">crit</span><span class="p">]</span>
 <span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">136</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">135</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">reindexed</span><span class="p">[</span><span class="n">crit</span><span class="p">]</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/series.py:1002,</span> in <span class="ni">Series.__getitem__</span><span class="nt">(self, key)</span>
-<span class="g g-Whitespace">    </span><span class="mi">999</span> <span class="k">if</span> <span class="n">is_iterator</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
-<span class="g g-Whitespace">   </span><span class="mi">1000</span>     <span class="n">key</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">1002</span> <span class="k">if</span> <span class="n">com</span><span class="o">.</span><span class="n">is_bool_indexer</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
-<span class="g g-Whitespace">   </span><span class="mi">1003</span>     <span class="n">key</span> <span class="o">=</span> <span class="n">check_bool_indexer</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1004</span>     <span class="n">key</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/series.py:996,</span> in <span class="ni">Series.__getitem__</span><span class="nt">(self, key)</span>
+<span class="g g-Whitespace">    </span><span class="mi">993</span> <span class="k">if</span> <span class="n">is_iterator</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">994</span>     <span class="n">key</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">996</span> <span class="k">if</span> <span class="n">com</span><span class="o">.</span><span class="n">is_bool_indexer</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">997</span>     <span class="n">key</span> <span class="o">=</span> <span class="n">check_bool_indexer</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">998</span>     <span class="n">key</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/common.py:135,</span> in <span class="ni">is_bool_indexer</span><span class="nt">(key)</span>
-<span class="g g-Whitespace">    </span><span class="mi">131</span>     <span class="n">na_msg</span> <span class="o">=</span> <span class="s2">&quot;Cannot mask with non-boolean array containing NA / NaN values&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">132</span>     <span class="k">if</span> <span class="n">lib</span><span class="o">.</span><span class="n">infer_dtype</span><span class="p">(</span><span class="n">key_array</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;boolean&quot;</span> <span class="ow">and</span> <span class="n">isna</span><span class="p">(</span><span class="n">key_array</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
-<span class="g g-Whitespace">    </span><span class="mi">133</span>         <span class="c1"># Don&#39;t raise on e.g. [&quot;A&quot;, &quot;B&quot;, np.nan], see</span>
-<span class="g g-Whitespace">    </span><span class="mi">134</span>         <span class="c1">#  test_loc_getitem_list_of_labels_categoricalindex_with_na</span>
-<span class="ne">--&gt; </span><span class="mi">135</span>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">na_msg</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">136</span>     <span class="k">return</span> <span class="kc">False</span>
-<span class="g g-Whitespace">    </span><span class="mi">137</span> <span class="k">return</span> <span class="kc">True</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/common.py:134,</span> in <span class="ni">is_bool_indexer</span><span class="nt">(key)</span>
+<span class="g g-Whitespace">    </span><span class="mi">130</span>     <span class="n">na_msg</span> <span class="o">=</span> <span class="s2">&quot;Cannot mask with non-boolean array containing NA / NaN values&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">131</span>     <span class="k">if</span> <span class="n">lib</span><span class="o">.</span><span class="n">infer_dtype</span><span class="p">(</span><span class="n">key_array</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;boolean&quot;</span> <span class="ow">and</span> <span class="n">isna</span><span class="p">(</span><span class="n">key_array</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+<span class="g g-Whitespace">    </span><span class="mi">132</span>         <span class="c1"># Don&#39;t raise on e.g. [&quot;A&quot;, &quot;B&quot;, np.nan], see</span>
+<span class="g g-Whitespace">    </span><span class="mi">133</span>         <span class="c1">#  test_loc_getitem_list_of_labels_categoricalindex_with_na</span>
+<span class="ne">--&gt; </span><span class="mi">134</span>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">na_msg</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">135</span>     <span class="k">return</span> <span class="kc">False</span>
+<span class="g g-Whitespace">    </span><span class="mi">136</span> <span class="k">return</span> <span class="kc">True</span>
 
 <span class="ne">ValueError</span>: Cannot mask with non-boolean array containing NA / NaN values
 </pre></div>
 </div>
 <p>However, these can be filled in using <a class="reference internal" href="../reference/api/pandas.DataFrame.fillna.html#pandas.DataFrame.fillna" title="pandas.DataFrame.fillna"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fillna()</span></code></a> and it will work fine:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [137]: </span><span class="n">reindexed</span><span class="p">[</span><span class="n">crit</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="kc">False</span><span class="p">)]</span>
-<span class="gh">Out[137]: </span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [136]: </span><span class="n">reindexed</span><span class="p">[</span><span class="n">crit</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="kc">False</span><span class="p">)]</span>
+<span class="gh">Out[136]: </span>
 <span class="go">0    0.126504</span>
 <span class="go">2    0.696198</span>
 <span class="go">4    0.697416</span>
@@ -1848,8 +1849,8 @@ contains NAs, an exception will be generated:</p>
 <span class="go">7    0.003659</span>
 <span class="go">dtype: float64</span>
 
-<span class="gp">In [138]: </span><span class="n">reindexed</span><span class="p">[</span><span class="n">crit</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="kc">True</span><span class="p">)]</span>
-<span class="gh">Out[138]: </span>
+<span class="gp">In [137]: </span><span class="n">reindexed</span><span class="p">[</span><span class="n">crit</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="kc">True</span><span class="p">)]</span>
+<span class="gh">Out[137]: </span>
 <span class="go">0    0.126504</span>
 <span class="go">1    0.000000</span>
 <span class="go">2    0.696198</span>
@@ -1864,10 +1865,10 @@ contains NAs, an exception will be generated:</p>
 <p>pandas provides a nullable integer dtype, but you must explicitly request it
 when creating the series or column. Notice that we use a capital “I” in
 the <code class="docutils literal notranslate"><span class="pre">dtype=&quot;Int64&quot;</span></code>.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [139]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;Int64&quot;</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [138]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;Int64&quot;</span><span class="p">)</span>
 
-<span class="gp">In [140]: </span><span class="n">s</span>
-<span class="gh">Out[140]: </span>
+<span class="gp">In [139]: </span><span class="n">s</span>
+<span class="gh">Out[139]: </span>
 <span class="go">0       0</span>
 <span class="go">1       1</span>
 <span class="go">2    &lt;NA&gt;</span>
@@ -1897,20 +1898,20 @@ consistently across data types (instead of <code class="docutils literal notrans
 depending on the data type).</p>
 <p>For example, when having missing values in a Series with the nullable integer
 dtype, it will use <code class="docutils literal notranslate"><span class="pre">pd.NA</span></code>:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [141]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;Int64&quot;</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [140]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;Int64&quot;</span><span class="p">)</span>
 
-<span class="gp">In [142]: </span><span class="n">s</span>
-<span class="gh">Out[142]: </span>
+<span class="gp">In [141]: </span><span class="n">s</span>
+<span class="gh">Out[141]: </span>
 <span class="go">0       1</span>
 <span class="go">1       2</span>
 <span class="go">2    &lt;NA&gt;</span>
 <span class="go">dtype: Int64</span>
 
-<span class="gp">In [143]: </span><span class="n">s</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
-<span class="gh">Out[143]: </span><span class="go">&lt;NA&gt;</span>
+<span class="gp">In [142]: </span><span class="n">s</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<span class="gh">Out[142]: </span><span class="go">&lt;NA&gt;</span>
 
-<span class="gp">In [144]: </span><span class="n">s</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="ow">is</span> <span class="n">pd</span><span class="o">.</span><span class="n">NA</span>
-<span class="gh">Out[144]: </span><span class="go">True</span>
+<span class="gp">In [143]: </span><span class="n">s</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="ow">is</span> <span class="n">pd</span><span class="o">.</span><span class="n">NA</span>
+<span class="gh">Out[143]: </span><span class="go">True</span>
 </pre></div>
 </div>
 <p>Currently, pandas does not yet use those data types by default (when creating
@@ -1923,39 +1924,39 @@ the dtype explicitly.  An easy way to convert to those dtypes is explained
 one of the operands is unknown, the outcome of the operation is also unknown.</p>
 <p>For example, <code class="docutils literal notranslate"><span class="pre">pd.NA</span></code> propagates in arithmetic operations, similarly to
 <code class="docutils literal notranslate"><span class="pre">np.nan</span></code>:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [145]: </span><span class="n">pd</span><span class="o">.</span><span class="n">NA</span> <span class="o">+</span> <span class="mi">1</span>
-<span class="gh">Out[145]: </span><span class="go">&lt;NA&gt;</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [144]: </span><span class="n">pd</span><span class="o">.</span><span class="n">NA</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="gh">Out[144]: </span><span class="go">&lt;NA&gt;</span>
 
-<span class="gp">In [146]: </span><span class="s2">&quot;a&quot;</span> <span class="o">*</span> <span class="n">pd</span><span class="o">.</span><span class="n">NA</span>
-<span class="gh">Out[146]: </span><span class="go">&lt;NA&gt;</span>
+<span class="gp">In [145]: </span><span class="s2">&quot;a&quot;</span> <span class="o">*</span> <span class="n">pd</span><span class="o">.</span><span class="n">NA</span>
+<span class="gh">Out[145]: </span><span class="go">&lt;NA&gt;</span>
 </pre></div>
 </div>
 <p>There are a few special cases when the result is known, even when one of the
 operands is <code class="docutils literal notranslate"><span class="pre">NA</span></code>.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [147]: </span><span class="n">pd</span><span class="o">.</span><span class="n">NA</span> <span class="o">**</span> <span class="mi">0</span>
-<span class="gh">Out[147]: </span><span class="go">1</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [146]: </span><span class="n">pd</span><span class="o">.</span><span class="n">NA</span> <span class="o">**</span> <span class="mi">0</span>
+<span class="gh">Out[146]: </span><span class="go">1</span>
 
-<span class="gp">In [148]: </span><span class="mi">1</span> <span class="o">**</span> <span class="n">pd</span><span class="o">.</span><span class="n">NA</span>
-<span class="gh">Out[148]: </span><span class="go">1</span>
+<span class="gp">In [147]: </span><span class="mi">1</span> <span class="o">**</span> <span class="n">pd</span><span class="o">.</span><span class="n">NA</span>
+<span class="gh">Out[147]: </span><span class="go">1</span>
 </pre></div>
 </div>
 <p>In equality and comparison operations, <code class="docutils literal notranslate"><span class="pre">pd.NA</span></code> also propagates. This deviates
 from the behaviour of <code class="docutils literal notranslate"><span class="pre">np.nan</span></code>, where comparisons with <code class="docutils literal notranslate"><span class="pre">np.nan</span></code> always
 return <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [149]: </span><span class="n">pd</span><span class="o">.</span><span class="n">NA</span> <span class="o">==</span> <span class="mi">1</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [148]: </span><span class="n">pd</span><span class="o">.</span><span class="n">NA</span> <span class="o">==</span> <span class="mi">1</span>
+<span class="gh">Out[148]: </span><span class="go">&lt;NA&gt;</span>
+
+<span class="gp">In [149]: </span><span class="n">pd</span><span class="o">.</span><span class="n">NA</span> <span class="o">==</span> <span class="n">pd</span><span class="o">.</span><span class="n">NA</span>
 <span class="gh">Out[149]: </span><span class="go">&lt;NA&gt;</span>
 
-<span class="gp">In [150]: </span><span class="n">pd</span><span class="o">.</span><span class="n">NA</span> <span class="o">==</span> <span class="n">pd</span><span class="o">.</span><span class="n">NA</span>
+<span class="gp">In [150]: </span><span class="n">pd</span><span class="o">.</span><span class="n">NA</span> <span class="o">&lt;</span> <span class="mf">2.5</span>
 <span class="gh">Out[150]: </span><span class="go">&lt;NA&gt;</span>
-
-<span class="gp">In [151]: </span><span class="n">pd</span><span class="o">.</span><span class="n">NA</span> <span class="o">&lt;</span> <span class="mf">2.5</span>
-<span class="gh">Out[151]: </span><span class="go">&lt;NA&gt;</span>
 </pre></div>
 </div>
 <p>To check if a value is equal to <code class="docutils literal notranslate"><span class="pre">pd.NA</span></code>, the <a class="reference internal" href="../reference/api/pandas.isna.html#pandas.isna" title="pandas.isna"><code class="xref py py-func docutils literal notranslate"><span class="pre">isna()</span></code></a> function can be
 used:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [152]: </span><span class="n">pd</span><span class="o">.</span><span class="n">isna</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">NA</span><span class="p">)</span>
-<span class="gh">Out[152]: </span><span class="go">True</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [151]: </span><span class="n">pd</span><span class="o">.</span><span class="n">isna</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">NA</span><span class="p">)</span>
+<span class="gh">Out[151]: </span><span class="go">True</span>
 </pre></div>
 </div>
 <p>An exception on this basic propagation rule are <em>reductions</em> (such as the
@@ -1972,50 +1973,50 @@ propagate missing values when it is logically required.</p>
 is <code class="docutils literal notranslate"><span class="pre">True</span></code>, we already know the result will be <code class="docutils literal notranslate"><span class="pre">True</span></code>, regardless of the
 other value (so regardless the missing value would be <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code>).
 In this case, <code class="docutils literal notranslate"><span class="pre">pd.NA</span></code> does not propagate:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [153]: </span><span class="kc">True</span> <span class="o">|</span> <span class="kc">False</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [152]: </span><span class="kc">True</span> <span class="o">|</span> <span class="kc">False</span>
+<span class="gh">Out[152]: </span><span class="go">True</span>
+
+<span class="gp">In [153]: </span><span class="kc">True</span> <span class="o">|</span> <span class="n">pd</span><span class="o">.</span><span class="n">NA</span>
 <span class="gh">Out[153]: </span><span class="go">True</span>
 
-<span class="gp">In [154]: </span><span class="kc">True</span> <span class="o">|</span> <span class="n">pd</span><span class="o">.</span><span class="n">NA</span>
+<span class="gp">In [154]: </span><span class="n">pd</span><span class="o">.</span><span class="n">NA</span> <span class="o">|</span> <span class="kc">True</span>
 <span class="gh">Out[154]: </span><span class="go">True</span>
-
-<span class="gp">In [155]: </span><span class="n">pd</span><span class="o">.</span><span class="n">NA</span> <span class="o">|</span> <span class="kc">True</span>
-<span class="gh">Out[155]: </span><span class="go">True</span>
 </pre></div>
 </div>
 <p>On the other hand, if one of the operands is <code class="docutils literal notranslate"><span class="pre">False</span></code>, the result depends
 on the value of the other operand. Therefore, in this case <code class="docutils literal notranslate"><span class="pre">pd.NA</span></code>
 propagates:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [156]: </span><span class="kc">False</span> <span class="o">|</span> <span class="kc">True</span>
-<span class="gh">Out[156]: </span><span class="go">True</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [155]: </span><span class="kc">False</span> <span class="o">|</span> <span class="kc">True</span>
+<span class="gh">Out[155]: </span><span class="go">True</span>
 
-<span class="gp">In [157]: </span><span class="kc">False</span> <span class="o">|</span> <span class="kc">False</span>
-<span class="gh">Out[157]: </span><span class="go">False</span>
+<span class="gp">In [156]: </span><span class="kc">False</span> <span class="o">|</span> <span class="kc">False</span>
+<span class="gh">Out[156]: </span><span class="go">False</span>
 
-<span class="gp">In [158]: </span><span class="kc">False</span> <span class="o">|</span> <span class="n">pd</span><span class="o">.</span><span class="n">NA</span>
-<span class="gh">Out[158]: </span><span class="go">&lt;NA&gt;</span>
+<span class="gp">In [157]: </span><span class="kc">False</span> <span class="o">|</span> <span class="n">pd</span><span class="o">.</span><span class="n">NA</span>
+<span class="gh">Out[157]: </span><span class="go">&lt;NA&gt;</span>
 </pre></div>
 </div>
 <p>The behaviour of the logical “and” operation (<code class="docutils literal notranslate"><span class="pre">&amp;</span></code>) can be derived using
 similar logic (where now <code class="docutils literal notranslate"><span class="pre">pd.NA</span></code> will not propagate if one of the operands
 is already <code class="docutils literal notranslate"><span class="pre">False</span></code>):</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [159]: </span><span class="kc">False</span> <span class="o">&amp;</span> <span class="kc">True</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [158]: </span><span class="kc">False</span> <span class="o">&amp;</span> <span class="kc">True</span>
+<span class="gh">Out[158]: </span><span class="go">False</span>
+
+<span class="gp">In [159]: </span><span class="kc">False</span> <span class="o">&amp;</span> <span class="kc">False</span>
 <span class="gh">Out[159]: </span><span class="go">False</span>
 
-<span class="gp">In [160]: </span><span class="kc">False</span> <span class="o">&amp;</span> <span class="kc">False</span>
+<span class="gp">In [160]: </span><span class="kc">False</span> <span class="o">&amp;</span> <span class="n">pd</span><span class="o">.</span><span class="n">NA</span>
 <span class="gh">Out[160]: </span><span class="go">False</span>
-
-<span class="gp">In [161]: </span><span class="kc">False</span> <span class="o">&amp;</span> <span class="n">pd</span><span class="o">.</span><span class="n">NA</span>
-<span class="gh">Out[161]: </span><span class="go">False</span>
 </pre></div>
 </div>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [162]: </span><span class="kc">True</span> <span class="o">&amp;</span> <span class="kc">True</span>
-<span class="gh">Out[162]: </span><span class="go">True</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [161]: </span><span class="kc">True</span> <span class="o">&amp;</span> <span class="kc">True</span>
+<span class="gh">Out[161]: </span><span class="go">True</span>
 
-<span class="gp">In [163]: </span><span class="kc">True</span> <span class="o">&amp;</span> <span class="kc">False</span>
-<span class="gh">Out[163]: </span><span class="go">False</span>
+<span class="gp">In [162]: </span><span class="kc">True</span> <span class="o">&amp;</span> <span class="kc">False</span>
+<span class="gh">Out[162]: </span><span class="go">False</span>
 
-<span class="gp">In [164]: </span><span class="kc">True</span> <span class="o">&amp;</span> <span class="n">pd</span><span class="o">.</span><span class="n">NA</span>
-<span class="gh">Out[164]: </span><span class="go">&lt;NA&gt;</span>
+<span class="gp">In [163]: </span><span class="kc">True</span> <span class="o">&amp;</span> <span class="n">pd</span><span class="o">.</span><span class="n">NA</span>
+<span class="gh">Out[163]: </span><span class="go">&lt;NA&gt;</span>
 </pre></div>
 </div>
 </section>
@@ -2023,13 +2024,13 @@ is already <code class="docutils literal notranslate"><span class="pre">False</s
 <h3><code class="docutils literal notranslate"><span class="pre">NA</span></code> in a boolean context<a class="headerlink" href="#na-in-a-boolean-context" title="Permalink to this headline">#</a></h3>
 <p>Since the actual value of an NA is unknown, it is ambiguous to convert NA
 to a boolean value. The following raises an error:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [165]: </span><span class="nb">bool</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">NA</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [164]: </span><span class="nb">bool</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">NA</span><span class="p">)</span>
 <span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">165</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">164</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="nb">bool</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">NA</span><span class="p">)</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/_libs/missing.pyx:382,</span> in <span class="ni">pandas._libs.missing.NAType.__bool__</span><span class="nt">()</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/_libs/missing.pyx:390,</span> in <span class="ni">pandas._libs.missing.NAType.__bool__</span><span class="nt">()</span>
 
 <span class="ne">TypeError</span>: boolean value of NA is ambiguous
 </pre></div>
@@ -2044,23 +2045,23 @@ statements, see <a class="reference internal" href="gotchas.html#gotchas-truth">
 </section>
 <section id="numpy-ufuncs">
 <h3>NumPy ufuncs<a class="headerlink" href="#numpy-ufuncs" title="Permalink to this headline">#</a></h3>
-<p><code class="xref py py-attr docutils literal notranslate"><span class="pre">pandas.NA</span></code> implements NumPy’s <code class="docutils literal notranslate"><span class="pre">__array_ufunc__</span></code> protocol. Most ufuncs
+<p><a class="reference internal" href="../reference/api/pandas.NA.html#pandas.NA" title="pandas.NA"><code class="xref py py-attr docutils literal notranslate"><span class="pre">pandas.NA</span></code></a> implements NumPy’s <code class="docutils literal notranslate"><span class="pre">__array_ufunc__</span></code> protocol. Most ufuncs
 work with <code class="docutils literal notranslate"><span class="pre">NA</span></code>, and generally return <code class="docutils literal notranslate"><span class="pre">NA</span></code>:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [166]: </span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">NA</span><span class="p">)</span>
-<span class="gh">Out[166]: </span><span class="go">&lt;NA&gt;</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [165]: </span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">NA</span><span class="p">)</span>
+<span class="gh">Out[165]: </span><span class="go">&lt;NA&gt;</span>
 
-<span class="gp">In [167]: </span><span class="n">np</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">NA</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="gh">Out[167]: </span><span class="go">&lt;NA&gt;</span>
+<span class="gp">In [166]: </span><span class="n">np</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">NA</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gh">Out[166]: </span><span class="go">&lt;NA&gt;</span>
 </pre></div>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Currently, ufuncs involving an ndarray and <code class="docutils literal notranslate"><span class="pre">NA</span></code> will return an
 object-dtype filled with NA values.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [168]: </span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [167]: </span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
 
-<span class="gp">In [169]: </span><span class="n">np</span><span class="o">.</span><span class="n">greater</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">NA</span><span class="p">)</span>
-<span class="gh">Out[169]: </span><span class="go">array([&lt;NA&gt;, &lt;NA&gt;, &lt;NA&gt;], dtype=object)</span>
+<span class="gp">In [168]: </span><span class="n">np</span><span class="o">.</span><span class="n">greater</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">NA</span><span class="p">)</span>
+<span class="gh">Out[168]: </span><span class="go">array([&lt;NA&gt;, &lt;NA&gt;, &lt;NA&gt;], dtype=object)</span>
 </pre></div>
 </div>
 <p>The return type here may change to return a different array type
@@ -2079,10 +2080,10 @@ in data sets when letting the readers such as <a class="reference internal" href
 infer default dtypes.</p>
 <p>In this example, while the dtypes of all columns are changed, we show the results for
 the first 10 columns.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [170]: </span><span class="n">bb</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/baseball.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s2">&quot;id&quot;</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [169]: </span><span class="n">bb</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data/baseball.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s2">&quot;id&quot;</span><span class="p">)</span>
 
-<span class="gp">In [171]: </span><span class="n">bb</span><span class="p">[</span><span class="n">bb</span><span class="o">.</span><span class="n">columns</span><span class="p">[:</span><span class="mi">10</span><span class="p">]]</span><span class="o">.</span><span class="n">dtypes</span>
-<span class="gh">Out[171]: </span>
+<span class="gp">In [170]: </span><span class="n">bb</span><span class="p">[</span><span class="n">bb</span><span class="o">.</span><span class="n">columns</span><span class="p">[:</span><span class="mi">10</span><span class="p">]]</span><span class="o">.</span><span class="n">dtypes</span>
+<span class="gh">Out[170]: </span>
 <span class="go">player    object</span>
 <span class="go">year       int64</span>
 <span class="go">stint      int64</span>
@@ -2096,20 +2097,20 @@ the first 10 columns.</p>
 <span class="go">dtype: object</span>
 </pre></div>
 </div>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [172]: </span><span class="n">bbn</span> <span class="o">=</span> <span class="n">bb</span><span class="o">.</span><span class="n">convert_dtypes</span><span class="p">()</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [171]: </span><span class="n">bbn</span> <span class="o">=</span> <span class="n">bb</span><span class="o">.</span><span class="n">convert_dtypes</span><span class="p">()</span>
 
-<span class="gp">In [173]: </span><span class="n">bbn</span><span class="p">[</span><span class="n">bbn</span><span class="o">.</span><span class="n">columns</span><span class="p">[:</span><span class="mi">10</span><span class="p">]]</span><span class="o">.</span><span class="n">dtypes</span>
-<span class="gh">Out[173]: </span>
-<span class="go">player    string</span>
-<span class="go">year       Int64</span>
-<span class="go">stint      Int64</span>
-<span class="go">team      string</span>
-<span class="go">lg        string</span>
-<span class="go">g          Int64</span>
-<span class="go">ab         Int64</span>
-<span class="go">r          Int64</span>
-<span class="go">h          Int64</span>
-<span class="go">X2b        Int64</span>
+<span class="gp">In [172]: </span><span class="n">bbn</span><span class="p">[</span><span class="n">bbn</span><span class="o">.</span><span class="n">columns</span><span class="p">[:</span><span class="mi">10</span><span class="p">]]</span><span class="o">.</span><span class="n">dtypes</span>
+<span class="gh">Out[172]: </span>
+<span class="go">player    string[python]</span>
+<span class="go">year               Int64</span>
+<span class="go">stint              Int64</span>
+<span class="go">team      string[python]</span>
+<span class="go">lg        string[python]</span>
+<span class="go">g                  Int64</span>
+<span class="go">ab                 Int64</span>
+<span class="go">r                  Int64</span>
+<span class="go">h                  Int64</span>
+<span class="go">X2b                Int64</span>
 <span class="go">dtype: object</span>
 </pre></div>
 </div>

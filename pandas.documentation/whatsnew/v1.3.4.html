@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>What’s new in 1.3.4 (October 17, 2021) &#8212; pandas 1.5.3 documentation</title>
+    <title>What’s new in 1.3.4 (October 17, 2021) &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -55,7 +55,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'whatsnew/v1.3.4';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -182,7 +182,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -311,7 +311,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -363,6 +363,18 @@
   <div class="bd-toc-item navbar-nav">
     
     <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v2.0.0.html">
+   What’s new in 2.0.0 (??)
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.5.4.html">
+   What’s new in 1.5.4 (March XX, 2023)
+  </a>
+ </li>
  <li class="toctree-l1">
   <a class="reference internal" href="v1.5.3.html">
    What’s new in 1.5.3 (January 18, 2023)
@@ -874,11 +886,11 @@ including other versions of pandas.</p>
 <span id="whatsnew-134-regressions"></span><h2>Fixed regressions<a class="headerlink" href="#fixed-regressions" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Fixed regression in <a class="reference internal" href="../reference/api/pandas.DataFrame.convert_dtypes.html#pandas.DataFrame.convert_dtypes" title="pandas.DataFrame.convert_dtypes"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.convert_dtypes()</span></code></a> incorrectly converts byte strings to strings (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/43183">GH43183</a>)</p></li>
-<li><p>Fixed regression in <a class="reference internal" href="../reference/api/pandas.core.groupby.GroupBy.agg.html#pandas.core.groupby.GroupBy.agg" title="pandas.core.groupby.GroupBy.agg"><code class="xref py py-meth docutils literal notranslate"><span class="pre">GroupBy.agg()</span></code></a> where it was failing silently with mixed data types along <code class="docutils literal notranslate"><span class="pre">axis=1</span></code> and <a class="reference internal" href="../reference/api/pandas.MultiIndex.html#pandas.MultiIndex" title="pandas.MultiIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiIndex</span></code></a> (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/43209">GH43209</a>)</p></li>
+<li><p>Fixed regression in <a class="reference internal" href="../reference/api/pandas.core.groupby.DataFrameGroupBy.agg.html#pandas.core.groupby.DataFrameGroupBy.agg" title="pandas.core.groupby.DataFrameGroupBy.agg"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrameGroupBy.agg()</span></code></a> and <a class="reference internal" href="../reference/api/pandas.core.groupby.SeriesGroupBy.agg.html#pandas.core.groupby.SeriesGroupBy.agg" title="pandas.core.groupby.SeriesGroupBy.agg"><code class="xref py py-meth docutils literal notranslate"><span class="pre">SeriesGroupBy.agg()</span></code></a> were failing silently with mixed data types along <code class="docutils literal notranslate"><span class="pre">axis=1</span></code> and <a class="reference internal" href="../reference/api/pandas.MultiIndex.html#pandas.MultiIndex" title="pandas.MultiIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiIndex</span></code></a> (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/43209">GH43209</a>)</p></li>
 <li><p>Fixed regression in <a class="reference internal" href="../reference/api/pandas.merge.html#pandas.merge" title="pandas.merge"><code class="xref py py-func docutils literal notranslate"><span class="pre">merge()</span></code></a> with integer and <code class="docutils literal notranslate"><span class="pre">NaN</span></code> keys failing with <code class="docutils literal notranslate"><span class="pre">outer</span></code> merge (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/43550">GH43550</a>)</p></li>
 <li><p>Fixed regression in <a class="reference internal" href="../reference/api/pandas.DataFrame.corr.html#pandas.DataFrame.corr" title="pandas.DataFrame.corr"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.corr()</span></code></a> raising <code class="docutils literal notranslate"><span class="pre">ValueError</span></code> with <code class="docutils literal notranslate"><span class="pre">method=&quot;spearman&quot;</span></code> on 32-bit platforms (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/43588">GH43588</a>)</p></li>
 <li><p>Fixed performance regression in <code class="xref py py-meth docutils literal notranslate"><span class="pre">MultiIndex.equals()</span></code> (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/43549">GH43549</a>)</p></li>
-<li><p>Fixed performance regression in <a class="reference internal" href="../reference/api/pandas.core.groupby.GroupBy.first.html#pandas.core.groupby.GroupBy.first" title="pandas.core.groupby.GroupBy.first"><code class="xref py py-meth docutils literal notranslate"><span class="pre">GroupBy.first()</span></code></a> and <a class="reference internal" href="../reference/api/pandas.core.groupby.GroupBy.last.html#pandas.core.groupby.GroupBy.last" title="pandas.core.groupby.GroupBy.last"><code class="xref py py-meth docutils literal notranslate"><span class="pre">GroupBy.last()</span></code></a> with <a class="reference internal" href="../reference/api/pandas.StringDtype.html#pandas.StringDtype" title="pandas.StringDtype"><code class="xref py py-class docutils literal notranslate"><span class="pre">StringDtype</span></code></a> (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/41596">GH41596</a>)</p></li>
+<li><p>Fixed performance regression in <a class="reference internal" href="../reference/api/pandas.core.groupby.DataFrameGroupBy.first.html#pandas.core.groupby.DataFrameGroupBy.first" title="pandas.core.groupby.DataFrameGroupBy.first"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrameGroupBy.first()</span></code></a>, <a class="reference internal" href="../reference/api/pandas.core.groupby.SeriesGroupBy.first.html#pandas.core.groupby.SeriesGroupBy.first" title="pandas.core.groupby.SeriesGroupBy.first"><code class="xref py py-meth docutils literal notranslate"><span class="pre">SeriesGroupBy.first()</span></code></a>, <a class="reference internal" href="../reference/api/pandas.core.groupby.DataFrameGroupBy.last.html#pandas.core.groupby.DataFrameGroupBy.last" title="pandas.core.groupby.DataFrameGroupBy.last"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrameGroupBy.last()</span></code></a>, and <a class="reference internal" href="../reference/api/pandas.core.groupby.SeriesGroupBy.last.html#pandas.core.groupby.SeriesGroupBy.last" title="pandas.core.groupby.SeriesGroupBy.last"><code class="xref py py-meth docutils literal notranslate"><span class="pre">SeriesGroupBy.last()</span></code></a> with <a class="reference internal" href="../reference/api/pandas.StringDtype.html#pandas.StringDtype" title="pandas.StringDtype"><code class="xref py py-class docutils literal notranslate"><span class="pre">StringDtype</span></code></a> (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/41596">GH41596</a>)</p></li>
 <li><p>Fixed regression in <a class="reference internal" href="../reference/api/pandas.Series.cat.reorder_categories.html#pandas.Series.cat.reorder_categories" title="pandas.Series.cat.reorder_categories"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.cat.reorder_categories()</span></code></a> failing to update the categories on the <code class="docutils literal notranslate"><span class="pre">Series</span></code> (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/43232">GH43232</a>)</p></li>
 <li><p>Fixed regression in <a class="reference internal" href="../reference/api/pandas.Series.cat.categories.html#pandas.Series.cat.categories" title="pandas.Series.cat.categories"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.cat.categories()</span></code></a> setter failing to update the categories on the <code class="docutils literal notranslate"><span class="pre">Series</span></code> (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/43334">GH43334</a>)</p></li>
 <li><p>Fixed regression in <a class="reference internal" href="../reference/api/pandas.read_csv.html#pandas.read_csv" title="pandas.read_csv"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_csv()</span></code></a> raising <code class="docutils literal notranslate"><span class="pre">UnicodeDecodeError</span></code> exception when <code class="docutils literal notranslate"><span class="pre">memory_map=True</span></code> (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/43540">GH43540</a>)</p></li>
@@ -892,7 +904,7 @@ including other versions of pandas.</p>
 <span id="whatsnew-134-bug-fixes"></span><h2>Bug fixes<a class="headerlink" href="#bug-fixes" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p>Fixed bug in <code class="xref py py-meth docutils literal notranslate"><span class="pre">pandas.DataFrame.groupby.rolling()</span></code> and <a class="reference internal" href="../reference/api/pandas.api.indexers.FixedForwardWindowIndexer.html#pandas.api.indexers.FixedForwardWindowIndexer" title="pandas.api.indexers.FixedForwardWindowIndexer"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.api.indexers.FixedForwardWindowIndexer</span></code></a> leading to segfaults and window endpoints being mixed across groups (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/43267">GH43267</a>)</p></li>
-<li><p>Fixed bug in <a class="reference internal" href="../reference/api/pandas.core.groupby.GroupBy.mean.html#pandas.core.groupby.GroupBy.mean" title="pandas.core.groupby.GroupBy.mean"><code class="xref py py-meth docutils literal notranslate"><span class="pre">GroupBy.mean()</span></code></a> with datetimelike values including <code class="docutils literal notranslate"><span class="pre">NaT</span></code> values returning incorrect results (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/43132">GH43132</a>)</p></li>
+<li><p>Fixed bug in <a class="reference internal" href="../reference/api/pandas.core.groupby.DataFrameGroupBy.mean.html#pandas.core.groupby.DataFrameGroupBy.mean" title="pandas.core.groupby.DataFrameGroupBy.mean"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrameGroupBy.mean()</span></code></a> and <a class="reference internal" href="../reference/api/pandas.core.groupby.SeriesGroupBy.mean.html#pandas.core.groupby.SeriesGroupBy.mean" title="pandas.core.groupby.SeriesGroupBy.mean"><code class="xref py py-meth docutils literal notranslate"><span class="pre">SeriesGroupBy.mean()</span></code></a> with datetimelike values including <code class="docutils literal notranslate"><span class="pre">NaT</span></code> values returning incorrect results (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/43132">GH43132</a>)</p></li>
 <li><p>Fixed bug in <a class="reference internal" href="../reference/api/pandas.Series.aggregate.html#pandas.Series.aggregate" title="pandas.Series.aggregate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.aggregate()</span></code></a> not passing the first <code class="docutils literal notranslate"><span class="pre">args</span></code> to the user supplied <code class="docutils literal notranslate"><span class="pre">func</span></code> in certain cases (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/43357">GH43357</a>)</p></li>
 <li><p>Fixed memory leaks in <code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.rolling.quantile()</span></code> and <code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.rolling.median()</span></code> (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/43339">GH43339</a>)</p></li>
 </ul>

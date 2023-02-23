@@ -13,11 +13,7 @@ pandas.tseries.offsets.BQuarterBegin
    .. autosummary::
       :toctree:
       
-      BQuarterBegin.__call__
-      BQuarterBegin.apply
-      BQuarterBegin.apply_index
       BQuarterBegin.copy
-      BQuarterBegin.isAnchored
       BQuarterBegin.is_anchored
       BQuarterBegin.is_month_end
       BQuarterBegin.is_month_start
@@ -26,7 +22,6 @@ pandas.tseries.offsets.BQuarterBegin
       BQuarterBegin.is_quarter_start
       BQuarterBegin.is_year_end
       BQuarterBegin.is_year_start
-      BQuarterBegin.onOffset
       BQuarterBegin.rollback
       BQuarterBegin.rollforward
 

@@ -1,0 +1,6 @@
+pandas.ExcelFile.close
+======================
+
+.. currentmodule:: pandas
+
+.. automethod:: ExcelFile.close

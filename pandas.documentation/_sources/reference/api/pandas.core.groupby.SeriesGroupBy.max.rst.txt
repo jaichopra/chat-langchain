@@ -1,0 +1,6 @@
+pandas.core.groupby.SeriesGroupBy.max
+=====================================
+
+.. currentmodule:: pandas.core.groupby
+
+.. automethod:: SeriesGroupBy.max

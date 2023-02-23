@@ -1,0 +1,6 @@
+pandas.core.groupby.SeriesGroupBy.shift
+=======================================
+
+.. currentmodule:: pandas.core.groupby
+
+.. automethod:: SeriesGroupBy.shift

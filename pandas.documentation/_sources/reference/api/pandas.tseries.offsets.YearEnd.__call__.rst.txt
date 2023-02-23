@@ -1,6 +1,0 @@
-pandas.tseries.offsets.YearEnd.\_\_call\_\_
-===========================================
-
-.. currentmodule:: pandas.tseries.offsets
-
-.. automethod:: YearEnd.__call__

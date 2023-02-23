@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>pandas.DataFrame.mask &#8212; pandas 1.5.3 documentation</title>
+    <title>pandas.DataFrame.mask &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -55,13 +55,13 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'reference/api/pandas.DataFrame.mask';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="pandas.DataFrame.max" href="pandas.DataFrame.max.html" />
-    <link rel="prev" title="pandas.DataFrame.mad" href="pandas.DataFrame.mad.html" />
+    <link rel="prev" title="pandas.DataFrame.lt" href="pandas.DataFrame.lt.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="docsearch:language" content="en">
   </head>
@@ -182,7 +182,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -311,7 +311,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -524,11 +524,6 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="pandas.DataFrame.iteritems.html">
-     pandas.DataFrame.iteritems
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="pandas.DataFrame.keys.html">
      pandas.DataFrame.keys
     </a>
@@ -541,11 +536,6 @@
    <li class="toctree-l2">
     <a class="reference internal" href="pandas.DataFrame.itertuples.html">
      pandas.DataFrame.itertuples
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.DataFrame.lookup.html">
-     pandas.DataFrame.lookup
     </a>
    </li>
    <li class="toctree-l2">
@@ -586,6 +576,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="pandas.DataFrame.query.html">
      pandas.DataFrame.query
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.DataFrame.__add__.html">
+     pandas.DataFrame.__add__
     </a>
    </li>
    <li class="toctree-l2">
@@ -846,11 +841,6 @@
    <li class="toctree-l2">
     <a class="reference internal" href="pandas.DataFrame.kurtosis.html">
      pandas.DataFrame.kurtosis
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.DataFrame.mad.html">
-     pandas.DataFrame.mad
     </a>
    </li>
    <li class="toctree-l2">
@@ -1224,11 +1214,6 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="pandas.DataFrame.append.html">
-     pandas.DataFrame.append
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="pandas.DataFrame.assign.html">
      pandas.DataFrame.assign
     </a>
@@ -1266,16 +1251,6 @@
    <li class="toctree-l2">
     <a class="reference internal" href="pandas.DataFrame.shift.html">
      pandas.DataFrame.shift
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.DataFrame.slice_shift.html">
-     pandas.DataFrame.slice_shift
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.DataFrame.tshift.html">
-     pandas.DataFrame.tshift
     </a>
    </li>
    <li class="toctree-l2">
@@ -1613,11 +1588,11 @@
 <h1>pandas.DataFrame.mask<a class="headerlink" href="#pandas-dataframe-mask" title="Permalink to this headline">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="pandas.DataFrame.mask">
-<span class="sig-prename descclassname"><span class="pre">DataFrame.</span></span><span class="sig-name descname"><span class="pre">mask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cond</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">other</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">nan</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inplace</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'raise'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">try_cast</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">_NoDefault.no_default</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.5.3/pandas/core/frame.py#L11975-L11996"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.DataFrame.mask" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">DataFrame.</span></span><span class="sig-name descname"><span class="pre">mask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cond</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">other</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">_NoDefault.no_default</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inplace</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v2.0.0rc0/pandas/core/frame.py#L11545-L11560"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.DataFrame.mask" title="Permalink to this definition">#</a></dt>
 <dd><p>Replace values where the condition is True.</p>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl>
+<dd class="field-odd"><dl class="simple">
 <dt><strong>cond</strong><span class="classifier">bool Series/DataFrame, array-like, or callable</span></dt><dd><p>Where <cite>cond</cite> is False, keep the original value. Where
 True, replace with corresponding value from <cite>other</cite>.
 If <cite>cond</cite> is callable, it is computed on the Series/DataFrame and
@@ -1628,7 +1603,10 @@ not change input Series/DataFrame (though pandas doesn’t check it).</p>
 corresponding value from <cite>other</cite>.
 If other is callable, it is computed on the Series/DataFrame and
 should return scalar or Series/DataFrame. The callable must not
-change input Series/DataFrame (though pandas doesn’t check it).</p>
+change input Series/DataFrame (though pandas doesn’t check it).
+If not specified, entries will be filled with the corresponding
+NULL value (<code class="docutils literal notranslate"><span class="pre">np.nan</span></code> for numpy dtypes, <code class="docutils literal notranslate"><span class="pre">pd.NA</span></code> for extension
+dtypes).</p>
 </dd>
 <dt><strong>inplace</strong><span class="classifier">bool, default False</span></dt><dd><p>Whether to perform the operation in place on the data.</p>
 </dd>
@@ -1636,21 +1614,6 @@ change input Series/DataFrame (though pandas doesn’t check it).</p>
 unused and defaults to 0.</p>
 </dd>
 <dt><strong>level</strong><span class="classifier">int, default None</span></dt><dd><p>Alignment level if needed.</p>
-</dd>
-<dt><strong>errors</strong><span class="classifier">str, {‘raise’, ‘ignore’}, default ‘raise’</span></dt><dd><p>Note that currently this parameter won’t affect
-the results and will always coerce to a suitable dtype.</p>
-<ul class="simple">
-<li><p>‘raise’ : allow exceptions to be raised.</p></li>
-<li><p>‘ignore’ : suppress exceptions. On error return original object.</p></li>
-</ul>
-<div class="deprecated">
-<p><span class="versionmodified deprecated">Deprecated since version 1.5.0: </span>This argument had no effect.</p>
-</div>
-</dd>
-<dt><strong>try_cast</strong><span class="classifier">bool, default None</span></dt><dd><p>Try to cast the result back to the input type (if possible).</p>
-<div class="deprecated">
-<p><span class="versionmodified deprecated">Deprecated since version 1.3.0: </span>Manually cast back if necessary.</p>
-</div>
 </dd>
 </dl>
 </dd>
@@ -1777,11 +1740,11 @@ the object’s dtype, if this can be done losslessly.</p>
             <footer class="bd-footer-article">
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-  <a class='left-prev' id="prev-link" href="pandas.DataFrame.mad.html" title="previous page">
+  <a class='left-prev' id="prev-link" href="pandas.DataFrame.lt.html" title="previous page">
       <i class="fas fa-angle-left"></i>
       <div class="prev-next-info">
           <p class="prev-next-subtitle">previous</p>
-          <p class="prev-next-title">pandas.DataFrame.mad</p>
+          <p class="prev-next-title">pandas.DataFrame.lt</p>
       </div>
   </a>
   <a class='right-next' id="next-link" href="pandas.DataFrame.max.html" title="next page">

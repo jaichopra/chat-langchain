@@ -13,11 +13,7 @@ pandas.tseries.offsets.Easter
    .. autosummary::
       :toctree:
       
-      Easter.__call__
-      Easter.apply
-      Easter.apply_index
       Easter.copy
-      Easter.isAnchored
       Easter.is_anchored
       Easter.is_month_end
       Easter.is_month_start
@@ -26,7 +22,6 @@ pandas.tseries.offsets.Easter
       Easter.is_quarter_start
       Easter.is_year_end
       Easter.is_year_start
-      Easter.onOffset
       Easter.rollback
       Easter.rollforward
 

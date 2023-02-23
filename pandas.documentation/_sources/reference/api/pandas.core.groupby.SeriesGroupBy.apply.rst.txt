@@ -1,0 +1,6 @@
+pandas.core.groupby.SeriesGroupBy.apply
+=======================================
+
+.. currentmodule:: pandas.core.groupby
+
+.. automethod:: SeriesGroupBy.apply

@@ -1,0 +1,6 @@
+pandas.core.groupby.DataFrameGroupBy.std
+========================================
+
+.. currentmodule:: pandas.core.groupby
+
+.. automethod:: DataFrameGroupBy.std

@@ -1,6 +1,0 @@
-pandas.tseries.offsets.Nano.\_\_call\_\_
-========================================
-
-.. currentmodule:: pandas.tseries.offsets
-
-.. automethod:: Nano.__call__

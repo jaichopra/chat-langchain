@@ -13,6 +13,7 @@ pandas.Timedelta
    .. autosummary::
       :toctree:
       
+      Timedelta.as_unit
       Timedelta.ceil
       Timedelta.floor
       Timedelta.isoformat
@@ -37,9 +38,6 @@ pandas.Timedelta
       Timedelta.asm8
       Timedelta.components
       Timedelta.days
-      Timedelta.delta
-      Timedelta.freq
-      Timedelta.is_populated
       Timedelta.max
       Timedelta.microseconds
       Timedelta.min
@@ -47,6 +45,7 @@ pandas.Timedelta
       Timedelta.resolution
       Timedelta.resolution_string
       Timedelta.seconds
+      Timedelta.unit
       Timedelta.value
 
 

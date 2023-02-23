@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>What’s new in 1.2.5 (June 22, 2021) &#8212; pandas 1.5.3 documentation</title>
+    <title>What’s new in 1.2.5 (June 22, 2021) &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -55,7 +55,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'whatsnew/v1.2.5';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -182,7 +182,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -311,7 +311,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -363,6 +363,18 @@
   <div class="bd-toc-item navbar-nav">
     
     <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v2.0.0.html">
+   What’s new in 2.0.0 (??)
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.5.4.html">
+   What’s new in 1.5.4 (March XX, 2023)
+  </a>
+ </li>
  <li class="toctree-l1">
   <a class="reference internal" href="v1.5.3.html">
    What’s new in 1.5.3 (January 18, 2023)
@@ -877,7 +889,7 @@ including other versions of pandas.</p>
 <li><p>Fixed regression in <a class="reference internal" href="../reference/api/pandas.DataFrame.sum.html#pandas.DataFrame.sum" title="pandas.DataFrame.sum"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.sum()</span></code></a> and <a class="reference internal" href="../reference/api/pandas.DataFrame.prod.html#pandas.DataFrame.prod" title="pandas.DataFrame.prod"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.prod()</span></code></a> when <code class="docutils literal notranslate"><span class="pre">min_count</span></code> and <code class="docutils literal notranslate"><span class="pre">numeric_only</span></code> are both given (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/41074">GH41074</a>)</p></li>
 <li><p>Fixed regression in <a class="reference internal" href="../reference/api/pandas.read_csv.html#pandas.read_csv" title="pandas.read_csv"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_csv()</span></code></a> when using <code class="docutils literal notranslate"><span class="pre">memory_map=True</span></code> with an non-UTF8 encoding (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/40986">GH40986</a>)</p></li>
 <li><p>Fixed regression in <a class="reference internal" href="../reference/api/pandas.DataFrame.replace.html#pandas.DataFrame.replace" title="pandas.DataFrame.replace"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.replace()</span></code></a> and <a class="reference internal" href="../reference/api/pandas.Series.replace.html#pandas.Series.replace" title="pandas.Series.replace"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.replace()</span></code></a> when the values to replace is a NumPy float array (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/40371">GH40371</a>)</p></li>
-<li><p>Fixed regression in <code class="xref py py-func docutils literal notranslate"><span class="pre">ExcelFile()</span></code> when a corrupt file is opened but not closed (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/41778">GH41778</a>)</p></li>
+<li><p>Fixed regression in <a class="reference internal" href="../reference/api/pandas.ExcelFile.html#pandas.ExcelFile" title="pandas.ExcelFile"><code class="xref py py-func docutils literal notranslate"><span class="pre">ExcelFile()</span></code></a> when a corrupt file is opened but not closed (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/41778">GH41778</a>)</p></li>
 <li><p>Fixed regression in <a class="reference internal" href="../reference/api/pandas.DataFrame.astype.html#pandas.DataFrame.astype" title="pandas.DataFrame.astype"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.astype()</span></code></a> with <code class="docutils literal notranslate"><span class="pre">dtype=str</span></code> failing to convert <code class="docutils literal notranslate"><span class="pre">NaN</span></code> in categorical columns (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/41797">GH41797</a>)</p></li>
 </ul>
 </section>

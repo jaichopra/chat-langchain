@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>General functions &#8212; pandas 1.5.3 documentation</title>
+    <title>General functions &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -55,7 +55,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'reference/general_functions';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -182,7 +182,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -311,7 +311,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -446,6 +446,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="api/pandas.unique.html">
      pandas.unique
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.lreshape.html">
+     pandas.lreshape
     </a>
    </li>
    <li class="toctree-l2">
@@ -647,7 +652,7 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.melt.html#pandas.melt" title="pandas.melt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">melt</span></code></a>(frame[, id_vars, value_vars, var_name, ...])</p></td>
 <td><p>Unpivot a DataFrame from wide to long format, optionally leaving identifiers set.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.pivot.html#pandas.pivot" title="pandas.pivot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pivot</span></code></a>(data, *[, index, columns, values])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.pivot.html#pandas.pivot" title="pandas.pivot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pivot</span></code></a>(data, *, columns[, index, values])</p></td>
 <td><p>Return reshaped DataFrame organized by given index / column values.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.pivot_table.html#pandas.pivot_table" title="pandas.pivot_table"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pivot_table</span></code></a>(data[, values, index, columns, ...])</p></td>
@@ -680,13 +685,16 @@
 <tr class="row-even"><td><p><a class="reference internal" href="api/pandas.from_dummies.html#pandas.from_dummies" title="pandas.from_dummies"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_dummies</span></code></a>(data[, sep, default_category])</p></td>
 <td><p>Create a categorical <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> from a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> of dummy variables.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.factorize.html#pandas.factorize" title="pandas.factorize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">factorize</span></code></a>(values[, sort, na_sentinel, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.factorize.html#pandas.factorize" title="pandas.factorize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">factorize</span></code></a>(values[, sort, use_na_sentinel, ...])</p></td>
 <td><p>Encode the object as an enumerated type or categorical variable.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="api/pandas.unique.html#pandas.unique" title="pandas.unique"><code class="xref py py-obj docutils literal notranslate"><span class="pre">unique</span></code></a>(values)</p></td>
 <td><p>Return unique values based on a hash table.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.wide_to_long.html#pandas.wide_to_long" title="pandas.wide_to_long"><code class="xref py py-obj docutils literal notranslate"><span class="pre">wide_to_long</span></code></a>(df, stubnames, i, j[, sep, suffix])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.lreshape.html#pandas.lreshape" title="pandas.lreshape"><code class="xref py py-obj docutils literal notranslate"><span class="pre">lreshape</span></code></a>(data, groups[, dropna])</p></td>
+<td><p>Reshape wide-format data to long.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.wide_to_long.html#pandas.wide_to_long" title="pandas.wide_to_long"><code class="xref py py-obj docutils literal notranslate"><span class="pre">wide_to_long</span></code></a>(df, stubnames, i, j[, sep, suffix])</p></td>
 <td><p>Unpivot a DataFrame from wide to long format.</p></td>
 </tr>
 </tbody>
@@ -723,7 +731,7 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.to_numeric.html#pandas.to_numeric" title="pandas.to_numeric"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_numeric</span></code></a>(arg[, errors, downcast])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.to_numeric.html#pandas.to_numeric" title="pandas.to_numeric"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_numeric</span></code></a>(arg[, errors, downcast, ...])</p></td>
 <td><p>Convert argument to a numeric type.</p></td>
 </tr>
 </tbody>
@@ -755,7 +763,7 @@
 <tr class="row-even"><td><p><a class="reference internal" href="api/pandas.timedelta_range.html#pandas.timedelta_range" title="pandas.timedelta_range"><code class="xref py py-obj docutils literal notranslate"><span class="pre">timedelta_range</span></code></a>([start, end, periods, freq, ...])</p></td>
 <td><p>Return a fixed frequency TimedeltaIndex with day as the default.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.infer_freq.html#pandas.infer_freq" title="pandas.infer_freq"><code class="xref py py-obj docutils literal notranslate"><span class="pre">infer_freq</span></code></a>(index[, warn])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.infer_freq.html#pandas.infer_freq" title="pandas.infer_freq"><code class="xref py py-obj docutils literal notranslate"><span class="pre">infer_freq</span></code></a>(index)</p></td>
 <td><p>Infer the most likely frequency given the input index.</p></td>
 </tr>
 </tbody>
@@ -783,7 +791,7 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.eval.html#pandas.eval" title="pandas.eval"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eval</span></code></a>(expr[, parser, engine, truediv, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.eval.html#pandas.eval" title="pandas.eval"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eval</span></code></a>(expr[, parser, engine, local_dict, ...])</p></td>
 <td><p>Evaluate a Python expression as a string using various backends.</p></td>
 </tr>
 </tbody>

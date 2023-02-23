@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>10 minutes to pandas &#8212; pandas 1.5.3 documentation</title>
+    <title>10 minutes to pandas &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -55,7 +55,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/10min';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -182,7 +182,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -311,7 +311,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -381,6 +381,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="io.html">
    IO tools (text, CSV, HDF5, …)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="pyarrow.html">
+   PyArrow Functionality
   </a>
  </li>
  <li class="toctree-l1">
@@ -846,7 +851,7 @@ equivalent to <code class="docutils literal notranslate"><span class="pre">df.A<
 </section>
 <section id="selection-by-position">
 <h3>Selection by position<a class="headerlink" href="#selection-by-position" title="Permalink to this headline">#</a></h3>
-<p>See more in <a class="reference internal" href="indexing.html#indexing-integer"><span class="std std-ref">Selection by Position</span></a> using <a class="reference internal" href="../reference/api/pandas.DataFrame.iloc.html#pandas.DataFrame.iloc" title="pandas.DataFrame.iloc"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.iloc()</span></code></a> or <a class="reference internal" href="../reference/api/pandas.DataFrame.at.html#pandas.DataFrame.at" title="pandas.DataFrame.at"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.at()</span></code></a>.</p>
+<p>See more in <a class="reference internal" href="indexing.html#indexing-integer"><span class="std std-ref">Selection by Position</span></a> using <a class="reference internal" href="../reference/api/pandas.DataFrame.iloc.html#pandas.DataFrame.iloc" title="pandas.DataFrame.iloc"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.iloc()</span></code></a> or <a class="reference internal" href="../reference/api/pandas.DataFrame.iat.html#pandas.DataFrame.iat" title="pandas.DataFrame.iat"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.iat()</span></code></a>.</p>
 <p>Select via the position of the passed integers:</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [32]: </span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
 <span class="gh">Out[32]: </span>
@@ -985,13 +990,13 @@ by the indexes:</p>
 <p>The result of the prior setting operations:</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [51]: </span><span class="n">df</span>
 <span class="gh">Out[51]: </span>
-<span class="go">                   A         B         C  D    F</span>
-<span class="go">2013-01-01  0.000000  0.000000 -1.509059  5  NaN</span>
-<span class="go">2013-01-02  1.212112 -0.173215  0.119209  5  1.0</span>
-<span class="go">2013-01-03 -0.861849 -2.104569 -0.494929  5  2.0</span>
-<span class="go">2013-01-04  0.721555 -0.706771 -1.039575  5  3.0</span>
-<span class="go">2013-01-05 -0.424972  0.567020  0.276232  5  4.0</span>
-<span class="go">2013-01-06 -0.673690  0.113648 -1.478427  5  5.0</span>
+<span class="go">                   A         B         C    D    F</span>
+<span class="go">2013-01-01  0.000000  0.000000 -1.509059  5.0  NaN</span>
+<span class="go">2013-01-02  1.212112 -0.173215  0.119209  5.0  1.0</span>
+<span class="go">2013-01-03 -0.861849 -2.104569 -0.494929  5.0  2.0</span>
+<span class="go">2013-01-04  0.721555 -0.706771 -1.039575  5.0  3.0</span>
+<span class="go">2013-01-05 -0.424972  0.567020  0.276232  5.0  4.0</span>
+<span class="go">2013-01-06 -0.673690  0.113648 -1.478427  5.0  5.0</span>
 </pre></div>
 </div>
 <p>A <code class="docutils literal notranslate"><span class="pre">where</span></code> operation with setting:</p>
@@ -1001,13 +1006,13 @@ by the indexes:</p>
 
 <span class="gp">In [54]: </span><span class="n">df2</span>
 <span class="gh">Out[54]: </span>
-<span class="go">                   A         B         C  D    F</span>
-<span class="go">2013-01-01  0.000000  0.000000 -1.509059 -5  NaN</span>
-<span class="go">2013-01-02 -1.212112 -0.173215 -0.119209 -5 -1.0</span>
-<span class="go">2013-01-03 -0.861849 -2.104569 -0.494929 -5 -2.0</span>
-<span class="go">2013-01-04 -0.721555 -0.706771 -1.039575 -5 -3.0</span>
-<span class="go">2013-01-05 -0.424972 -0.567020 -0.276232 -5 -4.0</span>
-<span class="go">2013-01-06 -0.673690 -0.113648 -1.478427 -5 -5.0</span>
+<span class="go">                   A         B         C    D    F</span>
+<span class="go">2013-01-01  0.000000  0.000000 -1.509059 -5.0  NaN</span>
+<span class="go">2013-01-02 -1.212112 -0.173215 -0.119209 -5.0 -1.0</span>
+<span class="go">2013-01-03 -0.861849 -2.104569 -0.494929 -5.0 -2.0</span>
+<span class="go">2013-01-04 -0.721555 -0.706771 -1.039575 -5.0 -3.0</span>
+<span class="go">2013-01-05 -0.424972 -0.567020 -0.276232 -5.0 -4.0</span>
+<span class="go">2013-01-06 -0.673690 -0.113648 -1.478427 -5.0 -5.0</span>
 </pre></div>
 </div>
 </section>
@@ -1024,28 +1029,28 @@ returns a copy of the data:</p>
 
 <span class="gp">In [57]: </span><span class="n">df1</span>
 <span class="gh">Out[57]: </span>
-<span class="go">                   A         B         C  D    F    E</span>
-<span class="go">2013-01-01  0.000000  0.000000 -1.509059  5  NaN  1.0</span>
-<span class="go">2013-01-02  1.212112 -0.173215  0.119209  5  1.0  1.0</span>
-<span class="go">2013-01-03 -0.861849 -2.104569 -0.494929  5  2.0  NaN</span>
-<span class="go">2013-01-04  0.721555 -0.706771 -1.039575  5  3.0  NaN</span>
+<span class="go">                   A         B         C    D    F    E</span>
+<span class="go">2013-01-01  0.000000  0.000000 -1.509059  5.0  NaN  1.0</span>
+<span class="go">2013-01-02  1.212112 -0.173215  0.119209  5.0  1.0  1.0</span>
+<span class="go">2013-01-03 -0.861849 -2.104569 -0.494929  5.0  2.0  NaN</span>
+<span class="go">2013-01-04  0.721555 -0.706771 -1.039575  5.0  3.0  NaN</span>
 </pre></div>
 </div>
 <p><a class="reference internal" href="../reference/api/pandas.DataFrame.dropna.html#pandas.DataFrame.dropna" title="pandas.DataFrame.dropna"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.dropna()</span></code></a> drops any rows that have missing data:</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [58]: </span><span class="n">df1</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">how</span><span class="o">=</span><span class="s2">&quot;any&quot;</span><span class="p">)</span>
 <span class="gh">Out[58]: </span>
-<span class="go">                   A         B         C  D    F    E</span>
-<span class="go">2013-01-02  1.212112 -0.173215  0.119209  5  1.0  1.0</span>
+<span class="go">                   A         B         C    D    F    E</span>
+<span class="go">2013-01-02  1.212112 -0.173215  0.119209  5.0  1.0  1.0</span>
 </pre></div>
 </div>
 <p><a class="reference internal" href="../reference/api/pandas.DataFrame.fillna.html#pandas.DataFrame.fillna" title="pandas.DataFrame.fillna"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.fillna()</span></code></a> fills missing data:</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [59]: </span><span class="n">df1</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 <span class="gh">Out[59]: </span>
-<span class="go">                   A         B         C  D    F    E</span>
-<span class="go">2013-01-01  0.000000  0.000000 -1.509059  5  5.0  1.0</span>
-<span class="go">2013-01-02  1.212112 -0.173215  0.119209  5  1.0  1.0</span>
-<span class="go">2013-01-03 -0.861849 -2.104569 -0.494929  5  2.0  5.0</span>
-<span class="go">2013-01-04  0.721555 -0.706771 -1.039575  5  3.0  5.0</span>
+<span class="go">                   A         B         C    D    F    E</span>
+<span class="go">2013-01-01  0.000000  0.000000 -1.509059  5.0  5.0  1.0</span>
+<span class="go">2013-01-02  1.212112 -0.173215  0.119209  5.0  1.0  1.0</span>
+<span class="go">2013-01-03 -0.861849 -2.104569 -0.494929  5.0  2.0  5.0</span>
+<span class="go">2013-01-04  0.721555 -0.706771 -1.039575  5.0  3.0  5.0</span>
 </pre></div>
 </div>
 <p><a class="reference internal" href="../reference/api/pandas.isna.html#pandas.isna" title="pandas.isna"><code class="xref py py-func docutils literal notranslate"><span class="pre">isna()</span></code></a> gets the boolean mask where values are <code class="docutils literal notranslate"><span class="pre">nan</span></code>:</p>
@@ -1119,13 +1124,13 @@ In addition, pandas automatically broadcasts along the specified dimension:</p>
 <p><a class="reference internal" href="../reference/api/pandas.DataFrame.apply.html#pandas.DataFrame.apply" title="pandas.DataFrame.apply"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.apply()</span></code></a> applies a user defined function to the data:</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [66]: </span><span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">)</span>
 <span class="gh">Out[66]: </span>
-<span class="go">                   A         B         C   D     F</span>
-<span class="go">2013-01-01  0.000000  0.000000 -1.509059   5   NaN</span>
-<span class="go">2013-01-02  1.212112 -0.173215 -1.389850  10   1.0</span>
-<span class="go">2013-01-03  0.350263 -2.277784 -1.884779  15   3.0</span>
-<span class="go">2013-01-04  1.071818 -2.984555 -2.924354  20   6.0</span>
-<span class="go">2013-01-05  0.646846 -2.417535 -2.648122  25  10.0</span>
-<span class="go">2013-01-06 -0.026844 -2.303886 -4.126549  30  15.0</span>
+<span class="go">                   A         B         C     D     F</span>
+<span class="go">2013-01-01  0.000000  0.000000 -1.509059   5.0   NaN</span>
+<span class="go">2013-01-02  1.212112 -0.173215 -1.389850  10.0   1.0</span>
+<span class="go">2013-01-03  0.350263 -2.277784 -1.884779  15.0   3.0</span>
+<span class="go">2013-01-04  1.071818 -2.984555 -2.924354  20.0   6.0</span>
+<span class="go">2013-01-05  0.646846 -2.417535 -2.648122  25.0  10.0</span>
+<span class="go">2013-01-06 -0.026844 -2.303886 -4.126549  30.0  15.0</span>
 
 <span class="gp">In [67]: </span><span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">-</span> <span class="n">x</span><span class="o">.</span><span class="n">min</span><span class="p">())</span>
 <span class="gh">Out[67]: </span>
@@ -1163,7 +1168,7 @@ In addition, pandas automatically broadcasts along the specified dimension:</p>
 <span class="go">2    2</span>
 <span class="go">6    2</span>
 <span class="go">1    1</span>
-<span class="go">dtype: int64</span>
+<span class="go">Name: count, dtype: int64</span>
 </pre></div>
 </div>
 </section>
@@ -1333,7 +1338,7 @@ following steps:</p>
 <span class="go">7  foo  three  0.024580 -0.264610</span>
 </pre></div>
 </div>
-<p>Grouping and then applying the <a class="reference internal" href="../reference/api/pandas.core.groupby.GroupBy.sum.html#pandas.core.groupby.GroupBy.sum" title="pandas.core.groupby.GroupBy.sum"><code class="xref py py-meth docutils literal notranslate"><span class="pre">sum()</span></code></a> function to the resulting
+<p>Grouping and then applying the <a class="reference internal" href="../reference/api/pandas.core.groupby.DataFrameGroupBy.sum.html#pandas.core.groupby.DataFrameGroupBy.sum" title="pandas.core.groupby.DataFrameGroupBy.sum"><code class="xref py py-meth docutils literal notranslate"><span class="pre">sum()</span></code></a> function to the resulting
 groups:</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [89]: </span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">)[[</span><span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="s2">&quot;D&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 <span class="gh">Out[89]: </span>
@@ -1344,7 +1349,7 @@ groups:</p>
 </pre></div>
 </div>
 <p>Grouping by multiple columns forms a hierarchical index, and again we can
-apply the <a class="reference internal" href="../reference/api/pandas.core.groupby.GroupBy.sum.html#pandas.core.groupby.GroupBy.sum" title="pandas.core.groupby.GroupBy.sum"><code class="xref py py-meth docutils literal notranslate"><span class="pre">sum()</span></code></a> function:</p>
+apply the <a class="reference internal" href="../reference/api/pandas.core.groupby.DataFrameGroupBy.sum.html#pandas.core.groupby.DataFrameGroupBy.sum" title="pandas.core.groupby.DataFrameGroupBy.sum"><code class="xref py py-meth docutils literal notranslate"><span class="pre">sum()</span></code></a> function:</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [90]: </span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 <span class="gh">Out[90]: </span>
 <span class="go">                  C         D</span>
@@ -1808,13 +1813,13 @@ you might see an exception like:</p>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">]):</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span>      <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;I was true&quot;</span><span class="p">)</span>
 
-<span class="nn">File ~/work/pandas/pandas/pandas/core/generic.py:1527,</span> in <span class="ni">NDFrame.__nonzero__</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1525</span> <span class="nd">@final</span>
-<span class="g g-Whitespace">   </span><span class="mi">1526</span> <span class="k">def</span> <span class="nf">__nonzero__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NoReturn</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1527</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1528</span>         <span class="sa">f</span><span class="s2">&quot;The truth value of a </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2"> is ambiguous. &quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1529</span>         <span class="s2">&quot;Use a.empty, a.bool(), a.item(), a.any() or a.all().&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1530</span>     <span class="p">)</span>
+<span class="nn">File ~/work/pandas/pandas/pandas/core/generic.py:1458,</span> in <span class="ni">NDFrame.__nonzero__</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1456</span> <span class="nd">@final</span>
+<span class="g g-Whitespace">   </span><span class="mi">1457</span> <span class="k">def</span> <span class="nf">__nonzero__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">NoReturn</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1458</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1459</span>         <span class="sa">f</span><span class="s2">&quot;The truth value of a </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2"> is ambiguous. &quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1460</span>         <span class="s2">&quot;Use a.empty, a.bool(), a.item(), a.any() or a.all().&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1461</span>     <span class="p">)</span>
 
 <span class="ne">ValueError</span>: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
 </pre></div>

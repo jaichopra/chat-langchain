@@ -1,0 +1,6 @@
+pandas.ExcelFile.book
+=====================
+
+.. currentmodule:: pandas
+
+.. autoproperty:: ExcelFile.book

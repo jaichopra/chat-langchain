@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Sparse data structures &#8212; pandas 1.5.3 documentation</title>
+    <title>Sparse data structures &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -55,7 +55,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/sparse';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -182,7 +182,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -311,7 +311,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -381,6 +381,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="io.html">
    IO tools (text, CSV, HDF5, …)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="pyarrow.html">
+   PyArrow Functionality
   </a>
  </li>
  <li class="toctree-l1">
@@ -675,9 +680,6 @@ attributes and methods that are specific to sparse data.</p>
 </div>
 <p>This accessor is available only on data with <code class="docutils literal notranslate"><span class="pre">SparseDtype</span></code>, and on the <a class="reference internal" href="../reference/api/pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a>
 class itself for creating a Series with sparse data from a scipy COO matrix with.</p>
-<div class="versionadded">
-<p><span class="versionmodified added">New in version 0.25.0.</span></p>
-</div>
 <p>A <code class="docutils literal notranslate"><span class="pre">.sparse</span></code> accessor has been added for <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> as well.
 See <a class="reference internal" href="../reference/frame.html#api-frame-sparse"><span class="std std-ref">Sparse accessor</span></a> for more.</p>
 </section>
@@ -833,9 +835,6 @@ have no replacement.</p>
 <section id="interaction-with-scipy-sparse">
 <span id="sparse-scipysparse"></span><h2>Interaction with <em>scipy.sparse</em><a class="headerlink" href="#interaction-with-scipy-sparse" title="Permalink to this headline">#</a></h2>
 <p>Use <a class="reference internal" href="../reference/api/pandas.DataFrame.sparse.from_spmatrix.html#pandas.DataFrame.sparse.from_spmatrix" title="pandas.DataFrame.sparse.from_spmatrix"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.sparse.from_spmatrix()</span></code></a> to create a <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> with sparse values from a sparse matrix.</p>
-<div class="versionadded">
-<p><span class="versionmodified added">New in version 0.25.0.</span></p>
-</div>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [47]: </span><span class="kn">from</span> <span class="nn">scipy.sparse</span> <span class="kn">import</span> <span class="n">csr_matrix</span>
 
 <span class="gp">In [48]: </span><span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
@@ -870,7 +869,7 @@ have no replacement.</p>
 <span class="go">dtype: object</span>
 </pre></div>
 </div>
-<p>All sparse formats are supported, but matrices that are not in <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/sparse.html#module-scipy.sparse" title="(in SciPy v1.10.0)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">COOrdinate</span></code></a> format will be converted, copying data as needed.
+<p>All sparse formats are supported, but matrices that are not in <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/sparse.html#module-scipy.sparse" title="(in SciPy v1.10.1)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">COOrdinate</span></code></a> format will be converted, copying data as needed.
 To convert back to sparse SciPy matrix in COO format, you can use the <a class="reference internal" href="../reference/api/pandas.DataFrame.sparse.to_coo.html#pandas.DataFrame.sparse.to_coo" title="pandas.DataFrame.sparse.to_coo"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.sparse.to_coo()</span></code></a> method:</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [55]: </span><span class="n">sdf</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">to_coo</span><span class="p">()</span>
 <span class="gh">Out[55]: </span>
@@ -878,7 +877,7 @@ To convert back to sparse SciPy matrix in COO format, you can use the <a class="
 <span class="go">	with 517 stored elements in COOrdinate format&gt;</span>
 </pre></div>
 </div>
-<p><a class="reference internal" href="../reference/api/pandas.Series.sparse.to_coo.html#pandas.Series.sparse.to_coo" title="pandas.Series.sparse.to_coo"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.sparse.to_coo()</span></code></a> is implemented for transforming a <a class="reference internal" href="../reference/api/pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a> with sparse values indexed by a <a class="reference internal" href="../reference/api/pandas.MultiIndex.html#pandas.MultiIndex" title="pandas.MultiIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiIndex</span></code></a> to a <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.coo_matrix.html#scipy.sparse.coo_matrix" title="(in SciPy v1.10.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">scipy.sparse.coo_matrix</span></code></a>.</p>
+<p><a class="reference internal" href="../reference/api/pandas.Series.sparse.to_coo.html#pandas.Series.sparse.to_coo" title="pandas.Series.sparse.to_coo"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.sparse.to_coo()</span></code></a> is implemented for transforming a <a class="reference internal" href="../reference/api/pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a> with sparse values indexed by a <a class="reference internal" href="../reference/api/pandas.MultiIndex.html#pandas.MultiIndex" title="pandas.MultiIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiIndex</span></code></a> to a <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.coo_matrix.html#scipy.sparse.coo_matrix" title="(in SciPy v1.10.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">scipy.sparse.coo_matrix</span></code></a>.</p>
 <p>The method requires a <a class="reference internal" href="../reference/api/pandas.MultiIndex.html#pandas.MultiIndex" title="pandas.MultiIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiIndex</span></code></a> with two or more levels.</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [56]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mf">3.0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">])</span>
 
@@ -993,18 +992,15 @@ row and columns coordinates of the matrix. Note that this will consume a signifi
 
 <span class="gp">In [77]: </span><span class="n">ss_dense</span>
 <span class="gh">Out[77]: </span>
+<span class="go">1  0    3.0</span>
+<span class="go">   2    NaN</span>
+<span class="go">   3    NaN</span>
 <span class="go">0  0    NaN</span>
-<span class="go">   1    NaN</span>
 <span class="go">   2    1.0</span>
 <span class="go">   3    2.0</span>
-<span class="go">1  0    3.0</span>
-<span class="go">   1    NaN</span>
-<span class="go">   2    NaN</span>
-<span class="go">   3    NaN</span>
-<span class="go">2  0    NaN</span>
-<span class="go">   1    NaN</span>
-<span class="go">   2    NaN</span>
-<span class="go">   3    NaN</span>
+<span class="go">   0    NaN</span>
+<span class="go">   2    1.0</span>
+<span class="go">   3    2.0</span>
 <span class="go">dtype: Sparse[float64, nan]</span>
 </pre></div>
 </div>

@@ -13,11 +13,7 @@ pandas.tseries.offsets.BusinessHour
    .. autosummary::
       :toctree:
       
-      BusinessHour.__call__
-      BusinessHour.apply
-      BusinessHour.apply_index
       BusinessHour.copy
-      BusinessHour.isAnchored
       BusinessHour.is_anchored
       BusinessHour.is_month_end
       BusinessHour.is_month_start
@@ -26,7 +22,6 @@ pandas.tseries.offsets.BusinessHour
       BusinessHour.is_quarter_start
       BusinessHour.is_year_end
       BusinessHour.is_year_start
-      BusinessHour.onOffset
       BusinessHour.rollback
       BusinessHour.rollforward
 

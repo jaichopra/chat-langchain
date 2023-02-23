@@ -1,0 +1,6 @@
+pandas.core.groupby.DataFrameGroupBy.sum
+========================================
+
+.. currentmodule:: pandas.core.groupby
+
+.. automethod:: DataFrameGroupBy.sum

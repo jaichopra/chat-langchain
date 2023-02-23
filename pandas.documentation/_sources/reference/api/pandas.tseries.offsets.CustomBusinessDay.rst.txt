@@ -13,11 +13,7 @@ pandas.tseries.offsets.CustomBusinessDay
    .. autosummary::
       :toctree:
       
-      CustomBusinessDay.__call__
-      CustomBusinessDay.apply
-      CustomBusinessDay.apply_index
       CustomBusinessDay.copy
-      CustomBusinessDay.isAnchored
       CustomBusinessDay.is_anchored
       CustomBusinessDay.is_month_end
       CustomBusinessDay.is_month_start
@@ -26,7 +22,6 @@ pandas.tseries.offsets.CustomBusinessDay
       CustomBusinessDay.is_quarter_start
       CustomBusinessDay.is_year_end
       CustomBusinessDay.is_year_start
-      CustomBusinessDay.onOffset
       CustomBusinessDay.rollback
       CustomBusinessDay.rollforward
 

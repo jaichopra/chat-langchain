@@ -13,11 +13,7 @@ pandas.tseries.offsets.Nano
    .. autosummary::
       :toctree:
       
-      Nano.__call__
-      Nano.apply
-      Nano.apply_index
       Nano.copy
-      Nano.isAnchored
       Nano.is_anchored
       Nano.is_month_end
       Nano.is_month_start
@@ -26,7 +22,6 @@ pandas.tseries.offsets.Nano
       Nano.is_quarter_start
       Nano.is_year_end
       Nano.is_year_start
-      Nano.onOffset
       Nano.rollback
       Nano.rollforward
 

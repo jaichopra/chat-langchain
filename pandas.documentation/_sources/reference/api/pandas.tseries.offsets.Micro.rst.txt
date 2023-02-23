@@ -13,11 +13,7 @@ pandas.tseries.offsets.Micro
    .. autosummary::
       :toctree:
       
-      Micro.__call__
-      Micro.apply
-      Micro.apply_index
       Micro.copy
-      Micro.isAnchored
       Micro.is_anchored
       Micro.is_month_end
       Micro.is_month_start
@@ -26,7 +22,6 @@ pandas.tseries.offsets.Micro
       Micro.is_quarter_start
       Micro.is_year_end
       Micro.is_year_start
-      Micro.onOffset
       Micro.rollback
       Micro.rollforward
 

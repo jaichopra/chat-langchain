@@ -1,0 +1,6 @@
+pandas.core.groupby.DataFrameGroupBy.ngroup
+===========================================
+
+.. currentmodule:: pandas.core.groupby
+
+.. automethod:: DataFrameGroupBy.ngroup

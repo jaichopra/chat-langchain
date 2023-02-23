@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>pandas maintenance &#8212; pandas 1.5.3 documentation</title>
+    <title>pandas maintenance &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -55,7 +55,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'development/maintaining';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -182,7 +182,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -311,7 +311,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -368,17 +368,29 @@
    Contributing to pandas
   </a>
  </li>
- <li class="toctree-l1">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="contributing_environment.html">
    Creating a development environment
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label class="toctree-toggle" for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="contributing_gitpod.html">
+     Using Gitpod for pandas development
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="contributing_documentation.html">
    Contributing to the documentation
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label class="toctree-toggle" for="toctree-checkbox-1">
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label class="toctree-toggle" for="toctree-checkbox-2">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -403,6 +415,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="internals.html">
    Internals
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="copy_on_write.html">
+   Copy on write
   </a>
  </li>
  <li class="toctree-l1">
@@ -559,6 +576,43 @@ because it’s a large regression).</p>
 </li>
 </ol>
 </section>
+<section id="investigating-regressions">
+<span id="maintaining-regressions"></span><h2>Investigating regressions<a class="headerlink" href="#investigating-regressions" title="Permalink to this headline">#</a></h2>
+<p>Regressions are bugs that unintentionally break previously working code. The common way
+to  investigate regressions is by using
+<a class="reference external" href="https://git-scm.com/docs/git-bisect">git bisect</a>,
+which finds the first commit that introduced the bug.</p>
+<p>For example: a user reports that <code class="docutils literal notranslate"><span class="pre">pd.Series([1,</span> <span class="pre">1]).sum()</span></code> returns <code class="docutils literal notranslate"><span class="pre">3</span></code>
+in pandas version <code class="docutils literal notranslate"><span class="pre">1.5.0</span></code> while in version <code class="docutils literal notranslate"><span class="pre">1.4.0</span></code> it returned <code class="docutils literal notranslate"><span class="pre">2</span></code>. To begin,
+create a file <code class="docutils literal notranslate"><span class="pre">t.py</span></code> in your pandas directory, which contains</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="k">assert</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">==</span> <span class="mi">2</span>
+</pre></div>
+</div>
+<p>and then run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">bisect</span> <span class="n">start</span>
+<span class="n">git</span> <span class="n">bisect</span> <span class="n">good</span> <span class="n">v1</span><span class="mf">.4.0</span>
+<span class="n">git</span> <span class="n">bisect</span> <span class="n">bad</span> <span class="n">v1</span><span class="mf">.5.0</span>
+<span class="n">git</span> <span class="n">bisect</span> <span class="n">run</span> <span class="n">bash</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&quot;python setup.py build_ext -j 4; python t.py&quot;</span>
+</pre></div>
+</div>
+<p>This finds the first commit that changed the behavior. The C extensions have to be
+rebuilt at every step, so the search can take a while.</p>
+<p>Exit bisect and rebuild the current version:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">bisect</span> <span class="n">reset</span>
+<span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">build_ext</span> <span class="o">-</span><span class="n">j</span> <span class="mi">4</span>
+</pre></div>
+</div>
+<p>Report your findings under the corresponding issue and ping the commit author to get
+their input.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In the <code class="docutils literal notranslate"><span class="pre">bisect</span> <span class="pre">run</span></code> command above, commits are considered good if <code class="docutils literal notranslate"><span class="pre">t.py</span></code> exits
+with <code class="docutils literal notranslate"><span class="pre">0</span></code> and bad otherwise. When raising an exception is the desired behavior,
+wrap the code in an appropriate <code class="docutils literal notranslate"><span class="pre">try/except</span></code> statement. See <a class="reference external" href="https://github.com/pandas-dev/pandas/issues/35685">GH35685</a> for
+more examples.</p>
+</div>
+</section>
 <section id="closing-issues">
 <span id="maintaining-closing"></span><h2>Closing issues<a class="headerlink" href="#closing-issues" title="Permalink to this headline">#</a></h2>
 <p>Be delicate here: many people interpret closing an issue as us saying that the
@@ -602,13 +656,13 @@ for regression fixes and small bug fixes, the next minor milestone otherwise)</p
 <li><p>e.g. If a feature worked in <code class="docutils literal notranslate"><span class="pre">1.2</span></code> and stopped working since <code class="docutils literal notranslate"><span class="pre">1.3</span></code>, a fix can be applied in <code class="docutils literal notranslate"><span class="pre">1.4.3</span></code>.</p></li>
 </ul>
 </div></blockquote>
-<p>Since pandas minor releases are based on Github branches (e.g. point release of <code class="docutils literal notranslate"><span class="pre">1.4</span></code> are based off the <code class="docutils literal notranslate"><span class="pre">1.4.x</span></code> branch),
+<p>Since pandas minor releases are based on GitHub branches (e.g. point release of <code class="docutils literal notranslate"><span class="pre">1.4</span></code> are based off the <code class="docutils literal notranslate"><span class="pre">1.4.x</span></code> branch),
 “backporting” means merging a pull request fix to the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch and correct minor branch associated with the next point release.</p>
-<p>By default, if a pull request is assigned to the next point release milestone within the Github interface,
+<p>By default, if a pull request is assigned to the next point release milestone within the GitHub interface,
 the backporting process should happen automatically by the <code class="docutils literal notranslate"><span class="pre">&#64;meeseeksdev</span></code> bot once the pull request is merged.
 A new pull request will be made backporting the pull request to the correct version branch.
 Sometimes due to merge conflicts, a manual pull request will need to be made addressing the code conflict.</p>
-<p>If the bot does not automatically start the backporting process, you can also write a Github comment in the merged pull request
+<p>If the bot does not automatically start the backporting process, you can also write a GitHub comment in the merged pull request
 to trigger the backport:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@meeseeksdev</span> <span class="n">backport</span> <span class="n">version</span><span class="o">-</span><span class="n">branch</span>
 </pre></div>
@@ -653,7 +707,7 @@ being helpful on the issue tracker.</p>
 <p>The required steps for adding a maintainer are:</p>
 <ol class="arabic simple">
 <li><p>Contact the contributor and ask their interest to join.</p></li>
-<li><p>Add the contributor to the appropriate <a class="reference external" href="https://github.com/orgs/pandas-dev/teams">Github Team</a> if accepted the invitation.</p></li>
+<li><p>Add the contributor to the appropriate <a class="reference external" href="https://github.com/orgs/pandas-dev/teams">GitHub Team</a> if accepted the invitation.</p></li>
 </ol>
 <blockquote>
 <div><ul class="simple">
@@ -663,8 +717,8 @@ being helpful on the issue tracker.</p>
 </div></blockquote>
 <ol class="arabic simple" start="3">
 <li><p>Add the contributor to the pandas Google group.</p></li>
-<li><p>Create a pull request to add the contributor’s Github handle to <code class="docutils literal notranslate"><span class="pre">pandas-dev/pandas/web/pandas/config.yml</span></code>.</p></li>
-<li><p>Create a pull request to add the contributor’s name/Github handle to the <a class="reference external" href="https://github.com/pandas-dev/pandas-governance/blob/master/people.md">governance document</a>.</p></li>
+<li><p>Create a pull request to add the contributor’s GitHub handle to <code class="docutils literal notranslate"><span class="pre">pandas-dev/pandas/web/pandas/config.yml</span></code>.</p></li>
+<li><p>Create a pull request to add the contributor’s name/GitHub handle to the <a class="reference external" href="https://github.com/pandas-dev/pandas-governance/blob/master/people.md">governance document</a>.</p></li>
 </ol>
 <p>The current list of core-team members is at
 <a class="reference external" href="https://github.com/pandas-dev/pandas-governance/blob/master/people.md">https://github.com/pandas-dev/pandas-governance/blob/master/people.md</a></p>
@@ -694,14 +748,14 @@ a milestone before tagging, you can request the bot to backport it with:</p>
 <section id="benchmark-machine">
 <span id="maintaining-asv-machine"></span><h2>Benchmark machine<a class="headerlink" href="#benchmark-machine" title="Permalink to this headline">#</a></h2>
 <p>The team currently owns dedicated hardware for hosting a website for pandas’ ASV performance benchmark. The results
-are published to <a class="reference external" href="http://pandas.pydata.org/speed/pandas/">http://pandas.pydata.org/speed/pandas/</a></p>
+are published to <a class="reference external" href="https://asv-runner.github.io/asv-collection/pandas/">https://asv-runner.github.io/asv-collection/pandas/</a></p>
 <section id="configuration">
 <h3>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">#</a></h3>
 <p>The machine can be configured with the <a class="reference external" href="http://docs.ansible.com/ansible/latest/index.html">Ansible</a> playbook in <a class="reference external" href="https://github.com/tomaugspurger/asv-runner">https://github.com/tomaugspurger/asv-runner</a>.</p>
 </section>
 <section id="publishing">
 <h3>Publishing<a class="headerlink" href="#publishing" title="Permalink to this headline">#</a></h3>
-<p>The results are published to another Github repository, <a class="reference external" href="https://github.com/tomaugspurger/asv-collection">https://github.com/tomaugspurger/asv-collection</a>.
+<p>The results are published to another GitHub repository, <a class="reference external" href="https://github.com/tomaugspurger/asv-collection">https://github.com/tomaugspurger/asv-collection</a>.
 Finally, we have a cron job on our docs server to pull from <a class="reference external" href="https://github.com/tomaugspurger/asv-collection">https://github.com/tomaugspurger/asv-collection</a>, to serve them from <code class="docutils literal notranslate"><span class="pre">/speed</span></code>.
 Ask Tom or Joris for access to the webserver.</p>
 </section>
@@ -715,7 +769,160 @@ Ask Tom or Joris for access to the webserver.</p>
 </section>
 <section id="release-process">
 <span id="maintaining-release"></span><h2>Release process<a class="headerlink" href="#release-process" title="Permalink to this headline">#</a></h2>
-<p>The process for releasing a new version of pandas can be found at <a class="reference external" href="https://github.com/pandas-dev/pandas-release">https://github.com/pandas-dev/pandas-release</a></p>
+<p>The release process makes a snapshot of pandas (a git commit) available to users with
+a particular version number. After the release the new pandas version will be available
+in the next places:</p>
+<ul class="simple">
+<li><p>Git repo with a <a class="reference external" href="https://github.com/pandas-dev/pandas/tags">new tag</a></p></li>
+<li><p>Source distribution in a <a class="reference external" href="https://github.com/pandas-dev/pandas/releases">GitHub release</a></p></li>
+<li><p>Pip packages in the <a class="reference external" href="https://pypi.org/project/pandas/">PyPI</a></p></li>
+<li><p>Conda/Mamba packages in <a class="reference external" href="https://anaconda.org/conda-forge/pandas">conda-forge</a></p></li>
+</ul>
+<p>The process for releasing a new version of pandas is detailed next section.</p>
+<p>The instructions contain <code class="docutils literal notranslate"><span class="pre">&lt;version&gt;</span></code> which needs to be replaced with the version
+to be released (e.g. <code class="docutils literal notranslate"><span class="pre">1.5.2</span></code>). Also the branch to be released <code class="docutils literal notranslate"><span class="pre">&lt;branch&gt;</span></code>, which
+depends on whether the version being released is the release candidate of a new version,
+or any other version. Release candidates are released from <code class="docutils literal notranslate"><span class="pre">main</span></code>, while other
+versions are released from their branch (e.g. <code class="docutils literal notranslate"><span class="pre">1.5.x</span></code>).</p>
+<section id="prerequisites">
+<h3>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">#</a></h3>
+<p>In order to be able to release a new pandas version, the next permissions are needed:</p>
+<ul class="simple">
+<li><p>Merge rights to the <a class="reference external" href="https://github.com/pandas-dev/pandas/">pandas</a>,
+<a class="reference external" href="https://github.com/MacPython/pandas-wheels">pandas-wheels</a>, and
+<a class="reference external" href="https://github.com/conda-forge/pandas-feedstock/">pandas-feedstock</a> repositories.</p></li>
+<li><p>Permissions to push to main in the pandas repository, to push the new tags.</p></li>
+<li><p><a class="reference external" href="https://github.com/conda-forge/pandas-feedstock/pulls">Write permissions to PyPI</a></p></li>
+<li><p>Access to the social media accounts, to publish the announcements.</p></li>
+</ul>
+</section>
+<section id="pre-release">
+<h3>Pre-release<a class="headerlink" href="#pre-release" title="Permalink to this headline">#</a></h3>
+<ol class="arabic simple">
+<li><p>Agree with the core team on the next topics:</p>
+<ul class="simple">
+<li><p>Release date (major/minor releases happen usually every 6 months, and patch releases
+monthly until x.x.5, just before the next major/minor)</p></li>
+<li><p>Blockers (issues and PRs that must be part of the release)</p></li>
+<li><p>Next version after the one being released</p></li>
+</ul>
+</li>
+<li><p>Update and clean release notes for the version to be released, including:</p>
+<ul class="simple">
+<li><p>Set the final date of the release</p></li>
+<li><p>Remove any unused bullet point</p></li>
+<li><p>Make sure there are no formatting issues, typos, etc.</p></li>
+</ul>
+</li>
+<li><p>Make sure the CI is green for the last commit of the branch being released.</p></li>
+<li><p>If not a release candidate, make sure all backporting pull requests to the branch
+being released are merged.</p></li>
+<li><p>Create a new issue and milestone for the version after the one being released.
+If the release was a release candidate, we would usually want to create issues and
+milestones for both the next major/minor, and the next patch release. In the
+milestone of a patch release, we add the description <code class="docutils literal notranslate"><span class="pre">on-merge:</span> <span class="pre">backport</span> <span class="pre">to</span> <span class="pre">&lt;branch&gt;</span></code>,
+so tagged PRs are automatically backported to the release branch by our bot.</p></li>
+<li><p>Change the milestone of all issues and PRs in the milestone being released to the
+next milestone.</p></li>
+</ol>
+</section>
+<section id="release">
+<h3>Release<a class="headerlink" href="#release" title="Permalink to this headline">#</a></h3>
+<ol class="arabic">
+<li><p>Create an empty commit and a tag in the last commit of the branch to be released:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="o">&lt;</span><span class="n">branch</span><span class="o">&gt;</span>
+<span class="n">git</span> <span class="n">pull</span> <span class="o">--</span><span class="n">ff</span><span class="o">-</span><span class="n">only</span> <span class="n">upstream</span> <span class="o">&lt;</span><span class="n">branch</span><span class="o">&gt;</span>
+<span class="n">git</span> <span class="n">clean</span> <span class="o">-</span><span class="n">xdf</span>
+<span class="n">git</span> <span class="n">commit</span> <span class="o">--</span><span class="n">allow</span><span class="o">-</span><span class="n">empty</span> <span class="o">--</span><span class="n">author</span><span class="o">=</span><span class="s2">&quot;Pandas Development Team &lt;pandas-dev@python.org&gt;&quot;</span> <span class="o">-</span><span class="n">m</span> <span class="s2">&quot;RLS: &lt;version&gt;&quot;</span>
+<span class="n">git</span> <span class="n">tag</span> <span class="o">-</span><span class="n">a</span> <span class="n">v</span><span class="o">&lt;</span><span class="n">version</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">m</span> <span class="s2">&quot;Version &lt;version&gt;&quot;</span>  <span class="c1"># NOTE that the tag is v1.5.2 with &quot;v&quot; not 1.5.2</span>
+<span class="n">git</span> <span class="n">push</span> <span class="n">upstream</span> <span class="o">&lt;</span><span class="n">branch</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">follow</span><span class="o">-</span><span class="n">tags</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p>The docs for the new version will be built and published automatically with the docs job in the CI,
+which will be triggered when the tag is pushed.</p>
+<ol class="arabic" start="2">
+<li><p>Only if the release is a release candidate, we want to create a new branch for it, immediately
+after creating the tag. For example, if we are releasing pandas 1.4.0rc0, we would like to
+create the branch 1.4.x to backport commits to the 1.4 versions. As well as create a tag to
+mark the start of the development of 1.5.0 (assuming it is the next version):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="o">-</span><span class="n">b</span> <span class="mf">1.4</span><span class="o">.</span><span class="n">x</span>
+<span class="n">git</span> <span class="n">push</span> <span class="n">upstream</span> <span class="mf">1.4</span><span class="o">.</span><span class="n">x</span>
+<span class="n">git</span> <span class="n">checkout</span> <span class="n">main</span>
+<span class="n">git</span> <span class="n">commit</span> <span class="o">--</span><span class="n">allow</span><span class="o">-</span><span class="n">empty</span> <span class="o">-</span><span class="n">m</span> <span class="s2">&quot;Start 1.5.0&quot;</span>
+<span class="n">git</span> <span class="n">tag</span> <span class="o">-</span><span class="n">a</span> <span class="n">v1</span><span class="mf">.5.0</span><span class="o">.</span><span class="n">dev0</span> <span class="o">-</span><span class="n">m</span> <span class="s2">&quot;DEV: Start 1.5.0&quot;</span>
+<span class="n">git</span> <span class="n">push</span> <span class="n">upstream</span> <span class="n">main</span> <span class="o">--</span><span class="n">follow</span><span class="o">-</span><span class="n">tags</span>
+</pre></div>
+</div>
+</li>
+<li><p>Build the source distribution (git must be in the tag commit):</p>
+<blockquote>
+<div><p>./setup.py sdist –formats=gztar –quiet</p>
+</div></blockquote>
+</li>
+<li><p>Create a <a class="reference external" href="https://github.com/pandas-dev/pandas/releases/new">new GitHub release</a>:</p>
+<ul class="simple">
+<li><p>Title: <code class="docutils literal notranslate"><span class="pre">Pandas</span> <span class="pre">&lt;version&gt;</span></code></p></li>
+<li><p>Tag: <code class="docutils literal notranslate"><span class="pre">&lt;version&gt;</span></code></p></li>
+<li><p>Files: <code class="docutils literal notranslate"><span class="pre">pandas-&lt;version&gt;.tar.gz</span></code> source distribution just generated</p></li>
+<li><p>Description: Copy the description of the last release of the same kind (release candidate, major/minor or patch release)</p></li>
+<li><p>Set as a pre-release: Only check for a release candidate</p></li>
+<li><p>Set as the latest release: Leave checked, unless releasing a patch release for an older version
+(e.g. releasing 1.4.5 after 1.5 has been released)</p></li>
+</ul>
+</li>
+<li><p>The GitHub release will after some hours trigger an
+<a class="reference external" href="https://github.com/conda-forge/pandas-feedstock/pulls">automated conda-forge PR</a>.
+Merge it once the CI is green, and it will generate the conda-forge packages.</p></li>
+<li><p>Packages for supported versions in PyPI are built in the
+<a class="reference external" href="https://github.com/MacPython/pandas-wheels">MacPython repo</a>.
+Open a PR updating the build commit to the released version, and merge it once the
+CI is green. To do this type:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="n">master</span>
+<span class="n">git</span> <span class="n">pull</span> <span class="o">--</span><span class="n">ff</span><span class="o">-</span><span class="n">only</span> <span class="n">upstream</span> <span class="n">master</span>
+<span class="n">git</span> <span class="n">checkout</span> <span class="o">-</span><span class="n">B</span> <span class="n">RLS</span><span class="o">-&lt;</span><span class="n">version</span><span class="o">&gt;</span>
+<span class="n">sed</span> <span class="o">-</span><span class="n">i</span> <span class="s1">&#39;s/BUILD_COMMIT: &quot;v.*/BUILD_COMMIT: &quot;&#39;</span><span class="n">v</span><span class="o">&lt;</span><span class="n">version</span><span class="o">&gt;</span><span class="s1">&#39;&quot;/&#39;</span> <span class="n">azure</span><span class="o">/</span><span class="n">windows</span><span class="o">.</span><span class="n">yml</span> <span class="n">azure</span><span class="o">/</span><span class="n">posix</span><span class="o">.</span><span class="n">yml</span>
+<span class="n">sed</span> <span class="o">-</span><span class="n">i</span> <span class="s1">&#39;s/BUILD_COMMIT=&quot;v.*/BUILD_COMMIT=&quot;&#39;</span><span class="n">v</span><span class="o">&lt;</span><span class="n">version</span><span class="o">&gt;</span><span class="s1">&#39;&quot;/&#39;</span> <span class="o">.</span><span class="n">travis</span><span class="o">.</span><span class="n">yml</span>
+<span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">am</span> <span class="s2">&quot;RLS &lt;version&gt;&quot;</span>
+<span class="n">git</span> <span class="n">push</span> <span class="o">-</span><span class="n">u</span> <span class="n">origin</span> <span class="n">RLS</span><span class="o">-&lt;</span><span class="n">version</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Download all wheels from the Anaconda repository where MacPython uploads them:
+<a class="reference external" href="https://anaconda.org/multibuild-wheels-staging/pandas/files">https://anaconda.org/multibuild-wheels-staging/pandas/files</a>?version=&lt;version&gt;
+to the <code class="docutils literal notranslate"><span class="pre">dist/</span></code> directory in the local pandas copy. You can use the script
+<code class="docutils literal notranslate"><span class="pre">scripts/download_wheels.sh</span></code> to download all wheels at once.</p></li>
+<li><p>Upload wheels to PyPI:</p>
+<blockquote>
+<div><p>twine upload pandas/dist/pandas-&lt;version&gt;*.{whl,tar.gz} –skip-existing</p>
+</div></blockquote>
+</li>
+</ol>
+</section>
+<section id="post-release">
+<h3>Post-Release<a class="headerlink" href="#post-release" title="Permalink to this headline">#</a></h3>
+<ol class="arabic">
+<li><p>Update symlink to stable documentation by logging in to our web server, and
+editing <code class="docutils literal notranslate"><span class="pre">/var/www/html/pandas-docs/stable</span></code> to point to <code class="docutils literal notranslate"><span class="pre">version/&lt;latest-version&gt;</span></code>.</p></li>
+<li><p>If releasing a major or minor release, open a PR in our source code to update
+<code class="docutils literal notranslate"><span class="pre">web/pandas/versions.json</span></code>, to have the desired versions in the documentation
+dropdown menu.</p></li>
+<li><p>Close the milestone and the issue for the released version.</p></li>
+<li><p>Create a new issue for the next release, with the estimated date of release.</p></li>
+<li><p>Open a PR with the placeholder for the release notes of the next version. See
+for example <a class="reference external" href="https://github.com/pandas-dev/pandas/pull/49843/files">the PR for 1.5.3</a>.</p></li>
+<li><p>Announce the new release in the official channels (use previous announcements
+for reference):</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>The pandas-dev and pydata mailing lists</p></li>
+<li><p>Twitter, Mastodon and Telegram</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ol>
+</section>
 </section>
 </section>
 
@@ -770,6 +977,11 @@ Ask Tom or Joris for access to the webserver.</p>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#issue-triage">
    Issue triage
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#investigating-regressions">
+   Investigating regressions
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -833,6 +1045,28 @@ Ask Tom or Joris for access to the webserver.</p>
   <a class="reference internal nav-link" href="#release-process">
    Release process
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#prerequisites">
+     Prerequisites
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pre-release">
+     Pre-release
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#release">
+     Release
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#post-release">
+     Post-Release
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 

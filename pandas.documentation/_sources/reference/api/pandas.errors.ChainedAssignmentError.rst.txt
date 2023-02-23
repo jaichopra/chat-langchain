@@ -1,0 +1,6 @@
+pandas.errors.ChainedAssignmentError
+====================================
+
+.. currentmodule:: pandas.errors
+
+.. autoexception:: ChainedAssignmentError

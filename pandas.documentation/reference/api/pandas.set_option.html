@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>pandas.set_option &#8212; pandas 1.5.3 documentation</title>
+    <title>pandas.set_option &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -55,7 +55,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'reference/api/pandas.set_option';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -182,7 +182,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -311,7 +311,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -458,6 +458,11 @@
      pandas.option_context
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.set_eng_float_format.html">
+     pandas.set_eng_float_format
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1">
@@ -508,28 +513,25 @@
 <p>Available options:</p>
 <ul class="simple">
 <li><p>compute.[use_bottleneck, use_numba, use_numexpr]</p></li>
-<li><p>display.[chop_threshold, colheader_justify, column_space, date_dayfirst,
-date_yearfirst, encoding, expand_frame_repr, float_format]</p></li>
+<li><p>display.[chop_threshold, colheader_justify, date_dayfirst, date_yearfirst,
+encoding, expand_frame_repr, float_format]</p></li>
 <li><p>display.html.[border, table_schema, use_mathjax]</p></li>
-<li><p>display.[large_repr]</p></li>
-<li><p>display.latex.[escape, longtable, multicolumn, multicolumn_format, multirow,
-repr]</p></li>
-<li><p>display.[max_categories, max_columns, max_colwidth, max_dir_items,
+<li><p>display.[large_repr, max_categories, max_columns, max_colwidth, max_dir_items,
 max_info_columns, max_info_rows, max_rows, max_seq_items, memory_usage,
 min_rows, multi_sparse, notebook_repr_html, pprint_nest_depth, precision,
 show_dimensions]</p></li>
 <li><p>display.unicode.[ambiguous_as_wide, east_asian_width]</p></li>
 <li><p>display.[width]</p></li>
 <li><p>io.excel.ods.[reader, writer]</p></li>
-<li><p>io.excel.xls.[reader, writer]</p></li>
+<li><p>io.excel.xls.[reader]</p></li>
 <li><p>io.excel.xlsb.[reader]</p></li>
 <li><p>io.excel.xlsm.[reader, writer]</p></li>
 <li><p>io.excel.xlsx.[reader, writer]</p></li>
 <li><p>io.hdf.[default_format, dropna_table]</p></li>
 <li><p>io.parquet.[engine]</p></li>
 <li><p>io.sql.[engine]</p></li>
-<li><p>mode.[chained_assignment, copy_on_write, data_manager, sim_interactive,
-string_storage, use_inf_as_na, use_inf_as_null]</p></li>
+<li><p>mode.[chained_assignment, copy_on_write, data_manager, dtype_backend,
+nullable_dtypes, sim_interactive, string_storage, use_inf_as_na]</p></li>
 <li><p>plotting.[backend]</p></li>
 <li><p>plotting.matplotlib.[register_converters]</p></li>
 <li><p>styler.format.[decimal, escape, formatter, na_rep, precision, thousands]</p></li>
@@ -587,8 +589,6 @@ will be displayed as exactly 0 by repr and friends.
 <dt>display.colheader_justify<span class="classifier">‘left’/’right’</span></dt><dd><p>Controls the justification of column headers. used by DataFrameFormatter.
 [default: right] [currently: right]</p>
 </dd>
-<dt>display.column_space No description available.</dt><dd><p>[default: 12] [currently: 12]</p>
-</dd>
 <dt>display.date_dayfirst<span class="classifier">boolean</span></dt><dd><p>When True, prints and parses dates with the day first, eg 20/01/2005
 [default: False] [currently: False]</p>
 </dd>
@@ -630,36 +630,6 @@ show a truncated table (the default from 0.13), or switch to the view from
 df.info() (the behaviour in earlier versions of pandas).
 [default: truncate] [currently: truncate]</p>
 </dd>
-<dt>display.latex.escape<span class="classifier">bool</span></dt><dd><p>This specifies if the to_latex method of a Dataframe uses escapes special
-characters.
-Valid values: False,True
-[default: True] [currently: True]</p>
-</dd>
-<dt>display.latex.longtable :bool</dt><dd><p>This specifies if the to_latex method of a Dataframe uses the longtable
-format.
-Valid values: False,True
-[default: False] [currently: False]</p>
-</dd>
-<dt>display.latex.multicolumn<span class="classifier">bool</span></dt><dd><p>This specifies if the to_latex method of a Dataframe uses multicolumns
-to pretty-print MultiIndex columns.
-Valid values: False,True
-[default: True] [currently: True]</p>
-</dd>
-<dt>display.latex.multicolumn_format<span class="classifier">bool</span></dt><dd><p>This specifies if the to_latex method of a Dataframe uses multicolumns
-to pretty-print MultiIndex columns.
-Valid values: False,True
-[default: l] [currently: l]</p>
-</dd>
-<dt>display.latex.multirow<span class="classifier">bool</span></dt><dd><p>This specifies if the to_latex method of a Dataframe uses multirows
-to pretty-print MultiIndex rows.
-Valid values: False,True
-[default: False] [currently: False]</p>
-</dd>
-<dt>display.latex.repr<span class="classifier">boolean</span></dt><dd><p>Whether to produce a latex DataFrame representation for jupyter
-environments that support it.
-(default: False)
-[default: False] [currently: False]</p>
-</dd>
 <dt>display.max_categories<span class="classifier">int</span></dt><dd><p>This sets the maximum number of categories pandas should output when
 printing out a <cite>Categorical</cite> or a Series of dtype “category”.
 [default: 8] [currently: 8]</p>
@@ -668,11 +638,11 @@ printing out a <cite>Categorical</cite> or a Series of dtype “category”.
 <cite>large_repr</cite>, objects are either centrally truncated or printed as
 a summary view. ‘None’ value means unlimited.</p>
 <p>In case python/IPython is running in a terminal and <cite>large_repr</cite>
-equals ‘truncate’ this can be set to 0 and pandas will auto-detect
+equals ‘truncate’ this can be set to 0 or None and pandas will auto-detect
 the width of the terminal and print a truncated object which fits
 the screen width. The IPython notebook, IPython qtconsole, or IDLE
 do not run in a terminal and hence it is not possible to do
-correct auto-detection.
+correct auto-detection and defaults to 20.
 [default: 0] [currently: 0]</p>
 </dd>
 <dt>display.max_colwidth<span class="classifier">int or None</span></dt><dd><p>The maximum width in characters of a column in the repr of
@@ -773,11 +743,6 @@ auto, odf.
 auto, xlrd.
 [default: auto] [currently: auto]</p>
 </dd>
-<dt>io.excel.xls.writer<span class="classifier">string</span></dt><dd><p>The default Excel writer engine for ‘xls’ files. Available options:
-auto, xlwt.
-[default: auto] [currently: auto]
-(Deprecated, use `` instead.)</p>
-</dd>
 <dt>io.excel.xlsb.reader<span class="classifier">string</span></dt><dd><p>The default Excel reader engine for ‘xlsb’ files. Available options:
 auto, pyxlsb.
 [default: auto] [currently: auto]</p>
@@ -827,6 +792,15 @@ unless overridden by the ‘PANDAS_DATA_MANAGER’ environment variable (needs
 to be set before pandas is imported).
 [default: block] [currently: block]</p>
 </dd>
+<dt>mode.dtype_backend<span class="classifier">string</span></dt><dd><p>The nullable dtype implementation to return. Only applicable to certain
+operations where documented. Available options: ‘pandas’, ‘pyarrow’,
+the default is ‘pandas’.
+[default: pandas] [currently: pandas]</p>
+</dd>
+<dt>mode.nullable_dtypes<span class="classifier">bool</span></dt><dd><p>If nullable dtypes should be returned. This is only applicable to functions
+where the <code class="docutils literal notranslate"><span class="pre">use_nullable_dtypes</span></code> keyword is implemented.
+[default: False] [currently: False]</p>
+</dd>
 <dt>mode.sim_interactive<span class="classifier">boolean</span></dt><dd><p>Whether to simulate interactive mode for purposes of testing
 [default: False] [currently: False]</p>
 </dd>
@@ -837,11 +811,6 @@ to be set before pandas is imported).
 False means None and NaN are null, but INF, -INF are not NA
 (new way).
 [default: False] [currently: False]</p>
-</dd>
-<dt>mode.use_inf_as_null<span class="classifier">boolean</span></dt><dd><p>use_inf_as_null had been deprecated and will be removed in a future
-version. Use <cite>use_inf_as_na</cite> instead.
-[default: False] [currently: False]
-(Deprecated, use <cite>mode.use_inf_as_na</cite> instead.)</p>
 </dd>
 <dt>plotting.backend<span class="classifier">str</span></dt><dd><p>The plotting backend to use. The default value is “matplotlib”, the
 backend provided with pandas. Other backends can be specified by

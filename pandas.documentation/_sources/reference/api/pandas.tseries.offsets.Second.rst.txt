@@ -13,11 +13,7 @@ pandas.tseries.offsets.Second
    .. autosummary::
       :toctree:
       
-      Second.__call__
-      Second.apply
-      Second.apply_index
       Second.copy
-      Second.isAnchored
       Second.is_anchored
       Second.is_month_end
       Second.is_month_start
@@ -26,7 +22,6 @@ pandas.tseries.offsets.Second
       Second.is_quarter_start
       Second.is_year_end
       Second.is_year_start
-      Second.onOffset
       Second.rollback
       Second.rollforward
 

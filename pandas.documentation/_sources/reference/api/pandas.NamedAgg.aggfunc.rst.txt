@@ -1,0 +1,6 @@
+pandas.NamedAgg.aggfunc
+=======================
+
+.. currentmodule:: pandas
+
+.. autoattribute:: NamedAgg.aggfunc

@@ -13,13 +13,9 @@ pandas.tseries.offsets.FY5253
    .. autosummary::
       :toctree:
       
-      FY5253.__call__
-      FY5253.apply
-      FY5253.apply_index
       FY5253.copy
       FY5253.get_rule_code_suffix
       FY5253.get_year_end
-      FY5253.isAnchored
       FY5253.is_anchored
       FY5253.is_month_end
       FY5253.is_month_start
@@ -28,7 +24,6 @@ pandas.tseries.offsets.FY5253
       FY5253.is_quarter_start
       FY5253.is_year_end
       FY5253.is_year_start
-      FY5253.onOffset
       FY5253.rollback
       FY5253.rollforward
 

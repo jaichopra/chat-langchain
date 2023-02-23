@@ -1,0 +1,6 @@
+pandas.core.groupby.SeriesGroupBy.mean
+======================================
+
+.. currentmodule:: pandas.core.groupby
+
+.. automethod:: SeriesGroupBy.mean

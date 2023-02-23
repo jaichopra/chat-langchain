@@ -1,0 +1,6 @@
+pandas.NamedAgg.count
+=====================
+
+.. currentmodule:: pandas
+
+.. automethod:: NamedAgg.count

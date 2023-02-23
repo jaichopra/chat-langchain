@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Version 0.14.0 (May 31 , 2014) &#8212; pandas 1.5.3 documentation</title>
+    <title>Version 0.14.0 (May 31 , 2014) &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -55,7 +55,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'whatsnew/v0.14.0';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -182,7 +182,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -311,7 +311,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -363,6 +363,18 @@
   <div class="bd-toc-item navbar-nav">
     
     <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v2.0.0.html">
+   What’s new in 2.0.0 (??)
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.5.4.html">
+   What’s new in 1.5.4 (March XX, 2023)
+  </a>
+ </li>
  <li class="toctree-l1">
   <a class="reference internal" href="v1.5.3.html">
    What’s new in 1.5.3 (January 18, 2023)
@@ -1007,7 +1019,7 @@ resulting index (<a class="reference external" href="https://github.com/pandas-d
 <p>Previously, the above operation would return <code class="docutils literal notranslate"><span class="pre">Int64Index</span></code>.  If you’d like
 to do this manually, use <a class="reference internal" href="../reference/api/pandas.Index.astype.html#pandas.Index.astype" title="pandas.Index.astype"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Index.astype()</span></code></a></p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [9]: </span><span class="n">i</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int_</span><span class="p">)</span>
-<span class="gh">Out[9]: </span><span class="go">Int64Index([1, 2, 3], dtype=&#39;int64&#39;)</span>
+<span class="gh">Out[9]: </span><span class="go">Index([1, 2, 3], dtype=&#39;int64&#39;)</span>
 </pre></div>
 </div>
 </li>
@@ -1273,32 +1285,29 @@ NaN. See <a class="reference internal" href="../user_guide/groupby.html#groupby-
 
 <span class="gp">In [26]: </span><span class="n">g</span><span class="o">.</span><span class="n">nth</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="gh">Out[26]: </span>
-<span class="go">     B</span>
-<span class="go">A     </span>
-<span class="go">1  NaN</span>
-<span class="go">5  6.0</span>
+<span class="go">   A    B</span>
+<span class="go">0  1  NaN</span>
+<span class="go">2  5  6.0</span>
 
-<span class="go">[2 rows x 1 columns]</span>
+<span class="go">[2 rows x 2 columns]</span>
 
 <span class="go"># this is equivalent to g.first()</span>
 <span class="gp">In [27]: </span><span class="n">g</span><span class="o">.</span><span class="n">nth</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">dropna</span><span class="o">=</span><span class="s1">&#39;any&#39;</span><span class="p">)</span>
 <span class="gh">Out[27]: </span>
-<span class="go">     B</span>
-<span class="go">A     </span>
-<span class="go">1  4.0</span>
-<span class="go">5  6.0</span>
+<span class="go">   A    B</span>
+<span class="go">1  1  4.0</span>
+<span class="go">2  5  6.0</span>
 
-<span class="go">[2 rows x 1 columns]</span>
+<span class="go">[2 rows x 2 columns]</span>
 
 <span class="go"># this is equivalent to g.last()</span>
 <span class="gp">In [28]: </span><span class="n">g</span><span class="o">.</span><span class="n">nth</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">dropna</span><span class="o">=</span><span class="s1">&#39;any&#39;</span><span class="p">)</span>
 <span class="gh">Out[28]: </span>
-<span class="go">     B</span>
-<span class="go">A     </span>
-<span class="go">1  4.0</span>
-<span class="go">5  6.0</span>
+<span class="go">   A    B</span>
+<span class="go">1  1  4.0</span>
+<span class="go">2  5  6.0</span>
 
-<span class="go">[2 rows x 1 columns]</span>
+<span class="go">[2 rows x 2 columns]</span>
 </pre></div>
 </div>
 <p>Filtering</p>
@@ -1315,9 +1324,8 @@ NaN. See <a class="reference internal" href="../user_guide/groupby.html#groupby-
 <span class="gp">In [31]: </span><span class="n">gf</span><span class="o">.</span><span class="n">nth</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">dropna</span><span class="o">=</span><span class="s1">&#39;any&#39;</span><span class="p">)</span>
 <span class="gh">Out[31]: </span>
 <span class="go">   A    B</span>
-<span class="go">A        </span>
 <span class="go">1  1  4.0</span>
-<span class="go">5  5  6.0</span>
+<span class="go">2  5  6.0</span>
 
 <span class="go">[2 rows x 2 columns]</span>
 </pre></div>
@@ -1365,12 +1373,12 @@ as its already the index</p>
 
 <span class="gp">In [39]: </span><span class="n">g</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
 <span class="gh">Out[39]: </span>
-<span class="go">      A                                ...    B                                   </span>
-<span class="go">  count mean  std  min  25%  50%  75%  ... mean       std  min  25%  50%  75%  max</span>
-<span class="go">0   2.0  1.0  0.0  1.0  1.0  1.0  1.0  ...  4.0       NaN  4.0  4.0  4.0  4.0  4.0</span>
-<span class="go">1   2.0  5.0  0.0  5.0  5.0  5.0  5.0  ...  7.0  1.414214  6.0  6.5  7.0  7.5  8.0</span>
+<span class="go">   A     B                                        </span>
+<span class="go">     count mean       std  min  25%  50%  75%  max</span>
+<span class="go">0  1   1.0  4.0       NaN  4.0  4.0  4.0  4.0  4.0</span>
+<span class="go">1  5   2.0  7.0  1.414214  6.0  6.5  7.0  7.5  8.0</span>
 
-<span class="go">[2 rows x 16 columns]</span>
+<span class="go">[2 rows x 9 columns]</span>
 </pre></div>
 </div>
 </li>
@@ -1747,7 +1755,7 @@ axes and a dict of matplotlib Lines is returned.</p></li>
 <ul class="simple">
 <li><p>Remove <code class="xref py py-class docutils literal notranslate"><span class="pre">DateRange</span></code> in favor of <a class="reference internal" href="../reference/api/pandas.DatetimeIndex.html#pandas.DatetimeIndex" title="pandas.DatetimeIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">DatetimeIndex</span></code></a> (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/6816">GH6816</a>)</p></li>
 <li><p>Remove <code class="docutils literal notranslate"><span class="pre">column</span></code> keyword from <code class="docutils literal notranslate"><span class="pre">DataFrame.sort</span></code> (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/4370">GH4370</a>)</p></li>
-<li><p>Remove <code class="docutils literal notranslate"><span class="pre">precision</span></code> keyword from <code class="xref py py-func docutils literal notranslate"><span class="pre">set_eng_float_format()</span></code> (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/395">GH395</a>)</p></li>
+<li><p>Remove <code class="docutils literal notranslate"><span class="pre">precision</span></code> keyword from <a class="reference internal" href="../reference/api/pandas.set_eng_float_format.html#pandas.set_eng_float_format" title="pandas.set_eng_float_format"><code class="xref py py-func docutils literal notranslate"><span class="pre">set_eng_float_format()</span></code></a> (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/395">GH395</a>)</p></li>
 <li><p>Remove <code class="docutils literal notranslate"><span class="pre">force_unicode</span></code> keyword from <a class="reference internal" href="../reference/api/pandas.DataFrame.to_string.html#pandas.DataFrame.to_string" title="pandas.DataFrame.to_string"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.to_string()</span></code></a>,
 <a class="reference internal" href="../reference/api/pandas.DataFrame.to_latex.html#pandas.DataFrame.to_latex" title="pandas.DataFrame.to_latex"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.to_latex()</span></code></a>, and <a class="reference internal" href="../reference/api/pandas.DataFrame.to_html.html#pandas.DataFrame.to_html" title="pandas.DataFrame.to_html"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrame.to_html()</span></code></a>; these function
 encode in unicode by default (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/2224">GH2224</a>, <a class="reference external" href="https://github.com/pandas-dev/pandas/issues/2225">GH2225</a>)</p></li>

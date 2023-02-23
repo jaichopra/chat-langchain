@@ -1,0 +1,6 @@
+pandas.core.groupby.DataFrameGroupBy.min
+========================================
+
+.. currentmodule:: pandas.core.groupby
+
+.. automethod:: DataFrameGroupBy.min

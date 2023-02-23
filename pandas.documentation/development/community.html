@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Contributor community &#8212; pandas 1.5.3 documentation</title>
+    <title>Contributor community &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -55,7 +55,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'development/community';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -182,7 +182,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -311,7 +311,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -368,17 +368,29 @@
    Contributing to pandas
   </a>
  </li>
- <li class="toctree-l1">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="contributing_environment.html">
    Creating a development environment
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label class="toctree-toggle" for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="contributing_gitpod.html">
+     Using Gitpod for pandas development
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="contributing_documentation.html">
    Contributing to the documentation
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label class="toctree-toggle" for="toctree-checkbox-1">
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label class="toctree-toggle" for="toctree-checkbox-2">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -403,6 +415,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="internals.html">
    Internals
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="copy_on_write.html">
+   Copy on write
   </a>
  </li>
  <li class="toctree-l1">
@@ -479,7 +496,7 @@ connect with others within the pandas community.</p>
 <p>The pandas Community Meeting is a regular sync meeting for the project’s
 maintainers which is open to the community. Everyone is welcome to attend and
 contribute to conversations.</p>
-<p>The meetings take place on the second Wednesday of each month at 18:00 UTC.</p>
+<p>The meetings take place on the second and fourth Wednesdays of each month at 18:00 UTC.</p>
 <p>The minutes of past meetings are available in <a class="reference external" href="https://docs.google.com/document/d/1tGbTiYORHiSPgVMXawiweGJlBw5dOkVJLY-licoBmBU/edit?usp=sharing">this Google Document</a>.</p>
 </section>
 <section id="new-contributor-meeting">
@@ -523,10 +540,10 @@ incorrect”</p></li>
 <li><p>Ask questions, e.g. “I noticed the behavior of a certain function
 changed between versions. Is this expected?”.</p>
 <blockquote>
-<div><p>Ideally your questions should be related to how pandas work rather
+<div><p>Ideally, your questions should be related to how pandas works rather
 than how you use pandas. <a class="reference external" href="https://stackoverflow.com/">StackOverflow</a> is
 better suited for answering usage questions, and we ask that all usage
-questions are first asked on StackOverflow. Thank you for respecting are
+questions are first asked on StackOverflow. Thank you for respecting our
 time and wishes. 🙇</p>
 </div></blockquote>
 </li>
@@ -536,7 +553,7 @@ ongoing development of the project. For example:</p>
 <ul class="simple">
 <li><p>Report issues with the CI, GitHub Actions, or the performance of pandas</p></li>
 <li><p>Open issues relating to the internals</p></li>
-<li><p>Start roadmap discussion aligning on proposals what to do in future
+<li><p>Start roadmap discussion aligning on proposals for what to do in future
 releases or changes to the API.</p></li>
 <li><p>Open issues relating to the project’s website, logo, or governance</p></li>
 </ul>
@@ -544,7 +561,7 @@ releases or changes to the API.</p></li>
 <section id="the-developer-mailing-list">
 <h2>The developer mailing list<a class="headerlink" href="#the-developer-mailing-list" title="Permalink to this headline">#</a></h2>
 <p>The pandas mailing list <a class="reference external" href="mailto://pandas-dev&#37;&#52;&#48;python&#46;org">pandas-dev<span>&#64;</span>python<span>&#46;</span>org</a> is used for long form
-conversations and to engages people in the wider community who might not
+conversations and to engage people in the wider community who might not
 be active on the issue tracker but we would like to include in discussions.</p>
 </section>
 <section id="community-slack">
@@ -557,7 +574,7 @@ mailing list or GitHub.</p>
 <p>If this sounds like the right place for you, you are welcome to join! Email us
 at <a class="reference external" href="mailto://slack&#37;&#52;&#48;pandas&#46;pydata&#46;org">slack<span>&#64;</span>pandas<span>&#46;</span>pydata<span>&#46;</span>org</a> and let us
 know that you read and agree to our <a class="reference external" href="https://pandas.pydata.org/community/coc.html">Code of Conduct</a>
-😉 to get an invite. And please remember the slack is not meant to replace the
+😉 to get an invite. And please remember that slack is not meant to replace the
 mailing list or issue tracker - all important announcements and conversations
 should still happen there.</p>
 </section>

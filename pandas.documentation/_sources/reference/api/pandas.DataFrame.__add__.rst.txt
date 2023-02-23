@@ -1,0 +1,6 @@
+pandas.DataFrame.\_\_add\_\_
+============================
+
+.. currentmodule:: pandas
+
+.. automethod:: DataFrame.__add__

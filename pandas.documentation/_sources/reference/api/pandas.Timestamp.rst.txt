@@ -13,6 +13,7 @@ pandas.Timestamp
    .. autosummary::
       :toctree:
       
+      Timestamp.as_unit
       Timestamp.astimezone
       Timestamp.ceil
       Timestamp.combine
@@ -75,8 +76,6 @@ pandas.Timestamp
       Timestamp.days_in_month
       Timestamp.daysinmonth
       Timestamp.fold
-      Timestamp.freq
-      Timestamp.freqstr
       Timestamp.hour
       Timestamp.is_leap_year
       Timestamp.is_month_end
@@ -96,6 +95,7 @@ pandas.Timestamp
       Timestamp.second
       Timestamp.tz
       Timestamp.tzinfo
+      Timestamp.unit
       Timestamp.value
       Timestamp.week
       Timestamp.weekofyear

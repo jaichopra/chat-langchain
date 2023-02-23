@@ -1,0 +1,6 @@
+pandas.core.groupby.SeriesGroupBy.rank
+======================================
+
+.. currentmodule:: pandas.core.groupby
+
+.. automethod:: SeriesGroupBy.rank

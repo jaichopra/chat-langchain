@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Testing &#8212; pandas 1.5.3 documentation</title>
+    <title>Testing &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -55,7 +55,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'reference/testing';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -182,7 +182,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -311,7 +311,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -484,6 +484,11 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.errors.ChainedAssignmentError.html">
+     pandas.errors.ChainedAssignmentError
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="api/pandas.errors.ClosedFileError.html">
      pandas.errors.ClosedFileError
     </a>
@@ -534,8 +539,18 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.errors.InvalidComparison.html">
+     pandas.errors.InvalidComparison
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="api/pandas.errors.InvalidIndexError.html">
      pandas.errors.InvalidIndexError
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.errors.InvalidVersion.html">
+     pandas.errors.InvalidVersion
     </a>
    </li>
    <li class="toctree-l2">
@@ -544,8 +559,18 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.errors.LossySetitemError.html">
+     pandas.errors.LossySetitemError
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="api/pandas.errors.MergeError.html">
      pandas.errors.MergeError
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="api/pandas.errors.NoBufferPresent.html">
+     pandas.errors.NoBufferPresent
     </a>
    </li>
    <li class="toctree-l2">
@@ -734,103 +759,118 @@
 <tr class="row-even"><td><p><a class="reference internal" href="api/pandas.errors.CategoricalConversionWarning.html#pandas.errors.CategoricalConversionWarning" title="pandas.errors.CategoricalConversionWarning"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.CategoricalConversionWarning</span></code></a></p></td>
 <td><p>Warning is raised when reading a partial labeled Stata file using a iterator.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.errors.ClosedFileError.html#pandas.errors.ClosedFileError" title="pandas.errors.ClosedFileError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.ClosedFileError</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.errors.ChainedAssignmentError.html#pandas.errors.ChainedAssignmentError" title="pandas.errors.ChainedAssignmentError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.ChainedAssignmentError</span></code></a></p></td>
+<td><p>Exception raised when trying to set using chained assignment.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.errors.ClosedFileError.html#pandas.errors.ClosedFileError" title="pandas.errors.ClosedFileError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.ClosedFileError</span></code></a></p></td>
 <td><p>Exception is raised when trying to perform an operation on a closed HDFStore file.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.errors.CSSWarning.html#pandas.errors.CSSWarning" title="pandas.errors.CSSWarning"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.CSSWarning</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.errors.CSSWarning.html#pandas.errors.CSSWarning" title="pandas.errors.CSSWarning"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.CSSWarning</span></code></a></p></td>
 <td><p>Warning is raised when converting css styling fails.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.errors.DatabaseError.html#pandas.errors.DatabaseError" title="pandas.errors.DatabaseError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.DatabaseError</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.errors.DatabaseError.html#pandas.errors.DatabaseError" title="pandas.errors.DatabaseError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.DatabaseError</span></code></a></p></td>
 <td><p>Error is raised when executing sql with bad syntax or sql that throws an error.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.errors.DataError.html#pandas.errors.DataError" title="pandas.errors.DataError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.DataError</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.errors.DataError.html#pandas.errors.DataError" title="pandas.errors.DataError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.DataError</span></code></a></p></td>
 <td><p>Exceptionn raised when performing an operation on non-numerical data.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.errors.DtypeWarning.html#pandas.errors.DtypeWarning" title="pandas.errors.DtypeWarning"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.DtypeWarning</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.errors.DtypeWarning.html#pandas.errors.DtypeWarning" title="pandas.errors.DtypeWarning"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.DtypeWarning</span></code></a></p></td>
 <td><p>Warning raised when reading different dtypes in a column from a file.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.errors.DuplicateLabelError.html#pandas.errors.DuplicateLabelError" title="pandas.errors.DuplicateLabelError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.DuplicateLabelError</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.errors.DuplicateLabelError.html#pandas.errors.DuplicateLabelError" title="pandas.errors.DuplicateLabelError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.DuplicateLabelError</span></code></a></p></td>
 <td><p>Error raised when an operation would introduce duplicate labels.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.errors.EmptyDataError.html#pandas.errors.EmptyDataError" title="pandas.errors.EmptyDataError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.EmptyDataError</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.errors.EmptyDataError.html#pandas.errors.EmptyDataError" title="pandas.errors.EmptyDataError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.EmptyDataError</span></code></a></p></td>
 <td><p>Exception raised in <code class="docutils literal notranslate"><span class="pre">pd.read_csv</span></code> when empty data or header is encountered.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.errors.IncompatibilityWarning.html#pandas.errors.IncompatibilityWarning" title="pandas.errors.IncompatibilityWarning"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.IncompatibilityWarning</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.errors.IncompatibilityWarning.html#pandas.errors.IncompatibilityWarning" title="pandas.errors.IncompatibilityWarning"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.IncompatibilityWarning</span></code></a></p></td>
 <td><p>Warning raised when trying to use where criteria on an incompatible HDF5 file.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.errors.IndexingError.html#pandas.errors.IndexingError" title="pandas.errors.IndexingError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.IndexingError</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.errors.IndexingError.html#pandas.errors.IndexingError" title="pandas.errors.IndexingError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.IndexingError</span></code></a></p></td>
 <td><p>Exception is raised when trying to index and there is a mismatch in dimensions.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.errors.InvalidColumnName.html#pandas.errors.InvalidColumnName" title="pandas.errors.InvalidColumnName"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.InvalidColumnName</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.errors.InvalidColumnName.html#pandas.errors.InvalidColumnName" title="pandas.errors.InvalidColumnName"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.InvalidColumnName</span></code></a></p></td>
 <td><p>Warning raised by to_stata the column contains a non-valid stata name.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.errors.InvalidComparison.html#pandas.errors.InvalidComparison" title="pandas.errors.InvalidComparison"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.InvalidComparison</span></code></a></p></td>
+<td><p>Exception is raised by _validate_comparison_value to indicate an invalid comparison.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.errors.InvalidIndexError.html#pandas.errors.InvalidIndexError" title="pandas.errors.InvalidIndexError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.InvalidIndexError</span></code></a></p></td>
 <td><p>Exception raised when attempting to use an invalid index key.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.errors.IntCastingNaNError.html#pandas.errors.IntCastingNaNError" title="pandas.errors.IntCastingNaNError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.IntCastingNaNError</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.errors.InvalidVersion.html#pandas.errors.InvalidVersion" title="pandas.errors.InvalidVersion"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.InvalidVersion</span></code></a></p></td>
+<td><p>An invalid version was found, users should refer to PEP 440.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.errors.IntCastingNaNError.html#pandas.errors.IntCastingNaNError" title="pandas.errors.IntCastingNaNError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.IntCastingNaNError</span></code></a></p></td>
 <td><p>Exception raised when converting (<code class="docutils literal notranslate"><span class="pre">astype</span></code>) an array with NaN to an integer type.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.errors.LossySetitemError.html#pandas.errors.LossySetitemError" title="pandas.errors.LossySetitemError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.LossySetitemError</span></code></a></p></td>
+<td><p>Raised when trying to do a __setitem__ on an np.ndarray that is not lossless.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.errors.MergeError.html#pandas.errors.MergeError" title="pandas.errors.MergeError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.MergeError</span></code></a></p></td>
 <td><p>Exception raised when merging data.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.errors.NullFrequencyError.html#pandas.errors.NullFrequencyError" title="pandas.errors.NullFrequencyError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.NullFrequencyError</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.errors.NoBufferPresent.html#pandas.errors.NoBufferPresent" title="pandas.errors.NoBufferPresent"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.NoBufferPresent</span></code></a></p></td>
+<td><p>Exception is raised in _get_data_buffer to signal that there is no requested buffer.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.errors.NullFrequencyError.html#pandas.errors.NullFrequencyError" title="pandas.errors.NullFrequencyError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.NullFrequencyError</span></code></a></p></td>
 <td><p>Exception raised when a <code class="docutils literal notranslate"><span class="pre">freq</span></code> cannot be null.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.errors.NumbaUtilError.html#pandas.errors.NumbaUtilError" title="pandas.errors.NumbaUtilError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.NumbaUtilError</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.errors.NumbaUtilError.html#pandas.errors.NumbaUtilError" title="pandas.errors.NumbaUtilError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.NumbaUtilError</span></code></a></p></td>
 <td><p>Error raised for unsupported Numba engine routines.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.errors.NumExprClobberingError.html#pandas.errors.NumExprClobberingError" title="pandas.errors.NumExprClobberingError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.NumExprClobberingError</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.errors.NumExprClobberingError.html#pandas.errors.NumExprClobberingError" title="pandas.errors.NumExprClobberingError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.NumExprClobberingError</span></code></a></p></td>
 <td><p>Exception raised when trying to use a built-in numexpr name as a variable name.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.errors.OptionError.html#pandas.errors.OptionError" title="pandas.errors.OptionError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.OptionError</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.errors.OptionError.html#pandas.errors.OptionError" title="pandas.errors.OptionError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.OptionError</span></code></a></p></td>
 <td><p>Exception raised for pandas.options.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.errors.OutOfBoundsDatetime.html#pandas.errors.OutOfBoundsDatetime" title="pandas.errors.OutOfBoundsDatetime"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.OutOfBoundsDatetime</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.errors.OutOfBoundsDatetime.html#pandas.errors.OutOfBoundsDatetime" title="pandas.errors.OutOfBoundsDatetime"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.OutOfBoundsDatetime</span></code></a></p></td>
 <td><p>Raised when the datetime is outside the range that can be represented.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.errors.OutOfBoundsTimedelta.html#pandas.errors.OutOfBoundsTimedelta" title="pandas.errors.OutOfBoundsTimedelta"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.OutOfBoundsTimedelta</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.errors.OutOfBoundsTimedelta.html#pandas.errors.OutOfBoundsTimedelta" title="pandas.errors.OutOfBoundsTimedelta"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.OutOfBoundsTimedelta</span></code></a></p></td>
 <td><p>Raised when encountering a timedelta value that cannot be represented.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.errors.ParserError.html#pandas.errors.ParserError" title="pandas.errors.ParserError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.ParserError</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.errors.ParserError.html#pandas.errors.ParserError" title="pandas.errors.ParserError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.ParserError</span></code></a></p></td>
 <td><p>Exception that is raised by an error encountered in parsing file contents.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.errors.ParserWarning.html#pandas.errors.ParserWarning" title="pandas.errors.ParserWarning"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.ParserWarning</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.errors.ParserWarning.html#pandas.errors.ParserWarning" title="pandas.errors.ParserWarning"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.ParserWarning</span></code></a></p></td>
 <td><p>Warning raised when reading a file that doesn't use the default 'c' parser.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.errors.PerformanceWarning.html#pandas.errors.PerformanceWarning" title="pandas.errors.PerformanceWarning"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.PerformanceWarning</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.errors.PerformanceWarning.html#pandas.errors.PerformanceWarning" title="pandas.errors.PerformanceWarning"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.PerformanceWarning</span></code></a></p></td>
 <td><p>Warning raised when there is a possible performance impact.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.errors.PossibleDataLossError.html#pandas.errors.PossibleDataLossError" title="pandas.errors.PossibleDataLossError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.PossibleDataLossError</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.errors.PossibleDataLossError.html#pandas.errors.PossibleDataLossError" title="pandas.errors.PossibleDataLossError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.PossibleDataLossError</span></code></a></p></td>
 <td><p>Exception raised when trying to open a HDFStore file when already opened.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.errors.PossiblePrecisionLoss.html#pandas.errors.PossiblePrecisionLoss" title="pandas.errors.PossiblePrecisionLoss"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.PossiblePrecisionLoss</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.errors.PossiblePrecisionLoss.html#pandas.errors.PossiblePrecisionLoss" title="pandas.errors.PossiblePrecisionLoss"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.PossiblePrecisionLoss</span></code></a></p></td>
 <td><p>Warning raised by to_stata on a column with a value outside or equal to int64.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.errors.PyperclipException.html#pandas.errors.PyperclipException" title="pandas.errors.PyperclipException"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.PyperclipException</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.errors.PyperclipException.html#pandas.errors.PyperclipException" title="pandas.errors.PyperclipException"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.PyperclipException</span></code></a></p></td>
 <td><p>Exception raised when clipboard functionality is unsupported.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.errors.PyperclipWindowsException.html#pandas.errors.PyperclipWindowsException" title="pandas.errors.PyperclipWindowsException"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.PyperclipWindowsException</span></code></a>(message)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.errors.PyperclipWindowsException.html#pandas.errors.PyperclipWindowsException" title="pandas.errors.PyperclipWindowsException"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.PyperclipWindowsException</span></code></a>(message)</p></td>
 <td><p>Exception raised when clipboard functionality is unsupported by Windows.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.errors.SettingWithCopyError.html#pandas.errors.SettingWithCopyError" title="pandas.errors.SettingWithCopyError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.SettingWithCopyError</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.errors.SettingWithCopyError.html#pandas.errors.SettingWithCopyError" title="pandas.errors.SettingWithCopyError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.SettingWithCopyError</span></code></a></p></td>
 <td><p>Exception raised when trying to set on a copied slice from a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.errors.SettingWithCopyWarning.html#pandas.errors.SettingWithCopyWarning" title="pandas.errors.SettingWithCopyWarning"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.SettingWithCopyWarning</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.errors.SettingWithCopyWarning.html#pandas.errors.SettingWithCopyWarning" title="pandas.errors.SettingWithCopyWarning"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.SettingWithCopyWarning</span></code></a></p></td>
 <td><p>Warning raised when trying to set on a copied slice from a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.errors.SpecificationError.html#pandas.errors.SpecificationError" title="pandas.errors.SpecificationError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.SpecificationError</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.errors.SpecificationError.html#pandas.errors.SpecificationError" title="pandas.errors.SpecificationError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.SpecificationError</span></code></a></p></td>
 <td><p>Exception raised by <code class="docutils literal notranslate"><span class="pre">agg</span></code> when the functions are ill-specified.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.errors.UndefinedVariableError.html#pandas.errors.UndefinedVariableError" title="pandas.errors.UndefinedVariableError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.UndefinedVariableError</span></code></a>(name[, is_local])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.errors.UndefinedVariableError.html#pandas.errors.UndefinedVariableError" title="pandas.errors.UndefinedVariableError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.UndefinedVariableError</span></code></a>(name[, is_local])</p></td>
 <td><p>Exception raised by <code class="docutils literal notranslate"><span class="pre">query</span></code> or <code class="docutils literal notranslate"><span class="pre">eval</span></code> when using an undefined variable name.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.errors.UnsortedIndexError.html#pandas.errors.UnsortedIndexError" title="pandas.errors.UnsortedIndexError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.UnsortedIndexError</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.errors.UnsortedIndexError.html#pandas.errors.UnsortedIndexError" title="pandas.errors.UnsortedIndexError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.UnsortedIndexError</span></code></a></p></td>
 <td><p>Error raised when slicing a MultiIndex which has not been lexsorted.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.errors.UnsupportedFunctionCall.html#pandas.errors.UnsupportedFunctionCall" title="pandas.errors.UnsupportedFunctionCall"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.UnsupportedFunctionCall</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.errors.UnsupportedFunctionCall.html#pandas.errors.UnsupportedFunctionCall" title="pandas.errors.UnsupportedFunctionCall"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.UnsupportedFunctionCall</span></code></a></p></td>
 <td><p>Exception raised when attempting to call a unsupported numpy function.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.errors.ValueLabelTypeMismatch.html#pandas.errors.ValueLabelTypeMismatch" title="pandas.errors.ValueLabelTypeMismatch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.ValueLabelTypeMismatch</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.errors.ValueLabelTypeMismatch.html#pandas.errors.ValueLabelTypeMismatch" title="pandas.errors.ValueLabelTypeMismatch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors.ValueLabelTypeMismatch</span></code></a></p></td>
 <td><p>Warning raised by to_stata on a category column that contains non-string values.</p></td>
 </tr>
 </tbody>

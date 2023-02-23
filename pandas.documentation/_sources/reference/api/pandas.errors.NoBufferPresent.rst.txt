@@ -1,0 +1,6 @@
+pandas.errors.NoBufferPresent
+=============================
+
+.. currentmodule:: pandas.errors
+
+.. autoexception:: NoBufferPresent

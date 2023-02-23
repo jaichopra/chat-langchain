@@ -1,0 +1,6 @@
+pandas.NA
+=========
+
+.. currentmodule:: pandas
+
+.. autoclass:: NA

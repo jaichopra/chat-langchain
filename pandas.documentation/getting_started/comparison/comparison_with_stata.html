@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Comparison with Stata &#8212; pandas 1.5.3 documentation</title>
+    <title>Comparison with Stata &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -55,7 +55,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'getting_started/comparison/comparison_with_stata';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -182,7 +182,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -311,7 +311,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -411,32 +411,32 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../intro_tutorials/05_add_columns.html">
-     How to create new columns derived from existing columns?
+     How to create new columns derived from existing columns
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../intro_tutorials/06_calculate_statistics.html">
-     How to calculate summary statistics?
+     How to calculate summary statistics
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../intro_tutorials/07_reshape_table_layout.html">
-     How to reshape the layout of tables?
+     How to reshape the layout of tables
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../intro_tutorials/08_combine_dataframes.html">
-     How to combine data from multiple tables?
+     How to combine data from multiple tables
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../intro_tutorials/09_timeseries.html">
-     How to handle time series data with ease?
+     How to handle time series data with ease
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../intro_tutorials/10_text_data.html">
-     How to manipulate textual data?
+     How to manipulate textual data
     </a>
    </li>
   </ul>
@@ -603,11 +603,16 @@ you’ll need to either assign to a new variable:</p>
 </div></blockquote>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>You will see an <code class="docutils literal notranslate"><span class="pre">inplace=True</span></code> keyword argument available for some methods:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;col1&quot;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<p>You will see an <code class="docutils literal notranslate"><span class="pre">inplace=True</span></code> or <code class="docutils literal notranslate"><span class="pre">copy=False</span></code> keyword argument available for
+some methods:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Its use is discouraged. <a class="reference internal" href="../../user_guide/indexing.html#indexing-view-versus-copy"><span class="std std-ref">More information.</span></a></p>
+<p>There is an active discussion about deprecating and removing <code class="docutils literal notranslate"><span class="pre">inplace</span></code> and <code class="docutils literal notranslate"><span class="pre">copy</span></code> for
+most methods (e.g. <code class="docutils literal notranslate"><span class="pre">dropna</span></code>) except for a very small subset of methods
+(including <code class="docutils literal notranslate"><span class="pre">replace</span></code>). Both keywords won’t be
+necessary anymore in the context of Copy-on-Write. The proposal can be found
+[here](<a class="reference external" href="https://github.com/pandas-dev/pandas/pull/51466">https://github.com/pandas-dev/pandas/pull/51466</a>).</p>
 </div>
 </section>
 </section>
@@ -820,9 +825,10 @@ returning all rows with <code class="docutils literal notranslate"><span class="
 
 <span class="gp">In [16]: </span><span class="n">is_dinner</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
 <span class="gh">Out[16]: </span>
+<span class="go">time</span>
 <span class="go">True     176</span>
 <span class="go">False     68</span>
-<span class="go">Name: time, dtype: int64</span>
+<span class="go">Name: count, dtype: int64</span>
 
 <span class="gp">In [17]: </span><span class="n">tips</span><span class="p">[</span><span class="n">is_dinner</span><span class="p">]</span>
 <span class="gh">Out[17]: </span>

@@ -1,0 +1,6 @@
+pandas.core.groupby.SeriesGroupBy.cov
+=====================================
+
+.. currentmodule:: pandas.core.groupby
+
+.. automethod:: SeriesGroupBy.cov

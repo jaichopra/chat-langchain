@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Version 0.15.0 (October 18, 2014) &#8212; pandas 1.5.3 documentation</title>
+    <title>Version 0.15.0 (October 18, 2014) &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -55,7 +55,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'whatsnew/v0.15.0';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -182,7 +182,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -311,7 +311,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -363,6 +363,18 @@
   <div class="bd-toc-item navbar-nav">
     
     <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v2.0.0.html">
+   What’s new in 2.0.0 (??)
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.5.4.html">
+   What’s new in 1.5.4 (March XX, 2023)
+  </a>
+ </li>
  <li class="toctree-l1">
   <a class="reference internal" href="v1.5.3.html">
    What’s new in 1.5.3 (January 18, 2023)
@@ -940,7 +952,7 @@ methods to manipulate. Thanks to Jan Schulz for much of this API/implementation.
 <span class="go">Categories (3, object): [&#39;a&#39;, &#39;b&#39;, &#39;e&#39;]</span>
 
 <span class="go"># Rename the categories</span>
-<span class="gp">In [4]: </span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;grade&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">categories</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;very good&quot;</span><span class="p">,</span> <span class="s2">&quot;good&quot;</span><span class="p">,</span> <span class="s2">&quot;very bad&quot;</span><span class="p">]</span>
+<span class="gp">In [4]: </span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;grade&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;grade&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">rename_categories</span><span class="p">([</span><span class="s2">&quot;very good&quot;</span><span class="p">,</span> <span class="s2">&quot;good&quot;</span><span class="p">,</span> <span class="s2">&quot;very bad&quot;</span><span class="p">])</span>
 
 <span class="go"># Reorder the categories and simultaneously add the missing categories</span>
 <span class="gp">In [5]: </span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;grade&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;grade&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">set_categories</span><span class="p">([</span><span class="s2">&quot;very bad&quot;</span><span class="p">,</span> <span class="s2">&quot;bad&quot;</span><span class="p">,</span>
@@ -1135,9 +1147,9 @@ It will now return a <code class="docutils literal notranslate"><span class="pre
 
 <span class="gp">In [28]: </span><span class="n">dti</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
 <span class="gh">Out[28]: </span>
-<span class="go">[Timestamp(&#39;2013-01-01 00:00:00&#39;, freq=&#39;D&#39;),</span>
-<span class="go"> Timestamp(&#39;2013-01-02 00:00:00&#39;, freq=&#39;D&#39;),</span>
-<span class="go"> Timestamp(&#39;2013-01-03 00:00:00&#39;, freq=&#39;D&#39;)]</span>
+<span class="go">[Timestamp(&#39;2013-01-01 00:00:00&#39;),</span>
+<span class="go"> Timestamp(&#39;2013-01-02 00:00:00&#39;),</span>
+<span class="go"> Timestamp(&#39;2013-01-03 00:00:00&#39;)]</span>
 
 <span class="gp">In [29]: </span><span class="p">(</span><span class="n">dti</span> <span class="o">+</span> <span class="n">tdi</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
 <span class="gh">Out[29]: </span><span class="go">[Timestamp(&#39;2013-01-02 00:00:00&#39;), NaT, Timestamp(&#39;2013-01-05 00:00:00&#39;)]</span>
@@ -1221,7 +1233,7 @@ This will return a Series, indexed like the existing Series. See the <a class="r
 <span class="go">1    9</span>
 <span class="go">2    9</span>
 <span class="go">3    9</span>
-<span class="go">Length: 4, dtype: int64</span>
+<span class="go">Length: 4, dtype: int32</span>
 
 <span class="gp">In [41]: </span><span class="n">s</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">second</span>
 <span class="gh">Out[41]: </span>
@@ -1229,7 +1241,7 @@ This will return a Series, indexed like the existing Series. See the <a class="r
 <span class="go">1    12</span>
 <span class="go">2    12</span>
 <span class="go">3    12</span>
-<span class="go">Length: 4, dtype: int64</span>
+<span class="go">Length: 4, dtype: int32</span>
 
 <span class="gp">In [42]: </span><span class="n">s</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">day</span>
 <span class="gh">Out[42]: </span>
@@ -1237,7 +1249,7 @@ This will return a Series, indexed like the existing Series. See the <a class="r
 <span class="go">1    2</span>
 <span class="go">2    3</span>
 <span class="go">3    4</span>
-<span class="go">Length: 4, dtype: int64</span>
+<span class="go">Length: 4, dtype: int32</span>
 
 <span class="gp">In [43]: </span><span class="n">s</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">freq</span>
 <span class="gh">Out[43]: </span><span class="go">&#39;D&#39;</span>
@@ -1321,7 +1333,7 @@ This will return a Series, indexed like the existing Series. See the <a class="r
 <span class="go">1    1</span>
 <span class="go">2    1</span>
 <span class="go">3    1</span>
-<span class="go">Length: 4, dtype: int64</span>
+<span class="go">Length: 4, dtype: int32</span>
 
 <span class="gp">In [56]: </span><span class="n">s</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">seconds</span>
 <span class="gh">Out[56]: </span>
@@ -1329,7 +1341,7 @@ This will return a Series, indexed like the existing Series. See the <a class="r
 <span class="go">1    6</span>
 <span class="go">2    7</span>
 <span class="go">3    8</span>
-<span class="go">Length: 4, dtype: int64</span>
+<span class="go">Length: 4, dtype: int32</span>
 
 <span class="gp">In [57]: </span><span class="n">s</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">components</span>
 <span class="gh">Out[57]: </span>
@@ -2093,10 +2105,10 @@ left untouched.</p>
 
 <span class="gp">In [100]: </span><span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 <span class="gh">Out[100]: </span>
-<span class="go">   C  A_a  A_b  B_b  B_c</span>
-<span class="go">0  1    1    0    0    1</span>
-<span class="go">1  2    0    1    0    1</span>
-<span class="go">2  3    1    0    1    0</span>
+<span class="go">   C    A_a    A_b    B_b    B_c</span>
+<span class="go">0  1   True  False  False   True</span>
+<span class="go">1  2  False   True  False   True</span>
+<span class="go">2  3   True  False   True  False</span>
 
 <span class="go">[3 rows x 5 columns]</span>
 </pre></div>
@@ -2114,16 +2126,16 @@ left untouched.</p>
 <span class="go"># get the first, 4th, and last date index for each month</span>
 <span class="gp">In [103]: </span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">month</span><span class="p">])</span><span class="o">.</span><span class="n">nth</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">])</span>
 <span class="gh">Out[103]: </span>
-<span class="go">        a  b</span>
-<span class="go">2014 4  1  1</span>
-<span class="go">     4  1  1</span>
-<span class="go">     4  1  1</span>
-<span class="go">     5  1  1</span>
-<span class="go">     5  1  1</span>
-<span class="go">     5  1  1</span>
-<span class="go">     6  1  1</span>
-<span class="go">     6  1  1</span>
-<span class="go">     6  1  1</span>
+<span class="go">            a  b</span>
+<span class="go">2014-04-01  1  1</span>
+<span class="go">2014-04-04  1  1</span>
+<span class="go">2014-04-30  1  1</span>
+<span class="go">2014-05-01  1  1</span>
+<span class="go">2014-05-06  1  1</span>
+<span class="go">2014-05-30  1  1</span>
+<span class="go">2014-06-02  1  1</span>
+<span class="go">2014-06-05  1  1</span>
+<span class="go">2014-06-30  1  1</span>
 
 <span class="go">[9 rows x 2 columns]</span>
 </pre></div>
@@ -2246,13 +2258,13 @@ to use for membership tests (<a class="reference external" href="https://github.
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [116]: </span><span class="n">idx</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
 
 <span class="gp">In [117]: </span><span class="n">idx</span>
-<span class="gh">Out[117]: </span><span class="go">Int64Index([1, 2, 3, 4, 1, 2], dtype=&#39;int64&#39;)</span>
+<span class="gh">Out[117]: </span><span class="go">Index([1, 2, 3, 4, 1, 2], dtype=&#39;int64&#39;)</span>
 
 <span class="gp">In [118]: </span><span class="n">idx</span><span class="o">.</span><span class="n">duplicated</span><span class="p">()</span>
 <span class="gh">Out[118]: </span><span class="go">array([False, False, False, False,  True,  True])</span>
 
 <span class="gp">In [119]: </span><span class="n">idx</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
-<span class="gh">Out[119]: </span><span class="go">Int64Index([1, 2, 3, 4], dtype=&#39;int64&#39;)</span>
+<span class="gh">Out[119]: </span><span class="go">Index([1, 2, 3, 4], dtype=&#39;int64&#39;)</span>
 </pre></div>
 </div>
 </li>

@@ -1,6 +1,0 @@
-pandas.tseries.offsets.Minute.\_\_call\_\_
-==========================================
-
-.. currentmodule:: pandas.tseries.offsets
-
-.. automethod:: Minute.__call__

@@ -1,0 +1,6 @@
+pandas.core.groupby.DataFrameGroupBy.nth
+========================================
+
+.. currentmodule:: pandas.core.groupby
+
+.. autoproperty:: DataFrameGroupBy.nth

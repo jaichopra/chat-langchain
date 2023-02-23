@@ -1,0 +1,6 @@
+pandas.core.groupby.SeriesGroupBy.diff
+======================================
+
+.. currentmodule:: pandas.core.groupby
+
+.. automethod:: SeriesGroupBy.diff

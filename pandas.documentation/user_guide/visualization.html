@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Chart visualization &#8212; pandas 1.5.3 documentation</title>
+    <title>Chart visualization &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -55,7 +55,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/visualization';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -182,7 +182,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -311,7 +311,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -381,6 +381,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="io.html">
    IO tools (text, CSV, HDF5, …)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="pyarrow.html">
+   PyArrow Functionality
   </a>
  </li>
  <li class="toctree-l1">
@@ -548,7 +553,7 @@ libraries that go beyond the basics documented here.</p>
 <p>We will demonstrate the basics, see the <a class="reference internal" href="cookbook.html#cookbook-plotting"><span class="std std-ref">cookbook</span></a> for
 some advanced strategies.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">plot</span></code> method on Series and DataFrame is just a simple wrapper around
-<a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.plot.html#matplotlib.axes.Axes.plot" title="(in Matplotlib v3.6.3)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">plt.plot()</span></code></a>:</p>
+<a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.plot.html#matplotlib.axes.Axes.plot" title="(in Matplotlib v3.7.0)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">plt.plot()</span></code></a>:</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [3]: </span><span class="n">ts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1000</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">&quot;1/1/2000&quot;</span><span class="p">,</span> <span class="n">periods</span><span class="o">=</span><span class="mi">1000</span><span class="p">))</span>
 
 <span class="gp">In [4]: </span><span class="n">ts</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span>
@@ -557,7 +562,7 @@ some advanced strategies.</p>
 </pre></div>
 </div>
 <img alt="../_images/series_plot_basic.png" src="../_images/series_plot_basic.png" />
-<p>If the index consists of dates, it calls <a class="reference external" href="https://matplotlib.org/stable/api/figure_api.html#matplotlib.figure.Figure.autofmt_xdate" title="(in Matplotlib v3.6.3)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">gcf().autofmt_xdate()</span></code></a>
+<p>If the index consists of dates, it calls <a class="reference external" href="https://matplotlib.org/stable/api/figure_api.html#matplotlib.figure.Figure.autofmt_xdate" title="(in Matplotlib v3.7.0)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">gcf().autofmt_xdate()</span></code></a>
 to try to format the x-axis nicely as per above.</p>
 <p>On DataFrame, <a class="reference internal" href="../reference/api/pandas.DataFrame.plot.html#pandas.DataFrame.plot" title="pandas.DataFrame.plot"><code class="xref py py-meth docutils literal notranslate"><span class="pre">plot()</span></code></a> is a convenience to plot all of the columns with labels:</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [6]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="n">ts</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="s2">&quot;ABCD&quot;</span><span class="p">))</span>
@@ -698,7 +703,7 @@ horizontal and cumulative histograms can be drawn by
 </pre></div>
 </div>
 <img alt="../_images/hist_new_kwargs.png" src="../_images/hist_new_kwargs.png" />
-<p>See the <a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.hist.html#matplotlib.axes.Axes.hist" title="(in Matplotlib v3.6.3)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">hist</span></code></a> method and the
+<p>See the <a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.hist.html#matplotlib.axes.Axes.hist" title="(in Matplotlib v3.7.0)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">hist</span></code></a> method and the
 <a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.hist.html">matplotlib hist documentation</a> for more.</p>
 <p>The existing interface <code class="docutils literal notranslate"><span class="pre">DataFrame.hist</span></code> to plot histogram still can be used.</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [31]: </span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">();</span>
@@ -782,7 +787,7 @@ For example, horizontal and custom-positioned boxplot can be drawn by
 </pre></div>
 </div>
 <img alt="../_images/box_new_kwargs.png" src="../_images/box_new_kwargs.png" />
-<p>See the <a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.boxplot.html#matplotlib.axes.Axes.boxplot" title="(in Matplotlib v3.6.3)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">boxplot</span></code></a> method and the
+<p>See the <a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.boxplot.html#matplotlib.axes.Axes.boxplot" title="(in Matplotlib v3.7.0)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">boxplot</span></code></a> method and the
 <a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.boxplot.html">matplotlib boxplot documentation</a> for more.</p>
 <p>The existing interface <code class="docutils literal notranslate"><span class="pre">DataFrame.boxplot</span></code> to plot boxplot still can be used.</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [44]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
@@ -960,13 +965,13 @@ each point:</p>
 </div>
 <img alt="../_images/scatter_plot_categorical.png" src="../_images/scatter_plot_categorical.png" />
 <p>You can pass other keywords supported by matplotlib
-<a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.scatter.html#matplotlib.axes.Axes.scatter" title="(in Matplotlib v3.6.3)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">scatter</span></code></a>. The example  below shows a
+<a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.scatter.html#matplotlib.axes.Axes.scatter" title="(in Matplotlib v3.7.0)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">scatter</span></code></a>. The example  below shows a
 bubble chart using a column of the <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> as the bubble size.</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [76]: </span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;c&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">200</span><span class="p">);</span>
 </pre></div>
 </div>
 <img alt="../_images/scatter_plot_bubble.png" src="../_images/scatter_plot_bubble.png" />
-<p>See the <a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.scatter.html#matplotlib.axes.Axes.scatter" title="(in Matplotlib v3.6.3)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">scatter</span></code></a> method and the
+<p>See the <a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.scatter.html#matplotlib.axes.Axes.scatter" title="(in Matplotlib v3.7.0)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">scatter</span></code></a> method and the
 <a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.scatter.html">matplotlib scatter documentation</a> for more.</p>
 </section>
 <section id="hexagonal-bin-plot">
@@ -1002,7 +1007,7 @@ given by column <code class="docutils literal notranslate"><span class="pre">z</
 </pre></div>
 </div>
 <img alt="../_images/hexbin_plot_agg.png" src="../_images/hexbin_plot_agg.png" />
-<p>See the <a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.hexbin.html#matplotlib.axes.Axes.hexbin" title="(in Matplotlib v3.6.3)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">hexbin</span></code></a> method and the
+<p>See the <a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.hexbin.html#matplotlib.axes.Axes.hexbin" title="(in Matplotlib v3.7.0)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">hexbin</span></code></a> method and the
 <a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.hexbin.html">matplotlib hexbin documentation</a> for more.</p>
 </section>
 <section id="pie-plot">
@@ -1038,11 +1043,11 @@ drawn in each pie plots by default; specify <code class="docutils literal notran
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Most pandas plots use the <code class="docutils literal notranslate"><span class="pre">label</span></code> and <code class="docutils literal notranslate"><span class="pre">color</span></code> arguments (note the lack of “s” on those).
-To be consistent with <a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.pie.html#matplotlib.pyplot.pie" title="(in Matplotlib v3.6.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">matplotlib.pyplot.pie()</span></code></a> you must use <code class="docutils literal notranslate"><span class="pre">labels</span></code> and <code class="docutils literal notranslate"><span class="pre">colors</span></code>.</p>
+To be consistent with <a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.pie.html#matplotlib.pyplot.pie" title="(in Matplotlib v3.7.0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">matplotlib.pyplot.pie()</span></code></a> you must use <code class="docutils literal notranslate"><span class="pre">labels</span></code> and <code class="docutils literal notranslate"><span class="pre">colors</span></code>.</p>
 </div>
 <p>If you want to hide wedge labels, specify <code class="docutils literal notranslate"><span class="pre">labels=None</span></code>.
 If <code class="docutils literal notranslate"><span class="pre">fontsize</span></code> is specified, the value will be applied to wedge labels.
-Also, other keywords supported by <a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.pie.html#matplotlib.pyplot.pie" title="(in Matplotlib v3.6.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">matplotlib.pyplot.pie()</span></code></a> can be used.</p>
+Also, other keywords supported by <a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.pie.html#matplotlib.pyplot.pie" title="(in Matplotlib v3.7.0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">matplotlib.pyplot.pie()</span></code></a> can be used.</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [88]: </span><span class="n">series</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">pie</span><span class="p">(</span>
 <span class="gp">   ....: </span>    <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;AA&quot;</span><span class="p">,</span> <span class="s2">&quot;BB&quot;</span><span class="p">,</span> <span class="s2">&quot;CC&quot;</span><span class="p">,</span> <span class="s2">&quot;DD&quot;</span><span class="p">],</span>
 <span class="gp">   ....: </span>    <span class="n">colors</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="s2">&quot;g&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">],</span>
@@ -1295,9 +1300,9 @@ layout and formatting of the returned plot:</p>
 <img alt="../_images/series_plot_basic2.png" src="../_images/series_plot_basic2.png" />
 <p>For each kind of plot (e.g. <code class="docutils literal notranslate"><span class="pre">line</span></code>, <code class="docutils literal notranslate"><span class="pre">bar</span></code>, <code class="docutils literal notranslate"><span class="pre">scatter</span></code>) any additional arguments
 keywords are passed along to the corresponding matplotlib function
-(<a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.plot.html#matplotlib.axes.Axes.plot" title="(in Matplotlib v3.6.3)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ax.plot()</span></code></a>,
-<a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.bar.html#matplotlib.axes.Axes.bar" title="(in Matplotlib v3.6.3)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ax.bar()</span></code></a>,
-<a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.scatter.html#matplotlib.axes.Axes.scatter" title="(in Matplotlib v3.6.3)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ax.scatter()</span></code></a>). These can be used
+(<a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.plot.html#matplotlib.axes.Axes.plot" title="(in Matplotlib v3.7.0)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ax.plot()</span></code></a>,
+<a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.bar.html#matplotlib.axes.Axes.bar" title="(in Matplotlib v3.7.0)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ax.bar()</span></code></a>,
+<a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.scatter.html#matplotlib.axes.Axes.scatter" title="(in Matplotlib v3.7.0)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ax.scatter()</span></code></a>). These can be used
 to control additional styling, beyond what pandas provides.</p>
 </section>
 <section id="controlling-the-legend">

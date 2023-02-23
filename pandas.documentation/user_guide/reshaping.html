@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Reshaping and pivot tables &#8212; pandas 1.5.3 documentation</title>
+    <title>Reshaping and pivot tables &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -55,7 +55,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/reshaping';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -182,7 +182,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -311,7 +311,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -381,6 +381,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="io.html">
    IO tools (text, CSV, HDF5, …)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="pyarrow.html">
+   PyArrow Functionality
   </a>
  </li>
  <li class="toctree-l1">
@@ -1539,13 +1544,13 @@ values, can derive a <a class="reference internal" href="../reference/api/pandas
 
 <span class="gp">In [98]: </span><span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;key&quot;</span><span class="p">])</span>
 <span class="gh">Out[98]: </span>
-<span class="go">   a  b  c</span>
-<span class="go">0  0  1  0</span>
-<span class="go">1  0  1  0</span>
-<span class="go">2  1  0  0</span>
-<span class="go">3  0  0  1</span>
-<span class="go">4  1  0  0</span>
-<span class="go">5  0  1  0</span>
+<span class="go">       a      b      c</span>
+<span class="go">0  False   True  False</span>
+<span class="go">1  False   True  False</span>
+<span class="go">2   True  False  False</span>
+<span class="go">3  False  False   True</span>
+<span class="go">4   True  False  False</span>
+<span class="go">5  False   True  False</span>
 </pre></div>
 </div>
 <p>Sometimes it’s useful to prefix the column names, for example when merging the result
@@ -1555,22 +1560,22 @@ with the original <a class="reference internal" href="../reference/api/pandas.Da
 <span class="gp">In [100]: </span><span class="n">dummies</span>
 <span class="gh">Out[100]: </span>
 <span class="go">   key_a  key_b  key_c</span>
-<span class="go">0      0      1      0</span>
-<span class="go">1      0      1      0</span>
-<span class="go">2      1      0      0</span>
-<span class="go">3      0      0      1</span>
-<span class="go">4      1      0      0</span>
-<span class="go">5      0      1      0</span>
+<span class="go">0  False   True  False</span>
+<span class="go">1  False   True  False</span>
+<span class="go">2   True  False  False</span>
+<span class="go">3  False  False   True</span>
+<span class="go">4   True  False  False</span>
+<span class="go">5  False   True  False</span>
 
 <span class="gp">In [101]: </span><span class="n">df</span><span class="p">[[</span><span class="s2">&quot;data1&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dummies</span><span class="p">)</span>
 <span class="gh">Out[101]: </span>
 <span class="go">   data1  key_a  key_b  key_c</span>
-<span class="go">0      0      0      1      0</span>
-<span class="go">1      1      0      1      0</span>
-<span class="go">2      2      1      0      0</span>
-<span class="go">3      3      0      0      1</span>
-<span class="go">4      4      1      0      0</span>
-<span class="go">5      5      0      1      0</span>
+<span class="go">0      0  False   True  False</span>
+<span class="go">1      1  False   True  False</span>
+<span class="go">2      2   True  False  False</span>
+<span class="go">3      3  False  False   True</span>
+<span class="go">4      4   True  False  False</span>
+<span class="go">5      5  False   True  False</span>
 </pre></div>
 </div>
 <p>This function is often used along with discretization functions like <a class="reference internal" href="../reference/api/pandas.cut.html#pandas.cut" title="pandas.cut"><code class="xref py py-func docutils literal notranslate"><span class="pre">cut()</span></code></a>:</p>
@@ -1586,16 +1591,16 @@ with the original <a class="reference internal" href="../reference/api/pandas.Da
 <span class="gp">In [105]: </span><span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">bins</span><span class="p">))</span>
 <span class="gh">Out[105]: </span>
 <span class="go">   (0.0, 0.2]  (0.2, 0.4]  (0.4, 0.6]  (0.6, 0.8]  (0.8, 1.0]</span>
-<span class="go">0           0           0           1           0           0</span>
-<span class="go">1           0           0           0           0           0</span>
-<span class="go">2           0           0           0           0           0</span>
-<span class="go">3           0           0           0           0           0</span>
-<span class="go">4           1           0           0           0           0</span>
-<span class="go">5           0           0           0           0           0</span>
-<span class="go">6           0           0           0           0           0</span>
-<span class="go">7           1           0           0           0           0</span>
-<span class="go">8           0           0           0           0           0</span>
-<span class="go">9           0           0           1           0           0</span>
+<span class="go">0       False       False        True       False       False</span>
+<span class="go">1       False       False       False       False       False</span>
+<span class="go">2       False       False       False       False       False</span>
+<span class="go">3       False       False       False       False       False</span>
+<span class="go">4        True       False       False       False       False</span>
+<span class="go">5       False       False       False       False       False</span>
+<span class="go">6       False       False       False       False       False</span>
+<span class="go">7        True       False       False       False       False</span>
+<span class="go">8       False       False       False       False       False</span>
+<span class="go">9       False       False        True       False       False</span>
 </pre></div>
 </div>
 <p>See also <a class="reference internal" href="../reference/api/pandas.Series.str.get_dummies.html#pandas.Series.str.get_dummies" title="pandas.Series.str.get_dummies"><code class="xref py py-func docutils literal notranslate"><span class="pre">Series.str.get_dummies</span></code></a>.</p>
@@ -1606,20 +1611,20 @@ variables (categorical in the statistical sense, those with <code class="docutil
 
 <span class="gp">In [107]: </span><span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 <span class="gh">Out[107]: </span>
-<span class="go">   C  A_a  A_b  B_b  B_c</span>
-<span class="go">0  1    1    0    0    1</span>
-<span class="go">1  2    0    1    0    1</span>
-<span class="go">2  3    1    0    1    0</span>
+<span class="go">   C    A_a    A_b    B_b    B_c</span>
+<span class="go">0  1   True  False  False   True</span>
+<span class="go">1  2  False   True  False   True</span>
+<span class="go">2  3   True  False   True  False</span>
 </pre></div>
 </div>
 <p>All non-object columns are included untouched in the output. You can control
 the columns that are encoded with the <code class="docutils literal notranslate"><span class="pre">columns</span></code> keyword.</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [108]: </span><span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">])</span>
 <span class="gh">Out[108]: </span>
-<span class="go">   B  C  A_a  A_b</span>
-<span class="go">0  c  1    1    0</span>
-<span class="go">1  c  2    0    1</span>
-<span class="go">2  b  3    1    0</span>
+<span class="go">   B  C    A_a    A_b</span>
+<span class="go">0  c  1   True  False</span>
+<span class="go">1  c  2  False   True</span>
+<span class="go">2  b  3   True  False</span>
 </pre></div>
 </div>
 <p>Notice that the <code class="docutils literal notranslate"><span class="pre">B</span></code> column is still included in the output, it just hasn’t
@@ -1639,27 +1644,27 @@ to be encoded.</p></li>
 <span class="gp">In [110]: </span><span class="n">simple</span>
 <span class="gh">Out[110]: </span>
 <span class="go">   C  new_prefix_a  new_prefix_b  new_prefix_b  new_prefix_c</span>
-<span class="go">0  1             1             0             0             1</span>
-<span class="go">1  2             0             1             0             1</span>
-<span class="go">2  3             1             0             1             0</span>
+<span class="go">0  1          True         False         False          True</span>
+<span class="go">1  2         False          True         False          True</span>
+<span class="go">2  3          True         False          True         False</span>
 
 <span class="gp">In [111]: </span><span class="n">from_list</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;from_A&quot;</span><span class="p">,</span> <span class="s2">&quot;from_B&quot;</span><span class="p">])</span>
 
 <span class="gp">In [112]: </span><span class="n">from_list</span>
 <span class="gh">Out[112]: </span>
 <span class="go">   C  from_A_a  from_A_b  from_B_b  from_B_c</span>
-<span class="go">0  1         1         0         0         1</span>
-<span class="go">1  2         0         1         0         1</span>
-<span class="go">2  3         1         0         1         0</span>
+<span class="go">0  1      True     False     False      True</span>
+<span class="go">1  2     False      True     False      True</span>
+<span class="go">2  3      True     False      True     False</span>
 
 <span class="gp">In [113]: </span><span class="n">from_dict</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;B&quot;</span><span class="p">:</span> <span class="s2">&quot;from_B&quot;</span><span class="p">,</span> <span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="s2">&quot;from_A&quot;</span><span class="p">})</span>
 
 <span class="gp">In [114]: </span><span class="n">from_dict</span>
 <span class="gh">Out[114]: </span>
 <span class="go">   C  from_A_a  from_A_b  from_B_b  from_B_c</span>
-<span class="go">0  1         1         0         0         1</span>
-<span class="go">1  2         0         1         0         1</span>
-<span class="go">2  3         1         0         1         0</span>
+<span class="go">0  1      True     False     False      True</span>
+<span class="go">1  2     False      True     False      True</span>
+<span class="go">2  3      True     False      True     False</span>
 </pre></div>
 </div>
 <p>Sometimes it will be useful to only keep k-1 levels of a categorical
@@ -1669,21 +1674,21 @@ You can switch to this mode by turn on <code class="docutils literal notranslate
 
 <span class="gp">In [116]: </span><span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
 <span class="gh">Out[116]: </span>
-<span class="go">   a  b  c</span>
-<span class="go">0  1  0  0</span>
-<span class="go">1  0  1  0</span>
-<span class="go">2  0  0  1</span>
-<span class="go">3  1  0  0</span>
-<span class="go">4  1  0  0</span>
+<span class="go">       a      b      c</span>
+<span class="go">0   True  False  False</span>
+<span class="go">1  False   True  False</span>
+<span class="go">2  False  False   True</span>
+<span class="go">3   True  False  False</span>
+<span class="go">4   True  False  False</span>
 
 <span class="gp">In [117]: </span><span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">drop_first</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="gh">Out[117]: </span>
-<span class="go">   b  c</span>
-<span class="go">0  0  0</span>
-<span class="go">1  1  0</span>
-<span class="go">2  0  1</span>
-<span class="go">3  0  0</span>
-<span class="go">4  0  0</span>
+<span class="go">       b      c</span>
+<span class="go">0  False  False</span>
+<span class="go">1   True  False</span>
+<span class="go">2  False   True</span>
+<span class="go">3  False  False</span>
+<span class="go">4  False  False</span>
 </pre></div>
 </div>
 <p>When a column contains only one level, it will be omitted in the result.</p>
@@ -1691,21 +1696,21 @@ You can switch to this mode by turn on <code class="docutils literal notranslate
 
 <span class="gp">In [119]: </span><span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 <span class="gh">Out[119]: </span>
-<span class="go">   A_a  B_a  B_b  B_c</span>
-<span class="go">0    1    1    0    0</span>
-<span class="go">1    1    0    1    0</span>
-<span class="go">2    1    1    0    0</span>
-<span class="go">3    1    0    1    0</span>
-<span class="go">4    1    0    0    1</span>
+<span class="go">    A_a    B_a    B_b    B_c</span>
+<span class="go">0  True   True  False  False</span>
+<span class="go">1  True  False   True  False</span>
+<span class="go">2  True   True  False  False</span>
+<span class="go">3  True  False   True  False</span>
+<span class="go">4  True  False  False   True</span>
 
 <span class="gp">In [120]: </span><span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">drop_first</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="gh">Out[120]: </span>
-<span class="go">   B_b  B_c</span>
-<span class="go">0    0    0</span>
-<span class="go">1    1    0</span>
-<span class="go">2    0    0</span>
-<span class="go">3    1    0</span>
-<span class="go">4    0    1</span>
+<span class="go">     B_b    B_c</span>
+<span class="go">0  False  False</span>
+<span class="go">1   True  False</span>
+<span class="go">2  False  False</span>
+<span class="go">3   True  False</span>
+<span class="go">4  False   True</span>
 </pre></div>
 </div>
 <p>By default new columns will have <code class="docutils literal notranslate"><span class="pre">np.uint8</span></code> dtype.
@@ -2019,9 +2024,6 @@ and rows occur together a.k.a. “cross tabulation”. To do this, we can pass
 </section>
 <section id="exploding-a-list-like-column">
 <span id="reshaping-explode"></span><h2>Exploding a list-like column<a class="headerlink" href="#exploding-a-list-like-column" title="Permalink to this headline">#</a></h2>
-<div class="versionadded">
-<p><span class="versionmodified added">New in version 0.25.0.</span></p>
-</div>
 <p>Sometimes the values in a column are list-like.</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [151]: </span><span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;panda1&quot;</span><span class="p">,</span> <span class="s2">&quot;panda2&quot;</span><span class="p">,</span> <span class="s2">&quot;panda3&quot;</span><span class="p">]</span>
 

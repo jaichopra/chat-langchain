@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>pandas.pivot &#8212; pandas 1.5.3 documentation</title>
+    <title>pandas.pivot &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -55,7 +55,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'reference/api/pandas.pivot';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -182,7 +182,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -311,7 +311,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -446,6 +446,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="pandas.unique.html">
      pandas.unique
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.lreshape.html">
+     pandas.lreshape
     </a>
    </li>
    <li class="toctree-l2">
@@ -638,7 +643,7 @@
 <h1>pandas.pivot<a class="headerlink" href="#pandas-pivot" title="Permalink to this headline">#</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="pandas.pivot">
-<span class="sig-prename descclassname"><span class="pre">pandas.</span></span><span class="sig-name descname"><span class="pre">pivot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">columns</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.5.3/pandas/core/reshape/pivot.py#L486-L540"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.pivot" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">pandas.</span></span><span class="sig-name descname"><span class="pre">pivot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">data,</span> <span class="pre">*,</span> <span class="pre">columns,</span> <span class="pre">index=typing.Literal[&lt;no_default&gt;],</span> <span class="pre">values=typing.Literal[&lt;no_default&gt;]</span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v2.0.0rc0/pandas/core/reshape/pivot.py#L497-L560"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.pivot" title="Permalink to this definition">#</a></dt>
 <dd><p>Return reshaped DataFrame organized by given index / column values.</p>
 <p>Reshape data (produce a “pivot” table) based on column values. Uses
 unique values from specified <cite>index</cite> / <cite>columns</cite> to form axes of the
@@ -649,15 +654,15 @@ columns. See the <a class="reference internal" href="../../user_guide/reshaping.
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl>
 <dt><strong>data</strong><span class="classifier">DataFrame</span></dt><dd></dd>
+<dt><strong>columns</strong><span class="classifier">str or object or a list of str</span></dt><dd><p>Column to use to make new frame’s columns.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 1.1.0: </span>Also accept list of columns names.</p>
+</div>
+</dd>
 <dt><strong>index</strong><span class="classifier">str or object or a list of str, optional</span></dt><dd><p>Column to use to make new frame’s index. If None, uses
 existing index.</p>
 <div class="versionchanged">
 <p><span class="versionmodified changed">Changed in version 1.1.0: </span>Also accept list of index names.</p>
-</div>
-</dd>
-<dt><strong>columns</strong><span class="classifier">str or object or a list of str</span></dt><dd><p>Column to use to make new frame’s columns.</p>
-<div class="versionchanged">
-<p><span class="versionmodified changed">Changed in version 1.1.0: </span>Also accept list of columns names.</p>
 </div>
 </dd>
 <dt><strong>values</strong><span class="classifier">str, object or a list of the previous, optional</span></dt><dd><p>Column(s) to use for populating new frame’s values. If not
@@ -750,7 +755,7 @@ with the related stack/unstack methods.</p>
 <span class="go">5   2    2    2    6    5</span>
 </pre></div>
 </div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s2">&quot;lev1&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;lev2&quot;</span><span class="p">,</span> <span class="s2">&quot;lev3&quot;</span><span class="p">],</span><span class="n">values</span><span class="o">=</span><span class="s2">&quot;values&quot;</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s2">&quot;lev1&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;lev2&quot;</span><span class="p">,</span> <span class="s2">&quot;lev3&quot;</span><span class="p">],</span> <span class="n">values</span><span class="o">=</span><span class="s2">&quot;values&quot;</span><span class="p">)</span>
 <span class="go">lev2    1         2</span>
 <span class="go">lev3    1    2    1    2</span>
 <span class="go">lev1</span>
@@ -758,7 +763,7 @@ with the related stack/unstack methods.</p>
 <span class="go">2     4.0  3.0  NaN  5.0</span>
 </pre></div>
 </div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;lev1&quot;</span><span class="p">,</span> <span class="s2">&quot;lev2&quot;</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;lev3&quot;</span><span class="p">],</span><span class="n">values</span><span class="o">=</span><span class="s2">&quot;values&quot;</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;lev1&quot;</span><span class="p">,</span> <span class="s2">&quot;lev2&quot;</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;lev3&quot;</span><span class="p">],</span> <span class="n">values</span><span class="o">=</span><span class="s2">&quot;values&quot;</span><span class="p">)</span>
 <span class="go">      lev3    1    2</span>
 <span class="go">lev1  lev2</span>
 <span class="go">   1     1  0.0  1.0</span>

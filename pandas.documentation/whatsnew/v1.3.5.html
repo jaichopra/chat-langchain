@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>What’s new in 1.3.5 (December 12, 2021) &#8212; pandas 1.5.3 documentation</title>
+    <title>What’s new in 1.3.5 (December 12, 2021) &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -55,7 +55,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'whatsnew/v1.3.5';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -182,7 +182,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -311,7 +311,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -363,6 +363,18 @@
   <div class="bd-toc-item navbar-nav">
     
     <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v2.0.0.html">
+   What’s new in 2.0.0 (??)
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v1.5.4.html">
+   What’s new in 1.5.4 (March XX, 2023)
+  </a>
+ </li>
  <li class="toctree-l1">
   <a class="reference internal" href="v1.5.3.html">
    What’s new in 1.5.3 (January 18, 2023)
@@ -879,7 +891,7 @@ including other versions of pandas.</p>
 <li><p>Fixed regression in creating a <a class="reference internal" href="../reference/api/pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a> from a timezone-aware <a class="reference internal" href="../reference/api/pandas.Timestamp.html#pandas.Timestamp" title="pandas.Timestamp"><code class="xref py py-class docutils literal notranslate"><span class="pre">Timestamp</span></code></a> scalar near a Daylight Savings Time transition (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/42505">GH42505</a>)</p></li>
 <li><p>Fixed performance regression in <a class="reference internal" href="../reference/api/pandas.read_csv.html#pandas.read_csv" title="pandas.read_csv"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_csv()</span></code></a> (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/44106">GH44106</a>)</p></li>
 <li><p>Fixed regression in <a class="reference internal" href="../reference/api/pandas.Series.duplicated.html#pandas.Series.duplicated" title="pandas.Series.duplicated"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.duplicated()</span></code></a> and <a class="reference internal" href="../reference/api/pandas.Series.drop_duplicates.html#pandas.Series.drop_duplicates" title="pandas.Series.drop_duplicates"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Series.drop_duplicates()</span></code></a> when Series has <a class="reference internal" href="../reference/api/pandas.Categorical.html#pandas.Categorical" title="pandas.Categorical"><code class="xref py py-class docutils literal notranslate"><span class="pre">Categorical</span></code></a> dtype with boolean categories (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/44351">GH44351</a>)</p></li>
-<li><p>Fixed regression in <a class="reference internal" href="../reference/api/pandas.core.groupby.GroupBy.sum.html#pandas.core.groupby.GroupBy.sum" title="pandas.core.groupby.GroupBy.sum"><code class="xref py py-meth docutils literal notranslate"><span class="pre">GroupBy.sum()</span></code></a> with <code class="docutils literal notranslate"><span class="pre">timedelta64[ns]</span></code> dtype containing <code class="docutils literal notranslate"><span class="pre">NaT</span></code> failing to treat that value as NA (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/42659">GH42659</a>)</p></li>
+<li><p>Fixed regression in <a class="reference internal" href="../reference/api/pandas.core.groupby.DataFrameGroupBy.sum.html#pandas.core.groupby.DataFrameGroupBy.sum" title="pandas.core.groupby.DataFrameGroupBy.sum"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataFrameGroupBy.sum()</span></code></a> and <a class="reference internal" href="../reference/api/pandas.core.groupby.SeriesGroupBy.sum.html#pandas.core.groupby.SeriesGroupBy.sum" title="pandas.core.groupby.SeriesGroupBy.sum"><code class="xref py py-meth docutils literal notranslate"><span class="pre">SeriesGroupBy.sum()</span></code></a> with <code class="docutils literal notranslate"><span class="pre">timedelta64[ns]</span></code> dtype containing <code class="docutils literal notranslate"><span class="pre">NaT</span></code> failing to treat that value as NA (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/42659">GH42659</a>)</p></li>
 <li><p>Fixed regression in <code class="xref py py-meth docutils literal notranslate"><span class="pre">RollingGroupby.cov()</span></code> and <code class="xref py py-meth docutils literal notranslate"><span class="pre">RollingGroupby.corr()</span></code> when <code class="docutils literal notranslate"><span class="pre">other</span></code> had the same shape as each group would incorrectly return superfluous groups in the result (<a class="reference external" href="https://github.com/pandas-dev/pandas/issues/42915">GH42915</a>)</p></li>
 </ul>
 </section>

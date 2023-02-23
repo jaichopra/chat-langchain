@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>pandas.get_dummies &#8212; pandas 1.5.3 documentation</title>
+    <title>pandas.get_dummies &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -55,7 +55,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'reference/api/pandas.get_dummies';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -182,7 +182,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -311,7 +311,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -446,6 +446,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="pandas.unique.html">
      pandas.unique
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.lreshape.html">
+     pandas.lreshape
     </a>
    </li>
    <li class="toctree-l2">
@@ -638,8 +643,11 @@
 <h1>pandas.get_dummies<a class="headerlink" href="#pandas-get-dummies" title="Permalink to this headline">#</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="pandas.get_dummies">
-<span class="sig-prename descclassname"><span class="pre">pandas.</span></span><span class="sig-name descname"><span class="pre">get_dummies</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix_sep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'_'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dummy_na</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">columns</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sparse</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">drop_first</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.5.3/pandas/core/reshape/encoding.py#L25-L213"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.get_dummies" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">pandas.</span></span><span class="sig-name descname"><span class="pre">get_dummies</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prefix_sep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'_'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dummy_na</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">columns</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sparse</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">drop_first</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v2.0.0rc0/pandas/core/reshape/encoding.py#L32-L224"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.get_dummies" title="Permalink to this definition">#</a></dt>
 <dd><p>Convert categorical variable into dummy/indicator variables.</p>
+<p>Each variable is converted in as many 0/1 variables as there are different
+values. Columns in the output are each named after a value; if the input is
+a DataFrame, the name of the original variable is prepended to the value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
@@ -665,13 +673,14 @@ a <code class="xref py py-class docutils literal notranslate"><span class="pre">
 <dt><strong>drop_first</strong><span class="classifier">bool, default False</span></dt><dd><p>Whether to get k-1 dummies out of k categorical levels by removing the
 first level.</p>
 </dd>
-<dt><strong>dtype</strong><span class="classifier">dtype, default np.uint8</span></dt><dd><p>Data type for new columns. Only a single dtype is allowed.</p>
+<dt><strong>dtype</strong><span class="classifier">dtype, default bool</span></dt><dd><p>Data type for new columns. Only a single dtype is allowed.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt>DataFrame</dt><dd><p>Dummy-coded data.</p>
+<dt>DataFrame</dt><dd><p>Dummy-coded data. If <cite>data</cite> contains other columns than the
+dummy-coded one(s), these will be prepended, unaltered, to the result.</p>
 </dd>
 </dl>
 </dd>
@@ -679,7 +688,7 @@ first level.</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <dl class="simple">
-<dt><a class="reference internal" href="pandas.Series.str.get_dummies.html#pandas.Series.str.get_dummies" title="pandas.Series.str.get_dummies"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Series.str.get_dummies</span></code></a></dt><dd><p>Convert Series to dummy codes.</p>
+<dt><a class="reference internal" href="pandas.Series.str.get_dummies.html#pandas.Series.str.get_dummies" title="pandas.Series.str.get_dummies"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Series.str.get_dummies</span></code></a></dt><dd><p>Convert Series of strings to dummy codes.</p>
 </dd>
 <dt><a class="reference internal" href="pandas.from_dummies.html#pandas.from_dummies" title="pandas.from_dummies"><code class="xref py py-func docutils literal notranslate"><span class="pre">from_dummies()</span></code></a></dt><dd><p>Convert dummy codes to categorical <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>.</p>
 </dd>
@@ -692,28 +701,28 @@ first level.</p>
 </pre></div>
 </div>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-<span class="go">   a  b  c</span>
-<span class="go">0  1  0  0</span>
-<span class="go">1  0  1  0</span>
-<span class="go">2  0  0  1</span>
-<span class="go">3  1  0  0</span>
+<span class="go">       a      b      c</span>
+<span class="go">0   True  False  False</span>
+<span class="go">1  False   True  False</span>
+<span class="go">2  False  False   True</span>
+<span class="go">3   True  False  False</span>
 </pre></div>
 </div>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s1</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">]</span>
 </pre></div>
 </div>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span>
-<span class="go">   a  b</span>
-<span class="go">0  1  0</span>
-<span class="go">1  0  1</span>
-<span class="go">2  0  0</span>
+<span class="go">       a      b</span>
+<span class="go">0   True  False</span>
+<span class="go">1  False   True</span>
+<span class="go">2  False  False</span>
 </pre></div>
 </div>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="n">dummy_na</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="go">   a  b  NaN</span>
-<span class="go">0  1  0    0</span>
-<span class="go">1  0  1    0</span>
-<span class="go">2  0  0    1</span>
+<span class="go">       a      b    NaN</span>
+<span class="go">0   True  False  False</span>
+<span class="go">1  False   True  False</span>
+<span class="go">2  False  False   True</span>
 </pre></div>
 </div>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">],</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">],</span>
@@ -722,27 +731,27 @@ first level.</p>
 </div>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;col1&#39;</span><span class="p">,</span> <span class="s1">&#39;col2&#39;</span><span class="p">])</span>
 <span class="go">   C  col1_a  col1_b  col2_a  col2_b  col2_c</span>
-<span class="go">0  1       1       0       0       1       0</span>
-<span class="go">1  2       0       1       1       0       0</span>
-<span class="go">2  3       1       0       0       0       1</span>
+<span class="go">0  1    True   False   False    True   False</span>
+<span class="go">1  2   False    True    True   False   False</span>
+<span class="go">2  3    True   False   False   False    True</span>
 </pre></div>
 </div>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="s1">&#39;abcaa&#39;</span><span class="p">)))</span>
-<span class="go">   a  b  c</span>
-<span class="go">0  1  0  0</span>
-<span class="go">1  0  1  0</span>
-<span class="go">2  0  0  1</span>
-<span class="go">3  1  0  0</span>
-<span class="go">4  1  0  0</span>
+<span class="go">       a      b      c</span>
+<span class="go">0   True  False  False</span>
+<span class="go">1  False   True  False</span>
+<span class="go">2  False  False   True</span>
+<span class="go">3   True  False  False</span>
+<span class="go">4   True  False  False</span>
 </pre></div>
 </div>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="s1">&#39;abcaa&#39;</span><span class="p">)),</span> <span class="n">drop_first</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="go">   b  c</span>
-<span class="go">0  0  0</span>
-<span class="go">1  1  0</span>
-<span class="go">2  0  1</span>
-<span class="go">3  0  0</span>
-<span class="go">4  0  0</span>
+<span class="go">       b      c</span>
+<span class="go">0  False  False</span>
+<span class="go">1   True  False</span>
+<span class="go">2  False   True</span>
+<span class="go">3  False  False</span>
+<span class="go">4  False  False</span>
 </pre></div>
 </div>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="s1">&#39;abc&#39;</span><span class="p">)),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>

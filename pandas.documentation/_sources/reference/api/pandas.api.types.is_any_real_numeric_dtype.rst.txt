@@ -1,0 +1,6 @@
+pandas.api.types.is\_any\_real\_numeric\_dtype
+==============================================
+
+.. currentmodule:: pandas.api.types
+
+.. autofunction:: is_any_real_numeric_dtype

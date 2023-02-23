@@ -26,8 +26,6 @@ pandas.io.formats.style.Styler
       Styler.format_index
       Styler.from_custom_template
       Styler.hide
-      Styler.hide_columns
-      Styler.hide_index
       Styler.highlight_between
       Styler.highlight_max
       Styler.highlight_min
@@ -35,10 +33,7 @@ pandas.io.formats.style.Styler
       Styler.highlight_quantile
       Styler.pipe
       Styler.relabel_index
-      Styler.render
       Styler.set_caption
-      Styler.set_na_rep
-      Styler.set_precision
       Styler.set_properties
       Styler.set_sticky
       Styler.set_table_attributes
@@ -52,7 +47,6 @@ pandas.io.formats.style.Styler
       Styler.to_latex
       Styler.to_string
       Styler.use
-      Styler.where
 
 
 

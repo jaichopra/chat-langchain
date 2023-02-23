@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>pandas.api.extensions.ExtensionArray &#8212; pandas 1.5.3 documentation</title>
+    <title>pandas.api.extensions.ExtensionArray &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -55,7 +55,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'reference/api/pandas.api.extensions.ExtensionArray';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -182,7 +182,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -311,7 +311,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -584,6 +584,11 @@
       </a>
      </li>
      <li class="toctree-l3">
+      <a class="reference internal" href="pandas.api.extensions.ExtensionArray._accumulate.html">
+       pandas.api.extensions.ExtensionArray._accumulate
+      </a>
+     </li>
+     <li class="toctree-l3">
       <a class="reference internal" href="pandas.api.extensions.ExtensionArray._concat_same_type.html">
        pandas.api.extensions.ExtensionArray._concat_same_type
       </a>
@@ -675,7 +680,7 @@
 <h1>pandas.api.extensions.ExtensionArray<a class="headerlink" href="#pandas-api-extensions-extensionarray" title="Permalink to this headline">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="pandas.api.extensions.ExtensionArray">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pandas.api.extensions.</span></span><span class="sig-name descname"><span class="pre">ExtensionArray</span></span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.5.3/pandas/core/arrays/base.py#L112-L1684"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.api.extensions.ExtensionArray" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pandas.api.extensions.</span></span><span class="sig-name descname"><span class="pre">ExtensionArray</span></span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v2.0.0rc0/pandas/core/arrays/base.py#L102-L1688"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.api.extensions.ExtensionArray" title="Permalink to this definition">#</a></dt>
 <dd><p>Abstract base class for custom 1-D array types.</p>
 <p>pandas will recognize instances of this class as proper arrays
 with a custom type and will not attempt to coerce them to objects. They
@@ -718,8 +723,9 @@ methods:</p>
 <p>The remaining methods implemented on this class should be performant,
 as they only compose abstract methods. Still, a more efficient
 implementation may be available, and these methods can be overridden.</p>
-<p>One can implement methods to handle array reductions.</p>
+<p>One can implement methods to handle array accumulations or reductions.</p>
 <ul class="simple">
+<li><p>_accumulate</p></li>
 <li><p>_reduce</p></li>
 </ul>
 <p>One can implement methods to handle parsing from strings that will be used
@@ -785,7 +791,7 @@ override this behavior.</p>
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="pandas.api.extensions.ExtensionArray.argsort.html#pandas.api.extensions.ExtensionArray.argsort" title="pandas.api.extensions.ExtensionArray.argsort"><code class="xref py py-obj docutils literal notranslate"><span class="pre">argsort</span></code></a>(*args[, ascending, kind, na_position])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.api.extensions.ExtensionArray.argsort.html#pandas.api.extensions.ExtensionArray.argsort" title="pandas.api.extensions.ExtensionArray.argsort"><code class="xref py py-obj docutils literal notranslate"><span class="pre">argsort</span></code></a>(*[, ascending, kind, na_position])</p></td>
 <td><p>Return the indices that would sort this array.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="pandas.api.extensions.ExtensionArray.astype.html#pandas.api.extensions.ExtensionArray.astype" title="pandas.api.extensions.ExtensionArray.astype"><code class="xref py py-obj docutils literal notranslate"><span class="pre">astype</span></code></a>(dtype[, copy])</p></td>
@@ -797,7 +803,7 @@ override this behavior.</p>
 <tr class="row-even"><td><p><a class="reference internal" href="pandas.api.extensions.ExtensionArray.dropna.html#pandas.api.extensions.ExtensionArray.dropna" title="pandas.api.extensions.ExtensionArray.dropna"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dropna</span></code></a>()</p></td>
 <td><p>Return ExtensionArray without NA values.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pandas.api.extensions.ExtensionArray.factorize.html#pandas.api.extensions.ExtensionArray.factorize" title="pandas.api.extensions.ExtensionArray.factorize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">factorize</span></code></a>([na_sentinel, use_na_sentinel])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.api.extensions.ExtensionArray.factorize.html#pandas.api.extensions.ExtensionArray.factorize" title="pandas.api.extensions.ExtensionArray.factorize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">factorize</span></code></a>([use_na_sentinel])</p></td>
 <td><p>Encode the extension array as an enumerated type.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="pandas.api.extensions.ExtensionArray.fillna.html#pandas.api.extensions.ExtensionArray.fillna" title="pandas.api.extensions.ExtensionArray.fillna"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fillna</span></code></a>([value, method, limit])</p></td>
@@ -839,28 +845,31 @@ override this behavior.</p>
 <tr class="row-even"><td><p><a class="reference internal" href="pandas.api.extensions.ExtensionArray.view.html#pandas.api.extensions.ExtensionArray.view" title="pandas.api.extensions.ExtensionArray.view"><code class="xref py py-obj docutils literal notranslate"><span class="pre">view</span></code></a>([dtype])</p></td>
 <td><p>Return a view on the array.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pandas.api.extensions.ExtensionArray._concat_same_type.html#pandas.api.extensions.ExtensionArray._concat_same_type" title="pandas.api.extensions.ExtensionArray._concat_same_type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_concat_same_type</span></code></a>(to_concat)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.api.extensions.ExtensionArray._accumulate.html#pandas.api.extensions.ExtensionArray._accumulate" title="pandas.api.extensions.ExtensionArray._accumulate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_accumulate</span></code></a>(name, *[, skipna])</p></td>
+<td><p>Return an ExtensionArray performing an accumulation operation.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.api.extensions.ExtensionArray._concat_same_type.html#pandas.api.extensions.ExtensionArray._concat_same_type" title="pandas.api.extensions.ExtensionArray._concat_same_type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_concat_same_type</span></code></a>(to_concat)</p></td>
 <td><p>Concatenate multiple array of this dtype.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pandas.api.extensions.ExtensionArray._formatter.html#pandas.api.extensions.ExtensionArray._formatter" title="pandas.api.extensions.ExtensionArray._formatter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_formatter</span></code></a>([boxed])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.api.extensions.ExtensionArray._formatter.html#pandas.api.extensions.ExtensionArray._formatter" title="pandas.api.extensions.ExtensionArray._formatter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_formatter</span></code></a>([boxed])</p></td>
 <td><p>Formatting function for scalar values.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pandas.api.extensions.ExtensionArray._from_factorized.html#pandas.api.extensions.ExtensionArray._from_factorized" title="pandas.api.extensions.ExtensionArray._from_factorized"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_from_factorized</span></code></a>(values, original)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.api.extensions.ExtensionArray._from_factorized.html#pandas.api.extensions.ExtensionArray._from_factorized" title="pandas.api.extensions.ExtensionArray._from_factorized"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_from_factorized</span></code></a>(values, original)</p></td>
 <td><p>Reconstruct an ExtensionArray after factorization.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pandas.api.extensions.ExtensionArray._from_sequence.html#pandas.api.extensions.ExtensionArray._from_sequence" title="pandas.api.extensions.ExtensionArray._from_sequence"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_from_sequence</span></code></a>(scalars, *[, dtype, copy])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.api.extensions.ExtensionArray._from_sequence.html#pandas.api.extensions.ExtensionArray._from_sequence" title="pandas.api.extensions.ExtensionArray._from_sequence"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_from_sequence</span></code></a>(scalars, *[, dtype, copy])</p></td>
 <td><p>Construct a new ExtensionArray from a sequence of scalars.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pandas.api.extensions.ExtensionArray._from_sequence_of_strings.html#pandas.api.extensions.ExtensionArray._from_sequence_of_strings" title="pandas.api.extensions.ExtensionArray._from_sequence_of_strings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_from_sequence_of_strings</span></code></a>(strings, *[, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.api.extensions.ExtensionArray._from_sequence_of_strings.html#pandas.api.extensions.ExtensionArray._from_sequence_of_strings" title="pandas.api.extensions.ExtensionArray._from_sequence_of_strings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_from_sequence_of_strings</span></code></a>(strings, *[, ...])</p></td>
 <td><p>Construct a new ExtensionArray from a sequence of strings.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pandas.api.extensions.ExtensionArray._reduce.html#pandas.api.extensions.ExtensionArray._reduce" title="pandas.api.extensions.ExtensionArray._reduce"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_reduce</span></code></a>(name, *[, skipna])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.api.extensions.ExtensionArray._reduce.html#pandas.api.extensions.ExtensionArray._reduce" title="pandas.api.extensions.ExtensionArray._reduce"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_reduce</span></code></a>(name, *[, skipna])</p></td>
 <td><p>Return a scalar result of performing the reduction operation.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pandas.api.extensions.ExtensionArray._values_for_argsort.html#pandas.api.extensions.ExtensionArray._values_for_argsort" title="pandas.api.extensions.ExtensionArray._values_for_argsort"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_values_for_argsort</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.api.extensions.ExtensionArray._values_for_argsort.html#pandas.api.extensions.ExtensionArray._values_for_argsort" title="pandas.api.extensions.ExtensionArray._values_for_argsort"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_values_for_argsort</span></code></a>()</p></td>
 <td><p>Return values for sorting.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pandas.api.extensions.ExtensionArray._values_for_factorize.html#pandas.api.extensions.ExtensionArray._values_for_factorize" title="pandas.api.extensions.ExtensionArray._values_for_factorize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_values_for_factorize</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.api.extensions.ExtensionArray._values_for_factorize.html#pandas.api.extensions.ExtensionArray._values_for_factorize" title="pandas.api.extensions.ExtensionArray._values_for_factorize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_values_for_factorize</span></code></a>()</p></td>
 <td><p>Return an array and missing value suitable for factorization.</p></td>
 </tr>
 </tbody>

@@ -1,0 +1,6 @@
+pandas.core.groupby.SeriesGroupBy.\_\_iter\_\_
+==============================================
+
+.. currentmodule:: pandas.core.groupby
+
+.. automethod:: SeriesGroupBy.__iter__

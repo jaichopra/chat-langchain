@@ -1,0 +1,6 @@
+pandas.core.groupby.SeriesGroupBy.idxmin
+========================================
+
+.. currentmodule:: pandas.core.groupby
+
+.. automethod:: SeriesGroupBy.idxmin

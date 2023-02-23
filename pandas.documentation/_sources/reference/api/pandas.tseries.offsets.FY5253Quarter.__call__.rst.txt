@@ -1,6 +1,0 @@
-pandas.tseries.offsets.FY5253Quarter.\_\_call\_\_
-=================================================
-
-.. currentmodule:: pandas.tseries.offsets
-
-.. automethod:: FY5253Quarter.__call__

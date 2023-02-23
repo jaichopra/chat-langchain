@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Scaling to large datasets &#8212; pandas 1.5.3 documentation</title>
+    <title>Scaling to large datasets &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -55,7 +55,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/scale';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -182,7 +182,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -311,7 +311,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -381,6 +381,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="io.html">
    IO tools (text, CSV, HDF5, …)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="pyarrow.html">
+   PyArrow Functionality
   </a>
  </li>
  <li class="toctree-l1">
@@ -800,9 +805,10 @@ work for arbitrary-sized datasets.</p>
 <span class="gp">   ....: </span>    <span class="n">counts</span> <span class="o">=</span> <span class="n">counts</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(),</span> <span class="n">fill_value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="gp">   ....: </span><span class="n">counts</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
 <span class="gp">   ....: </span>
-<span class="go">CPU times: user 698 ms, sys: 79.6 ms, total: 778 ms</span>
-<span class="go">Wall time: 768 ms</span>
+<span class="go">CPU times: user 778 ms, sys: 122 ms, total: 900 ms</span>
+<span class="go">Wall time: 693 ms</span>
 <span class="gh">Out[31]: </span>
+<span class="go">name</span>
 <span class="go">Alice      1994645</span>
 <span class="go">Bob        1993692</span>
 <span class="go">Charlie    1994875</span>
@@ -904,7 +910,7 @@ Rather than executing immediately, doing operations build up a <strong>task grap
 <span class="go">npartitions=1</span>
 <span class="go">    int64</span>
 <span class="go">      ...</span>
-<span class="go">Name: name, dtype: int64</span>
+<span class="go">Name: count, dtype: int64</span>
 <span class="go">Dask Name: value-counts-agg, 4 graph layers</span>
 </pre></div>
 </div>
@@ -915,13 +921,14 @@ is a pandas <a class="reference internal" href="../reference/api/pandas.Series.h
 returns a Dask Series with the same dtype and the same name.</p>
 <p>To get the actual result you can call <code class="docutils literal notranslate"><span class="pre">.compute()</span></code>.</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [41]: </span><span class="o">%</span><span class="k">time</span> ddf[&quot;name&quot;].value_counts().compute()
-<span class="go">CPU times: user 767 ms, sys: 44.4 ms, total: 811 ms</span>
-<span class="go">Wall time: 788 ms</span>
+<span class="go">CPU times: user 754 ms, sys: 46.8 ms, total: 801 ms</span>
+<span class="go">Wall time: 555 ms</span>
 <span class="gh">Out[41]: </span>
+<span class="go">name</span>
 <span class="go">Charlie    1994875</span>
 <span class="go">Alice      1994645</span>
 <span class="go">Bob        1993692</span>
-<span class="go">Name: name, dtype: int64</span>
+<span class="go">Name: count, dtype: int64</span>
 </pre></div>
 </div>
 <p>At that point, you get back the same thing you’d get with pandas, in this case
@@ -948,8 +955,8 @@ the cluster (which is just processes in this case).</p>
 <p>Dask implements the most used parts of the pandas API. For example, we can do
 a familiar groupby aggregation.</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [42]: </span><span class="o">%</span><span class="k">time</span> ddf.groupby(&quot;name&quot;)[[&quot;x&quot;, &quot;y&quot;]].mean().compute().head()
-<span class="go">CPU times: user 1.24 s, sys: 91.7 ms, total: 1.33 s</span>
-<span class="go">Wall time: 1.2 s</span>
+<span class="go">CPU times: user 1.31 s, sys: 71 ms, total: 1.38 s</span>
+<span class="go">Wall time: 919 ms</span>
 <span class="gh">Out[42]: </span>
 <span class="go">                x         y</span>
 <span class="go">name                       </span>

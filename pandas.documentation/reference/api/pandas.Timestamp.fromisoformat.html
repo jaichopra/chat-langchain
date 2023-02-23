@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>pandas.Timestamp.fromisoformat &#8212; pandas 1.5.3 documentation</title>
+    <title>pandas.Timestamp.fromisoformat &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -55,7 +55,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'reference/api/pandas.Timestamp.fromisoformat';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -182,7 +182,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -311,7 +311,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -454,11 +454,6 @@
       </a>
      </li>
      <li class="toctree-l3">
-      <a class="reference internal" href="pandas.Timestamp.freqstr.html">
-       pandas.Timestamp.freqstr
-      </a>
-     </li>
-     <li class="toctree-l3">
       <a class="reference internal" href="pandas.Timestamp.is_leap_year.html">
        pandas.Timestamp.is_leap_year
       </a>
@@ -504,6 +499,11 @@
       </a>
      </li>
      <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Timestamp.unit.html">
+       pandas.Timestamp.unit
+      </a>
+     </li>
+     <li class="toctree-l3">
       <a class="reference internal" href="pandas.Timestamp.week.html">
        pandas.Timestamp.week
       </a>
@@ -511,6 +511,11 @@
      <li class="toctree-l3">
       <a class="reference internal" href="pandas.Timestamp.weekofyear.html">
        pandas.Timestamp.weekofyear
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="pandas.Timestamp.as_unit.html">
+       pandas.Timestamp.as_unit
       </a>
      </li>
      <li class="toctree-l3">
@@ -721,6 +726,11 @@
     </ul>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="pandas.NaT.html">
+     pandas.NaT
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="pandas.Timestamp.asm8.html">
      pandas.Timestamp.asm8
     </a>
@@ -861,6 +871,11 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.unit.html">
+     pandas.Timestamp.unit
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="pandas.Timestamp.value.html">
      pandas.Timestamp.value
     </a>
@@ -878,6 +893,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="pandas.Timestamp.year.html">
      pandas.Timestamp.year
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timestamp.as_unit.html">
+     pandas.Timestamp.as_unit
     </a>
    </li>
    <li class="toctree-l2">
@@ -918,16 +938,6 @@
    <li class="toctree-l2">
     <a class="reference internal" href="pandas.Timestamp.floor.html">
      pandas.Timestamp.floor
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.Timestamp.freq.html">
-     pandas.Timestamp.freq
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.Timestamp.freqstr.html">
-     pandas.Timestamp.freqstr
     </a>
    </li>
    <li class="toctree-l2">
@@ -1101,6 +1111,11 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="pandas.NaT.html">
+     pandas.NaT
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="pandas.Timedelta.asm8.html">
      pandas.Timedelta.asm8
     </a>
@@ -1113,21 +1128,6 @@
    <li class="toctree-l2">
     <a class="reference internal" href="pandas.Timedelta.days.html">
      pandas.Timedelta.days
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.Timedelta.delta.html">
-     pandas.Timedelta.delta
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.Timedelta.freq.html">
-     pandas.Timedelta.freq
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.Timedelta.is_populated.html">
-     pandas.Timedelta.is_populated
     </a>
    </li>
    <li class="toctree-l2">
@@ -1161,6 +1161,11 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timedelta.unit.html">
+     pandas.Timedelta.unit
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="pandas.Timedelta.value.html">
      pandas.Timedelta.value
     </a>
@@ -1168,6 +1173,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="pandas.Timedelta.view.html">
      pandas.Timedelta.view
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Timedelta.as_unit.html">
+     pandas.Timedelta.as_unit
     </a>
    </li>
    <li class="toctree-l2">
@@ -1481,6 +1491,31 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="pandas.NA.html">
+     pandas.NA
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.arrays.FloatingArray.html">
+     pandas.arrays.FloatingArray
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Float32Dtype.html">
+     pandas.Float32Dtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.Float64Dtype.html">
+     pandas.Float64Dtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.NA.html">
+     pandas.NA
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="pandas.CategoricalDtype.html">
      pandas.CategoricalDtype
     </a>
@@ -1566,6 +1601,11 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="pandas.NA.html">
+     pandas.NA
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="pandas.api.types.union_categoricals.html">
      pandas.api.types.union_categoricals
     </a>
@@ -1578,6 +1618,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="pandas.api.types.pandas_dtype.html">
      pandas.api.types.pandas_dtype
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.api.types.is_any_real_numeric_dtype.html">
+     pandas.api.types.is_any_real_numeric_dtype
     </a>
    </li>
    <li class="toctree-l2">
@@ -1613,11 +1658,6 @@
    <li class="toctree-l2">
     <a class="reference internal" href="pandas.api.types.is_datetime64tz_dtype.html">
      pandas.api.types.is_datetime64tz_dtype
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.api.types.is_extension_type.html">
-     pandas.api.types.is_extension_type
     </a>
    </li>
    <li class="toctree-l2">
@@ -1718,11 +1758,6 @@
    <li class="toctree-l2">
     <a class="reference internal" href="pandas.api.types.is_bool.html">
      pandas.api.types.is_bool
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.api.types.is_categorical.html">
-     pandas.api.types.is_categorical
     </a>
    </li>
    <li class="toctree-l2">

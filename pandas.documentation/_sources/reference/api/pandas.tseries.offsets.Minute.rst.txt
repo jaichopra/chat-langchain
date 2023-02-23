@@ -13,11 +13,7 @@ pandas.tseries.offsets.Minute
    .. autosummary::
       :toctree:
       
-      Minute.__call__
-      Minute.apply
-      Minute.apply_index
       Minute.copy
-      Minute.isAnchored
       Minute.is_anchored
       Minute.is_month_end
       Minute.is_month_start
@@ -26,7 +22,6 @@ pandas.tseries.offsets.Minute
       Minute.is_quarter_start
       Minute.is_year_end
       Minute.is_year_start
-      Minute.onOffset
       Minute.rollback
       Minute.rollforward
 

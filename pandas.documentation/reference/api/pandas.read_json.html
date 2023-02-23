@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>pandas.read_json &#8212; pandas 1.5.3 documentation</title>
+    <title>pandas.read_json &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -55,13 +55,13 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'reference/api/pandas.read_json';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="pandas.json_normalize" href="pandas.json_normalize.html" />
-    <link rel="prev" title="pandas.ExcelWriter.write_cells" href="pandas.ExcelWriter.write_cells.html" />
+    <link rel="prev" title="pandas.ExcelWriter.close" href="pandas.ExcelWriter.close.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="docsearch:language" content="en">
   </head>
@@ -182,7 +182,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -311,7 +311,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -421,6 +421,21 @@
    <li class="toctree-l2">
     <a class="reference internal" href="pandas.DataFrame.to_excel.html">
      pandas.DataFrame.to_excel
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.ExcelFile.html">
+     pandas.ExcelFile
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.ExcelFile.book.html">
+     pandas.ExcelFile.book
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.ExcelFile.sheet_names.html">
+     pandas.ExcelFile.sheet_names
     </a>
    </li>
    <li class="toctree-l2">
@@ -738,7 +753,7 @@
 <h1>pandas.read_json<a class="headerlink" href="#pandas-read-json" title="Permalink to this headline">#</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="pandas.read_json">
-<span class="sig-prename descclassname"><span class="pre">pandas.</span></span><span class="sig-name descname"><span class="pre">read_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_or_buf</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orient</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">typ</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'frame'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">convert_axes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">convert_dates</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep_default_dates</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">numpy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">precise_float</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date_unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding_errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'strict'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lines</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chunksize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compression</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'infer'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nrows</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">storage_options</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.5.3/pandas/io/json/_json.py#L462-L757"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.read_json" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">pandas.</span></span><span class="sig-name descname"><span class="pre">read_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_or_buf</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orient</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">typ</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'frame'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">convert_axes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">convert_dates</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep_default_dates</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">precise_float</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date_unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding_errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'strict'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lines</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chunksize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compression</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'infer'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nrows</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">storage_options</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_nullable_dtypes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">_NoDefault.no_default</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">engine</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ujson'</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v2.0.0rc0/pandas/io/json/_json.py#L488-L795"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.read_json" title="Permalink to this definition">#</a></dt>
 <dd><p>Convert a JSON string to pandas object.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
@@ -753,7 +768,7 @@ expected. A local file could be:
 such as a file handle (e.g. via builtin <code class="docutils literal notranslate"><span class="pre">open</span></code> function)
 or <code class="docutils literal notranslate"><span class="pre">StringIO</span></code>.</p>
 </dd>
-<dt><strong>orient</strong><span class="classifier">str</span></dt><dd><p>Indication of expected JSON string format.
+<dt><strong>orient</strong><span class="classifier">str, optional</span></dt><dd><p>Indication of expected JSON string format.
 Compatible JSON strings can be produced by <code class="docutils literal notranslate"><span class="pre">to_json()</span></code> with a
 corresponding orient value.
 The set of possible orients is:</p>
@@ -794,15 +809,9 @@ of the <cite>typ</cite> parameter.</p>
 <dt><strong>dtype</strong><span class="classifier">bool or dict, default None</span></dt><dd><p>If True, infer dtypes; if a dict of column to dtype, then use those;
 if False, then don’t infer dtypes at all, applies only to the data.</p>
 <p>For all <code class="docutils literal notranslate"><span class="pre">orient</span></code> values except <code class="docutils literal notranslate"><span class="pre">'table'</span></code>, default is True.</p>
-<div class="versionchanged">
-<p><span class="versionmodified changed">Changed in version 0.25.0: </span>Not applicable for <code class="docutils literal notranslate"><span class="pre">orient='table'</span></code>.</p>
-</div>
 </dd>
 <dt><strong>convert_axes</strong><span class="classifier">bool, default None</span></dt><dd><p>Try to convert the axes to the proper dtypes.</p>
 <p>For all <code class="docutils literal notranslate"><span class="pre">orient</span></code> values except <code class="docutils literal notranslate"><span class="pre">'table'</span></code>, default is True.</p>
-<div class="versionchanged">
-<p><span class="versionmodified changed">Changed in version 0.25.0: </span>Not applicable for <code class="docutils literal notranslate"><span class="pre">orient='table'</span></code>.</p>
-</div>
 </dd>
 <dt><strong>convert_dates</strong><span class="classifier">bool or list of str, default True</span></dt><dd><p>If True then default datelike columns may be converted (depending on
 keep_default_dates).
@@ -821,13 +830,6 @@ A column label is datelike if</p>
 <li><p>it is <code class="docutils literal notranslate"><span class="pre">'modified'</span></code>, or</p></li>
 <li><p>it is <code class="docutils literal notranslate"><span class="pre">'date'</span></code>.</p></li>
 </ul>
-</dd>
-<dt><strong>numpy</strong><span class="classifier">bool, default False</span></dt><dd><p>Direct decoding to numpy arrays. Supports numeric data only, but
-non-numeric column and index labels are supported. Note also that the
-JSON ordering MUST be the same for each term if numpy=True.</p>
-<div class="deprecated">
-<p><span class="versionmodified deprecated">Deprecated since version 1.0.0.</span></p>
-</div>
 </dd>
 <dt><strong>precise_float</strong><span class="classifier">bool, default False</span></dt><dd><p>Set to enable usage of higher precision (strtod) function when
 decoding string to double values. Default (False) is to use fast but
@@ -871,11 +873,9 @@ key-value pairs are forwarded to
 As an example, the following could be passed for Zstandard decompression using a
 custom compression dictionary:
 <code class="docutils literal notranslate"><span class="pre">compression={'method':</span> <span class="pre">'zstd',</span> <span class="pre">'dict_data':</span> <span class="pre">my_compression_dict}</span></code>.</p>
-<blockquote>
-<div><div class="versionadded">
+<div class="versionadded">
 <p><span class="versionmodified added">New in version 1.5.0: </span>Added support for <cite>.tar</cite> files.</p>
 </div>
-</div></blockquote>
 <div class="versionchanged">
 <p><span class="versionmodified changed">Changed in version 1.4.0: </span>Zstandard support.</p>
 </div>
@@ -895,6 +895,27 @@ forwarded to <code class="docutils literal notranslate"><span class="pre">fsspec
 details, and for more examples on storage options refer <a class="reference external" href="https://pandas.pydata.org/docs/user_guide/io.html?highlight=storage_options#reading-writing-remote-files">here</a>.</p>
 <div class="versionadded">
 <p><span class="versionmodified added">New in version 1.2.0.</span></p>
+</div>
+</dd>
+<dt><strong>use_nullable_dtypes</strong><span class="classifier">bool = False</span></dt><dd><p>Whether or not to use nullable dtypes as default when reading data. If
+set to True, nullable dtypes are used for all dtypes that have a nullable
+implementation, even if no nulls are present.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The nullable dtype implementation can be configured by calling
+<code class="docutils literal notranslate"><span class="pre">pd.set_option(&quot;mode.dtype_backend&quot;,</span> <span class="pre">&quot;pandas&quot;)</span></code> to use
+numpy-backed nullable dtypes or
+<code class="docutils literal notranslate"><span class="pre">pd.set_option(&quot;mode.dtype_backend&quot;,</span> <span class="pre">&quot;pyarrow&quot;)</span></code> to use
+pyarrow-backed nullable dtypes (using <code class="docutils literal notranslate"><span class="pre">pd.ArrowDtype</span></code>).</p>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 2.0.</span></p>
+</div>
+</dd>
+<dt><strong>engine</strong><span class="classifier">{“ujson”, “pyarrow”}, default “ujson”</span></dt><dd><p>Parser engine to use. The <code class="docutils literal notranslate"><span class="pre">&quot;pyarrow&quot;</span></code> engine is only available when
+<code class="docutils literal notranslate"><span class="pre">lines=True</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">New in version 2.0.</span></p>
 </div>
 </dd>
 </dl>
@@ -979,11 +1000,11 @@ Note that index labels are not preserved with this encoding.</p>
             <footer class="bd-footer-article">
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-  <a class='left-prev' id="prev-link" href="pandas.ExcelWriter.write_cells.html" title="previous page">
+  <a class='left-prev' id="prev-link" href="pandas.ExcelWriter.close.html" title="previous page">
       <i class="fas fa-angle-left"></i>
       <div class="prev-next-info">
           <p class="prev-next-subtitle">previous</p>
-          <p class="prev-next-title">pandas.ExcelWriter.write_cells</p>
+          <p class="prev-next-title">pandas.ExcelWriter.close</p>
       </div>
   </a>
   <a class='right-next' id="next-link" href="pandas.json_normalize.html" title="next page">

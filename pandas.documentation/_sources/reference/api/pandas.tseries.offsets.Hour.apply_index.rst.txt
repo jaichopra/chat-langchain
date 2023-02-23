@@ -1,6 +1,0 @@
-pandas.tseries.offsets.Hour.apply\_index
-========================================
-
-.. currentmodule:: pandas.tseries.offsets
-
-.. automethod:: Hour.apply_index

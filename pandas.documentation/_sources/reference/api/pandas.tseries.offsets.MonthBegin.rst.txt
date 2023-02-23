@@ -13,11 +13,7 @@ pandas.tseries.offsets.MonthBegin
    .. autosummary::
       :toctree:
       
-      MonthBegin.__call__
-      MonthBegin.apply
-      MonthBegin.apply_index
       MonthBegin.copy
-      MonthBegin.isAnchored
       MonthBegin.is_anchored
       MonthBegin.is_month_end
       MonthBegin.is_month_start
@@ -26,7 +22,6 @@ pandas.tseries.offsets.MonthBegin
       MonthBegin.is_quarter_start
       MonthBegin.is_year_end
       MonthBegin.is_year_start
-      MonthBegin.onOffset
       MonthBegin.rollback
       MonthBegin.rollforward
 

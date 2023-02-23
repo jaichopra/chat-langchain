@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>pandas.to_datetime &#8212; pandas 1.5.3 documentation</title>
+    <title>pandas.to_datetime &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -55,7 +55,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'reference/api/pandas.to_datetime';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -182,7 +182,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -311,7 +311,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -446,6 +446,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="pandas.unique.html">
      pandas.unique
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.lreshape.html">
+     pandas.lreshape
     </a>
    </li>
    <li class="toctree-l2">
@@ -638,7 +643,7 @@
 <h1>pandas.to_datetime<a class="headerlink" href="#pandas-to-datetime" title="Permalink to this headline">#</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="pandas.to_datetime">
-<span class="sig-prename descclassname"><span class="pre">pandas.</span></span><span class="sig-name descname"><span class="pre">to_datetime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'raise'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dayfirst</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yearfirst</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">utc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exact</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">infer_datetime_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">origin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'unix'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.5.3/pandas/core/tools/datetimes.py#L705-L1109"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.to_datetime" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">pandas.</span></span><span class="sig-name descname"><span class="pre">to_datetime</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'raise'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dayfirst</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yearfirst</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">utc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exact</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">_NoDefault.no_default</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">infer_datetime_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">_NoDefault.no_default</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">origin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'unix'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v2.0.0rc0/pandas/core/tools/datetimes.py#L684-L1088"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.to_datetime" title="Permalink to this definition">#</a></dt>
 <dd><p>Convert argument to datetime.</p>
 <p>This function converts a scalar, array-like, <a class="reference internal" href="pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a> or
 <a class="reference internal" href="pandas.DataFrame.html#pandas.DataFrame" title="pandas.DataFrame"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataFrame</span></code></a>/dict-like to a pandas datetime object.</p>
@@ -651,7 +656,7 @@ method expects minimally the following columns: <code class="xref py py-const do
 </dd>
 <dt><strong>errors</strong><span class="classifier">{‘ignore’, ‘raise’, ‘coerce’}, default ‘raise’</span></dt><dd><ul class="simple">
 <li><p>If <code class="xref py py-const docutils literal notranslate"><span class="pre">'raise'</span></code>, then invalid parsing will raise an exception.</p></li>
-<li><p>If <code class="xref py py-const docutils literal notranslate"><span class="pre">'coerce'</span></code>, then invalid parsing will be set as <code class="xref py py-const docutils literal notranslate"><span class="pre">NaT</span></code>.</p></li>
+<li><p>If <code class="xref py py-const docutils literal notranslate"><span class="pre">'coerce'</span></code>, then invalid parsing will be set as <a class="reference internal" href="pandas.NaT.html#pandas.NaT" title="pandas.NaT"><code class="xref py py-const docutils literal notranslate"><span class="pre">NaT</span></code></a>.</p></li>
 <li><p>If <code class="xref py py-const docutils literal notranslate"><span class="pre">'ignore'</span></code>, then invalid parsing will return the input.</p></li>
 </ul>
 </dd>
@@ -661,9 +666,7 @@ is parsed as <code class="xref py py-const docutils literal notranslate"><span c
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p><code class="docutils literal notranslate"><span class="pre">dayfirst=True</span></code> is not strict, but will prefer to parse
-with day first. If a delimited date string cannot be parsed in
-accordance with the given <cite>dayfirst</cite> option, e.g.
-<code class="docutils literal notranslate"><span class="pre">to_datetime(['31-12-2021'])</span></code>, then a warning will be shown.</p>
+with day first.</p>
 </div>
 </dd>
 <dt><strong>yearfirst</strong><span class="classifier">bool, default False</span></dt><dd><p>Specify a date parse order if <cite>arg</cite> is str or is list-like.</p>
@@ -679,7 +682,7 @@ preceded (same as <code class="xref py py-mod docutils literal notranslate"><spa
 with year first.</p>
 </div>
 </dd>
-<dt><strong>utc</strong><span class="classifier">bool, default None</span></dt><dd><p>Control timezone-related parsing, localization and conversion.</p>
+<dt><strong>utc</strong><span class="classifier">bool, default False</span></dt><dd><p>Control timezone-related parsing, localization and conversion.</p>
 <ul class="simple">
 <li><p>If <code class="xref py py-const docutils literal notranslate"><span class="pre">True</span></code>, the function <em>always</em> returns a timezone-aware
 UTC-localized <a class="reference internal" href="pandas.Timestamp.html#pandas.Timestamp" title="pandas.Timestamp"><code class="xref py py-class docutils literal notranslate"><span class="pre">Timestamp</span></code></a>, <a class="reference internal" href="pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a> or
@@ -693,9 +696,16 @@ offsets (typically, daylight savings), see <a class="reference internal" href="#
 <p>See also: pandas general documentation about <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/user_guide/timeseries.html#time-zone-handling">timezone conversion and
 localization</a>.</p>
 </dd>
-<dt><strong>format</strong><span class="classifier">str, default None</span></dt><dd><p>The strftime to parse time, e.g. <code class="xref py py-const docutils literal notranslate"><span class="pre">&quot;%d/%m/%Y&quot;</span></code>. Note that
-<code class="xref py py-const docutils literal notranslate"><span class="pre">&quot;%f&quot;</span></code> will parse all the way up to nanoseconds. See
-<a class="reference external" href="https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior">strftime documentation</a> for more information on choices.</p>
+<dt><strong>format</strong><span class="classifier">str, default None</span></dt><dd><p>The strftime to parse time, e.g. <code class="xref py py-const docutils literal notranslate"><span class="pre">&quot;%d/%m/%Y&quot;</span></code>. See
+<a class="reference external" href="https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior">strftime documentation</a> for more information on choices, though
+note that <code class="xref py py-const docutils literal notranslate"><span class="pre">&quot;%f&quot;</span></code> will parse all the way up to nanoseconds.
+You can also pass:</p>
+<ul class="simple">
+<li><p>“ISO8601”, to parse any <a class="reference external" href="https://en.wikipedia.org/wiki/ISO_8601">ISO8601</a>
+time string (not necessarily in exactly the same format);</p></li>
+<li><p>“mixed”, to infer the format for each element individually. This is risky,
+and you should probably use it along with <cite>dayfirst</cite>.</p></li>
+</ul>
 </dd>
 <dt><strong>exact</strong><span class="classifier">bool, default True</span></dt><dd><p>Control how <cite>format</cite> is used:</p>
 <ul class="simple">
@@ -703,6 +713,7 @@ localization</a>.</p>
 <li><p>If <code class="xref py py-const docutils literal notranslate"><span class="pre">False</span></code>, allow the <cite>format</cite> to match anywhere in the target
 string.</p></li>
 </ul>
+<p>Cannot be used alongside <code class="docutils literal notranslate"><span class="pre">format='ISO8601'</span></code> or <code class="docutils literal notranslate"><span class="pre">format='mixed'</span></code>.</p>
 </dd>
 <dt><strong>unit</strong><span class="classifier">str, default ‘ns’</span></dt><dd><p>The unit of the arg (D,s,ms,us,ns) denote the unit, which is an
 integer or float number. This will be based off the origin.
@@ -713,6 +724,10 @@ the number of milliseconds to the unix epoch start.</p>
 of the datetime strings based on the first non-NaN element,
 and if it can be inferred, switch to a faster method of parsing them.
 In some cases this can increase the parsing speed by ~5-10x.</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 2.0.0: </span>A strict version of this argument is now the default, passing it has
+no effect.</p>
+</div>
 </dd>
 <dt><strong>origin</strong><span class="classifier">scalar, default ‘unix’</span></dt><dd><p>Define the reference date. The numeric values would be parsed as number
 of units (defined by <cite>unit</cite>) since this reference date.</p>
@@ -721,8 +736,10 @@ of units (defined by <cite>unit</cite>) since this reference date.</p>
 <li><p>If <code class="xref py py-const docutils literal notranslate"><span class="pre">'julian'</span></code>, unit must be <code class="xref py py-const docutils literal notranslate"><span class="pre">'D'</span></code>, and origin is set to
 beginning of Julian Calendar. Julian day number <code class="xref py py-const docutils literal notranslate"><span class="pre">0</span></code> is assigned
 to the day starting at noon on January 1, 4713 BC.</p></li>
-<li><p>If Timestamp convertible, origin is set to Timestamp identified by
-origin.</p></li>
+<li><p>If Timestamp convertible (Timestamp, dt.datetime, np.datetimt64 or date
+string), origin is set to Timestamp identified by origin.</p></li>
+<li><p>If a float or integer, origin is the millisecond difference
+relative to 1970-01-01.</p></li>
 </ul>
 </dd>
 <dt><strong>cache</strong><span class="classifier">bool, default True</span></dt><dd><p>If <code class="xref py py-const docutils literal notranslate"><span class="pre">True</span></code>, use a cache of unique, converted dates to apply the
@@ -731,9 +748,6 @@ duplicate date strings, especially ones with timezone offsets. The cache
 is only used when there are at least 50 values. The presence of
 out-of-bounds values will render the cache unusable and may slow down
 parsing.</p>
-<div class="versionchanged">
-<p><span class="versionmodified changed">Changed in version 0.25.0: </span>changed default value from <code class="xref py py-const docutils literal notranslate"><span class="pre">False</span></code> to <code class="xref py py-const docutils literal notranslate"><span class="pre">True</span></code>.</p>
-</div>
 </dd>
 </dl>
 </dd>
@@ -786,16 +800,16 @@ of mixed time offsets, and <code class="docutils literal notranslate"><span clas
 <li><p><strong>scalars</strong> can be int, float, str, datetime object (from stdlib <a class="reference external" href="https://docs.python.org/3/library/datetime.html#module-datetime" title="(in Python v3.11)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">datetime</span></code></a>
 module or <a class="reference external" href="https://numpy.org/doc/stable/reference/index.html#module-numpy" title="(in NumPy v1.24)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">numpy</span></code></a>). They are converted to <a class="reference internal" href="pandas.Timestamp.html#pandas.Timestamp" title="pandas.Timestamp"><code class="xref py py-class docutils literal notranslate"><span class="pre">Timestamp</span></code></a> when
 possible, otherwise they are converted to <a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">datetime.datetime</span></code></a>.
-None/NaN/null scalars are converted to <code class="xref py py-const docutils literal notranslate"><span class="pre">NaT</span></code>.</p></li>
+None/NaN/null scalars are converted to <a class="reference internal" href="pandas.NaT.html#pandas.NaT" title="pandas.NaT"><code class="xref py py-const docutils literal notranslate"><span class="pre">NaT</span></code></a>.</p></li>
 <li><p><strong>array-like</strong> can contain int, float, str, datetime objects. They are
 converted to <a class="reference internal" href="pandas.DatetimeIndex.html#pandas.DatetimeIndex" title="pandas.DatetimeIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">DatetimeIndex</span></code></a> when possible, otherwise they are
 converted to <a class="reference internal" href="pandas.Index.html#pandas.Index" title="pandas.Index"><code class="xref py py-class docutils literal notranslate"><span class="pre">Index</span></code></a> with <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a> dtype, containing
 <a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">datetime.datetime</span></code></a>. None/NaN/null entries are converted to
-<code class="xref py py-const docutils literal notranslate"><span class="pre">NaT</span></code> in both cases.</p></li>
+<a class="reference internal" href="pandas.NaT.html#pandas.NaT" title="pandas.NaT"><code class="xref py py-const docutils literal notranslate"><span class="pre">NaT</span></code></a> in both cases.</p></li>
 <li><p><strong>Series</strong> are converted to <a class="reference internal" href="pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a> with <code class="xref py py-class docutils literal notranslate"><span class="pre">datetime64</span></code>
 dtype when possible, otherwise they are converted to <a class="reference internal" href="pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a> with
 <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a> dtype, containing <a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">datetime.datetime</span></code></a>. None/NaN/null
-entries are converted to <code class="xref py py-const docutils literal notranslate"><span class="pre">NaT</span></code> in both cases.</p></li>
+entries are converted to <a class="reference internal" href="pandas.NaT.html#pandas.NaT" title="pandas.NaT"><code class="xref py py-const docutils literal notranslate"><span class="pre">NaT</span></code></a> in both cases.</p></li>
 <li><p><strong>DataFrame/dict-like</strong> are converted to <a class="reference internal" href="pandas.Series.html#pandas.Series" title="pandas.Series"><code class="xref py py-class docutils literal notranslate"><span class="pre">Series</span></code></a> with
 <code class="xref py py-class docutils literal notranslate"><span class="pre">datetime64</span></code> dtype. For each row a datetime is created from assembling
 the various dataframe columns. Column keys can be common abbreviations
@@ -830,26 +844,6 @@ can be common abbreviations like [‘year’, ‘month’, ‘day’, ‘minute�
 <span class="go">dtype: datetime64[ns]</span>
 </pre></div>
 </div>
-<p>Passing <code class="docutils literal notranslate"><span class="pre">infer_datetime_format=True</span></code> can often-times speedup a parsing
-if its not an ISO8601 format exactly, but in a regular format.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s1">&#39;3/11/2000&#39;</span><span class="p">,</span> <span class="s1">&#39;3/12/2000&#39;</span><span class="p">,</span> <span class="s1">&#39;3/13/2000&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-<span class="go">0    3/11/2000</span>
-<span class="go">1    3/12/2000</span>
-<span class="go">2    3/13/2000</span>
-<span class="go">3    3/11/2000</span>
-<span class="go">4    3/12/2000</span>
-<span class="go">dtype: object</span>
-</pre></div>
-</div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="o">%</span><span class="n">timeit</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">infer_datetime_format</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  
-<span class="go">100 loops, best of 3: 10.4 ms per loop</span>
-</pre></div>
-</div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="o">%</span><span class="n">timeit</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">infer_datetime_format</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  
-<span class="go">1 loop, best of 3: 471 ms per loop</span>
-</pre></div>
-</div>
 <p>Using a unix epoch time</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="mi">1490195805</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;s&#39;</span><span class="p">)</span>
 <span class="go">Timestamp(&#39;2017-03-22 15:16:45&#39;)</span>
@@ -869,13 +863,20 @@ unexpected behavior use a fixed-width exact type.</p>
 <span class="go">              dtype=&#39;datetime64[ns]&#39;, freq=None)</span>
 </pre></div>
 </div>
+<p><strong>Differences with strptime behavior</strong></p>
+<p><code class="xref py py-const docutils literal notranslate"><span class="pre">&quot;%f&quot;</span></code> will parse all the way up to nanoseconds.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="s1">&#39;2018-10-26 12:00:00.0000000011&#39;</span><span class="p">,</span>
+<span class="gp">... </span>               <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M:%S.</span><span class="si">%f</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="go">Timestamp(&#39;2018-10-26 12:00:00.000000001&#39;)</span>
+</pre></div>
+</div>
 <p><strong>Non-convertible date/times</strong></p>
 <p>If a date does not meet the <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/user_guide/timeseries.html#timeseries-timestamp-limits">timestamp limitations</a>, passing <code class="docutils literal notranslate"><span class="pre">errors='ignore'</span></code>
 will return the original input instead of raising any exception.</p>
-<p>Passing <code class="docutils literal notranslate"><span class="pre">errors='coerce'</span></code> will force an out-of-bounds date to <code class="xref py py-const docutils literal notranslate"><span class="pre">NaT</span></code>,
-in addition to forcing non-dates (or non-parseable dates) to <code class="xref py py-const docutils literal notranslate"><span class="pre">NaT</span></code>.</p>
+<p>Passing <code class="docutils literal notranslate"><span class="pre">errors='coerce'</span></code> will force an out-of-bounds date to <a class="reference internal" href="pandas.NaT.html#pandas.NaT" title="pandas.NaT"><code class="xref py py-const docutils literal notranslate"><span class="pre">NaT</span></code></a>,
+in addition to forcing non-dates (or non-parseable dates) to <a class="reference internal" href="pandas.NaT.html#pandas.NaT" title="pandas.NaT"><code class="xref py py-const docutils literal notranslate"><span class="pre">NaT</span></code></a>.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="s1">&#39;13000101&#39;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%Y%m</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
-<span class="go">datetime.datetime(1300, 1, 1, 0, 0)</span>
+<span class="go">&#39;13000101&#39;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="s1">&#39;13000101&#39;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%Y%m</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">)</span>
 <span class="go">NaT</span>
 </pre></div>
@@ -885,7 +886,7 @@ in addition to forcing non-dates (or non-parseable dates) to <code class="xref p
 <ul class="simple">
 <li><p>Timezone-naive inputs are converted to timezone-naive <a class="reference internal" href="pandas.DatetimeIndex.html#pandas.DatetimeIndex" title="pandas.DatetimeIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">DatetimeIndex</span></code></a>:</p></li>
 </ul>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">([</span><span class="s1">&#39;2018-10-26 12:00&#39;</span><span class="p">,</span> <span class="s1">&#39;2018-10-26 13:00:15&#39;</span><span class="p">])</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">([</span><span class="s1">&#39;2018-10-26 12:00:00&#39;</span><span class="p">,</span> <span class="s1">&#39;2018-10-26 13:00:15&#39;</span><span class="p">])</span>
 <span class="go">DatetimeIndex([&#39;2018-10-26 12:00:00&#39;, &#39;2018-10-26 13:00:15&#39;],</span>
 <span class="go">              dtype=&#39;datetime64[ns]&#39;, freq=None)</span>
 </pre></div>
@@ -896,7 +897,7 @@ timezone-aware <a class="reference internal" href="pandas.DatetimeIndex.html#pan
 </ul>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">([</span><span class="s1">&#39;2018-10-26 12:00 -0500&#39;</span><span class="p">,</span> <span class="s1">&#39;2018-10-26 13:00 -0500&#39;</span><span class="p">])</span>
 <span class="go">DatetimeIndex([&#39;2018-10-26 12:00:00-05:00&#39;, &#39;2018-10-26 13:00:00-05:00&#39;],</span>
-<span class="go">              dtype=&#39;datetime64[ns, pytz.FixedOffset(-300)]&#39;, freq=None)</span>
+<span class="go">              dtype=&#39;datetime64[ns, UTC-05:00]&#39;, freq=None)</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -912,14 +913,12 @@ returned:</p></li>
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>A mix of timezone-aware and timezone-naive inputs is converted to
-a timezone-aware <a class="reference internal" href="pandas.DatetimeIndex.html#pandas.DatetimeIndex" title="pandas.DatetimeIndex"><code class="xref py py-class docutils literal notranslate"><span class="pre">DatetimeIndex</span></code></a> if the offsets of the timezone-aware
-are constant:</p></li>
+<li><p>A mix of timezone-aware and timezone-naive inputs is also converted to
+a simple <a class="reference internal" href="pandas.Index.html#pandas.Index" title="pandas.Index"><code class="xref py py-class docutils literal notranslate"><span class="pre">Index</span></code></a> containing <a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">datetime.datetime</span></code></a> objects:</p></li>
 </ul>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">([</span><span class="s2">&quot;2020-01-01 01:00 -01:00&quot;</span><span class="p">,</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">)])</span>
-<span class="go">DatetimeIndex([&#39;2020-01-01 01:00:00-01:00&#39;, &#39;2020-01-01 02:00:00-01:00&#39;],</span>
-<span class="go">              dtype=&#39;datetime64[ns, pytz.FixedOffset(-60)]&#39;, freq=None)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">([</span><span class="s2">&quot;2020-01-01 01:00:00-01:00&quot;</span><span class="p">,</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">)])</span>
+<span class="go">Index([2020-01-01 01:00:00-01:00, 2020-01-01 03:00:00], dtype=&#39;object&#39;)</span>
 </pre></div>
 </div>
 <div class="line-block">
@@ -945,17 +944,11 @@ exact same datetime, but viewed from the UTC time offset <cite>+00:00</cite>).</
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>Inputs can contain both naive and aware, string or datetime, the above
+<li><p>Inputs can contain both string or datetime, the above
 rules still apply</p></li>
 </ul>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">timezone</span><span class="p">,</span> <span class="n">timedelta</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">([</span><span class="s1">&#39;2018-10-26 12:00&#39;</span><span class="p">,</span> <span class="s1">&#39;2018-10-26 12:00 -0530&#39;</span><span class="p">,</span>
-<span class="gp">... </span>               <span class="n">datetime</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">18</span><span class="p">),</span>
-<span class="gp">... </span>               <span class="n">datetime</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span>
-<span class="gp">... </span>               <span class="n">tzinfo</span><span class="o">=</span><span class="n">timezone</span><span class="p">(</span><span class="o">-</span><span class="n">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="mi">1</span><span class="p">)))],</span>
-<span class="gp">... </span>               <span class="n">utc</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="go">DatetimeIndex([&#39;2018-10-26 12:00:00+00:00&#39;, &#39;2018-10-26 17:30:00+00:00&#39;,</span>
-<span class="go">               &#39;2020-01-01 18:00:00+00:00&#39;, &#39;2020-01-01 19:00:00+00:00&#39;],</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">([</span><span class="s1">&#39;2018-10-26 12:00&#39;</span><span class="p">,</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">18</span><span class="p">)],</span> <span class="n">utc</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="go">DatetimeIndex([&#39;2018-10-26 12:00:00+00:00&#39;, &#39;2020-01-01 18:00:00+00:00&#39;],</span>
 <span class="go">              dtype=&#39;datetime64[ns, UTC]&#39;, freq=None)</span>
 </pre></div>
 </div>

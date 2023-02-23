@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>pandas.PeriodIndex &#8212; pandas 1.5.3 documentation</title>
+    <title>pandas.PeriodIndex &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -55,13 +55,13 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'reference/api/pandas.PeriodIndex';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="pandas.PeriodIndex.day" href="pandas.PeriodIndex.day.html" />
-    <link rel="prev" title="pandas.TimedeltaIndex.mean" href="pandas.TimedeltaIndex.mean.html" />
+    <link rel="prev" title="pandas.TimedeltaIndex.as_unit" href="pandas.TimedeltaIndex.as_unit.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="docsearch:language" content="en">
   </head>
@@ -182,7 +182,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -311,7 +311,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -409,11 +409,6 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="pandas.Index.is_monotonic.html">
-     pandas.Index.is_monotonic
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="pandas.Index.is_monotonic_increasing.html">
      pandas.Index.is_monotonic_increasing
     </a>
@@ -446,11 +441,6 @@
    <li class="toctree-l2">
     <a class="reference internal" href="pandas.Index.inferred_type.html">
      pandas.Index.inferred_type
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.Index.is_all_dates.html">
-     pandas.Index.is_all_dates
     </a>
    </li>
    <li class="toctree-l2">
@@ -594,11 +584,6 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="pandas.Index.is_mixed.html">
-     pandas.Index.is_mixed
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="pandas.Index.is_numeric.html">
      pandas.Index.is_numeric
     </a>
@@ -719,11 +704,6 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="pandas.Index.to_native_types.html">
-     pandas.Index.to_native_types
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="pandas.Index.to_series.html">
      pandas.Index.to_series
     </a>
@@ -829,11 +809,6 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="pandas.Index.get_value.html">
-     pandas.Index.get_value
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="pandas.Index.isin.html">
      pandas.Index.isin
     </a>
@@ -851,21 +826,6 @@
    <li class="toctree-l2">
     <a class="reference internal" href="pandas.RangeIndex.html">
      pandas.RangeIndex
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.Int64Index.html">
-     pandas.Int64Index
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.UInt64Index.html">
-     pandas.UInt64Index
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.Float64Index.html">
-     pandas.Float64Index
     </a>
    </li>
    <li class="toctree-l2">
@@ -1054,13 +1014,13 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="pandas.MultiIndex.html">
-     pandas.MultiIndex
+    <a class="reference internal" href="pandas.IndexSlice.html">
+     pandas.IndexSlice
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="pandas.IndexSlice.html">
-     pandas.IndexSlice
+    <a class="reference internal" href="pandas.MultiIndex.html">
+     pandas.MultiIndex
     </a>
    </li>
    <li class="toctree-l2">
@@ -1159,6 +1119,26 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="pandas.MultiIndex.drop.html">
+     pandas.MultiIndex.drop
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.MultiIndex.copy.html">
+     pandas.MultiIndex.copy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.MultiIndex.append.html">
+     pandas.MultiIndex.append
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.MultiIndex.truncate.html">
+     pandas.MultiIndex.truncate
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="pandas.MultiIndex.get_loc.html">
      pandas.MultiIndex.get_loc
     </a>
@@ -1251,16 +1231,6 @@
    <li class="toctree-l2">
     <a class="reference internal" href="pandas.DatetimeIndex.day_of_year.html">
      pandas.DatetimeIndex.day_of_year
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.DatetimeIndex.weekofyear.html">
-     pandas.DatetimeIndex.weekofyear
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="pandas.DatetimeIndex.week.html">
-     pandas.DatetimeIndex.week
     </a>
    </li>
    <li class="toctree-l2">
@@ -1399,13 +1369,13 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="pandas.DatetimeIndex.to_period.html">
-     pandas.DatetimeIndex.to_period
+    <a class="reference internal" href="pandas.DatetimeIndex.as_unit.html">
+     pandas.DatetimeIndex.as_unit
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="pandas.DatetimeIndex.to_perioddelta.html">
-     pandas.DatetimeIndex.to_perioddelta
+    <a class="reference internal" href="pandas.DatetimeIndex.to_period.html">
+     pandas.DatetimeIndex.to_period
     </a>
    </li>
    <li class="toctree-l2">
@@ -1466,6 +1436,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="pandas.TimedeltaIndex.inferred_freq.html">
      pandas.TimedeltaIndex.inferred_freq
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pandas.TimedeltaIndex.as_unit.html">
+     pandas.TimedeltaIndex.as_unit
     </a>
    </li>
    <li class="toctree-l2">
@@ -1551,11 +1526,6 @@
      <li class="toctree-l3">
       <a class="reference internal" href="pandas.PeriodIndex.end_time.html">
        pandas.PeriodIndex.end_time
-      </a>
-     </li>
-     <li class="toctree-l3">
-      <a class="reference internal" href="pandas.PeriodIndex.freq.html">
-       pandas.PeriodIndex.freq
       </a>
      </li>
      <li class="toctree-l3">
@@ -1840,7 +1810,7 @@
 <h1>pandas.PeriodIndex<a class="headerlink" href="#pandas-periodindex" title="Permalink to this headline">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="pandas.PeriodIndex">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pandas.</span></span><span class="sig-name descname"><span class="pre">PeriodIndex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ordinal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">copy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">fields</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v1.5.3/pandas/core/indexes/period.py#L85-L523"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.PeriodIndex" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pandas.</span></span><span class="sig-name descname"><span class="pre">PeriodIndex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ordinal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">copy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">fields</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/pandas-dev/pandas/blob/v2.0.0rc0/pandas/core/indexes/period.py#L75-L477"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pandas.PeriodIndex" title="Permalink to this definition">#</a></dt>
 <dd><p>Immutable ndarray holding ordinal values indicating regular periods in time.</p>
 <p>Index keys are boxed to Period objects which carries the metadata (eg,
 frequency information).</p>
@@ -1916,43 +1886,40 @@ frequency information).</p>
 <tr class="row-even"><td><p><a class="reference internal" href="pandas.PeriodIndex.end_time.html#pandas.PeriodIndex.end_time" title="pandas.PeriodIndex.end_time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">end_time</span></code></a></p></td>
 <td><p>Get the Timestamp for the end of the period.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pandas.PeriodIndex.freq.html#pandas.PeriodIndex.freq" title="pandas.PeriodIndex.freq"><code class="xref py py-obj docutils literal notranslate"><span class="pre">freq</span></code></a></p></td>
-<td><p>Return the frequency object if it is set, otherwise None.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pandas.PeriodIndex.freqstr.html#pandas.PeriodIndex.freqstr" title="pandas.PeriodIndex.freqstr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">freqstr</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.PeriodIndex.freqstr.html#pandas.PeriodIndex.freqstr" title="pandas.PeriodIndex.freqstr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">freqstr</span></code></a></p></td>
 <td><p>Return the frequency object as a string if its set, otherwise None.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pandas.PeriodIndex.hour.html#pandas.PeriodIndex.hour" title="pandas.PeriodIndex.hour"><code class="xref py py-obj docutils literal notranslate"><span class="pre">hour</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.PeriodIndex.hour.html#pandas.PeriodIndex.hour" title="pandas.PeriodIndex.hour"><code class="xref py py-obj docutils literal notranslate"><span class="pre">hour</span></code></a></p></td>
 <td><p>The hour of the period.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pandas.PeriodIndex.is_leap_year.html#pandas.PeriodIndex.is_leap_year" title="pandas.PeriodIndex.is_leap_year"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_leap_year</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.PeriodIndex.is_leap_year.html#pandas.PeriodIndex.is_leap_year" title="pandas.PeriodIndex.is_leap_year"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_leap_year</span></code></a></p></td>
 <td><p>Logical indicating if the date belongs to a leap year.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pandas.PeriodIndex.minute.html#pandas.PeriodIndex.minute" title="pandas.PeriodIndex.minute"><code class="xref py py-obj docutils literal notranslate"><span class="pre">minute</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.PeriodIndex.minute.html#pandas.PeriodIndex.minute" title="pandas.PeriodIndex.minute"><code class="xref py py-obj docutils literal notranslate"><span class="pre">minute</span></code></a></p></td>
 <td><p>The minute of the period.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pandas.PeriodIndex.month.html#pandas.PeriodIndex.month" title="pandas.PeriodIndex.month"><code class="xref py py-obj docutils literal notranslate"><span class="pre">month</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.PeriodIndex.month.html#pandas.PeriodIndex.month" title="pandas.PeriodIndex.month"><code class="xref py py-obj docutils literal notranslate"><span class="pre">month</span></code></a></p></td>
 <td><p>The month as January=1, December=12.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pandas.PeriodIndex.quarter.html#pandas.PeriodIndex.quarter" title="pandas.PeriodIndex.quarter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">quarter</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.PeriodIndex.quarter.html#pandas.PeriodIndex.quarter" title="pandas.PeriodIndex.quarter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">quarter</span></code></a></p></td>
 <td><p>The quarter of the date.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pandas.PeriodIndex.second.html#pandas.PeriodIndex.second" title="pandas.PeriodIndex.second"><code class="xref py py-obj docutils literal notranslate"><span class="pre">second</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.PeriodIndex.second.html#pandas.PeriodIndex.second" title="pandas.PeriodIndex.second"><code class="xref py py-obj docutils literal notranslate"><span class="pre">second</span></code></a></p></td>
 <td><p>The second of the period.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pandas.PeriodIndex.start_time.html#pandas.PeriodIndex.start_time" title="pandas.PeriodIndex.start_time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">start_time</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.PeriodIndex.start_time.html#pandas.PeriodIndex.start_time" title="pandas.PeriodIndex.start_time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">start_time</span></code></a></p></td>
 <td><p>Get the Timestamp for the start of the period.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pandas.PeriodIndex.week.html#pandas.PeriodIndex.week" title="pandas.PeriodIndex.week"><code class="xref py py-obj docutils literal notranslate"><span class="pre">week</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.PeriodIndex.week.html#pandas.PeriodIndex.week" title="pandas.PeriodIndex.week"><code class="xref py py-obj docutils literal notranslate"><span class="pre">week</span></code></a></p></td>
 <td><p>The week ordinal of the year.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pandas.PeriodIndex.weekday.html#pandas.PeriodIndex.weekday" title="pandas.PeriodIndex.weekday"><code class="xref py py-obj docutils literal notranslate"><span class="pre">weekday</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.PeriodIndex.weekday.html#pandas.PeriodIndex.weekday" title="pandas.PeriodIndex.weekday"><code class="xref py py-obj docutils literal notranslate"><span class="pre">weekday</span></code></a></p></td>
 <td><p>The day of the week with Monday=0, Sunday=6.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pandas.PeriodIndex.weekofyear.html#pandas.PeriodIndex.weekofyear" title="pandas.PeriodIndex.weekofyear"><code class="xref py py-obj docutils literal notranslate"><span class="pre">weekofyear</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="pandas.PeriodIndex.weekofyear.html#pandas.PeriodIndex.weekofyear" title="pandas.PeriodIndex.weekofyear"><code class="xref py py-obj docutils literal notranslate"><span class="pre">weekofyear</span></code></a></p></td>
 <td><p>The week ordinal of the year.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="pandas.PeriodIndex.year.html#pandas.PeriodIndex.year" title="pandas.PeriodIndex.year"><code class="xref py py-obj docutils literal notranslate"><span class="pre">year</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pandas.PeriodIndex.year.html#pandas.PeriodIndex.year" title="pandas.PeriodIndex.year"><code class="xref py py-obj docutils literal notranslate"><span class="pre">year</span></code></a></p></td>
 <td><p>The year of the period.</p></td>
 </tr>
 </tbody>
@@ -1963,7 +1930,10 @@ frequency information).</p>
 <col style="width: 53%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><strong>qyear</strong></p></td>
+<tr class="row-odd"><td><p><strong>freq</strong></p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>qyear</strong></p></td>
 <td></td>
 </tr>
 </tbody>
@@ -1998,11 +1968,11 @@ frequency information).</p>
             <footer class="bd-footer-article">
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-  <a class='left-prev' id="prev-link" href="pandas.TimedeltaIndex.mean.html" title="previous page">
+  <a class='left-prev' id="prev-link" href="pandas.TimedeltaIndex.as_unit.html" title="previous page">
       <i class="fas fa-angle-left"></i>
       <div class="prev-next-info">
           <p class="prev-next-subtitle">previous</p>
-          <p class="prev-next-title">pandas.TimedeltaIndex.mean</p>
+          <p class="prev-next-title">pandas.TimedeltaIndex.as_unit</p>
       </div>
   </a>
   <a class='right-next' id="next-link" href="pandas.PeriodIndex.day.html" title="next page">

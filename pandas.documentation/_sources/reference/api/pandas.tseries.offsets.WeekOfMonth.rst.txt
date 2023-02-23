@@ -13,11 +13,7 @@ pandas.tseries.offsets.WeekOfMonth
    .. autosummary::
       :toctree:
       
-      WeekOfMonth.__call__
-      WeekOfMonth.apply
-      WeekOfMonth.apply_index
       WeekOfMonth.copy
-      WeekOfMonth.isAnchored
       WeekOfMonth.is_anchored
       WeekOfMonth.is_month_end
       WeekOfMonth.is_month_start
@@ -26,7 +22,6 @@ pandas.tseries.offsets.WeekOfMonth
       WeekOfMonth.is_quarter_start
       WeekOfMonth.is_year_end
       WeekOfMonth.is_year_start
-      WeekOfMonth.onOffset
       WeekOfMonth.rollback
       WeekOfMonth.rollforward
 

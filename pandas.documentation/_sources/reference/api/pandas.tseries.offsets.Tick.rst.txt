@@ -13,11 +13,7 @@ pandas.tseries.offsets.Tick
    .. autosummary::
       :toctree:
       
-      Tick.__call__
-      Tick.apply
-      Tick.apply_index
       Tick.copy
-      Tick.isAnchored
       Tick.is_anchored
       Tick.is_month_end
       Tick.is_month_start
@@ -26,7 +22,6 @@ pandas.tseries.offsets.Tick
       Tick.is_quarter_start
       Tick.is_year_end
       Tick.is_year_start
-      Tick.onOffset
       Tick.rollback
       Tick.rollforward
 

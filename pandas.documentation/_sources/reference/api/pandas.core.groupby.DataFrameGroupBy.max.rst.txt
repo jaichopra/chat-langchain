@@ -1,0 +1,6 @@
+pandas.core.groupby.DataFrameGroupBy.max
+========================================
+
+.. currentmodule:: pandas.core.groupby
+
+.. automethod:: DataFrameGroupBy.max

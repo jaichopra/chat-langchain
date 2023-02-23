@@ -1,0 +1,6 @@
+pandas.core.groupby.SeriesGroupBy.rolling
+=========================================
+
+.. currentmodule:: pandas.core.groupby
+
+.. automethod:: SeriesGroupBy.rolling

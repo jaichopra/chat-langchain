@@ -1,0 +1,6 @@
+pandas.errors.InvalidVersion
+============================
+
+.. currentmodule:: pandas.errors
+
+.. autoexception:: InvalidVersion

@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Working with text data &#8212; pandas 1.5.3 documentation</title>
+    <title>Working with text data &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -55,7 +55,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/text';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -182,7 +182,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -311,7 +311,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -381,6 +381,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="io.html">
    IO tools (text, CSV, HDF5, …)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="pyarrow.html">
+   PyArrow Functionality
   </a>
  </li>
  <li class="toctree-l1">
@@ -947,31 +952,46 @@ i.e., from the end of the string to the beginning of the string:</p>
 <span class="go">dtype: string</span>
 </pre></div>
 </div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Some caution must be taken when dealing with regular expressions! The current behavior
-is to treat single character patterns as literal strings, even when <code class="docutils literal notranslate"><span class="pre">regex</span></code> is set
-to <code class="docutils literal notranslate"><span class="pre">True</span></code>. This behavior is deprecated and will be removed in a future version so
-that the <code class="docutils literal notranslate"><span class="pre">regex</span></code> keyword is always respected.</p>
-</div>
 <div class="versionchanged">
-<p><span class="versionmodified changed">Changed in version 1.2.0.</span></p>
+<p><span class="versionmodified changed">Changed in version 2.0.</span></p>
+</div>
+<p>Single character pattern with <code class="docutils literal notranslate"><span class="pre">regex=True</span></code> will also be treated as regular expressions:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [48]: </span><span class="n">s4</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s2">&quot;a.b&quot;</span><span class="p">,</span> <span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;string&quot;</span><span class="p">)</span>
+
+<span class="gp">In [49]: </span><span class="n">s4</span>
+<span class="gh">Out[49]: </span>
+<span class="go">0     a.b</span>
+<span class="go">1       .</span>
+<span class="go">2       b</span>
+<span class="go">3    &lt;NA&gt;</span>
+<span class="go">4        </span>
+<span class="go">dtype: string</span>
+
+<span class="gp">In [50]: </span><span class="n">s4</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gh">Out[50]: </span>
+<span class="go">0     aaa</span>
+<span class="go">1       a</span>
+<span class="go">2       a</span>
+<span class="go">3    &lt;NA&gt;</span>
+<span class="go">4        </span>
+<span class="go">dtype: string</span>
+</pre></div>
 </div>
 <p>If you want literal replacement of a string (equivalent to <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str.replace" title="(in Python v3.11)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">str.replace()</span></code></a>), you
 can set the optional <code class="docutils literal notranslate"><span class="pre">regex</span></code> parameter to <code class="docutils literal notranslate"><span class="pre">False</span></code>, rather than escaping each
 character. In this case both <code class="docutils literal notranslate"><span class="pre">pat</span></code> and <code class="docutils literal notranslate"><span class="pre">repl</span></code> must be strings:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [48]: </span><span class="n">dollars</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s2">&quot;12&quot;</span><span class="p">,</span> <span class="s2">&quot;-$10&quot;</span><span class="p">,</span> <span class="s2">&quot;$10,000&quot;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;string&quot;</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [51]: </span><span class="n">dollars</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s2">&quot;12&quot;</span><span class="p">,</span> <span class="s2">&quot;-$10&quot;</span><span class="p">,</span> <span class="s2">&quot;$10,000&quot;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;string&quot;</span><span class="p">)</span>
 
 <span class="go"># These lines are equivalent</span>
-<span class="gp">In [49]: </span><span class="n">dollars</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;-\$&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="gh">Out[49]: </span>
+<span class="gp">In [52]: </span><span class="n">dollars</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;-\$&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gh">Out[52]: </span>
 <span class="go">0         12</span>
 <span class="go">1        -10</span>
 <span class="go">2    $10,000</span>
 <span class="go">dtype: string</span>
 
-<span class="gp">In [50]: </span><span class="n">dollars</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;-$&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="gh">Out[50]: </span>
+<span class="gp">In [53]: </span><span class="n">dollars</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;-$&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="gh">Out[53]: </span>
 <span class="go">0         12</span>
 <span class="go">1        -10</span>
 <span class="go">2    $10,000</span>
@@ -982,34 +1002,34 @@ character. In this case both <code class="docutils literal notranslate"><span cl
 on every <code class="docutils literal notranslate"><span class="pre">pat</span></code> using <a class="reference external" href="https://docs.python.org/3/library/re.html#re.sub" title="(in Python v3.11)"><code class="xref py py-func docutils literal notranslate"><span class="pre">re.sub()</span></code></a>. The callable should expect one
 positional argument (a regex object) and return a string.</p>
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="go"># Reverse every lowercase alphabetic word</span>
-<span class="gp">In [51]: </span><span class="n">pat</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;[a-z]+&quot;</span>
+<span class="gp">In [54]: </span><span class="n">pat</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;[a-z]+&quot;</span>
 
-<span class="gp">In [52]: </span><span class="k">def</span> <span class="nf">repl</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+<span class="gp">In [55]: </span><span class="k">def</span> <span class="nf">repl</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
 <span class="gp">   ....: </span>    <span class="k">return</span> <span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">0</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 <span class="gp">   ....: </span>
 
-<span class="gp">In [53]: </span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s2">&quot;foo 123&quot;</span><span class="p">,</span> <span class="s2">&quot;bar baz&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;string&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span>
+<span class="gp">In [56]: </span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s2">&quot;foo 123&quot;</span><span class="p">,</span> <span class="s2">&quot;bar baz&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;string&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span>
 <span class="gp">   ....: </span>    <span class="n">pat</span><span class="p">,</span> <span class="n">repl</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="kc">True</span>
 <span class="gp">   ....: </span><span class="p">)</span>
 <span class="gp">   ....: </span>
-<span class="gh">Out[53]: </span>
+<span class="gh">Out[56]: </span>
 <span class="go">0    oof 123</span>
 <span class="go">1    rab zab</span>
 <span class="go">2       &lt;NA&gt;</span>
 <span class="go">dtype: string</span>
 
 <span class="go"># Using regex groups</span>
-<span class="gp">In [54]: </span><span class="n">pat</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;(?P&lt;one&gt;\w+) (?P&lt;two&gt;\w+) (?P&lt;three&gt;\w+)&quot;</span>
+<span class="gp">In [57]: </span><span class="n">pat</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;(?P&lt;one&gt;\w+) (?P&lt;two&gt;\w+) (?P&lt;three&gt;\w+)&quot;</span>
 
-<span class="gp">In [55]: </span><span class="k">def</span> <span class="nf">repl</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+<span class="gp">In [58]: </span><span class="k">def</span> <span class="nf">repl</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
 <span class="gp">   ....: </span>    <span class="k">return</span> <span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s2">&quot;two&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">swapcase</span><span class="p">()</span>
 <span class="gp">   ....: </span>
 
-<span class="gp">In [56]: </span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s2">&quot;Foo Bar Baz&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;string&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span>
+<span class="gp">In [59]: </span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s2">&quot;Foo Bar Baz&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;string&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span>
 <span class="gp">   ....: </span>    <span class="n">pat</span><span class="p">,</span> <span class="n">repl</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="kc">True</span>
 <span class="gp">   ....: </span><span class="p">)</span>
 <span class="gp">   ....: </span>
-<span class="gh">Out[56]: </span>
+<span class="gh">Out[59]: </span>
 <span class="go">0     bAR</span>
 <span class="go">1    &lt;NA&gt;</span>
 <span class="go">dtype: string</span>
@@ -1018,12 +1038,12 @@ positional argument (a regex object) and return a string.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">replace</span></code> method also accepts a compiled regular expression object
 from <a class="reference external" href="https://docs.python.org/3/library/re.html#re.compile" title="(in Python v3.11)"><code class="xref py py-func docutils literal notranslate"><span class="pre">re.compile()</span></code></a> as a pattern. All flags should be included in the
 compiled regular expression object.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [57]: </span><span class="kn">import</span> <span class="nn">re</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [60]: </span><span class="kn">import</span> <span class="nn">re</span>
 
-<span class="gp">In [58]: </span><span class="n">regex_pat</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;^.a|dog&quot;</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">IGNORECASE</span><span class="p">)</span>
+<span class="gp">In [61]: </span><span class="n">regex_pat</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;^.a|dog&quot;</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">IGNORECASE</span><span class="p">)</span>
 
-<span class="gp">In [59]: </span><span class="n">s3</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">regex_pat</span><span class="p">,</span> <span class="s2">&quot;XX-XX &quot;</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="gh">Out[59]: </span>
+<span class="gp">In [62]: </span><span class="n">s3</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">regex_pat</span><span class="p">,</span> <span class="s2">&quot;XX-XX &quot;</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gh">Out[62]: </span>
 <span class="go">0           A</span>
 <span class="go">1           B</span>
 <span class="go">2           C</span>
@@ -1039,7 +1059,7 @@ compiled regular expression object.</p>
 </div>
 <p>Including a <code class="docutils literal notranslate"><span class="pre">flags</span></code> argument when calling <code class="docutils literal notranslate"><span class="pre">replace</span></code> with a compiled
 regular expression object will raise a <code class="docutils literal notranslate"><span class="pre">ValueError</span></code>.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [60]: </span><span class="n">s3</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">regex_pat</span><span class="p">,</span> <span class="s1">&#39;XX-XX &#39;</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">IGNORECASE</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [63]: </span><span class="n">s3</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">regex_pat</span><span class="p">,</span> <span class="s1">&#39;XX-XX &#39;</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">IGNORECASE</span><span class="p">)</span>
 <span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ValueError</span>: case and flags cannot be set when pat is a compiled regex
 </pre></div>
@@ -1049,19 +1069,19 @@ regular expression object will raise a <code class="docutils literal notranslate
 <div class="versionadded">
 <p><span class="versionmodified added">New in version 1.4.0.</span></p>
 </div>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [61]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s2">&quot;str_foo&quot;</span><span class="p">,</span> <span class="s2">&quot;str_bar&quot;</span><span class="p">,</span> <span class="s2">&quot;no_prefix&quot;</span><span class="p">])</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [64]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s2">&quot;str_foo&quot;</span><span class="p">,</span> <span class="s2">&quot;str_bar&quot;</span><span class="p">,</span> <span class="s2">&quot;no_prefix&quot;</span><span class="p">])</span>
 
-<span class="gp">In [62]: </span><span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">removeprefix</span><span class="p">(</span><span class="s2">&quot;str_&quot;</span><span class="p">)</span>
-<span class="gh">Out[62]: </span>
+<span class="gp">In [65]: </span><span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">removeprefix</span><span class="p">(</span><span class="s2">&quot;str_&quot;</span><span class="p">)</span>
+<span class="gh">Out[65]: </span>
 <span class="go">0          foo</span>
 <span class="go">1          bar</span>
 <span class="go">2    no_prefix</span>
 <span class="go">dtype: object</span>
 
-<span class="gp">In [63]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s2">&quot;foo_str&quot;</span><span class="p">,</span> <span class="s2">&quot;bar_str&quot;</span><span class="p">,</span> <span class="s2">&quot;no_suffix&quot;</span><span class="p">])</span>
+<span class="gp">In [66]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s2">&quot;foo_str&quot;</span><span class="p">,</span> <span class="s2">&quot;bar_str&quot;</span><span class="p">,</span> <span class="s2">&quot;no_suffix&quot;</span><span class="p">])</span>
 
-<span class="gp">In [64]: </span><span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">removesuffix</span><span class="p">(</span><span class="s2">&quot;_str&quot;</span><span class="p">)</span>
-<span class="gh">Out[64]: </span>
+<span class="gp">In [67]: </span><span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">removesuffix</span><span class="p">(</span><span class="s2">&quot;_str&quot;</span><span class="p">)</span>
+<span class="gh">Out[67]: </span>
 <span class="go">0          foo</span>
 <span class="go">1          bar</span>
 <span class="go">2    no_suffix</span>
@@ -1076,33 +1096,33 @@ resp. <code class="docutils literal notranslate"><span class="pre">Index.str.cat
 <section id="concatenating-a-single-series-into-a-string">
 <h3>Concatenating a single Series into a string<a class="headerlink" href="#concatenating-a-single-series-into-a-string" title="Permalink to this headline">#</a></h3>
 <p>The content of a <code class="docutils literal notranslate"><span class="pre">Series</span></code> (or <code class="docutils literal notranslate"><span class="pre">Index</span></code>) can be concatenated:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [65]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="s2">&quot;d&quot;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;string&quot;</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [68]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="s2">&quot;d&quot;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;string&quot;</span><span class="p">)</span>
 
-<span class="gp">In [66]: </span><span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">sep</span><span class="o">=</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
-<span class="gh">Out[66]: </span><span class="go">&#39;a,b,c,d&#39;</span>
+<span class="gp">In [69]: </span><span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">sep</span><span class="o">=</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
+<span class="gh">Out[69]: </span><span class="go">&#39;a,b,c,d&#39;</span>
 </pre></div>
 </div>
 <p>If not specified, the keyword <code class="docutils literal notranslate"><span class="pre">sep</span></code> for the separator defaults to the empty string, <code class="docutils literal notranslate"><span class="pre">sep=''</span></code>:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [67]: </span><span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">cat</span><span class="p">()</span>
-<span class="gh">Out[67]: </span><span class="go">&#39;abcd&#39;</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [70]: </span><span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">cat</span><span class="p">()</span>
+<span class="gh">Out[70]: </span><span class="go">&#39;abcd&#39;</span>
 </pre></div>
 </div>
 <p>By default, missing values are ignored. Using <code class="docutils literal notranslate"><span class="pre">na_rep</span></code>, they can be given a representation:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [68]: </span><span class="n">t</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="s2">&quot;d&quot;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;string&quot;</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [71]: </span><span class="n">t</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="s2">&quot;d&quot;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;string&quot;</span><span class="p">)</span>
 
-<span class="gp">In [69]: </span><span class="n">t</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">sep</span><span class="o">=</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
-<span class="gh">Out[69]: </span><span class="go">&#39;a,b,d&#39;</span>
+<span class="gp">In [72]: </span><span class="n">t</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">sep</span><span class="o">=</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
+<span class="gh">Out[72]: </span><span class="go">&#39;a,b,d&#39;</span>
 
-<span class="gp">In [70]: </span><span class="n">t</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">sep</span><span class="o">=</span><span class="s2">&quot;,&quot;</span><span class="p">,</span> <span class="n">na_rep</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">)</span>
-<span class="gh">Out[70]: </span><span class="go">&#39;a,b,-,d&#39;</span>
+<span class="gp">In [73]: </span><span class="n">t</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">sep</span><span class="o">=</span><span class="s2">&quot;,&quot;</span><span class="p">,</span> <span class="n">na_rep</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">)</span>
+<span class="gh">Out[73]: </span><span class="go">&#39;a,b,-,d&#39;</span>
 </pre></div>
 </div>
 </section>
 <section id="concatenating-a-series-and-something-list-like-into-a-series">
 <h3>Concatenating a Series and something list-like into a Series<a class="headerlink" href="#concatenating-a-series-and-something-list-like-into-a-series" title="Permalink to this headline">#</a></h3>
 <p>The first argument to <a class="reference internal" href="../reference/api/pandas.Series.str.cat.html#pandas.Series.str.cat" title="pandas.Series.str.cat"><code class="xref py py-meth docutils literal notranslate"><span class="pre">cat()</span></code></a> can be a list-like object, provided that it matches the length of the calling <code class="docutils literal notranslate"><span class="pre">Series</span></code> (or <code class="docutils literal notranslate"><span class="pre">Index</span></code>).</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [71]: </span><span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="s2">&quot;D&quot;</span><span class="p">])</span>
-<span class="gh">Out[71]: </span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [74]: </span><span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="s2">&quot;D&quot;</span><span class="p">])</span>
+<span class="gh">Out[74]: </span>
 <span class="go">0    aA</span>
 <span class="go">1    bB</span>
 <span class="go">2    cC</span>
@@ -1111,16 +1131,16 @@ resp. <code class="docutils literal notranslate"><span class="pre">Index.str.cat
 </pre></div>
 </div>
 <p>Missing values on either side will result in missing values in the result as well, <em>unless</em> <code class="docutils literal notranslate"><span class="pre">na_rep</span></code> is specified:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [72]: </span><span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
-<span class="gh">Out[72]: </span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [75]: </span><span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="gh">Out[75]: </span>
 <span class="go">0      aa</span>
 <span class="go">1      bb</span>
 <span class="go">2    &lt;NA&gt;</span>
 <span class="go">3      dd</span>
 <span class="go">dtype: string</span>
 
-<span class="gp">In [73]: </span><span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">na_rep</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">)</span>
-<span class="gh">Out[73]: </span>
+<span class="gp">In [76]: </span><span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">na_rep</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">)</span>
+<span class="gh">Out[76]: </span>
 <span class="go">0    aa</span>
 <span class="go">1    bb</span>
 <span class="go">2    c-</span>
@@ -1132,26 +1152,26 @@ resp. <code class="docutils literal notranslate"><span class="pre">Index.str.cat
 <section id="concatenating-a-series-and-something-array-like-into-a-series">
 <h3>Concatenating a Series and something array-like into a Series<a class="headerlink" href="#concatenating-a-series-and-something-array-like-into-a-series" title="Permalink to this headline">#</a></h3>
 <p>The parameter <code class="docutils literal notranslate"><span class="pre">others</span></code> can also be two-dimensional. In this case, the number or rows must match the lengths of the calling <code class="docutils literal notranslate"><span class="pre">Series</span></code> (or <code class="docutils literal notranslate"><span class="pre">Index</span></code>).</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [74]: </span><span class="n">d</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">t</span><span class="p">,</span> <span class="n">s</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [77]: </span><span class="n">d</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">t</span><span class="p">,</span> <span class="n">s</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
-<span class="gp">In [75]: </span><span class="n">s</span>
-<span class="gh">Out[75]: </span>
+<span class="gp">In [78]: </span><span class="n">s</span>
+<span class="gh">Out[78]: </span>
 <span class="go">0    a</span>
 <span class="go">1    b</span>
 <span class="go">2    c</span>
 <span class="go">3    d</span>
 <span class="go">dtype: string</span>
 
-<span class="gp">In [76]: </span><span class="n">d</span>
-<span class="gh">Out[76]: </span>
+<span class="gp">In [79]: </span><span class="n">d</span>
+<span class="gh">Out[79]: </span>
 <span class="go">      0  1</span>
 <span class="go">0     a  a</span>
 <span class="go">1     b  b</span>
 <span class="go">2  &lt;NA&gt;  c</span>
 <span class="go">3     d  d</span>
 
-<span class="gp">In [77]: </span><span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">na_rep</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">)</span>
-<span class="gh">Out[77]: </span>
+<span class="gp">In [80]: </span><span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">na_rep</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">)</span>
+<span class="gh">Out[80]: </span>
 <span class="go">0    aaa</span>
 <span class="go">1    bbb</span>
 <span class="go">2    c-c</span>
@@ -1164,34 +1184,34 @@ resp. <code class="docutils literal notranslate"><span class="pre">Index.str.cat
 <h3>Concatenating a Series and an indexed object into a Series, with alignment<a class="headerlink" href="#concatenating-a-series-and-an-indexed-object-into-a-series-with-alignment" title="Permalink to this headline">#</a></h3>
 <p>For concatenation with a <code class="docutils literal notranslate"><span class="pre">Series</span></code> or <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>, it is possible to align the indexes before concatenation by setting
 the <code class="docutils literal notranslate"><span class="pre">join</span></code>-keyword.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [78]: </span><span class="n">u</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;d&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;string&quot;</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [81]: </span><span class="n">u</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;d&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;string&quot;</span><span class="p">)</span>
 
-<span class="gp">In [79]: </span><span class="n">s</span>
-<span class="gh">Out[79]: </span>
+<span class="gp">In [82]: </span><span class="n">s</span>
+<span class="gh">Out[82]: </span>
 <span class="go">0    a</span>
 <span class="go">1    b</span>
 <span class="go">2    c</span>
 <span class="go">3    d</span>
 <span class="go">dtype: string</span>
 
-<span class="gp">In [80]: </span><span class="n">u</span>
-<span class="gh">Out[80]: </span>
+<span class="gp">In [83]: </span><span class="n">u</span>
+<span class="gh">Out[83]: </span>
 <span class="go">1    b</span>
 <span class="go">3    d</span>
 <span class="go">0    a</span>
 <span class="go">2    c</span>
 <span class="go">dtype: string</span>
 
-<span class="gp">In [81]: </span><span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
-<span class="gh">Out[81]: </span>
+<span class="gp">In [84]: </span><span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+<span class="gh">Out[84]: </span>
 <span class="go">0    aa</span>
 <span class="go">1    bb</span>
 <span class="go">2    cc</span>
 <span class="go">3    dd</span>
 <span class="go">dtype: string</span>
 
-<span class="gp">In [82]: </span><span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">join</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">)</span>
-<span class="gh">Out[82]: </span>
+<span class="gp">In [85]: </span><span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">join</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">)</span>
+<span class="gh">Out[85]: </span>
 <span class="go">0    aa</span>
 <span class="go">1    bb</span>
 <span class="go">2    cc</span>
@@ -1206,18 +1226,18 @@ but a <code class="docutils literal notranslate"><span class="pre">FutureWarning
 </div>
 <p>The usual options are available for <code class="docutils literal notranslate"><span class="pre">join</span></code> (one of <code class="docutils literal notranslate"><span class="pre">'left',</span> <span class="pre">'outer',</span> <span class="pre">'inner',</span> <span class="pre">'right'</span></code>).
 In particular, alignment also means that the different lengths do not need to coincide anymore.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [83]: </span><span class="n">v</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s2">&quot;z&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;d&quot;</span><span class="p">,</span> <span class="s2">&quot;e&quot;</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;string&quot;</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [86]: </span><span class="n">v</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s2">&quot;z&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;d&quot;</span><span class="p">,</span> <span class="s2">&quot;e&quot;</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;string&quot;</span><span class="p">)</span>
 
-<span class="gp">In [84]: </span><span class="n">s</span>
-<span class="gh">Out[84]: </span>
+<span class="gp">In [87]: </span><span class="n">s</span>
+<span class="gh">Out[87]: </span>
 <span class="go">0    a</span>
 <span class="go">1    b</span>
 <span class="go">2    c</span>
 <span class="go">3    d</span>
 <span class="go">dtype: string</span>
 
-<span class="gp">In [85]: </span><span class="n">v</span>
-<span class="gh">Out[85]: </span>
+<span class="gp">In [88]: </span><span class="n">v</span>
+<span class="gh">Out[88]: </span>
 <span class="go">-1    z</span>
 <span class="go"> 0    a</span>
 <span class="go"> 1    b</span>
@@ -1225,16 +1245,16 @@ In particular, alignment also means that the different lengths do not need to co
 <span class="go"> 4    e</span>
 <span class="go">dtype: string</span>
 
-<span class="gp">In [86]: </span><span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">join</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">,</span> <span class="n">na_rep</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">)</span>
-<span class="gh">Out[86]: </span>
+<span class="gp">In [89]: </span><span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">join</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">,</span> <span class="n">na_rep</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">)</span>
+<span class="gh">Out[89]: </span>
 <span class="go">0    aa</span>
 <span class="go">1    bb</span>
 <span class="go">2    c-</span>
 <span class="go">3    dd</span>
 <span class="go">dtype: string</span>
 
-<span class="gp">In [87]: </span><span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">join</span><span class="o">=</span><span class="s2">&quot;outer&quot;</span><span class="p">,</span> <span class="n">na_rep</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">)</span>
-<span class="gh">Out[87]: </span>
+<span class="gp">In [90]: </span><span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">join</span><span class="o">=</span><span class="s2">&quot;outer&quot;</span><span class="p">,</span> <span class="n">na_rep</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">)</span>
+<span class="gh">Out[90]: </span>
 <span class="go">-1    -z</span>
 <span class="go"> 0    aa</span>
 <span class="go"> 1    bb</span>
@@ -1245,26 +1265,26 @@ In particular, alignment also means that the different lengths do not need to co
 </pre></div>
 </div>
 <p>The same alignment can be used when <code class="docutils literal notranslate"><span class="pre">others</span></code> is a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [88]: </span><span class="n">f</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">:]</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [91]: </span><span class="n">f</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">:]</span>
 
-<span class="gp">In [89]: </span><span class="n">s</span>
-<span class="gh">Out[89]: </span>
+<span class="gp">In [92]: </span><span class="n">s</span>
+<span class="gh">Out[92]: </span>
 <span class="go">0    a</span>
 <span class="go">1    b</span>
 <span class="go">2    c</span>
 <span class="go">3    d</span>
 <span class="go">dtype: string</span>
 
-<span class="gp">In [90]: </span><span class="n">f</span>
-<span class="gh">Out[90]: </span>
+<span class="gp">In [93]: </span><span class="n">f</span>
+<span class="gh">Out[93]: </span>
 <span class="go">      0  1</span>
 <span class="go">3     d  d</span>
 <span class="go">2  &lt;NA&gt;  c</span>
 <span class="go">1     b  b</span>
 <span class="go">0     a  a</span>
 
-<span class="gp">In [91]: </span><span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">join</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">,</span> <span class="n">na_rep</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">)</span>
-<span class="gh">Out[91]: </span>
+<span class="gp">In [94]: </span><span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">join</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">,</span> <span class="n">na_rep</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">)</span>
+<span class="gh">Out[94]: </span>
 <span class="go">0    aaa</span>
 <span class="go">1    bbb</span>
 <span class="go">2    c-c</span>
@@ -1277,24 +1297,24 @@ In particular, alignment also means that the different lengths do not need to co
 <h3>Concatenating a Series and many objects into a Series<a class="headerlink" href="#concatenating-a-series-and-many-objects-into-a-series" title="Permalink to this headline">#</a></h3>
 <p>Several array-like items (specifically: <code class="docutils literal notranslate"><span class="pre">Series</span></code>, <code class="docutils literal notranslate"><span class="pre">Index</span></code>, and 1-dimensional variants of <code class="docutils literal notranslate"><span class="pre">np.ndarray</span></code>)
 can be combined in a list-like container (including iterators, <code class="docutils literal notranslate"><span class="pre">dict</span></code>-views, etc.).</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [92]: </span><span class="n">s</span>
-<span class="gh">Out[92]: </span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [95]: </span><span class="n">s</span>
+<span class="gh">Out[95]: </span>
 <span class="go">0    a</span>
 <span class="go">1    b</span>
 <span class="go">2    c</span>
 <span class="go">3    d</span>
 <span class="go">dtype: string</span>
 
-<span class="gp">In [93]: </span><span class="n">u</span>
-<span class="gh">Out[93]: </span>
+<span class="gp">In [96]: </span><span class="n">u</span>
+<span class="gh">Out[96]: </span>
 <span class="go">1    b</span>
 <span class="go">3    d</span>
 <span class="go">0    a</span>
 <span class="go">2    c</span>
 <span class="go">dtype: string</span>
 
-<span class="gp">In [94]: </span><span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span><span class="n">u</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()],</span> <span class="n">join</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">)</span>
-<span class="gh">Out[94]: </span>
+<span class="gp">In [97]: </span><span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span><span class="n">u</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()],</span> <span class="n">join</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">)</span>
+<span class="gh">Out[97]: </span>
 <span class="go">0    aab</span>
 <span class="go">1    bbd</span>
 <span class="go">2    cca</span>
@@ -1304,8 +1324,8 @@ can be combined in a list-like container (including iterators, <code class="docu
 </div>
 <p>All elements without an index (e.g. <code class="docutils literal notranslate"><span class="pre">np.ndarray</span></code>) within the passed list-like must match in length to the calling <code class="docutils literal notranslate"><span class="pre">Series</span></code> (or <code class="docutils literal notranslate"><span class="pre">Index</span></code>),
 but <code class="docutils literal notranslate"><span class="pre">Series</span></code> and <code class="docutils literal notranslate"><span class="pre">Index</span></code> may have arbitrary length (as long as alignment is not disabled with <code class="docutils literal notranslate"><span class="pre">join=None</span></code>):</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [95]: </span><span class="n">v</span>
-<span class="gh">Out[95]: </span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [98]: </span><span class="n">v</span>
+<span class="gh">Out[98]: </span>
 <span class="go">-1    z</span>
 <span class="go"> 0    a</span>
 <span class="go"> 1    b</span>
@@ -1313,8 +1333,8 @@ but <code class="docutils literal notranslate"><span class="pre">Series</span></
 <span class="go"> 4    e</span>
 <span class="go">dtype: string</span>
 
-<span class="gp">In [96]: </span><span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span><span class="n">v</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()],</span> <span class="n">join</span><span class="o">=</span><span class="s2">&quot;outer&quot;</span><span class="p">,</span> <span class="n">na_rep</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">)</span>
-<span class="gh">Out[96]: </span>
+<span class="gp">In [99]: </span><span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span><span class="n">v</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">u</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()],</span> <span class="n">join</span><span class="o">=</span><span class="s2">&quot;outer&quot;</span><span class="p">,</span> <span class="n">na_rep</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">)</span>
+<span class="gh">Out[99]: </span>
 <span class="go">-1    -z--</span>
 <span class="go">0     aaab</span>
 <span class="go">1     bbbd</span>
@@ -1326,19 +1346,19 @@ but <code class="docutils literal notranslate"><span class="pre">Series</span></
 </div>
 <p>If using <code class="docutils literal notranslate"><span class="pre">join='right'</span></code> on a list-like of <code class="docutils literal notranslate"><span class="pre">others</span></code> that contains different indexes,
 the union of these indexes will be used as the basis for the final concatenation:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [97]: </span><span class="n">u</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="mi">3</span><span class="p">]]</span>
-<span class="gh">Out[97]: </span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [100]: </span><span class="n">u</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="mi">3</span><span class="p">]]</span>
+<span class="gh">Out[100]: </span>
 <span class="go">3    d</span>
 <span class="go">dtype: string</span>
 
-<span class="gp">In [98]: </span><span class="n">v</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]</span>
-<span class="gh">Out[98]: </span>
+<span class="gp">In [101]: </span><span class="n">v</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]</span>
+<span class="gh">Out[101]: </span>
 <span class="go">-1    z</span>
 <span class="go"> 0    a</span>
 <span class="go">dtype: string</span>
 
-<span class="gp">In [99]: </span><span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span><span class="n">u</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="mi">3</span><span class="p">]],</span> <span class="n">v</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]],</span> <span class="n">join</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">,</span> <span class="n">na_rep</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">)</span>
-<span class="gh">Out[99]: </span>
+<span class="gp">In [102]: </span><span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span><span class="n">u</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="mi">3</span><span class="p">]],</span> <span class="n">v</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]],</span> <span class="n">join</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">,</span> <span class="n">na_rep</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">)</span>
+<span class="gh">Out[102]: </span>
 <span class="go"> 3    dd-</span>
 <span class="go">-1    --z</span>
 <span class="go"> 0    a-a</span>
@@ -1351,13 +1371,13 @@ the union of these indexes will be used as the basis for the final concatenation
 <h2>Indexing with <code class="docutils literal notranslate"><span class="pre">.str</span></code><a class="headerlink" href="#indexing-with-str" title="Permalink to this headline">#</a></h2>
 <p id="text-indexing">You can use <code class="docutils literal notranslate"><span class="pre">[]</span></code> notation to directly index by position locations. If you index past the end
 of the string, the result will be a <code class="docutils literal notranslate"><span class="pre">NaN</span></code>.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [100]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [103]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span>
 <span class="gp">   .....: </span>    <span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="s2">&quot;Aaba&quot;</span><span class="p">,</span> <span class="s2">&quot;Baca&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="s2">&quot;CABA&quot;</span><span class="p">,</span> <span class="s2">&quot;dog&quot;</span><span class="p">,</span> <span class="s2">&quot;cat&quot;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;string&quot;</span>
 <span class="gp">   .....: </span><span class="p">)</span>
 <span class="gp">   .....: </span>
 
-<span class="gp">In [101]: </span><span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="gh">Out[101]: </span>
+<span class="gp">In [104]: </span><span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="gh">Out[104]: </span>
 <span class="go">0       A</span>
 <span class="go">1       B</span>
 <span class="go">2       C</span>
@@ -1369,8 +1389,8 @@ of the string, the result will be a <code class="docutils literal notranslate"><
 <span class="go">8       c</span>
 <span class="go">dtype: string</span>
 
-<span class="gp">In [102]: </span><span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-<span class="gh">Out[102]: </span>
+<span class="gp">In [105]: </span><span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="gh">Out[105]: </span>
 <span class="go">0    &lt;NA&gt;</span>
 <span class="go">1    &lt;NA&gt;</span>
 <span class="go">2    &lt;NA&gt;</span>
@@ -1401,12 +1421,12 @@ which is more consistent and less confusing from the perspective of a user.
 capture group.</p>
 <p>Extracting a regular expression with more than one group returns a
 DataFrame with one column per group.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [103]: </span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [106]: </span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span>
 <span class="gp">   .....: </span>    <span class="p">[</span><span class="s2">&quot;a1&quot;</span><span class="p">,</span> <span class="s2">&quot;b2&quot;</span><span class="p">,</span> <span class="s2">&quot;c3&quot;</span><span class="p">],</span>
 <span class="gp">   .....: </span>    <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
 <span class="gp">   .....: </span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;([ab])(\d)&quot;</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="gp">   .....: </span>
-<span class="gh">Out[103]: </span>
+<span class="gh">Out[106]: </span>
 <span class="go">      0     1</span>
 <span class="go">0     a     1</span>
 <span class="go">1     b     2</span>
@@ -1420,11 +1440,11 @@ necessitating <code class="docutils literal notranslate"><span class="pre">get()
 dtype of the result is always object, even if no match is found and
 the result only contains <code class="docutils literal notranslate"><span class="pre">NaN</span></code>.</p>
 <p>Named groups like</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [104]: </span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s2">&quot;a1&quot;</span><span class="p">,</span> <span class="s2">&quot;b2&quot;</span><span class="p">,</span> <span class="s2">&quot;c3&quot;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;string&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [107]: </span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s2">&quot;a1&quot;</span><span class="p">,</span> <span class="s2">&quot;b2&quot;</span><span class="p">,</span> <span class="s2">&quot;c3&quot;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;string&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span>
 <span class="gp">   .....: </span>    <span class="sa">r</span><span class="s2">&quot;(?P&lt;letter&gt;[ab])(?P&lt;digit&gt;\d)&quot;</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">False</span>
 <span class="gp">   .....: </span><span class="p">)</span>
 <span class="gp">   .....: </span>
-<span class="gh">Out[104]: </span>
+<span class="gh">Out[107]: </span>
 <span class="go">  letter digit</span>
 <span class="go">0      a     1</span>
 <span class="go">1      b     2</span>
@@ -1432,12 +1452,12 @@ the result only contains <code class="docutils literal notranslate"><span class=
 </pre></div>
 </div>
 <p>and optional groups like</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [105]: </span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [108]: </span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span>
 <span class="gp">   .....: </span>    <span class="p">[</span><span class="s2">&quot;a1&quot;</span><span class="p">,</span> <span class="s2">&quot;b2&quot;</span><span class="p">,</span> <span class="s2">&quot;3&quot;</span><span class="p">],</span>
 <span class="gp">   .....: </span>    <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
 <span class="gp">   .....: </span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;([ab])?(\d)&quot;</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="gp">   .....: </span>
-<span class="gh">Out[105]: </span>
+<span class="gh">Out[108]: </span>
 <span class="go">      0  1</span>
 <span class="go">0     a  1</span>
 <span class="go">1     b  2</span>
@@ -1449,8 +1469,8 @@ expression will be used for column names; otherwise capture group
 numbers will be used.</p>
 <p>Extracting a regular expression with one group returns a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>
 with one column if <code class="docutils literal notranslate"><span class="pre">expand=True</span></code>.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [106]: </span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s2">&quot;a1&quot;</span><span class="p">,</span> <span class="s2">&quot;b2&quot;</span><span class="p">,</span> <span class="s2">&quot;c3&quot;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;string&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;[ab](\d)&quot;</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="gh">Out[106]: </span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [109]: </span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s2">&quot;a1&quot;</span><span class="p">,</span> <span class="s2">&quot;b2&quot;</span><span class="p">,</span> <span class="s2">&quot;c3&quot;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;string&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;[ab](\d)&quot;</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gh">Out[109]: </span>
 <span class="go">      0</span>
 <span class="go">0     1</span>
 <span class="go">1     2</span>
@@ -1458,8 +1478,8 @@ with one column if <code class="docutils literal notranslate"><span class="pre">
 </pre></div>
 </div>
 <p>It returns a Series if <code class="docutils literal notranslate"><span class="pre">expand=False</span></code>.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [107]: </span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s2">&quot;a1&quot;</span><span class="p">,</span> <span class="s2">&quot;b2&quot;</span><span class="p">,</span> <span class="s2">&quot;c3&quot;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;string&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;[ab](\d)&quot;</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="gh">Out[107]: </span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [110]: </span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s2">&quot;a1&quot;</span><span class="p">,</span> <span class="s2">&quot;b2&quot;</span><span class="p">,</span> <span class="s2">&quot;c3&quot;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;string&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;[ab](\d)&quot;</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="gh">Out[110]: </span>
 <span class="go">0       1</span>
 <span class="go">1       2</span>
 <span class="go">2    &lt;NA&gt;</span>
@@ -1468,17 +1488,17 @@ with one column if <code class="docutils literal notranslate"><span class="pre">
 </div>
 <p>Calling on an <code class="docutils literal notranslate"><span class="pre">Index</span></code> with a regex with exactly one capture group
 returns a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> with one column if <code class="docutils literal notranslate"><span class="pre">expand=True</span></code>.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [108]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s2">&quot;a1&quot;</span><span class="p">,</span> <span class="s2">&quot;b2&quot;</span><span class="p">,</span> <span class="s2">&quot;c3&quot;</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;A11&quot;</span><span class="p">,</span> <span class="s2">&quot;B22&quot;</span><span class="p">,</span> <span class="s2">&quot;C33&quot;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;string&quot;</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [111]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s2">&quot;a1&quot;</span><span class="p">,</span> <span class="s2">&quot;b2&quot;</span><span class="p">,</span> <span class="s2">&quot;c3&quot;</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;A11&quot;</span><span class="p">,</span> <span class="s2">&quot;B22&quot;</span><span class="p">,</span> <span class="s2">&quot;C33&quot;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;string&quot;</span><span class="p">)</span>
 
-<span class="gp">In [109]: </span><span class="n">s</span>
-<span class="gh">Out[109]: </span>
+<span class="gp">In [112]: </span><span class="n">s</span>
+<span class="gh">Out[112]: </span>
 <span class="go">A11    a1</span>
 <span class="go">B22    b2</span>
 <span class="go">C33    c3</span>
 <span class="go">dtype: string</span>
 
-<span class="gp">In [110]: </span><span class="n">s</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="s2">&quot;(?P&lt;letter&gt;[a-zA-Z])&quot;</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="gh">Out[110]: </span>
+<span class="gp">In [113]: </span><span class="n">s</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="s2">&quot;(?P&lt;letter&gt;[a-zA-Z])&quot;</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gh">Out[113]: </span>
 <span class="go">  letter</span>
 <span class="go">0      A</span>
 <span class="go">1      B</span>
@@ -1486,14 +1506,14 @@ returns a <code class="docutils literal notranslate"><span class="pre">DataFrame
 </pre></div>
 </div>
 <p>It returns an <code class="docutils literal notranslate"><span class="pre">Index</span></code> if <code class="docutils literal notranslate"><span class="pre">expand=False</span></code>.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [111]: </span><span class="n">s</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="s2">&quot;(?P&lt;letter&gt;[a-zA-Z])&quot;</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="gh">Out[111]: </span><span class="go">Index([&#39;A&#39;, &#39;B&#39;, &#39;C&#39;], dtype=&#39;object&#39;, name=&#39;letter&#39;)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [114]: </span><span class="n">s</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="s2">&quot;(?P&lt;letter&gt;[a-zA-Z])&quot;</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="gh">Out[114]: </span><span class="go">Index([&#39;A&#39;, &#39;B&#39;, &#39;C&#39;], dtype=&#39;object&#39;, name=&#39;letter&#39;)</span>
 </pre></div>
 </div>
 <p>Calling on an <code class="docutils literal notranslate"><span class="pre">Index</span></code> with a regex with more than one capture group
 returns a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> if <code class="docutils literal notranslate"><span class="pre">expand=True</span></code>.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [112]: </span><span class="n">s</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="s2">&quot;(?P&lt;letter&gt;[a-zA-Z])([0-9]+)&quot;</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="gh">Out[112]: </span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [115]: </span><span class="n">s</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="s2">&quot;(?P&lt;letter&gt;[a-zA-Z])([0-9]+)&quot;</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gh">Out[115]: </span>
 <span class="go">  letter   1</span>
 <span class="go">0      A  11</span>
 <span class="go">1      B  22</span>
@@ -1533,19 +1553,19 @@ first row)</p>
 <section id="extract-all-matches-in-each-subject-extractall">
 <h3>Extract all matches in each subject (extractall)<a class="headerlink" href="#extract-all-matches-in-each-subject-extractall" title="Permalink to this headline">#</a></h3>
 <p id="text-extractall">Unlike <code class="docutils literal notranslate"><span class="pre">extract</span></code> (which returns only the first match),</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [113]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s2">&quot;a1a2&quot;</span><span class="p">,</span> <span class="s2">&quot;b1&quot;</span><span class="p">,</span> <span class="s2">&quot;c1&quot;</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;string&quot;</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [116]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s2">&quot;a1a2&quot;</span><span class="p">,</span> <span class="s2">&quot;b1&quot;</span><span class="p">,</span> <span class="s2">&quot;c1&quot;</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;string&quot;</span><span class="p">)</span>
 
-<span class="gp">In [114]: </span><span class="n">s</span>
-<span class="gh">Out[114]: </span>
+<span class="gp">In [117]: </span><span class="n">s</span>
+<span class="gh">Out[117]: </span>
 <span class="go">A    a1a2</span>
 <span class="go">B      b1</span>
 <span class="go">C      c1</span>
 <span class="go">dtype: string</span>
 
-<span class="gp">In [115]: </span><span class="n">two_groups</span> <span class="o">=</span> <span class="s2">&quot;(?P&lt;letter&gt;[a-z])(?P&lt;digit&gt;[0-9])&quot;</span>
+<span class="gp">In [118]: </span><span class="n">two_groups</span> <span class="o">=</span> <span class="s2">&quot;(?P&lt;letter&gt;[a-z])(?P&lt;digit&gt;[0-9])&quot;</span>
 
-<span class="gp">In [116]: </span><span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="n">two_groups</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="gh">Out[116]: </span>
+<span class="gp">In [119]: </span><span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="n">two_groups</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gh">Out[119]: </span>
 <span class="go">  letter digit</span>
 <span class="go">A      a     1</span>
 <span class="go">B      b     1</span>
@@ -1556,8 +1576,8 @@ first row)</p>
 <code class="docutils literal notranslate"><span class="pre">extractall</span></code> is always a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> with a <code class="docutils literal notranslate"><span class="pre">MultiIndex</span></code> on its
 rows. The last level of the <code class="docutils literal notranslate"><span class="pre">MultiIndex</span></code> is named <code class="docutils literal notranslate"><span class="pre">match</span></code> and
 indicates the order in the subject.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [117]: </span><span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="n">two_groups</span><span class="p">)</span>
-<span class="gh">Out[117]: </span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [120]: </span><span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="n">two_groups</span><span class="p">)</span>
+<span class="gh">Out[120]: </span>
 <span class="go">        letter digit</span>
 <span class="go">  match             </span>
 <span class="go">A 0          a     1</span>
@@ -1567,10 +1587,10 @@ indicates the order in the subject.</p>
 </pre></div>
 </div>
 <p>When each subject string in the Series has exactly one match,</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [118]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s2">&quot;a3&quot;</span><span class="p">,</span> <span class="s2">&quot;b3&quot;</span><span class="p">,</span> <span class="s2">&quot;c2&quot;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;string&quot;</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [121]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s2">&quot;a3&quot;</span><span class="p">,</span> <span class="s2">&quot;b3&quot;</span><span class="p">,</span> <span class="s2">&quot;c2&quot;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;string&quot;</span><span class="p">)</span>
 
-<span class="gp">In [119]: </span><span class="n">s</span>
-<span class="gh">Out[119]: </span>
+<span class="gp">In [122]: </span><span class="n">s</span>
+<span class="gh">Out[122]: </span>
 <span class="go">0    a3</span>
 <span class="go">1    b3</span>
 <span class="go">2    c2</span>
@@ -1579,27 +1599,27 @@ indicates the order in the subject.</p>
 </div>
 <p>then <code class="docutils literal notranslate"><span class="pre">extractall(pat).xs(0,</span> <span class="pre">level='match')</span></code> gives the same result as
 <code class="docutils literal notranslate"><span class="pre">extract(pat)</span></code>.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [120]: </span><span class="n">extract_result</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="n">two_groups</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [123]: </span><span class="n">extract_result</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="n">two_groups</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-<span class="gp">In [121]: </span><span class="n">extract_result</span>
-<span class="gh">Out[121]: </span>
+<span class="gp">In [124]: </span><span class="n">extract_result</span>
+<span class="gh">Out[124]: </span>
 <span class="go">  letter digit</span>
 <span class="go">0      a     3</span>
 <span class="go">1      b     3</span>
 <span class="go">2      c     2</span>
 
-<span class="gp">In [122]: </span><span class="n">extractall_result</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="n">two_groups</span><span class="p">)</span>
+<span class="gp">In [125]: </span><span class="n">extractall_result</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="n">two_groups</span><span class="p">)</span>
 
-<span class="gp">In [123]: </span><span class="n">extractall_result</span>
-<span class="gh">Out[123]: </span>
+<span class="gp">In [126]: </span><span class="n">extractall_result</span>
+<span class="gh">Out[126]: </span>
 <span class="go">        letter digit</span>
 <span class="go">  match             </span>
 <span class="go">0 0          a     3</span>
 <span class="go">1 0          b     3</span>
 <span class="go">2 0          c     2</span>
 
-<span class="gp">In [124]: </span><span class="n">extractall_result</span><span class="o">.</span><span class="n">xs</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="s2">&quot;match&quot;</span><span class="p">)</span>
-<span class="gh">Out[124]: </span>
+<span class="gp">In [127]: </span><span class="n">extractall_result</span><span class="o">.</span><span class="n">xs</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="s2">&quot;match&quot;</span><span class="p">)</span>
+<span class="gh">Out[127]: </span>
 <span class="go">  letter digit</span>
 <span class="go">0      a     3</span>
 <span class="go">1      b     3</span>
@@ -1608,8 +1628,8 @@ indicates the order in the subject.</p>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">Index</span></code> also supports <code class="docutils literal notranslate"><span class="pre">.str.extractall</span></code>. It returns a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> which has the
 same result as a <code class="docutils literal notranslate"><span class="pre">Series.str.extractall</span></code> with a default index (starts from 0).</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [125]: </span><span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">([</span><span class="s2">&quot;a1a2&quot;</span><span class="p">,</span> <span class="s2">&quot;b1&quot;</span><span class="p">,</span> <span class="s2">&quot;c1&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="n">two_groups</span><span class="p">)</span>
-<span class="gh">Out[125]: </span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [128]: </span><span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">([</span><span class="s2">&quot;a1a2&quot;</span><span class="p">,</span> <span class="s2">&quot;b1&quot;</span><span class="p">,</span> <span class="s2">&quot;c1&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="n">two_groups</span><span class="p">)</span>
+<span class="gh">Out[128]: </span>
 <span class="go">        letter digit</span>
 <span class="go">  match             </span>
 <span class="go">0 0          a     1</span>
@@ -1617,8 +1637,8 @@ same result as a <code class="docutils literal notranslate"><span class="pre">Se
 <span class="go">1 0          b     1</span>
 <span class="go">2 0          c     1</span>
 
-<span class="gp">In [126]: </span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s2">&quot;a1a2&quot;</span><span class="p">,</span> <span class="s2">&quot;b1&quot;</span><span class="p">,</span> <span class="s2">&quot;c1&quot;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;string&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="n">two_groups</span><span class="p">)</span>
-<span class="gh">Out[126]: </span>
+<span class="gp">In [129]: </span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s2">&quot;a1a2&quot;</span><span class="p">,</span> <span class="s2">&quot;b1&quot;</span><span class="p">,</span> <span class="s2">&quot;c1&quot;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;string&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="n">two_groups</span><span class="p">)</span>
+<span class="gh">Out[129]: </span>
 <span class="go">        letter digit</span>
 <span class="go">  match             </span>
 <span class="go">0 0          a     1</span>
@@ -1632,14 +1652,14 @@ same result as a <code class="docutils literal notranslate"><span class="pre">Se
 <section id="testing-for-strings-that-match-or-contain-a-pattern">
 <h2>Testing for strings that match or contain a pattern<a class="headerlink" href="#testing-for-strings-that-match-or-contain-a-pattern" title="Permalink to this headline">#</a></h2>
 <p>You can check whether elements contain a pattern:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [127]: </span><span class="n">pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;[0-9][a-z]&quot;</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [130]: </span><span class="n">pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;[0-9][a-z]&quot;</span>
 
-<span class="gp">In [128]: </span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span>
+<span class="gp">In [131]: </span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span>
 <span class="gp">   .....: </span>    <span class="p">[</span><span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span> <span class="s2">&quot;3a&quot;</span><span class="p">,</span> <span class="s2">&quot;3b&quot;</span><span class="p">,</span> <span class="s2">&quot;03c&quot;</span><span class="p">,</span> <span class="s2">&quot;4dx&quot;</span><span class="p">],</span>
 <span class="gp">   .....: </span>    <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
 <span class="gp">   .....: </span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span>
 <span class="gp">   .....: </span>
-<span class="gh">Out[128]: </span>
+<span class="gh">Out[131]: </span>
 <span class="go">0    False</span>
 <span class="go">1    False</span>
 <span class="go">2     True</span>
@@ -1650,12 +1670,12 @@ same result as a <code class="docutils literal notranslate"><span class="pre">Se
 </pre></div>
 </div>
 <p>Or whether elements match a pattern:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [129]: </span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [132]: </span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span>
 <span class="gp">   .....: </span>    <span class="p">[</span><span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span> <span class="s2">&quot;3a&quot;</span><span class="p">,</span> <span class="s2">&quot;3b&quot;</span><span class="p">,</span> <span class="s2">&quot;03c&quot;</span><span class="p">,</span> <span class="s2">&quot;4dx&quot;</span><span class="p">],</span>
 <span class="gp">   .....: </span>    <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
 <span class="gp">   .....: </span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span>
 <span class="gp">   .....: </span>
-<span class="gh">Out[129]: </span>
+<span class="gh">Out[132]: </span>
 <span class="go">0    False</span>
 <span class="go">1    False</span>
 <span class="go">2     True</span>
@@ -1668,12 +1688,12 @@ same result as a <code class="docutils literal notranslate"><span class="pre">Se
 <div class="versionadded">
 <p><span class="versionmodified added">New in version 1.1.0.</span></p>
 </div>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [130]: </span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [133]: </span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span>
 <span class="gp">   .....: </span>    <span class="p">[</span><span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span> <span class="s2">&quot;3a&quot;</span><span class="p">,</span> <span class="s2">&quot;3b&quot;</span><span class="p">,</span> <span class="s2">&quot;03c&quot;</span><span class="p">,</span> <span class="s2">&quot;4dx&quot;</span><span class="p">],</span>
 <span class="gp">   .....: </span>    <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;string&quot;</span><span class="p">,</span>
 <span class="gp">   .....: </span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span>
 <span class="gp">   .....: </span>
-<span class="gh">Out[130]: </span>
+<span class="gh">Out[133]: </span>
 <span class="go">0    False</span>
 <span class="go">1    False</span>
 <span class="go">2     True</span>
@@ -1699,13 +1719,13 @@ respectively.</p>
 <p>Methods like <code class="docutils literal notranslate"><span class="pre">match</span></code>, <code class="docutils literal notranslate"><span class="pre">fullmatch</span></code>, <code class="docutils literal notranslate"><span class="pre">contains</span></code>, <code class="docutils literal notranslate"><span class="pre">startswith</span></code>, and
 <code class="docutils literal notranslate"><span class="pre">endswith</span></code> take an extra <code class="docutils literal notranslate"><span class="pre">na</span></code> argument so missing values can be considered
 True or False:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [131]: </span><span class="n">s4</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [134]: </span><span class="n">s4</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span>
 <span class="gp">   .....: </span>    <span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="s2">&quot;Aaba&quot;</span><span class="p">,</span> <span class="s2">&quot;Baca&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="s2">&quot;CABA&quot;</span><span class="p">,</span> <span class="s2">&quot;dog&quot;</span><span class="p">,</span> <span class="s2">&quot;cat&quot;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;string&quot;</span>
 <span class="gp">   .....: </span><span class="p">)</span>
 <span class="gp">   .....: </span>
 
-<span class="gp">In [132]: </span><span class="n">s4</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="n">na</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="gh">Out[132]: </span>
+<span class="gp">In [135]: </span><span class="n">s4</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="n">na</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="gh">Out[135]: </span>
 <span class="go">0     True</span>
 <span class="go">1    False</span>
 <span class="go">2    False</span>
@@ -1723,10 +1743,10 @@ True or False:</p>
 <span id="text-indicator"></span><h2>Creating indicator variables<a class="headerlink" href="#creating-indicator-variables" title="Permalink to this headline">#</a></h2>
 <p>You can extract dummy variables from string columns.
 For example if they are separated by a <code class="docutils literal notranslate"><span class="pre">'|'</span></code>:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [133]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;a|b&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="s2">&quot;a|c&quot;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;string&quot;</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [136]: </span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;a|b&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="s2">&quot;a|c&quot;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;string&quot;</span><span class="p">)</span>
 
-<span class="gp">In [134]: </span><span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">sep</span><span class="o">=</span><span class="s2">&quot;|&quot;</span><span class="p">)</span>
-<span class="gh">Out[134]: </span>
+<span class="gp">In [137]: </span><span class="n">s</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">sep</span><span class="o">=</span><span class="s2">&quot;|&quot;</span><span class="p">)</span>
+<span class="gh">Out[137]: </span>
 <span class="go">   a  b  c</span>
 <span class="go">0  1  0  0</span>
 <span class="go">1  1  1  0</span>
@@ -1735,10 +1755,10 @@ For example if they are separated by a <code class="docutils literal notranslate
 </pre></div>
 </div>
 <p>String <code class="docutils literal notranslate"><span class="pre">Index</span></code> also supports <code class="docutils literal notranslate"><span class="pre">get_dummies</span></code> which returns a <code class="docutils literal notranslate"><span class="pre">MultiIndex</span></code>.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [135]: </span><span class="n">idx</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">([</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;a|b&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="s2">&quot;a|c&quot;</span><span class="p">])</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [138]: </span><span class="n">idx</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">([</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;a|b&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="s2">&quot;a|c&quot;</span><span class="p">])</span>
 
-<span class="gp">In [136]: </span><span class="n">idx</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">sep</span><span class="o">=</span><span class="s2">&quot;|&quot;</span><span class="p">)</span>
-<span class="gh">Out[136]: </span>
+<span class="gp">In [139]: </span><span class="n">idx</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">sep</span><span class="o">=</span><span class="s2">&quot;|&quot;</span><span class="p">)</span>
+<span class="gh">Out[139]: </span>
 <span class="go">MultiIndex([(1, 0, 0),</span>
 <span class="go">            (1, 1, 0),</span>
 <span class="go">            (0, 0, 0),</span>

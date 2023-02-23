@@ -13,11 +13,7 @@ pandas.tseries.offsets.CustomBusinessMonthBegin
    .. autosummary::
       :toctree:
       
-      CustomBusinessMonthBegin.__call__
-      CustomBusinessMonthBegin.apply
-      CustomBusinessMonthBegin.apply_index
       CustomBusinessMonthBegin.copy
-      CustomBusinessMonthBegin.isAnchored
       CustomBusinessMonthBegin.is_anchored
       CustomBusinessMonthBegin.is_month_end
       CustomBusinessMonthBegin.is_month_start
@@ -26,7 +22,6 @@ pandas.tseries.offsets.CustomBusinessMonthBegin
       CustomBusinessMonthBegin.is_quarter_start
       CustomBusinessMonthBegin.is_year_end
       CustomBusinessMonthBegin.is_year_start
-      CustomBusinessMonthBegin.onOffset
       CustomBusinessMonthBegin.rollback
       CustomBusinessMonthBegin.rollforward
 

@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Resampling &#8212; pandas 1.5.3 documentation</title>
+    <title>Resampling &#8212; pandas 2.0.0rc0 documentation</title>
   <script>
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
@@ -55,13 +55,13 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'reference/resampling';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_switcher_json_url = '/versions.json';
-        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '1.5.3';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = '2.0.0 (rc)';
         </script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="pandas.core.resample.Resampler.__iter__" href="api/pandas.core.resample.Resampler.__iter__.html" />
-    <link rel="prev" title="pandas.core.groupby.DataFrameGroupBy.boxplot" href="api/pandas.core.groupby.DataFrameGroupBy.boxplot.html" />
+    <link rel="prev" title="pandas.core.groupby.SeriesGroupBy.plot" href="api/pandas.core.groupby.SeriesGroupBy.plot.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="docsearch:language" content="en">
   </head>
@@ -182,7 +182,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -311,7 +311,7 @@
       <div class="navbar-end-item">
         <div class="version-switcher__container dropdown">
     <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-toggle="dropdown">
-        1.5.3  <!-- this text may get changed later by javascript -->
+        2.0.0 (rc)  <!-- this text may get changed later by javascript -->
         <span class="caret"></span>
     </button>
     <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
@@ -464,18 +464,8 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="api/pandas.core.resample.Resampler.backfill.html">
-     pandas.core.resample.Resampler.backfill
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="api/pandas.core.resample.Resampler.bfill.html">
      pandas.core.resample.Resampler.bfill
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="api/pandas.core.resample.Resampler.pad.html">
-     pandas.core.resample.Resampler.pad
     </a>
    </li>
    <li class="toctree-l2">
@@ -694,14 +684,8 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.core.resample.Resampler.ffill.html#pandas.core.resample.Resampler.ffill" title="pandas.core.resample.Resampler.ffill"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Resampler.ffill</span></code></a>([limit])</p></td>
 <td><p>Forward fill the values.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.core.resample.Resampler.backfill.html#pandas.core.resample.Resampler.backfill" title="pandas.core.resample.Resampler.backfill"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Resampler.backfill</span></code></a>([limit])</p></td>
-<td><p>(DEPRECATED) Backward fill the values.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.core.resample.Resampler.bfill.html#pandas.core.resample.Resampler.bfill" title="pandas.core.resample.Resampler.bfill"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Resampler.bfill</span></code></a>([limit])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.core.resample.Resampler.bfill.html#pandas.core.resample.Resampler.bfill" title="pandas.core.resample.Resampler.bfill"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Resampler.bfill</span></code></a>([limit])</p></td>
 <td><p>Backward fill the new missing values in the resampled data.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="api/pandas.core.resample.Resampler.pad.html#pandas.core.resample.Resampler.pad" title="pandas.core.resample.Resampler.pad"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Resampler.pad</span></code></a>([limit])</p></td>
-<td><p>(DEPRECATED) Forward fill the values.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.core.resample.Resampler.nearest.html#pandas.core.resample.Resampler.nearest" title="pandas.core.resample.Resampler.nearest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Resampler.nearest</span></code></a>([limit])</p></td>
 <td><p>Resample by using the nearest value.</p></td>
@@ -739,7 +723,7 @@
 <td><p>Compute the last non-null entry of each column.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.core.resample.Resampler.max.html#pandas.core.resample.Resampler.max" title="pandas.core.resample.Resampler.max"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Resampler.max</span></code></a>([numeric_only, min_count])</p></td>
-<td><p>Compute max of group values.</p></td>
+<td><p></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="api/pandas.core.resample.Resampler.mean.html#pandas.core.resample.Resampler.mean" title="pandas.core.resample.Resampler.mean"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Resampler.mean</span></code></a>([numeric_only])</p></td>
 <td><p>Compute mean of groups, excluding missing values.</p></td>
@@ -748,13 +732,13 @@
 <td><p>Compute median of groups, excluding missing values.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="api/pandas.core.resample.Resampler.min.html#pandas.core.resample.Resampler.min" title="pandas.core.resample.Resampler.min"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Resampler.min</span></code></a>([numeric_only, min_count])</p></td>
-<td><p>Compute min of group values.</p></td>
+<td><p></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.core.resample.Resampler.ohlc.html#pandas.core.resample.Resampler.ohlc" title="pandas.core.resample.Resampler.ohlc"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Resampler.ohlc</span></code></a>(*args, **kwargs)</p></td>
 <td><p>Compute open, high, low and close values of a group, excluding missing values.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="api/pandas.core.resample.Resampler.prod.html#pandas.core.resample.Resampler.prod" title="pandas.core.resample.Resampler.prod"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Resampler.prod</span></code></a>([numeric_only, min_count])</p></td>
-<td><p>Compute prod of group values.</p></td>
+<td><p>Compute {fname} of group values.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.core.resample.Resampler.size.html#pandas.core.resample.Resampler.size" title="pandas.core.resample.Resampler.size"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Resampler.size</span></code></a>()</p></td>
 <td><p>Compute group sizes.</p></td>
@@ -766,7 +750,7 @@
 <td><p>Compute standard deviation of groups, excluding missing values.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="api/pandas.core.resample.Resampler.sum.html#pandas.core.resample.Resampler.sum" title="pandas.core.resample.Resampler.sum"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Resampler.sum</span></code></a>([numeric_only, min_count])</p></td>
-<td><p>Compute sum of group values.</p></td>
+<td><p></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="api/pandas.core.resample.Resampler.var.html#pandas.core.resample.Resampler.var" title="pandas.core.resample.Resampler.var"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Resampler.var</span></code></a>([ddof, numeric_only])</p></td>
 <td><p>Compute variance of groups, excluding missing values.</p></td>
@@ -787,11 +771,11 @@
             <footer class="bd-footer-article">
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-  <a class='left-prev' id="prev-link" href="api/pandas.core.groupby.DataFrameGroupBy.boxplot.html" title="previous page">
+  <a class='left-prev' id="prev-link" href="api/pandas.core.groupby.SeriesGroupBy.plot.html" title="previous page">
       <i class="fas fa-angle-left"></i>
       <div class="prev-next-info">
           <p class="prev-next-subtitle">previous</p>
-          <p class="prev-next-title">pandas.core.groupby.DataFrameGroupBy.boxplot</p>
+          <p class="prev-next-title">pandas.core.groupby.SeriesGroupBy.plot</p>
       </div>
   </a>
   <a class='right-next' id="next-link" href="api/pandas.core.resample.Resampler.__iter__.html" title="next page">

@@ -1,0 +1,6 @@
+pandas.core.groupby.SeriesGroupBy.resample
+==========================================
+
+.. currentmodule:: pandas.core.groupby
+
+.. automethod:: SeriesGroupBy.resample

@@ -22,7 +22,6 @@ pandas.DataFrame
       DataFrame.align
       DataFrame.all
       DataFrame.any
-      DataFrame.append
       DataFrame.apply
       DataFrame.applymap
       DataFrame.asfreq
@@ -90,7 +89,6 @@ pandas.DataFrame
       DataFrame.isna
       DataFrame.isnull
       DataFrame.items
-      DataFrame.iteritems
       DataFrame.iterrows
       DataFrame.itertuples
       DataFrame.join
@@ -100,9 +98,7 @@ pandas.DataFrame
       DataFrame.last
       DataFrame.last_valid_index
       DataFrame.le
-      DataFrame.lookup
       DataFrame.lt
-      DataFrame.mad
       DataFrame.mask
       DataFrame.max
       DataFrame.mean
@@ -159,7 +155,6 @@ pandas.DataFrame
       DataFrame.set_index
       DataFrame.shift
       DataFrame.skew
-      DataFrame.slice_shift
       DataFrame.sort_index
       DataFrame.sort_values
       DataFrame.squeeze
@@ -199,7 +194,6 @@ pandas.DataFrame
       DataFrame.transpose
       DataFrame.truediv
       DataFrame.truncate
-      DataFrame.tshift
       DataFrame.tz_convert
       DataFrame.tz_localize
       DataFrame.unstack

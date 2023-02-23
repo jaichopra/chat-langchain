@@ -1,0 +1,6 @@
+pandas.core.groupby.SeriesGroupBy.count
+=======================================
+
+.. currentmodule:: pandas.core.groupby
+
+.. automethod:: SeriesGroupBy.count

@@ -51,7 +51,9 @@ def ingest_docs():
     )
     documents = text_splitter.split_documents(docs)
     embeddings = OpenAIEmbeddings()
-    LanceDataset.from_documents(documents, embeddings, uri="pandas.lance")
+    vectorstore = LanceDataset.from_documents(documents, embeddings, uri="pandas.lance")
+    with open("vectorstore.pkl", "wb") as fh:
+        pickle.dump(vectorstore, fh)
 
 if __name__ == "__main__":
     ingest_docs()
